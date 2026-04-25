@@ -27,6 +27,7 @@
 - 1ページ内で意味の流れが増えているか
 - 演出が本文の読みやすさを邪魔していないか
 - 追加するものは `content.js` に置けないか
+- `main` へpushすると https://hazakura-labo-web.pages.dev に自動デプロイされる前提で安全な変更か
 
 ## 作業後チェック
 
@@ -44,6 +45,20 @@ node --check hazakura-onepage-lab/script.js
 - 制作物カードが増減してもレイアウトが壊れない
 - モバイル幅で横スクロールが出ない
 
+## デプロイ前チェック
+
+GitHubの `main` にpushするとCloudflare Pagesへ自動デプロイされる。現在のCloudflare設定は、root directoryが `hazakura-onepage-lab`、ビルドコマンドなし、フレームワークなし。
+
+フレームワーク導入は検討してよい。ただし、導入時は次の崩れに注意する。
+
+- Cloudflare Pagesのroot/build/output設定が変わる
+- `./img/...` や `downloads/...` の相対パスが変わる
+- 既存の `file://` 確認とPages上の挙動がずれる
+- Canvas、スクロールゾーン、カスタムカーソルの初期化順が変わる
+- 生成後のHTML/CSS/JS構造により、現在の1ページ演出が崩れる
+
+フレームワークを試す時は、まず検証ブランチで小さく移植し、既存サイトと見比べる。
+
 ## ログの残し方
 
 作業したら [docs/RICHNESS_LOG.md](/Users/keisetsu/Projects/hazakura-labo-web/docs/RICHNESS_LOG.md) に短く残す。
@@ -57,4 +72,3 @@ node --check hazakura-onepage-lab/script.js
 - Learned: 次回に活かす気づき
 - Next: 次に小さくやること
 ```
-

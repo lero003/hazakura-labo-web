@@ -13,3 +13,10 @@
 - Changed: 制作物カードに `why` フィールドを追加し、「なぜ作ったか」を本文とは別の短い動機行として表示。
 - Learned: Projects は機能説明だけだと道具一覧に寄りやすい。動機を分けるとRFPの Magic Tools らしい「驚きの記録」に近づく。
 - Next: Research Log のミニサンプルを1件追加し、「問い→実験→発見」の入口を実カードとして見せる。
+
+## 2026-04-26
+
+- Focus: Structure
+- Changed: GitHub push後のCloudflare Pages自動デプロイ先 `https://hazakura-labo-web.pages.dev` と、現在の静的サイト運用設定をREADMEと改善ループに追記。
+- Learned: フレームワーク導入は将来の選択肢として残せるが、root/build設定、相対パス、スクロール・Canvas演出の初期化が崩れる可能性を先に見る必要がある。
+- Next: 必要になったら、現状維持 / Astro / Vite / Next.js の比較メモを作る。
