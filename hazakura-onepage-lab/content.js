@@ -87,7 +87,8 @@ window.HAZAKURA_CONTENT = {
             alt: 'Kindle EPUB Studio のスクリーンショット',
             href: 'https://kindle-epub-tool.pages.dev',
             action: '↗ Live',
-            text: 'MarkdownからプロフェッショナルなKindle EPUBをブラウザ完結で生成するツール。ローカル処理、自動目次生成、GFMテーブル対応。Kindle公開作業で、特定のサイトを利用するの嫌になったため作ったもの。',
+            text: 'MarkdownからプロフェッショナルなKindle EPUBをブラウザ完結で生成するツール。ローカル処理、自動目次生成、GFMテーブル対応。',
+            why: 'Kindle公開作業を、誰かのサーバーに預けず自分の手元で完結させたくて作ったもの。',
             tags: ['Markdown', 'EPUB', 'Kindle', 'クライアントサイド']
         },
         {
@@ -99,6 +100,7 @@ window.HAZAKURA_CONTENT = {
             action: '↓ DMG Download',
             download: true,
             text: 'デスクトップの上に、桜・葉桜・魔法の光がふわりと舞うmacOSアプリ。作業の邪魔をほんの少しだけする、葉桜ラボらしい実験的な遊び道具です。未署名版です。環境によってはインストール・起動ができない場合や、システムアラートが出る可能性があります。自己責任で！',
+            why: '効率だけではない、少し余白のあるコンピュータ体験を試したくて作ったもの。',
             tags: ['macOS 26+', 'Tauri|rust', '桜エフェクト', '未署名配布（公式審査する可能性もあり）']
         },
         {
@@ -108,6 +110,7 @@ window.HAZAKURA_CONTENT = {
             placeholderText: 'Harunohi Monitor（仮）',
             status: '開発中？',
             text: 'ハルノヒのような、ポカポカした気分で動く常駐アプリ。少しだけ自分のMacのことを知るために、こういうの欲しいと作っております。できたら書きます。Mac専用。',
+            why: '機械の状態を冷たい数値ではなく、暮らしの気配として受け取る形を探っているもの。',
             tags: ['macOS 26+', 'Swift?', '開発中']
         },
         {
@@ -117,6 +120,7 @@ window.HAZAKURA_CONTENT = {
             alt: 'プロジェクトAnimeのスクリーンショット',
             status: 'Concept',
             text: 'オリジナルアニメ映画「葉桜」。思いの中では、アニメ化してます。思いだけです。',
+            why: '葉桜ラボの思想を、説明ではなく物語と風景で伝える入口として温めている構想。',
             tags: ['アニメ']
         }
     ]

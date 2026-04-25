@@ -567,6 +567,9 @@
             const live = item.href
                 ? `<a href="${escapeHtml(item.href)}" ${item.download ? 'download' : 'target="_blank" rel="noopener noreferrer"'}>${escapeHtml(item.action || 'Open')}</a>`
                 : `<span class="project-live__badge">${escapeHtml(item.status || 'Concept')}</span>`;
+            const why = item.why
+                ? `<p class="project-why"><span>Why</span>${escapeHtml(item.why)}</p>`
+                : '';
             return `
                 <article class="project-card" data-tilt>
                     <div class="project-thumb">${thumb}</div>
@@ -577,6 +580,7 @@
                         </div>
                         <h3 class="project-title">${escapeHtml(item.title)}</h3>
                         <p class="project-desc">${escapeHtml(item.text)}</p>
+                        ${why}
                         <div class="project-tags">
                             ${(item.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
                         </div>

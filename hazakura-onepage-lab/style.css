@@ -2838,6 +2838,28 @@ body.theme-night .section-layers .layer-label {
     margin-bottom: 1rem;
 }
 
+.project-why {
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-start;
+    margin: 0 0 1rem;
+    padding: 0.8rem 0.9rem;
+    border-left: 3px solid rgba(232, 88, 122, 0.45);
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--ink-600);
+    font-size: 0.84rem;
+    line-height: 1.75;
+}
+
+.project-why span {
+    flex: 0 0 auto;
+    color: var(--sakura-500);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -3049,6 +3071,16 @@ body.theme-night .section-projects .project-desc {
     color: var(--body-text);
 }
 
+body.theme-night .section-projects .project-why {
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: rgba(232, 88, 122, 0.55);
+    color: var(--body-text);
+}
+
+body.theme-night .section-projects .project-why span {
+    color: var(--sakura-400);
+}
+
 body.theme-night .section-projects .project-type {
     color: var(--purple-400);
     background: rgba(167, 139, 250, 0.1);
@@ -3173,6 +3205,18 @@ body.theme-night .nav-links a::after {
         overflow-wrap: anywhere;
     }
 
+    .project-why {
+        display: block;
+        font-size: 0.84rem;
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+    }
+
+    .project-why span {
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
     .project-tags {
         gap: 0.45rem;
     }
@@ -3235,6 +3279,11 @@ body.theme-night .nav-links a::after {
 
     .project-desc {
         font-size: 0.88rem;
+    }
+
+    .project-why {
+        padding: 0.72rem 0.78rem;
+        font-size: 0.82rem;
     }
 
     .placeholder-icon {
