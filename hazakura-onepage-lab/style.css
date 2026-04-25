@@ -1521,6 +1521,84 @@ a {
     opacity: 1;
 }
 
+.research-log-strip {
+    margin: 0 auto 2.2rem;
+    max-width: 980px;
+}
+
+.research-log-card {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    border: 1px solid rgba(232, 88, 122, 0.2);
+    border-radius: 22px;
+    background:
+        radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(232, 88, 122, 0.08), transparent 42%),
+        rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 18px 45px rgba(46, 42, 45, 0.07);
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo), border-color var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+
+.research-log-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.research-log-card:hover {
+    border-color: rgba(232, 88, 122, 0.36);
+    box-shadow: 0 24px 60px rgba(46, 42, 45, 0.1);
+}
+
+.research-log-eyebrow {
+    margin-bottom: 0.55rem;
+    color: var(--sakura-500);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.research-log-title {
+    margin-bottom: 1.4rem;
+    color: var(--ink-800);
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+}
+
+.research-log-cycle {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+}
+
+.research-log-cycle div {
+    min-width: 0;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(232, 88, 122, 0.28);
+}
+
+.research-log-cycle dt {
+    margin-bottom: 0.45rem;
+    color: var(--sakura-500);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.research-log-cycle dd {
+    margin: 0;
+    color: var(--ink-600);
+    font-size: 0.88rem;
+    line-height: 1.85;
+}
+
 /* ============================================
    Vision Section — Enhanced
    ============================================ */
@@ -3012,6 +3090,31 @@ body.theme-night .section-vision .process-icon {
     border-color: rgba(139, 92, 246, 0.2);
 }
 
+body.theme-night .section-vision .research-log-card {
+    border-color: rgba(139, 92, 246, 0.24);
+    background:
+        radial-gradient(520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.12), transparent 42%),
+        rgba(255, 255, 255, 0.055);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.24);
+}
+
+body.theme-night .section-vision .research-log-eyebrow,
+body.theme-night .section-vision .research-log-cycle dt {
+    color: var(--purple-400);
+}
+
+body.theme-night .section-vision .research-log-title {
+    color: var(--header-text);
+}
+
+body.theme-night .section-vision .research-log-cycle div {
+    border-left-color: rgba(139, 92, 246, 0.28);
+}
+
+body.theme-night .section-vision .research-log-cycle dd {
+    color: var(--body-text);
+}
+
 /* Quote section */
 body.theme-night .section-quote {
     background: linear-gradient(180deg, #0b0c10, #1a1a2e, #0b0c10);
@@ -3225,6 +3328,34 @@ body.theme-night .nav-links a::after {
         font-size: 0.68rem;
         padding: 0.28rem 0.65rem;
     }
+
+    .research-log-strip {
+        margin-bottom: 1.4rem;
+    }
+
+    .research-log-card {
+        padding: 1.35rem;
+        border-radius: 16px;
+    }
+
+    .research-log-cycle {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.9rem;
+    }
+
+    .research-log-cycle div {
+        padding-left: 0.85rem;
+    }
+
+    .research-log-title {
+        font-size: 1.12rem;
+    }
+
+    .research-log-cycle dd {
+        font-size: 0.84rem;
+        line-height: 1.75;
+        overflow-wrap: anywhere;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3288,6 +3419,15 @@ body.theme-night .nav-links a::after {
 
     .placeholder-icon {
         font-size: 2.4rem;
+    }
+
+    .research-log-card {
+        padding: 1.1rem;
+        border-radius: 14px;
+    }
+
+    .research-log-eyebrow {
+        letter-spacing: 0.12em;
     }
 }
 

@@ -474,7 +474,7 @@
     const bookGlareEl = document.querySelector('.book-glare');
 
     function refreshHoverTargets() {
-        hoverTargets = Array.from(document.querySelectorAll('.vision-card, .philosophy-card, .layer-card, .project-card'));
+        hoverTargets = Array.from(document.querySelectorAll('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card'));
     }
 
     function escapeHtml(value) {
@@ -541,6 +541,31 @@
         `).join('');
     }
 
+    function renderResearchLogs(items) {
+        const root = document.querySelector('[data-render="researchLogs"]');
+        if (!root || !items) return;
+        root.innerHTML = items.map((item) => `
+            <article class="research-log-card" data-tilt>
+                <p class="research-log-eyebrow">${escapeHtml(item.eyebrow)}</p>
+                <h3 class="research-log-title">${escapeHtml(item.title)}</h3>
+                <dl class="research-log-cycle">
+                    <div>
+                        <dt>問い</dt>
+                        <dd>${escapeHtml(item.question)}</dd>
+                    </div>
+                    <div>
+                        <dt>実験</dt>
+                        <dd>${escapeHtml(item.experiment)}</dd>
+                    </div>
+                    <div>
+                        <dt>発見</dt>
+                        <dd>${escapeHtml(item.finding)}</dd>
+                    </div>
+                </dl>
+            </article>
+        `).join('');
+    }
+
     function renderVisions(items) {
         const root = document.querySelector('[data-render="visions"]');
         if (!root || !items) return;
@@ -597,6 +622,7 @@
         renderExperienceLayers(content.experienceLayers);
         renderStats(content.stats);
         renderProcess(content.process);
+        renderResearchLogs(content.researchLogs);
         renderVisions(content.visions);
         renderProjects(content.projects);
         refreshHoverTargets();
@@ -609,7 +635,7 @@
 
         // Card hover — elementFromPoint (no layout thrashing)
         const el = document.elementFromPoint(e.clientX, e.clientY);
-        const hoverCard = el?.closest('.vision-card, .philosophy-card, .layer-card, .project-card');
+        const hoverCard = el?.closest('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card');
         for (const card of hoverTargets) {
             if (card === hoverCard) {
                 const rect = card.getBoundingClientRect();
@@ -715,7 +741,7 @@
                 if (el.classList.contains('section-title')) {
                     el.classList.add('visible');
                     observer.unobserve(el);
-                } else if (el.classList.contains('philosophy-card') || el.classList.contains('vision-card') || el.classList.contains('layer-card')) {
+                } else if (el.classList.contains('philosophy-card') || el.classList.contains('vision-card') || el.classList.contains('layer-card') || el.classList.contains('research-log-card')) {
                     const parent = el.parentElement;
                     const siblings = Array.from(parent.children);
                     const index = siblings.indexOf(el);
@@ -741,7 +767,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .section-title, .project-card').forEach(el => observer.observe(el));
+        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .section-title, .project-card').forEach(el => observer.observe(el));
         document.querySelectorAll('.book-showcase, .quote-block').forEach(el => observer.observe(el));
         document.querySelectorAll('.stats-grid').forEach(el => observer.observe(el));
         document.querySelectorAll('.process-flow').forEach(el => observer.observe(el));
