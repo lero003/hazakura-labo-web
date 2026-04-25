@@ -1,0 +1,3260 @@
+/* ============================================
+   葉桜ラボ 10x Rich — Design System v2
+   ============================================ */
+
+:root {
+    --sakura-50: #fff9fa;
+    --sakura-100: #fff5f7;
+    --sakura-200: #ffe0e6;
+    --sakura-300: #ffb8c6;
+    --sakura-400: #f7879a;
+    --sakura-500: #e8587a;
+    --sakura-600: #c43d5f;
+    --green-100: #f0f8f0;
+    --green-200: #d4edda;
+    --green-300: #90c695;
+    --green-400: #5a9e5f;
+    --green-500: #3d7a41;
+    --green-600: #2d5e31;
+    --warm-50: #fefcfa;
+    --warm-100: #faf6f0;
+    --warm-200: #f0e8dc;
+    --ink-900: #1a1a2e;
+    --ink-800: #2d2d44;
+    --ink-700: #454563;
+    --ink-600: #5e5e7a;
+    --ink-500: #7a7a94;
+    --ink-400: #9e9eb4;
+    --ink-300: #c4c4d4;
+    --ink-200: #e2e2ec;
+    --ink-100: #f2f2f7;
+    --purple-400: #a78bfa;
+    --purple-500: #8b5cf6;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-bg-hover: rgba(255, 255, 255, 0.95);
+    --font-serif: 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', serif;
+    --font-sans: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+    --space-2xl: 10rem;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --duration-slow: 0.8s;
+    --duration-normal: 0.5s;
+    --duration-fast: 0.3s;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+:root {
+    --sakura-50: #fff9fa;
+}
+
+/* --- Night Theme Variables --- */
+body.theme-night {
+    --warm-50: #0b0c10;
+    --warm-100: #14161c;
+    --sakura-50: #101217;
+    --sakura-100: #1a1525;
+    --sakura-300: #3f2a4f;
+    --sakura-400: #8b5cf6;
+    --sakura-500: #a78bfa;
+    --ink-900: #f8f8f8;
+    --ink-800: #e2e2e2;
+    --ink-700: #c4c4c4;
+    --ink-600: #9e9e9e;
+    --ink-500: #7a7a7a;
+    --ink-200: #2d2d44;
+    --ink-100: #1a1a2e;
+    --card-bg: rgba(25, 20, 35, 0.6);
+    --card-bg-hover: rgba(35, 30, 50, 0.9);
+    --purple-400: #a78bfa;
+    --green-400: #52b796;
+    --tag-bg: rgba(255, 255, 255, 0.06);
+    --tag-text: rgba(255, 255, 255, 0.5);
+    --body-text: rgba(255, 255, 255, 0.7);
+    --body-text-dim: rgba(255, 255, 255, 0.5);
+    --highlight-bg: rgba(255, 255, 255, 0.06);
+    --header-text: #f2f2f7;
+}
+
+.section,
+.philosophy-card,
+.vision-card,
+.stat-item,
+.footer,
+body {
+    transition: background-color 1.5s var(--ease-out-expo), color 1.5s var(--ease-out-expo), border-color 1.5s var(--ease-out-expo), box-shadow 1.5s var(--ease-out-expo);
+}
+
+.night-moon {
+    position: absolute;
+    top: 18%;
+    right: 8%;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    filter: blur(8px); /* ぼんやり満月 — 雲を透けてる感じ */
+    transform: translateY(80px) scale(0.85);
+    transition: all 3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 大気拡散の最も外側グロー（最大半径の柔らかい光） */
+.night-moon::before {
+    content: '';
+    position: absolute;
+    inset: -80px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(255, 245, 220, 0.25) 0%,
+        rgba(255, 235, 180, 0.12) 20%,
+        rgba(255, 220, 150, 0.05) 40%,
+        transparent 65%);
+    filter: blur(30px);
+    opacity: 0;
+    transition: opacity 3.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    animation: moonHaloBreath 8s ease-in-out infinite;
+}
+
+/* 2層目のグロー — 光の輪（ハロー） */
+.night-moon::after {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(255, 250, 230, 0.35) 0%,
+        rgba(255, 240, 200, 0.15) 25%,
+        rgba(255, 220, 160, 0.06) 50%,
+        transparent 70%);
+    filter: blur(18px);
+    opacity: 0;
+    transition: opacity 3s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+    animation: moonHaloBreath 8s ease-in-out infinite 1s;
+}
+
+body.theme-night .night-moon {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* 夜テーマでグローを発生 */
+body.theme-night .night-moon::before {
+    opacity: 1;
+}
+
+body.theme-night .night-moon::after {
+    opacity: 1;
+}
+
+/* 月本体 — 直接背景で確実に描画 */
+.night-moon .moon-body {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    /* 月本体の直接背景 — ::beforeと重複但不是要 */
+    background: radial-gradient(circle at 40% 38%,
+        #fffef5 0%,
+        #fff8e7 15%,
+        #ffefc8 30%,
+        #ffe2a0 50%,
+        #ffda8a 70%,
+        #ffd078 85%,
+        #ffc868 100%);
+    box-shadow:
+        inset 0 0 30px rgba(255, 255, 240, 0.5),
+        inset -10px -5px 20px rgba(255, 220, 150, 0.4),
+        0 0 40px rgba(255, 245, 220, 0.5),
+        0 0 80px rgba(255, 235, 180, 0.3),
+        0 0 120px rgba(255, 225, 150, 0.15),
+        0 0 200px rgba(255, 215, 130, 0.08),
+        0 0 300px rgba(255, 205, 110, 0.04);
+}
+
+/* クレーター質感（疑似要素） — overlayとして */
+.night-moon .moon-body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(ellipse at 30% 45%, rgba(0, 0, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse at 30% 45%, rgba(200, 180, 140, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 60% 30%, rgba(0, 0, 0, 0.06) 0%, transparent 30%),
+        radial-gradient(ellipse at 60% 30%, rgba(210, 190, 150, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 45% 65%, rgba(0, 0, 0, 0.07) 0%, transparent 35%),
+        radial-gradient(ellipse at 45% 65%, rgba(190, 170, 130, 0.14) 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 60%, rgba(0, 0, 0, 0.05) 0%, transparent 25%),
+        radial-gradient(ellipse at 70% 60%, rgba(200, 185, 145, 0.1) 0%, transparent 45%),
+        radial-gradient(ellipse at 25% 70%, rgba(0, 0, 0, 0.05) 0%, transparent 28%),
+        radial-gradient(ellipse at 25% 70%, rgba(195, 175, 135, 0.11) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 250, 230, 0.1) 0%, transparent 50%);
+    opacity: 0.8;
+    mix-blend-mode: multiply;
+}
+
+/* 光の呼吸アニメーション */
+@keyframes moonHaloBreath {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.04);
+        opacity: 0.85;
+    }
+}
+
+/* 月自体の微妙な揺らぎ */
+body.theme-night .night-moon {
+    animation: moonFloat 8s ease-in-out infinite alternate;
+}
+
+@keyframes moonFloat {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-4px) scale(1.003); }
+    100% { transform: translateY(-10px) scale(1.02); }
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--ink-800);
+    background: var(--warm-50);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    cursor: none;
+    /* custom cursor */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --- Custom Cursor --- */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+}
+
+#cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: white;
+    transition: transform 0.1s ease;
+}
+
+#cursor-ring {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    transition: width 0.3s var(--ease-spring), height 0.3s var(--ease-spring), border-color 0.3s;
+}
+
+#cursor-ring.hovering {
+    width: 60px;
+    height: 60px;
+    border-color: var(--sakura-400);
+    background: rgba(247, 135, 154, 0.1);
+}
+
+@media (max-width: 768px) {
+    .custom-cursor {
+        display: none;
+    }
+
+    body {
+        cursor: auto;
+    }
+}
+
+/* --- Scroll Progress --- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    z-index: 100000;
+    background: linear-gradient(90deg, var(--sakura-500), var(--purple-400), var(--green-400));
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* --- Sakura Canvas --- */
+#sakura-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+/* --- Navigation --- */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.2rem 2rem;
+    transition: all var(--duration-normal) var(--ease-out-expo);
+}
+
+.nav.scrolled {
+    background: rgba(254, 252, 250, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.04);
+    padding: 0.7rem 2rem;
+}
+
+.nav-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--ink-800);
+    letter-spacing: 0.1em;
+}
+
+.logo-icon {
+    font-size: 1.5rem;
+    animation: bloom 3s ease-in-out infinite;
+}
+
+@keyframes bloom {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    color: var(--ink-600);
+    position: relative;
+    padding-bottom: 4px;
+    transition: color var(--duration-fast) ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--sakura-400);
+    transition: width var(--duration-normal) var(--ease-out-expo);
+}
+
+.nav-links a:hover {
+    color: var(--sakura-500);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   HERO — メッシュグラデーション
+   ============================================ */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #1a1a2e;
+    /* fallback dark base */
+}
+
+/* メッシュグラデーションの blobs */
+.hero-mesh {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.mesh-blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: meshFloat 12s ease-in-out infinite alternate;
+}
+
+.mesh-blob--1 {
+    width: 600px;
+    height: 600px;
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle at 50% 50%,
+        rgba(244, 143, 177, 0.4) 0%,
+        rgba(244, 143, 177, 0.2) 30%,
+        rgba(244, 143, 177, 0.05) 60%,
+        transparent 100%);
+    animation-delay: 0s;
+}
+
+.mesh-blob--2 {
+    width: 500px;
+    height: 500px;
+    top: 10%;
+    right: -5%;
+    background: radial-gradient(circle at 50% 50%,
+        rgba(167, 139, 250, 0.35) 0%,
+        rgba(167, 139, 250, 0.15) 30%,
+        rgba(167, 139, 250, 0.04) 60%,
+        transparent 100%);
+    animation-delay: -3s;
+}
+
+.mesh-blob--3 {
+    width: 700px;
+    height: 700px;
+    bottom: -20%;
+    left: 20%;
+    background: radial-gradient(circle at 50% 50%,
+        rgba(82, 183, 150, 0.35) 0%,
+        rgba(82, 183, 150, 0.15) 30%,
+        rgba(82, 183, 150, 0.04) 60%,
+        transparent 100%);
+    animation-delay: -6s;
+}
+
+.mesh-blob--4 {
+    width: 400px;
+    height: 400px;
+    top: 40%;
+    left: 50%;
+    background: radial-gradient(circle at 50% 50%,
+        rgba(248, 187, 208, 0.3) 0%,
+        rgba(248, 187, 208, 0.1) 30%,
+        rgba(248, 187, 208, 0.03) 60%,
+        transparent 100%);
+    animation-delay: -9s;
+}
+
+@keyframes meshFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -20px) scale(1.05);
+    }
+
+    66% {
+        transform: translate(-20px, 30px) scale(0.95);
+    }
+
+    100% {
+        transform: translate(10px, 10px) scale(1.02);
+    }
+}
+
+/* 奥行きレイヤー（ぼかし背景画像） */
+.hero-depth-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: url('./img/hero.png') center/cover no-repeat;
+    filter: blur(4px) brightness(0.4);
+    transform: scale(1.1);
+    transition: filter 1.5s var(--ease-out-expo);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(180deg,
+            rgba(26, 26, 46, 0.1) 0%,
+            rgba(26, 26, 46, 0.2) 40%,
+            rgba(254, 252, 250, 0.3) 70%,
+            var(--warm-50) 100%);
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    opacity: 0;
+    transition: opacity 1.5s var(--ease-out-expo);
+}
+
+.hero-image.loaded {
+    opacity: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    padding-bottom: 7rem;
+    width: 100%;
+}
+
+.hero-intro {
+    max-width: 700px;
+}
+
+.hero-kana {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    letter-spacing: 0.5em;
+    color: var(--sakura-400);
+    margin-bottom: var(--space-sm);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s var(--ease-out-expo) 0.3s forwards;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--ink-900);
+    margin-bottom: var(--space-sm);
+}
+
+.title-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s var(--ease-out-expo) forwards;
+}
+
+.title-line--1 {
+    animation-delay: 0.5s;
+}
+
+.title-line--2 {
+    animation-delay: 0.7s;
+}
+
+.title-accent-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 300;
+    background: linear-gradient(135deg, var(--sakura-500), var(--purple-500), var(--green-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeUp 1s var(--ease-out-expo) 1s forwards;
+}
+
+.hero-subtitle {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 2;
+    color: var(--ink-600);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s var(--ease-out-expo) 1.2s forwards;
+}
+
+/* CTA ボタン（磁石効果） */
+.hero-cta-group {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2rem;
+    border-radius: 60px;
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    transition: all var(--duration-normal) var(--ease-spring);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.hero-cta--primary {
+    background: var(--ink-900);
+    color: white;
+}
+
+.hero-cta--primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--sakura-500), var(--purple-500));
+    opacity: 0;
+    transition: opacity var(--duration-normal) ease;
+}
+
+.hero-cta--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(232, 88, 122, 0.35);
+}
+
+.hero-cta--primary:hover::before {
+    opacity: 1;
+}
+
+.hero-cta--secondary {
+    border: 1.5px solid var(--ink-300);
+    color: var(--ink-700);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.hero-cta--secondary:hover {
+    border-color: var(--sakura-400);
+    color: var(--sakura-500);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.hero-cta>* {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-arrow {
+    transition: transform var(--duration-fast) ease;
+}
+
+.hero-cta:hover .cta-arrow {
+    transform: translateX(4px);
+}
+
+/* scroll hint */
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s var(--ease-out-expo) 2s forwards;
+}
+
+.scroll-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-400);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--ink-300);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--sakura-400);
+    animation: scrollDown 2s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+    0% {
+        top: -100%;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   Sections Common
+   ============================================ */
+.section {
+    padding: var(--space-2xl) 0;
+    position: relative;
+    transition: color 1.5s var(--ease-out-expo);
+}
+
+.section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.section-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--sakura-400);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+    position: relative;
+    padding: 0 2rem;
+}
+
+.section-label::before,
+.section-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--sakura-300);
+}
+
+.section-label::before {
+    left: 0;
+}
+
+.section-label::after {
+    right: 0;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--ink-900);
+    letter-spacing: 0.15em;
+    margin-bottom: var(--space-md);
+}
+
+.section-desc {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--ink-500);
+    letter-spacing: 0.05em;
+}
+
+/* ============================================
+   Philosophy Cards — 3D Tilt
+   ============================================ */
+.section-philosophy {
+    background: var(--warm-50);
+    transition: background 3s ease;
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    perspective: 1000px;
+}
+
+.philosophy-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--ink-200);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all 0.5s var(--ease-spring);
+    opacity: 0;
+    transform: translateY(50px);
+    transform-style: preserve-3d;
+    overflow: hidden;
+}
+
+.philosophy-card.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+}
+
+.philosophy-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(232, 88, 122, 0.06), transparent 40%);
+    z-index: 0;
+}
+
+.philosophy-card:hover {
+    transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--sakura-200);
+}
+
+.card-icon-wrap {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto var(--space-md);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sakura-100), var(--green-100));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--duration-normal) var(--ease-spring);
+    position: relative;
+    z-index: 1;
+}
+
+.philosophy-card:hover .card-icon-wrap {
+    transform: scale(1.15) rotate(10deg);
+}
+
+.card-icon {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--sakura-500), var(--green-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--ink-800);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 1;
+}
+
+.card-subtitle {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    color: var(--sakura-400);
+    letter-spacing: 0.2em;
+    margin-bottom: var(--space-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: var(--ink-600);
+    line-height: 1.9;
+    position: relative;
+    z-index: 1;
+}
+
+.card-flutter {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity var(--duration-fast) ease;
+}
+
+.philosophy-card:hover .card-flutter {
+    opacity: 0.4;
+    animation: flutter 2s ease-in-out infinite;
+}
+
+@keyframes flutter {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(10deg);
+    }
+}
+
+/* ============================================
+   One-page Architecture Layers
+   ============================================ */
+.section-layers {
+    background:
+        radial-gradient(circle at 20% 10%, rgba(232, 88, 122, 0.08), transparent 28rem),
+        radial-gradient(circle at 80% 60%, rgba(90, 158, 95, 0.1), transparent 30rem),
+        linear-gradient(180deg, var(--warm-50) 0%, var(--warm-100) 100%);
+}
+
+.layer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    counter-reset: layer;
+}
+
+.layer-card {
+    position: relative;
+    min-height: 260px;
+    padding: 1.5rem;
+    border: 1px solid var(--ink-200);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(14px);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(34px);
+    transition: transform 0.7s var(--ease-out-expo), opacity 0.7s var(--ease-out-expo), border-color var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+
+.layer-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.layer-card::before {
+    counter-increment: layer;
+    content: '0' counter(layer);
+    position: absolute;
+    right: 1rem;
+    bottom: -0.7rem;
+    font-family: var(--font-serif);
+    font-size: 5.5rem;
+    line-height: 1;
+    color: rgba(232, 88, 122, 0.08);
+}
+
+.layer-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(360px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(232, 88, 122, 0.08), transparent 45%);
+    opacity: 0;
+    transition: opacity var(--duration-normal) ease;
+}
+
+.layer-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--sakura-300);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.07);
+}
+
+.layer-card:hover::after {
+    opacity: 1;
+}
+
+.layer-label,
+.layer-card h3,
+.layer-card p {
+    position: relative;
+    z-index: 1;
+}
+
+.layer-label {
+    display: inline-flex;
+    margin-bottom: 4rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--sakura-500);
+    text-transform: uppercase;
+}
+
+.layer-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--ink-800);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+}
+
+.layer-card p {
+    font-size: 0.86rem;
+    line-height: 1.85;
+    color: var(--ink-600);
+}
+
+/* ============================================
+   Stats Section — Counter Animation
+   ============================================ */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 2rem;
+    border-radius: 20px;
+    background: var(--card-bg, rgba(255, 255, 255, 0.6));
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--ink-200);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s var(--ease-out-expo);
+}
+
+.stat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    border-color: var(--sakura-200);
+}
+
+.stat-number-wrap {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--sakura-500), var(--purple-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number-wrap .suffix {
+    font-size: 2rem;
+}
+
+.stat-label {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink-800);
+    letter-spacing: 0.05em;
+}
+
+.stat-sub {
+    font-size: 0.8rem;
+    color: var(--ink-500);
+    margin-top: 0.3rem;
+}
+
+/* ============================================
+   Book Showcase — Enhanced 3D
+   ============================================ */
+.section-library {
+    background: linear-gradient(180deg, var(--warm-50) 0%, var(--sakura-100) 50%, var(--warm-50) 100%);
+}
+
+.book-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s var(--ease-out-expo);
+}
+
+.book-showcase.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.book-visual {
+    display: flex;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.book-3d {
+    position: relative;
+    width: 280px;
+    height: 400px;
+    transform-style: preserve-3d;
+    transform: rotateY(-20deg) rotateX(5deg);
+    transition: transform 0.8s var(--ease-out-expo);
+}
+
+.book-3d:hover {
+    transform: rotateY(-5deg) rotateX(0deg) scale(1.05) translateY(-10px);
+}
+
+.book-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px 18px 18px 4px;
+    background: linear-gradient(135deg, #2d1b4e 0%, #3d2b5e 20%, var(--sakura-500) 50%, var(--sakura-400) 70%, var(--sakura-300) 100%);
+    box-shadow: -8px 8px 30px rgba(0, 0, 0, 0.25), inset 0 0 60px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.book-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(255, 184, 198, 0.3) 0%, transparent 50%);
+    z-index: 0;
+}
+
+.book-glare {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.4) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.4) 60%, transparent 80%);
+    transform: translateX(-150%);
+    transition: transform 0.1s;
+    mix-blend-mode: overlay;
+}
+
+.book-cover-inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.book-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    color: white;
+    letter-spacing: 0.1em;
+}
+
+.book-title-display {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.book-volume {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+}
+
+.book-authors {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.1em;
+}
+
+.book-spine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 35px;
+    height: 100%;
+    background: linear-gradient(90deg, #1a0e33, #2d1b4e);
+    border-radius: 4px 0 0 4px;
+    transform: translateX(-34px) rotateY(90deg);
+    transform-origin: right;
+}
+
+.book-spine::after {
+    content: 'チカちゃんの哲学冒険譚';
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: var(--font-serif);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.15em;
+    transform: translateX(-5px);
+}
+
+/* Book Info */
+.book-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.book-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.meta-tag {
+    font-size: 0.8rem;
+    color: var(--ink-500);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--ink-200);
+}
+
+.book-info-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--ink-900);
+    letter-spacing: 0.1em;
+}
+
+.book-info-subtitle {
+    font-size: 0.9rem;
+    color: var(--ink-500);
+    letter-spacing: 0.1em;
+    margin-top: -0.5rem;
+}
+
+.book-description {
+    font-size: 0.95rem;
+    color: var(--ink-600);
+    line-height: 2;
+}
+
+.book-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    padding: 1rem 0;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--ink-100);
+    font-size: 0.85rem;
+    color: var(--ink-700);
+    transition: all var(--duration-fast) ease;
+}
+
+.highlight-item:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--sakura-200);
+    transform: translateX(4px);
+}
+
+.highlight-icon {
+    font-size: 1.2rem;
+}
+
+.book-price {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--ink-200);
+    border-bottom: 1px solid var(--ink-200);
+}
+
+.price-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: white;
+    background: linear-gradient(135deg, var(--sakura-400), var(--sakura-500));
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+}
+
+.price-value {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--sakura-500);
+}
+
+.price-or {
+    font-size: 0.8rem;
+    color: var(--ink-400);
+}
+
+.price-buy {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--ink-800);
+}
+
+.book-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--ink-900), var(--ink-800));
+    color: white;
+    border-radius: 14px;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    transition: all var(--duration-normal) var(--ease-spring);
+    position: relative;
+    overflow: hidden;
+    align-self: flex-start;
+}
+
+.book-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--sakura-500), var(--purple-500));
+    opacity: 0;
+    transition: opacity var(--duration-normal) ease;
+}
+
+.book-cta:hover::before {
+    opacity: 1;
+}
+
+.book-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(232, 88, 122, 0.35);
+}
+
+.book-cta>* {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-arrow {
+    transition: transform var(--duration-fast) ease;
+}
+
+.book-cta:hover .cta-arrow {
+    transform: translateX(5px);
+}
+
+/* ============================================
+   Process Flow
+   ============================================ */
+.process-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: var(--space-xl);
+    padding: 2rem 0;
+}
+
+.process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s var(--ease-out-expo);
+}
+
+.process-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.process-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--card-bg-hover, rgba(255, 255, 255, 0.8));
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--ink-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    transition: all var(--duration-normal) var(--ease-spring);
+}
+
+.process-step.visible .process-icon {
+    animation: popIn 0.6s var(--ease-spring) backwards;
+}
+
+.process-step:nth-child(1).visible .process-icon {
+    animation-delay: 0s;
+}
+
+.process-step:nth-child(3).visible .process-icon {
+    animation-delay: 0.15s;
+}
+
+.process-step:nth-child(5).visible .process-icon {
+    animation-delay: 0.3s;
+}
+
+.process-step:nth-child(7).visible .process-icon {
+    animation-delay: 0.45s;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+    }
+
+    60% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.process-step:hover .process-icon {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 10px 30px rgba(232, 88, 122, 0.15);
+    border-color: var(--sakura-200);
+}
+
+.process-label {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--ink-600);
+    letter-spacing: 0.15em;
+}
+
+.process-connector {
+    flex: 1;
+    max-width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--ink-200), var(--sakura-300), var(--ink-200));
+    margin: 0 0.5rem;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.process-connector.visible {
+    opacity: 1;
+}
+
+/* ============================================
+   Vision Section — Enhanced
+   ============================================ */
+.section-vision {
+    background: var(--warm-50);
+    position: relative;
+    overflow: hidden;
+    transition: background 3s ease;
+}
+body.theme-night .section-vision {
+    background: #0b0d17;
+}
+
+.vision-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+}
+
+.vision-card {
+    position: relative;
+    background: var(--card-bg, rgba(255, 255, 255, 0.6));
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--ink-200);
+    border-radius: 24px;
+    padding: 2.8rem;
+    transition: all var(--duration-normal) var(--ease-spring);
+    opacity: 0;
+    transform: translateY(40px);
+    overflow: hidden;
+}
+
+.vision-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(232, 88, 122, 0.04), transparent 40%);
+    z-index: 0;
+}
+
+.vision-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.vision-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.07), 0 0 0 1px var(--sakura-200);
+    border-color: var(--sakura-300);
+    background: var(--card-bg-hover, rgba(255, 255, 255, 0.9));
+}
+
+.vision-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    transition: transform var(--duration-normal) var(--ease-spring);
+    position: relative;
+    z-index: 1;
+}
+
+.vision-card:hover .vision-icon {
+    transform: scale(1.25) rotate(-5deg);
+}
+
+.vision-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink-800);
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+}
+
+.vision-jp {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    color: var(--sakura-400);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.vision-text {
+    font-size: 0.9rem;
+    color: var(--ink-600);
+    line-height: 1.9;
+    position: relative;
+    z-index: 1;
+}
+
+.vision-card .vision-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.7rem;
+    color: var(--sakura-500);
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--sakura-200);
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   Quote Section
+   ============================================ */
+.section-quote {
+    background: linear-gradient(180deg, var(--warm-50), var(--ink-900));
+    padding: var(--space-xl) 0;
+    text-align: center;
+}
+
+.quote-block {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--ease-out-expo);
+}
+
+.quote-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quote-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    font-weight: 200;
+    line-height: 2;
+    color: var(--ink-900);
+    letter-spacing: 0.3em;
+}
+
+.quote-cite {
+    display: block;
+    font-family: var(--font-serif);
+    font-style: normal;
+    font-size: 0.9rem;
+    color: var(--ink-500);
+    margin-top: var(--space-md);
+    letter-spacing: 0.2em;
+}
+
+.quote-commentary {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--ink-500);
+    margin-top: var(--space-md);
+    letter-spacing: 0.1em;
+}
+
+
+
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+    background: #0a0a1a;
+    color: var(--ink-400);
+    padding: var(--space-xl) 0 var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-content {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.footer .footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: var(--space-sm);
+}
+
+.footer .logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--ink-300);
+    letter-spacing: 0.15em;
+}
+
+.footer-philosophy {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--ink-500);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: var(--space-md);
+}
+
+.footer-nav a {
+    font-size: 0.8rem;
+    color: var(--ink-500);
+    letter-spacing: 0.1em;
+    transition: color var(--duration-fast) ease;
+}
+
+.footer-nav a:hover {
+    color: var(--sakura-400);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    font-size: 0.8rem;
+    color: var(--ink-500);
+    letter-spacing: 0.05em;
+    transition: color var(--duration-fast) ease;
+}
+
+.footer-links a:hover {
+    color: var(--sakura-400);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding-top: var(--space-md);
+    text-align: center;
+}
+
+.footer-copy {
+    font-size: 0.7rem;
+    color: var(--ink-600);
+    letter-spacing: 0.05em;
+}
+
+
+/* ============================================
+   Noise texture overlay
+   ============================================ */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9997;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+}
+
+/* Zone Navigation (A - Scroll Zone Buttons)
+   ============================================ */
+.zone-nav {
+    position: fixed;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0.3;
+    transition: opacity 0.6s var(--ease-out-expo);
+}
+
+.zone-nav:hover,
+.zone-nav.expanded {
+    opacity: 1;
+}
+
+body.theme-night .zone-nav {
+    opacity: 0.6;
+}
+
+body.theme-night .zone-nav:hover {
+    opacity: 1;
+}
+
+body.zone-moon .zone-nav,
+body.zone-aurora .zone-nav {
+    opacity: 0.8;
+}
+
+body.zone-moon .zone-nav:hover,
+body.zone-aurora .zone-nav:hover {
+    opacity: 1;
+}
+
+.zone-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--ink-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-spring);
+    position: relative;
+    user-select: none;
+}
+
+.zone-btn:hover {
+    transform: scale(1.2);
+    border-color: var(--sakura-400);
+    box-shadow: 0 4px 20px rgba(232, 88, 122, 0.2);
+}
+
+.zone-btn.active {
+    transform: scale(1.15);
+    border-color: var(--sakura-500);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(232, 88, 122, 0.15), 0 4px 20px rgba(232, 88, 122, 0.25);
+    animation: zonePulse 2s ease-in-out infinite;
+}
+
+/* Zone-specific active states */
+.zone-btn.zone-btn-2.active {
+    border-color: #e8a87c;
+    box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.15), 0 4px 20px rgba(232, 168, 124, 0.25);
+}
+
+.zone-btn.zone-btn-3.active {
+    border-color: #8581e7;
+    box-shadow: 0 0 0 3px rgba(133, 129, 231, 0.15), 0 4px 20px rgba(133, 129, 231, 0.25);
+}
+
+.zone-btn.zone-btn-4.active {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15), 0 4px 20px rgba(167, 139, 250, 0.25);
+}
+
+.zone-btn.zone-btn-5.active {
+    border-color: #34d399;
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.15), 0 4px 20px rgba(52, 211, 153, 0.25);
+}
+
+/* Zone dusk: warm sunset backgrounds on light sections */
+body.zone-dusk .section-philosophy {
+    background: linear-gradient(180deg, var(--warm-50) 0%, #fdf2e0 40%, #fce8d0 60%, var(--warm-50) 100%);
+    transition: background 3s ease;
+}
+
+body.zone-dusk .section-library {
+    background: linear-gradient(180deg, var(--warm-50) 0%, #fdf0dd 40%, #fce2cc 60%, var(--warm-50) 100%);
+    transition: background 3s ease;
+}
+
+/* Zone dusk: philosophy/light card backgrounds */
+body.zone-dusk .philosophy-card {
+    background: rgba(255, 248, 240, 0.7);
+}
+
+body.zone-dusk .stat-item {
+    background: rgba(255, 248, 240, 0.6);
+}
+
+body.zone-dusk .process-icon {
+    background: rgba(255, 248, 240, 0.8);
+}
+
+body.zone-dusk .highlight-item {
+    background: rgba(255, 248, 240, 0.6);
+}
+
+body.zone-dusk .meta-tag {
+    background: rgba(255, 248, 240, 0.8);
+}
+
+/* Zone pulse animation */
+@keyframes zonePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 3px rgba(232, 88, 122, 0.15), 0 4px 20px rgba(232, 88, 122, 0.25);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba(232, 88, 122, 0.08), 0 4px 30px rgba(232, 88, 122, 0.35);
+    }
+}
+
+
+/* Zone indicator label */
+.zone-btn::after {
+    content: attr(title);
+    position: absolute;
+    left: 55px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s var(--ease-out-expo);
+    pointer-events: none;
+    color: var(--ink-700);
+    letter-spacing: 0.05em;
+}
+
+.zone-btn:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Night theme: zone buttons adapt */
+body.theme-night .zone-btn {
+    background: rgba(30, 25, 50, 0.8);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+body.theme-night .zone-btn:hover {
+    border-color: rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1), 0 4px 20px rgba(139, 92, 246, 0.2);
+}
+
+body.theme-night .zone-btn.active {
+    background: rgba(40, 35, 65, 0.9);
+    border-color: rgba(167, 139, 250, 0.6);
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2), 0 4px 30px rgba(167, 139, 250, 0.3);
+}
+
+body.theme-night .zone-btn::after {
+    background: rgba(30, 25, 50, 0.9);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================
+   Aurora Canvas Overlay (C - Petal Morph)
+   ============================================ */
+#aurora-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 9995;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 3s ease;
+}
+
+body.zone-aurora #aurora-canvas {
+    opacity: 0.6;
+}
+
+body.theme-night #aurora-canvas {
+    opacity: 0.3;
+}
+
+body.theme-night.zone-aurora #aurora-canvas {
+    opacity: 0.7;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .book-showcase {
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    .nav {
+        padding: 1rem 1.2rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+    }
+
+    .section {
+        padding: var(--space-xl) 0;
+    }
+
+    .section-inner {
+        padding: 0 1.2rem;
+    }
+
+    .hero-content {
+        padding: 0 1.2rem;
+        padding-bottom: 4rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+    }
+
+    .hero-cta {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-scroll-hint {
+        display: none;
+    }
+
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .layer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .philosophy-card {
+        padding: 2.5rem 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-item {
+        padding: 1.5rem;
+    }
+
+    .stat-number-wrap {
+        font-size: 2.5rem;
+    }
+
+    .book-showcase {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .book-3d {
+        width: 240px;
+        height: 340px;
+    }
+
+    .book-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .book-cta {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .vision-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vision-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .process-flow {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .process-connector {
+        display: none;
+    }
+
+    .project-card {
+        grid-template-columns: 1fr;
+    }
+
+    .project-thumb {
+        height: auto;
+        aspect-ratio: 16 / 9;
+        width: 100%;
+    }
+
+    .project-img {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: cover;
+    }
+
+    .project-info {
+        padding: 1.5rem;
+    }
+
+    .project-title {
+        font-size: 1.25rem;
+    }
+
+    .project-desc {
+        font-size: 0.85rem;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stat-number-wrap {
+        font-size: 2rem;
+    }
+
+    .book-3d {
+        width: 200px;
+        height: 290px;
+    }
+
+    .book-title-display {
+        font-size: 1.3rem;
+    }
+
+    .process-step {
+        flex: 1;
+        min-width: 60px;
+    }
+
+    .layer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .layer-card {
+        min-height: 220px;
+    }
+
+    .process-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.4rem;
+    }
+}
+
+/* ============================================
+   Typography Reveal Animation
+   ============================================ */
+.reveal-text {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    vertical-align: bottom;
+}
+
+.reveal-item {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-text.visible .reveal-item,
+.visible .reveal-text .reveal-item,
+.visible>.reveal-text .reveal-item {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ============================================
+   星空 CSS（box-shadowで300個超の星 — 全層）
+   ============================================ */
+
+/* 基本設定 */
+.star-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 4s ease 0.5s;
+}
+body.theme-night .star-layer {
+    opacity: 1;
+}
+
+/* ── large stars: 30個 (glow付き) ── */
+.star-layer--large::before {
+    content: '';
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        10% 15% 0 1px white,
+        25% 8% 0 1px white,
+        40% 22% 0 1px white,
+        55% 5% 0 1px white,
+        70% 18% 0 1px white,
+        85% 30% 0 1px white,
+        15% 40% 0 1px white,
+        30% 55% 0 1px white,
+        45% 65% 0 1px white,
+        60% 75% 0 1px white,
+        75% 85% 0 1px white,
+        90% 5% 0 1px white,
+        5% 70% 0 1px white,
+        20% 85% 0 1px white,
+        50% 90% 0 1px white,
+        65% 45% 0 1px white,
+        80% 60% 0 1px white,
+        35% 35% 0 1px white,
+        95% 40% 0 1px white,
+        12% 25% 0 1px white,
+        48% 48% 0 1px white,
+        78% 72% 0 1px white,
+        28% 78% 0 1px white,
+        62% 15% 0 1px white,
+        88% 80% 0 1px white,
+        8% 52% 0 1px white,
+        42% 38% 0 1px white,
+        58% 82% 0 1px white,
+        33% 60% 0 1px white,
+        73% 33% 0 1px white;
+    animation: twinkleBig 4s ease-in-out infinite;
+}
+.star-layer--large::after {
+    content: '';
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        10% 15% 0 3px rgba(255,255,255,0.3),
+        25% 8% 0 3px rgba(255,255,255,0.3),
+        40% 22% 0 3px rgba(255,255,255,0.3),
+        55% 5% 0 3px rgba(255,255,255,0.3),
+        70% 18% 0 3px rgba(255,255,255,0.3),
+        85% 30% 0 3px rgba(255,255,255,0.3),
+        15% 40% 0 3px rgba(255,255,255,0.3),
+        30% 55% 0 3px rgba(255,255,255,0.3),
+        45% 65% 0 3px rgba(255,255,255,0.3),
+        60% 75% 0 3px rgba(255,255,255,0.3),
+        75% 85% 0 3px rgba(255,255,255,0.3),
+        90% 5% 0 3px rgba(255,255,255,0.3),
+        5% 70% 0 3px rgba(255,255,255,0.3),
+        20% 85% 0 3px rgba(255,255,255,0.3),
+        50% 90% 0 3px rgba(255,255,255,0.3),
+        65% 45% 0 3px rgba(255,255,255,0.3),
+        80% 60% 0 3px rgba(255,255,255,0.3),
+        35% 35% 0 3px rgba(255,255,255,0.3),
+        95% 40% 0 3px rgba(255,255,255,0.3),
+        12% 25% 0 3px rgba(255,255,255,0.3),
+        48% 48% 0 3px rgba(255,255,255,0.3),
+        78% 72% 0 3px rgba(255,255,255,0.3),
+        28% 78% 0 3px rgba(255,255,255,0.3),
+        62% 15% 0 3px rgba(255,255,255,0.3),
+        88% 80% 0 3px rgba(255,255,255,0.3),
+        8% 52% 0 3px rgba(255,255,255,0.3),
+        42% 38% 0 3px rgba(255,255,255,0.3),
+        58% 82% 0 3px rgba(255,255,255,0.3),
+        33% 60% 0 3px rgba(255,255,255,0.3),
+        73% 33% 0 3px rgba(255,255,255,0.3);
+    animation: twinkleBig 4s ease-in-out infinite;
+}
+@keyframes twinkleBig {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ── medium stars: 60個 ── */
+.star-layer--medium::before {
+    content: '';
+    position: absolute;
+    width: 1px; height: 1px;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        3% 12% 0 white, 7% 28% 0 white, 11% 5% 0 white, 14% 45% 0 white,
+        17% 62% 0 white, 19% 78% 0 white, 22% 33% 0 white, 24% 58% 0 white,
+        26% 88% 0 white, 29% 16% 0 white, 31% 42% 0 white, 34% 70% 0 white,
+        36% 92% 0 white, 38% 20% 0 white, 41% 50% 0 white, 43% 75% 0 white,
+        46% 10% 0 white, 49% 36% 0 white, 51% 60% 0 white, 53% 85% 0 white,
+        56% 25% 0 white, 59% 48% 0 white, 61% 72% 0 white, 64% 95% 0 white,
+        66% 14% 0 white, 69% 38% 0 white, 71% 55% 0 white, 74% 80% 0 white,
+        76% 22% 0 white, 79% 46% 0 white, 81% 68% 0 white, 83% 90% 0 white,
+        86% 8% 0 white, 89% 32% 0 white, 91% 58% 0 white, 94% 82% 0 white,
+        96% 15% 0 white, 99% 40% 0 white, 2% 68% 0 white, 6% 95% 0 white,
+        9% 8% 0 white, 13% 55% 0 white, 16% 78% 0 white, 20% 42% 0 white,
+        23% 65% 0 white, 27% 90% 0 white, 30% 18% 0 white, 33% 52% 0 white,
+        37% 75% 0 white, 40% 98% 0 white, 44% 25% 0 white, 47% 48% 0 white,
+        50% 70% 0 white, 54% 88% 0 white, 57% 12% 0 white, 60% 35% 0 white,
+        63% 60% 0 white, 67% 85% 0 white, 70% 5% 0 white, 73% 30% 0 white,
+        77% 55% 0 white, 80% 80% 0 white, 84% 10% 0 white, 87% 38% 0 white,
+        90% 65% 0 white, 93% 88% 0 white, 97% 20% 0 white, 98% 52% 0 white,
+        4% 40% 0 white;
+    animation: twinkleMed 5s ease-in-out infinite;
+}
+.star-layer--medium::after {
+    content: '';
+    position: absolute;
+    width: 1px; height: 1px;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        3% 12% 0 2px rgba(255,255,255,0.2), 7% 28% 0 2px rgba(255,255,255,0.2),
+        11% 5% 0 2px rgba(255,255,255,0.2), 14% 45% 0 2px rgba(255,255,255,0.2),
+        17% 62% 0 2px rgba(255,255,255,0.2), 19% 78% 0 2px rgba(255,255,255,0.2),
+        22% 33% 0 2px rgba(255,255,255,0.2), 24% 58% 0 2px rgba(255,255,255,0.2),
+        26% 88% 0 2px rgba(255,255,255,0.2), 29% 16% 0 2px rgba(255,255,255,0.2),
+        31% 42% 0 2px rgba(255,255,255,0.2), 34% 70% 0 2px rgba(255,255,255,0.2),
+        36% 92% 0 2px rgba(255,255,255,0.2), 38% 20% 0 2px rgba(255,255,255,0.2),
+        41% 50% 0 2px rgba(255,255,255,0.2), 43% 75% 0 2px rgba(255,255,255,0.2),
+        46% 10% 0 2px rgba(255,255,255,0.2), 49% 36% 0 2px rgba(255,255,255,0.2),
+        51% 60% 0 2px rgba(255,255,255,0.2), 53% 85% 0 2px rgba(255,255,255,0.2),
+        56% 25% 0 2px rgba(255,255,255,0.2), 59% 48% 0 2px rgba(255,255,255,0.2),
+        61% 72% 0 2px rgba(255,255,255,0.2), 64% 95% 0 2px rgba(255,255,255,0.2),
+        66% 14% 0 2px rgba(255,255,255,0.2), 69% 38% 0 2px rgba(255,255,255,0.2),
+        71% 55% 0 2px rgba(255,255,255,0.2), 74% 80% 0 2px rgba(255,255,255,0.2),
+        76% 22% 0 2px rgba(255,255,255,0.2), 79% 46% 0 2px rgba(255,255,255,0.2),
+        81% 68% 0 2px rgba(255,255,255,0.2), 83% 90% 0 2px rgba(255,255,255,0.2),
+        86% 8% 0 2px rgba(255,255,255,0.2), 89% 32% 0 2px rgba(255,255,255,0.2),
+        91% 58% 0 2px rgba(255,255,255,0.2), 94% 82% 0 2px rgba(255,255,255,0.2),
+        96% 15% 0 2px rgba(255,255,255,0.2), 99% 40% 0 2px rgba(255,255,255,0.2),
+        2% 68% 0 2px rgba(255,255,255,0.2), 6% 95% 0 2px rgba(255,255,255,0.2),
+        9% 8% 0 2px rgba(255,255,255,0.2), 13% 55% 0 2px rgba(255,255,255,0.2),
+        16% 78% 0 2px rgba(255,255,255,0.2), 20% 42% 0 2px rgba(255,255,255,0.2),
+        23% 65% 0 2px rgba(255,255,255,0.2), 27% 90% 0 2px rgba(255,255,255,0.2),
+        30% 18% 0 2px rgba(255,255,255,0.2), 33% 52% 0 2px rgba(255,255,255,0.2),
+        37% 75% 0 2px rgba(255,255,255,0.2), 40% 98% 0 2px rgba(255,255,255,0.2),
+        44% 25% 0 2px rgba(255,255,255,0.2), 47% 48% 0 2px rgba(255,255,255,0.2),
+        50% 70% 0 2px rgba(255,255,255,0.2), 54% 88% 0 2px rgba(255,255,255,0.2),
+        57% 12% 0 2px rgba(255,255,255,0.2), 60% 35% 0 2px rgba(255,255,255,0.2),
+        63% 60% 0 2px rgba(255,255,255,0.2), 67% 85% 0 2px rgba(255,255,255,0.2),
+        70% 5% 0 2px rgba(255,255,255,0.2), 73% 30% 0 2px rgba(255,255,255,0.2),
+        77% 55% 0 2px rgba(255,255,255,0.2), 80% 80% 0 2px rgba(255,255,255,0.2),
+        84% 10% 0 2px rgba(255,255,255,0.2), 87% 38% 0 2px rgba(255,255,255,0.2),
+        90% 65% 0 2px rgba(255,255,255,0.2), 93% 88% 0 2px rgba(255,255,255,0.2),
+        97% 20% 0 2px rgba(255,255,255,0.2), 98% 52% 0 2px rgba(255,255,255,0.2),
+        4% 40% 0 2px rgba(255,255,255,0.2);
+    animation: twinkleMed 5s ease-in-out infinite;
+}
+@keyframes twinkleMed {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.3; }
+}
+
+/* ── small stars: 100個 ── */
+.star-layer--small::before {
+    content: '';
+    position: absolute;
+    width: 1px; height: 1px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.7);
+    box-shadow:
+        1% 3% 0 0 rgba(255,255,255,0.7), 2% 15% 0 0 rgba(255,255,255,0.7),
+        3% 22% 0 0 rgba(255,255,255,0.7), 4% 8% 0 0 rgba(255,255,255,0.7),
+        5% 30% 0 0 rgba(255,255,255,0.7), 6% 18% 0 0 rgba(255,255,255,0.7),
+        7% 35% 0 0 rgba(255,255,255,0.7), 8% 12% 0 0 rgba(255,255,255,0.7),
+        9% 45% 0 0 rgba(255,255,255,0.7), 10% 25% 0 0 rgba(255,255,255,0.7),
+        11% 50% 0 0 rgba(255,255,255,0.7), 12% 7% 0 0 rgba(255,255,255,0.7),
+        13% 38% 0 0 rgba(255,255,255,0.7), 14% 20% 0 0 rgba(255,255,255,0.7),
+        15% 55% 0 0 rgba(255,255,255,0.7), 16% 3% 0 0 rgba(255,255,255,0.7),
+        17% 42% 0 0 rgba(255,255,255,0.7), 18% 28% 0 0 rgba(255,255,255,0.7),
+        19% 58% 0 0 rgba(255,255,255,0.7), 20% 14% 0 0 rgba(255,255,255,0.7),
+        21% 36% 0 0 rgba(255,255,255,0.7), 22% 52% 0 0 rgba(255,255,255,0.7),
+        23% 9% 0 0 rgba(255,255,255,0.7), 24% 48% 0 0 rgba(255,255,255,0.7),
+        25% 22% 0 0 rgba(255,255,255,0.7), 26% 60% 0 0 rgba(255,255,255,0.7),
+        27% 16% 0 0 rgba(255,255,255,0.7), 28% 44% 0 0 rgba(255,255,255,0.7),
+        29% 30% 0 0 rgba(255,255,255,0.7), 30% 65% 0 0 rgba(255,255,255,0.7),
+        31% 11% 0 0 rgba(255,255,255,0.7), 32% 56% 0 0 rgba(255,255,255,0.7),
+        33% 24% 0 0 rgba(255,255,255,0.7), 34% 68% 0 0 rgba(255,255,255,0.7),
+        35% 17% 0 0 rgba(255,255,255,0.7), 36% 40% 0 0 rgba(255,255,255,0.7),
+        37% 54% 0 0 rgba(255,255,255,0.7), 38% 2% 0 0 rgba(255,255,255,0.7),
+        39% 72% 0 0 rgba(255,255,255,0.7), 40% 26% 0 0 rgba(255,255,255,0.7),
+        41% 62% 0 0 rgba(255,255,255,0.7), 42% 19% 0 0 rgba(255,255,255,0.7),
+        43% 74% 0 0 rgba(255,255,255,0.7), 44% 32% 0 0 rgba(255,255,255,0.7),
+        45% 50% 0 0 rgba(255,255,255,0.7), 46% 8% 0 0 rgba(255,255,255,0.7),
+        47% 66% 0 0 rgba(255,255,255,0.7), 48% 42% 0 0 rgba(255,255,255,0.7),
+        49% 58% 0 0 rgba(255,255,255,0.7), 50% 20% 0 0 rgba(255,255,255,0.7),
+        51% 70% 0 0 rgba(255,255,255,0.7), 52% 34% 0 0 rgba(255,255,255,0.7),
+        53% 52% 0 0 rgba(255,255,255,0.7), 54% 14% 0 0 rgba(255,255,255,0.7),
+        55% 76% 0 0 rgba(255,255,255,0.7), 56% 26% 0 0 rgba(255,255,255,0.7),
+        57% 48% 0 0 rgba(255,255,255,0.7), 58% 64% 0 0 rgba(255,255,255,0.7),
+        59% 18% 0 0 rgba(255,255,255,0.7), 60% 80% 0 0 rgba(255,255,255,0.7),
+        61% 36% 0 0 rgba(255,255,255,0.7), 62% 54% 0 0 rgba(255,255,255,0.7),
+        63% 10% 0 0 rgba(255,255,255,0.7), 64% 72% 0 0 rgba(255,255,255,0.7),
+        65% 22% 0 0 rgba(255,255,255,0.7), 66% 46% 0 0 rgba(255,255,255,0.7),
+        67% 60% 0 0 rgba(255,255,255,0.7), 68% 4% 0 0 rgba(255,255,255,0.7),
+        69% 78% 0 0 rgba(255,255,255,0.7), 70% 30% 0 0 rgba(255,255,255,0.7),
+        71% 50% 0 0 rgba(255,255,255,0.7), 72% 68% 0 0 rgba(255,255,255,0.7),
+        73% 16% 0 0 rgba(255,255,255,0.7), 74% 84% 0 0 rgba(255,255,255,0.7),
+        75% 28% 0 0 rgba(255,255,255,0.7), 76% 44% 0 0 rgba(255,255,255,0.7),
+        77% 62% 0 0 rgba(255,255,255,0.7), 78% 6% 0 0 rgba(255,255,255,0.7),
+        79% 76% 0 0 rgba(255,255,255,0.7), 80% 38% 0 0 rgba(255,255,255,0.7),
+        81% 56% 0 0 rgba(255,255,255,0.7), 82% 20% 0 0 rgba(255,255,255,0.7),
+        83% 82% 0 0 rgba(255,255,255,0.7), 84% 32% 0 0 rgba(255,255,255,0.7),
+        85% 50% 0 0 rgba(255,255,255,0.7), 86% 12% 0 0 rgba(255,255,255,0.7),
+        87% 66% 0 0 rgba(255,255,255,0.7), 88% 40% 0 0 rgba(255,255,255,0.7),
+        89% 58% 0 0 rgba(255,255,255,0.7), 90% 24% 0 0 rgba(255,255,255,0.7),
+        91% 86% 0 0 rgba(255,255,255,0.7), 92% 14% 0 0 rgba(255,255,255,0.7),
+        93% 54% 0 0 rgba(255,255,255,0.7), 94% 68% 0 0 rgba(255,255,255,0.7),
+        95% 2% 0 0 rgba(255,255,255,0.7), 96% 74% 0 0 rgba(255,255,255,0.7),
+        97% 38% 0 0 rgba(255,255,255,0.7), 98% 52% 0 0 rgba(255,255,255,0.7),
+        99% 60% 0 0 rgba(255,255,255,0.7), 0% 88% 0 0 rgba(255,255,255,0.7),
+        50% 2% 0 0 rgba(255,255,255,0.7), 25% 95% 0 0 rgba(255,255,255,0.7),
+        75% 92% 0 0 rgba(255,255,255,0.7);
+    animation: twinkleSmall 6s ease-in-out infinite;
+}
+@keyframes twinkleSmall {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.2; }
+}
+
+/* z-index調整（星は月の下） */
+.star-layer { z-index: 0; }
+
+/* ============================================
+   10x Rich - 5段階スクロールテーマ + 桜→蛍火Morph
+   ============================================ */
+
+/* ===== パーティクルフィルタ: zoneによって色・動きが変わる ===== */
+body:not(.theme-night) #sakura-canvas {
+    filter: saturate(1) brightness(1);
+}
+
+/* Zone 2: Dusk - 夕焼け */
+body.zone-dusk #sakura-canvas {
+    filter: saturate(1.3) brightness(0.95) hue-rotate(-8deg);
+}
+
+/* Zone 3: Night - 銀色 */
+body.zone-night #sakura-canvas {
+    filter: saturate(0.5) brightness(0.7) hue-rotate(30deg);
+}
+
+/* Zone 4: Moon - 紫色 */
+body.zone-moon #sakura-canvas {
+    filter: saturate(0.3) brightness(0.6) hue-rotate(60deg);
+}
+
+/* Zone 5: Aurora - 緑色 */
+body.zone-aurora #sakura-canvas {
+    filter: saturate(1.5) brightness(1.1) hue-rotate(120deg);
+}
+
+/* ===== aurora overlay (hero on top) ===== */
+.hero-aurora-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 4s ease;
+    pointer-events: none;
+    background:
+        linear-gradient(0deg,
+            rgba(26, 26, 46, 0.2) 0%,
+            rgba(46, 196, 182, 0.1) 40%,
+            rgba(139, 92, 246, 0.08) 70%,
+            transparent 100%);
+    animation: auroraShift 10s ease-in-out infinite alternate;
+}
+
+body.zone-aurora .hero-aurora-overlay {
+    opacity: 1;
+}
+
+@keyframes auroraShift {
+    0% {
+        background:
+            linear-gradient(0deg,
+                rgba(26, 26, 46, 0.2) 0%,
+                rgba(46, 196, 182, 0.1) 40%,
+                rgba(139, 92, 246, 0.08) 70%,
+                transparent 100%);
+    }
+    50% {
+        background:
+            linear-gradient(0deg,
+                rgba(26, 26, 46, 0.2) 0%,
+                rgba(46, 196, 182, 0.15) 50%,
+                rgba(167, 139, 250, 0.12) 80%,
+                transparent 100%);
+    }
+    100% {
+        background:
+            linear-gradient(0deg,
+                rgba(26, 26, 46, 0.2) 0%,
+                rgba(52, 211, 153, 0.08) 30%,
+                rgba(56, 189, 248, 0.1) 60%,
+                transparent 100%);
+    }
+}
+
+/* ===== zone-border (区切り線) — スクロール量で位置移動 ===== */
+.zone-border {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 1px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(var(--zone-border-offset, 0px));
+    pointer-events: none;
+}
+
+.zone-border--dusk-night {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(232, 88, 122, 0.2),
+        rgba(139, 92, 246, 0.2),
+        transparent);
+}
+
+.zone-border--night-moon {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(167, 139, 250, 0.2),
+        rgba(232, 88, 122, 0.15),
+        transparent);
+}
+
+/* zone遷移時のグロー演出 */
+body.zone-night .zone-border--dusk-night,
+body.zone-moon .zone-border--dusk-night {
+    opacity: 0.5;
+    animation: borderGlow 3s ease-in-out infinite alternate;
+}
+
+body.zone-moon .zone-border--night-moon,
+body.zone-aurora .zone-border--night-moon {
+    opacity: 0.4;
+    animation: borderGlow 3s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes borderGlow {
+    0% {
+        opacity: 0.2;
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 0.6;
+        filter: blur(1px);
+    }
+}
+
+/* ===== card glow (night) ===== */
+body.theme-night .philosophy-card,
+body.theme-night .vision-card {
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+}
+
+body.theme-night .philosophy-card:hover,
+body.theme-night .vision-card:hover {
+    border-color: rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.2), 0 0 80px rgba(232, 88, 122, 0.1);
+}
+
+body.theme-night .stat-item {
+    border-color: rgba(167, 139, 250, 0.2);
+}
+
+body.theme-night .stat-item:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+}
+
+
+/* ===== night: card spotlight ===== */
+body.theme-night .philosophy-card::before {
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(167, 139, 250, 0.08),
+        transparent 40%);
+}
+
+body.theme-night .vision-card::before {
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(167, 139, 250, 0.06),
+        transparent 40%);
+}
+
+body.theme-night .section-layers {
+    background:
+        radial-gradient(circle at 20% 10%, rgba(167, 139, 250, 0.14), transparent 28rem),
+        radial-gradient(circle at 80% 60%, rgba(52, 211, 153, 0.1), transparent 30rem),
+        linear-gradient(180deg, #0b0c10 0%, #141028 100%);
+}
+
+body.theme-night .section-layers .section-title {
+    color: var(--header-text);
+}
+
+body.theme-night .section-layers .section-desc,
+body.theme-night .section-layers .layer-card p {
+    color: var(--body-text);
+}
+
+body.theme-night .section-layers .layer-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(139, 92, 246, 0.22);
+}
+
+body.theme-night .section-layers .layer-card:hover {
+    border-color: rgba(167, 139, 250, 0.48);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.15);
+}
+
+body.theme-night .section-layers .layer-card h3 {
+    color: var(--header-text);
+}
+
+body.theme-night .section-layers .layer-label {
+    color: var(--purple-400);
+}
+
+/* ============================================
+   Projects Section
+   ============================================ */
+.section-projects {
+    background: linear-gradient(180deg, var(--warm-50) 0%, var(--sakura-100) 50%, var(--warm-50) 100%);
+    transition: background 3s ease;
+}
+
+.section-projects .section-label {
+    color: var(--sakura-400);
+}
+
+.section-projects .section-title {
+    text-align: center;
+    color: var(--ink-900);
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    background: var(--card-bg, rgba(255, 255, 255, 0.7));
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--ink-200);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-spring);
+    opacity: 0;
+    transform: translateY(40px);
+    align-items: start;
+}
+
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.07), 0 0 0 1px var(--sakura-200);
+    border-color: var(--sakura-300);
+}
+
+.project-card--placeholder {
+    opacity: 0.4;
+    border-style: dashed;
+}
+
+.project-card--placeholder .project-thumb-placeholder {
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(139, 92, 246, 0.03) 10px,
+        rgba(139, 92, 246, 0.03) 20px
+    );
+}
+
+.project-thumb {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s var(--ease-out-expo);
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.05);
+}
+
+.project-thumb-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, var(--ink-100), var(--ink-200));
+}
+
+.project-card--placeholder .project-thumb-placeholder {
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(139, 92, 246, 0.03) 10px,
+        rgba(139, 92, 246, 0.03) 20px
+    );
+}
+
+.placeholder-icon {
+    font-size: 3rem;
+    opacity: 0.5;
+}
+
+.placeholder-text {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    color: var(--ink-400);
+    letter-spacing: 0.2em;
+}
+
+.project-info {
+    padding: 1.5rem 2rem 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.project-type {
+    font-size: 0.7rem;
+    color: var(--purple-400);
+    background: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+}
+
+.project-live a {
+    font-size: 0.75rem;
+    color: var(--sakura-400);
+    letter-spacing: 0.05em;
+    transition: color var(--duration-fast) ease;
+}
+
+.project-live a:hover {
+    color: var(--sakura-500);
+}
+
+.project-live__badge {
+    font-size: 0.7rem;
+    color: var(--ink-400);
+    background: rgba(0, 0, 0, 0.04);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+}
+
+.project-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ink-800);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: var(--ink-500);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    font-size: 0.7rem;
+    color: var(--ink-500);
+    background: rgba(0, 0, 0, 0.04);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   Night theme: text contrast — 暗背景で文字が見えるように
+   ============================================================ */
+
+/* Philosophy section night */
+body.theme-night .section-philosophy .section-label,
+body.theme-night .philosophy-grid .section-label {
+    color: var(--sakura-400);
+}
+
+body.theme-night .section-philosophy .section-title,
+body.theme-night .section-philosophy .card-title {
+    color: var(--header-text);
+}
+
+body.theme-night .section-philosophy .section-desc,
+body.theme-night .section-philosophy .card-text {
+    color: var(--body-text);
+}
+
+body.theme-night .section-philosophy .card-subtitle {
+    color: var(--purple-400);
+}
+
+/* Library section night */
+body.theme-night .section-library {
+    color: var(--ink-800);
+}
+
+body.theme-night .section-library .section-label {
+    color: var(--sakura-400);
+}
+
+body.theme-night .section-library .section-title,
+body.theme-night .section-library .book-info-title,
+body.theme-night .section-library .book-title-display {
+    color: var(--header-text);
+}
+
+body.theme-night .section-library .book-info-subtitle,
+body.theme-night .section-library .book-description,
+body.theme-night .section-library .book-price .price-value {
+    color: var(--body-text);
+}
+
+body.theme-night .section-library .meta-tag {
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border-color: rgba(139, 92, 246, 0.2);
+}
+
+body.theme-night .section-library .highlight-item {
+    background: var(--highlight-bg);
+    border-color: rgba(139, 92, 246, 0.15);
+    color: var(--body-text);
+}
+
+body.theme-night .section-library .book-price {
+    border-top-color: rgba(139, 92, 246, 0.2);
+    border-bottom-color: rgba(139, 92, 246, 0.2);
+}
+
+body.theme-night .section-library .price-label {
+    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+}
+
+body.theme-night .section-library .price-or {
+    color: var(--body-text-dim);
+}
+
+body.theme-night .section-library .price-buy {
+    color: var(--header-text);
+}
+
+body.theme-night .section-library .book-badge {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.theme-night .section-library .book-authors,
+body.theme-night .section-library .book-volume {
+    color: var(--body-text);
+}
+
+/* Stats within library section */
+body.theme-night .section-library .stat-item {
+    border-color: rgba(139, 92, 246, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+body.theme-night .section-library .stat-label {
+    color: var(--header-text);
+}
+
+body.theme-night .section-library .stat-sub {
+    color: var(--body-text-dim);
+}
+
+/* Vision section night */
+body.theme-night .section-vision .section-label {
+    color: var(--sakura-400);
+}
+
+body.theme-night .section-vision .section-title {
+    color: var(--header-text);
+}
+
+body.theme-night .section-vision .section-desc {
+    color: var(--body-text);
+}
+
+body.theme-night .section-vision .vision-card h3 {
+    color: var(--header-text);
+}
+
+body.theme-night .section-vision .vision-card .vision-jp {
+    color: var(--purple-400);
+}
+
+body.theme-night .section-vision .vision-card .vision-text {
+    color: var(--body-text);
+}
+
+body.theme-night .section-vision .vision-card .vision-tag {
+    color: var(--purple-400);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+body.theme-night .section-vision .process-label {
+    color: var(--body-text);
+}
+
+body.theme-night .section-vision .process-icon {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(139, 92, 246, 0.2);
+}
+
+/* Quote section */
+body.theme-night .section-quote {
+    background: linear-gradient(180deg, #0b0c10, #1a1a2e, #0b0c10);
+}
+
+body.theme-night .quote-text {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.theme-night .quote-cite {
+    color: var(--body-text-dim);
+}
+
+body.theme-night .quote-commentary {
+    color: var(--body-text-dim);
+}
+
+/* Projects section night */
+body.theme-night .section-projects {
+    background: linear-gradient(180deg, #0b0c10, #141028, #0b0c10);
+}
+
+body.theme-night .section-projects .section-label {
+    color: var(--sakura-400);
+}
+
+body.theme-night .section-projects .section-title {
+    color: var(--header-text);
+}
+
+body.theme-night .section-projects .project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(139, 92, 246, 0.2);
+}
+
+body.theme-night .section-projects .project-card:hover {
+    border-color: rgba(167, 139, 250, 0.4);
+}
+
+body.theme-night .section-projects .project-thumb-placeholder {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+body.theme-night .section-projects .placeholder-icon {
+    opacity: 0.3;
+}
+
+body.theme-night .section-projects .placeholder-text {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+body.theme-night .section-projects .project-title {
+    color: var(--header-text);
+}
+
+body.theme-night .section-projects .project-desc {
+    color: var(--body-text);
+}
+
+body.theme-night .section-projects .project-type {
+    color: var(--purple-400);
+    background: rgba(167, 139, 250, 0.1);
+    border-color: rgba(167, 139, 250, 0.3);
+}
+
+body.theme-night .section-projects .project-live a {
+    color: var(--sakura-400);
+}
+
+body.theme-night .section-projects .project-live__badge {
+    color: var(--body-text-dim);
+    background: var(--tag-bg);
+}
+
+body.theme-night .section-projects .tag {
+    color: var(--tag-text);
+    background: var(--tag-bg);
+}
+
+/* ============================================================
+   Night theme: header/navigation visibility
+   ============================================================ */
+
+/* Scrolled nav becomes dark when theme-night */
+body.theme-night .nav.scrolled {
+    background: rgba(15, 12, 30, 0.9);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.theme-night .nav-logo {
+    color: var(--ink-800);
+}
+
+body.theme-night .nav-links a {
+    color: var(--body-text);
+}
+
+body.theme-night .nav-links a:hover {
+    color: var(--sakura-400);
+}
+
+body.theme-night .nav-links a::after {
+    background: var(--sakura-400);
+}
+
+/* ============================================
+   Final Responsive Fixes
+   Keep these after the project/theme rules so mobile layouts win.
+   ============================================ */
+@media (max-width: 768px) {
+    .zone-nav {
+        display: none;
+    }
+
+    .section-projects .section-desc br,
+    .project-desc br {
+        display: none;
+    }
+
+    .project-list {
+        gap: 1.25rem;
+    }
+
+    .project-card {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+        border-radius: 16px;
+    }
+
+    .project-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .project-thumb {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .project-img {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        object-fit: cover;
+    }
+
+    .project-thumb-placeholder {
+        position: absolute;
+        inset: 0;
+    }
+
+    .project-info {
+        padding: 1.35rem;
+    }
+
+    .project-meta-row {
+        flex-wrap: wrap;
+        gap: 0.55rem;
+    }
+
+    .project-type,
+    .project-live a,
+    .project-live__badge,
+    .tag {
+        border-radius: 999px;
+        line-height: 1.4;
+        letter-spacing: 0;
+    }
+
+    .project-title {
+        font-size: 1.25rem;
+        letter-spacing: 0.02em;
+        line-height: 1.45;
+    }
+
+    .project-desc {
+        font-size: 0.92rem;
+        line-height: 1.75;
+        overflow-wrap: anywhere;
+    }
+
+    .project-tags {
+        gap: 0.45rem;
+    }
+
+    .tag {
+        font-size: 0.68rem;
+        padding: 0.28rem 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav {
+        padding: 0.9rem 1rem;
+    }
+
+    .nav.scrolled {
+        padding: 0.65rem 1rem;
+    }
+
+    .nav-inner {
+        gap: 0.75rem;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    .nav-links {
+        flex: 1;
+        justify-content: flex-end;
+        gap: 0.65rem;
+    }
+
+    .nav-links a {
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+    }
+
+    .section-projects .section-title {
+        font-size: clamp(1.75rem, 9vw, 2.3rem);
+        line-height: 1.3;
+    }
+
+    .section-projects .section-desc {
+        font-size: 0.92rem;
+        line-height: 1.8;
+    }
+
+    .project-card {
+        border-radius: 14px;
+    }
+
+    .project-info {
+        padding: 1.1rem;
+    }
+
+    .project-title {
+        font-size: 1.12rem;
+    }
+
+    .project-desc {
+        font-size: 0.88rem;
+    }
+
+    .placeholder-icon {
+        font-size: 2.4rem;
+    }
+}
+
+body.theme-night .logo-icon {
+    filter: brightness(1.2);
+}
+
+/* Non-scrolled nav (hero area) — needs dark text on light hero */
+body.theme-night .nav:not(.scrolled) .nav-logo {
+    color: var(--ink-800);
+}
+
+body.theme-night .nav:not(.scrolled) .nav-links a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.theme-night .nav:not(.scrolled) .nav-links a:hover {
+    color: var(--sakura-400);
+}
