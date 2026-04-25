@@ -583,6 +583,14 @@
         const root = document.querySelector('[data-render="projects"]');
         if (!root || !items) return;
         root.innerHTML = items.map((item) => {
+            const actionType = item.actionType || (item.download ? 'download' : 'external');
+            const actionIcon = actionType === 'download' ? '↓' : '↗';
+            const actionLabel = item.actionLabel || (actionType === 'download' ? 'DL' : '外部');
+            const actionClass = `project-action project-action--${escapeHtml(actionType)}`;
+            const actionText = escapeHtml(item.action || (actionType === 'download' ? 'Download' : 'Open'));
+            const actionAria = actionType === 'download'
+                ? `${item.title}をダウンロードする`
+                : `${item.title}を外部サイトで開く`;
             const thumb = item.image
                 ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}" class="project-img">`
                 : `<div class="project-thumb-placeholder">
@@ -590,7 +598,7 @@
                     <span class="placeholder-text">${escapeHtml(item.placeholderText || item.title)}</span>
                 </div>`;
             const live = item.href
-                ? `<a href="${escapeHtml(item.href)}" ${item.download ? 'download' : 'target="_blank" rel="noopener noreferrer"'}>${escapeHtml(item.action || 'Open')}</a>`
+                ? `<a href="${escapeHtml(item.href)}" class="${actionClass}" aria-label="${escapeHtml(actionAria)}" ${item.download ? 'download' : 'target="_blank" rel="noopener noreferrer"'}><span class="project-action__label">${escapeHtml(actionLabel)}</span><span class="project-action__text">${actionText}</span><span class="project-action__icon" aria-hidden="true">${actionIcon}</span></a>`
                 : `<span class="project-live__badge">${escapeHtml(item.status || 'Concept')}</span>`;
             const why = item.why
                 ? `<p class="project-why"><span>Why</span>${escapeHtml(item.why)}</p>`
