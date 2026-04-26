@@ -2,6 +2,13 @@
 
 ## 2026-04-26
 
+- Focus: Content / Narrative
+- Changed: Projects に「情緒プロンプト実験ノート」の種カードを追加し、任意の `cycle` データがある制作物だけ「問い・実験・発見」をミニ表示できるようにした。
+- Learned: Works 側にも Research Log の型を少し混ぜると、道具一覧が単なる成果物ではなく、RFPの「探求の可視化」と「Magic Toolsの驚きの記録」に近づく。
+- Next: 追加した種カードが増えても読みやすいように、Projects の並びやカテゴリ見出しを小さく整理する。
+
+## 2026-04-26
+
 - Focus: Visual / Narrative
 - Changed: Library の3D本表紙に既存の `bk_hero.png` を薄く重ね、タイトルやKindleバッジの可読性を保つためのオーバーレイと影を調整した。
 - Learned: 書庫の本が抽象的なグラデーションだけでなく作品世界の絵を帯びると、RFPの「表紙、あらすじ、扱っている問い」という Library 要件に近づく。

@@ -128,6 +128,21 @@ window.HAZAKURA_CONTENT = {
             tags: ['Markdown', 'EPUB', 'Kindle', 'クライアントサイド']
         },
         {
+            type: 'Research Log',
+            title: '情緒プロンプト実験ノート',
+            placeholderIcon: '🧪',
+            placeholderText: '問い → 実験 → 発見',
+            status: 'Seed',
+            text: 'AIの返答を、ただ正しい説明ではなく「もう少し考えたくなる入口」に変えるための小さな記録。文章の温度、余白、問い返しを比べながら、葉桜ラボらしい対話の型を育てていきます。',
+            why: 'Magic Toolsを道具単体で終わらせず、作る過程で見つけた驚きも同じ棚に残すための種。',
+            cycle: {
+                question: 'AIの答えに、読み手の気持ちが動く余白は作れるか。',
+                experiment: '同じ案内文を説明調、物語調、対話調に分けて、印象の差を比べる。',
+                finding: '情緒は装飾ではなく、問いの置き方と沈黙の残し方に宿る。'
+            },
+            tags: ['Research Log', 'Prompt', '理と情', 'Seed']
+        },
+        {
             type: 'macOS App',
             title: 'Sakura Sky（実験作品）',
             placeholderIcon: '🌸',

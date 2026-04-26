@@ -630,6 +630,20 @@
             const why = item.why
                 ? `<p class="project-why"><span>Why</span>${escapeHtml(item.why)}</p>`
                 : '';
+            const cycle = item.cycle ? `
+                <dl class="project-cycle" aria-label="${escapeHtml(item.title)}の問い、実験、発見">
+                    ${[
+                        ['問い', item.cycle.question],
+                        ['実験', item.cycle.experiment],
+                        ['発見', item.cycle.finding]
+                    ].filter(([, value]) => value).map(([label, value]) => `
+                        <div>
+                            <dt>${escapeHtml(label)}</dt>
+                            <dd>${escapeHtml(value)}</dd>
+                        </div>
+                    `).join('')}
+                </dl>
+            ` : '';
             const cardClass = item.image ? 'project-card' : 'project-card project-card--placeholder';
             return `
                 <article class="${cardClass}" data-tilt>
@@ -642,6 +656,7 @@
                         <h3 class="project-title">${escapeHtml(item.title)}</h3>
                         <p class="project-desc">${escapeHtml(item.text)}</p>
                         ${why}
+                        ${cycle}
                         <div class="project-tags">
                             ${(item.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
                         </div>
