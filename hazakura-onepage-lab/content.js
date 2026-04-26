@@ -93,6 +93,13 @@ window.HAZAKURA_CONTENT = {
             jp: '知恵を巡らせる',
             text: 'Research Logや自分史、寺子屋の問いを少しずつ蓄え、地域の言葉で答えを返す小さな知恵の循環炉。',
             tag: 'CMS seed'
+        },
+        {
+            icon: '📻',
+            title: 'レトロ・ガジェット再生',
+            jp: '古いモノに魂を宿す',
+            text: '眠っているラジオや古い道具にAIの小さな対話を重ね、思い出と機能をもう一度めぐらせるワークショップの記録。',
+            tag: 'Workshop seed'
         }
     ],
     projects: [
