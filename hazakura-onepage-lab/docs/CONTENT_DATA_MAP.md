@@ -13,10 +13,10 @@
 | `researchLogs` | `renderResearchLogs` | `[data-render="researchLogs"]` | Vision 前の Research Log カード |
 | `visions` | `renderVisions` | `[data-render="visions"]` | 構想カード、入口文、タグ |
 | `cycleBridge` | `renderCycleBridge` | `[data-render="cycleBridge"]` | Vision 末尾の循環メモ |
-| `projectLanes` | `renderProjects` / `initProjectLaneFilter` | `[data-render="projects"]` | 棚ガイド、絞り込み、選択時コピー |
-| `projectLaneOverview` | `renderProjects` / `initProjectLaneFilter` | `[data-render="projects"]` | Projects の棚ステータス文 |
-| `projectActionGuide` | `renderProjects` | `[data-render="projects"]` | 外部リンク / ダウンロードの見分け |
-| `projects` | `renderProjects` / `initProjectLaneFilter` | `[data-render="projects"]` | 制作物カード本体 |
+| `projectsGroup.lanes` | `renderProjects` / `initProjectLaneFilter` | `[data-render="projects"]` | 棚ガイド、絞り込み、選択時コピー |
+| `projectsGroup.overview` | `renderProjects` / `initProjectLaneFilter` | `[data-render="projects"]` | Projects の棚ステータス文 |
+| `projectsGroup.actionGuide` | `renderProjects` | `[data-render="projects"]` | 外部リンク / ダウンロードの見分け |
+| `projectsGroup.items` | `renderProjects` / `initProjectLaneFilter` | `[data-render="projects"]` | 制作物カード本体 |
 
 ## 分ける時の単位
 
@@ -24,9 +24,9 @@
 2. `library`: 現状はHTML直書き。書籍が増えるなら、表紙・メタ・問い・CTAをこの単位へ移す。
 3. `research`: `researchLogs`, `cycleBridge`
 4. `visions`: `visions`
-5. `projects`: `projectLanes`, `projectLaneOverview`, `projectActionGuide`, `projects`
+5. `projects`: `projectsGroup.lanes`, `projectsGroup.overview`, `projectsGroup.actionGuide`, `projectsGroup.items`
 
-`projects` は棚の定義とカード本体が一緒に動くため、最初に分割するならこの5項目を同じファイルに残す。カードだけ先に分けると、件数表示・フィルター文・カードの `lane` がずれやすい。
+`projectsGroup` は棚の定義とカード本体が一緒に動くため、最初に分割するならこの入れ子を同じファイルに残す。カードだけ先に分けると、件数表示・フィルター文・カードの `lane` がずれやすい。
 
 ## JSON 化前の注意
 
@@ -38,4 +38,4 @@
 
 ## 次に小さくやるなら
 
-`content.js` の先頭にデータ群コメントを足すより、`projects` 関連を `window.HAZAKURA_CONTENT.projectsGroup` のような新しい入れ子へ変えるほうが、将来のJSONファイル境界に近い。ただしその時は `renderProjects` と `initProjectLaneFilter` を同時に直す。
+次に分けるなら、`researchLogs` と `cycleBridge` を `researchGroup` に寄せると、Research Log と循環メモを同じJSON境界として扱いやすい。

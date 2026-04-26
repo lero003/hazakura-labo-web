@@ -113,111 +113,113 @@ window.HAZAKURA_CONTENT = {
         title: '問いは記憶になり、また誰かの問いへ戻る。',
         text: 'Research Logに残した発見、自分史に預けた記憶、寺子屋で交わした学び。それらを地域LLMが少しずつ受け取り、次の人の言葉で返していく。葉桜ラボは、その巡りを一枚のページで育てる実験場です。'
     },
-    projectLanes: [
-        {
-            label: 'Magic Tool',
-            jp: '道具の棚',
-            text: '作ったものと、その動機を残す場所。',
-            filterText: '道具だけを見ると、葉桜ラボが「何を作ったか」より先に「なぜ作ったか」を追いやすくなります。'
-        },
-        {
-            label: 'Research Log',
-            jp: '問いの棚',
-            text: '問い、実験、発見の小さな循環を残す場所。',
-            filterText: '問いの棚では、完成物ではなく、考えが生まれて形を変える途中の温度を残します。'
-        },
-        {
-            label: 'Story Seed',
-            jp: '物語の棚',
-            text: 'まだ形になる前の風景や構想を温める場所。',
-            filterText: '物語の棚は、まだ道具や本になる前の風景を置き、次の実験へ戻すための余白です。'
-        }
-    ],
-    projectLaneOverview: '道具、問い、物語を行き来しながら、AI万屋の小さな実験がどう循環しているかを眺められます。',
-    projectActionGuide: [
-        {
-            type: 'external',
-            label: '外部',
-            text: '別タブで外の実験場へ移動します。'
-        },
-        {
-            type: 'download',
-            label: 'DL',
-            text: 'ファイルを手元へ保存します。注意文を読んでから試してください。'
-        }
-    ],
-    projects: [
-        {
-            lane: 'Magic Tool',
-            type: 'Web Tool',
-            title: 'Kindle EPUB Studio',
-            image: './img/project-kindle-epub.png',
-            alt: 'Kindle EPUB Studioで原稿、表紙、目次設定を並べてEPUB生成を確認している画面',
-            href: 'https://kindle-epub-tool.pages.dev',
-            action: 'Live',
-            actionType: 'external',
-            actionLabel: '外部',
-            text: 'MarkdownからプロフェッショナルなKindle EPUBをブラウザ完結で生成するツール。ローカル処理、自動目次生成、GFMテーブル対応。',
-            why: 'Kindle公開作業を、誰かのサーバーに預けず自分の手元で完結させたくて作ったもの。',
-            surprise: '出版の工程は大きな仕組みでなくても、小さなブラウザ道具へ分解すると「自分で直せる知恵」になる。',
-            tags: ['Markdown', 'EPUB', 'Kindle', 'クライアントサイド']
-        },
-        {
-            lane: 'Research Log',
-            type: 'Research Log',
-            title: '情緒プロンプト実験ノート',
-            placeholderIcon: '🧪',
-            placeholderText: '問い → 実験 → 発見',
-            status: 'Seed',
-            text: 'AIの返答を、ただ正しい説明ではなく「もう少し考えたくなる入口」に変えるための小さな記録。文章の温度、余白、問い返しを比べながら、葉桜ラボらしい対話の型を育てていきます。',
-            why: 'Magic Toolsを道具単体で終わらせず、作る過程で見つけた驚きも同じ棚に残すための種。',
-            surprise: '同じ情報でも、問いを先に置くだけで説明が「答え」から「続きを考える入口」に変わる。',
-            cycle: {
-                question: 'AIの答えに、読み手の気持ちが動く余白は作れるか。',
-                experiment: '同じ案内文を説明調、物語調、対話調に分けて、印象の差を比べる。',
-                finding: '情緒は装飾ではなく、問いの置き方と沈黙の残し方に宿る。'
+    projectsGroup: {
+        lanes: [
+            {
+                label: 'Magic Tool',
+                jp: '道具の棚',
+                text: '作ったものと、その動機を残す場所。',
+                filterText: '道具だけを見ると、葉桜ラボが「何を作ったか」より先に「なぜ作ったか」を追いやすくなります。'
             },
-            tags: ['Research Log', 'Prompt', '理と情', 'Seed']
-        },
-        {
-            lane: 'Magic Tool',
-            type: 'macOS App',
-            title: 'Sakura Sky（実験作品）',
-            placeholderIcon: '🌸',
-            placeholderText: 'Sakura Sky（実験作品）',
-            href: 'downloads/SakuraSky.dmg',
-            action: 'DMG',
-            actionType: 'download',
-            actionLabel: 'DL',
-            download: true,
-            text: 'デスクトップの上に、桜・葉桜・魔法の光がふわりと舞うmacOSアプリ。作業の邪魔をほんの少しだけする、葉桜ラボらしい実験的な遊び道具です。未署名版です。環境によってはインストール・起動ができない場合や、システムアラートが出る可能性があります。自己責任で！',
-            why: '効率だけではない、少し余白のあるコンピュータ体験を試したくて作ったもの。',
-            surprise: '役に立たない揺らぎをあえて置くと、作業画面にも季節や気分の余白が生まれる。',
-            tags: ['macOS 26+', 'Tauri|rust', '桜エフェクト', '未署名配布（公式審査する可能性もあり）']
-        },
-        {
-            lane: 'Magic Tool',
-            type: 'macOS App',
-            title: 'Harunohi Monitor（仮）',
-            placeholderIcon: '🌸',
-            placeholderText: 'Harunohi Monitor（仮）',
-            status: '開発中？',
-            text: 'ハルノヒのような、ポカポカした気分で動く常駐アプリ。少しだけ自分のMacのことを知るために、こういうの欲しいと作っております。できたら書きます。Mac専用。',
-            why: '機械の状態を冷たい数値ではなく、暮らしの気配として受け取る形を探っているもの。',
-            surprise: '監視ツールも、温度や余裕を感じる言葉に置き換えると、Macとの付き合い方まで少し変わる。',
-            tags: ['macOS 26+', 'Swift?', '開発中']
-        },
-        {
-            lane: 'Story Seed',
-            type: '祝アニメ化？',
-            title: 'オリジナルアニメ映画',
-            image: './img/project_anime.png',
-            alt: '夜明けの湖畔に桜と光が浮かぶ、オリジナルアニメ映画「葉桜」の構想ビジュアル',
-            status: 'Concept',
-            text: 'オリジナルアニメ映画「葉桜」。思いの中では、アニメ化してます。思いだけです。',
-            why: '葉桜ラボの思想を、説明ではなく物語と風景で伝える入口として温めている構想。',
-            surprise: 'まだ形のない構想でも、カードとして置くと次の制作やResearch Logへ戻る種になる。',
-            tags: ['アニメ']
-        }
-    ]
+            {
+                label: 'Research Log',
+                jp: '問いの棚',
+                text: '問い、実験、発見の小さな循環を残す場所。',
+                filterText: '問いの棚では、完成物ではなく、考えが生まれて形を変える途中の温度を残します。'
+            },
+            {
+                label: 'Story Seed',
+                jp: '物語の棚',
+                text: 'まだ形になる前の風景や構想を温める場所。',
+                filterText: '物語の棚は、まだ道具や本になる前の風景を置き、次の実験へ戻すための余白です。'
+            }
+        ],
+        overview: '道具、問い、物語を行き来しながら、AI万屋の小さな実験がどう循環しているかを眺められます。',
+        actionGuide: [
+            {
+                type: 'external',
+                label: '外部',
+                text: '別タブで外の実験場へ移動します。'
+            },
+            {
+                type: 'download',
+                label: 'DL',
+                text: 'ファイルを手元へ保存します。注意文を読んでから試してください。'
+            }
+        ],
+        items: [
+            {
+                lane: 'Magic Tool',
+                type: 'Web Tool',
+                title: 'Kindle EPUB Studio',
+                image: './img/project-kindle-epub.png',
+                alt: 'Kindle EPUB Studioで原稿、表紙、目次設定を並べてEPUB生成を確認している画面',
+                href: 'https://kindle-epub-tool.pages.dev',
+                action: 'Live',
+                actionType: 'external',
+                actionLabel: '外部',
+                text: 'MarkdownからプロフェッショナルなKindle EPUBをブラウザ完結で生成するツール。ローカル処理、自動目次生成、GFMテーブル対応。',
+                why: 'Kindle公開作業を、誰かのサーバーに預けず自分の手元で完結させたくて作ったもの。',
+                surprise: '出版の工程は大きな仕組みでなくても、小さなブラウザ道具へ分解すると「自分で直せる知恵」になる。',
+                tags: ['Markdown', 'EPUB', 'Kindle', 'クライアントサイド']
+            },
+            {
+                lane: 'Research Log',
+                type: 'Research Log',
+                title: '情緒プロンプト実験ノート',
+                placeholderIcon: '🧪',
+                placeholderText: '問い → 実験 → 発見',
+                status: 'Seed',
+                text: 'AIの返答を、ただ正しい説明ではなく「もう少し考えたくなる入口」に変えるための小さな記録。文章の温度、余白、問い返しを比べながら、葉桜ラボらしい対話の型を育てていきます。',
+                why: 'Magic Toolsを道具単体で終わらせず、作る過程で見つけた驚きも同じ棚に残すための種。',
+                surprise: '同じ情報でも、問いを先に置くだけで説明が「答え」から「続きを考える入口」に変わる。',
+                cycle: {
+                    question: 'AIの答えに、読み手の気持ちが動く余白は作れるか。',
+                    experiment: '同じ案内文を説明調、物語調、対話調に分けて、印象の差を比べる。',
+                    finding: '情緒は装飾ではなく、問いの置き方と沈黙の残し方に宿る。'
+                },
+                tags: ['Research Log', 'Prompt', '理と情', 'Seed']
+            },
+            {
+                lane: 'Magic Tool',
+                type: 'macOS App',
+                title: 'Sakura Sky（実験作品）',
+                placeholderIcon: '🌸',
+                placeholderText: 'Sakura Sky（実験作品）',
+                href: 'downloads/SakuraSky.dmg',
+                action: 'DMG',
+                actionType: 'download',
+                actionLabel: 'DL',
+                download: true,
+                text: 'デスクトップの上に、桜・葉桜・魔法の光がふわりと舞うmacOSアプリ。作業の邪魔をほんの少しだけする、葉桜ラボらしい実験的な遊び道具です。未署名版です。環境によってはインストール・起動ができない場合や、システムアラートが出る可能性があります。自己責任で！',
+                why: '効率だけではない、少し余白のあるコンピュータ体験を試したくて作ったもの。',
+                surprise: '役に立たない揺らぎをあえて置くと、作業画面にも季節や気分の余白が生まれる。',
+                tags: ['macOS 26+', 'Tauri|rust', '桜エフェクト', '未署名配布（公式審査する可能性もあり）']
+            },
+            {
+                lane: 'Magic Tool',
+                type: 'macOS App',
+                title: 'Harunohi Monitor（仮）',
+                placeholderIcon: '🌸',
+                placeholderText: 'Harunohi Monitor（仮）',
+                status: '開発中？',
+                text: 'ハルノヒのような、ポカポカした気分で動く常駐アプリ。少しだけ自分のMacのことを知るために、こういうの欲しいと作っております。できたら書きます。Mac専用。',
+                why: '機械の状態を冷たい数値ではなく、暮らしの気配として受け取る形を探っているもの。',
+                surprise: '監視ツールも、温度や余裕を感じる言葉に置き換えると、Macとの付き合い方まで少し変わる。',
+                tags: ['macOS 26+', 'Swift?', '開発中']
+            },
+            {
+                lane: 'Story Seed',
+                type: '祝アニメ化？',
+                title: 'オリジナルアニメ映画',
+                image: './img/project_anime.png',
+                alt: '夜明けの湖畔に桜と光が浮かぶ、オリジナルアニメ映画「葉桜」の構想ビジュアル',
+                status: 'Concept',
+                text: 'オリジナルアニメ映画「葉桜」。思いの中では、アニメ化してます。思いだけです。',
+                why: '葉桜ラボの思想を、説明ではなく物語と風景で伝える入口として温めている構想。',
+                surprise: 'まだ形のない構想でも、カードとして置くと次の制作やResearch Logへ戻る種になる。',
+                tags: ['アニメ']
+            }
+        ]
+    }
 };

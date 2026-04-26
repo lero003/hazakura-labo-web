@@ -606,11 +606,11 @@
         `;
     }
 
-    function renderProjects(items) {
+    function renderProjects(projectsGroup) {
         const root = document.querySelector('[data-render="projects"]');
-        if (!root || !items) return;
-        const content = window.HAZAKURA_CONTENT || {};
-        const projectLanes = content.projectLanes || [];
+        if (!root || !projectsGroup) return;
+        const items = Array.isArray(projectsGroup.items) ? projectsGroup.items : [];
+        const projectLanes = projectsGroup.lanes || [];
         const laneCounts = items.reduce((counts, item) => {
             if (item.lane) counts[item.lane] = (counts[item.lane] || 0) + 1;
             return counts;
@@ -642,11 +642,11 @@
             </div>`
             : '';
         const laneStatus = projectLanes.length
-            ? `<p class="project-lane-status" data-project-lane-status aria-live="polite">${escapeHtml(content.projectLaneOverview || '制作物を棚ごとに眺められます。')}</p>`
+            ? `<p class="project-lane-status" data-project-lane-status aria-live="polite">${escapeHtml(projectsGroup.overview || '制作物を棚ごとに眺められます。')}</p>`
             : '';
-        const actionGuide = Array.isArray(content.projectActionGuide) && content.projectActionGuide.length
+        const actionGuide = Array.isArray(projectsGroup.actionGuide) && projectsGroup.actionGuide.length
             ? `<div class="project-action-guide" aria-label="制作物リンクの種類">
-                ${content.projectActionGuide.map((guide) => `
+                ${projectsGroup.actionGuide.map((guide) => `
                     <span class="project-action-guide__item project-action-guide__item--${escapeHtml(guide.type || 'info')}">
                         <strong>${escapeHtml(guide.label)}</strong>
                         <span>${escapeHtml(guide.text)}</span>
@@ -718,22 +718,21 @@
             `;
         }).join('');
         root.innerHTML = `${laneGuide}${laneFilters}${laneStatus}${actionGuide}${cards}`;
-        initProjectLaneFilter(root);
+        initProjectLaneFilter(root, projectsGroup);
     }
 
-    function initProjectLaneFilter(root) {
+    function initProjectLaneFilter(root, projectsGroup) {
         const buttons = Array.from(root.querySelectorAll('[data-lane-filter]'));
         const cards = Array.from(root.querySelectorAll('[data-project-card]'));
         const laneGuides = Array.from(root.querySelectorAll('[data-lane-guide]'));
         const status = root.querySelector('[data-project-lane-status]');
         if (!buttons.length || !cards.length) return;
-        const content = window.HAZAKURA_CONTENT || {};
-        const projectLanes = content.projectLanes || [];
+        const projectLanes = projectsGroup.lanes || [];
         const laneCopy = projectLanes.reduce((copy, lane) => {
             copy[lane.label] = lane.filterText || lane.text || '';
             return copy;
         }, {});
-        const overview = content.projectLaneOverview || '制作物を棚ごとに眺められます。';
+        const overview = projectsGroup.overview || '制作物を棚ごとに眺められます。';
 
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
@@ -767,7 +766,7 @@
         renderResearchLogs(content.researchLogs);
         renderVisions(content.visions);
         renderCycleBridge(content.cycleBridge);
-        renderProjects(content.projects);
+        renderProjects(content.projectsGroup);
         refreshHoverTargets();
     }
 
