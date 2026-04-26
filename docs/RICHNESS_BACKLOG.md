@@ -16,8 +16,6 @@
 
 ## Motion
 
-- `構造` セクションでレイヤーが順番に立ち上がる演出を強める
-
 ## Content
 
 - `projects` に Research Log / Magic Tools の試作カードを足す

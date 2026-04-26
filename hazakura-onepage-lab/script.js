@@ -516,6 +516,10 @@
         if (!root || !items) return;
         root.innerHTML = items.map((item, index) => `
             <article class="layer-card" data-tilt style="--layer-index: ${index + 1}">
+                <span class="layer-sequence" aria-hidden="true">
+                    <span class="layer-sequence__dot"></span>
+                    <span class="layer-sequence__beam"></span>
+                </span>
                 <span class="layer-label">${escapeHtml(item.label)}</span>
                 <h3>${escapeHtml(item.title)}</h3>
                 <p>${escapeHtml(item.text)}</p>
