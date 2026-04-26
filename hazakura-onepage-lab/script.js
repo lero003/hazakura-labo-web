@@ -632,7 +632,7 @@
         const laneGuide = projectLanes.length
             ? `<div class="project-lane-guide" aria-label="制作物の棚">
                 ${projectLanes.map((lane) => `
-                    <div class="project-lane-guide__item">
+                    <div class="project-lane-guide__item" data-lane-guide="${escapeHtml(lane.label)}">
                         <span class="project-lane-guide__label">${escapeHtml(lane.label)}</span>
                         <span class="project-lane-guide__count">${escapeHtml(String(laneCounts[lane.label] || 0))}</span>
                         <strong>${escapeHtml(lane.jp)}</strong>
@@ -640,6 +640,9 @@
                     </div>
                 `).join('')}
             </div>`
+            : '';
+        const laneStatus = projectLanes.length
+            ? `<p class="project-lane-status" data-project-lane-status aria-live="polite">${escapeHtml(content.projectLaneOverview || '制作物を棚ごとに眺められます。')}</p>`
             : '';
         const cards = items.map((item) => {
             const actionType = item.actionType || (item.download ? 'download' : 'external');
@@ -700,14 +703,23 @@
                 </article>
             `;
         }).join('');
-        root.innerHTML = `${laneGuide}${laneFilters}${cards}`;
+        root.innerHTML = `${laneGuide}${laneFilters}${laneStatus}${cards}`;
         initProjectLaneFilter(root);
     }
 
     function initProjectLaneFilter(root) {
         const buttons = Array.from(root.querySelectorAll('[data-lane-filter]'));
         const cards = Array.from(root.querySelectorAll('[data-project-card]'));
+        const laneGuides = Array.from(root.querySelectorAll('[data-lane-guide]'));
+        const status = root.querySelector('[data-project-lane-status]');
         if (!buttons.length || !cards.length) return;
+        const content = window.HAZAKURA_CONTENT || {};
+        const projectLanes = content.projectLanes || [];
+        const laneCopy = projectLanes.reduce((copy, lane) => {
+            copy[lane.label] = lane.filterText || lane.text || '';
+            return copy;
+        }, {});
+        const overview = content.projectLaneOverview || '制作物を棚ごとに眺められます。';
 
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
@@ -721,6 +733,12 @@
                     const shouldShow = selectedLane === 'all' || card.dataset.lane === selectedLane;
                     card.hidden = !shouldShow;
                 });
+                laneGuides.forEach((guide) => {
+                    const isSelected = selectedLane !== 'all' && guide.dataset.laneGuide === selectedLane;
+                    guide.classList.toggle('is-selected', isSelected);
+                    guide.classList.toggle('is-muted', selectedLane !== 'all' && !isSelected);
+                });
+                if (status) status.textContent = selectedLane === 'all' ? overview : laneCopy[selectedLane] || overview;
             });
         });
     }

@@ -3171,6 +3171,18 @@ body.theme-night .section-layers .layer-sequence__beam {
     border-left: 3px solid rgba(232, 88, 122, 0.42);
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.5);
+    transition: opacity var(--duration-fast) ease, border-color var(--duration-fast) ease, background var(--duration-fast) ease, transform var(--duration-fast) ease;
+}
+
+.project-lane-guide__item.is-selected {
+    border-color: rgba(232, 88, 122, 0.36);
+    border-left-color: var(--sakura-500);
+    background: rgba(255, 255, 255, 0.78);
+    transform: translateY(-2px);
+}
+
+.project-lane-guide__item.is-muted {
+    opacity: 0.52;
 }
 
 .project-lane-guide__label {
@@ -3260,6 +3272,14 @@ body.theme-night .section-layers .layer-sequence__beam {
     font-size: 0.72rem;
     line-height: 1.35;
     text-align: center;
+}
+
+.project-lane-status {
+    margin: -0.35rem 0 0.2rem;
+    max-width: 720px;
+    color: var(--ink-500);
+    font-size: 0.86rem;
+    line-height: 1.85;
 }
 
 .project-card {
@@ -3764,6 +3784,12 @@ body.theme-night .section-projects .project-lane-guide__item {
     border-left-color: rgba(232, 88, 122, 0.55);
 }
 
+body.theme-night .section-projects .project-lane-guide__item.is-selected {
+    background: rgba(232, 88, 122, 0.12);
+    border-color: rgba(232, 88, 122, 0.34);
+    border-left-color: var(--sakura-500);
+}
+
 body.theme-night .section-projects .project-lane-guide__label {
     color: var(--sakura-400);
 }
@@ -3800,6 +3826,10 @@ body.theme-night .section-projects .project-lane-filter__button.is-active {
 
 body.theme-night .section-projects .project-lane-filter__button strong {
     background: rgba(255, 255, 255, 0.08);
+}
+
+body.theme-night .section-projects .project-lane-status {
+    color: rgba(255, 255, 255, 0.58);
 }
 
 body.theme-night .section-projects .project-thumb-placeholder {
@@ -3956,6 +3986,13 @@ body.theme-night .nav-links a::after {
         padding: 0.42rem 0.68rem;
         font-size: 0.74rem;
         letter-spacing: 0;
+    }
+
+    .project-lane-status {
+        margin: -0.15rem 0 0;
+        font-size: 0.82rem;
+        line-height: 1.75;
+        overflow-wrap: anywhere;
     }
 
     .project-card {
