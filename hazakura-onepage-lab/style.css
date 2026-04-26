@@ -3091,6 +3091,58 @@ body.theme-night .section-layers .layer-sequence__beam {
     gap: 2rem;
 }
 
+.project-lane-guide {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.project-lane-guide__item {
+    position: relative;
+    min-height: 126px;
+    padding: 1rem 1rem 1.05rem;
+    border: 1px solid rgba(232, 88, 122, 0.16);
+    border-left: 3px solid rgba(232, 88, 122, 0.42);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.project-lane-guide__label {
+    display: inline-flex;
+    margin-bottom: 0.7rem;
+    color: var(--sakura-500);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.project-lane-guide__count {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.9rem;
+    color: rgba(232, 88, 122, 0.42);
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.project-lane-guide__item strong {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--ink-800);
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.project-lane-guide__item p {
+    color: var(--ink-500);
+    font-size: 0.78rem;
+    line-height: 1.65;
+}
+
 .project-card {
     --project-thumb-ratio: 3 / 2;
     display: grid;
@@ -3583,6 +3635,28 @@ body.theme-night .section-projects .project-card:hover {
     border-color: rgba(167, 139, 250, 0.4);
 }
 
+body.theme-night .section-projects .project-lane-guide__item {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(167, 139, 250, 0.18);
+    border-left-color: rgba(232, 88, 122, 0.55);
+}
+
+body.theme-night .section-projects .project-lane-guide__label {
+    color: var(--sakura-400);
+}
+
+body.theme-night .section-projects .project-lane-guide__count {
+    color: rgba(232, 88, 122, 0.44);
+}
+
+body.theme-night .section-projects .project-lane-guide__item strong {
+    color: var(--header-text);
+}
+
+body.theme-night .section-projects .project-lane-guide__item p {
+    color: var(--body-text);
+}
+
 body.theme-night .section-projects .project-thumb-placeholder {
     background: rgba(255, 255, 255, 0.04);
 }
@@ -3704,6 +3778,25 @@ body.theme-night .nav-links a::after {
 
     .project-list {
         gap: 1.25rem;
+    }
+
+    .project-lane-guide {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+    }
+
+    .project-lane-guide__item {
+        min-height: 0;
+        padding: 0.9rem;
+    }
+
+    .project-lane-guide__label {
+        margin-bottom: 0.45rem;
+        letter-spacing: 0.04em;
+    }
+
+    .project-lane-guide__count {
+        font-size: 1.25rem;
     }
 
     .project-card {

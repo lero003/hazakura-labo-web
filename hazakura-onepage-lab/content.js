@@ -113,6 +113,23 @@ window.HAZAKURA_CONTENT = {
         title: '問いは記憶になり、また誰かの問いへ戻る。',
         text: 'Research Logに残した発見、自分史に預けた記憶、寺子屋で交わした学び。それらを地域LLMが少しずつ受け取り、次の人の言葉で返していく。葉桜ラボは、その巡りを一枚のページで育てる実験場です。'
     },
+    projectLanes: [
+        {
+            label: 'Magic Tool',
+            jp: '道具の棚',
+            text: '作ったものと、その動機を残す場所。'
+        },
+        {
+            label: 'Research Log',
+            jp: '問いの棚',
+            text: '問い、実験、発見の小さな循環を残す場所。'
+        },
+        {
+            label: 'Story Seed',
+            jp: '物語の棚',
+            text: 'まだ形になる前の風景や構想を温める場所。'
+        }
+    ],
     projects: [
         {
             lane: 'Magic Tool',

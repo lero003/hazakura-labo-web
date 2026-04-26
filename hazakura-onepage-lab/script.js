@@ -609,7 +609,24 @@
     function renderProjects(items) {
         const root = document.querySelector('[data-render="projects"]');
         if (!root || !items) return;
-        root.innerHTML = items.map((item) => {
+        const content = window.HAZAKURA_CONTENT || {};
+        const laneCounts = items.reduce((counts, item) => {
+            if (item.lane) counts[item.lane] = (counts[item.lane] || 0) + 1;
+            return counts;
+        }, {});
+        const laneGuide = (content.projectLanes || []).length
+            ? `<div class="project-lane-guide" aria-label="制作物の棚">
+                ${(content.projectLanes || []).map((lane) => `
+                    <div class="project-lane-guide__item">
+                        <span class="project-lane-guide__label">${escapeHtml(lane.label)}</span>
+                        <span class="project-lane-guide__count">${escapeHtml(String(laneCounts[lane.label] || 0))}</span>
+                        <strong>${escapeHtml(lane.jp)}</strong>
+                        <p>${escapeHtml(lane.text)}</p>
+                    </div>
+                `).join('')}
+            </div>`
+            : '';
+        const cards = items.map((item) => {
             const actionType = item.actionType || (item.download ? 'download' : 'external');
             const actionIcon = actionType === 'download' ? '↓' : '↗';
             const actionLabel = item.actionLabel || (actionType === 'download' ? 'DL' : '外部');
@@ -668,6 +685,7 @@
                 </article>
             `;
         }).join('');
+        root.innerHTML = `${laneGuide}${cards}`;
     }
 
     function renderContent() {

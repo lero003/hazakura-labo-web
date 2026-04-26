@@ -2,6 +2,13 @@
 
 ## 2026-04-26
 
+- Focus: Content / Structure
+- Changed: Projects の前に `projectLanes` 由来の棚ガイドを追加し、Magic Tool / Research Log / Story Seed の役割と件数を一覧前に読めるようにした。
+- Learned: lane ラベルをカード内だけでなく一覧の入口にも置くと、制作物が増えても「道具・問い・物語」の棚として見通しを保ちやすい。
+- Next: 棚ごとのカードが増えたら、同じ `projectLanes` を使って軽い絞り込みを追加する。
+
+## 2026-04-26
+
 - Focus: Content / Access
 - Changed: Projects の各カードに `lane` を追加し、Magic Tool / Research Log / Story Seed の小さな分類ラベルを表示できるようにした。
 - Learned: 制作物が増え始めた段階でRFP上の役割を短く見せておくと、一覧が単なるカード列ではなく「探求・道具・物語」の棚として読みやすくなる。
