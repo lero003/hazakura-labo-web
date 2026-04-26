@@ -830,6 +830,8 @@
     `;
     document.body.appendChild(zoneNav);
 
+    const zoneAtmosphere = createZoneAtmosphere();
+
     zoneNav.querySelectorAll('.zone-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const targetZone = parseInt(btn.dataset.zone);
@@ -841,11 +843,66 @@
                 setActiveZone(targetZone, true);
                 updateBackgroundZones(targetZone, 0);
                 updateSectionZones(targetZone);
+                updateAtmosphereBlend(targetZone);
                 window.scrollTo({ top: Math.max(0, y), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
             }
         });
     });
     updateZoneIndicator();
+
+    function createZoneAtmosphere() {
+        const atmosphere = document.createElement('div');
+        atmosphere.className = 'zone-atmosphere';
+        atmosphere.setAttribute('aria-hidden', 'true');
+        atmosphere.innerHTML = zoneIndexToName.slice(1).map((zoneName) => (
+            `<span class="zone-atmosphere__pane zone-atmosphere__pane--${zoneName}"></span>`
+        )).join('');
+        document.body.appendChild(atmosphere);
+        return atmosphere;
+    }
+
+    function setAtmosphereOpacity(zoneName, value) {
+        if (!zoneAtmosphere) return;
+        zoneAtmosphere.style.setProperty(`--zone-atmosphere-${zoneName}`, value.toFixed(3));
+    }
+
+    function updateAtmosphereBlend(zone) {
+        if (!zoneAtmosphere) return;
+        const activeName = zoneIndexToName[zone];
+        const sections = Array.from(document.querySelectorAll('section[data-zone]'));
+        const activeSection = sections.find((section) => section.dataset.zone === activeName);
+        const weights = { day: 0, dusk: 0, night: 0, moon: 0, aurora: 0 };
+        weights[activeName] = 1;
+
+        if (activeSection) {
+            const rect = activeSection.getBoundingClientRect();
+            const probeY = window.innerHeight * 0.42;
+            const softness = Math.min(420, Math.max(220, window.innerHeight * 0.28));
+            const activeIndex = sections.indexOf(activeSection);
+            const previous = sections[activeIndex - 1];
+            const next = sections[activeIndex + 1];
+            const previousBlend = previous
+                ? Math.max(0, Math.min(1, (softness - (probeY - rect.top)) / softness))
+                : 0;
+            const nextBlend = next
+                ? Math.max(0, Math.min(1, (softness - (rect.bottom - probeY)) / softness))
+                : 0;
+
+            if (previousBlend > 0) {
+                weights[previous.dataset.zone] = previousBlend;
+                weights[activeName] = Math.max(weights[activeName] - previousBlend * 0.35, 0.45);
+            }
+            if (nextBlend > 0) {
+                weights[next.dataset.zone] = Math.max(weights[next.dataset.zone], nextBlend);
+                weights[activeName] = Math.max(weights[activeName] - nextBlend * 0.35, 0.45);
+            }
+        }
+
+        const zoneCaps = { day: 0.08, dusk: 0.16, night: 0.2, moon: 0.18, aurora: 0.22 };
+        Object.keys(weights).forEach((zoneName) => {
+            setAtmosphereOpacity(zoneName, weights[zoneName] * zoneCaps[zoneName]);
+        });
+    }
 
     function createHeroAuroraOverlay() {
         const hero = document.querySelector('.hero');
@@ -987,6 +1044,9 @@
 
         // Section background per zone
         updateSectionZones(zone);
+
+        // Crossfade the atmosphere near section boundaries.
+        updateAtmosphereBlend(zone);
 
         // Zone borders
         updateZoneBorders(progress);

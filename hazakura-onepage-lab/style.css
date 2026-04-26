@@ -319,6 +319,64 @@ a {
     height: 100%;
     pointer-events: none;
     z-index: 9998;
+    transition: filter 2.2s var(--ease-out-expo), opacity 2.2s var(--ease-out-expo);
+}
+
+/* --- Scroll Zone Atmosphere --- */
+.zone-atmosphere {
+    --zone-atmosphere-day: 0;
+    --zone-atmosphere-dusk: 0;
+    --zone-atmosphere-night: 0;
+    --zone-atmosphere-moon: 0;
+    --zone-atmosphere-aurora: 0;
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+}
+
+.zone-atmosphere__pane {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.8s var(--ease-out-expo);
+    will-change: opacity;
+}
+
+.zone-atmosphere__pane--day {
+    opacity: var(--zone-atmosphere-day);
+    background:
+        radial-gradient(circle at 22% 16%, rgba(255, 224, 230, 0.62), transparent 34%),
+        linear-gradient(180deg, rgba(255, 249, 250, 0.55), transparent 62%);
+}
+
+.zone-atmosphere__pane--dusk {
+    opacity: var(--zone-atmosphere-dusk);
+    background:
+        radial-gradient(circle at 78% 22%, rgba(247, 168, 124, 0.68), transparent 36%),
+        linear-gradient(180deg, rgba(255, 196, 144, 0.38), rgba(232, 88, 122, 0.18) 58%, transparent);
+}
+
+.zone-atmosphere__pane--night {
+    opacity: var(--zone-atmosphere-night);
+    background:
+        radial-gradient(circle at 70% 14%, rgba(133, 129, 231, 0.44), transparent 38%),
+        linear-gradient(180deg, rgba(12, 16, 36, 0.45), rgba(36, 32, 72, 0.32));
+}
+
+.zone-atmosphere__pane--moon {
+    opacity: var(--zone-atmosphere-moon);
+    background:
+        radial-gradient(circle at 82% 18%, rgba(255, 245, 220, 0.6), transparent 26%),
+        linear-gradient(180deg, rgba(167, 139, 250, 0.24), rgba(20, 16, 40, 0.35));
+}
+
+.zone-atmosphere__pane--aurora {
+    opacity: var(--zone-atmosphere-aurora);
+    background:
+        radial-gradient(circle at 28% 20%, rgba(52, 211, 153, 0.48), transparent 34%),
+        linear-gradient(125deg, rgba(56, 189, 248, 0.26), rgba(134, 239, 172, 0.24), rgba(167, 139, 250, 0.18));
 }
 
 /* --- Navigation --- */
