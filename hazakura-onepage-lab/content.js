@@ -143,6 +143,11 @@ window.HAZAKURA_CONTENT = {
                 title: 'レトロ・ガジェット再生',
                 jp: '古いモノに魂を宿す',
                 text: '眠っているラジオや古い道具にAIの小さな対話を重ね、思い出と機能をもう一度めぐらせるワークショップの記録。',
+                entry: {
+                    kind: 'object',
+                    label: 'まず預けたい古い道具',
+                    prompt: 'もう一度声を聞きたいラジオ、写真、ガジェットはありますか？'
+                },
                 tag: 'Workshop seed'
             }
         ]

@@ -585,7 +585,7 @@
         const items = Array.isArray(visionsGroup) ? visionsGroup : visionsGroup.items;
         if (!items) return;
         const entryGuide = !Array.isArray(visionsGroup) && visionsGroup.entryGuide
-            ? renderVisionEntryGuide(visionsGroup.entryGuide)
+            ? renderVisionEntryGuide(visionsGroup.entryGuide, items)
             : '';
         const cards = items.map((item) => `
             <article class="vision-card" data-tilt>
@@ -600,8 +600,15 @@
         root.innerHTML = `${entryGuide}${cards}`;
     }
 
-    function renderVisionEntryGuide(guide) {
+    function renderVisionEntryGuide(guide, visionItems) {
         const kinds = Array.isArray(guide.kinds) ? guide.kinds : [];
+        const kindCounts = Array.isArray(visionItems)
+            ? visionItems.reduce((counts, item) => {
+                const kind = item.entry && item.entry.kind;
+                if (kind) counts[kind] = (counts[kind] || 0) + 1;
+                return counts;
+            }, {})
+            : {};
         return `
             <article class="vision-entry-guide" aria-label="${escapeHtml(guide.title || 'コミュニティ入力種別')}">
                 <div class="vision-entry-guide__copy">
@@ -615,6 +622,7 @@
                             <div class="vision-entry-guide__kind" data-entry-kind="${escapeHtml(item.kind || 'seed')}">
                                 <span>${escapeHtml(item.label || item.kind || '種')}</span>
                                 <p>${escapeHtml(item.text || '')}</p>
+                                <small>${escapeHtml(String(kindCounts[item.kind] || 0))}件の入口</small>
                             </div>
                         `).join('')}
                     </div>

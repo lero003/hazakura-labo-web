@@ -1891,6 +1891,15 @@ body.theme-night .section-vision {
     line-height: 1.75;
 }
 
+.vision-entry-guide__kind small {
+    display: inline-block;
+    margin-top: 0.65rem;
+    color: var(--sakura-500);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
 .vision-card {
     position: relative;
     background: var(--card-bg, rgba(255, 255, 255, 0.6));
@@ -3863,6 +3872,10 @@ body.theme-night .section-vision .vision-entry-guide h3 {
 body.theme-night .section-vision .vision-entry-guide__copy > p:last-child,
 body.theme-night .section-vision .vision-entry-guide__kind p {
     color: var(--body-text);
+}
+
+body.theme-night .section-vision .vision-entry-guide__kind small {
+    color: var(--purple-300);
 }
 
 body.theme-night .section-vision .vision-entry-guide__kind {
