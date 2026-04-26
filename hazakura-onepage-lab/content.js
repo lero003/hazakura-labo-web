@@ -189,12 +189,14 @@ window.HAZAKURA_CONTENT = {
         actionGuide: [
             {
                 type: 'external',
-                label: '外部',
+                icon: '↗',
+                label: '外部サイト',
                 text: '別タブで外の実験場へ移動します。'
             },
             {
                 type: 'download',
-                label: 'DL',
+                icon: '↓',
+                label: '保存ファイル',
                 text: 'ファイルを手元へ保存します。注意文を読んでから試してください。'
             }
         ],
@@ -209,6 +211,7 @@ window.HAZAKURA_CONTENT = {
                 action: 'Live',
                 actionType: 'external',
                 actionLabel: '外部',
+                actionHint: 'ブラウザで開く',
                 text: 'MarkdownからプロフェッショナルなKindle EPUBをブラウザ完結で生成するツール。ローカル処理、自動目次生成、GFMテーブル対応。',
                 why: 'Kindle公開作業を、誰かのサーバーに預けず自分の手元で完結させたくて作ったもの。',
                 surprise: '出版の工程は大きな仕組みでなくても、小さなブラウザ道具へ分解すると「自分で直せる知恵」になる。',
@@ -241,6 +244,7 @@ window.HAZAKURA_CONTENT = {
                 action: 'DMG',
                 actionType: 'download',
                 actionLabel: 'DL',
+                actionHint: 'DMGを保存',
                 download: true,
                 text: 'デスクトップの上に、桜・葉桜・魔法の光がふわりと舞うmacOSアプリ。作業の邪魔をほんの少しだけする、葉桜ラボらしい実験的な遊び道具です。',
                 why: '効率だけではない、少し余白のあるコンピュータ体験を試したくて作ったもの。',

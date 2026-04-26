@@ -717,6 +717,7 @@
             ? `<div class="project-action-guide" aria-label="制作物リンクの種類">
                 ${projectsGroup.actionGuide.map((guide) => `
                     <span class="project-action-guide__item project-action-guide__item--${escapeHtml(guide.type || 'info')}">
+                        ${guide.icon ? `<span class="project-action-guide__icon" aria-hidden="true">${escapeHtml(guide.icon)}</span>` : ''}
                         <strong>${escapeHtml(guide.label)}</strong>
                         <span>${escapeHtml(guide.text)}</span>
                     </span>
@@ -729,6 +730,9 @@
             const actionLabel = item.actionLabel || (actionType === 'download' ? 'DL' : '外部');
             const actionClass = `project-action project-action--${escapeHtml(actionType)}`;
             const actionText = escapeHtml(item.action || (actionType === 'download' ? 'Download' : 'Open'));
+            const actionHint = item.actionHint
+                ? `<span class="project-action__hint">${escapeHtml(item.actionHint)}</span>`
+                : '';
             const actionAria = actionType === 'download'
                 ? `${item.title}をダウンロードする`
                 : `${item.title}を外部サイトで開く`;
@@ -739,7 +743,7 @@
                     <span class="placeholder-text">${escapeHtml(item.placeholderText || item.title)}</span>
                 </div>`;
             const live = item.href
-                ? `<a href="${escapeHtml(item.href)}" class="${actionClass}" aria-label="${escapeHtml(actionAria)}" ${item.download ? 'download' : 'target="_blank" rel="noopener noreferrer"'}><span class="project-action__label">${escapeHtml(actionLabel)}</span><span class="project-action__text">${actionText}</span><span class="project-action__icon" aria-hidden="true">${actionIcon}</span></a>`
+                ? `<a href="${escapeHtml(item.href)}" class="${actionClass}" aria-label="${escapeHtml(actionAria)}" ${item.download ? 'download' : 'target="_blank" rel="noopener noreferrer"'}><span class="project-action__label">${escapeHtml(actionLabel)}</span><span class="project-action__copy"><span class="project-action__text">${actionText}</span>${actionHint}</span><span class="project-action__icon" aria-hidden="true">${actionIcon}</span></a>`
                 : `<span class="project-live__badge">${escapeHtml(item.status || 'Concept')}</span>`;
             const lane = item.lane
                 ? `<span class="project-lane">${escapeHtml(item.lane)}</span>`
