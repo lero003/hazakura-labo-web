@@ -4,3 +4,6 @@
 
 サイト全体のルーチン運用はルートの `docs/` を参照します。
 
+## メモ一覧
+
+- `CONTENT_DATA_MAP.md`: `content.js` のデータ群と `script.js` の描画依存を整理した地図。

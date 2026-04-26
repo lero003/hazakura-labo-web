@@ -30,6 +30,6 @@
 
 ## Structure
 
-- `content.js` を将来JSON化しやすい形に分離する
+- `docs/CONTENT_DATA_MAP.md` を見ながら、`content.js` を将来JSON化しやすい形に分離する
 - `script.js` の粒子・ゾーン・描画をモジュール単位で分ける
 - フレームワーク導入を検討する場合の比較メモを作る。候補は現状維持、Astro、Vite、Next.js。ただしPages設定と既存演出が崩れるリスクを先に洗い出す。

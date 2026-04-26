@@ -1,5 +1,12 @@
 # リッチ化ログ
 
+## 2026-04-27
+
+- Focus: Structure
+- Changed: `hazakura-onepage-lab/docs/CONTENT_DATA_MAP.md` を追加し、`content.js` のデータ群、描画関数、HTML受け口、Projects周辺の分割単位を整理した。
+- Learned: Projects はカード本体だけでなく棚定義、概要文、リンク種別ガイドが同じ描画関数に乗っているため、JSON化時は一まとまりで扱うほうが安全。
+- Next: `projects` 関連データを小さな入れ子にまとめ、`renderProjects` と `initProjectLaneFilter` の参照を合わせる。
+
 ## 2026-04-26
 
 - Focus: Structure

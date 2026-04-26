@@ -23,7 +23,7 @@
 - 制作物を増やす: `content.js` の `projects` に項目を追加する。
 - 構想カードを増やす: `content.js` の `visions` に項目を追加する。
 - 演出の段階を増やす: `script.js` の `updateScrollZones` と CSS の `body.zone-*` を追加する。
-- CMS化する: `content.js` と同じ形の JSON を生成し、読み込み元だけを差し替える。
+- CMS化する: `docs/CONTENT_DATA_MAP.md` の依存表を見ながら `content.js` と同じ形の JSON を生成し、読み込み元だけを差し替える。
 
 ## ルーチン運用
 
