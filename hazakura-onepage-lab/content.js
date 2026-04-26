@@ -227,7 +227,24 @@ window.HAZAKURA_CONTENT = {
                 text: '未知の論文をただ集めるのではなく、問いの種、使えそうな概念、次に試す手順へ分けて読みほどくための小さな探索道具の構想。',
                 why: 'AIの知性を、答えを出す機械ではなく「まだ知らない概念へ連れていく相棒」として扱いたくて置いた種。',
                 surprise: '論文タイトルの一覧も、問いと実験の型に通すと、Research Logへ戻せる発見の入口になる。',
+                cycle: {
+                    question: '未知の論文から、自分の次の問いをどう取り出すか。',
+                    experiment: 'タイトル、要約、気になる概念を分け、Research Logへ移せる短い仮説に整える。',
+                    finding: '探索道具は検索結果の量より、次に試せる問いの形まで戻せるかで価値が変わる。'
+                },
                 tags: ['arXiv', 'Research Scout', 'Magic Tool', 'Seed']
+            },
+            {
+                lane: 'Magic Tool',
+                type: 'Agent Seed',
+                title: 'AI万屋 伝令エージェント（構想メモ）',
+                placeholderIcon: '✉️',
+                placeholderText: 'message agent',
+                status: 'Seed',
+                text: '人の言葉、制作メモ、未整理の依頼を受け取り、次に動ける小さな手順へ翻訳するための伝令役エージェントの構想。',
+                why: 'AI万屋の相談を、いきなり大きなシステムにせず、まず「何を預かり、誰へ渡すか」を整える相棒が必要だから。',
+                surprise: 'エージェントを答える存在ではなく伝える存在として置くと、地域の知恵や制作メモが次の人へ巡りやすくなる。',
+                tags: ['Agent', 'Magic Tool', 'AI万屋', 'Seed']
             },
             {
                 lane: 'Research Log',

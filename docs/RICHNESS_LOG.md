@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Content / Narrative
+- Changed: `arxiv_scout（試作メモ）` に問い・実験・発見の `cycle` を追加し、Projects に `AI万屋 伝令エージェント（構想メモ）` の Magic Tool 種カードを足した。
+- Learned: AI万屋のエージェント構想は、固有アプリ名ではなく「問いを運ぶ役割」として置くほうが、権利面に慎重でResearch Logへも戻しやすい。
+- Next: 伝令エージェント構想の役割が見えたら、相談入力をどう分類して次の人へ渡すかを `cycle` として小さく足す。
+
+## 2026-04-27
+
 - Focus: Content / Access
 - Changed: Projects に `arxiv_scout（試作メモ）` の Magic Tool 種カードを追加し、640px以下のナビリンクを少し大きい5分割レールとして読めるようにした。
 - Learned: RFPに出ている道具名を小さな種として置くだけでも、制作物一覧が「公開済みの成果」だけでなく、問いが道具へ育つ途中の棚として読める。
