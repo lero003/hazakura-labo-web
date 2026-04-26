@@ -1030,6 +1030,18 @@ a {
     position: relative;
 }
 
+.layer-grid::before {
+    content: '';
+    position: absolute;
+    top: 3.25rem;
+    left: 1.65rem;
+    right: 1.65rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.34), rgba(90, 158, 95, 0.28), rgba(90, 158, 95, 0));
+    opacity: 0.7;
+    pointer-events: none;
+}
+
 .layer-card {
     position: relative;
     min-height: 260px;
@@ -1136,6 +1148,7 @@ a {
 }
 
 .layer-label,
+.layer-cadence,
 .layer-card h3,
 .layer-card p {
     position: relative;
@@ -1145,11 +1158,25 @@ a {
 .layer-label {
     display: inline-flex;
     margin-left: 1.1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
     font-size: 0.68rem;
     letter-spacing: 0.18em;
     color: var(--sakura-500);
     text-transform: uppercase;
+}
+
+.layer-cadence {
+    display: block;
+    width: fit-content;
+    margin: 0 0 2.4rem 1.1rem;
+    padding: 0.28rem 0.6rem;
+    border: 1px solid rgba(90, 158, 95, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.45);
+    color: var(--leaf-700);
+    font-size: 0.72rem;
+    line-height: 1.4;
+    white-space: nowrap;
 }
 
 .layer-card h3 {
@@ -2328,6 +2355,10 @@ body.theme-night.zone-aurora #aurora-canvas {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .layer-grid::before {
+        display: none;
+    }
+
     .philosophy-card {
         padding: 2.5rem 2rem;
     }
@@ -2451,6 +2482,10 @@ body.theme-night.zone-aurora #aurora-canvas {
 
     .layer-card {
         min-height: 220px;
+    }
+
+    .layer-cadence {
+        white-space: normal;
     }
 
     .process-icon {
@@ -2995,6 +3030,16 @@ body.theme-night .section-layers .layer-card h3 {
 
 body.theme-night .section-layers .layer-label {
     color: var(--purple-400);
+}
+
+body.theme-night .section-layers .layer-grid::before {
+    background: linear-gradient(90deg, rgba(167, 139, 250, 0), rgba(167, 139, 250, 0.34), rgba(52, 211, 153, 0.28), rgba(52, 211, 153, 0));
+}
+
+body.theme-night .section-layers .layer-cadence {
+    border-color: rgba(52, 211, 153, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(186, 255, 231, 0.84);
 }
 
 body.theme-night .section-layers .layer-sequence__dot {

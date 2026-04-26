@@ -521,6 +521,7 @@
                     <span class="layer-sequence__beam"></span>
                 </span>
                 <span class="layer-label">${escapeHtml(item.label)}</span>
+                ${item.cadence ? `<span class="layer-cadence">${escapeHtml(item.cadence)}</span>` : ''}
                 <h3>${escapeHtml(item.title)}</h3>
                 <p>${escapeHtml(item.text)}</p>
             </article>
