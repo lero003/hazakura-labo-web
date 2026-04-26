@@ -2,6 +2,13 @@
 
 ## 2026-04-26
 
+- Focus: Visual / Narrative
+- Changed: Library の3D本表紙に既存の `bk_hero.png` を薄く重ね、タイトルやKindleバッジの可読性を保つためのオーバーレイと影を調整した。
+- Learned: 書庫の本が抽象的なグラデーションだけでなく作品世界の絵を帯びると、RFPの「表紙、あらすじ、扱っている問い」という Library 要件に近づく。
+- Next: `projects` に Research Log / Magic Tools の試作カードを1件足し、制作物一覧にも「問い→実験→発見」の入口を増やす。
+
+## 2026-04-26
+
 - Focus: Visual / Structure
 - Changed: `experienceLayers` に各層の育ち方を示す短い `cadence` を追加し、構造セクションへ薄い時間軸のレールと補助ラベルを重ねた。
 - Learned: 1ページを増築する順番を小さなラベルで見せると、RFPの「探求の可視化」と「循環型CMS」への接続が説明文を増やさず伝わりやすくなる。

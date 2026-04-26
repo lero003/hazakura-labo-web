@@ -1307,20 +1307,34 @@ a {
     overflow: hidden;
 }
 
+.book-cover-art {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 58% center;
+    opacity: 0.72;
+    filter: saturate(1.08) contrast(0.95);
+    transform: scale(1.04);
+}
+
 .book-cover::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 80%, rgba(255, 184, 198, 0.3) 0%, transparent 50%);
-    z-index: 0;
+        linear-gradient(180deg, rgba(26, 14, 51, 0.14) 0%, rgba(45, 27, 78, 0.44) 58%, rgba(26, 14, 51, 0.72) 100%),
+        radial-gradient(ellipse at 32% 18%, rgba(255, 255, 255, 0.24) 0%, transparent 48%),
+        radial-gradient(ellipse at 70% 82%, rgba(255, 184, 198, 0.26) 0%, transparent 52%);
+    z-index: 1;
 }
 
 .book-glare {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: 3;
     pointer-events: none;
     background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.4) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.4) 60%, transparent 80%);
     transform: translateX(-150%);
@@ -1344,7 +1358,7 @@ a {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(26, 14, 51, 0.38);
     backdrop-filter: blur(10px);
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
@@ -1360,7 +1374,7 @@ a {
     color: white;
     line-height: 1.5;
     margin-bottom: 0.8rem;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.42);
 }
 
 .book-volume {
