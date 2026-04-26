@@ -750,6 +750,9 @@
             const surprise = item.surprise
                 ? `<p class="project-surprise"><span>Surprise</span>${escapeHtml(item.surprise)}</p>`
                 : '';
+            const actionNote = item.actionNote
+                ? `<p class="project-action-note"><span>${escapeHtml(item.actionNote.label || 'Note')}</span>${escapeHtml(item.actionNote.text || '')}</p>`
+                : '';
             const cycle = item.cycle ? `
                 <dl class="project-cycle" aria-label="${escapeHtml(item.title)}の問い、実験、発見">
                     ${[
@@ -778,6 +781,7 @@
                         <p class="project-desc">${escapeHtml(item.text)}</p>
                         ${why}
                         ${surprise}
+                        ${actionNote}
                         ${cycle}
                         <div class="project-tags">
                             ${(item.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
