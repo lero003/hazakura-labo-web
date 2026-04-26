@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Structure / Content
+- Changed: `visions` を `visionsGroup.items` に寄せ、AI寺子屋と自分史編纂の入口文を `entry.label` / `entry.prompt` / `entry.kind` に分けて描画する形にした。
+- Learned: 入口文を1本の文章から小さなオブジェクトへ分けると、将来フォーム化するときに「問い」「記憶」などの入力種別をそのまま扱いやすい。
+- Next: `visionsGroup` にセクション前文や入力種別ガイドを足し、コミュニティ・インターフェースの下書きをもう少し見えるようにする。
+
+## 2026-04-27
+
 - Focus: Structure
 - Changed: `researchLogs` と `cycleBridge` を `researchGroup` にまとめ、`renderResearchGroup` から Research Log カードと循環メモを同じ入口で描画する形にした。
 - Learned: Vision 前後の読み物データを同じ境界に置くと、Research Log を増やす時に「問いの記録」と「循環への橋」を一緒に扱いやすい。

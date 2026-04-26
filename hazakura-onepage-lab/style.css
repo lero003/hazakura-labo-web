@@ -1901,6 +1901,18 @@ body.theme-night .section-vision {
     z-index: 1;
 }
 
+.vision-entry-question__label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--sakura-500);
+    letter-spacing: 0.08em;
+}
+
+.vision-entry-question__prompt {
+    display: block;
+}
+
 .vision-card .vision-tag {
     display: inline-block;
     margin-top: 1.2rem;
@@ -3741,6 +3753,10 @@ body.theme-night .section-vision .vision-card .vision-text {
 body.theme-night .section-vision .vision-entry-question {
     color: var(--header-text);
     border-color: rgba(139, 92, 246, 0.45);
+}
+
+body.theme-night .section-vision .vision-entry-question__label {
+    color: var(--purple-400);
 }
 
 body.theme-night .section-vision .vision-card .vision-tag {

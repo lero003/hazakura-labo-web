@@ -579,19 +579,32 @@
         `).join('');
     }
 
-    function renderVisions(items) {
+    function renderVisions(visionsGroup) {
         const root = document.querySelector('[data-render="visions"]');
-        if (!root || !items) return;
+        if (!root || !visionsGroup) return;
+        const items = Array.isArray(visionsGroup) ? visionsGroup : visionsGroup.items;
+        if (!items) return;
         root.innerHTML = items.map((item) => `
             <article class="vision-card" data-tilt>
                 <div class="vision-icon">${escapeHtml(item.icon)}</div>
                 <h3>${escapeHtml(item.title)}</h3>
                 <p class="vision-jp">${escapeHtml(item.jp)}</p>
                 <p class="vision-text">${escapeHtml(item.text)}</p>
-                ${item.entryQuestion ? `<p class="vision-entry-question">${escapeHtml(item.entryQuestion)}</p>` : ''}
+                ${renderVisionEntry(item.entry || item.entryQuestion)}
                 ${item.tag ? `<span class="vision-tag">${escapeHtml(item.tag)}</span>` : ''}
             </article>
         `).join('');
+    }
+
+    function renderVisionEntry(entry) {
+        if (!entry) return '';
+        if (typeof entry === 'string') return `<p class="vision-entry-question">${escapeHtml(entry)}</p>`;
+        return `
+            <p class="vision-entry-question" data-entry-kind="${escapeHtml(entry.kind || 'seed')}">
+                <span class="vision-entry-question__label">${escapeHtml(entry.label || 'まず預けたいこと')}</span>
+                <span class="vision-entry-question__prompt">${escapeHtml(entry.prompt || '')}</span>
+            </p>
+        `;
     }
 
     function renderCycleBridge(item) {
@@ -770,7 +783,7 @@
         renderStats(content.stats);
         renderProcess(content.process);
         renderResearchGroup(content.researchGroup);
-        renderVisions(content.visions);
+        renderVisions(content.visionsGroup || content.visions);
         renderProjects(content.projectsGroup);
         refreshHoverTargets();
     }
