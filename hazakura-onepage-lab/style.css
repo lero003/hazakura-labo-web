@@ -1878,7 +1878,7 @@ body.theme-night .section-vision {
     background: rgba(255, 255, 255, 0.54);
 }
 
-.vision-entry-guide__kind span {
+.vision-entry-guide__kind > span {
     display: block;
     margin-bottom: 0.3rem;
     color: var(--entry-accent);
@@ -1894,12 +1894,19 @@ body.theme-night .section-vision {
 }
 
 .vision-entry-guide__kind small {
-    display: inline-block;
+    display: grid;
+    gap: 0.18rem;
     margin-top: 0.65rem;
     color: var(--entry-accent);
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.08em;
+}
+
+.vision-entry-guide__kind small span + span {
+    color: var(--ink-500);
+    font-weight: 600;
+    letter-spacing: 0.04em;
 }
 
 .vision-card[data-entry-kind],
@@ -3912,7 +3919,7 @@ body.theme-night .section-vision .vision-entry-guide {
 }
 
 body.theme-night .section-vision .vision-entry-guide__eyebrow,
-body.theme-night .section-vision .vision-entry-guide__kind span {
+body.theme-night .section-vision .vision-entry-guide__kind > span {
     color: var(--purple-400);
 }
 
@@ -3927,6 +3934,10 @@ body.theme-night .section-vision .vision-entry-guide__kind p {
 
 body.theme-night .section-vision .vision-entry-guide__kind small {
     color: var(--purple-300);
+}
+
+body.theme-night .section-vision .vision-entry-guide__kind small span + span {
+    color: rgba(239, 246, 255, 0.72);
 }
 
 body.theme-night .section-vision .vision-entry-guide__kind {
@@ -3970,7 +3981,7 @@ body.theme-night .section-vision .vision-entry-question[data-entry-kind] {
 }
 
 body.theme-night .section-vision .vision-entry-question[data-entry-kind] .vision-entry-question__label,
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] span,
+body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] > span,
 body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] small,
 body.theme-night .section-vision .vision-card[data-entry-kind] .vision-jp {
     color: var(--entry-accent);

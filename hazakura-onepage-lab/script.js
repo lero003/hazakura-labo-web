@@ -631,7 +631,10 @@
                             <div class="vision-entry-guide__kind" data-entry-kind="${escapeHtml(item.kind || 'seed')}">
                                 <span>${escapeHtml(item.label || item.kind || '種')}</span>
                                 <p>${escapeHtml(item.text || '')}</p>
-                                <small>${escapeHtml(String(kindCounts[item.kind] || 0))}件の入口</small>
+                                <small>
+                                    <span>${escapeHtml(String(kindCounts[item.kind] || 0))}件の入口</span>
+                                    ${item.target ? `<span>${escapeHtml(item.target)}へ接続</span>` : ''}
+                                </small>
                             </div>
                         `).join('')}
                     </div>

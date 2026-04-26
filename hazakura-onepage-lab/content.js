@@ -82,33 +82,24 @@ window.HAZAKURA_CONTENT = {
                 {
                     kind: 'question',
                     label: '問い',
-                    text: '学び直したいことや、誰かと考えたいテーマ。'
+                    text: '学び直したいことや、誰かと考えたいテーマ。',
+                    target: 'AI寺子屋'
                 },
                 {
                     kind: 'memory',
                     label: '記憶',
-                    text: '残しておきたい風景、仕事、声、暮らしの手ざわり。'
+                    text: '残しておきたい風景、仕事、声、暮らしの手ざわり。',
+                    target: '自分史編纂'
                 },
                 {
                     kind: 'object',
                     label: '古い道具',
-                    text: 'AIともう一度めぐらせたいラジオ、写真、ガジェット。'
+                    text: 'AIともう一度めぐらせたいラジオ、写真、ガジェット。',
+                    target: 'レトロ・ガジェット再生'
                 }
             ]
         },
         items: [
-            {
-                icon: '🧪',
-                title: 'Research Log',
-                jp: '研究記録',
-                text: '「問い→実験→発見」のサイクルで記す、知的冒険の航海日誌。AIの思考プロセスから日常の哲学的驚き（thaumazein）まで。'
-            },
-            {
-                icon: '✨',
-                title: 'Magic Tools',
-                jp: '魔法の道具',
-                text: '「何ができるか」だけでなく、「なぜ作ったのか」と「どんな驚きがあったか」をセットにした、道具たちの物語。'
-            },
             {
                 icon: '🏠',
                 title: 'AI 寺子屋',
@@ -132,13 +123,6 @@ window.HAZAKURA_CONTENT = {
                 }
             },
             {
-                icon: '🗺️',
-                title: '地域LLM',
-                jp: '知恵を巡らせる',
-                text: 'Research Logや自分史、寺子屋の問いを少しずつ蓄え、地域の言葉で答えを返す小さな知恵の循環炉。',
-                tag: 'CMS seed'
-            },
-            {
                 icon: '📻',
                 title: 'レトロ・ガジェット再生',
                 jp: '古いモノに魂を宿す',
@@ -149,6 +133,25 @@ window.HAZAKURA_CONTENT = {
                     prompt: 'もう一度声を聞きたいラジオ、写真、ガジェットはありますか？'
                 },
                 tag: 'Workshop seed'
+            },
+            {
+                icon: '🗺️',
+                title: '地域LLM',
+                jp: '知恵を巡らせる',
+                text: 'Research Logや自分史、寺子屋の問いを少しずつ蓄え、地域の言葉で答えを返す小さな知恵の循環炉。',
+                tag: 'CMS seed'
+            },
+            {
+                icon: '🧪',
+                title: 'Research Log',
+                jp: '研究記録',
+                text: '「問い→実験→発見」のサイクルで記す、知的冒険の航海日誌。AIの思考プロセスから日常の哲学的驚き（thaumazein）まで。'
+            },
+            {
+                icon: '✨',
+                title: 'Magic Tools',
+                jp: '魔法の道具',
+                text: '「何ができるか」だけでなく、「なぜ作ったのか」と「どんな驚きがあったか」をセットにした、道具たちの物語。'
             }
         ]
     },
