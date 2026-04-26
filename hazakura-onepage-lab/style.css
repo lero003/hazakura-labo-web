@@ -3550,6 +3550,28 @@ body.theme-night .section-layers .layer-sequence__beam {
     text-transform: uppercase;
 }
 
+.project-surprise {
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-start;
+    margin: -0.45rem 0 1rem;
+    padding: 0.78rem 0.9rem;
+    border-left: 3px solid rgba(90, 158, 95, 0.4);
+    background: rgba(90, 158, 95, 0.07);
+    color: var(--ink-600);
+    font-size: 0.84rem;
+    line-height: 1.75;
+}
+
+.project-surprise span {
+    flex: 0 0 auto;
+    color: var(--green-500);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 .project-cycle {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3927,6 +3949,16 @@ body.theme-night .section-projects .project-why span {
     color: var(--sakura-400);
 }
 
+body.theme-night .section-projects .project-surprise {
+    background: rgba(82, 183, 150, 0.08);
+    border-left-color: rgba(82, 183, 150, 0.48);
+    color: var(--body-text);
+}
+
+body.theme-night .section-projects .project-surprise span {
+    color: var(--green-400);
+}
+
 body.theme-night .section-projects .project-cycle div {
     background: rgba(167, 139, 250, 0.08);
     border-color: rgba(167, 139, 250, 0.24);
@@ -4145,6 +4177,18 @@ body.theme-night .nav-links a::after {
     }
 
     .project-why span {
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .project-surprise {
+        display: block;
+        font-size: 0.84rem;
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+    }
+
+    .project-surprise span {
         display: block;
         margin-bottom: 0.2rem;
     }

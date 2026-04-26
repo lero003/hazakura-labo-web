@@ -2,6 +2,13 @@
 
 ## 2026-04-26
 
+- Focus: Narrative / Content
+- Changed: Projects の各カードに `surprise` を追加し、動機の下に「どんな驚きがあったか」を小さく表示できるようにした。
+- Learned: RFPの Magic Tools は機能と動機だけでなく、作った後に見えた発見を同じカードに置くと、道具がResearch Logへ戻る循環として読める。
+- Next: `surprise` が増えてきたら、Magic Tool / Research Log / Story Seed ごとに見出しラベルの言葉を少し変える。
+
+## 2026-04-26
+
 - Focus: Access / Structure
 - Changed: Projects に `projectActionGuide` を追加し、外部リンクとダウンロードの違いをカード一覧前の短いガイドとして表示した。
 - Learned: カード内の小さなバッジだけでなく、一覧の入口にも行き先の意味を置くと、未署名DMGのような注意が必要な導線を落ち着いて読める。
