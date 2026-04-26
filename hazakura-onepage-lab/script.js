@@ -590,12 +590,17 @@
         const entryGuide = !Array.isArray(visionsGroup) && visionsGroup.entryGuide
             ? renderVisionEntryGuide(visionsGroup.entryGuide, items)
             : '';
+        const entryKinds = !Array.isArray(visionsGroup) && visionsGroup.entryGuide
+            ? getVisionEntryKinds(visionsGroup.entryGuide)
+            : {};
         const cards = items.map((item) => {
             const entryKind = getVisionEntryKind(item);
             const entryKindAttribute = entryKind ? ` data-entry-kind="${escapeHtml(entryKind)}"` : '';
+            const entryKindBadge = entryKind ? renderVisionEntryKindBadge(entryKind, entryKinds[entryKind]) : '';
             return `
             <article class="vision-card"${entryKindAttribute} data-tilt>
                 <div class="vision-icon">${escapeHtml(item.icon)}</div>
+                ${entryKindBadge}
                 <h3>${escapeHtml(item.title)}</h3>
                 <p class="vision-jp">${escapeHtml(item.jp)}</p>
                 <p class="vision-text">${escapeHtml(item.text)}</p>
@@ -605,6 +610,14 @@
         `;
         }).join('');
         root.innerHTML = `${entryGuide}${cards}`;
+    }
+
+    function getVisionEntryKinds(guide) {
+        const kinds = Array.isArray(guide.kinds) ? guide.kinds : [];
+        return kinds.reduce((map, item) => {
+            if (item.kind) map[item.kind] = item;
+            return map;
+        }, {});
     }
 
     function getVisionEntryKind(item) {
@@ -638,11 +651,23 @@
                                     <span>${escapeHtml(String(kindCounts[item.kind] || 0))}件の入口</span>
                                     ${item.target ? `<span>${escapeHtml(item.target)}へ接続</span>` : ''}
                                 </small>
+                                ${item.flow ? `<span class="vision-entry-guide__flow">${escapeHtml(item.flow)}</span>` : ''}
                             </div>
                         `).join('')}
                     </div>
                 ` : ''}
             </article>
+        `;
+    }
+
+    function renderVisionEntryKindBadge(kind, detail) {
+        const label = detail && detail.label ? detail.label : kind;
+        const target = detail && detail.target ? detail.target : '';
+        return `
+            <span class="vision-entry-kind-badge" data-entry-kind="${escapeHtml(kind)}">
+                <span>${escapeHtml(label)}の入口</span>
+                ${target ? `<small>${escapeHtml(target)}</small>` : ''}
+            </span>
         `;
     }
 

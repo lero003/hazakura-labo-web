@@ -1933,22 +1933,36 @@ body.theme-night .section-vision {
     letter-spacing: 0.04em;
 }
 
+.vision-entry-guide__flow {
+    display: block;
+    margin-top: 0.55rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid rgba(var(--entry-accent-rgb), 0.2);
+    color: var(--ink-600);
+    font-size: 0.74rem;
+    line-height: 1.65;
+}
+
 .vision-card[data-entry-kind],
-.vision-entry-question[data-entry-kind] {
+.vision-entry-guide__kind[data-entry-kind],
+.vision-entry-question[data-entry-kind],
+.vision-entry-kind-badge[data-entry-kind] {
     --entry-accent-rgb: 232, 88, 122;
     --entry-accent: var(--sakura-500);
 }
 
 .vision-card[data-entry-kind="memory"],
 .vision-entry-guide__kind[data-entry-kind="memory"],
-.vision-entry-question[data-entry-kind="memory"] {
+.vision-entry-question[data-entry-kind="memory"],
+.vision-entry-kind-badge[data-entry-kind="memory"] {
     --entry-accent-rgb: 90, 158, 95;
     --entry-accent: var(--green-500);
 }
 
 .vision-card[data-entry-kind="object"],
 .vision-entry-guide__kind[data-entry-kind="object"],
-.vision-entry-question[data-entry-kind="object"] {
+.vision-entry-question[data-entry-kind="object"],
+.vision-entry-kind-badge[data-entry-kind="object"] {
     --entry-accent-rgb: 168, 116, 48;
     --entry-accent: #a87430;
 }
@@ -2018,6 +2032,37 @@ body.theme-night .section-vision {
 
 .vision-card:hover .vision-icon {
     transform: scale(1.25) rotate(-5deg);
+}
+
+.vision-entry-kind-badge {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    max-width: 100%;
+    margin-bottom: 0.75rem;
+    padding: 0.32rem 0.62rem;
+    border: 1px solid rgba(var(--entry-accent-rgb), 0.22);
+    border-radius: 8px;
+    background: rgba(var(--entry-accent-rgb), 0.08);
+    color: var(--entry-accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.vision-entry-kind-badge small {
+    color: var(--ink-500);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.vision-entry-kind-badge span,
+.vision-entry-kind-badge small {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .vision-card h3 {
@@ -4008,7 +4053,8 @@ body.theme-night .section-vision .vision-entry-guide h3 {
 }
 
 body.theme-night .section-vision .vision-entry-guide__copy > p:last-child,
-body.theme-night .section-vision .vision-entry-guide__kind p {
+body.theme-night .section-vision .vision-entry-guide__kind p,
+body.theme-night .section-vision .vision-entry-guide__flow {
     color: var(--body-text);
 }
 
@@ -4027,21 +4073,24 @@ body.theme-night .section-vision .vision-entry-guide__kind {
 
 body.theme-night .section-vision .vision-card[data-entry-kind],
 body.theme-night .section-vision .vision-entry-question[data-entry-kind],
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] {
+body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind],
+body.theme-night .section-vision .vision-entry-kind-badge[data-entry-kind] {
     --entry-accent-rgb: 167, 139, 250;
     --entry-accent: var(--purple-400);
 }
 
 body.theme-night .section-vision .vision-card[data-entry-kind="memory"],
 body.theme-night .section-vision .vision-entry-question[data-entry-kind="memory"],
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind="memory"] {
+body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind="memory"],
+body.theme-night .section-vision .vision-entry-kind-badge[data-entry-kind="memory"] {
     --entry-accent-rgb: 82, 183, 150;
     --entry-accent: #52b796;
 }
 
 body.theme-night .section-vision .vision-card[data-entry-kind="object"],
 body.theme-night .section-vision .vision-entry-question[data-entry-kind="object"],
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind="object"] {
+body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind="object"],
+body.theme-night .section-vision .vision-entry-kind-badge[data-entry-kind="object"] {
     --entry-accent-rgb: 245, 194, 105;
     --entry-accent: #f5c269;
 }
@@ -4063,7 +4112,8 @@ body.theme-night .section-vision .vision-entry-question[data-entry-kind] {
 body.theme-night .section-vision .vision-entry-question[data-entry-kind] .vision-entry-question__label,
 body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] > span,
 body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] small,
-body.theme-night .section-vision .vision-card[data-entry-kind] .vision-jp {
+body.theme-night .section-vision .vision-card[data-entry-kind] .vision-jp,
+body.theme-night .section-vision .vision-entry-kind-badge[data-entry-kind] {
     color: var(--entry-accent);
 }
 
@@ -4072,6 +4122,19 @@ body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] {
     background:
         linear-gradient(180deg, rgba(var(--entry-accent-rgb), 0.13), rgba(255, 255, 255, 0.04)),
         rgba(255, 255, 255, 0.05);
+}
+
+body.theme-night .section-vision .vision-entry-guide__flow {
+    border-top-color: rgba(var(--entry-accent-rgb), 0.24);
+}
+
+body.theme-night .section-vision .vision-entry-kind-badge {
+    border-color: rgba(var(--entry-accent-rgb), 0.26);
+    background: rgba(var(--entry-accent-rgb), 0.12);
+}
+
+body.theme-night .section-vision .vision-entry-kind-badge small {
+    color: rgba(239, 246, 255, 0.62);
 }
 
 body.theme-night .section-vision .vision-card .vision-tag {
@@ -4708,6 +4771,14 @@ body.theme-night .nav-links a::after {
         margin-left: 0;
     }
 
+    .vision-entry-guide__flow {
+        margin-top: 0.45rem;
+        padding-top: 0.45rem;
+        font-size: 0.72rem;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+
     .vision-card {
         padding: 1.45rem;
         border-radius: 16px;
@@ -4721,6 +4792,15 @@ body.theme-night .nav-links a::after {
     .vision-card h3 {
         font-size: 1.16rem;
         line-height: 1.45;
+    }
+
+    .vision-entry-kind-badge {
+        flex-wrap: wrap;
+        gap: 0.34rem;
+        margin-bottom: 0.6rem;
+        padding: 0.28rem 0.52rem;
+        font-size: 0.68rem;
+        white-space: normal;
     }
 
     .vision-jp {
@@ -4829,6 +4909,10 @@ body.theme-night .nav-links a::after {
 
     .vision-entry-guide__kind {
         padding: 0.68rem 0.72rem;
+    }
+
+    .vision-entry-guide__flow {
+        font-size: 0.7rem;
     }
 
     .vision-card {

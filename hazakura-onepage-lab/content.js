@@ -92,18 +92,21 @@ window.HAZAKURA_CONTENT = {
                     kind: 'question',
                     label: '問い',
                     text: '学び直したいことや、誰かと考えたいテーマ。',
+                    flow: 'Research Logへ移し、小さな実験の種にする。',
                     target: 'AI寺子屋'
                 },
                 {
                     kind: 'memory',
                     label: '記憶',
                     text: '残しておきたい風景、仕事、声、暮らしの手ざわり。',
+                    flow: '自分史の断片として、次の世代へ渡せる形に整える。',
                     target: '自分史編纂'
                 },
                 {
                     kind: 'object',
                     label: '古い道具',
                     text: 'AIともう一度めぐらせたいラジオ、写真、ガジェット。',
+                    flow: '持ち主の物語と一緒に、再生ワークショップへつなぐ。',
                     target: 'レトロ・ガジェット再生'
                 }
             ]
