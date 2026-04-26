@@ -74,6 +74,28 @@ window.HAZAKURA_CONTENT = {
         }
     },
     visionsGroup: {
+        entryGuide: {
+            eyebrow: 'Community interface seed',
+            title: '問い、記憶、古い道具を預ける入口',
+            text: '将来のフォームでは、ただ送信欄を置くのではなく、地域の知恵が循環しやすい三つの預け方として受け取ります。',
+            kinds: [
+                {
+                    kind: 'question',
+                    label: '問い',
+                    text: '学び直したいことや、誰かと考えたいテーマ。'
+                },
+                {
+                    kind: 'memory',
+                    label: '記憶',
+                    text: '残しておきたい風景、仕事、声、暮らしの手ざわり。'
+                },
+                {
+                    kind: 'object',
+                    label: '古い道具',
+                    text: 'AIともう一度めぐらせたいラジオ、写真、ガジェット。'
+                }
+            ]
+        },
         items: [
             {
                 icon: '🧪',

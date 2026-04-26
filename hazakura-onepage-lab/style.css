@@ -1815,6 +1815,82 @@ body.theme-night .section-vision {
     gap: 1.8rem;
 }
 
+.vision-entry-guide {
+    position: relative;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid rgba(232, 88, 122, 0.18);
+    border-radius: 8px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(240, 248, 240, 0.58)),
+        radial-gradient(circle at 100% 0%, rgba(232, 88, 122, 0.08), transparent 18rem);
+    backdrop-filter: blur(14px);
+    overflow: hidden;
+}
+
+.vision-entry-guide__copy,
+.vision-entry-guide__kinds {
+    position: relative;
+    z-index: 1;
+}
+
+.vision-entry-guide__eyebrow {
+    margin-bottom: 0.35rem;
+    color: var(--sakura-500);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.vision-entry-guide h3 {
+    font-family: var(--font-serif);
+    color: var(--ink-800);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.vision-entry-guide__copy > p:last-child {
+    margin-top: 0.45rem;
+    color: var(--ink-600);
+    font-size: 0.9rem;
+    line-height: 1.9;
+}
+
+.vision-entry-guide__kinds {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.vision-entry-guide__kind {
+    min-height: 100%;
+    padding: 0.85rem;
+    border: 1px solid rgba(90, 158, 95, 0.18);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.54);
+}
+
+.vision-entry-guide__kind span {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--green-500);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.vision-entry-guide__kind p {
+    color: var(--ink-600);
+    font-size: 0.8rem;
+    line-height: 1.75;
+}
+
 .vision-card {
     position: relative;
     background: var(--card-bg, rgba(255, 255, 255, 0.6));
@@ -2482,6 +2558,15 @@ body.theme-night.zone-aurora #aurora-canvas {
     }
 
     .vision-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vision-entry-guide {
+        grid-template-columns: 1fr;
+        padding: 1.25rem;
+    }
+
+    .vision-entry-guide__kinds {
         grid-template-columns: 1fr;
     }
 
@@ -3757,6 +3842,32 @@ body.theme-night .section-vision .vision-entry-question {
 
 body.theme-night .section-vision .vision-entry-question__label {
     color: var(--purple-400);
+}
+
+body.theme-night .section-vision .vision-entry-guide {
+    border-color: rgba(139, 92, 246, 0.24);
+    background:
+        linear-gradient(135deg, rgba(25, 20, 35, 0.72), rgba(16, 22, 32, 0.62)),
+        radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.14), transparent 18rem);
+}
+
+body.theme-night .section-vision .vision-entry-guide__eyebrow,
+body.theme-night .section-vision .vision-entry-guide__kind span {
+    color: var(--purple-400);
+}
+
+body.theme-night .section-vision .vision-entry-guide h3 {
+    color: var(--header-text);
+}
+
+body.theme-night .section-vision .vision-entry-guide__copy > p:last-child,
+body.theme-night .section-vision .vision-entry-guide__kind p {
+    color: var(--body-text);
+}
+
+body.theme-night .section-vision .vision-entry-guide__kind {
+    border-color: rgba(139, 92, 246, 0.2);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 body.theme-night .section-vision .vision-card .vision-tag {

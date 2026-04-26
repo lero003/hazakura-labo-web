@@ -584,7 +584,10 @@
         if (!root || !visionsGroup) return;
         const items = Array.isArray(visionsGroup) ? visionsGroup : visionsGroup.items;
         if (!items) return;
-        root.innerHTML = items.map((item) => `
+        const entryGuide = !Array.isArray(visionsGroup) && visionsGroup.entryGuide
+            ? renderVisionEntryGuide(visionsGroup.entryGuide)
+            : '';
+        const cards = items.map((item) => `
             <article class="vision-card" data-tilt>
                 <div class="vision-icon">${escapeHtml(item.icon)}</div>
                 <h3>${escapeHtml(item.title)}</h3>
@@ -594,6 +597,30 @@
                 ${item.tag ? `<span class="vision-tag">${escapeHtml(item.tag)}</span>` : ''}
             </article>
         `).join('');
+        root.innerHTML = `${entryGuide}${cards}`;
+    }
+
+    function renderVisionEntryGuide(guide) {
+        const kinds = Array.isArray(guide.kinds) ? guide.kinds : [];
+        return `
+            <article class="vision-entry-guide" aria-label="${escapeHtml(guide.title || 'コミュニティ入力種別')}">
+                <div class="vision-entry-guide__copy">
+                    <p class="vision-entry-guide__eyebrow">${escapeHtml(guide.eyebrow || 'Community interface')}</p>
+                    <h3>${escapeHtml(guide.title || '')}</h3>
+                    <p>${escapeHtml(guide.text || '')}</p>
+                </div>
+                ${kinds.length ? `
+                    <div class="vision-entry-guide__kinds">
+                        ${kinds.map((item) => `
+                            <div class="vision-entry-guide__kind" data-entry-kind="${escapeHtml(item.kind || 'seed')}">
+                                <span>${escapeHtml(item.label || item.kind || '種')}</span>
+                                <p>${escapeHtml(item.text || '')}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            </article>
+        `;
     }
 
     function renderVisionEntry(entry) {

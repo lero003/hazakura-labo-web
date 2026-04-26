@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Content / Structure
+- Changed: `visionsGroup.entryGuide` を追加し、将来フォーム化する「問い」「記憶」「古い道具」の入力種別ガイドを Vision セクション先頭に描画できるようにした。
+- Learned: コミュニティ導線はフォーム本体を急がず、まず何を預けられる場所なのかをデータ化して見せるだけでも、RFPの「問い」「物語」「レトロ・ガジェット再生」へ接続しやすくなる。
+- Next: `entryGuide.kinds` と各 Vision カードの `entry.kind` を対応させ、入力種別ごとの初期カード表示やフォーム下書きへつなげる。
+
+## 2026-04-27
+
 - Focus: Structure / Content
 - Changed: `visions` を `visionsGroup.items` に寄せ、AI寺子屋と自分史編纂の入口文を `entry.label` / `entry.prompt` / `entry.kind` に分けて描画する形にした。
 - Learned: 入口文を1本の文章から小さなオブジェクトへ分けると、将来フォーム化するときに「問い」「記憶」などの入力種別をそのまま扱いやすい。
