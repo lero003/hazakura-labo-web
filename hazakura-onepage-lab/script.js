@@ -629,8 +629,9 @@
             const why = item.why
                 ? `<p class="project-why"><span>Why</span>${escapeHtml(item.why)}</p>`
                 : '';
+            const cardClass = item.image ? 'project-card' : 'project-card project-card--placeholder';
             return `
-                <article class="project-card" data-tilt>
+                <article class="${cardClass}" data-tilt>
                     <div class="project-thumb">${thumb}</div>
                     <div class="project-info">
                         <div class="project-meta-row">

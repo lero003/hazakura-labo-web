@@ -2387,13 +2387,14 @@ body.theme-night.zone-aurora #aurora-canvas {
 
     .project-thumb {
         height: auto;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: var(--project-thumb-ratio);
+        min-height: 0;
         width: 100%;
     }
 
     .project-img {
         width: 100%;
-        height: auto;
+        height: 100%;
         max-height: none;
         object-fit: cover;
     }
@@ -3032,6 +3033,7 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-card {
+    --project-thumb-ratio: 3 / 2;
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: 2rem;
@@ -3058,7 +3060,6 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-card--placeholder {
-    opacity: 0.4;
     border-style: dashed;
 }
 
@@ -3074,8 +3075,9 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-thumb {
     position: relative;
-    height: 200px;
+    aspect-ratio: var(--project-thumb-ratio);
     overflow: hidden;
+    background: linear-gradient(135deg, rgba(255, 245, 247, 0.88), rgba(226, 226, 236, 0.72));
 }
 
 .project-img {
@@ -3600,7 +3602,8 @@ body.theme-night .nav-links a::after {
     .project-thumb {
         width: 100%;
         height: auto;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: var(--project-thumb-ratio);
+        min-height: 0;
     }
 
     .project-img {
