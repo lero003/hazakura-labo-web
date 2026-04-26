@@ -1693,6 +1693,17 @@ body.theme-night .section-vision {
     z-index: 1;
 }
 
+.vision-entry-question {
+    margin-top: 1rem;
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--sakura-300);
+    color: var(--ink-700);
+    font-size: 0.84rem;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
 .vision-card .vision-tag {
     display: inline-block;
     margin-top: 1.2rem;
@@ -3108,6 +3119,11 @@ body.theme-night .section-vision .vision-card .vision-jp {
 
 body.theme-night .section-vision .vision-card .vision-text {
     color: var(--body-text);
+}
+
+body.theme-night .section-vision .vision-entry-question {
+    color: var(--header-text);
+    border-color: rgba(139, 92, 246, 0.45);
 }
 
 body.theme-night .section-vision .vision-card .vision-tag {
