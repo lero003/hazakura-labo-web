@@ -2,6 +2,13 @@
 
 ## 2026-04-26
 
+- Focus: Access / Structure
+- Changed: Projects の `projectLanes` から「すべて / 道具の棚 / 問いの棚 / 物語の棚」の絞り込みボタンを生成し、制作物カードを棚ごとに見られるようにした。
+- Learned: 棚ガイドと同じデータで絞り込みまで作ると、カードが増えてもHTMLを増やさず、1ページ内の探索導線を濃くできる。
+- Next: 絞り込み状態に合わせてセクション説明や棚ガイドをもう少し呼応させるか、カードが増えてから検討する。
+
+## 2026-04-26
+
 - Focus: Content / Structure
 - Changed: Projects の前に `projectLanes` 由来の棚ガイドを追加し、Magic Tool / Research Log / Story Seed の役割と件数を一覧前に読めるようにした。
 - Learned: lane ラベルをカード内だけでなく一覧の入口にも置くと、制作物が増えても「道具・問い・物語」の棚として見通しを保ちやすい。

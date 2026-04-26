@@ -610,13 +610,28 @@
         const root = document.querySelector('[data-render="projects"]');
         if (!root || !items) return;
         const content = window.HAZAKURA_CONTENT || {};
+        const projectLanes = content.projectLanes || [];
         const laneCounts = items.reduce((counts, item) => {
             if (item.lane) counts[item.lane] = (counts[item.lane] || 0) + 1;
             return counts;
         }, {});
-        const laneGuide = (content.projectLanes || []).length
+        const laneFilters = projectLanes.length
+            ? `<div class="project-lane-filter" aria-label="制作物の棚で絞り込む">
+                <button class="project-lane-filter__button is-active" type="button" data-lane-filter="all" aria-pressed="true">
+                    <span>すべて</span>
+                    <strong>${escapeHtml(String(items.length))}</strong>
+                </button>
+                ${projectLanes.map((lane) => `
+                    <button class="project-lane-filter__button" type="button" data-lane-filter="${escapeHtml(lane.label)}" aria-pressed="false">
+                        <span>${escapeHtml(lane.jp)}</span>
+                        <strong>${escapeHtml(String(laneCounts[lane.label] || 0))}</strong>
+                    </button>
+                `).join('')}
+            </div>`
+            : '';
+        const laneGuide = projectLanes.length
             ? `<div class="project-lane-guide" aria-label="制作物の棚">
-                ${(content.projectLanes || []).map((lane) => `
+                ${projectLanes.map((lane) => `
                     <div class="project-lane-guide__item">
                         <span class="project-lane-guide__label">${escapeHtml(lane.label)}</span>
                         <span class="project-lane-guide__count">${escapeHtml(String(laneCounts[lane.label] || 0))}</span>
@@ -666,7 +681,7 @@
             ` : '';
             const cardClass = item.image ? 'project-card' : 'project-card project-card--placeholder';
             return `
-                <article class="${cardClass}" data-tilt>
+                <article class="${cardClass}" data-project-card data-lane="${escapeHtml(item.lane || '')}" data-tilt>
                     <div class="project-thumb">${thumb}</div>
                     <div class="project-info">
                         <div class="project-meta-row">
@@ -685,7 +700,29 @@
                 </article>
             `;
         }).join('');
-        root.innerHTML = `${laneGuide}${cards}`;
+        root.innerHTML = `${laneGuide}${laneFilters}${cards}`;
+        initProjectLaneFilter(root);
+    }
+
+    function initProjectLaneFilter(root) {
+        const buttons = Array.from(root.querySelectorAll('[data-lane-filter]'));
+        const cards = Array.from(root.querySelectorAll('[data-project-card]'));
+        if (!buttons.length || !cards.length) return;
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const selectedLane = button.dataset.laneFilter;
+                buttons.forEach((filterButton) => {
+                    const isActive = filterButton === button;
+                    filterButton.classList.toggle('is-active', isActive);
+                    filterButton.setAttribute('aria-pressed', String(isActive));
+                });
+                cards.forEach((card) => {
+                    const shouldShow = selectedLane === 'all' || card.dataset.lane === selectedLane;
+                    card.hidden = !shouldShow;
+                });
+            });
+        });
     }
 
     function renderContent() {
