@@ -1263,6 +1263,11 @@ a {
     background: linear-gradient(180deg, var(--warm-50) 0%, var(--sakura-100) 50%, var(--warm-50) 100%);
 }
 
+.book-shelf {
+    display: grid;
+    gap: 6rem;
+}
+
 .book-showcase {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
@@ -1271,6 +1276,18 @@ a {
     opacity: 0;
     transform: translateY(40px);
     transition: all 0.8s var(--ease-out-expo);
+}
+
+.book-showcase--new {
+    grid-template-columns: 1.3fr 1fr;
+}
+
+.book-showcase--new .book-visual {
+    order: 2;
+}
+
+.book-showcase--new .book-info {
+    order: 1;
 }
 
 .book-showcase.visible {
@@ -1320,6 +1337,13 @@ a {
     transform: scale(1.04);
 }
 
+.book-cover-art--clear {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    object-position: center;
+}
+
 .book-cover::before {
     content: '';
     position: absolute;
@@ -1329,6 +1353,14 @@ a {
         radial-gradient(ellipse at 32% 18%, rgba(255, 255, 255, 0.24) 0%, transparent 48%),
         radial-gradient(ellipse at 70% 82%, rgba(255, 184, 198, 0.26) 0%, transparent 52%);
     z-index: 1;
+}
+
+.book-cover:has(.book-cover-art--clear)::before {
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.18) 0%, transparent 14%, transparent 86%, rgba(15, 23, 42, 0.08) 100%);
+}
+
+.book-cover--photo {
+    background: #fffaf7;
 }
 
 .book-glare {
@@ -1414,6 +1446,15 @@ a {
     color: rgba(255, 255, 255, 0.5);
     letter-spacing: 0.15em;
     transform: translateX(-5px);
+}
+
+.book-spine--note {
+    background: linear-gradient(90deg, #f7efe8, #ffffff);
+}
+
+.book-spine--note::after {
+    content: '重さのないノート';
+    color: rgba(7, 54, 89, 0.5);
 }
 
 /* Book Info */
@@ -2310,6 +2351,10 @@ body.theme-night.zone-aurora #aurora-canvas {
     .book-showcase {
         gap: 3rem;
     }
+
+    .book-shelf {
+        gap: 5rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2395,9 +2440,24 @@ body.theme-night.zone-aurora #aurora-canvas {
         gap: 3rem;
     }
 
+    .book-showcase--new {
+        grid-template-columns: 1fr;
+    }
+
+    .book-showcase--new .book-visual,
+    .book-showcase--new .book-info {
+        order: initial;
+    }
+
     .book-3d {
         width: 240px;
         height: 340px;
+    }
+
+    .book-info-title {
+        font-size: 1.65rem;
+        line-height: 1.45;
+        letter-spacing: 0.04em;
     }
 
     .book-highlights {
@@ -2483,6 +2543,11 @@ body.theme-night.zone-aurora #aurora-canvas {
 
     .book-title-display {
         font-size: 1.3rem;
+    }
+
+    .book-info-title {
+        font-size: 1.45rem;
+        letter-spacing: 0.02em;
     }
 
     .process-step {
