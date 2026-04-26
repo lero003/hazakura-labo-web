@@ -559,7 +559,10 @@
         if (!root || !items) return;
         root.innerHTML = items.map((item) => `
             <article class="research-log-card" data-tilt>
-                <p class="research-log-eyebrow">${escapeHtml(item.eyebrow)}</p>
+                <div class="research-log-meta">
+                    <p class="research-log-eyebrow">${escapeHtml(item.eyebrow)}</p>
+                    ${item.theme ? `<span class="research-log-theme">${escapeHtml(item.theme)}</span>` : ''}
+                </div>
                 <h3 class="research-log-title">${escapeHtml(item.title)}</h3>
                 <dl class="research-log-cycle">
                     <div>

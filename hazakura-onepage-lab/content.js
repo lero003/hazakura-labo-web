@@ -61,6 +61,7 @@ window.HAZAKURA_CONTENT = {
         logs: [
             {
                 eyebrow: 'Research Log 001',
+                theme: '情緒プロンプト',
                 title: 'AIの答えに、情緒は宿るのか',
                 question: '正しさだけでなく、読み手の気持ちが少し動く返答はどう作れるのか。',
                 experiment: 'RFPの「理と情の融合」を軸に、同じ案内文を説明調・物語調・対話調で書き分けて比べる。',
@@ -68,6 +69,7 @@ window.HAZAKURA_CONTENT = {
             },
             {
                 eyebrow: 'Research Log 002',
+                theme: 'レトロ・ガジェット再生',
                 title: '古い道具は、どんな記憶を話しはじめるか',
                 question: '眠っているラジオや写真にAIの対話を重ねると、道具はただの機械ではなく記憶の入口になるのか。',
                 experiment: '古い道具を持ち寄る場を想像し、持ち主の思い出、道具の音、AIからの問い返しを三つの短いメモに分けて記録する。',

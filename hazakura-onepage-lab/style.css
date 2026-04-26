@@ -1751,13 +1751,35 @@ a {
     box-shadow: 0 24px 60px rgba(46, 42, 45, 0.1);
 }
 
-.research-log-eyebrow {
+.research-log-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
     margin-bottom: 0.55rem;
+}
+
+.research-log-eyebrow {
+    margin: 0;
     color: var(--sakura-500);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+}
+
+.research-log-theme {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    padding: 0.22rem 0.65rem;
+    border: 1px solid rgba(232, 88, 122, 0.18);
+    border-radius: 999px;
+    color: var(--ink-600);
+    background: rgba(255, 255, 255, 0.58);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.4;
 }
 
 .research-log-title {
@@ -4023,6 +4045,12 @@ body.theme-night .section-vision .research-log-cycle dt {
     color: var(--purple-400);
 }
 
+body.theme-night .section-vision .research-log-theme {
+    border-color: rgba(167, 139, 250, 0.2);
+    color: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.06);
+}
+
 body.theme-night .section-vision .research-log-title {
     color: var(--header-text);
 }
@@ -4470,6 +4498,15 @@ body.theme-night .nav-links a::after {
     .research-log-card {
         padding: 1.35rem;
         border-radius: 16px;
+    }
+
+    .research-log-meta {
+        gap: 0.45rem;
+    }
+
+    .research-log-theme {
+        font-size: 0.68rem;
+        padding: 0.18rem 0.55rem;
     }
 
     .research-log-cycle {
