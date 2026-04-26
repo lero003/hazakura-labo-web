@@ -218,6 +218,18 @@ window.HAZAKURA_CONTENT = {
                 tags: ['Markdown', 'EPUB', 'Kindle', 'クライアントサイド']
             },
             {
+                lane: 'Magic Tool',
+                type: 'Research Tool',
+                title: 'arxiv_scout（試作メモ）',
+                placeholderIcon: '🔍',
+                placeholderText: 'arxiv scout',
+                status: 'Seed',
+                text: '未知の論文をただ集めるのではなく、問いの種、使えそうな概念、次に試す手順へ分けて読みほどくための小さな探索道具の構想。',
+                why: 'AIの知性を、答えを出す機械ではなく「まだ知らない概念へ連れていく相棒」として扱いたくて置いた種。',
+                surprise: '論文タイトルの一覧も、問いと実験の型に通すと、Research Logへ戻せる発見の入口になる。',
+                tags: ['arXiv', 'Research Scout', 'Magic Tool', 'Seed']
+            },
+            {
                 lane: 'Research Log',
                 type: 'Research Log',
                 title: '情緒プロンプト実験ノート',

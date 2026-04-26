@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Content / Access
+- Changed: Projects に `arxiv_scout（試作メモ）` の Magic Tool 種カードを追加し、640px以下のナビリンクを少し大きい5分割レールとして読めるようにした。
+- Learned: RFPに出ている道具名を小さな種として置くだけでも、制作物一覧が「公開済みの成果」だけでなく、問いが道具へ育つ途中の棚として読める。
+- Next: `arxiv_scout` の試作が進んだら、問い・実験・発見の `cycle` を足して Research Log 側へも接続する。
+
+## 2026-04-27
+
 - Focus: Access / Content
 - Changed: Projects のリンク種別ガイドに `icon` を追加し、制作物CTAには `actionHint` を表示できるようにした。Library の書影altも、タイトルの反復ではなく本の問いが伝わる説明へ整えた。
 - Learned: 外部移動とファイル保存の違いは、一覧前のガイドとカード上の短い補助文を同じデータ境界で持たせると、カードが増えても迷いにくい。
