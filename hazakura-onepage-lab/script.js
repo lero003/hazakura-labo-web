@@ -6,6 +6,11 @@
 (function () {
     'use strict';
 
+    const reducedMotionQuery = window.matchMedia
+        ? window.matchMedia('(prefers-reduced-motion: reduce)')
+        : { matches: false, addEventListener() {} };
+    let prefersReducedMotion = reducedMotionQuery.matches;
+
     // ===== Sakura/Firefly Canvas =====
     const canvas = document.getElementById('sakura-canvas');
     if (!canvas) return;
@@ -275,6 +280,7 @@
     let startTime = Date.now();
 
     function animatePetals() {
+        if (prefersReducedMotion) return;
         const time = (Date.now() - startTime) / 1000;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         petals.forEach(petal => { petal.update(time, currentZone); petal.draw(); });
@@ -382,6 +388,7 @@
     }
 
     function animateAurora() {
+        if (prefersReducedMotion) return;
         if (!auroraCanvas || !auroraCtx) return;
         const time = Date.now();
         auroraCtx.clearRect(0, 0, auroraCanvas.width, auroraCanvas.height);
@@ -461,6 +468,7 @@
     let ringX = 0, ringY = 0;
 
     function updateCursor() {
+        if (prefersReducedMotion) return;
         ringX += (cursorX - ringX) * 0.12;
         ringY += (cursorY - ringY) * 0.12;
         if (cursorDot) cursorDot.style.transform = `translate(${cursorX - 4}px, ${cursorY - 4}px)`;
@@ -652,6 +660,7 @@
     }
 
     document.addEventListener('mousemove', (e) => {
+        if (prefersReducedMotion) return;
         cursorX = e.clientX;
         cursorY = e.clientY;
         targetWindX = (e.movementX || 0) * 0.15;
@@ -756,6 +765,13 @@
 
     // ===== Scroll animations =====
     function initScrollAnimations() {
+        if (prefersReducedMotion) {
+            document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .cycle-bridge-card, .section-title, .project-card, .book-showcase, .quote-block').forEach(el => el.classList.add('visible'));
+            document.querySelectorAll('.process-step, .process-connector, .stat-item').forEach(el => el.classList.add('visible'));
+            document.querySelectorAll('.stat-number').forEach(setCounterValue);
+            return;
+        }
+
         const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -30px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
@@ -825,7 +841,7 @@
                 setActiveZone(targetZone, true);
                 updateBackgroundZones(targetZone, 0);
                 updateSectionZones(targetZone);
-                window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+                window.scrollTo({ top: Math.max(0, y), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
             }
         });
     });
@@ -1129,6 +1145,10 @@
         if (!el) return;
         const targetEl = el.classList && el.classList.contains('stat-number') ? el : el.querySelector('.stat-number');
         if (!targetEl) return;
+        if (prefersReducedMotion) {
+            setCounterValue(targetEl);
+            return;
+        }
 
         const target = parseInt(targetEl.dataset.target);
         const suffix = targetEl.dataset.suffix || '';
@@ -1146,6 +1166,13 @@
         requestAnimationFrame(update);
     }
 
+    function setCounterValue(el) {
+        if (!el) return;
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        el.textContent = target.toLocaleString() + suffix;
+    }
+
     // ===== Smooth scroll =====
     function initSmoothScroll() {
         document.querySelectorAll('.nav-links a[href^="#"], .footer-nav a[href^="#"], .hero-cta[href^="#"]').forEach(link => {
@@ -1156,7 +1183,7 @@
                 if (target) {
                     const offset = 72;
                     const y = target.getBoundingClientRect().top + window.scrollY - offset;
-                    window.scrollTo({ top: y, behavior: 'smooth' });
+                    window.scrollTo({ top: y, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                 }
             });
         });
@@ -1165,21 +1192,24 @@
     // ===== Initialization =====
     function init() {
         renderContent();
+        document.body.classList.toggle('motion-reduced', prefersReducedMotion);
         resizeCanvas();
         initPetals();
         createAuroraCanvas();
         resizeAuroraCanvas();
         initAuroraWaves();
         createHeroAuroraOverlay();
-        animatePetals();
-        animateAurora();
-        updateCursor();
+        if (!prefersReducedMotion) {
+            animatePetals();
+            animateAurora();
+            updateCursor();
+        }
         prepareTextReveal();
         initScrollAnimations();
         initSmoothScroll();
         handleNavScroll();
         updateScrollProgress();
-        handleParallax();
+        if (!prefersReducedMotion) handleParallax();
         updateScrollZones();
 
         let ticking = false;
@@ -1188,7 +1218,7 @@
                 requestAnimationFrame(() => {
                     handleNavScroll();
                     updateScrollProgress();
-                    handleParallax();
+                    if (!prefersReducedMotion) handleParallax();
                     updateScrollZones();
                     ticking = false;
                 });
@@ -1205,7 +1235,7 @@
                 initPetals();
                 initAuroraWaves();
                 if (shootingStars.length > 0) initShootingStars();
-                handleParallax();
+                if (!prefersReducedMotion) handleParallax();
                 updateScrollZones();
             }, 150);
         });
@@ -1214,9 +1244,25 @@
             if (document.hidden) {
                 cancelAnimationFrame(animationId);
                 cancelAnimationFrame(auroraId);
+            } else if (!prefersReducedMotion) {
+                animatePetals();
+                animateAurora();
+            }
+        });
+
+        reducedMotionQuery.addEventListener('change', (event) => {
+            prefersReducedMotion = event.matches;
+            document.body.classList.toggle('motion-reduced', prefersReducedMotion);
+            if (prefersReducedMotion) {
+                cancelAnimationFrame(animationId);
+                cancelAnimationFrame(auroraId);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (auroraCtx && auroraCanvas) auroraCtx.clearRect(0, 0, auroraCanvas.width, auroraCanvas.height);
+                document.querySelectorAll('.stat-number').forEach(setCounterValue);
             } else {
                 animatePetals();
                 animateAurora();
+                updateCursor();
             }
         });
 

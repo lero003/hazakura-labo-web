@@ -2344,6 +2344,70 @@ body.theme-night.zone-aurora #aurora-canvas {
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+    }
+
+    body {
+        cursor: auto;
+    }
+
+    .custom-cursor,
+    #sakura-canvas,
+    #aurora-canvas,
+    .hero-aurora-overlay,
+    .zone-border {
+        display: none !important;
+    }
+
+    .hero-kana,
+    .title-line,
+    .title-accent-line,
+    .hero-subtitle,
+    .hero-scroll-hint,
+    .philosophy-card,
+    .layer-card,
+    .book-showcase,
+    .stat-item,
+    .vision-card,
+    .research-log-card,
+    .cycle-bridge-card,
+    .project-card,
+    .quote-block,
+    .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .hero-depth-layer {
+        transform: none !important;
+    }
+
+    .star-layer--large::before,
+    .star-layer--large::after,
+    .star-layer--medium::before,
+    .star-layer--medium::after,
+    .star-layer--small::before {
+        animation: none !important;
+    }
+
+    .book-3d,
+    .book-3d:hover,
+    .project-card:hover,
+    .philosophy-card:hover,
+    .vision-card:hover,
+    .layer-card:hover {
+        transform: none !important;
+    }
+}
+
 /* ============================================
    Typography Reveal Animation
    ============================================ */
