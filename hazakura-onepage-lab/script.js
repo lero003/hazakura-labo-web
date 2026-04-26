@@ -575,6 +575,7 @@
                 <h3>${escapeHtml(item.title)}</h3>
                 <p class="vision-jp">${escapeHtml(item.jp)}</p>
                 <p class="vision-text">${escapeHtml(item.text)}</p>
+                ${item.tag ? `<span class="vision-tag">${escapeHtml(item.tag)}</span>` : ''}
             </article>
         `).join('');
     }

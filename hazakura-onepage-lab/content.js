@@ -86,6 +86,13 @@ window.HAZAKURA_CONTENT = {
             title: '自分史編纂',
             jp: '物語を紡ぐ',
             text: '人々の思い出を物語として紡ぎ、デジタルアーカイブ化。あなたの記憶が、次の世代への贈り物になる。'
+        },
+        {
+            icon: '🗺️',
+            title: '地域LLM',
+            jp: '知恵を巡らせる',
+            text: 'Research Logや自分史、寺子屋の問いを少しずつ蓄え、地域の言葉で答えを返す小さな知恵の循環炉。',
+            tag: 'CMS seed'
         }
     ],
     projects: [
