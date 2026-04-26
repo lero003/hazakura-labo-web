@@ -606,8 +606,8 @@
                 ? `${item.title}をダウンロードする`
                 : `${item.title}を外部サイトで開く`;
             const thumb = item.image
-                ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}" class="project-img">`
-                : `<div class="project-thumb-placeholder">
+                ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}" class="project-img" loading="lazy" decoding="async">`
+                : `<div class="project-thumb-placeholder" aria-hidden="true">
                     <span class="placeholder-icon">${escapeHtml(item.placeholderIcon || '🌸')}</span>
                     <span class="placeholder-text">${escapeHtml(item.placeholderText || item.title)}</span>
                 </div>`;
