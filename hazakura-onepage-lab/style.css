@@ -1719,6 +1719,8 @@ a {
 }
 
 .research-log-strip {
+    display: grid;
+    gap: 1rem;
     margin: 0 auto 2.2rem;
     max-width: 980px;
 }
