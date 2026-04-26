@@ -587,8 +587,11 @@
         const entryGuide = !Array.isArray(visionsGroup) && visionsGroup.entryGuide
             ? renderVisionEntryGuide(visionsGroup.entryGuide, items)
             : '';
-        const cards = items.map((item) => `
-            <article class="vision-card" data-tilt>
+        const cards = items.map((item) => {
+            const entryKind = getVisionEntryKind(item);
+            const entryKindAttribute = entryKind ? ` data-entry-kind="${escapeHtml(entryKind)}"` : '';
+            return `
+            <article class="vision-card"${entryKindAttribute} data-tilt>
                 <div class="vision-icon">${escapeHtml(item.icon)}</div>
                 <h3>${escapeHtml(item.title)}</h3>
                 <p class="vision-jp">${escapeHtml(item.jp)}</p>
@@ -596,8 +599,14 @@
                 ${renderVisionEntry(item.entry || item.entryQuestion)}
                 ${item.tag ? `<span class="vision-tag">${escapeHtml(item.tag)}</span>` : ''}
             </article>
-        `).join('');
+        `;
+        }).join('');
         root.innerHTML = `${entryGuide}${cards}`;
+    }
+
+    function getVisionEntryKind(item) {
+        const entry = item && item.entry;
+        return entry && typeof entry === 'object' && entry.kind ? entry.kind : '';
     }
 
     function renderVisionEntryGuide(guide, visionItems) {
