@@ -46,9 +46,9 @@ window.HAZAKURA_CONTENT = {
         }
     ],
     stats: [
-        { target: 380, suffix: '+', label: 'ページの哲学', sub: '哲学冒険譚に詰め込まれた知恵' },
-        { target: 4, suffix: '', label: '作+番外編', sub: '1作〜4作＋番外編の総集編' },
-        { target: 365, suffix: '', label: '日の問い', sub: '1年、めくるめく探求の末' },
+        { target: 548, suffix: '+', label: 'ページの対話', sub: 'チカちゃんシリーズ二冊に広がる思索' },
+        { target: 2, suffix: '', label: '冊の本', sub: '哲学冒険譚と重さのないノート' },
+        { target: 240, suffix: '', label: '日の問い', sub: '生活の手ざわりまで続く探求' },
         { target: 100, suffix: '%', label: '好奇心', sub: 'すべては「なぜ？」から始まる' }
     ],
     process: [
