@@ -134,6 +134,18 @@ window.HAZAKURA_CONTENT = {
         }
     ],
     projectLaneOverview: '道具、問い、物語を行き来しながら、AI万屋の小さな実験がどう循環しているかを眺められます。',
+    projectActionGuide: [
+        {
+            type: 'external',
+            label: '外部',
+            text: '別タブで外の実験場へ移動します。'
+        },
+        {
+            type: 'download',
+            label: 'DL',
+            text: 'ファイルを手元へ保存します。注意文を読んでから試してください。'
+        }
+    ],
     projects: [
         {
             lane: 'Magic Tool',

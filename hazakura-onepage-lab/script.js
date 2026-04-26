@@ -644,6 +644,16 @@
         const laneStatus = projectLanes.length
             ? `<p class="project-lane-status" data-project-lane-status aria-live="polite">${escapeHtml(content.projectLaneOverview || '制作物を棚ごとに眺められます。')}</p>`
             : '';
+        const actionGuide = Array.isArray(content.projectActionGuide) && content.projectActionGuide.length
+            ? `<div class="project-action-guide" aria-label="制作物リンクの種類">
+                ${content.projectActionGuide.map((guide) => `
+                    <span class="project-action-guide__item project-action-guide__item--${escapeHtml(guide.type || 'info')}">
+                        <strong>${escapeHtml(guide.label)}</strong>
+                        <span>${escapeHtml(guide.text)}</span>
+                    </span>
+                `).join('')}
+            </div>`
+            : '';
         const cards = items.map((item) => {
             const actionType = item.actionType || (item.download ? 'download' : 'external');
             const actionIcon = actionType === 'download' ? '↓' : '↗';
@@ -703,7 +713,7 @@
                 </article>
             `;
         }).join('');
-        root.innerHTML = `${laneGuide}${laneFilters}${laneStatus}${cards}`;
+        root.innerHTML = `${laneGuide}${laneFilters}${laneStatus}${actionGuide}${cards}`;
         initProjectLaneFilter(root);
     }
 
