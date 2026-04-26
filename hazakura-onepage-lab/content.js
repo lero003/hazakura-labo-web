@@ -104,6 +104,11 @@ window.HAZAKURA_CONTENT = {
             tag: 'Workshop seed'
         }
     ],
+    cycleBridge: {
+        eyebrow: 'Circulation note',
+        title: '問いは記憶になり、また誰かの問いへ戻る。',
+        text: 'Research Logに残した発見、自分史に預けた記憶、寺子屋で交わした学び。それらを地域LLMが少しずつ受け取り、次の人の言葉で返していく。葉桜ラボは、その巡りを一枚のページで育てる実験場です。'
+    },
     projects: [
         {
             type: 'Web Tool',

@@ -1717,6 +1717,70 @@ body.theme-night .section-vision {
     z-index: 1;
 }
 
+.cycle-bridge {
+    margin: 2.6rem auto 0;
+    max-width: 920px;
+}
+
+.cycle-bridge-card {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 2.4rem;
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    border-radius: 22px;
+    background:
+        radial-gradient(540px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.13), transparent 44%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 246, 250, 0.52));
+    box-shadow: 0 20px 54px rgba(46, 42, 45, 0.08);
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo), border-color var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+
+.cycle-bridge-card::before {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+    border: 1px solid rgba(232, 88, 122, 0.12);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.cycle-bridge-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cycle-bridge-card:hover {
+    border-color: rgba(139, 92, 246, 0.34);
+    box-shadow: 0 26px 66px rgba(46, 42, 45, 0.11);
+}
+
+.cycle-bridge-eyebrow {
+    margin-bottom: 0.55rem;
+    color: var(--sakura-500);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.cycle-bridge-title {
+    margin-bottom: 0.8rem;
+    color: var(--ink-800);
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    font-weight: 600;
+    line-height: 1.65;
+}
+
+.cycle-bridge-text {
+    max-width: 760px;
+    color: var(--ink-600);
+    font-size: 0.92rem;
+    line-height: 2;
+}
+
 /* ============================================
    Quote Section
    ============================================ */
@@ -3165,6 +3229,30 @@ body.theme-night .section-vision .research-log-cycle dd {
     color: var(--body-text);
 }
 
+body.theme-night .section-vision .cycle-bridge-card {
+    border-color: rgba(139, 92, 246, 0.28);
+    background:
+        radial-gradient(540px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.16), transparent 44%),
+        rgba(255, 255, 255, 0.065);
+    box-shadow: 0 24px 66px rgba(0, 0, 0, 0.26);
+}
+
+body.theme-night .section-vision .cycle-bridge-card::before {
+    border-color: rgba(139, 92, 246, 0.16);
+}
+
+body.theme-night .section-vision .cycle-bridge-eyebrow {
+    color: var(--purple-400);
+}
+
+body.theme-night .section-vision .cycle-bridge-title {
+    color: var(--header-text);
+}
+
+body.theme-night .section-vision .cycle-bridge-text {
+    color: var(--body-text);
+}
+
 /* Quote section */
 body.theme-night .section-quote {
     background: linear-gradient(180deg, #0b0c10, #1a1a2e, #0b0c10);
@@ -3414,6 +3502,31 @@ body.theme-night .nav-links a::after {
         line-height: 1.75;
         overflow-wrap: anywhere;
     }
+
+    .cycle-bridge {
+        margin-top: 1.8rem;
+    }
+
+    .cycle-bridge-card {
+        padding: 1.45rem;
+        border-radius: 16px;
+    }
+
+    .cycle-bridge-card::before {
+        inset: 0.75rem;
+        border-radius: 12px;
+    }
+
+    .cycle-bridge-title {
+        font-size: 1.18rem;
+        line-height: 1.65;
+    }
+
+    .cycle-bridge-text {
+        font-size: 0.86rem;
+        line-height: 1.85;
+        overflow-wrap: anywhere;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3486,6 +3599,19 @@ body.theme-night .nav-links a::after {
 
     .research-log-eyebrow {
         letter-spacing: 0.12em;
+    }
+
+    .cycle-bridge-card {
+        padding: 1.15rem;
+        border-radius: 14px;
+    }
+
+    .cycle-bridge-eyebrow {
+        letter-spacing: 0.12em;
+    }
+
+    .cycle-bridge-title {
+        font-size: 1.08rem;
     }
 }
 

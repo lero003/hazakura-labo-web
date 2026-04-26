@@ -474,7 +474,7 @@
     const bookGlareEl = document.querySelector('.book-glare');
 
     function refreshHoverTargets() {
-        hoverTargets = Array.from(document.querySelectorAll('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card'));
+        hoverTargets = Array.from(document.querySelectorAll('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card, .cycle-bridge-card'));
     }
 
     function escapeHtml(value) {
@@ -581,6 +581,18 @@
         `).join('');
     }
 
+    function renderCycleBridge(item) {
+        const root = document.querySelector('[data-render="cycleBridge"]');
+        if (!root || !item) return;
+        root.innerHTML = `
+            <article class="cycle-bridge-card" data-tilt>
+                <p class="cycle-bridge-eyebrow">${escapeHtml(item.eyebrow)}</p>
+                <h3 class="cycle-bridge-title">${escapeHtml(item.title)}</h3>
+                <p class="cycle-bridge-text">${escapeHtml(item.text)}</p>
+            </article>
+        `;
+    }
+
     function renderProjects(items) {
         const root = document.querySelector('[data-render="projects"]');
         if (!root || !items) return;
@@ -634,6 +646,7 @@
         renderProcess(content.process);
         renderResearchLogs(content.researchLogs);
         renderVisions(content.visions);
+        renderCycleBridge(content.cycleBridge);
         renderProjects(content.projects);
         refreshHoverTargets();
     }
@@ -645,7 +658,7 @@
 
         // Card hover — elementFromPoint (no layout thrashing)
         const el = document.elementFromPoint(e.clientX, e.clientY);
-        const hoverCard = el?.closest('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card');
+        const hoverCard = el?.closest('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card, .cycle-bridge-card');
         for (const card of hoverTargets) {
             if (card === hoverCard) {
                 const rect = card.getBoundingClientRect();
@@ -777,7 +790,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .section-title, .project-card').forEach(el => observer.observe(el));
+        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .cycle-bridge-card, .section-title, .project-card').forEach(el => observer.observe(el));
         document.querySelectorAll('.book-showcase, .quote-block').forEach(el => observer.observe(el));
         document.querySelectorAll('.stats-grid').forEach(el => observer.observe(el));
         document.querySelectorAll('.process-flow').forEach(el => observer.observe(el));
