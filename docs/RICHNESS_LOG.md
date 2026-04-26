@@ -2,6 +2,13 @@
 
 ## 2026-04-26
 
+- Focus: Structure
+- Changed: `hazakura-onepage-lab/walkthrough.md` を現状の Projects 棚、Research Log、循環導線、モーション低減対応に合わせて更新し、完了したバックログ項目を整理した。
+- Learned: 1ページ内の表現が増えるほど、運用メモにも `content.js` のどのデータがどの導線を支えるかを書いておくと、次の小改善で迷いにくい。
+- Next: `content.js` を将来JSON化しやすい単位へ分ける前に、まずデータ群の境界と依存している描画関数を短く棚卸しする。
+
+## 2026-04-26
+
 - Focus: Narrative / Content
 - Changed: Projects の各カードに `surprise` を追加し、動機の下に「どんな驚きがあったか」を小さく表示できるようにした。
 - Learned: RFPの Magic Tools は機能と動機だけでなく、作った後に見えた発見を同じカードに置くと、道具がResearch Logへ戻る循環として読める。
