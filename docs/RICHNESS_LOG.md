@@ -2,6 +2,13 @@
 
 ## 2026-04-26
 
+- Focus: Content / Access
+- Changed: Projects の各カードに `lane` を追加し、Magic Tool / Research Log / Story Seed の小さな分類ラベルを表示できるようにした。
+- Learned: 制作物が増え始めた段階でRFP上の役割を短く見せておくと、一覧が単なるカード列ではなく「探求・道具・物語」の棚として読みやすくなる。
+- Next: Projects がさらに増えた時に、同じ `lane` を使って軽い絞り込みや並び替えを足すか検討する。
+
+## 2026-04-26
+
 - Focus: Content / Narrative
 - Changed: Projects に「情緒プロンプト実験ノート」の種カードを追加し、任意の `cycle` データがある制作物だけ「問い・実験・発見」をミニ表示できるようにした。
 - Learned: Works 側にも Research Log の型を少し混ぜると、道具一覧が単なる成果物ではなく、RFPの「探求の可視化」と「Magic Toolsの驚きの記録」に近づく。

@@ -627,6 +627,9 @@
             const live = item.href
                 ? `<a href="${escapeHtml(item.href)}" class="${actionClass}" aria-label="${escapeHtml(actionAria)}" ${item.download ? 'download' : 'target="_blank" rel="noopener noreferrer"'}><span class="project-action__label">${escapeHtml(actionLabel)}</span><span class="project-action__text">${actionText}</span><span class="project-action__icon" aria-hidden="true">${actionIcon}</span></a>`
                 : `<span class="project-live__badge">${escapeHtml(item.status || 'Concept')}</span>`;
+            const lane = item.lane
+                ? `<span class="project-lane">${escapeHtml(item.lane)}</span>`
+                : '';
             const why = item.why
                 ? `<p class="project-why"><span>Why</span>${escapeHtml(item.why)}</p>`
                 : '';
@@ -650,6 +653,7 @@
                     <div class="project-thumb">${thumb}</div>
                     <div class="project-info">
                         <div class="project-meta-row">
+                            ${lane}
                             <span class="project-type">${escapeHtml(item.type)}</span>
                             <span class="project-live">${live}</span>
                         </div>

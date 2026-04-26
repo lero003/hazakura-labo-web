@@ -115,6 +115,7 @@ window.HAZAKURA_CONTENT = {
     },
     projects: [
         {
+            lane: 'Magic Tool',
             type: 'Web Tool',
             title: 'Kindle EPUB Studio',
             image: './img/project-kindle-epub.png',
@@ -128,6 +129,7 @@ window.HAZAKURA_CONTENT = {
             tags: ['Markdown', 'EPUB', 'Kindle', 'クライアントサイド']
         },
         {
+            lane: 'Research Log',
             type: 'Research Log',
             title: '情緒プロンプト実験ノート',
             placeholderIcon: '🧪',
@@ -143,6 +145,7 @@ window.HAZAKURA_CONTENT = {
             tags: ['Research Log', 'Prompt', '理と情', 'Seed']
         },
         {
+            lane: 'Magic Tool',
             type: 'macOS App',
             title: 'Sakura Sky（実験作品）',
             placeholderIcon: '🌸',
@@ -157,6 +160,7 @@ window.HAZAKURA_CONTENT = {
             tags: ['macOS 26+', 'Tauri|rust', '桜エフェクト', '未署名配布（公式審査する可能性もあり）']
         },
         {
+            lane: 'Magic Tool',
             type: 'macOS App',
             title: 'Harunohi Monitor（仮）',
             placeholderIcon: '🌸',
@@ -167,6 +171,7 @@ window.HAZAKURA_CONTENT = {
             tags: ['macOS 26+', 'Swift?', '開発中']
         },
         {
+            lane: 'Story Seed',
             type: '祝アニメ化？',
             title: 'オリジナルアニメ映画',
             image: './img/project_anime.png',
