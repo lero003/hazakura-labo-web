@@ -10,9 +10,9 @@
 | `experienceLayers` | `renderExperienceLayers` | `[data-render="experienceLayers"]` | One-page Architecture のレイヤーカード |
 | `stats` | `renderStats` | `[data-render="stats"]` | カウントアップ数値 |
 | `process` | `renderProcess` | `[data-render="process"]` | 問い、実験、発見、循環のステップ |
-| `researchLogs` | `renderResearchLogs` | `[data-render="researchLogs"]` | Vision 前の Research Log カード |
+| `researchGroup.logs` | `renderResearchGroup` / `renderResearchLogs` | `[data-render="researchLogs"]` | Vision 前の Research Log カード |
 | `visions` | `renderVisions` | `[data-render="visions"]` | 構想カード、入口文、タグ |
-| `cycleBridge` | `renderCycleBridge` | `[data-render="cycleBridge"]` | Vision 末尾の循環メモ |
+| `researchGroup.cycleBridge` | `renderResearchGroup` / `renderCycleBridge` | `[data-render="cycleBridge"]` | Vision 末尾の循環メモ |
 | `projectsGroup.lanes` | `renderProjects` / `initProjectLaneFilter` | `[data-render="projects"]` | 棚ガイド、絞り込み、選択時コピー |
 | `projectsGroup.overview` | `renderProjects` / `initProjectLaneFilter` | `[data-render="projects"]` | Projects の棚ステータス文 |
 | `projectsGroup.actionGuide` | `renderProjects` | `[data-render="projects"]` | 外部リンク / ダウンロードの見分け |
@@ -22,7 +22,7 @@
 
 1. `core`: `philosophy`, `experienceLayers`, `stats`, `process`
 2. `library`: 現状はHTML直書き。書籍が増えるなら、表紙・メタ・問い・CTAをこの単位へ移す。
-3. `research`: `researchLogs`, `cycleBridge`
+3. `research`: `researchGroup.logs`, `researchGroup.cycleBridge`
 4. `visions`: `visions`
 5. `projects`: `projectsGroup.lanes`, `projectsGroup.overview`, `projectsGroup.actionGuide`, `projectsGroup.items`
 
@@ -38,4 +38,4 @@
 
 ## 次に小さくやるなら
 
-次に分けるなら、`researchLogs` と `cycleBridge` を `researchGroup` に寄せると、Research Log と循環メモを同じJSON境界として扱いやすい。
+次に分けるなら、`visions` を構想カードと入口文の単位で見直すと、コミュニティ導線を小さく増やしやすい。

@@ -3,6 +3,13 @@
 ## 2026-04-27
 
 - Focus: Structure
+- Changed: `researchLogs` と `cycleBridge` を `researchGroup` にまとめ、`renderResearchGroup` から Research Log カードと循環メモを同じ入口で描画する形にした。
+- Learned: Vision 前後の読み物データを同じ境界に置くと、Research Log を増やす時に「問いの記録」と「循環への橋」を一緒に扱いやすい。
+- Next: `visions` の構想カードと入口文を、将来フォーム化しやすい小さなグループに寄せる。
+
+## 2026-04-27
+
+- Focus: Structure
 - Changed: Projects 周辺の `projectLanes` / `projectLaneOverview` / `projectActionGuide` / `projects` を `projectsGroup` にまとめ、`renderProjects` と `initProjectLaneFilter` が同じ入れ子を受け取る形にした。
 - Learned: 棚定義・概要文・リンク種別・カード本体を一つの境界に置くと、将来JSON化するときに Projects だけを安全に切り出しやすい。
 - Next: Research Log と循環メモを `researchGroup` に寄せ、読み物系データの境界も同じ粒度で整える。

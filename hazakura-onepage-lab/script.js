@@ -606,6 +606,12 @@
         `;
     }
 
+    function renderResearchGroup(researchGroup) {
+        if (!researchGroup) return;
+        renderResearchLogs(researchGroup.logs);
+        renderCycleBridge(researchGroup.cycleBridge);
+    }
+
     function renderProjects(projectsGroup) {
         const root = document.querySelector('[data-render="projects"]');
         if (!root || !projectsGroup) return;
@@ -763,9 +769,8 @@
         renderExperienceLayers(content.experienceLayers);
         renderStats(content.stats);
         renderProcess(content.process);
-        renderResearchLogs(content.researchLogs);
+        renderResearchGroup(content.researchGroup);
         renderVisions(content.visions);
-        renderCycleBridge(content.cycleBridge);
         renderProjects(content.projectsGroup);
         refreshHoverTargets();
     }

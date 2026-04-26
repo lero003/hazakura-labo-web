@@ -57,15 +57,22 @@ window.HAZAKURA_CONTENT = {
         { icon: '💡', label: '発見' },
         { icon: '🌸', label: '循環' }
     ],
-    researchLogs: [
-        {
-            eyebrow: 'Research Log 001',
-            title: 'AIの答えに、情緒は宿るのか',
-            question: '正しさだけでなく、読み手の気持ちが少し動く返答はどう作れるのか。',
-            experiment: 'RFPの「理と情の融合」を軸に、同じ案内文を説明調・物語調・対話調で書き分けて比べる。',
-            finding: '情緒は飾りではなく、問いの置き方と余白の残し方から生まれる。葉桜ラボでは、答えより先に驚きの入口を置く。'
+    researchGroup: {
+        logs: [
+            {
+                eyebrow: 'Research Log 001',
+                title: 'AIの答えに、情緒は宿るのか',
+                question: '正しさだけでなく、読み手の気持ちが少し動く返答はどう作れるのか。',
+                experiment: 'RFPの「理と情の融合」を軸に、同じ案内文を説明調・物語調・対話調で書き分けて比べる。',
+                finding: '情緒は飾りではなく、問いの置き方と余白の残し方から生まれる。葉桜ラボでは、答えより先に驚きの入口を置く。'
+            }
+        ],
+        cycleBridge: {
+            eyebrow: 'Circulation note',
+            title: '問いは記憶になり、また誰かの問いへ戻る。',
+            text: 'Research Logに残した発見、自分史に預けた記憶、寺子屋で交わした学び。それらを地域LLMが少しずつ受け取り、次の人の言葉で返していく。葉桜ラボは、その巡りを一枚のページで育てる実験場です。'
         }
-    ],
+    },
     visions: [
         {
             icon: '🧪',
@@ -108,11 +115,6 @@ window.HAZAKURA_CONTENT = {
             tag: 'Workshop seed'
         }
     ],
-    cycleBridge: {
-        eyebrow: 'Circulation note',
-        title: '問いは記憶になり、また誰かの問いへ戻る。',
-        text: 'Research Logに残した発見、自分史に預けた記憶、寺子屋で交わした学び。それらを地域LLMが少しずつ受け取り、次の人の言葉で返していく。葉桜ラボは、その巡りを一枚のページで育てる実験場です。'
-    },
     projectsGroup: {
         lanes: [
             {
