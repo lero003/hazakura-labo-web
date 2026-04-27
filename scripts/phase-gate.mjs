@@ -188,8 +188,10 @@ assert(
 assert(
   'project cycles are folded behind a drawer',
   contentRenderersJs.includes('class="project-cycle-drawer"')
-    && contentRenderersJs.includes('三段メモを開く')
+    && contentRenderersJs.includes('class="project-cycle-drawer__sigil"')
+    && contentRenderersJs.includes('小径をひらく')
     && styleCss.includes('.project-cycle-drawer')
+    && styleCss.includes('.project-cycle-drawer__sigil')
     && styleCss.includes('.project-cycle-drawer[open] summary::after'),
   JSON.stringify({
     hasDrawerRenderer: contentRenderersJs.includes('class="project-cycle-drawer"'),

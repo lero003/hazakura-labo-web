@@ -452,8 +452,11 @@
             const cycle = cycleSteps.length ? `
                 <details class="project-cycle-drawer">
                     <summary>
-                        <span class="project-cycle-drawer__label">問い → 実験 → 発見</span>
-                        <span class="project-cycle-drawer__hint">三段メモを開く</span>
+                        <span class="project-cycle-drawer__sigil" aria-hidden="true">✧</span>
+                        <span class="project-cycle-drawer__copy">
+                            <span class="project-cycle-drawer__label">問い → 実験 → 発見</span>
+                            <span class="project-cycle-drawer__hint">小径をひらく</span>
+                        </span>
                     </summary>
                     <dl class="project-cycle" aria-label="${escapeHtml(item.title)}の問い、実験、発見">
                         ${cycleSteps.map(([label, value]) => `

@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Visual / Motion / Structure
+- Changed: Projects の `project-cycle-drawer` に小さな印と「小径をひらく」合図を加え、開いた三段メモに細い導線を通した。情報量は増やさず、折り畳み操作を実験棚の小さな参道として読めるようにし、phase gate で印と文言を保護した。
+- Learned: 密度を下げるための折り畳みは、そのままだと事務的なUIに見えやすい。summary の合図と開いた中の視線誘導を少し整えるだけで、情報整理と遊び心を同居させられる。
+- Next: preview 可能な環境で、Projects drawer のタップ感と開閉後のカード高さがモバイル幅で重く見えないか確認する。
+
+## 2026-04-28
+
 - Focus: Access / Structure
 - Changed: Vision 入口ガイドの受付メモを `vision-entry-guide__field-drawer` として折り畳み、四つの預け方は見せたまま、フォーム仕様のように見える項目列を一段奥へ下げた。phase gate で折り畳み契約も保護した。
 - Learned: 構想セクションは入力項目を丁寧に出しすぎると、庭を歩く体験より仕様確認に寄りやすい。最初は「何を預けるか」と「どこへ巡るか」だけを見せ、項目は必要な時に開くほうが空気を保てる。
