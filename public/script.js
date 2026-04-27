@@ -278,8 +278,8 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         petals.forEach(petal => { petal.update(time, currentZone); petal.draw(); });
         if (currentZone === 4) {
-            if (shootingStars.length === 0) initShootingStars();
-            updateShootingStars();
+            shootingStars?.ensure(canvas.width, canvas.height);
+            shootingStars?.update(ctx);
         }
         animationId = requestAnimationFrame(animatePetals);
     }
@@ -287,67 +287,8 @@
     // ===== Aurora Canvas =====
     const auroraEngine = window.HazakuraAuroraCanvas?.create();
 
-    // ===== Shooting stars (zone 4 moon) =====
-    let shootingStars = [];
-
-    class ShootingStar {
-        constructor(w, h) {
-            this.w = w; this.h = h;
-            this.reset();
-        }
-        reset() {
-            this.x = Math.random() * this.w;
-            this.y = Math.random() * this.h * 0.4;
-            this.length = 60 + Math.random() * 100;
-            this.speed = 5 + Math.random() * 7;
-            this.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.4;
-            this.opacity = 0;
-            this.life = 0;
-            this.maxLife = 25 + Math.random() * 25;
-            this.active = false;
-        }
-        activate() {
-            this.reset();
-            this.active = true;
-            this.life = 0;
-        }
-        update() {
-            if (!this.active) return;
-            this.life++;
-            this.x += Math.cos(this.angle) * this.speed;
-            this.y += Math.sin(this.angle) * this.speed;
-            if (this.life < 6) this.opacity = this.life / 6;
-            else if (this.life > this.maxLife - 6) this.opacity = (this.maxLife - this.life) / 6;
-            else this.opacity = 1;
-            if (this.life >= this.maxLife) this.active = false;
-        }
-        draw(ctx) {
-            if (!this.active) return;
-            ctx.save();
-            ctx.globalAlpha = this.opacity;
-            const tailX = this.x - Math.cos(this.angle) * this.length;
-            const tailY = this.y - Math.sin(this.angle) * this.length;
-            const grad = ctx.createLinearGradient(tailX, tailY, this.x, this.y);
-            grad.addColorStop(0, 'rgba(255,255,255,0)');
-            grad.addColorStop(0.7, 'rgba(200,200,255,0.4)');
-            grad.addColorStop(1, 'rgba(255,255,255,0.9)');
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.beginPath();
-            ctx.moveTo(tailX, tailY);
-            ctx.lineTo(this.x, this.y);
-            ctx.stroke();
-
-            // Head glow
-            ctx.globalAlpha = this.opacity * 0.6;
-            ctx.fillStyle = 'rgba(255,255,255,0.8)';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-        }
-    }
+    // ===== Shooting stars =====
+    const shootingStars = window.HazakuraShootingStars?.create();
 
     // ===== Custom Cursor =====
     const cursorDot = document.getElementById('cursor-dot');
@@ -1053,12 +994,8 @@
         }
 
         // Shooting stars at moon zone
-        if (zone === 4 && shootingStars.length === 0) {
-            initShootingStars();
-        }
-        if (zone !== 4) {
-            shootingStars.forEach(s => s.active = false);
-        }
+        if (zone === 4) shootingStars?.ensure(canvas.width, canvas.height);
+        else shootingStars?.deactivate();
 
         // Background gradient transitions
         updateBackgroundZones(zone, zoneProgress);
@@ -1200,27 +1137,6 @@
         }
     }
 
-    // ===== Shooting stars =====
-    function initShootingStars() {
-        shootingStars = [];
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        for (let i = 0; i < 5; i++) {
-            shootingStars.push(new ShootingStar(w, h));
-        }
-    }
-
-    function updateShootingStars() {
-        if (shootingStars.length === 0) return;
-        shootingStars.forEach(s => {
-            if (!s.active && Math.random() < 0.008) {
-                s.activate();
-            }
-            s.update();
-        });
-        shootingStars.forEach(s => s.draw(ctx));
-    }
-
     // ===== Initialization =====
     function init() {
         renderContent();
@@ -1264,7 +1180,7 @@
                 auroraEngine?.resize();
                 initPetals();
                 auroraEngine?.initWaves();
-                if (shootingStars.length > 0) initShootingStars();
+                if (shootingStars?.hasStars()) shootingStars.init(canvas.width, canvas.height);
                 if (!prefersReducedMotion) heroParallax?.update();
                 scrollIndicators?.update();
                 updateScrollZones();

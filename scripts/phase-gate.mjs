@@ -64,6 +64,7 @@ const requiredAssets = [
   'dist/pointer-input.js',
   'dist/scroll-ticker.js',
   'dist/aurora-canvas.js',
+  'dist/shooting-stars.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -105,6 +106,7 @@ const bookTiltJs = readFile('dist/book-tilt.js');
 const pointerInputJs = readFile('dist/pointer-input.js');
 const scrollTickerJs = readFile('dist/scroll-ticker.js');
 const auroraCanvasJs = readFile('dist/aurora-canvas.js');
+const shootingStarsJs = readFile('dist/shooting-stars.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -128,6 +130,7 @@ assert('legacy script delegates book tilt', scriptJs.includes('HazakuraBookTilt?
 assert('legacy script delegates pointer input', scriptJs.includes('HazakuraPointerInput?.init'));
 assert('legacy script delegates scroll ticker', scriptJs.includes('HazakuraScrollTicker?.init'));
 assert('legacy script delegates aurora canvas', scriptJs.includes('HazakuraAuroraCanvas?.create'));
+assert('legacy script delegates shooting stars', scriptJs.includes('HazakuraShootingStars?.create'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -151,6 +154,7 @@ assert('book tilt script exposes global', bookTiltJs.includes('window.HazakuraBo
 assert('pointer input script exposes global', pointerInputJs.includes('window.HazakuraPointerInput'));
 assert('scroll ticker script exposes global', scrollTickerJs.includes('window.HazakuraScrollTicker'));
 assert('aurora canvas script exposes global', auroraCanvasJs.includes('window.HazakuraAuroraCanvas'));
+assert('shooting stars script exposes global', shootingStarsJs.includes('window.HazakuraShootingStars'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {
