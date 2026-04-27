@@ -43,6 +43,7 @@
 - Canvasのviewport寸法同期は `src/scripts/canvas-size.js` に切り出し、花びら/Auroraの描画ロジックは既存 `script.js` に残す。
 - ページ非表示時の停止/再開フックは `src/scripts/visibility-playback.js` に切り出し、実際のCanvas停止/再開処理は既存 `script.js` のコールバックに残す。
 - resizeイベントのデバウンス登録は `src/scripts/resize-listener.js` に切り出し、Canvas再初期化やゾーン更新は既存 `script.js` のコールバックに残す。
+- アニメーションフレームの複数キャンセルは `src/scripts/animation-frames.js` に切り出し、描画ループ自体は既存 `script.js` に残す。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。

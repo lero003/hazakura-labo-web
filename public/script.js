@@ -1421,8 +1421,7 @@
 
         window.HazakuraVisibilityPlayback?.init({
             onHidden() {
-                cancelAnimationFrame(animationId);
-                cancelAnimationFrame(auroraId);
+                window.HazakuraAnimationFrames?.cancelAll(animationId, auroraId);
             },
             onVisible() {
                 if (prefersReducedMotion) return;
@@ -1435,8 +1434,7 @@
             prefersReducedMotion = event.matches;
             motionPreferences.syncBodyClass();
             if (prefersReducedMotion) {
-                cancelAnimationFrame(animationId);
-                cancelAnimationFrame(auroraId);
+                window.HazakuraAnimationFrames?.cancelAll(animationId, auroraId);
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 if (auroraCtx && auroraCanvas) auroraCtx.clearRect(0, 0, auroraCanvas.width, auroraCanvas.height);
                 scrollAnimations?.setAllCounters();
