@@ -557,7 +557,18 @@
     function renderResearchLogs(items) {
         const root = document.querySelector('[data-render="researchLogs"]');
         if (!root || !items) return;
-        root.innerHTML = items.map((item) => `
+        root.innerHTML = items.map((item) => {
+            const wisdomTrail = Array.isArray(item.wisdomTrail) && item.wisdomTrail.length
+                ? `<dl class="research-wisdom-trail" aria-label="${escapeHtml(item.title)}の知恵断片">
+                    ${item.wisdomTrail.map((trail) => `
+                        <div>
+                            <dt>${escapeHtml(trail.label || '')}</dt>
+                            <dd>${escapeHtml(trail.text || '')}</dd>
+                        </div>
+                    `).join('')}
+                </dl>`
+                : '';
+            return `
             <article class="research-log-card" data-tilt>
                 <div class="research-log-meta">
                     <p class="research-log-eyebrow">${escapeHtml(item.eyebrow)}</p>
@@ -578,8 +589,10 @@
                         <dd>${escapeHtml(item.finding)}</dd>
                     </div>
                 </dl>
+                ${wisdomTrail}
             </article>
-        `).join('');
+        `;
+        }).join('');
     }
 
     function renderVisions(visionsGroup) {

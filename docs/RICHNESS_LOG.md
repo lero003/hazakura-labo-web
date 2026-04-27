@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Content / Structure
+- Changed: Research Log に「地域の知恵は、どんな問いへ戻せるか」を追加し、任意の `wisdomTrail` で `由来 / 場面 / 次に返す問い` を表示できるようにした。
+- Learned: 地域LLMの知恵棚は、長い説明を増やすより、預かった言葉が次の問いへ戻る最小単位をログ内に置くほうが循環型CMSへつなげやすい。
+- Next: `wisdomTrail` が複数ログに増えたら、Vision の地域LLMカードから該当 Research Log へゆるく辿れる導線を検討する。
+
+## 2026-04-27
+
 - Focus: Content / Narrative
 - Changed: Vision の入口ガイドに「地域の知恵」を追加し、地域LLMカードへ預ける問いを表示した。あわせて Projects に `地域LLM 知恵棚（構想メモ）` を足し、地域の言葉を問いへ返す循環を Story Seed として読めるようにした。
 - Learned: 地域LLMはモデル名として置くより、預かった言葉を由来・場面・次の問いへ分ける知恵棚として書くと、RFPの循環型CMSに近づく。

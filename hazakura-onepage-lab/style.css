@@ -1820,6 +1820,37 @@ a {
     line-height: 1.85;
 }
 
+.research-wisdom-trail {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 1.35rem 0 0;
+    padding: 0.85rem;
+    border: 1px solid rgba(90, 158, 95, 0.18);
+    border-radius: 16px;
+    background: rgba(240, 248, 240, 0.56);
+}
+
+.research-wisdom-trail div {
+    min-width: 0;
+    padding: 0.15rem 0.55rem;
+}
+
+.research-wisdom-trail dt {
+    margin-bottom: 0.35rem;
+    color: var(--green-500);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.research-wisdom-trail dd {
+    margin: 0;
+    color: var(--ink-600);
+    font-size: 0.82rem;
+    line-height: 1.75;
+}
+
 /* ============================================
    Vision Section — Enhanced
    ============================================ */
@@ -4198,6 +4229,19 @@ body.theme-night .section-vision .research-log-cycle dd {
     color: var(--body-text);
 }
 
+body.theme-night .section-vision .research-wisdom-trail {
+    border-color: rgba(82, 183, 150, 0.26);
+    background: rgba(82, 183, 150, 0.08);
+}
+
+body.theme-night .section-vision .research-wisdom-trail dt {
+    color: var(--green-400);
+}
+
+body.theme-night .section-vision .research-wisdom-trail dd {
+    color: var(--body-text);
+}
+
 body.theme-night .section-vision .cycle-bridge-card {
     border-color: rgba(139, 92, 246, 0.28);
     background:
@@ -4702,6 +4746,23 @@ body.theme-night .nav-links a::after {
     .research-log-cycle dd {
         font-size: 0.84rem;
         line-height: 1.75;
+        overflow-wrap: anywhere;
+    }
+
+    .research-wisdom-trail {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.55rem;
+        margin-top: 1rem;
+        padding: 0.75rem;
+        border-radius: 14px;
+    }
+
+    .research-wisdom-trail div {
+        padding: 0.2rem 0.35rem;
+    }
+
+    .research-wisdom-trail dd {
+        font-size: 0.8rem;
         overflow-wrap: anywhere;
     }
 
