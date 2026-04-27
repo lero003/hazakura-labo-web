@@ -1033,26 +1033,6 @@
         }
     }
 
-    // ===== Text reveal =====
-    function prepareTextReveal() {
-        document.querySelectorAll('.section-title, .title-accent-line').forEach(title => {
-            const text = title.textContent.trim();
-            title.textContent = '';
-            const wrapper = document.createElement('span');
-            wrapper.className = 'reveal-text';
-            for (let i = 0; i < text.length; i++) {
-                const char = text[i];
-                const span = document.createElement('span');
-                span.className = 'reveal-item';
-                if (char === ' ') span.innerHTML = '&nbsp;';
-                else span.textContent = char;
-                span.style.transitionDelay = `${i * 0.05}s`;
-                wrapper.appendChild(span);
-            }
-            title.appendChild(wrapper);
-        });
-    }
-
     // ===== Scroll animations =====
     function initScrollAnimations() {
         if (prefersReducedMotion) {
@@ -1507,7 +1487,7 @@
             animateAurora();
             updateCursor();
         }
-        prepareTextReveal();
+        window.HazakuraTextReveal?.prepare();
         initScrollAnimations();
         window.HazakuraSmoothScroll?.init({
             getPrefersReducedMotion: () => prefersReducedMotion
