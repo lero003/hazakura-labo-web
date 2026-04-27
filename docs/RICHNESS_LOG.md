@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Access / Motion / Structure
+- Changed: モバイルのページ内導線で見出しが固定ナビ下へ潜りやすい弱点を、`scroll-offset` の小さな境界で整理した。CSSの `--hazakura-anchor-offset` と実測ナビ高を使い、通常リンクとゾーンナビのスクロール着地を同じ計算に揃えた。
+- Learned: セクション間の橋渡しを増やした後は、橋そのものより「着地した瞬間に何が見えるか」が体験の質を左右する。固定値のままだと、モバイルの参道だけが少し窮屈になる。
+- Next: 実ブラウザでアンカー着地を確認できる環境になったら、Hero CTA、Library bridge、ゾーンナビの3経路だけをモバイル幅で見る。
+
+## 2026-04-27
+
 - Focus: Narrative / Access / Structure
 - Changed: Library 末尾に `libraryProjectsBridge` を追加し、書庫で読んだ問いを「読む→ほどく→置く」の短い間奏として Projects へ渡せるようにした。橋渡しリンクも既存のスムーススクロール対象に加え、phase gate で Stats 後から Projects 前に存在することを保護した。
 - Learned: 書庫の直後に実績数値だけが残ると、販売・成果で一度閉じて見えやすい。短い余白の橋を置くと、新しい情報を増やさずに「本が実験棚へ戻る」流れを読ませられる。

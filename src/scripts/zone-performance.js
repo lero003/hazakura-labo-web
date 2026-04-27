@@ -44,8 +44,8 @@
             const zoneName = zoneIndexToName[targetZone];
             const target = document.querySelector(`section[data-zone="${zoneName}"]`);
             if (!target) return;
-            const offset = 72;
-            const y = target.getBoundingClientRect().top + window.scrollY - offset;
+            const scrollOffset = window.HazakuraScrollOffset?.get(72) || 72;
+            const y = target.getBoundingClientRect().top + window.scrollY - scrollOffset;
             setActiveZone(targetZone, true);
             updateBackgroundZones(targetZone);
             updateSectionZones(targetZone);

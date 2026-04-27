@@ -45,6 +45,7 @@
     --duration-slow: 0.8s;
     --duration-normal: 0.5s;
     --duration-fast: 0.3s;
+    --hazakura-anchor-offset: 84px;
 }
 
 *,
@@ -58,6 +59,7 @@
 html {
     font-size: 16px;
     overflow-x: hidden;
+    scroll-padding-top: var(--hazakura-anchor-offset);
 }
 
 :root {
@@ -6101,7 +6103,7 @@ body.theme-night .nav:not(.scrolled) .nav-links a:hover {
 
 @media (max-width: 640px) {
     html {
-        scroll-padding-top: 7.25rem;
+        --hazakura-anchor-offset: 116px;
     }
 
     .nav {

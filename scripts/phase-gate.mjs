@@ -107,6 +107,7 @@ const heroAuroraOverlayJs = readFile('dist/hero-aurora-overlay.js');
 const heroImageLoaderJs = readFile('dist/hero-image-loader.js');
 const motionPreferencesJs = readFile('dist/motion-preferences.js');
 const smoothScrollJs = readFile('dist/smooth-scroll.js');
+const scrollOffsetJs = readFile('dist/scroll-offset.js');
 const scrollIndicatorsJs = readFile('dist/scroll-indicators.js');
 const textRevealJs = readFile('dist/text-reveal.js');
 const heroParallaxJs = readFile('dist/hero-parallax.js');
@@ -150,6 +151,12 @@ assert('app controller delegates shooting stars', appControllerJs.includes('Haza
 assert('app controller delegates cursor follow', appControllerJs.includes('HazakuraCursorFollow?.create'));
 assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
 assert('style sheet contains design tokens', styleCss.includes('--sakura-500') && styleCss.includes('.hero'));
+assert(
+  'style sheet contains shared anchor offset',
+  styleCss.includes('--hazakura-anchor-offset: 84px')
+    && styleCss.includes('--hazakura-anchor-offset: 116px')
+    && styleCss.includes('scroll-padding-top: var(--hazakura-anchor-offset)')
+);
 assert('style sheet contains library projects bridge', styleCss.includes('.library-projects-bridge'));
 assert('vision process interlude style is emitted', styleCss.includes('.process-flow--vision'));
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
@@ -163,7 +170,21 @@ assert('zone performance script exposes global', zonePerformanceJs.includes('win
 assert('hero aurora overlay script exposes global', heroAuroraOverlayJs.includes('window.HazakuraHeroAuroraOverlay'));
 assert('hero image loader script exposes global', heroImageLoaderJs.includes('window.HazakuraHeroImageLoader'));
 assert('motion preferences script exposes global', motionPreferencesJs.includes('window.HazakuraMotionPreferences'));
+assert('scroll offset script exposes global', scrollOffsetJs.includes('window.HazakuraScrollOffset'));
+assert(
+  'scroll offset loads before scroll consumers',
+  html.indexOf('src="/scroll-offset.js"') >= 0
+    && html.indexOf('src="/scroll-offset.js"') < html.indexOf('src="/smooth-scroll.js"')
+    && html.indexOf('src="/scroll-offset.js"') < html.indexOf('src="/zone-performance.js"'),
+  JSON.stringify({
+    scrollOffset: html.indexOf('src="/scroll-offset.js"'),
+    smoothScroll: html.indexOf('src="/smooth-scroll.js"'),
+    zonePerformance: html.indexOf('src="/zone-performance.js"')
+  })
+);
 assert('smooth scroll script exposes global', smoothScrollJs.includes('window.HazakuraSmoothScroll'));
+assert('smooth scroll uses measured offset', smoothScrollJs.includes('HazakuraScrollOffset?.get'));
+assert('zone performance uses measured offset', zonePerformanceJs.includes('HazakuraScrollOffset?.get'));
 assert('smooth scroll includes library projects bridge', smoothScrollJs.includes('.library-projects-bridge__link'));
 assert('scroll indicators script exposes global', scrollIndicatorsJs.includes('window.HazakuraScrollIndicators'));
 assert('text reveal script exposes global', textRevealJs.includes('window.HazakuraTextReveal'));

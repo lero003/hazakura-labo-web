@@ -17,9 +17,10 @@
                 const target = document.querySelector(href);
                 if (!target) return;
 
-                const y = target.getBoundingClientRect().top + window.scrollY - offset;
+                const scrollOffset = window.HazakuraScrollOffset?.get(offset) || offset;
+                const y = target.getBoundingClientRect().top + window.scrollY - scrollOffset;
                 window.scrollTo({
-                    top: y,
+                    top: Math.max(0, y),
                     behavior: getPrefersReducedMotion() ? 'auto' : 'smooth'
                 });
             });

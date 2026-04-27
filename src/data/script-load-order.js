@@ -5,6 +5,7 @@ export const scriptLoadOrder = [
   '/content-renderers.js',
   '/zone-nav.js',
   '/zone-atmosphere.js',
+  '/scroll-offset.js',
   '/zone-performance.js',
   '/hero-aurora-overlay.js',
   '/hero-image-loader.js',
