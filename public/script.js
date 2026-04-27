@@ -1406,10 +1406,8 @@
             }
         }, { passive: true });
 
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
+        window.HazakuraResizeListener?.init({
+            onResize() {
                 window.HazakuraCanvasSize?.resize(canvas);
                 window.HazakuraCanvasSize?.resize(auroraCanvas);
                 initPetals();
@@ -1418,7 +1416,7 @@
                 if (!prefersReducedMotion) heroParallax?.update();
                 scrollIndicators?.update();
                 updateScrollZones();
-            }, 150);
+            }
         });
 
         window.HazakuraVisibilityPlayback?.init({

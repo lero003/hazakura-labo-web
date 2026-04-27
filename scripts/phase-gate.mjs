@@ -55,6 +55,7 @@ const requiredAssets = [
   'dist/scroll-animations.js',
   'dist/canvas-size.js',
   'dist/visibility-playback.js',
+  'dist/resize-listener.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -87,6 +88,7 @@ const heroParallaxJs = readFile('dist/hero-parallax.js');
 const scrollAnimationsJs = readFile('dist/scroll-animations.js');
 const canvasSizeJs = readFile('dist/canvas-size.js');
 const visibilityPlaybackJs = readFile('dist/visibility-playback.js');
+const resizeListenerJs = readFile('dist/resize-listener.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -101,6 +103,7 @@ assert('legacy script delegates hero parallax', scriptJs.includes('HazakuraHeroP
 assert('legacy script delegates scroll animations', scriptJs.includes('HazakuraScrollAnimations?.init'));
 assert('legacy script delegates canvas size', scriptJs.includes('HazakuraCanvasSize?.resize'));
 assert('legacy script delegates visibility playback', scriptJs.includes('HazakuraVisibilityPlayback?.init'));
+assert('legacy script delegates resize listener', scriptJs.includes('HazakuraResizeListener?.init'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -115,6 +118,7 @@ assert('hero parallax script exposes global', heroParallaxJs.includes('window.Ha
 assert('scroll animations script exposes global', scrollAnimationsJs.includes('window.HazakuraScrollAnimations'));
 assert('canvas size script exposes global', canvasSizeJs.includes('window.HazakuraCanvasSize'));
 assert('visibility playback script exposes global', visibilityPlaybackJs.includes('window.HazakuraVisibilityPlayback'));
+assert('resize listener script exposes global', resizeListenerJs.includes('window.HazakuraResizeListener'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {
