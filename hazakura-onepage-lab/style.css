@@ -1751,6 +1751,11 @@ a {
     box-shadow: 0 24px 60px rgba(46, 42, 45, 0.1);
 }
 
+.research-log-card:target {
+    border-color: rgba(232, 88, 122, 0.52);
+    box-shadow: 0 24px 70px rgba(232, 88, 122, 0.16);
+}
+
 .research-log-meta {
     display: flex;
     flex-wrap: wrap;
@@ -1849,6 +1854,40 @@ a {
     color: var(--ink-600);
     font-size: 0.82rem;
     line-height: 1.75;
+}
+
+.research-source {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.65rem;
+    align-items: center;
+    margin: 1.25rem 0 0;
+    padding: 0.72rem 0.85rem;
+    border: 1px solid rgba(232, 88, 122, 0.16);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.54);
+    color: var(--ink-600);
+    font-size: 0.82rem;
+    line-height: 1.65;
+}
+
+.research-source span,
+.research-source strong {
+    flex: 0 0 auto;
+}
+
+.research-source span {
+    color: var(--sakura-500);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.research-source strong {
+    color: var(--ink-800);
+    font-size: 0.78rem;
+    font-weight: 800;
 }
 
 /* ============================================
@@ -3934,6 +3973,40 @@ body.theme-night .section-layers .layer-sequence__beam {
     text-transform: uppercase;
 }
 
+.project-return-link {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.32rem 0.55rem;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    margin: -0.35rem 0 1rem;
+    padding: 0.58rem 0.78rem;
+    border: 1px solid rgba(232, 88, 122, 0.2);
+    border-radius: 999px;
+    background: rgba(232, 88, 122, 0.08);
+    color: var(--ink-600);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.45;
+    transition: transform var(--duration-fast) ease, border-color var(--duration-fast) ease, background var(--duration-fast) ease;
+}
+
+.project-return-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(232, 88, 122, 0.36);
+    background: rgba(232, 88, 122, 0.13);
+}
+
+.project-return-link span {
+    flex: 0 0 auto;
+    color: var(--sakura-500);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 .project-cycle {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -4263,6 +4336,11 @@ body.theme-night .section-vision .research-log-cycle dd {
     color: var(--body-text);
 }
 
+body.theme-night .section-vision .research-log-card:target {
+    border-color: rgba(167, 139, 250, 0.5);
+    box-shadow: 0 24px 72px rgba(139, 92, 246, 0.22);
+}
+
 body.theme-night .section-vision .research-wisdom-trail {
     border-color: rgba(82, 183, 150, 0.26);
     background: rgba(82, 183, 150, 0.08);
@@ -4274,6 +4352,20 @@ body.theme-night .section-vision .research-wisdom-trail dt {
 
 body.theme-night .section-vision .research-wisdom-trail dd {
     color: var(--body-text);
+}
+
+body.theme-night .section-vision .research-source {
+    border-color: rgba(167, 139, 250, 0.22);
+    background: rgba(255, 255, 255, 0.055);
+    color: var(--body-text);
+}
+
+body.theme-night .section-vision .research-source span {
+    color: var(--purple-400);
+}
+
+body.theme-night .section-vision .research-source strong {
+    color: var(--header-text);
 }
 
 body.theme-night .section-vision .cycle-bridge-card {
@@ -4487,6 +4579,21 @@ body.theme-night .section-projects .project-action-note {
 
 body.theme-night .section-projects .project-action-note span {
     color: #d4a45f;
+}
+
+body.theme-night .section-projects .project-return-link {
+    background: rgba(232, 88, 122, 0.1);
+    border-color: rgba(232, 88, 122, 0.24);
+    color: var(--body-text);
+}
+
+body.theme-night .section-projects .project-return-link:hover {
+    background: rgba(232, 88, 122, 0.16);
+    border-color: rgba(232, 88, 122, 0.4);
+}
+
+body.theme-night .section-projects .project-return-link span {
+    color: var(--sakura-400);
 }
 
 body.theme-night .section-projects .project-cycle div {
@@ -4749,6 +4856,13 @@ body.theme-night .nav-links a::after {
         margin-bottom: 0.2rem;
     }
 
+    .project-return-link {
+        width: 100%;
+        border-radius: 12px;
+        font-size: 0.78rem;
+        overflow-wrap: anywhere;
+    }
+
     .project-cycle {
         grid-template-columns: 1fr;
     }
@@ -4817,6 +4931,14 @@ body.theme-night .nav-links a::after {
 
     .research-wisdom-trail dd {
         font-size: 0.8rem;
+        overflow-wrap: anywhere;
+    }
+
+    .research-source {
+        align-items: flex-start;
+        padding: 0.7rem;
+        border-radius: 12px;
+        font-size: 0.78rem;
         overflow-wrap: anywhere;
     }
 

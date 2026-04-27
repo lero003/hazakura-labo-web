@@ -104,6 +104,20 @@ window.HAZAKURA_CONTENT = {
                         text: '似た状況の人へ「このやり方を試すなら、まず何を見ますか？」と問い返す。'
                     }
                 ]
+            },
+            {
+                id: 'research-log-hazakura-anime',
+                eyebrow: 'Research Log 005',
+                theme: '物語の棚',
+                title: '物語の風景は、どんな問いを連れてくるか',
+                question: 'まだ形になっていないアニメ映画の一枚絵は、説明では届きにくい葉桜ラボの思想を問いへ戻せるのか。',
+                experiment: '夜明けの湖畔、桜、光、移ろいという要素を「場面」「感情」「次に作る小さな断片」に分け、Story SeedからResearch Logへ移して読む。',
+                finding: '物語の種は完成予定を語るより、どんな感覚を残し、次に何を試すかまで置くと、制作物ではなく探求の入口として巡りはじめる。',
+                sourceProject: {
+                    label: 'Story Seed',
+                    title: 'オリジナルアニメ映画',
+                    text: '風景の構想を、作品紹介で閉じずに次の問いへ戻す。'
+                }
             }
         ],
         cycleBridge: {
@@ -379,6 +393,11 @@ window.HAZAKURA_CONTENT = {
                 text: 'オリジナルアニメ映画「葉桜」。思いの中では、アニメ化してます。思いだけです。',
                 why: '葉桜ラボの思想を、説明ではなく物語と風景で伝える入口として温めている構想。',
                 surprise: 'まだ形のない構想でも、カードとして置くと次の制作やResearch Logへ戻る種になる。',
+                returnLink: {
+                    href: '#research-log-hazakura-anime',
+                    label: 'Research Log 005',
+                    text: '物語の棚から問いへ戻す'
+                },
                 tags: ['アニメ']
             }
         ]

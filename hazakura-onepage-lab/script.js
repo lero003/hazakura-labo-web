@@ -558,6 +558,7 @@
         const root = document.querySelector('[data-render="researchLogs"]');
         if (!root || !items) return;
         root.innerHTML = items.map((item) => {
+            const cardId = item.id ? ` id="${escapeHtml(item.id)}"` : '';
             const wisdomTrail = Array.isArray(item.wisdomTrail) && item.wisdomTrail.length
                 ? `<dl class="research-wisdom-trail" aria-label="${escapeHtml(item.title)}の知恵断片">
                     ${item.wisdomTrail.map((trail) => `
@@ -568,8 +569,15 @@
                     `).join('')}
                 </dl>`
                 : '';
+            const sourceProject = item.sourceProject
+                ? `<p class="research-source">
+                    <span>${escapeHtml(item.sourceProject.label || 'Source')}</span>
+                    <strong>${escapeHtml(item.sourceProject.title || '')}</strong>
+                    ${escapeHtml(item.sourceProject.text || '')}
+                </p>`
+                : '';
             return `
-            <article class="research-log-card" data-tilt>
+            <article class="research-log-card"${cardId} data-tilt>
                 <div class="research-log-meta">
                     <p class="research-log-eyebrow">${escapeHtml(item.eyebrow)}</p>
                     ${item.theme ? `<span class="research-log-theme">${escapeHtml(item.theme)}</span>` : ''}
@@ -590,6 +598,7 @@
                     </div>
                 </dl>
                 ${wisdomTrail}
+                ${sourceProject}
             </article>
         `;
         }).join('');
@@ -819,6 +828,12 @@
             const actionNote = item.actionNote
                 ? `<p class="project-action-note"><span>${escapeHtml(item.actionNote.label || 'Note')}</span>${escapeHtml(item.actionNote.text || '')}</p>`
                 : '';
+            const returnLink = item.returnLink
+                ? `<a class="project-return-link" href="${escapeHtml(item.returnLink.href || '#')}">
+                    <span>${escapeHtml(item.returnLink.label || 'Research Log')}</span>
+                    ${escapeHtml(item.returnLink.text || '')}
+                </a>`
+                : '';
             const cycle = item.cycle ? `
                 <dl class="project-cycle" aria-label="${escapeHtml(item.title)}の問い、実験、発見">
                     ${[
@@ -848,6 +863,7 @@
                         ${why}
                         ${surprise}
                         ${actionNote}
+                        ${returnLink}
                         ${cycle}
                         <div class="project-tags">
                             ${(item.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}

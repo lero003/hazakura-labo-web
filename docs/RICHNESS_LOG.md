@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Content / Access
+- Changed: Research Log に「物語の風景は、どんな問いを連れてくるか」を追加し、`オリジナルアニメ映画` の Story Seed カードから Research Log 005 へ戻れる細い導線を表示した。
+- Learned: 物語の構想は完成予定として置くだけでなく、風景から生まれる問いへ戻すと、Projects と Research Log の循環が読みやすくなる。
+- Next: Story Seed から戻したログが増えたら、Project 側の `returnLink` を棚ごとに標準化し、モバイルでリンクが詰まらないか実機確認する。
+
+## 2026-04-27
+
 - Focus: Access / Structure
 - Changed: Projects のリンク種別ガイドに外部サイト・保存ファイル・準備中の件数を表示し、リンク付きカードのCTA内に行き先ホスト名または保存ファイル名を出すようにした。
 - Learned: 制作物が増えてきたら、行動ボタンの文言だけでなく「どこへ行くか」「何件あるか」を同じデータ境界で示すと、外部移動と保存の違いを迷わず読める。
