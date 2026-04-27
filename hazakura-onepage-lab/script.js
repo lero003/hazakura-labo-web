@@ -718,8 +718,27 @@
         if (!root || !projectsGroup) return;
         const items = Array.isArray(projectsGroup.items) ? projectsGroup.items : [];
         const projectLanes = projectsGroup.lanes || [];
+        const getProjectActionType = (item) => {
+            if (!item.href) return 'status';
+            return item.actionType || (item.download ? 'download' : 'external');
+        };
+        const formatProjectDestination = (item) => {
+            if (!item.href) return '';
+            if (item.actionDestination) return item.actionDestination;
+            if (item.download) return item.href.split('/').pop() || item.href;
+            try {
+                return new URL(item.href, window.location.href).hostname || item.href;
+            } catch (error) {
+                return item.href;
+            }
+        };
         const laneCounts = items.reduce((counts, item) => {
             if (item.lane) counts[item.lane] = (counts[item.lane] || 0) + 1;
+            return counts;
+        }, {});
+        const actionTypeCounts = items.reduce((counts, item) => {
+            const actionType = getProjectActionType(item);
+            counts[actionType] = (counts[actionType] || 0) + 1;
             return counts;
         }, {});
         const laneFilters = projectLanes.length
@@ -757,19 +776,24 @@
                     <span class="project-action-guide__item project-action-guide__item--${escapeHtml(guide.type || 'info')}">
                         ${guide.icon ? `<span class="project-action-guide__icon" aria-hidden="true">${escapeHtml(guide.icon)}</span>` : ''}
                         <strong>${escapeHtml(guide.label)}</strong>
+                        <em>${escapeHtml(String(actionTypeCounts[guide.type] || 0))}件</em>
                         <span>${escapeHtml(guide.text)}</span>
                     </span>
                 `).join('')}
             </div>`
             : '';
         const cards = items.map((item) => {
-            const actionType = item.actionType || (item.download ? 'download' : 'external');
+            const actionType = getProjectActionType(item);
             const actionIcon = actionType === 'download' ? '↓' : '↗';
             const actionLabel = item.actionLabel || (actionType === 'download' ? 'DL' : '外部');
             const actionClass = `project-action project-action--${escapeHtml(actionType)}`;
             const actionText = escapeHtml(item.action || (actionType === 'download' ? 'Download' : 'Open'));
             const actionHint = item.actionHint
                 ? `<span class="project-action__hint">${escapeHtml(item.actionHint)}</span>`
+                : '';
+            const actionDestination = formatProjectDestination(item);
+            const actionDestinationText = actionDestination
+                ? `<span class="project-action__destination">${escapeHtml(actionDestination)}</span>`
                 : '';
             const actionAria = actionType === 'download'
                 ? `${item.title}をダウンロードする`
@@ -781,7 +805,7 @@
                     <span class="placeholder-text">${escapeHtml(item.placeholderText || item.title)}</span>
                 </div>`;
             const live = item.href
-                ? `<a href="${escapeHtml(item.href)}" class="${actionClass}" aria-label="${escapeHtml(actionAria)}" ${item.download ? 'download' : 'target="_blank" rel="noopener noreferrer"'}><span class="project-action__label">${escapeHtml(actionLabel)}</span><span class="project-action__copy"><span class="project-action__text">${actionText}</span>${actionHint}</span><span class="project-action__icon" aria-hidden="true">${actionIcon}</span></a>`
+                ? `<a href="${escapeHtml(item.href)}" class="${actionClass}" aria-label="${escapeHtml(actionAria)}" ${item.download ? 'download' : 'target="_blank" rel="noopener noreferrer"'}><span class="project-action__label">${escapeHtml(actionLabel)}</span><span class="project-action__copy"><span class="project-action__text">${actionText}</span>${actionHint}${actionDestinationText}</span><span class="project-action__icon" aria-hidden="true">${actionIcon}</span></a>`
                 : `<span class="project-live__badge">${escapeHtml(item.status || 'Concept')}</span>`;
             const lane = item.lane
                 ? `<span class="project-lane">${escapeHtml(item.lane)}</span>`

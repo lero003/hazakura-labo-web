@@ -3604,6 +3604,20 @@ body.theme-night .section-layers .layer-sequence__beam {
     letter-spacing: 0.06em;
 }
 
+.project-action-guide__item em {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.25rem;
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: rgba(26, 26, 46, 0.05);
+    color: var(--ink-500);
+    font-style: normal;
+    font-size: 0.64rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
 .project-action-guide__item--download {
     border-color: rgba(90, 158, 95, 0.2);
 }
@@ -3616,6 +3630,16 @@ body.theme-night .section-layers .layer-sequence__beam {
 .project-action-guide__item--download .project-action-guide__icon {
     background: rgba(90, 158, 95, 0.12);
     color: var(--green-500);
+}
+
+.project-action-guide__item--status {
+    border-color: rgba(167, 139, 250, 0.2);
+}
+
+.project-action-guide__item--status strong,
+.project-action-guide__item--status .project-action-guide__icon {
+    background: rgba(167, 139, 250, 0.12);
+    color: var(--purple-500);
 }
 
 .project-card {
@@ -3800,6 +3824,16 @@ body.theme-night .section-layers .layer-sequence__beam {
     color: currentColor;
     font-size: 0.6rem;
     opacity: 0.62;
+}
+
+.project-action__destination {
+    max-width: 10.5rem;
+    color: currentColor;
+    font-size: 0.58rem;
+    opacity: 0.52;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .project-action__icon {
@@ -4370,6 +4404,11 @@ body.theme-night .section-projects .project-action-guide__item strong {
     color: var(--sakura-400);
 }
 
+body.theme-night .section-projects .project-action-guide__item em {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.58);
+}
+
 body.theme-night .section-projects .project-action-guide__icon {
     background: rgba(232, 88, 122, 0.12);
     color: var(--sakura-400);
@@ -4387,6 +4426,16 @@ body.theme-night .section-projects .project-action-guide__item--download strong 
 body.theme-night .section-projects .project-action-guide__item--download .project-action-guide__icon {
     background: rgba(82, 183, 150, 0.12);
     color: var(--green-400);
+}
+
+body.theme-night .section-projects .project-action-guide__item--status {
+    border-color: rgba(167, 139, 250, 0.3);
+}
+
+body.theme-night .section-projects .project-action-guide__item--status strong,
+body.theme-night .section-projects .project-action-guide__item--status .project-action-guide__icon {
+    background: rgba(167, 139, 250, 0.14);
+    color: var(--purple-400);
 }
 
 body.theme-night .section-projects .project-thumb-placeholder {
@@ -4586,7 +4635,8 @@ body.theme-night .nav-links a::after {
         overflow-wrap: anywhere;
     }
 
-    .project-action-guide__item strong {
+    .project-action-guide__item strong,
+    .project-action-guide__item em {
         flex: 0 0 auto;
     }
 
@@ -4645,6 +4695,10 @@ body.theme-night .nav-links a::after {
     .project-action {
         align-items: center;
         min-height: 2.2rem;
+    }
+
+    .project-action__destination {
+        max-width: min(12rem, 54vw);
     }
 
     .project-title {

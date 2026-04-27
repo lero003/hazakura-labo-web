@@ -243,6 +243,12 @@ window.HAZAKURA_CONTENT = {
                 icon: '↓',
                 label: '保存ファイル',
                 text: 'ファイルを手元へ保存します。注意文を読んでから試してください。'
+            },
+            {
+                type: 'status',
+                icon: '・',
+                label: '準備中',
+                text: 'まだ外へ移動しない、構想や制作途中のカードです。'
             }
         ],
         items: [
