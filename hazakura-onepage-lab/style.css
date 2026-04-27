@@ -1959,6 +1959,46 @@ a {
     line-height: 1.75;
 }
 
+.research-paper-source {
+    display: grid;
+    gap: 0.2rem;
+    margin-top: 0.75rem;
+    padding: 0.68rem 0.72rem;
+    border: 1px solid rgba(77, 161, 169, 0.24);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.58);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.22s ease, transform 0.22s ease, background 0.22s ease;
+}
+
+.research-paper-source:hover {
+    transform: translateY(-1px);
+    border-color: rgba(77, 161, 169, 0.42);
+    background: rgba(255, 255, 255, 0.78);
+}
+
+.research-paper-source span {
+    color: var(--green-500);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.research-paper-source strong {
+    color: var(--ink-800);
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
+.research-paper-source em {
+    color: var(--ink-600);
+    font-size: 0.74rem;
+    font-style: normal;
+    line-height: 1.65;
+}
+
 .research-paper-sample__notes {
     display: grid;
     gap: 0.55rem;
@@ -4695,6 +4735,28 @@ body.theme-night .section-vision .research-paper-sample__notes dd {
     color: var(--body-text);
 }
 
+body.theme-night .section-vision .research-paper-source {
+    border-color: rgba(77, 161, 169, 0.26);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+body.theme-night .section-vision .research-paper-source:hover {
+    border-color: rgba(77, 161, 169, 0.44);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+body.theme-night .section-vision .research-paper-source span {
+    color: var(--green-400);
+}
+
+body.theme-night .section-vision .research-paper-source strong {
+    color: var(--header-text);
+}
+
+body.theme-night .section-vision .research-paper-source em {
+    color: var(--body-text);
+}
+
 body.theme-night .section-vision .research-paper-sample__notes div {
     border-left-color: rgba(167, 139, 250, 0.28);
 }
@@ -5366,7 +5428,8 @@ body.theme-night .nav-links a::after {
     }
 
     .research-paper-sample__copy p,
-    .research-paper-sample__notes dd {
+    .research-paper-sample__notes dd,
+    .research-paper-source {
         overflow-wrap: anywhere;
     }
 

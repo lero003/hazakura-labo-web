@@ -583,6 +583,13 @@
                         <span>${escapeHtml(item.paperSample.eyebrow || 'Paper memo')}</span>
                         <strong>${escapeHtml(item.paperSample.title || '')}</strong>
                         <p>${escapeHtml(item.paperSample.text || '')}</p>
+                        ${item.paperSample.source ? `
+                            <a class="research-paper-source" href="${escapeHtml(item.paperSample.source.url || '#')}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml((item.paperSample.source.title || item.paperSample.source.label || '論文') + 'を開く')}">
+                                <span>${escapeHtml(item.paperSample.source.label || 'Source')}</span>
+                                <strong>${escapeHtml(item.paperSample.source.title || '')}</strong>
+                                ${item.paperSample.source.note ? `<em>${escapeHtml(item.paperSample.source.note)}</em>` : ''}
+                            </a>
+                        ` : ''}
                     </div>
                     ${Array.isArray(item.paperSample.notes) && item.paperSample.notes.length ? `
                         <dl class="research-paper-sample__notes">

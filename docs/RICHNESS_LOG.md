@@ -3,6 +3,13 @@
 ## 2026-04-27
 
 - Focus: Content / Access
+- Changed: Research Log 006 の `paperSample` に実論文 `Generative Agents: Interactive Simulacra of Human Behavior` と arXiv URL を追加し、読む前の3分メモを地域LLM・AI万屋へ返す問いとして具体化した。あわせて `paperSample.source` を表示する `research-paper-source` を追加し、出典リンクが本文メモと分かれて読めるようにした。
+- Learned: 実論文のURLを1件だけ置く場合も、リンク単体ではなく「どの語を拾い、どの実験へ戻すか」を同じデータ境界に持たせると、arxiv_scout が検索道具ではなく Research Log へ巡る入口として読める。
+- Next: 次回は `paperSample.source` が複数ログへ増えても重くならないように、出典表示のラベルやリンク色を Projects の外部リンク表記と揃えるか検討する。
+
+## 2026-04-27
+
+- Focus: Content / Access
 - Changed: Research Log 006 に `paperSample` を追加し、arxiv_scout から戻ってきた論文メモの最小単位を「拾う語 / 問いへ戻す / 次の実験」で読めるようにした。あわせて制作物カードの Why / Origin / Surprise / Next に共通の `project-note` を付け、モバイル幅でもラベルと本文が詰まりにくい注釈レイアウトへ整えた。
 - Learned: 論文探索は実リンクを急いで増やすより、まず「1本を読む前に何を残すか」の型を置くほうが、Research Log と Magic Tool の循環に接続しやすい。
 - Next: 次回は `paperSample` に実際の論文タイトルやURLを1件だけ足し、外部リンク表記とResearch Log内の出典表示が重くならないか確認する。

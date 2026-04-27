@@ -161,20 +161,26 @@ window.HAZAKURA_CONTENT = {
                 },
                 paperSample: {
                     eyebrow: 'Paper memo seed',
-                    title: '1本を読む前の、3分メモ',
-                    text: 'まず論文を読み切ろうとせず、気になる語と次に試す仮説だけを小さく残す。',
+                    title: 'Generative Agentsを読む前の、3分メモ',
+                    text: '論文を読み切る前に、地域LLMやAI万屋へ返せそうな「記憶」「日課」「ふるまい」の語だけを先に拾う。',
+                    source: {
+                        label: 'arXiv 2304.03442',
+                        title: 'Generative Agents: Interactive Simulacra of Human Behavior',
+                        url: 'https://arxiv.org/abs/2304.03442',
+                        note: '人のような日課や記憶を持つエージェントの論文を、地域の知恵棚へ応用できるか眺める。'
+                    },
                     notes: [
                         {
                             label: '拾う語',
-                            text: 'タイトルや要約で心が止まった概念を一つだけ選ぶ。'
+                            text: '記憶の流れ、日課、ふるまいの連鎖という語が、AI万屋の伝令役や地域LLMの知恵棚に触れる。'
                         },
                         {
                             label: '問いへ戻す',
-                            text: 'その語が、自分の制作物やResearch Logのどこに触れるかを書く。'
+                            text: '地域の人から預かった言葉も、単発の回答ではなく、その人らしい背景や次の行動へ結べるのかを問う。'
                         },
                         {
                             label: '次の実験',
-                            text: '実装、読み比べ、会話メモのどれで試すかを一行で決める。'
+                            text: '寺子屋の相談メモを一つ想定し、記憶、反省、次に声をかける相手の三行へ分けてみる。'
                         }
                     ]
                 }
