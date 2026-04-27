@@ -93,8 +93,8 @@ window.HAZAKURA_CONTENT = {
     visionsGroup: {
         entryGuide: {
             eyebrow: 'Community interface seed',
-            title: '問い、記憶、古い道具を預ける入口',
-            text: '将来のフォームでは、ただ送信欄を置くのではなく、地域の知恵が循環しやすい三つの預け方として受け取ります。',
+            title: '問い、記憶、古い道具、地域の知恵を預ける入口',
+            text: '将来のフォームでは、ただ送信欄を置くのではなく、地域の知恵が循環しやすい四つの預け方として受け取ります。',
             kinds: [
                 {
                     kind: 'question',
@@ -116,6 +116,13 @@ window.HAZAKURA_CONTENT = {
                     text: 'AIともう一度めぐらせたいラジオ、写真、ガジェット。',
                     flow: '持ち主の物語と一緒に、再生ワークショップへつなぐ。',
                     target: 'レトロ・ガジェット再生'
+                },
+                {
+                    kind: 'knowledge',
+                    label: '地域の知恵',
+                    text: '暮らしの工夫、昔の仕事、土地の言い回しや小さな手順。',
+                    flow: '地域LLMの知恵棚へ置き、次の問いへ返せる断片にする。',
+                    target: '地域LLM'
                 }
             ]
         },
@@ -159,6 +166,11 @@ window.HAZAKURA_CONTENT = {
                 title: '地域LLM',
                 jp: '知恵を巡らせる',
                 text: 'Research Logや自分史、寺子屋の問いを少しずつ蓄え、地域の言葉で答えを返す小さな知恵の循環炉。',
+                entry: {
+                    kind: 'knowledge',
+                    label: 'まず預けたい地域の知恵',
+                    prompt: '暮らしの中で、次の人に渡したい工夫や言葉はありますか？'
+                },
                 tag: 'CMS seed'
             },
             {
@@ -278,6 +290,23 @@ window.HAZAKURA_CONTENT = {
                     finding: '情緒は装飾ではなく、問いの置き方と沈黙の残し方に宿る。'
                 },
                 tags: ['Research Log', 'Prompt', '理と情', 'Seed']
+            },
+            {
+                lane: 'Story Seed',
+                type: 'Knowledge Seed',
+                title: '地域LLM 知恵棚（構想メモ）',
+                placeholderIcon: '🗺️',
+                placeholderText: 'local wisdom shelf',
+                status: 'Seed',
+                text: '自分史、寺子屋、AI万屋の相談からこぼれた地域の言葉や手順を、次の問いへ返せる小さな知恵棚として残す構想。',
+                why: '循環型CMSを「情報を保存する場所」ではなく、地域の言葉で返事を育てる器として考えるため。',
+                surprise: '大きなモデルを先に作らなくても、預かった知恵を問い・背景・使いどころに分けるだけで、地域LLMの輪郭が見え始める。',
+                cycle: {
+                    question: '地域の知恵を、どうすれば次の人の問いへ返せる形で残せるか。',
+                    experiment: '預かった言葉を、由来、場面、次に使えそうな問いの三つに分けて短いカードへ整える。',
+                    finding: '知恵棚は検索用データではなく、誰かの困りごとへ戻るための小さな橋として育てると読みやすい。'
+                },
+                tags: ['地域LLM', '循環型CMS', 'Story Seed', 'AI万屋']
             },
             {
                 lane: 'Magic Tool',
