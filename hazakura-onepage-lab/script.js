@@ -739,6 +739,7 @@
                 <span class="vision-entry-question__label">${escapeHtml(entry.label || 'まず預けたいこと')}</span>
                 <span class="vision-entry-question__prompt">${escapeHtml(entry.prompt || '')}</span>
                 ${renderVisionEntryQuestionFields(entry.fields)}
+                ${renderVisionEntryHandoff(entry.handoff)}
             </div>
         `;
     }
@@ -749,6 +750,16 @@
             <ul class="vision-entry-question__fields" aria-label="受付メモ">
                 ${fields.map((field) => `<li>${escapeHtml(field)}</li>`).join('')}
             </ul>
+        `;
+    }
+
+    function renderVisionEntryHandoff(handoff) {
+        if (!handoff) return '';
+        return `
+            <p class="vision-entry-question__handoff">
+                <span>${escapeHtml(handoff.label || '預けたあと')}</span>
+                ${escapeHtml(handoff.text || '')}
+            </p>
         `;
     }
 
@@ -928,7 +939,7 @@
             ` : '';
             const cardClass = item.image ? 'project-card' : 'project-card project-card--placeholder';
             return `
-                <article class="${cardClass}" data-project-card data-lane="${escapeHtml(item.lane || '')}" data-tilt>
+                <article class="${cardClass}" data-project-card data-lane="${escapeHtml(item.lane || '')}" data-action-type="${escapeHtml(actionType)}" data-tilt>
                     <div class="project-thumb">${thumb}</div>
                     <div class="project-info">
                         <div class="project-meta-row">
@@ -967,7 +978,29 @@
             copy[lane.label] = lane.filterText || lane.text || '';
             return copy;
         }, {});
+        const actionLabels = Array.isArray(projectsGroup.actionGuide)
+            ? projectsGroup.actionGuide.reduce((labels, guide) => {
+                if (guide.type) labels[guide.type] = guide.label || guide.type;
+                return labels;
+            }, {})
+            : {};
         const overview = projectsGroup.overview || '制作物を棚ごとに眺められます。';
+        const buildLaneStatus = (selectedLane) => {
+            const base = selectedLane === 'all' ? overview : laneCopy[selectedLane] || overview;
+            const visibleCards = cards.filter((card) => selectedLane === 'all' || card.dataset.lane === selectedLane);
+            const actionCounts = visibleCards.reduce((counts, card) => {
+                const actionType = card.dataset.actionType || 'status';
+                counts[actionType] = (counts[actionType] || 0) + 1;
+                return counts;
+            }, {});
+            const actionSummary = ['external', 'download', 'status']
+                .filter((type) => actionCounts[type])
+                .map((type) => `${actionLabels[type] || type}${actionCounts[type]}件`)
+                .join(' / ');
+            return actionSummary
+                ? `${base} 表示中は${visibleCards.length}件（${actionSummary}）。`
+                : `${base} 表示中は${visibleCards.length}件です。`;
+        };
 
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
@@ -986,9 +1019,10 @@
                     guide.classList.toggle('is-selected', isSelected);
                     guide.classList.toggle('is-muted', selectedLane !== 'all' && !isSelected);
                 });
-                if (status) status.textContent = selectedLane === 'all' ? overview : laneCopy[selectedLane] || overview;
+                if (status) status.textContent = buildLaneStatus(selectedLane);
             });
         });
+        if (status) status.textContent = buildLaneStatus('all');
     }
 
     function renderContent() {

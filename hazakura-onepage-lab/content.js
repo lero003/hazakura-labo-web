@@ -242,7 +242,11 @@ window.HAZAKURA_CONTENT = {
                     kind: 'question',
                     label: 'まず預けたい問い',
                     prompt: 'いま誰かに教えたいこと、もう一度学びたいことは何ですか？',
-                    fields: ['学び直したいこと', '教えられる経験', '一緒に試したい相手']
+                    fields: ['学び直したいこと', '教えられる経験', '一緒に試したい相手'],
+                    handoff: {
+                        label: '預けたあとの巡り',
+                        text: '問いをResearch Logへ仮置きし、寺子屋で試す小さな対話へ返す。'
+                    }
                 }
             },
             {

@@ -2383,6 +2383,24 @@ body.theme-night .section-vision {
     overflow-wrap: anywhere;
 }
 
+.vision-entry-question__handoff {
+    margin-top: 0.75rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba(var(--entry-accent-rgb), 0.18);
+    color: var(--ink-500);
+    font-size: 0.76rem;
+    line-height: 1.7;
+}
+
+.vision-entry-question__handoff span {
+    display: block;
+    margin-bottom: 0.12rem;
+    color: var(--entry-accent, var(--sakura-500));
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
 .vision-card .vision-tag {
     display: inline-block;
     margin-top: 1.2rem;
@@ -4537,6 +4555,15 @@ body.theme-night .section-vision .vision-entry-question__fields li {
     color: var(--body-text);
 }
 
+body.theme-night .section-vision .vision-entry-question__handoff {
+    border-top-color: rgba(var(--entry-accent-rgb), 0.24);
+    color: var(--body-text);
+}
+
+body.theme-night .section-vision .vision-entry-question__handoff span {
+    color: var(--entry-accent);
+}
+
 body.theme-night .section-vision .vision-entry-guide {
     border-color: rgba(139, 92, 246, 0.24);
     background:
@@ -5591,6 +5618,13 @@ body.theme-night .nav-links a::after {
 
     .vision-entry-question__fields {
         gap: 0.24rem;
+    }
+
+    .vision-entry-question__handoff {
+        margin-top: 0.65rem;
+        padding-top: 0.55rem;
+        font-size: 0.74rem;
+        overflow-wrap: anywhere;
     }
 
     .quote-prelude {
