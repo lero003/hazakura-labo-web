@@ -482,7 +482,7 @@
     const bookGlareEl = document.querySelector('.book-glare');
 
     function refreshHoverTargets() {
-        hoverTargets = Array.from(document.querySelectorAll('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card, .cycle-bridge-card'));
+        hoverTargets = Array.from(document.querySelectorAll('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card, .cycle-bridge-card, .quote-prelude-card'));
     }
 
     function escapeHtml(value) {
@@ -707,10 +707,20 @@
         if (!entry) return '';
         if (typeof entry === 'string') return `<p class="vision-entry-question">${escapeHtml(entry)}</p>`;
         return `
-            <p class="vision-entry-question" data-entry-kind="${escapeHtml(entry.kind || 'seed')}">
+            <div class="vision-entry-question" data-entry-kind="${escapeHtml(entry.kind || 'seed')}">
                 <span class="vision-entry-question__label">${escapeHtml(entry.label || 'まず預けたいこと')}</span>
                 <span class="vision-entry-question__prompt">${escapeHtml(entry.prompt || '')}</span>
-            </p>
+                ${renderVisionEntryQuestionFields(entry.fields)}
+            </div>
+        `;
+    }
+
+    function renderVisionEntryQuestionFields(fields) {
+        if (!Array.isArray(fields) || !fields.length) return '';
+        return `
+            <ul class="vision-entry-question__fields" aria-label="受付メモ">
+                ${fields.map((field) => `<li>${escapeHtml(field)}</li>`).join('')}
+            </ul>
         `;
     }
 
@@ -730,6 +740,29 @@
         if (!researchGroup) return;
         renderResearchLogs(researchGroup.logs);
         renderCycleBridge(researchGroup.cycleBridge);
+    }
+
+    function renderQuotePrelude(item) {
+        const root = document.querySelector('[data-render="quotePrelude"]');
+        if (!root || !item) return;
+        const steps = Array.isArray(item.steps) && item.steps.length
+            ? `<ol class="quote-prelude-steps">
+                ${item.steps.map((step) => `
+                    <li>
+                        <span>${escapeHtml(step.label || '')}</span>
+                        ${escapeHtml(step.text || '')}
+                    </li>
+                `).join('')}
+            </ol>`
+            : '';
+        root.innerHTML = `
+            <article class="quote-prelude-card" data-tilt>
+                <p class="quote-prelude-eyebrow">${escapeHtml(item.eyebrow || 'Circulation note')}</p>
+                <h3 class="quote-prelude-title">${escapeHtml(item.title || '')}</h3>
+                <p class="quote-prelude-text">${escapeHtml(item.text || '')}</p>
+                ${steps}
+            </article>
+        `;
     }
 
     function renderProjects(projectsGroup) {
@@ -935,6 +968,7 @@
         renderResearchGroup(content.researchGroup);
         renderVisions(content.visionsGroup || content.visions);
         renderProjects(content.projectsGroup);
+        renderQuotePrelude(content.quotePrelude);
         refreshHoverTargets();
     }
 
@@ -946,7 +980,7 @@
 
         // Card hover — elementFromPoint (no layout thrashing)
         const el = document.elementFromPoint(e.clientX, e.clientY);
-        const hoverCard = el?.closest('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card, .cycle-bridge-card');
+        const hoverCard = el?.closest('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card, .cycle-bridge-card, .quote-prelude-card');
         for (const card of hoverTargets) {
             if (card === hoverCard) {
                 const rect = card.getBoundingClientRect();
@@ -1045,7 +1079,7 @@
     // ===== Scroll animations =====
     function initScrollAnimations() {
         if (prefersReducedMotion) {
-            document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .cycle-bridge-card, .section-title, .project-card, .book-showcase, .quote-block').forEach(el => el.classList.add('visible'));
+            document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-card, .book-showcase, .quote-block').forEach(el => el.classList.add('visible'));
             document.querySelectorAll('.process-step, .process-connector, .stat-item').forEach(el => el.classList.add('visible'));
             document.querySelectorAll('.stat-number').forEach(setCounterValue);
             return;
@@ -1085,7 +1119,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .cycle-bridge-card, .section-title, .project-card').forEach(el => observer.observe(el));
+        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-card').forEach(el => observer.observe(el));
         document.querySelectorAll('.book-showcase, .quote-block').forEach(el => observer.observe(el));
         document.querySelectorAll('.stats-grid').forEach(el => observer.observe(el));
         document.querySelectorAll('.process-flow').forEach(el => observer.observe(el));

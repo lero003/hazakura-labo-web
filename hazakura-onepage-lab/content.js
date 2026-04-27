@@ -57,6 +57,25 @@ window.HAZAKURA_CONTENT = {
         { icon: '💡', label: '発見' },
         { icon: '🌸', label: '循環' }
     ],
+    quotePrelude: {
+        eyebrow: 'Before the last poem',
+        title: 'ページの最後で、問いをもう一度入口へ戻す。',
+        text: '読み終えたあとに残った小さな気配を、Research Log、制作物、地域の知恵へ返すための余白です。',
+        steps: [
+            {
+                label: '読む',
+                text: '思想、本、道具、構想のどこで心が止まったかを拾う。'
+            },
+            {
+                label: '預ける',
+                text: '問い・記憶・古い道具・地域の知恵のどれとして残せるかを見る。'
+            },
+            {
+                label: '巡らせる',
+                text: '次のResearch LogやMagic Toolへ戻し、また一枚の中で育てる。'
+            }
+        ]
+    },
     researchGroup: {
         logs: [
             {
@@ -175,7 +194,8 @@ window.HAZAKURA_CONTENT = {
                 entry: {
                     kind: 'question',
                     label: 'まず預けたい問い',
-                    prompt: 'いま誰かに教えたいこと、もう一度学びたいことは何ですか？'
+                    prompt: 'いま誰かに教えたいこと、もう一度学びたいことは何ですか？',
+                    fields: ['学び直したいこと', '教えられる経験', '一緒に試したい相手']
                 }
             },
             {

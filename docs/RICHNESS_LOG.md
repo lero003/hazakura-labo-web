@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Narrative / Content
+- Changed: Quote セクション直前に `quotePrelude` を追加し、読む・預ける・巡らせるの三段で、最後の引用へ入る前に問いがもう一度入口へ戻る余韻を置いた。あわせて AI寺子屋カードの `entry.fields` を表示できるようにし、将来フォーム化する時の受付メモをカード側にも持たせた。
+- Learned: 終盤の詩へ向かう前に短い循環メモを挟むと、Visionで増えた入口群がページの余韻とつながり、RFPの「循環する魔法の拠点」として読み終わりが閉じすぎない。
+- Next: Quote 前の `quotePrelude` が重く感じる場合は、Research Log や Projects の状態に応じて三段メモの文言だけを差し替えられるようにする。
+
+## 2026-04-27
+
 - Focus: Content / Access
 - Changed: Projects の全カードに `nextStep` を追加し、道具・問い・物語が次にどこへ巡るかを短い Next メモとして表示した。あわせて画像なしの仮サムネイルへ `placeholderAlt` を持たせ、見た目だけのカードでも説明をデータ側で点検できるようにした。
 - Learned: 制作物カードは Why / Surprise だけでなく Next まで揃えると、RFPの「作って終わりではなく、問いへ戻る」循環が一覧の中で読みやすくなる。
