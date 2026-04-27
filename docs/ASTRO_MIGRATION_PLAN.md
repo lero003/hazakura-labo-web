@@ -40,11 +40,11 @@
 - 見出しの一文字reveal用DOM生成は `src/scripts/text-reveal.js` に切り出し、IntersectionObserver側の表示タイミングは既存 `script.js` に残す。
 - Heroのパララックス更新は `src/scripts/hero-parallax.js` に切り出し、縮小モーション時の停止判断は既存初期化側に残す。
 - カード表示・統計カウンター・Process表示のIntersectionObserver管理は `src/scripts/scroll-animations.js` に切り出し、既存DOMとvisible classの契約は維持する。
-- Canvasのviewport寸法同期は `src/scripts/canvas-size.js` に切り出し、花びら/Auroraの描画ロジックは既存 `script.js` に残す。
+- Canvasのviewport寸法同期は `src/scripts/canvas-size.js` に切り出し、描画エンジン側のresize前処理を薄くする。
 - ページ非表示時の停止/再開フックは `src/scripts/visibility-playback.js` に切り出し、実際のCanvas停止/再開処理は既存 `script.js` のコールバックに残す。
 - resizeイベントのデバウンス登録は `src/scripts/resize-listener.js` に切り出し、Canvas再初期化やゾーン更新は既存 `script.js` のコールバックに残す。
-- アニメーションフレームの複数キャンセルは `src/scripts/animation-frames.js` に切り出し、描画ループ自体は既存 `script.js` に残す。
-- Canvasのクリア処理は `src/scripts/canvas-clear.js` に切り出し、reduced motion時の停止処理から呼び出す。
+- アニメーションフレームの複数キャンセルは `src/scripts/animation-frames.js` に切り出し、各描画エンジンの停止処理から呼び出す。
+- Canvasのクリア処理は `src/scripts/canvas-clear.js` に切り出し、reduced motion時は描画エンジン側から呼び出す。
 - カーソルリングのhover class制御は `src/scripts/cursor-hover.js` に切り出し、マウス座標やカードtilt処理は既存 `script.js` に残す。
 - カードtilt用の `--mouse-x` / `--mouse-y` 更新は `src/scripts/card-hover-fields.js` に切り出し、mousemove内の風入力やBook 3D処理は既存 `script.js` に残す。
 - 書籍表紙の3D tiltとglare更新は `src/scripts/book-tilt.js` に切り出し、mousemove内から `update()` だけを呼ぶ。
@@ -52,7 +52,8 @@
 - scrollイベントのrequestAnimationFrameスロットリングは `src/scripts/scroll-ticker.js` に切り出し、進捗・Hero・ゾーン更新は既存 `script.js` のコールバックに残す。
 - Aurora canvasの生成・波生成・描画ループ・停止/クリアは `src/scripts/aurora-canvas.js` に切り出し、ゾーン側からopacityだけを更新する。
 - Moonゾーンのshooting starsは `src/scripts/shooting-stars.js` に切り出し、Sakura描画ループから `ensure()` / `update()` だけを呼ぶ。
-- カスタムカーソルのdot/ring追従ループは `src/scripts/cursor-follow.js` に切り出し、Petal反発用の座標値だけ既存 `script.js` に残す。
+- カスタムカーソルのdot/ring追従ループは `src/scripts/cursor-follow.js` に切り出し、pointer入力から座標だけ渡す。
+- Sakura/Petalの生成・描画ループ・マウス反発・ゾーン別Firefly/Micro変化は `src/scripts/sakura-petals.js` に切り出し、Moon補助演出だけコールバックで連携する。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。

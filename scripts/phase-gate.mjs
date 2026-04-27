@@ -66,6 +66,7 @@ const requiredAssets = [
   'dist/aurora-canvas.js',
   'dist/shooting-stars.js',
   'dist/cursor-follow.js',
+  'dist/sakura-petals.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -109,6 +110,7 @@ const scrollTickerJs = readFile('dist/scroll-ticker.js');
 const auroraCanvasJs = readFile('dist/aurora-canvas.js');
 const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
+const sakuraPetalsJs = readFile('dist/sakura-petals.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -124,8 +126,6 @@ assert('legacy script delegates scroll animations', scriptJs.includes('HazakuraS
 assert('legacy script delegates canvas size', scriptJs.includes('HazakuraCanvasSize?.resize'));
 assert('legacy script delegates visibility playback', scriptJs.includes('HazakuraVisibilityPlayback?.init'));
 assert('legacy script delegates resize listener', scriptJs.includes('HazakuraResizeListener?.init'));
-assert('legacy script delegates animation frames', scriptJs.includes('HazakuraAnimationFrames?.cancelAll'));
-assert('legacy script delegates canvas clear', scriptJs.includes('HazakuraCanvasClear?.clearAll'));
 assert('legacy script delegates cursor hover', scriptJs.includes('HazakuraCursorHover?.init'));
 assert('legacy script delegates card hover fields', scriptJs.includes('HazakuraCardHoverFields?.create'));
 assert('legacy script delegates book tilt', scriptJs.includes('HazakuraBookTilt?.create'));
@@ -134,6 +134,7 @@ assert('legacy script delegates scroll ticker', scriptJs.includes('HazakuraScrol
 assert('legacy script delegates aurora canvas', scriptJs.includes('HazakuraAuroraCanvas?.create'));
 assert('legacy script delegates shooting stars', scriptJs.includes('HazakuraShootingStars?.create'));
 assert('legacy script delegates cursor follow', scriptJs.includes('HazakuraCursorFollow?.create'));
+assert('legacy script delegates sakura petals', scriptJs.includes('HazakuraSakuraPetals?.create'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -159,6 +160,7 @@ assert('scroll ticker script exposes global', scrollTickerJs.includes('window.Ha
 assert('aurora canvas script exposes global', auroraCanvasJs.includes('window.HazakuraAuroraCanvas'));
 assert('shooting stars script exposes global', shootingStarsJs.includes('window.HazakuraShootingStars'));
 assert('cursor follow script exposes global', cursorFollowJs.includes('window.HazakuraCursorFollow'));
+assert('sakura petals script exposes global', sakuraPetalsJs.includes('window.HazakuraSakuraPetals'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {

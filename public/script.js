@@ -12,277 +12,6 @@
     // ===== Sakura/Firefly Canvas =====
     const canvas = document.getElementById('sakura-canvas');
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let petals = [];
-    let animationId;
-    let mouseX = 0, mouseY = 0;
-    let targetWindX = 0;
-    let windX = 0;
-
-    class Petal {
-        constructor(layer) {
-            this.layer = layer || (Math.random() < 0.4 ? 0 : (Math.random() < 0.65 ? 1 : 2));
-            this.reset();
-            this.y = Math.random() * canvas.height;
-            // Firefly morph
-            this.isFirefly = false;
-            this.fireflyGlow = 0;
-            this.fireflyGlowDir = 1;
-            this.fireflyHue = 60 + Math.random() * 30;
-            this.fireflyPhase = Math.random() * Math.PI * 2;
-            // Aurora micro-particle
-            this.isMicro = false;
-            this.microAlpha = 0;
-        }
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = -20 - Math.random() * 50;
-            this.size = 4 + Math.random() * 8 + this.layer * 2;
-            this.speedY = 0.3 + Math.random() * 0.6 + this.layer * 0.15;
-            this.speedX = (Math.random() - 0.5) * 0.4;
-            this.rotation = Math.random() * Math.PI * 2;
-            this.rotationSpeed = (Math.random() - 0.5) * 0.03;
-            this.swing = 0.5 + Math.random() * 2;
-            this.swingSpeed = 0.003 + Math.random() * 0.008;
-            this.swingOffset = Math.random() * Math.PI * 2;
-            this.opacity = 0.2 + Math.random() * 0.5 + this.layer * 0.1;
-            this.depth = 0.5 + this.layer * 0.3;
-            // PERFECT pink sakura
-            const hue = 340 + Math.random() * 30;
-            const sat = 50 + Math.random() * 40;
-            const light = 75 + Math.random() * 20;
-            this.color = `hsla(${hue}, ${sat}%, ${light}%, ${this.opacity})`;
-            this.hue = hue;
-            this.sat = sat;
-            this.light = light;
-            this.targetHue = hue;
-            this.targetSat = sat;
-            this.targetLight = light;
-            this.targetOpacity = this.opacity;
-            this.targetSize = this.size;
-        }
-        update(time, zone) {
-            // Riverion mode
-            if (this.isFirefly) {
-                this.fireflyGlow += this.fireflyGlowDir * 0.015;
-                if (this.fireflyGlow >= 1) this.fireflyGlowDir = -1;
-                if (this.fireflyGlow <= 0) this.fireflyGlowDir = 1;
-                this.x += Math.sin(time * 0.5 + this.fireflyPhase) * 0.3;
-                this.y -= 0.05 + Math.sin(time * 0.8 + this.fireflyPhase) * 0.1;
-                if (this.y < -30) this.y = canvas.height + 30;
-                if (this.y > canvas.height + 30) this.y = -30;
-                if (this.x < -30) this.x = canvas.width + 30;
-                if (this.x > canvas.width + 30) this.x = -30;
-                return;
-            }
-
-            // Micro mode (aura zone)
-            if (this.isMicro) {
-                this.fireflyGlow += this.fireflyGlowDir * 0.02;
-                if (this.fireflyGlow >= 1) this.fireflyGlowDir = -1;
-                if (this.fireflyGlow <= 0) this.fireflyGlowDir = 1;
-                this.x += Math.sin(time * 0.3 + this.fireflyPhase) * 0.6;
-                this.y += Math.sin(time * 0.4 + time * 0.2) * 0.05;
-                if (this.x < -20) this.x = canvas.width + 20;
-                if (this.x > canvas.width + 20) this.x = -20;
-                return;
-            }
-
-            // Normal sakura
-            this.y += this.speedY;
-            windX += (targetWindX - windX) * 0.02;
-            this.x += this.speedX + windX * this.depth +
-                Math.sin(time * this.swingSpeed + this.swingOffset) * this.swing * 0.3;
-
-            // Mouse repulsion
-            const dx = this.x - cursorX;
-            const dy = this.y - cursorY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist > 0 && dist < 120) {
-                const force = (120 - dist) / 120;
-                this.x += (dx / dist) * force * 6;
-                this.y += (dy / dist) * force * 6;
-            }
-            this.rotation += this.rotationSpeed;
-
-            // Color morph based on zone
-            this.applyZoneColors(zone);
-
-            if (this.y > canvas.height + 30) this.reset();
-            if (this.x < -30) this.x = canvas.width + 30;
-            if (this.x > canvas.width + 30) this.x = -30;
-        }
-        applyZoneColors(zone) {
-            let targetH, targetS, targetL, targetO;
-
-            if (this.layer <= 1) {
-                // Layer 1-2: Always sakura petals, just color changes
-                switch(zone) {
-                    case 1: // Day = white pink
-                        targetH = 345;
-                        targetS = 65;
-                        targetL = 85;
-                        targetO = this.opacity;
-                        break;
-                    case 2: // Dusk = orange pink
-                        targetH = 15;
-                        targetS = 70;
-                        targetL = 70;
-                        targetO = this.opacity * 0.9;
-                        break;
-                    case 3: // Night = deep blue silver
-                        targetH = 210;
-                        targetS = 30;
-                        targetL = 65;
-                        targetO = this.opacity * 0.6;
-                        break;
-                    case 4: // Moon = muted purple silver
-                        targetH = 260;
-                        targetS = 20;
-                        targetL = 60;
-                        targetO = this.opacity * 0.4;
-                        break;
-                    case 5: // Aurora = ghost white
-                        targetH = 345;
-                        targetS = 50;
-                        targetL = 80;
-                        targetO = this.opacity;
-                        break;
-                    default:
-                        targetH = 350;
-                        targetS = 70;
-                        targetL = 85;
-                        targetO = this.opacity;
-                }
-            } else {
-                // Layer 2+: Morphs through crystal/fire/micro
-                switch(zone) {
-                    case 1: // Normal sakura
-                        targetH = 340 + this.layer * 5;
-                        targetS = 55 + this.layer * 5;
-                        targetL = 80 + this.layer * 5;
-                        targetO = this.opacity;
-                        break;
-                    case 2: // Dusk = ice/copper
-                        targetH = -5 + this.layer * 15;
-                        targetS = 60 + this.layer * 10;
-                        targetL = 55 + this.layer * 10;
-                        targetO = this.opacity * 0.85;
-                        break;
-                    case 3: // Night = ice crystal
-                        targetH = 200;
-                        targetS = 40;
-                        targetL = 75;
-                        targetO = this.opacity * 0.7;
-                        break;
-                    case 4: // Moon = firefly blend
-                        targetH = 270 + this.layer * 10;
-                        targetS = 25;
-                        targetL = 70;
-                        targetO = this.opacity * 0.5;
-                        break;
-                    case 5: // Aurora = micro-green
-                        targetH = 160;
-                        targetS = 70;
-                        targetL = 70;
-                        targetO = this.opacity * 0.9;
-                        break;
-                    default:
-                        targetH = 350;
-                        targetS = 70;
-                        targetL = 85;
-                        targetO = this.opacity;
-                }
-            }
-
-            // Smooth interpolation
-            const lerp = 0.08;
-            this.targetHue += (targetH - this.targetHue) * lerp;
-            this.targetSat += (targetS - this.targetSat) * lerp;
-            this.targetLight += (targetL - this.targetLight) * lerp;
-            this.targetOpacity += (targetO - this.targetOpacity) * lerp;
-
-            this.color = `hsla(${this.targetHue|0}, ${this.targetSat|0}%, ${this.targetLight|0}%, ${this.targetOpacity})`;
-        }
-        draw() {
-            if (this.isFirefly) {
-                // Firefly
-                ctx.save();
-                ctx.globalAlpha = this.fireflyGlow * this.opacity * 0.8;
-                const glowRadius = this.size * 3;
-                const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, glowRadius);
-                gradient.addColorStop(0, `hsla(${this.fireflyHue}, 100%, 85%, 1)`);
-                gradient.addColorStop(0.2, `hsla(${this.fireflyHue}, 100%, 70%, 0.6)`);
-                gradient.addColorStop(0.5, `hsla(${this.fireflyHue}, 100%, 60%, 0.2)`);
-                gradient.addColorStop(1, `hsla(${this.fireflyHue}, 100%, 60%, 0)`);
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(0, 0, glowRadius, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = `hsla(${this.fireflyHue}, 100%, 95%, 1)`;
-                ctx.beginPath();
-                ctx.arc(0, 0, this.size * 0.5, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-                return;
-            }
-
-            if (this.isMicro) {
-                // Aurora micro-particle
-                ctx.save();
-                ctx.globalAlpha = this.fireflyGlow * this.opacity * 0.4;
-                const r = this.size * (1 + this.fireflyGlow * 0.5);
-                ctx.fillStyle = `hsla(160, 80%, 75%, 0.6)`;
-                ctx.beginPath();
-                ctx.arc(0, 0, r, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-                return;
-            }
-
-            // Sakura petal draw
-            ctx.save();
-            ctx.translate(this.x, this.y);
-            ctx.rotate(this.rotation);
-            ctx.beginPath();
-            ctx.fillStyle = this.color;
-            const s = this.size;
-            ctx.moveTo(0, 0);
-            ctx.bezierCurveTo(s * 0.5, -s * 0.3, s, -s * 0.5, s * 0.5, -s);
-            ctx.bezierCurveTo(s * 0.2, -s * 0.7, -s * 0.2, -s * 0.7, -s * 0.5, -s);
-            ctx.bezierCurveTo(-s, -s * 0.5, -s * 0.5, -s * 0.3, 0, 0);
-            ctx.fill();
-            ctx.restore();
-        }
-    }
-
-    function initPetals() {
-        const count = Math.min(Math.floor(window.innerWidth / 25) + 20, 80);
-        petals = [];
-        for (let i = 0; i < count; i++) {
-            let layer;
-            // 50% shallow petals, 30% mid layer, 20% deep layer
-            const r = Math.random();
-            if (r < 0.5) layer = 0;
-            else if (r < 0.8) layer = 1;
-            else layer = 2;
-            petals.push(new Petal(layer));
-        }
-    }
-
-    let startTime = Date.now();
-
-    function animatePetals() {
-        if (prefersReducedMotion) return;
-        const time = (Date.now() - startTime) / 1000;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        petals.forEach(petal => { petal.update(time, currentZone); petal.draw(); });
-        if (currentZone === 4) {
-            shootingStars?.ensure(canvas.width, canvas.height);
-            shootingStars?.update(ctx);
-        }
-        animationId = requestAnimationFrame(animatePetals);
-    }
 
     // ===== Aurora Canvas =====
     const auroraEngine = window.HazakuraAuroraCanvas?.create();
@@ -290,8 +19,17 @@
     // ===== Shooting stars =====
     const shootingStars = window.HazakuraShootingStars?.create();
 
+    const sakuraEngine = window.HazakuraSakuraPetals?.create({
+        canvas,
+        getZone: () => currentZone,
+        getPrefersReducedMotion: () => prefersReducedMotion,
+        onMoonFrame(context, sourceCanvas) {
+            shootingStars?.ensure(sourceCanvas.width, sourceCanvas.height);
+            shootingStars?.update(context);
+        }
+    });
+
     // ===== Custom Cursor =====
-    let cursorX = 0, cursorY = 0;
     const cursorFollow = window.HazakuraCursorFollow?.create({
         getPrefersReducedMotion: () => prefersReducedMotion
     });
@@ -789,10 +527,8 @@
     window.HazakuraPointerInput?.init({
         getDisabled: () => prefersReducedMotion,
         onMove(event) {
-            cursorX = event.clientX;
-            cursorY = event.clientY;
-            cursorFollow?.setPosition(cursorX, cursorY);
-            targetWindX = (event.movementX || 0) * 0.15;
+            cursorFollow?.setPosition(event.clientX, event.clientY);
+            sakuraEngine?.setPointer(event.clientX, event.clientY, event.movementX || 0);
 
             cardHoverFields?.update(event);
             bookTilt?.update(event);
@@ -904,40 +640,6 @@
         'radial-gradient(circle, var(--sakura-300), transparent 70%)'
     ];
 
-    function updateParticleEvolution(zone) {
-        petals.forEach((petal) => {
-            const isDeep = petal.layer >= 2;
-
-            // Handle transitions to special modes
-            if (zone >= 3 && !petal.isFirefly && Math.random() < 0.01) {
-                // Night: shallow petals stay as petals, mid+deep fireflies
-                if (isDeep && Math.random() < 0.4) {
-                    petal.isFirefly = true;
-                } else if (petal.layer === 1 && Math.random() < 0.15) {
-                    petal.isFirefly = true;
-                }
-            }
-
-            if (zone === 5) {
-                // Aurora zone: deep petals become aurora micro-particles
-                petal.isFirefly = false;
-                if (isDeep && Math.random() < 0.03) {
-                    petal.isMicro = true;
-                    petal.y = Math.random() * canvas.height;
-                    petal.x = Math.random() * canvas.width;
-                } else if (Math.random() < 0.01 && petal.isMicro) {
-                    petal.isMicro = false;
-                }
-                petal.isFirefly = false;
-            }
-
-            if (zone === 1) {
-                petal.isFirefly = false;
-                petal.isMicro = false;
-            }
-        });
-    }
-
     function updateScrollZones() {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -972,7 +674,7 @@
         }
 
         // Particle layer evolution
-        updateParticleEvolution(zone);
+        sakuraEngine?.updateParticleEvolution(zone);
 
         // Aurora canvas visibility
         if (zone === 4) {
@@ -1134,13 +836,13 @@
         renderContent();
         motionPreferences?.syncBodyClass();
         window.HazakuraCanvasSize?.resize(canvas);
-        initPetals();
+        sakuraEngine?.initPetals();
         auroraEngine?.mount();
         auroraEngine?.resize();
         auroraEngine?.initWaves();
         createHeroAuroraOverlay();
         if (!prefersReducedMotion) {
-            animatePetals();
+            sakuraEngine?.start();
             auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
             cursorFollow?.start();
         }
@@ -1170,7 +872,7 @@
             onResize() {
                 window.HazakuraCanvasSize?.resize(canvas);
                 auroraEngine?.resize();
-                initPetals();
+                sakuraEngine?.initPetals();
                 auroraEngine?.initWaves();
                 if (shootingStars?.hasStars()) shootingStars.init(canvas.width, canvas.height);
                 if (!prefersReducedMotion) heroParallax?.update();
@@ -1181,12 +883,12 @@
 
         window.HazakuraVisibilityPlayback?.init({
             onHidden() {
-                window.HazakuraAnimationFrames?.cancelAll(animationId);
+                sakuraEngine?.stop();
                 auroraEngine?.stop();
             },
             onVisible() {
                 if (prefersReducedMotion) return;
-                animatePetals();
+                sakuraEngine?.start();
                 auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
             }
         });
@@ -1195,16 +897,14 @@
             prefersReducedMotion = event.matches;
             motionPreferences.syncBodyClass();
             if (prefersReducedMotion) {
-                window.HazakuraAnimationFrames?.cancelAll(animationId);
+                sakuraEngine?.stop();
                 auroraEngine?.stop();
                 cursorFollow?.stop();
-                window.HazakuraCanvasClear?.clearAll(
-                    { context: ctx, canvas }
-                );
+                sakuraEngine?.clear();
                 auroraEngine?.clear();
                 scrollAnimations?.setAllCounters();
             } else {
-                animatePetals();
+                sakuraEngine?.start();
                 auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
                 cursorFollow?.start();
             }
