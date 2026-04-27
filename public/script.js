@@ -1142,23 +1142,12 @@
         }
     });
 
-    const zoneAtmosphere = createZoneAtmosphere();
+    const zoneAtmosphere = window.HazakuraZoneAtmosphere?.create(zoneIndexToName);
     updateZoneIndicator();
-
-    function createZoneAtmosphere() {
-        const atmosphere = document.createElement('div');
-        atmosphere.className = 'zone-atmosphere';
-        atmosphere.setAttribute('aria-hidden', 'true');
-        atmosphere.innerHTML = zoneIndexToName.slice(1).map((zoneName) => (
-            `<span class="zone-atmosphere__pane zone-atmosphere__pane--${zoneName}"></span>`
-        )).join('');
-        document.body.appendChild(atmosphere);
-        return atmosphere;
-    }
 
     function setAtmosphereOpacity(zoneName, value) {
         if (!zoneAtmosphere) return;
-        zoneAtmosphere.style.setProperty(`--zone-atmosphere-${zoneName}`, value.toFixed(3));
+        zoneAtmosphere.setOpacity(zoneName, value);
     }
 
     function updateAtmosphereBlend(zone) {
