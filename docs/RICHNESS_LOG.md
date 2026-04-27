@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Content / Access
+- Changed: Research Log 006 に `paperSample` を追加し、arxiv_scout から戻ってきた論文メモの最小単位を「拾う語 / 問いへ戻す / 次の実験」で読めるようにした。あわせて制作物カードの Why / Origin / Surprise / Next に共通の `project-note` を付け、モバイル幅でもラベルと本文が詰まりにくい注釈レイアウトへ整えた。
+- Learned: 論文探索は実リンクを急いで増やすより、まず「1本を読む前に何を残すか」の型を置くほうが、Research Log と Magic Tool の循環に接続しやすい。
+- Next: 次回は `paperSample` に実際の論文タイトルやURLを1件だけ足し、外部リンク表記とResearch Log内の出典表示が重くならないか確認する。
+
+## 2026-04-27
+
 - Focus: Visual / Content
 - Changed: One-page Architecture の各レイヤーに `phase` / `phaseNote` を追加し、読む・触れる・移ろう・巡らすの薄い時間軸をカード内に表示した。あわせて Magic Tool 系カードに `origin` を足し、なぜ作ったかの前段にある作り始めの火種を読めるようにした。
 - Learned: Why だけだと動機の説明で止まりやすいが、Origin を添えると RFP の「探求の可視化」として、道具が問いから生まれた流れまで追いやすくなる。

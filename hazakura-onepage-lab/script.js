@@ -577,6 +577,25 @@
                     ${escapeHtml(item.sourceProject.text || '')}
                 </p>`
                 : '';
+            const paperSample = item.paperSample
+                ? `<div class="research-paper-sample" aria-label="${escapeHtml(item.paperSample.title || '論文メモサンプル')}">
+                    <div class="research-paper-sample__copy">
+                        <span>${escapeHtml(item.paperSample.eyebrow || 'Paper memo')}</span>
+                        <strong>${escapeHtml(item.paperSample.title || '')}</strong>
+                        <p>${escapeHtml(item.paperSample.text || '')}</p>
+                    </div>
+                    ${Array.isArray(item.paperSample.notes) && item.paperSample.notes.length ? `
+                        <dl class="research-paper-sample__notes">
+                            ${item.paperSample.notes.map((note) => `
+                                <div>
+                                    <dt>${escapeHtml(note.label || '')}</dt>
+                                    <dd>${escapeHtml(note.text || '')}</dd>
+                                </div>
+                            `).join('')}
+                        </dl>
+                    ` : ''}
+                </div>`
+                : '';
             return `
             <article class="research-log-card"${cardId} data-tilt>
                 <div class="research-log-meta">
@@ -600,6 +619,7 @@
                 </dl>
                 ${wisdomTrail}
                 ${sourceProject}
+                ${paperSample}
             </article>
         `;
         }).join('');
@@ -864,16 +884,16 @@
                 ? `<span class="project-lane">${escapeHtml(item.lane)}</span>`
                 : '';
             const why = item.why
-                ? `<p class="project-why"><span>Why</span>${escapeHtml(item.why)}</p>`
+                ? `<p class="project-note project-why"><span>Why</span>${escapeHtml(item.why)}</p>`
                 : '';
             const origin = item.origin
-                ? `<p class="project-origin"><span>Origin</span>${escapeHtml(item.origin)}</p>`
+                ? `<p class="project-note project-origin"><span>Origin</span>${escapeHtml(item.origin)}</p>`
                 : '';
             const surprise = item.surprise
-                ? `<p class="project-surprise"><span>Surprise</span>${escapeHtml(item.surprise)}</p>`
+                ? `<p class="project-note project-surprise"><span>Surprise</span>${escapeHtml(item.surprise)}</p>`
                 : '';
             const nextStep = item.nextStep
-                ? `<p class="project-next"><span>Next</span>${escapeHtml(item.nextStep)}</p>`
+                ? `<p class="project-note project-next"><span>Next</span>${escapeHtml(item.nextStep)}</p>`
                 : '';
             const actionNote = item.actionNote
                 ? `<p class="project-action-note"><span>${escapeHtml(item.actionNote.label || 'Note')}</span>${escapeHtml(item.actionNote.text || '')}</p>`

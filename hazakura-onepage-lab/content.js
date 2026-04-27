@@ -158,6 +158,25 @@ window.HAZAKURA_CONTENT = {
                     label: 'Magic Tool',
                     title: 'arxiv_scout（試作メモ）',
                     text: '未知の論文探索を、道具紹介から問いの記録へ戻す。'
+                },
+                paperSample: {
+                    eyebrow: 'Paper memo seed',
+                    title: '1本を読む前の、3分メモ',
+                    text: 'まず論文を読み切ろうとせず、気になる語と次に試す仮説だけを小さく残す。',
+                    notes: [
+                        {
+                            label: '拾う語',
+                            text: 'タイトルや要約で心が止まった概念を一つだけ選ぶ。'
+                        },
+                        {
+                            label: '問いへ戻す',
+                            text: 'その語が、自分の制作物やResearch Logのどこに触れるかを書く。'
+                        },
+                        {
+                            label: '次の実験',
+                            text: '実装、読み比べ、会話メモのどれで試すかを一行で決める。'
+                        }
+                    ]
                 }
             }
         ],

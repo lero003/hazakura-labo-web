@@ -1919,6 +1919,73 @@ a {
     font-weight: 800;
 }
 
+.research-paper-sample {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: 0.9rem;
+    margin: 1rem 0 0;
+    padding: 0.9rem;
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    border-radius: 16px;
+    background:
+        linear-gradient(135deg, rgba(167, 139, 250, 0.09), rgba(255, 255, 255, 0.52));
+}
+
+.research-paper-sample__copy {
+    min-width: 0;
+}
+
+.research-paper-sample__copy span {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--purple-500);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.research-paper-sample__copy strong {
+    display: block;
+    color: var(--ink-800);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.research-paper-sample__copy p {
+    margin: 0.35rem 0 0;
+    color: var(--ink-600);
+    font-size: 0.82rem;
+    line-height: 1.75;
+}
+
+.research-paper-sample__notes {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+}
+
+.research-paper-sample__notes div {
+    min-width: 0;
+    padding-left: 0.75rem;
+    border-left: 1px solid rgba(167, 139, 250, 0.28);
+}
+
+.research-paper-sample__notes dt {
+    margin-bottom: 0.25rem;
+    color: var(--purple-500);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.research-paper-sample__notes dd {
+    margin: 0;
+    color: var(--ink-600);
+    font-size: 0.8rem;
+    line-height: 1.7;
+}
+
 /* ============================================
    Vision Section — Enhanced
    ============================================ */
@@ -4169,6 +4236,14 @@ body.theme-night .section-layers .layer-sequence__beam {
     text-transform: uppercase;
 }
 
+.project-note {
+    display: grid;
+    grid-template-columns: minmax(4.7rem, max-content) minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: flex-start;
+    min-width: 0;
+}
+
 .project-action-note {
     display: flex;
     gap: 0.65rem;
@@ -4598,6 +4673,30 @@ body.theme-night .section-vision .research-source span {
 
 body.theme-night .section-vision .research-source strong {
     color: var(--header-text);
+}
+
+body.theme-night .section-vision .research-paper-sample {
+    border-color: rgba(167, 139, 250, 0.24);
+    background:
+        linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(255, 255, 255, 0.045));
+}
+
+body.theme-night .section-vision .research-paper-sample__copy span,
+body.theme-night .section-vision .research-paper-sample__notes dt {
+    color: var(--purple-400);
+}
+
+body.theme-night .section-vision .research-paper-sample__copy strong {
+    color: var(--header-text);
+}
+
+body.theme-night .section-vision .research-paper-sample__copy p,
+body.theme-night .section-vision .research-paper-sample__notes dd {
+    color: var(--body-text);
+}
+
+body.theme-night .section-vision .research-paper-sample__notes div {
+    border-left-color: rgba(167, 139, 250, 0.28);
 }
 
 body.theme-night .section-vision .cycle-bridge-card {
@@ -5158,6 +5257,21 @@ body.theme-night .nav-links a::after {
         margin-bottom: 0.2rem;
     }
 
+    .project-note {
+        display: grid;
+        grid-template-columns: minmax(4.2rem, max-content) minmax(0, 1fr);
+        gap: 0.45rem;
+        padding: 0.72rem 0.78rem;
+        font-size: 0.82rem;
+        line-height: 1.65;
+    }
+
+    .project-note span {
+        display: inline;
+        margin-bottom: 0;
+        overflow-wrap: normal;
+    }
+
     .project-return-link {
         width: 100%;
         border-radius: 12px;
@@ -5241,6 +5355,18 @@ body.theme-night .nav-links a::after {
         padding: 0.7rem;
         border-radius: 12px;
         font-size: 0.78rem;
+        overflow-wrap: anywhere;
+    }
+
+    .research-paper-sample {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.7rem;
+        padding: 0.75rem;
+        border-radius: 14px;
+    }
+
+    .research-paper-sample__copy p,
+    .research-paper-sample__notes dd {
         overflow-wrap: anywhere;
     }
 
@@ -5457,6 +5583,13 @@ body.theme-night .nav-links a::after {
         font-size: 0.82rem;
     }
 
+    .project-note {
+        grid-template-columns: minmax(3.9rem, max-content) minmax(0, 1fr);
+        gap: 0.38rem;
+        padding: 0.68rem 0.72rem;
+        font-size: 0.8rem;
+    }
+
     .placeholder-icon {
         font-size: 2.4rem;
     }
@@ -5468,6 +5601,10 @@ body.theme-night .nav-links a::after {
 
     .research-log-eyebrow {
         letter-spacing: 0.12em;
+    }
+
+    .research-paper-sample {
+        padding: 0.68rem;
     }
 
     .cycle-bridge-card {
