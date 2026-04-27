@@ -1,4 +1,23 @@
 export const researchGroup = {
+  "handoff": {
+    "eyebrow": "Return path",
+    "title": "預けた入口を、小さな研究ログへ戻す。",
+    "text": "構想カードで選んだ問い、記憶、古い道具、地域の知恵を、すぐ完成形にせず、問い・実験・発見へ分けて寝かせます。",
+    "steps": [
+      {
+        "label": "預ける",
+        "text": "入口を一つだけ選ぶ"
+      },
+      {
+        "label": "ほどく",
+        "text": "問い・実験・発見へ分ける"
+      },
+      {
+        "label": "返す",
+        "text": "書庫や制作棚へ巡らせる"
+      }
+    ]
+  },
   "logs": [
     {
       "eyebrow": "Research Log 001",

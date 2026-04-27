@@ -171,6 +171,20 @@ assert(
 );
 assert('vision process interlude style is emitted', styleCss.includes('.process-flow--vision'));
 assert(
+  'research log handoff bridges vision entries to logs',
+  Array.isArray(hazakuraContent.researchGroup?.handoff?.steps)
+    && hazakuraContent.researchGroup.handoff.steps.length === 3
+    && contentRenderersJs.includes('class="research-log-handoff"')
+    && styleCss.includes('.research-log-handoff')
+    && scrollAnimationsJs.includes('.research-log-handoff'),
+  JSON.stringify({
+    steps: hazakuraContent.researchGroup?.handoff?.steps?.length || 0,
+    hasRenderer: contentRenderersJs.includes('class="research-log-handoff"'),
+    hasStyles: styleCss.includes('.research-log-handoff'),
+    hasReveal: scrollAnimationsJs.includes('.research-log-handoff')
+  })
+);
+assert(
   'vision entry fields stay folded',
   contentRenderersJs.includes('class="vision-entry-guide__field-drawer"')
     && contentRenderersJs.includes('<summary>')

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const defaultSelector = '.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card, .cycle-bridge-card, .quote-prelude-card';
+    const defaultSelector = '.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-handoff, .research-log-card, .cycle-bridge-card, .quote-prelude-card';
 
     function create(options = {}) {
         const {

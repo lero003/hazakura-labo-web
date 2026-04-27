@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Narrative / Visual / Structure
+- Changed: Vision のプロセスフローと Research Log の間に、`researchGroup.handoff` 由来の小さな戻り道を追加した。入口を「預ける → ほどく → 返す」の三段に整え、ログ件数の印、夜テーマ、モバイル縦レール、スクロール reveal、phase gate の保護まで接続した。
+- Learned: Vision の入口とログがどちらも育つほど、間に「なぜここで研究ログへ戻るのか」の一拍がないとカード群が急に始まって見える。短い間奏をデータ化すると、情報を増やさずに循環の手触りを補える。
+- Next: preview 可能な環境で、Vision 末尾の handoff が Research Log 先頭を押し下げすぎないか、モバイル幅の縦レールも含めて見る。
+
+## 2026-04-28
+
 - Focus: Access / Motion / Structure
 - Changed: Vision 入口ガイドの四つの預け方に、触れる・フォーカスする・クリックするだけで対応する構想カードが浮かぶ `vision-entry-focus` を追加した。表示内容は増やさず、既存の `data-entry-kind` を使って「問い」「記憶」「古い道具」「地域の知恵」がどのカードへ接続するかを見えるようにし、phase gate で配信とCSS契約を保護した。
 - Learned: Vision は入口ガイドとカードがどちらも整っていても、対応関係が静止したままだとフォーム仕様の一覧に見えやすい。軽いスポットライトだけで、預けたものが次の構想へ渡る感触を足せる。

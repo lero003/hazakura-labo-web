@@ -83,10 +83,42 @@
         }
     }
 
-    function renderResearchLogs(items) {
+    function renderResearchLogHandoff(handoff, items) {
+        if (!handoff) return '';
+        const steps = Array.isArray(handoff.steps) ? handoff.steps : [];
+        const count = Array.isArray(items) ? items.length : 0;
+        return `
+            <article class="research-log-handoff" data-tilt>
+                <div class="research-log-handoff__copy">
+                    <p class="research-log-handoff__eyebrow">${escapeHtml(handoff.eyebrow || 'Return path')}</p>
+                    <h3>${escapeHtml(handoff.title || '')}</h3>
+                    <p>${escapeHtml(handoff.text || '')}</p>
+                </div>
+                ${steps.length ? `
+                    <ol class="research-log-handoff__steps" aria-label="入口を研究ログへ戻す流れ">
+                        ${steps.map((step) => `
+                            <li>
+                                <span>${escapeHtml(step.label || '')}</span>
+                                <p>${escapeHtml(step.text || '')}</p>
+                            </li>
+                        `).join('')}
+                    </ol>
+                ` : ''}
+                <p class="research-log-handoff__count" aria-label="${escapeHtml(String(count))}件の研究ログ">
+                    <strong>${escapeHtml(String(count))}</strong>
+                    <span>logs</span>
+                </p>
+            </article>
+        `;
+    }
+
+    function renderResearchLogs(researchGroup) {
         const root = document.querySelector('[data-render="researchLogs"]');
-        if (!root || !items) return;
-        root.innerHTML = items.map((item) => {
+        if (!root || !researchGroup) return;
+        const items = Array.isArray(researchGroup) ? researchGroup : researchGroup.logs;
+        if (!items) return;
+        const handoff = Array.isArray(researchGroup) ? '' : renderResearchLogHandoff(researchGroup.handoff, items);
+        const cards = items.map((item) => {
             const cardId = item.id ? ` id="${escapeHtml(item.id)}"` : '';
             const wisdomTrail = Array.isArray(item.wisdomTrail) && item.wisdomTrail.length
                 ? `<dl class="research-wisdom-trail" aria-label="${escapeHtml(item.title)}の知恵断片">
@@ -167,6 +199,7 @@
             </article>
         `;
         }).join('');
+        root.innerHTML = `${handoff}${cards}`;
     }
 
     function renderVisions(visionsGroup) {
@@ -320,7 +353,7 @@
 
     function renderResearchGroup(researchGroup) {
         if (!researchGroup) return;
-        renderResearchLogs(researchGroup.logs);
+        renderResearchLogs(researchGroup);
         renderCycleBridge(researchGroup.cycleBridge);
     }
 

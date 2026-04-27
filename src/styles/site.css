@@ -2035,6 +2035,154 @@ a {
     max-width: 980px;
 }
 
+.research-log-handoff {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(250px, 0.9fr) auto;
+    gap: 1.2rem;
+    align-items: center;
+    overflow: hidden;
+    padding: 1.45rem 1.55rem;
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    border-radius: 22px;
+    background:
+        radial-gradient(460px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(77, 161, 169, 0.12), transparent 44%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(248, 245, 255, 0.5));
+    box-shadow: 0 20px 52px rgba(46, 42, 45, 0.07);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo), border-color var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+
+.research-log-handoff::before {
+    content: '';
+    position: absolute;
+    inset: auto 1.5rem 1rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(232, 88, 122, 0.28), rgba(77, 161, 169, 0.24), transparent);
+    pointer-events: none;
+}
+
+.research-log-handoff.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.research-log-handoff:hover {
+    border-color: rgba(139, 92, 246, 0.32);
+    box-shadow: 0 26px 64px rgba(46, 42, 45, 0.1);
+}
+
+.research-log-handoff__copy {
+    min-width: 0;
+}
+
+.research-log-handoff__eyebrow {
+    margin-bottom: 0.5rem;
+    color: var(--purple-500);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.research-log-handoff h3 {
+    margin-bottom: 0.65rem;
+    color: var(--ink-800);
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+    font-weight: 600;
+    line-height: 1.65;
+}
+
+.research-log-handoff__copy > p:last-child {
+    color: var(--ink-600);
+    font-size: 0.88rem;
+    line-height: 1.9;
+}
+
+.research-log-handoff__steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.research-log-handoff__steps::before {
+    content: '';
+    position: absolute;
+    top: 0.82rem;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(232, 88, 122, 0.22), rgba(77, 161, 169, 0.26));
+}
+
+.research-log-handoff__steps li {
+    position: relative;
+    min-width: 0;
+    padding-top: 1.55rem;
+}
+
+.research-log-handoff__steps li::before {
+    content: '';
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    width: 0.62rem;
+    height: 0.62rem;
+    border: 2px solid rgba(255, 255, 255, 0.86);
+    border-radius: 50%;
+    background: var(--sakura-400);
+    box-shadow: 0 0 0 4px rgba(232, 88, 122, 0.1);
+}
+
+.research-log-handoff__steps span {
+    display: block;
+    color: var(--sakura-500);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+}
+
+.research-log-handoff__steps p {
+    margin-top: 0.35rem;
+    color: var(--ink-600);
+    font-size: 0.78rem;
+    line-height: 1.75;
+}
+
+.research-log-handoff__count {
+    display: grid;
+    place-items: center;
+    width: 4.6rem;
+    height: 4.6rem;
+    margin: 0;
+    border: 1px solid rgba(232, 88, 122, 0.24);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.62);
+    color: var(--ink-600);
+    box-shadow: inset 0 0 22px rgba(232, 88, 122, 0.08);
+}
+
+.research-log-handoff__count strong {
+    color: var(--sakura-500);
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.research-log-handoff__count span {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
 .research-log-card {
     position: relative;
     overflow: hidden;
@@ -3628,6 +3776,18 @@ body.theme-night.zone-aurora #aurora-canvas {
     .process-flow--vision {
         border-radius: 20px;
         padding: 1.2rem;
+    }
+
+    .research-log-handoff {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .research-log-handoff__steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .research-log-handoff__count {
+        justify-self: start;
     }
 
     .process-connector {
@@ -5494,6 +5654,43 @@ body.theme-night .section-vision .research-log-card:target {
     box-shadow: 0 24px 72px rgba(139, 92, 246, 0.22);
 }
 
+body.theme-night .section-vision .research-log-handoff {
+    border-color: rgba(139, 92, 246, 0.26);
+    background:
+        radial-gradient(460px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(77, 161, 169, 0.14), transparent 44%),
+        rgba(255, 255, 255, 0.06);
+    box-shadow: 0 24px 62px rgba(0, 0, 0, 0.25);
+}
+
+body.theme-night .section-vision .research-log-handoff::before,
+body.theme-night .section-vision .research-log-handoff__steps::before {
+    background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.24), rgba(77, 161, 169, 0.25), transparent);
+}
+
+body.theme-night .section-vision .research-log-handoff__eyebrow,
+body.theme-night .section-vision .research-log-handoff__steps span {
+    color: var(--purple-400);
+}
+
+body.theme-night .section-vision .research-log-handoff h3 {
+    color: var(--header-text);
+}
+
+body.theme-night .section-vision .research-log-handoff__copy > p:last-child,
+body.theme-night .section-vision .research-log-handoff__steps p,
+body.theme-night .section-vision .research-log-handoff__count {
+    color: var(--body-text);
+}
+
+body.theme-night .section-vision .research-log-handoff__count {
+    border-color: rgba(167, 139, 250, 0.24);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+body.theme-night .section-vision .research-log-handoff__count strong {
+    color: var(--green-400);
+}
+
 body.theme-night .section-vision .research-wisdom-trail {
     border-color: rgba(82, 183, 150, 0.26);
     background: rgba(82, 183, 150, 0.08);
@@ -6159,6 +6356,61 @@ body.theme-night .nav-links a::after {
 
     .research-log-strip {
         margin-bottom: 1.4rem;
+    }
+
+    .research-log-handoff {
+        gap: 1rem;
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .research-log-handoff::before {
+        inset: auto 1.1rem 0.8rem;
+    }
+
+    .research-log-handoff h3 {
+        font-size: 1.12rem;
+    }
+
+    .research-log-handoff__copy > p:last-child {
+        font-size: 0.84rem;
+        line-height: 1.8;
+        overflow-wrap: anywhere;
+    }
+
+    .research-log-handoff__steps {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.6rem;
+    }
+
+    .research-log-handoff__steps::before {
+        top: 0.5rem;
+        bottom: 0.5rem;
+        left: 0.32rem;
+        right: auto;
+        width: 1px;
+        height: auto;
+        background: linear-gradient(180deg, rgba(232, 88, 122, 0.24), rgba(77, 161, 169, 0.24));
+    }
+
+    .research-log-handoff__steps li {
+        padding-top: 0;
+        padding-left: 1.35rem;
+    }
+
+    .research-log-handoff__steps li::before {
+        top: 0.25rem;
+        left: 0;
+    }
+
+    .research-log-handoff__steps p {
+        font-size: 0.78rem;
+        overflow-wrap: anywhere;
+    }
+
+    .research-log-handoff__count {
+        width: 4rem;
+        height: 4rem;
     }
 
     .research-log-card {
