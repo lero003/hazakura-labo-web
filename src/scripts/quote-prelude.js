@@ -15,8 +15,10 @@
       ? `<ol class="quote-prelude-steps">
           ${item.steps.map((step) => `
             <li>
-              <span>${escapeHtml(step.label || '')}</span>
-              ${escapeHtml(step.text || '')}
+              ${step.href ? `<a class="quote-prelude-step" href="${escapeHtml(step.href)}">` : '<span class="quote-prelude-step">'}
+                <span>${escapeHtml(step.label || '')}</span>
+                ${escapeHtml(step.text || '')}
+              ${step.href ? '</a>' : '</span>'}
             </li>
           `).join('')}
         </ol>`

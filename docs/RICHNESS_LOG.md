@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Narrative / Access / Structure
+- Changed: Quote 前の `quotePrelude` を、書庫・制作棚・構想へ戻れる三つの折り返しリンクとして整えた。あわせて紙片のような細い接続線と hover 表現を足し、`scripts/phase-gate.mjs` で `#library` / `#projects` / `#vision` への折り返しを守るようにした。
+- Learned: 終盤の間奏は抽象的な余白だけだと最後の詩へ漂うが、上流セクションへ戻る小さなアンカーを持つと「読んで終わり」ではなく、問いをもう一度庭へ返す導線になる。
+- Next: Quote prelude の折り返しリンクが実ブラウザで重く見えないか、preview 可能な環境でモバイル幅の余白とタップ感を確認する。
+
+## 2026-04-27
+
 - Focus: Structure / Motion
 - Changed: scriptの読み込み順を `src/data/script-load-order.js` に集約し、`index.astro` と `scripts/phase-gate.mjs` が同じリストを見るようにした。新しい演出scriptを足す時に、ページ側とチェック側の更新漏れが起きにくい形へ寄せた。
 - Learned: 演出追加の足枷は抽象化そのものより、読み込み順や必須assetの重複管理にも出やすい。manifestを1つ持つだけなら管理コストを増やさず、追加時の迷いを減らせる。

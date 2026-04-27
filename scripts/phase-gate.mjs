@@ -68,6 +68,11 @@ assert(
   'generated content matches source data',
   JSON.stringify(contentSandbox.window.HAZAKURA_CONTENT) === JSON.stringify(hazakuraContent)
 );
+assert(
+  'quote prelude folds back to main anchors',
+  ['#library', '#projects', '#vision'].every((href) => hazakuraContent.quotePrelude?.steps?.some((step) => step.href === href)),
+  JSON.stringify(hazakuraContent.quotePrelude?.steps || [])
+);
 
 const appControllerJs = readFile('dist/app-controller.js');
 const styleCss = readFile('dist/style.css');
