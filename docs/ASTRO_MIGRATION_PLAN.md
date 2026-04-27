@@ -52,6 +52,7 @@
 - scrollイベントのrequestAnimationFrameスロットリングは `src/scripts/scroll-ticker.js` に切り出し、進捗・Hero・ゾーン更新は既存 `script.js` のコールバックに残す。
 - Aurora canvasの生成・波生成・描画ループ・停止/クリアは `src/scripts/aurora-canvas.js` に切り出し、ゾーン側からopacityだけを更新する。
 - Moonゾーンのshooting starsは `src/scripts/shooting-stars.js` に切り出し、Sakura描画ループから `ensure()` / `update()` だけを呼ぶ。
+- カスタムカーソルのdot/ring追従ループは `src/scripts/cursor-follow.js` に切り出し、Petal反発用の座標値だけ既存 `script.js` に残す。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。

@@ -65,6 +65,7 @@ const requiredAssets = [
   'dist/scroll-ticker.js',
   'dist/aurora-canvas.js',
   'dist/shooting-stars.js',
+  'dist/cursor-follow.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -107,6 +108,7 @@ const pointerInputJs = readFile('dist/pointer-input.js');
 const scrollTickerJs = readFile('dist/scroll-ticker.js');
 const auroraCanvasJs = readFile('dist/aurora-canvas.js');
 const shootingStarsJs = readFile('dist/shooting-stars.js');
+const cursorFollowJs = readFile('dist/cursor-follow.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -131,6 +133,7 @@ assert('legacy script delegates pointer input', scriptJs.includes('HazakuraPoint
 assert('legacy script delegates scroll ticker', scriptJs.includes('HazakuraScrollTicker?.init'));
 assert('legacy script delegates aurora canvas', scriptJs.includes('HazakuraAuroraCanvas?.create'));
 assert('legacy script delegates shooting stars', scriptJs.includes('HazakuraShootingStars?.create'));
+assert('legacy script delegates cursor follow', scriptJs.includes('HazakuraCursorFollow?.create'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -155,6 +158,7 @@ assert('pointer input script exposes global', pointerInputJs.includes('window.Ha
 assert('scroll ticker script exposes global', scrollTickerJs.includes('window.HazakuraScrollTicker'));
 assert('aurora canvas script exposes global', auroraCanvasJs.includes('window.HazakuraAuroraCanvas'));
 assert('shooting stars script exposes global', shootingStarsJs.includes('window.HazakuraShootingStars'));
+assert('cursor follow script exposes global', cursorFollowJs.includes('window.HazakuraCursorFollow'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {

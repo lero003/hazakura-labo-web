@@ -291,19 +291,10 @@
     const shootingStars = window.HazakuraShootingStars?.create();
 
     // ===== Custom Cursor =====
-    const cursorDot = document.getElementById('cursor-dot');
-    const cursorRing = document.getElementById('cursor-ring');
     let cursorX = 0, cursorY = 0;
-    let ringX = 0, ringY = 0;
-
-    function updateCursor() {
-        if (prefersReducedMotion) return;
-        ringX += (cursorX - ringX) * 0.12;
-        ringY += (cursorY - ringY) * 0.12;
-        if (cursorDot) cursorDot.style.transform = `translate(${cursorX - 4}px, ${cursorY - 4}px)`;
-        if (cursorRing) cursorRing.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
-        requestAnimationFrame(updateCursor);
-    }
+    const cursorFollow = window.HazakuraCursorFollow?.create({
+        getPrefersReducedMotion: () => prefersReducedMotion
+    });
 
     // ===== Mouse tracking =====
     const cardHoverFields = window.HazakuraCardHoverFields?.create();
@@ -800,6 +791,7 @@
         onMove(event) {
             cursorX = event.clientX;
             cursorY = event.clientY;
+            cursorFollow?.setPosition(cursorX, cursorY);
             targetWindX = (event.movementX || 0) * 0.15;
 
             cardHoverFields?.update(event);
@@ -1150,7 +1142,7 @@
         if (!prefersReducedMotion) {
             animatePetals();
             auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
-            updateCursor();
+            cursorFollow?.start();
         }
         window.HazakuraTextReveal?.prepare();
         const scrollAnimations = window.HazakuraScrollAnimations?.init({
@@ -1205,6 +1197,7 @@
             if (prefersReducedMotion) {
                 window.HazakuraAnimationFrames?.cancelAll(animationId);
                 auroraEngine?.stop();
+                cursorFollow?.stop();
                 window.HazakuraCanvasClear?.clearAll(
                     { context: ctx, canvas }
                 );
@@ -1213,7 +1206,7 @@
             } else {
                 animatePetals();
                 auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
-                updateCursor();
+                cursorFollow?.start();
             }
         });
 
