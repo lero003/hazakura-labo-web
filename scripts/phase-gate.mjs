@@ -66,6 +66,7 @@ const requiredAssets = [
   'dist/book-tilt.js',
   'dist/pointer-input.js',
   'dist/scroll-ticker.js',
+  'dist/effects-lifecycle.js',
   'dist/aurora-canvas.js',
   'dist/shooting-stars.js',
   'dist/cursor-follow.js',
@@ -116,6 +117,7 @@ const cardHoverFieldsJs = readFile('dist/card-hover-fields.js');
 const bookTiltJs = readFile('dist/book-tilt.js');
 const pointerInputJs = readFile('dist/pointer-input.js');
 const scrollTickerJs = readFile('dist/scroll-ticker.js');
+const effectsLifecycleJs = readFile('dist/effects-lifecycle.js');
 const auroraCanvasJs = readFile('dist/aurora-canvas.js');
 const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
@@ -138,6 +140,7 @@ assert('app controller delegates card hover fields', appControllerJs.includes('H
 assert('app controller delegates book tilt', appControllerJs.includes('HazakuraBookTilt?.create'));
 assert('app controller delegates pointer input', appControllerJs.includes('HazakuraPointerInput?.init'));
 assert('app controller delegates scroll ticker', appControllerJs.includes('HazakuraScrollTicker?.init'));
+assert('app controller delegates effects lifecycle', appControllerJs.includes('HazakuraEffectsLifecycle?.create'));
 assert('app controller delegates aurora canvas', appControllerJs.includes('HazakuraAuroraCanvas?.create'));
 assert('app controller delegates shooting stars', appControllerJs.includes('HazakuraShootingStars?.create'));
 assert('app controller delegates cursor follow', appControllerJs.includes('HazakuraCursorFollow?.create'));
@@ -169,6 +172,8 @@ assert('card hover fields script exposes global', cardHoverFieldsJs.includes('wi
 assert('book tilt script exposes global', bookTiltJs.includes('window.HazakuraBookTilt'));
 assert('pointer input script exposes global', pointerInputJs.includes('window.HazakuraPointerInput'));
 assert('scroll ticker script exposes global', scrollTickerJs.includes('window.HazakuraScrollTicker'));
+assert('effects lifecycle script exposes global', effectsLifecycleJs.includes('window.HazakuraEffectsLifecycle'));
+assert('effects lifecycle supports shared hooks', ['startAll', 'stopAll', 'resizeAll', 'clearAll'].every((hook) => effectsLifecycleJs.includes(hook)));
 assert('aurora canvas script exposes global', auroraCanvasJs.includes('window.HazakuraAuroraCanvas'));
 assert('shooting stars script exposes global', shootingStarsJs.includes('window.HazakuraShootingStars'));
 assert('cursor follow script exposes global', cursorFollowJs.includes('window.HazakuraCursorFollow'));

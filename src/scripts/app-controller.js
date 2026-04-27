@@ -29,6 +29,7 @@
     const cursorFollow = window.HazakuraCursorFollow?.create({
         getPrefersReducedMotion: () => prefersReducedMotion
     });
+    const motionEffects = window.HazakuraEffectsLifecycle?.create();
 
     const cardHoverFields = window.HazakuraCardHoverFields?.create();
     const bookTilt = window.HazakuraBookTilt?.create();
@@ -48,6 +49,30 @@
         }
     });
 
+    motionEffects?.add('sakura-petals', {
+        start: () => sakuraEngine?.start(),
+        stop: () => sakuraEngine?.stop(),
+        resize: () => sakuraEngine?.initPetals(),
+        clear: () => sakuraEngine?.clear()
+    });
+    motionEffects?.add('aurora-canvas', {
+        start: () => auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion }),
+        stop: () => auroraEngine?.stop(),
+        resize() {
+            auroraEngine?.resize();
+            auroraEngine?.initWaves();
+        },
+        clear: () => auroraEngine?.clear()
+    });
+    motionEffects?.add('cursor-follow', {
+        start: () => cursorFollow?.start(),
+        stop: () => cursorFollow?.stop()
+    });
+
+    function startMotionEffects() {
+        if (!prefersReducedMotion) motionEffects?.startAll();
+    }
+
     function init() {
         contentRenderers?.render(window.HAZAKURA_CONTENT);
         motionPreferences?.syncBodyClass();
@@ -64,11 +89,7 @@
             auroraEngine,
             shootingStars
         });
-        if (!prefersReducedMotion) {
-            sakuraEngine?.start();
-            auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
-            cursorFollow?.start();
-        }
+        startMotionEffects();
         window.HazakuraTextReveal?.prepare();
         const scrollAnimations = window.HazakuraScrollAnimations?.init({
             getPrefersReducedMotion: () => prefersReducedMotion
@@ -94,9 +115,7 @@
         window.HazakuraResizeListener?.init({
             onResize() {
                 window.HazakuraCanvasSize?.resize(canvas);
-                auroraEngine?.resize();
-                sakuraEngine?.initPetals();
-                auroraEngine?.initWaves();
+                motionEffects?.resizeAll();
                 if (shootingStars?.hasStars()) shootingStars.init(canvas.width, canvas.height);
                 if (!prefersReducedMotion) heroParallax?.update();
                 scrollIndicators?.update();
@@ -106,13 +125,10 @@
 
         window.HazakuraVisibilityPlayback?.init({
             onHidden() {
-                sakuraEngine?.stop();
-                auroraEngine?.stop();
+                motionEffects?.stopAll();
             },
             onVisible() {
-                if (prefersReducedMotion) return;
-                sakuraEngine?.start();
-                auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
+                startMotionEffects();
             }
         });
 
@@ -120,16 +136,11 @@
             prefersReducedMotion = event.matches;
             motionPreferences.syncBodyClass();
             if (prefersReducedMotion) {
-                sakuraEngine?.stop();
-                auroraEngine?.stop();
-                cursorFollow?.stop();
-                sakuraEngine?.clear();
-                auroraEngine?.clear();
+                motionEffects?.stopAll();
+                motionEffects?.clearAll();
                 scrollAnimations?.setAllCounters();
             } else {
-                sakuraEngine?.start();
-                auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
-                cursorFollow?.start();
+                startMotionEffects();
             }
         });
 

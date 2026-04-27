@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Structure / Motion
+- Changed: Sakura / Aurora / Cursor の start / stop / resize / clear を `effects-lifecycle.js` の薄い棚に集め、`app-controller.js` から個別に呼ぶ箇所を減らした。見た目は変えず、次に演出を足す時のライフサイクル入口を揃えた。
+- Learned: CSSの肥大化よりも、演出ごとの停止・再開・縮小モーション対応が散ることのほうが足枷になりやすい。抽象化は大きくせず、共有hookだけを揃えると管理コストを抑えられる。
+- Next: 新しい演出を足す前に、`effects-lifecycle.js` の棚へ入れるべきものと、DOM描画系として別扱いすべきものの線引きを1つだけ点検する。
+
+## 2026-04-27
+
 - Focus: Access / Narrative
 - Changed: Hero の副CTAを Amazon 直行の「本をみる」からページ内アンカーの「書庫へ寄る」へ戻し、主CTAより静かなピルにして、初見の重心を販売導線ではなく1ページの参道へ寄せた。
 - Learned: ファーストビューの副導線が外部販売へ向いているだけで、書庫や制作棚へ巡る前にページの体験が閉じて見えやすい。購入導線は Library 内へ残し、Hero では庭を歩く分岐にするほうが流れが自然になる。
