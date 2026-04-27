@@ -1601,9 +1601,7 @@
             }
         });
 
-        const heroImg = document.getElementById('hero-image');
-        if (heroImg && heroImg.complete) heroImg.classList.add('loaded');
-        else if (heroImg) heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+        window.HazakuraHeroImageLoader?.init();
     }
 
     if (document.readyState === 'loading') {
