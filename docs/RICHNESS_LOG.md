@@ -3,6 +3,13 @@
 ## 2026-04-27
 
 - Focus: Content / Access
+- Changed: 地域LLMカードの `entry.handoff` を追加し、預かった知恵を由来・場面・問いへ分けて地域の言葉で返す流れを1文で示した。あわせて Research Log 004 にアンカーを付け、`地域LLM 知恵棚（構想メモ）` から同ログへ戻れる `returnLink` を追加した。
+- Learned: 知恵棚は Vision の入口文と Projects の構想カードを同じ Research Log へ戻すだけでも、循環型CMSの「保存して終わらない」感じが強まる。
+- Next: 地域LLMの往復導線が増えたら、Research Log 004 側にも Projects 由来であることを短く示すか検討する。
+
+## 2026-04-27
+
+- Focus: Content / Access
 - Changed: 自分史編纂カードの `entry.handoff` を追加し、預かった記憶が自分史断片から地域LLMの知恵棚へ巡る流れを読めるようにした。あわせて Research Log の論文出典リンクに `actionLabel` / `actionHint` を持たせ、外部リンクのラベル・行き先表示を Projects の導線に近づけた。
 - Learned: 入口カードの handoff は全カードへ一気に足すより、次の循環が具体的に見えるものから1件ずつ増やすほうが、Vision セクションを長くしすぎずに済む。
 - Next: レトロ・ガジェット再生か地域LLMにも handoff を足す場合は、カード本文との重複を避けて1文だけに収める。

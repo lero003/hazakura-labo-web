@@ -111,6 +111,7 @@ window.HAZAKURA_CONTENT = {
                 finding: 'AI万屋の価値は即答だけではなく、未整理の声をほどき、地域の知恵や制作メモへ戻せる形に整えることにもある。'
             },
             {
+                id: 'research-log-local-wisdom',
                 eyebrow: 'Research Log 004',
                 theme: '地域LLM',
                 title: '地域の知恵は、どんな問いへ戻せるか',
@@ -289,7 +290,11 @@ window.HAZAKURA_CONTENT = {
                     kind: 'knowledge',
                     label: 'まず預けたい地域の知恵',
                     prompt: '暮らしの中で、次の人に渡したい工夫や言葉はありますか？',
-                    fields: ['知恵の由来', '使う場面', '次の人への問い']
+                    fields: ['知恵の由来', '使う場面', '次の人への問い'],
+                    handoff: {
+                        label: '預けたあとの巡り',
+                        text: '知恵を由来・場面・問いへ分け、必要な時に地域の言葉で返せる断片にする。'
+                    }
                 },
                 tag: 'CMS seed'
             },
@@ -448,6 +453,11 @@ window.HAZAKURA_CONTENT = {
                 why: '循環型CMSを「情報を保存する場所」ではなく、地域の言葉で返事を育てる器として考えるため。',
                 surprise: '大きなモデルを先に作らなくても、預かった知恵を問い・背景・使いどころに分けるだけで、地域LLMの輪郭が見え始める。',
                 nextStep: '預かった言葉を由来・場面・次に返す問いへ分け、Research Log に戻す。',
+                returnLink: {
+                    href: '#research-log-local-wisdom',
+                    label: 'Research Log 004',
+                    text: '知恵棚から問いへ戻す'
+                },
                 cycle: {
                     question: '地域の知恵を、どうすれば次の人の問いへ返せる形で残せるか。',
                     experiment: '預かった言葉を、由来、場面、次に使えそうな問いの三つに分けて短いカードへ整える。',
