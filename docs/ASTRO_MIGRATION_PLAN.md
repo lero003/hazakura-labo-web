@@ -56,6 +56,7 @@
 - Moonゾーンのshooting starsは `src/scripts/shooting-stars.js` に切り出し、Sakura描画ループから `ensure()` / `update()` だけを呼ぶ。
 - カスタムカーソルのdot/ring追従ループは `src/scripts/cursor-follow.js` に切り出し、pointer入力から座標だけ渡す。
 - Sakura/Petalの生成・描画ループ・マウス反発・ゾーン別Firefly/Micro変化は `src/scripts/sakura-petals.js` に切り出し、Moon補助演出だけコールバックで連携する。
+- 最後の起動処理は `src/scripts/app-controller.js` に移し、ページ側は Astro ルートから配信される `/app-controller.js` を読む。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。

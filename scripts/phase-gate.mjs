@@ -39,7 +39,7 @@ assert(
 
 const requiredAssets = [
   'dist/style.css',
-  'dist/script.js',
+  'dist/app-controller.js',
   'dist/content.js',
   'dist/content-renderers.js',
   'dist/project-filter.js',
@@ -86,7 +86,7 @@ assert(
   JSON.stringify(contentSandbox.window.HAZAKURA_CONTENT) === JSON.stringify(hazakuraContent)
 );
 
-const scriptJs = readFile('dist/script.js');
+const appControllerJs = readFile('dist/app-controller.js');
 const contentRenderersJs = readFile('dist/content-renderers.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const quotePreludeJs = readFile('dist/quote-prelude.js');
@@ -115,28 +115,28 @@ const auroraCanvasJs = readFile('dist/aurora-canvas.js');
 const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
 const sakuraPetalsJs = readFile('dist/sakura-petals.js');
-assert('legacy script delegates content renderers', scriptJs.includes('HazakuraContentRenderers?.create'));
-assert('legacy script delegates zone performance', scriptJs.includes('HazakuraZonePerformance?.create'));
-assert('legacy script delegates hero aurora overlay', scriptJs.includes('HazakuraHeroAuroraOverlay?.create'));
-assert('legacy script delegates hero image loader', scriptJs.includes('HazakuraHeroImageLoader?.init'));
-assert('legacy script delegates motion preferences', scriptJs.includes('HazakuraMotionPreferences?.create'));
-assert('legacy script delegates smooth scroll', scriptJs.includes('HazakuraSmoothScroll?.init'));
-assert('legacy script delegates scroll indicators', scriptJs.includes('HazakuraScrollIndicators?.create'));
-assert('legacy script delegates text reveal', scriptJs.includes('HazakuraTextReveal?.prepare'));
-assert('legacy script delegates hero parallax', scriptJs.includes('HazakuraHeroParallax?.create'));
-assert('legacy script delegates scroll animations', scriptJs.includes('HazakuraScrollAnimations?.init'));
-assert('legacy script delegates canvas size', scriptJs.includes('HazakuraCanvasSize?.resize'));
-assert('legacy script delegates visibility playback', scriptJs.includes('HazakuraVisibilityPlayback?.init'));
-assert('legacy script delegates resize listener', scriptJs.includes('HazakuraResizeListener?.init'));
-assert('legacy script delegates cursor hover', scriptJs.includes('HazakuraCursorHover?.init'));
-assert('legacy script delegates card hover fields', scriptJs.includes('HazakuraCardHoverFields?.create'));
-assert('legacy script delegates book tilt', scriptJs.includes('HazakuraBookTilt?.create'));
-assert('legacy script delegates pointer input', scriptJs.includes('HazakuraPointerInput?.init'));
-assert('legacy script delegates scroll ticker', scriptJs.includes('HazakuraScrollTicker?.init'));
-assert('legacy script delegates aurora canvas', scriptJs.includes('HazakuraAuroraCanvas?.create'));
-assert('legacy script delegates shooting stars', scriptJs.includes('HazakuraShootingStars?.create'));
-assert('legacy script delegates cursor follow', scriptJs.includes('HazakuraCursorFollow?.create'));
-assert('legacy script delegates sakura petals', scriptJs.includes('HazakuraSakuraPetals?.create'));
+assert('app controller delegates content renderers', appControllerJs.includes('HazakuraContentRenderers?.create'));
+assert('app controller delegates zone performance', appControllerJs.includes('HazakuraZonePerformance?.create'));
+assert('app controller delegates hero aurora overlay', appControllerJs.includes('HazakuraHeroAuroraOverlay?.create'));
+assert('app controller delegates hero image loader', appControllerJs.includes('HazakuraHeroImageLoader?.init'));
+assert('app controller delegates motion preferences', appControllerJs.includes('HazakuraMotionPreferences?.create'));
+assert('app controller delegates smooth scroll', appControllerJs.includes('HazakuraSmoothScroll?.init'));
+assert('app controller delegates scroll indicators', appControllerJs.includes('HazakuraScrollIndicators?.create'));
+assert('app controller delegates text reveal', appControllerJs.includes('HazakuraTextReveal?.prepare'));
+assert('app controller delegates hero parallax', appControllerJs.includes('HazakuraHeroParallax?.create'));
+assert('app controller delegates scroll animations', appControllerJs.includes('HazakuraScrollAnimations?.init'));
+assert('app controller delegates canvas size', appControllerJs.includes('HazakuraCanvasSize?.resize'));
+assert('app controller delegates visibility playback', appControllerJs.includes('HazakuraVisibilityPlayback?.init'));
+assert('app controller delegates resize listener', appControllerJs.includes('HazakuraResizeListener?.init'));
+assert('app controller delegates cursor hover', appControllerJs.includes('HazakuraCursorHover?.init'));
+assert('app controller delegates card hover fields', appControllerJs.includes('HazakuraCardHoverFields?.create'));
+assert('app controller delegates book tilt', appControllerJs.includes('HazakuraBookTilt?.create'));
+assert('app controller delegates pointer input', appControllerJs.includes('HazakuraPointerInput?.init'));
+assert('app controller delegates scroll ticker', appControllerJs.includes('HazakuraScrollTicker?.init'));
+assert('app controller delegates aurora canvas', appControllerJs.includes('HazakuraAuroraCanvas?.create'));
+assert('app controller delegates shooting stars', appControllerJs.includes('HazakuraShootingStars?.create'));
+assert('app controller delegates cursor follow', appControllerJs.includes('HazakuraCursorFollow?.create'));
+assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
