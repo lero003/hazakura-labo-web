@@ -45,6 +45,7 @@ const requiredAssets = [
   'dist/quote-prelude.js',
   'dist/zone-nav.js',
   'dist/zone-atmosphere.js',
+  'dist/zone-performance.js',
   'dist/hero-aurora-overlay.js',
   'dist/hero-image-loader.js',
   'dist/motion-preferences.js',
@@ -89,6 +90,7 @@ const projectFilterJs = readFile('dist/project-filter.js');
 const quotePreludeJs = readFile('dist/quote-prelude.js');
 const zoneNavJs = readFile('dist/zone-nav.js');
 const zoneAtmosphereJs = readFile('dist/zone-atmosphere.js');
+const zonePerformanceJs = readFile('dist/zone-performance.js');
 const heroAuroraOverlayJs = readFile('dist/hero-aurora-overlay.js');
 const heroImageLoaderJs = readFile('dist/hero-image-loader.js');
 const motionPreferencesJs = readFile('dist/motion-preferences.js');
@@ -113,8 +115,7 @@ const cursorFollowJs = readFile('dist/cursor-follow.js');
 const sakuraPetalsJs = readFile('dist/sakura-petals.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
-assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
-assert('legacy script delegates zone atmosphere', scriptJs.includes('HazakuraZoneAtmosphere?.create'));
+assert('legacy script delegates zone performance', scriptJs.includes('HazakuraZonePerformance?.create'));
 assert('legacy script delegates hero aurora overlay', scriptJs.includes('HazakuraHeroAuroraOverlay?.create'));
 assert('legacy script delegates hero image loader', scriptJs.includes('HazakuraHeroImageLoader?.init'));
 assert('legacy script delegates motion preferences', scriptJs.includes('HazakuraMotionPreferences?.create'));
@@ -139,6 +140,7 @@ assert('project filter script exposes global', projectFilterJs.includes('window.
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
 assert('zone atmosphere script exposes global', zoneAtmosphereJs.includes('window.HazakuraZoneAtmosphere'));
+assert('zone performance script exposes global', zonePerformanceJs.includes('window.HazakuraZonePerformance'));
 assert('hero aurora overlay script exposes global', heroAuroraOverlayJs.includes('window.HazakuraHeroAuroraOverlay'));
 assert('hero image loader script exposes global', heroImageLoaderJs.includes('window.HazakuraHeroImageLoader'));
 assert('motion preferences script exposes global', motionPreferencesJs.includes('window.HazakuraMotionPreferences'));

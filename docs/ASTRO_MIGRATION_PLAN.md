@@ -30,8 +30,9 @@
 
 - Projectsの棚フィルターは `src/scripts/project-filter.js` に切り出し、`src/pages/project-filter.js.ts` から従来のscriptとして配信する。カード生成はまだ既存 `script.js` 側に残す。
 - Quote前の循環メモ描画は `src/scripts/quote-prelude.js` に切り出し、あとから演出だけ差し替えやすい境界にする。
-- ゾーンナビのDOM生成とactive表示は `src/scripts/zone-nav.js` に切り出し、スクロール判定や背景更新は既存 `script.js` 側に残す。
-- ゾーン雰囲気レイヤーのDOM生成とCSS変数更新は `src/scripts/zone-atmosphere.js` に切り出し、ブレンド計算は既存 `script.js` 側に残す。
+- ゾーンナビのDOM生成とactive表示は `src/scripts/zone-nav.js` に切り出し、ゾーン司令塔から操作する。
+- ゾーン雰囲気レイヤーのDOM生成とCSS変数更新は `src/scripts/zone-atmosphere.js` に切り出し、ブレンド計算はゾーン司令塔へ移す。
+- ゾーン判定・ナビ選択・背景/境界線/Atmosphere更新・Canvas演出のゾーン同期は `src/scripts/zone-performance.js` にまとめ、既存 `script.js` は `update()` を呼ぶだけにする。
 - Heroのオーロラ用オーバーレイ生成は `src/scripts/hero-aurora-overlay.js` に切り出し、表示切り替えは既存CSSとゾーン状態に任せる。
 - Hero画像のloaded class付与は `src/scripts/hero-image-loader.js` に切り出し、初期表示のフェードインだけを独立管理する。
 - 縮小モーション設定の読み取りとbody class同期は `src/scripts/motion-preferences.js` に切り出し、Canvas停止/再開処理は既存 `script.js` 側に残す。
