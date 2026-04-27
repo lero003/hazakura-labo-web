@@ -45,6 +45,7 @@
 - resizeイベントのデバウンス登録は `src/scripts/resize-listener.js` に切り出し、Canvas再初期化やゾーン更新は既存 `script.js` のコールバックに残す。
 - アニメーションフレームの複数キャンセルは `src/scripts/animation-frames.js` に切り出し、描画ループ自体は既存 `script.js` に残す。
 - Canvasのクリア処理は `src/scripts/canvas-clear.js` に切り出し、reduced motion時の停止処理から呼び出す。
+- カーソルリングのhover class制御は `src/scripts/cursor-hover.js` に切り出し、マウス座標やカードtilt処理は既存 `script.js` に残す。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。

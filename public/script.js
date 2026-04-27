@@ -996,18 +996,6 @@
         }
     });
 
-    // ===== Cursor hover =====
-    document.addEventListener('mouseover', (e) => {
-        if (e.target.closest('a, button, input, textarea, [data-tilt]')) {
-            cursorRing && cursorRing.classList.add('hovering');
-        }
-    });
-    document.addEventListener('mouseout', (e) => {
-        if (e.target.closest('a, button, input, textarea, [data-tilt]')) {
-            cursorRing && cursorRing.classList.remove('hovering');
-        }
-    });
-
     // ===== 5-zone scroll theme: Day → Dusk → Night → Moon → Aurora =====
     let currentZone = 1;
 
@@ -1392,6 +1380,7 @@
         scrollIndicators?.update();
         if (!prefersReducedMotion) heroParallax?.update();
         updateScrollZones();
+        window.HazakuraCursorHover?.init();
 
         let ticking = false;
         window.addEventListener('scroll', () => {
