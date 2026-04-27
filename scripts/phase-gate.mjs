@@ -57,6 +57,7 @@ const requiredAssets = [
   'dist/visibility-playback.js',
   'dist/resize-listener.js',
   'dist/animation-frames.js',
+  'dist/canvas-clear.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -91,6 +92,7 @@ const canvasSizeJs = readFile('dist/canvas-size.js');
 const visibilityPlaybackJs = readFile('dist/visibility-playback.js');
 const resizeListenerJs = readFile('dist/resize-listener.js');
 const animationFramesJs = readFile('dist/animation-frames.js');
+const canvasClearJs = readFile('dist/canvas-clear.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -107,6 +109,7 @@ assert('legacy script delegates canvas size', scriptJs.includes('HazakuraCanvasS
 assert('legacy script delegates visibility playback', scriptJs.includes('HazakuraVisibilityPlayback?.init'));
 assert('legacy script delegates resize listener', scriptJs.includes('HazakuraResizeListener?.init'));
 assert('legacy script delegates animation frames', scriptJs.includes('HazakuraAnimationFrames?.cancelAll'));
+assert('legacy script delegates canvas clear', scriptJs.includes('HazakuraCanvasClear?.clearAll'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -123,6 +126,7 @@ assert('canvas size script exposes global', canvasSizeJs.includes('window.Hazaku
 assert('visibility playback script exposes global', visibilityPlaybackJs.includes('window.HazakuraVisibilityPlayback'));
 assert('resize listener script exposes global', resizeListenerJs.includes('window.HazakuraResizeListener'));
 assert('animation frames script exposes global', animationFramesJs.includes('window.HazakuraAnimationFrames'));
+assert('canvas clear script exposes global', canvasClearJs.includes('window.HazakuraCanvasClear'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {

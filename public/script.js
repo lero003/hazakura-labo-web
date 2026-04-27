@@ -1435,8 +1435,10 @@
             motionPreferences.syncBodyClass();
             if (prefersReducedMotion) {
                 window.HazakuraAnimationFrames?.cancelAll(animationId, auroraId);
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                if (auroraCtx && auroraCanvas) auroraCtx.clearRect(0, 0, auroraCanvas.width, auroraCanvas.height);
+                window.HazakuraCanvasClear?.clearAll(
+                    { context: ctx, canvas },
+                    { context: auroraCtx, canvas: auroraCanvas }
+                );
                 scrollAnimations?.setAllCounters();
             } else {
                 animatePetals();
