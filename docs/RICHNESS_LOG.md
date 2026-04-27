@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure
+- Changed: `content-renderers.js` に残っていた Projects のカード生成を `project-renderer.js` へ分け、`project-filter.js` と並ぶ Projects 専用の描画境界にした。読み込み順、Astro配信ルート、phase gate も新しい境界を守るように更新した。
+- Learned: Projects は trail / cycle / action / filter の契約が多く、汎用レンダラー内に残すと次の棚改善で読む範囲が広がりすぎる。見た目を変えずに描画単位を分けるだけでも、実験棚を触る時の迷いが減る。
+- Next: Vision 側も同じように入口ガイド、カード、entry handoff の描画が一塊になっているため、次に構想セクションを触る前に境界コメントか小分割を検討する。
+
+## 2026-04-28
+
 - Focus: Structure / Access
 - Changed: Library の末尾から数値カウンターを削り、書庫の本から Library → Projects の橋へ直接つながる流れに整理した。未使用になった `stats` データ、描画関数、カウンター演出、CSS、phase gate 契約も削除した。
 - Learned: 書庫から実験棚へ渡す場面では、ページ数や冊数の実績表示よりも「問いをどう次へ戻すか」の導線を残したほうが、1ページの参道が途切れにくい。

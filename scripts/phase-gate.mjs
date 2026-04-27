@@ -98,6 +98,7 @@ const appControllerJs = readFile('dist/app-controller.js');
 const styleCss = readFile('dist/style.css');
 const contentRenderersJs = readFile('dist/content-renderers.js');
 const projectFilterJs = readFile('dist/project-filter.js');
+const projectRendererJs = readFile('dist/project-renderer.js');
 const quotePreludeJs = readFile('dist/quote-prelude.js');
 const visionEntryFocusJs = readFile('dist/vision-entry-focus.js');
 const zoneNavJs = readFile('dist/zone-nav.js');
@@ -220,29 +221,53 @@ assert(
   })
 );
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
-assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
+assert('content renderers delegates project renderer', contentRenderersJs.includes('HazakuraProjectRenderer?.render'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
+assert(
+  'content renderers keeps projects markup out of the orchestrator',
+  !contentRenderersJs.includes('class="project-card"')
+    && !contentRenderersJs.includes('class="project-control-deck"')
+    && !contentRenderersJs.includes('class="project-cycle-drawer"'),
+  JSON.stringify({
+    hasProjectCard: contentRenderersJs.includes('class="project-card"'),
+    hasProjectControlDeck: contentRenderersJs.includes('class="project-control-deck"'),
+    hasProjectCycleDrawer: contentRenderersJs.includes('class="project-cycle-drawer"')
+  })
+);
+assert('project renderer script exposes global', projectRendererJs.includes('window.HazakuraProjectRenderer'));
+assert(
+  'project renderer loads between filter and content orchestrator',
+  html.indexOf('src="/project-filter.js"') >= 0
+    && html.indexOf('src="/project-renderer.js"') > html.indexOf('src="/project-filter.js"')
+    && html.indexOf('src="/project-renderer.js"') < html.indexOf('src="/content-renderers.js"'),
+  JSON.stringify({
+    projectFilter: html.indexOf('src="/project-filter.js"'),
+    projectRenderer: html.indexOf('src="/project-renderer.js"'),
+    contentRenderers: html.indexOf('src="/content-renderers.js"')
+  })
+);
+assert('project renderer delegates project filter', projectRendererJs.includes('HazakuraProjectFilter?.init'));
 assert(
   'projects entry keeps library handoff threshold',
   hazakuraContent.projectsGroup?.threshold?.title
-    && contentRenderersJs.includes('class="project-threshold"')
+    && projectRendererJs.includes('class="project-threshold"')
     && styleCss.includes('.project-threshold__rail')
     && scrollAnimationsJs.includes('.project-threshold'),
   JSON.stringify({
     hasData: Boolean(hazakuraContent.projectsGroup?.threshold?.title),
-    hasRenderer: contentRenderersJs.includes('class="project-threshold"'),
+    hasRenderer: projectRendererJs.includes('class="project-threshold"'),
     hasStyles: styleCss.includes('.project-threshold__rail'),
     hasReveal: scrollAnimationsJs.includes('.project-threshold')
   })
 );
 assert(
   'projects controls stay compact before cards',
-  contentRenderersJs.includes('class="project-control-deck"')
+  projectRendererJs.includes('class="project-control-deck"')
     && styleCss.includes('grid-template-columns: minmax(0, 1.22fr) minmax(17rem, 0.62fr)')
     && styleCss.includes('scroll-snap-type: x proximity')
     && styleCss.includes('.project-lane-guide::before'),
   JSON.stringify({
-    hasControlDeck: contentRenderersJs.includes('class="project-control-deck"'),
+    hasControlDeck: projectRendererJs.includes('class="project-control-deck"'),
     hasDesktopGrid: styleCss.includes('grid-template-columns: minmax(0, 1.22fr) minmax(17rem, 0.62fr)'),
     hasMobileScroller: styleCss.includes('scroll-snap-type: x proximity'),
     hasPathRail: styleCss.includes('.project-lane-guide::before')
@@ -250,25 +275,25 @@ assert(
 );
 assert(
   'project cards compress trail notes',
-  contentRenderersJs.includes('class="project-trail"')
+  projectRendererJs.includes('class="project-trail"')
     && styleCss.includes('.project-trail')
-    && ["['origin', 'Origin'", "['surprise', 'Surprise'", "['next', 'Next'"].every((snippet) => contentRenderersJs.includes(snippet))
-    && contentRenderersJs.includes('data-trail-kind="${escapeHtml(kind)}"'),
+    && ["['origin', 'Origin'", "['surprise', 'Surprise'", "['next', 'Next'"].every((snippet) => projectRendererJs.includes(snippet))
+    && projectRendererJs.includes('data-trail-kind="${escapeHtml(kind)}"'),
   JSON.stringify({
-    hasTrailRenderer: contentRenderersJs.includes('class="project-trail"'),
+    hasTrailRenderer: projectRendererJs.includes('class="project-trail"'),
     hasTrailStyles: styleCss.includes('.project-trail')
   })
 );
 assert(
   'project cycles are folded behind a drawer',
-  contentRenderersJs.includes('class="project-cycle-drawer"')
-    && contentRenderersJs.includes('class="project-cycle-drawer__sigil"')
-    && contentRenderersJs.includes('小径をひらく')
+  projectRendererJs.includes('class="project-cycle-drawer"')
+    && projectRendererJs.includes('class="project-cycle-drawer__sigil"')
+    && projectRendererJs.includes('小径をひらく')
     && styleCss.includes('.project-cycle-drawer')
     && styleCss.includes('.project-cycle-drawer__sigil')
     && styleCss.includes('.project-cycle-drawer[open] summary::after'),
   JSON.stringify({
-    hasDrawerRenderer: contentRenderersJs.includes('class="project-cycle-drawer"'),
+    hasDrawerRenderer: projectRendererJs.includes('class="project-cycle-drawer"'),
     hasDrawerStyles: styleCss.includes('.project-cycle-drawer')
   })
 );
@@ -279,7 +304,7 @@ assert(
     && ['external', 'download', 'status'].every((type) => hazakuraContent.projectsGroup.actionTypes.some((item) => item.type === type))
     && !Object.prototype.hasOwnProperty.call(hazakuraContent.projectsGroup || {}, 'actionGuide')
     && projectFilterJs.includes('projectsGroup.actionTypes')
-    && contentRenderersJs.includes('projectsGroup.actionTypes'),
+    && projectRendererJs.includes('projectsGroup.actionTypes'),
   JSON.stringify({
     actionTypes: hazakuraContent.projectsGroup?.actionTypes?.map((item) => item.type) || [],
     hasActionGuide: Object.prototype.hasOwnProperty.call(hazakuraContent.projectsGroup || {}, 'actionGuide')
