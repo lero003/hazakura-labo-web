@@ -200,6 +200,19 @@ assert('content renderers script exposes global', contentRenderersJs.includes('w
 assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
 assert(
+  'projects entry keeps library handoff threshold',
+  hazakuraContent.projectsGroup?.threshold?.title
+    && contentRenderersJs.includes('class="project-threshold"')
+    && styleCss.includes('.project-threshold__rail')
+    && scrollAnimationsJs.includes('.project-threshold'),
+  JSON.stringify({
+    hasData: Boolean(hazakuraContent.projectsGroup?.threshold?.title),
+    hasRenderer: contentRenderersJs.includes('class="project-threshold"'),
+    hasStyles: styleCss.includes('.project-threshold__rail'),
+    hasReveal: scrollAnimationsJs.includes('.project-threshold')
+  })
+);
+assert(
   'project cards compress trail notes',
   contentRenderersJs.includes('class="project-trail"')
     && styleCss.includes('.project-trail')

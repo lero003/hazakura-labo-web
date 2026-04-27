@@ -418,6 +418,20 @@
         const laneStatus = projectLanes.length
             ? `<p class="project-lane-status" data-project-lane-status aria-live="polite">${escapeHtml(projectsGroup.overview || '制作物を棚ごとに眺められます。')}</p>`
             : '';
+        const threshold = projectsGroup.threshold
+            ? `<div class="project-threshold" data-project-threshold>
+                <span class="project-threshold__sigil" aria-hidden="true">✧</span>
+                <div class="project-threshold__copy">
+                    <p class="project-threshold__eyebrow">${escapeHtml(projectsGroup.threshold.eyebrow || 'Library handoff')}</p>
+                    <h3>${escapeHtml(projectsGroup.threshold.title || '')}</h3>
+                    <p>${escapeHtml(projectsGroup.threshold.text || '')}</p>
+                </div>
+                <span class="project-threshold__rail" aria-hidden="true"></span>
+            </div>`
+            : '';
+        const controlDeck = laneGuide || laneFilters || laneStatus
+            ? `<div class="project-control-deck">${laneGuide}${laneFilters}${laneStatus}</div>`
+            : '';
         const cards = items.map((item) => {
             const actionType = getProjectActionType(item);
             const actionDetail = actionTypeDetails[actionType] || {};
@@ -525,7 +539,7 @@
                 </article>
             `;
         }).join('');
-        root.innerHTML = `${laneGuide}${laneFilters}${laneStatus}${cards}`;
+        root.innerHTML = `${threshold}${controlDeck}${cards}`;
         initProjectLaneFilter(root, projectsGroup);
     }
 

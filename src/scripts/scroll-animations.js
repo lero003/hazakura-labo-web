@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const revealSelectors = '.philosophy-card, .vision-card, .layer-card, .research-log-handoff, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-card, .book-showcase, .quote-block';
+    const revealSelectors = '.philosophy-card, .vision-card, .layer-card, .research-log-handoff, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-threshold, .project-card, .book-showcase, .quote-block';
     const staggeredSelectors = '.philosophy-card, .vision-card, .layer-card, .research-log-card';
 
     function setCounterValue(el) {
@@ -108,7 +108,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-handoff, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-card').forEach((el) => observer.observe(el));
+        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-handoff, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-threshold, .project-card').forEach((el) => observer.observe(el));
         document.querySelectorAll('.book-showcase, .quote-block').forEach((el) => observer.observe(el));
         document.querySelectorAll('.stats-grid').forEach((el) => observer.observe(el));
         document.querySelectorAll('.process-flow').forEach((el) => observer.observe(el));

@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Narrative / Visual / Structure
+- Changed: Projects 冒頭に `projectsGroup.threshold` 由来の小さな着地点を追加し、書庫から渡った問いが道具・ログ・物語の三つの棚へ分かれる一拍を置いた。既存の棚ガイド、フィルター、状態文は `project-control-deck` にまとめ、phase gate で threshold のデータ・描画・reveal を保護した。
+- Learned: Library 側の橋が整っても、Projects 側がすぐ棚ガイドから始まると「渡された問いを受け取る」感触が弱い。新しいカードを足さず、入口の一拍と既存操作群の器を分けるだけで、一覧開始の事務感を抑えられる。
+- Next: preview 可能な環境で、Projects threshold の細い rail がモバイル幅で余白を取りすぎないか、棚ガイドまでの歩幅も含めて確認する。
+
+## 2026-04-28
+
+- Focus: Narrative / Visual / Structure
 - Changed: Vision のプロセスフローと Research Log の間に、`researchGroup.handoff` 由来の小さな戻り道を追加した。入口を「預ける → ほどく → 返す」の三段に整え、ログ件数の印、夜テーマ、モバイル縦レール、スクロール reveal、phase gate の保護まで接続した。
 - Learned: Vision の入口とログがどちらも育つほど、間に「なぜここで研究ログへ戻るのか」の一拍がないとカード群が急に始まって見える。短い間奏をデータ化すると、情報を増やさずに循環の手触りを補える。
 - Next: preview 可能な環境で、Vision 末尾の handoff が Research Log 先頭を押し下げすぎないか、モバイル幅の縦レールも含めて見る。

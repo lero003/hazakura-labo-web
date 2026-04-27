@@ -20,6 +20,11 @@ export const projectsGroup = {
     }
   ],
   "overview": "公開済み、試作中、構想中を一列に混ぜ、どのカードが外へ出るか、どれが問いへ戻るかを眺めます。",
+  "threshold": {
+    "eyebrow": "Library handoff",
+    "title": "問いはここで、三つの棚へ分かれる。",
+    "text": "書庫から渡ってきた余白を、道具、ログ、物語の種へほどき直します。"
+  },
   "actionTypes": [
     {
       "type": "external",
