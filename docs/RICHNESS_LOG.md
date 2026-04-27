@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Visual / Content
+- Changed: One-page Architecture の各レイヤーに `phase` / `phaseNote` を追加し、読む・触れる・移ろう・巡らすの薄い時間軸をカード内に表示した。あわせて Magic Tool 系カードに `origin` を足し、なぜ作ったかの前段にある作り始めの火種を読めるようにした。
+- Learned: Why だけだと動機の説明で止まりやすいが、Origin を添えると RFP の「探求の可視化」として、道具が問いから生まれた流れまで追いやすくなる。
+- Next: Origin が増えたら、Magic Tool のみを絞り込んだ時に Origin / Why / Surprise / Next の並びが長すぎないか、モバイルで再点検する。
+
+## 2026-04-27
+
 - Focus: Narrative / Content
 - Changed: Research Log に「未知の論文は、どう問いへ変わるか」を追加し、`arxiv_scout（試作メモ）` から Research Log 006 へ戻れる導線を表示した。
 - Learned: 未知の論文探索は検索結果を増やす話にせず、驚いた語を次の仮説へ戻すログとして置くと、RFPの「探求の可視化」と Magic Tools の循環が近づく。

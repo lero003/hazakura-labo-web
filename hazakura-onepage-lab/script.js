@@ -522,6 +522,7 @@
                 </span>
                 <span class="layer-label">${escapeHtml(item.label)}</span>
                 ${item.cadence ? `<span class="layer-cadence">${escapeHtml(item.cadence)}</span>` : ''}
+                ${item.phase ? `<span class="layer-phase"><strong>${escapeHtml(item.phase)}</strong>${item.phaseNote ? `<em>${escapeHtml(item.phaseNote)}</em>` : ''}</span>` : ''}
                 <h3>${escapeHtml(item.title)}</h3>
                 <p>${escapeHtml(item.text)}</p>
             </article>
@@ -865,6 +866,9 @@
             const why = item.why
                 ? `<p class="project-why"><span>Why</span>${escapeHtml(item.why)}</p>`
                 : '';
+            const origin = item.origin
+                ? `<p class="project-origin"><span>Origin</span>${escapeHtml(item.origin)}</p>`
+                : '';
             const surprise = item.surprise
                 ? `<p class="project-surprise"><span>Surprise</span>${escapeHtml(item.surprise)}</p>`
                 : '';
@@ -907,6 +911,7 @@
                         <h3 class="project-title">${escapeHtml(item.title)}</h3>
                         <p class="project-desc">${escapeHtml(item.text)}</p>
                         ${why}
+                        ${origin}
                         ${surprise}
                         ${nextStep}
                         ${actionNote}
