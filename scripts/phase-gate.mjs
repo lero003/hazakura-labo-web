@@ -79,6 +79,7 @@ assert(
   requiredAssets.filter((path) => !fs.existsSync(path)).join(', ')
 );
 assert('legacy public script is not emitted', !fs.existsSync('dist/script.js'));
+assert('legacy public stylesheet source is not used', !fs.existsSync('public/style.css'));
 
 const contentJs = readFile('dist/content.js');
 const contentSandbox = { window: {} };
@@ -89,6 +90,7 @@ assert(
 );
 
 const appControllerJs = readFile('dist/app-controller.js');
+const styleCss = readFile('dist/style.css');
 const contentRenderersJs = readFile('dist/content-renderers.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const quotePreludeJs = readFile('dist/quote-prelude.js');
@@ -139,6 +141,7 @@ assert('app controller delegates aurora canvas', appControllerJs.includes('Hazak
 assert('app controller delegates shooting stars', appControllerJs.includes('HazakuraShootingStars?.create'));
 assert('app controller delegates cursor follow', appControllerJs.includes('HazakuraCursorFollow?.create'));
 assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
+assert('style sheet contains design tokens', styleCss.includes('--sakura-500') && styleCss.includes('.hero'));
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
