@@ -465,8 +465,7 @@
 
     // ===== Mouse tracking =====
     const cardHoverFields = window.HazakuraCardHoverFields?.create();
-    const book3dEl = document.getElementById('book-3d');
-    const bookGlareEl = document.querySelector('.book-glare');
+    const bookTilt = window.HazakuraBookTilt?.create();
 
     function refreshHoverTargets() {
         cardHoverFields?.refresh();
@@ -961,25 +960,7 @@
         targetWindX = (e.movementX || 0) * 0.15;
 
         cardHoverFields?.update(e);
-
-        // Book 3D
-        if (book3dEl) {
-            const rect = book3dEl.getBoundingClientRect();
-            if (e.clientX >= rect.left - 50 && e.clientX <= rect.right + 50 &&
-                e.clientY >= rect.top - 50 && e.clientY <= rect.bottom + 50) {
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const cx = rect.width / 2;
-                const cy = rect.height / 2;
-                const rx = ((y - cy) / cy) * -12;
-                const ry = ((x - cx) / cx) * 12;
-                book3dEl.style.transform = `rotateY(${ry - 10}deg) rotateX(${rx}deg) scale(1.05)`;
-                if (bookGlareEl) bookGlareEl.style.transform = `translateX(${(x / rect.width) * 120 - 100}%)`;
-            } else {
-                book3dEl.style.transform = `rotateY(-20deg) rotateX(5deg)`;
-                if (bookGlareEl) bookGlareEl.style.transform = `translateX(-150%)`;
-            }
-        }
+        bookTilt?.update(e);
     });
 
     // ===== 5-zone scroll theme: Day → Dusk → Night → Moon → Aurora =====

@@ -60,6 +60,7 @@ const requiredAssets = [
   'dist/canvas-clear.js',
   'dist/cursor-hover.js',
   'dist/card-hover-fields.js',
+  'dist/book-tilt.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -97,6 +98,7 @@ const animationFramesJs = readFile('dist/animation-frames.js');
 const canvasClearJs = readFile('dist/canvas-clear.js');
 const cursorHoverJs = readFile('dist/cursor-hover.js');
 const cardHoverFieldsJs = readFile('dist/card-hover-fields.js');
+const bookTiltJs = readFile('dist/book-tilt.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -116,6 +118,7 @@ assert('legacy script delegates animation frames', scriptJs.includes('HazakuraAn
 assert('legacy script delegates canvas clear', scriptJs.includes('HazakuraCanvasClear?.clearAll'));
 assert('legacy script delegates cursor hover', scriptJs.includes('HazakuraCursorHover?.init'));
 assert('legacy script delegates card hover fields', scriptJs.includes('HazakuraCardHoverFields?.create'));
+assert('legacy script delegates book tilt', scriptJs.includes('HazakuraBookTilt?.create'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -135,6 +138,7 @@ assert('animation frames script exposes global', animationFramesJs.includes('win
 assert('canvas clear script exposes global', canvasClearJs.includes('window.HazakuraCanvasClear'));
 assert('cursor hover script exposes global', cursorHoverJs.includes('window.HazakuraCursorHover'));
 assert('card hover fields script exposes global', cardHoverFieldsJs.includes('window.HazakuraCardHoverFields'));
+assert('book tilt script exposes global', bookTiltJs.includes('window.HazakuraBookTilt'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {
