@@ -6,10 +6,8 @@
 (function () {
     'use strict';
 
-    const reducedMotionQuery = window.matchMedia
-        ? window.matchMedia('(prefers-reduced-motion: reduce)')
-        : { matches: false, addEventListener() {} };
-    let prefersReducedMotion = reducedMotionQuery.matches;
+    const motionPreferences = window.HazakuraMotionPreferences?.create();
+    let prefersReducedMotion = motionPreferences?.matches || false;
 
     // ===== Sakura/Firefly Canvas =====
     const canvas = document.getElementById('sakura-canvas');
@@ -1529,7 +1527,7 @@
     // ===== Initialization =====
     function init() {
         renderContent();
-        document.body.classList.toggle('motion-reduced', prefersReducedMotion);
+        motionPreferences?.syncBodyClass();
         resizeCanvas();
         initPetals();
         createAuroraCanvas();
@@ -1587,9 +1585,9 @@
             }
         });
 
-        reducedMotionQuery.addEventListener('change', (event) => {
+        motionPreferences?.onChange((event) => {
             prefersReducedMotion = event.matches;
-            document.body.classList.toggle('motion-reduced', prefersReducedMotion);
+            motionPreferences.syncBodyClass();
             if (prefersReducedMotion) {
                 cancelAnimationFrame(animationId);
                 cancelAnimationFrame(auroraId);
