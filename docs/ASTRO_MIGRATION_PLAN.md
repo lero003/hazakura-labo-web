@@ -1,6 +1,6 @@
 # Astro移行メモ
 
-葉桜ラボの現行1ページを壊さず、Cloudflare Pagesで静的ビルドできる形へ移すための段階的な作業メモです。
+葉桜ラボの1ページを壊さず、Cloudflare Pagesで静的ビルドできるAstro構成へ移した段階的な作業メモです。
 
 ## Phase A: Astro shell
 
@@ -13,6 +13,8 @@
 - Cloudflare Pagesは root directory をリポジトリルート、build command を `npm run build`、output を `dist` にする。
 - `npm run build` が通ることをPhase Aの完了条件にする。
 
+Status: 完了。リポジトリルートの Astro project から `dist/` を生成する。
+
 ## Phase B: Content split
 
 目的: 表示構造は大きく変えず、コンテンツだけを育てやすい単位へ分ける。
@@ -23,6 +25,8 @@
 - Projectsは `lanes` / `overview` / `actionGuide` / `items` を同じ境界として扱う。
 - Visionは `entryGuide` と `items` を分けつつ、描画上の見え方は変えない。
 - 既存のカード構造、フィルター、アンカー、CTAは大きく変えない。
+
+Status: 完了。`src/data/` へ分割し、`/content.js` は互換配信として維持する。
 
 ## Phase C: Rich islands
 
@@ -63,6 +67,8 @@
 - モバイル向けの小さな演出は、表示領域に入ってから動くようにする。
 - island化する時も、最初は見た目とDOM構造をできるだけ変えない。
 
+Status: 完了。旧 `public/script.js` は削除し、起動処理は `/app-controller.js` へ移行した。
+
 ## Phase D: Experimental garden
 
 目的: 季節テーマや間奏セクションを、ページ全体を壊さず差し替えられる構造へ育てる。
@@ -75,6 +81,6 @@
 
 ## 現時点の方針
 
-今はPhase Aのスパイク段階です。`hazakura-onepage-lab/` は比較用の現行静的サイトとして残し、Astro版は `src/` と `public/` から組み立てます。本線採用前に、Cloudflare Pagesの設定変更と公開ページの目視確認を行います。
+Astro版を本線として扱います。`hazakura-onepage-lab/` は比較用の旧静的版アーカイブとして残し、現在の公開候補は `src/` と `public/` から組み立てます。Cloudflare Pagesは root directory をリポジトリルート、build command を `npm run build`、output を `dist` にする前提です。
 
-大きい演出を切り出す前に、`npm run check:phase` で静的な完了条件を確認します。このチェックは `dist/index.html`、主要セクション順、生成JS、必須assets、`src/data/` と `/content.js` の一致を見ます。ブラウザ上の目視確認は別途行います。
+大きい演出を切り出す前後に、`npm run check:phase` で静的な完了条件を確認します。このチェックは `dist/index.html`、主要セクション順、生成JS、必須assets、旧 `/script.js` が出力されていないこと、`src/data/` と `/content.js` の一致を見ます。ブラウザ上の目視確認は別途行います。
