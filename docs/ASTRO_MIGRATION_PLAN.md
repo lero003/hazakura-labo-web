@@ -28,6 +28,7 @@
 
 目的: 動く部分だけを安全にisland化し、演出の実験をしやすくする。
 
+- Projectsの棚フィルターは `src/scripts/project-filter.js` に切り出し、`src/pages/project-filter.js.ts` から従来のscriptとして配信する。カード生成はまだ既存 `script.js` 側に残す。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。
