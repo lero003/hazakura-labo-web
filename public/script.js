@@ -1019,20 +1019,6 @@
         }
     });
 
-    // ===== Scroll handlers =====
-    function handleParallax() {
-        const scrollY = window.scrollY;
-        const heroDepth = document.querySelector('.hero-depth-layer');
-        const heroContent = document.querySelector('.hero-content');
-        if (heroDepth) {
-            heroDepth.style.transform = `scale(1.1) translateY(${scrollY * 0.2}px)`;
-        }
-        if (heroContent) {
-            heroContent.style.transform = `translateY(${scrollY * 0.15}px)`;
-            heroContent.style.opacity = Math.max(0, 1 - scrollY / (window.innerHeight * 0.7));
-        }
-    }
-
     // ===== Scroll animations =====
     function initScrollAnimations() {
         if (prefersReducedMotion) {
@@ -1493,8 +1479,9 @@
             getPrefersReducedMotion: () => prefersReducedMotion
         });
         const scrollIndicators = window.HazakuraScrollIndicators?.create();
+        const heroParallax = window.HazakuraHeroParallax?.create();
         scrollIndicators?.update();
-        if (!prefersReducedMotion) handleParallax();
+        if (!prefersReducedMotion) heroParallax?.update();
         updateScrollZones();
 
         let ticking = false;
@@ -1502,7 +1489,7 @@
             if (!ticking) {
                 requestAnimationFrame(() => {
                     scrollIndicators?.update();
-                    if (!prefersReducedMotion) handleParallax();
+                    if (!prefersReducedMotion) heroParallax?.update();
                     updateScrollZones();
                     ticking = false;
                 });
@@ -1519,7 +1506,7 @@
                 initPetals();
                 initAuroraWaves();
                 if (shootingStars.length > 0) initShootingStars();
-                if (!prefersReducedMotion) handleParallax();
+                if (!prefersReducedMotion) heroParallax?.update();
                 scrollIndicators?.update();
                 updateScrollZones();
             }, 150);

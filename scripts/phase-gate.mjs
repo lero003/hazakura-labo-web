@@ -51,6 +51,7 @@ const requiredAssets = [
   'dist/smooth-scroll.js',
   'dist/scroll-indicators.js',
   'dist/text-reveal.js',
+  'dist/hero-parallax.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -79,6 +80,7 @@ const motionPreferencesJs = readFile('dist/motion-preferences.js');
 const smoothScrollJs = readFile('dist/smooth-scroll.js');
 const scrollIndicatorsJs = readFile('dist/scroll-indicators.js');
 const textRevealJs = readFile('dist/text-reveal.js');
+const heroParallaxJs = readFile('dist/hero-parallax.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -89,6 +91,7 @@ assert('legacy script delegates motion preferences', scriptJs.includes('Hazakura
 assert('legacy script delegates smooth scroll', scriptJs.includes('HazakuraSmoothScroll?.init'));
 assert('legacy script delegates scroll indicators', scriptJs.includes('HazakuraScrollIndicators?.create'));
 assert('legacy script delegates text reveal', scriptJs.includes('HazakuraTextReveal?.prepare'));
+assert('legacy script delegates hero parallax', scriptJs.includes('HazakuraHeroParallax?.create'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -99,6 +102,7 @@ assert('motion preferences script exposes global', motionPreferencesJs.includes(
 assert('smooth scroll script exposes global', smoothScrollJs.includes('window.HazakuraSmoothScroll'));
 assert('scroll indicators script exposes global', scrollIndicatorsJs.includes('window.HazakuraScrollIndicators'));
 assert('text reveal script exposes global', textRevealJs.includes('window.HazakuraTextReveal'));
+assert('hero parallax script exposes global', heroParallaxJs.includes('window.HazakuraHeroParallax'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {
