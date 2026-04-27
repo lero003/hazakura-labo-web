@@ -299,6 +299,21 @@ assert(
     hasStyles: styleCss.includes('.vision-grid.is-entry-focus')
   })
 );
+assert(
+  'vision entry focus can nudge selected cards into view',
+  visionEntryFocusJs.includes('nudgeMatchingCard')
+    && visionEntryFocusJs.includes('HazakuraScrollOffset?.get')
+    && visionEntryFocusJs.includes('is-entry-jump')
+    && styleCss.includes('.vision-card.visible.is-entry-match')
+    && styleCss.includes('@keyframes visionEntryNudge'),
+  JSON.stringify({
+    hasNudge: visionEntryFocusJs.includes('nudgeMatchingCard'),
+    usesMeasuredOffset: visionEntryFocusJs.includes('HazakuraScrollOffset?.get'),
+    hasJumpClass: visionEntryFocusJs.includes('is-entry-jump'),
+    hasVisibleMatchStyle: styleCss.includes('.vision-card.visible.is-entry-match'),
+    hasNudgeKeyframes: styleCss.includes('@keyframes visionEntryNudge')
+  })
+);
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
 assert('zone atmosphere script exposes global', zoneAtmosphereJs.includes('window.HazakuraZoneAtmosphere'));
 assert('zone performance script exposes global', zonePerformanceJs.includes('window.HazakuraZonePerformance'));

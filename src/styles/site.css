@@ -1966,6 +1966,26 @@ a {
     }
 }
 
+@keyframes visionEntryNudge {
+    0% {
+        box-shadow:
+            0 0 0 0 rgba(var(--entry-accent-rgb), 0),
+            0 24px 54px rgba(var(--entry-accent-rgb), 0.16);
+    }
+
+    34% {
+        box-shadow:
+            0 0 0 10px rgba(var(--entry-accent-rgb), 0.12),
+            0 28px 62px rgba(var(--entry-accent-rgb), 0.2);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(var(--entry-accent-rgb), 0),
+            0 24px 54px rgba(var(--entry-accent-rgb), 0.16);
+    }
+}
+
 .process-step:hover .process-icon {
     transform: scale(1.15) rotate(5deg);
     box-shadow: 0 10px 30px rgba(232, 88, 122, 0.15);
@@ -2842,6 +2862,14 @@ body.theme-night .section-vision {
         0 24px 54px rgba(var(--entry-accent-rgb), 0.16),
         0 0 0 1px rgba(var(--entry-accent-rgb), 0.12);
     transform: translateY(-4px) scale(1.012);
+}
+
+.vision-card.visible.is-entry-match {
+    transform: translateY(-4px) scale(1.012);
+}
+
+.vision-card.is-entry-jump {
+    animation: visionEntryNudge 0.9s var(--ease-out-expo);
 }
 
 .vision-card.is-entry-match::after {
@@ -5850,6 +5878,12 @@ body.theme-night .section-vision .vision-entry-kind-badge {
 
 body.theme-night .section-vision .vision-entry-kind-badge small {
     color: rgba(239, 246, 255, 0.62);
+}
+
+body.theme-night .section-vision .vision-card.visible.is-entry-match {
+    box-shadow:
+        0 26px 60px rgba(var(--entry-accent-rgb), 0.22),
+        0 0 0 1px rgba(var(--entry-accent-rgb), 0.18);
 }
 
 body.theme-night .section-vision .vision-card .vision-tag {
