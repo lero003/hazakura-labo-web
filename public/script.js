@@ -1019,55 +1019,6 @@
         }
     });
 
-    // ===== Scroll animations =====
-    function initScrollAnimations() {
-        if (prefersReducedMotion) {
-            document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-card, .book-showcase, .quote-block').forEach(el => el.classList.add('visible'));
-            document.querySelectorAll('.process-step, .process-connector, .stat-item').forEach(el => el.classList.add('visible'));
-            document.querySelectorAll('.stat-number').forEach(setCounterValue);
-            return;
-        }
-
-        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -30px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                const el = entry.target;
-                if (el.classList.contains('section-title')) {
-                    el.classList.add('visible');
-                    observer.unobserve(el);
-                } else if (el.classList.contains('philosophy-card') || el.classList.contains('vision-card') || el.classList.contains('layer-card') || el.classList.contains('research-log-card')) {
-                    const parent = el.parentElement;
-                    const siblings = Array.from(parent.children);
-                    const index = siblings.indexOf(el);
-                    setTimeout(() => { el.classList.add('visible'); }, index * 120);
-                } else if (el.id === 'stats-grid') {
-                    el.querySelectorAll('.stat-item').forEach((item, i) => {
-                        setTimeout(() => {
-                            item.classList.add('visible');
-                            animateCounter(item.querySelector('.stat-number'));
-                        }, i * 120);
-                    });
-                } else if (el.id === 'process-flow') {
-                    el.querySelectorAll('.process-step').forEach((step, i) => {
-                        setTimeout(() => { step.classList.add('visible'); }, i * 200);
-                    });
-                    el.querySelectorAll('.process-connector').forEach((conn, i) => {
-                        setTimeout(() => { conn.classList.add('visible'); }, i * 200 + 100);
-                    });
-                } else {
-                    el.classList.add('visible');
-                }
-                observer.unobserve(el);
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-card').forEach(el => observer.observe(el));
-        document.querySelectorAll('.book-showcase, .quote-block').forEach(el => observer.observe(el));
-        document.querySelectorAll('.stats-grid').forEach(el => observer.observe(el));
-        document.querySelectorAll('.process-flow').forEach(el => observer.observe(el));
-    }
-
     // ===== 5-zone scroll theme: Day → Dusk → Night → Moon → Aurora =====
     let currentZone = 1;
 
@@ -1425,39 +1376,6 @@
         shootingStars.forEach(s => s.draw(ctx));
     }
 
-    // ===== Counter animation =====
-    function animateCounter(el) {
-        if (!el) return;
-        const targetEl = el.classList && el.classList.contains('stat-number') ? el : el.querySelector('.stat-number');
-        if (!targetEl) return;
-        if (prefersReducedMotion) {
-            setCounterValue(targetEl);
-            return;
-        }
-
-        const target = parseInt(targetEl.dataset.target);
-        const suffix = targetEl.dataset.suffix || '';
-        const duration = 1500;
-        const startTime = performance.now();
-
-        function update(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-            const current = Math.floor(eased * target);
-            targetEl.textContent = current.toLocaleString() + suffix;
-            if (progress < 1) requestAnimationFrame(update);
-        }
-        requestAnimationFrame(update);
-    }
-
-    function setCounterValue(el) {
-        if (!el) return;
-        const target = parseInt(el.dataset.target);
-        const suffix = el.dataset.suffix || '';
-        el.textContent = target.toLocaleString() + suffix;
-    }
-
     // ===== Initialization =====
     function init() {
         renderContent();
@@ -1474,7 +1392,9 @@
             updateCursor();
         }
         window.HazakuraTextReveal?.prepare();
-        initScrollAnimations();
+        const scrollAnimations = window.HazakuraScrollAnimations?.init({
+            getPrefersReducedMotion: () => prefersReducedMotion
+        });
         window.HazakuraSmoothScroll?.init({
             getPrefersReducedMotion: () => prefersReducedMotion
         });
@@ -1530,7 +1450,7 @@
                 cancelAnimationFrame(auroraId);
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 if (auroraCtx && auroraCanvas) auroraCtx.clearRect(0, 0, auroraCanvas.width, auroraCanvas.height);
-                document.querySelectorAll('.stat-number').forEach(setCounterValue);
+                scrollAnimations?.setAllCounters();
             } else {
                 animatePetals();
                 animateAurora();

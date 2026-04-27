@@ -39,6 +39,7 @@
 - スクロール進捗バーとナビのscrolled状態は `src/scripts/scroll-indicators.js` に切り出し、スクロールループから `update()` だけを呼ぶ。
 - 見出しの一文字reveal用DOM生成は `src/scripts/text-reveal.js` に切り出し、IntersectionObserver側の表示タイミングは既存 `script.js` に残す。
 - Heroのパララックス更新は `src/scripts/hero-parallax.js` に切り出し、縮小モーション時の停止判断は既存初期化側に残す。
+- カード表示・統計カウンター・Process表示のIntersectionObserver管理は `src/scripts/scroll-animations.js` に切り出し、既存DOMとvisible classの契約は維持する。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。
