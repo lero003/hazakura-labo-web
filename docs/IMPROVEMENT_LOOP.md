@@ -35,12 +35,10 @@
 最低限この3つを見る。
 
 ```sh
-node --check hazakura-onepage-lab/content.js
-node --check hazakura-onepage-lab/script.js
-git diff --check
+npm run check:phase
 ```
 
-オートメーション実行では、macOSのGUI権限やChrome.app起動権限により、Chromium / Chromeの直接起動が失敗することがある。毎回同じ失敗を繰り返さないため、通常の小改善では上記の静的チェックと、必要に応じたNodeデータ検査を標準の完了条件にする。
+オートメーション実行では、macOSのGUI権限やChrome.app起動権限により、Chromium / Chromeの直接起動が失敗することがある。毎回同じ失敗を繰り返さないため、通常の小改善では上記のPhase gateと、必要に応じたNodeデータ検査を標準の完了条件にする。
 
 ブラウザ相当の確認は best-effort とする。使える場合は Playwright など、プロジェクトから再現しやすい方法を優先し、`/Applications/Google Chrome.app` の直接起動は標準手順にしない。ブラウザ起動が権限エラーや無出力で失敗した場合は、短く記録して再試行を重ねず、静的チェックで代替する。
 
@@ -64,7 +62,7 @@ git diff --check
 
 ## デプロイ前チェック
 
-GitHubの `main` にpushするとCloudflare Pagesへ自動デプロイされる。現在のCloudflare設定は、root directoryが `hazakura-onepage-lab`、ビルドコマンドなし、フレームワークなし。
+GitHubの `main` にpushするとCloudflare Pagesへ自動デプロイされる。Astro移行後は `npm run build` で `dist/` を生成する前提で確認する。
 
 フレームワーク導入は検討してよい。ただし、導入時は次の崩れに注意する。
 

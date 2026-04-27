@@ -8,7 +8,7 @@
 
 - Astro projectをリポジトリルートに置く。
 - 既存の `index.html` 相当を `src/pages/index.astro` として移植する。
-- 既存の `style.css` / `script.js` / `content.js` / 画像 / downloads は、まず `public/` に置いてそのまま読み込む。
+- 既存の `style.css` / `content.js` / 画像 / downloads は、まず `public/` に置いてそのまま読み込む。旧 `script.js` は Astro配信の小さなscript群へ移した。
 - 既存JSはAstroにバンドルさせず、`is:inline` 付きの外部scriptとして読み込む。
 - Cloudflare Pagesは root directory をリポジトリルート、build command を `npm run build`、output を `dist` にする。
 - `npm run build` が通ることをPhase Aの完了条件にする。
@@ -28,30 +28,30 @@
 
 目的: 動く部分だけを安全にisland化し、演出の実験をしやすくする。
 
-- Philosophy / Research Log / Projects / Vision などのDOM描画は `src/scripts/content-renderers.js` に切り出し、既存 `script.js` は描画起動とhover対象更新だけを受け持つ。
+- Philosophy / Research Log / Projects / Vision などのDOM描画は `src/scripts/content-renderers.js` に切り出し、`app-controller.js` から描画起動とhover対象更新だけを行う。
 - Projectsの棚フィルターは `src/scripts/project-filter.js` に切り出し、カード生成は `src/scripts/content-renderers.js` 側から呼び出す。
 - Quote前の循環メモ描画は `src/scripts/quote-prelude.js` に切り出し、あとから演出だけ差し替えやすい境界にする。
 - ゾーンナビのDOM生成とactive表示は `src/scripts/zone-nav.js` に切り出し、ゾーン司令塔から操作する。
 - ゾーン雰囲気レイヤーのDOM生成とCSS変数更新は `src/scripts/zone-atmosphere.js` に切り出し、ブレンド計算はゾーン司令塔へ移す。
-- ゾーン判定・ナビ選択・背景/境界線/Atmosphere更新・Canvas演出のゾーン同期は `src/scripts/zone-performance.js` にまとめ、既存 `script.js` は `update()` を呼ぶだけにする。
+- ゾーン判定・ナビ選択・背景/境界線/Atmosphere更新・Canvas演出のゾーン同期は `src/scripts/zone-performance.js` にまとめ、`app-controller.js` は `update()` を呼ぶだけにする。
 - Heroのオーロラ用オーバーレイ生成は `src/scripts/hero-aurora-overlay.js` に切り出し、表示切り替えは既存CSSとゾーン状態に任せる。
 - Hero画像のloaded class付与は `src/scripts/hero-image-loader.js` に切り出し、初期表示のフェードインだけを独立管理する。
-- 縮小モーション設定の読み取りとbody class同期は `src/scripts/motion-preferences.js` に切り出し、Canvas停止/再開処理は既存 `script.js` 側に残す。
+- 縮小モーション設定の読み取りとbody class同期は `src/scripts/motion-preferences.js` に切り出し、Canvas停止/再開処理は `app-controller.js` 側で束ねる。
 - ページ内リンクのスムーススクロールは `src/scripts/smooth-scroll.js` に切り出し、縮小モーション時の挙動だけ既存初期化から渡す。
 - スクロール進捗バーとナビのscrolled状態は `src/scripts/scroll-indicators.js` に切り出し、スクロールループから `update()` だけを呼ぶ。
-- 見出しの一文字reveal用DOM生成は `src/scripts/text-reveal.js` に切り出し、IntersectionObserver側の表示タイミングは既存 `script.js` に残す。
+- 見出しの一文字reveal用DOM生成は `src/scripts/text-reveal.js` に切り出し、IntersectionObserver側の表示タイミングは `src/scripts/scroll-animations.js` に寄せる。
 - Heroのパララックス更新は `src/scripts/hero-parallax.js` に切り出し、縮小モーション時の停止判断は既存初期化側に残す。
 - カード表示・統計カウンター・Process表示のIntersectionObserver管理は `src/scripts/scroll-animations.js` に切り出し、既存DOMとvisible classの契約は維持する。
 - Canvasのviewport寸法同期は `src/scripts/canvas-size.js` に切り出し、描画エンジン側のresize前処理を薄くする。
-- ページ非表示時の停止/再開フックは `src/scripts/visibility-playback.js` に切り出し、実際のCanvas停止/再開処理は既存 `script.js` のコールバックに残す。
-- resizeイベントのデバウンス登録は `src/scripts/resize-listener.js` に切り出し、Canvas再初期化やゾーン更新は既存 `script.js` のコールバックに残す。
+- ページ非表示時の停止/再開フックは `src/scripts/visibility-playback.js` に切り出し、実際のCanvas停止/再開処理は `app-controller.js` のコールバックで束ねる。
+- resizeイベントのデバウンス登録は `src/scripts/resize-listener.js` に切り出し、Canvas再初期化やゾーン更新は `app-controller.js` のコールバックで束ねる。
 - アニメーションフレームの複数キャンセルは `src/scripts/animation-frames.js` に切り出し、各描画エンジンの停止処理から呼び出す。
 - Canvasのクリア処理は `src/scripts/canvas-clear.js` に切り出し、reduced motion時は描画エンジン側から呼び出す。
-- カーソルリングのhover class制御は `src/scripts/cursor-hover.js` に切り出し、マウス座標やカードtilt処理は既存 `script.js` に残す。
-- カードtilt用の `--mouse-x` / `--mouse-y` 更新は `src/scripts/card-hover-fields.js` に切り出し、mousemove内の風入力やBook 3D処理は既存 `script.js` に残す。
+- カーソルリングのhover class制御は `src/scripts/cursor-hover.js` に切り出し、マウス座標やカードtilt処理は `app-controller.js` から各islandへ渡す。
+- カードtilt用の `--mouse-x` / `--mouse-y` 更新は `src/scripts/card-hover-fields.js` に切り出し、mousemove内の風入力やBook 3D処理は `app-controller.js` から各islandへ渡す。
 - 書籍表紙の3D tiltとglare更新は `src/scripts/book-tilt.js` に切り出し、mousemove内から `update()` だけを呼ぶ。
-- pointer/mousemoveのイベント登録は `src/scripts/pointer-input.js` に切り出し、座標・風・hover更新の処理は既存 `script.js` のコールバックに残す。
-- scrollイベントのrequestAnimationFrameスロットリングは `src/scripts/scroll-ticker.js` に切り出し、進捗・Hero・ゾーン更新は既存 `script.js` のコールバックに残す。
+- pointer/mousemoveのイベント登録は `src/scripts/pointer-input.js` に切り出し、座標・風・hover更新の処理は `app-controller.js` のコールバックで束ねる。
+- scrollイベントのrequestAnimationFrameスロットリングは `src/scripts/scroll-ticker.js` に切り出し、進捗・Hero・ゾーン更新は `app-controller.js` のコールバックで束ねる。
 - Aurora canvasの生成・波生成・描画ループ・停止/クリアは `src/scripts/aurora-canvas.js` に切り出し、ゾーン側からopacityだけを更新する。
 - Moonゾーンのshooting starsは `src/scripts/shooting-stars.js` に切り出し、Sakura描画ループから `ensure()` / `update()` だけを呼ぶ。
 - カスタムカーソルのdot/ring追従ループは `src/scripts/cursor-follow.js` に切り出し、pointer入力から座標だけ渡す。

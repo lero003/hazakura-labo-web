@@ -36,6 +36,7 @@ assert(
   sectionPositions.every(([, index], itemIndex) => itemIndex === 0 || sectionPositions[itemIndex - 1][1] < index),
   JSON.stringify(sectionPositions)
 );
+assert('legacy script is not loaded', !html.includes('/script.js'));
 
 const requiredAssets = [
   'dist/style.css',
@@ -77,6 +78,7 @@ assert(
   requiredAssets.every((path) => fs.existsSync(path)),
   requiredAssets.filter((path) => !fs.existsSync(path)).join(', ')
 );
+assert('legacy public script is not emitted', !fs.existsSync('dist/script.js'));
 
 const contentJs = readFile('dist/content.js');
 const contentSandbox = { window: {} };
