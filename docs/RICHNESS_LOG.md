@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Motion / Access / Structure
+- Changed: Quote 前の折り返しリンクを通常アンカーから測定済みスムーススクロールへ接続し、Library / Projects / Vision へ戻った時に `is-quote-return-arrival` の淡い着地光が一拍だけ出るようにした。phase gate でこの終盤導線も保護した。
+- Learned: 最後の詩へ向かう前の折り返しは、リンク先へ飛べるだけだと「戻る理由」はあっても「戻ってきた感触」が薄い。新しい説明を足さず、到着先の見出しが受け取るだけで循環の手触りが増える。
+- Next: Footer の `はじまりへ戻る` も、通常アンカーの急なジャンプで読後の余韻を切っていないか次回だけ点検する。
+
+## 2026-04-28
+
 - Focus: Motion / Structure
 - Changed: 書庫から制作棚へ渡すCTAを押した時、Projects 到着時にしるし・レール・棚操作が短く反応する `is-handoff-arrival` 演出を追加し、phase gate で保護した。
 - Learned: セクション間の橋は文言だけでなく、到着先が一拍だけ受け取ると「問いが渡った」感覚が増える。

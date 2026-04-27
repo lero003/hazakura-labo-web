@@ -337,6 +337,21 @@ assert('smooth scroll uses measured offset', smoothScrollJs.includes('HazakuraSc
 assert('zone performance uses measured offset', zonePerformanceJs.includes('HazakuraScrollOffset?.get'));
 assert('smooth scroll includes library projects bridge', smoothScrollJs.includes('.library-projects-bridge__link'));
 assert(
+  'quote prelude foldback uses smooth scroll arrival',
+  smoothScrollJs.includes('.quote-prelude-step[href^="#"]')
+    && smoothScrollJs.includes('markQuoteReturnArrival')
+    && smoothScrollJs.includes('is-quote-return-arrival')
+    && styleCss.includes('.section.is-quote-return-arrival .section-header::after')
+    && styleCss.includes('@keyframes quoteReturnGlow'),
+  JSON.stringify({
+    hasSelector: smoothScrollJs.includes('.quote-prelude-step[href^="#"]'),
+    hasHandler: smoothScrollJs.includes('markQuoteReturnArrival'),
+    hasArrivalClass: smoothScrollJs.includes('is-quote-return-arrival'),
+    hasStyle: styleCss.includes('.section.is-quote-return-arrival .section-header::after'),
+    hasKeyframes: styleCss.includes('@keyframes quoteReturnGlow')
+  })
+);
+assert(
   'library bridge click marks projects handoff arrival',
   smoothScrollJs.includes('markHandoffArrival')
     && smoothScrollJs.includes('is-handoff-arrival')

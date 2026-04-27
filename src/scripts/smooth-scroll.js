@@ -3,7 +3,7 @@
 
     function init(options = {}) {
         const {
-            selector = '.nav-links a[href^="#"], .footer-nav a[href^="#"], .hero-cta[href^="#"], .library-projects-bridge__link[href^="#"]',
+            selector = '.nav-links a[href^="#"], .footer-nav a[href^="#"], .hero-cta[href^="#"], .library-projects-bridge__link[href^="#"], .quote-prelude-step[href^="#"]',
             offset = 72,
             getPrefersReducedMotion = () => false
         } = options;
@@ -27,19 +27,31 @@
                 if (link.matches('.library-projects-bridge__link')) {
                     markHandoffArrival(target, getPrefersReducedMotion());
                 }
+
+                if (link.matches('.quote-prelude-step')) {
+                    markQuoteReturnArrival(target, getPrefersReducedMotion());
+                }
             });
         });
     }
 
     function markHandoffArrival(target, isReducedMotion) {
+        markArrival(target, 'is-handoff-arrival', 1800, isReducedMotion);
+    }
+
+    function markQuoteReturnArrival(target, isReducedMotion) {
+        markArrival(target, 'is-quote-return-arrival', 1600, isReducedMotion);
+    }
+
+    function markArrival(target, className, duration, isReducedMotion) {
         if (!target || isReducedMotion) return;
 
-        target.classList.remove('is-handoff-arrival');
+        target.classList.remove(className);
         window.requestAnimationFrame(() => {
-            target.classList.add('is-handoff-arrival');
+            target.classList.add(className);
             window.setTimeout(() => {
-                target.classList.remove('is-handoff-arrival');
-            }, 1800);
+                target.classList.remove(className);
+            }, duration);
         });
     }
 
