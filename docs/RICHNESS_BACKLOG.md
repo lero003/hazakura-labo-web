@@ -39,4 +39,6 @@
 ## Structure
 
 - `visions` の構想カードと入口文を、将来フォーム化しやすい小さなグループに寄せる
-- フレームワーク導入を検討する場合の比較メモを作る。候補は現状維持、Astro、Vite、Next.js。ただしPages設定と既存演出が崩れるリスクを先に洗い出す。
+- `src/scripts/content-renderers.js` の描画単位を点検し、Projects / Vision / Quote prelude の差し替え口がわかる短い境界コメントか関数名へ寄せる
+- `scripts/phase-gate.mjs` に、次に壊したくない導線を1つだけ追加する。例: Projectsフィルター、Quote prelude、主要scriptの読み込み順
+- Astro island化候補を1つ選び、実装ではなく「今のvanilla JS境界で十分か / island化で何が楽になるか」を `docs/ASTRO_MIGRATION_PLAN.md` に1段落だけ追記する
