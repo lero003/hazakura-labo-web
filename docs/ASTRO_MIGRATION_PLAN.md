@@ -28,7 +28,8 @@
 
 目的: 動く部分だけを安全にisland化し、演出の実験をしやすくする。
 
-- Projectsの棚フィルターは `src/scripts/project-filter.js` に切り出し、`src/pages/project-filter.js.ts` から従来のscriptとして配信する。カード生成はまだ既存 `script.js` 側に残す。
+- Philosophy / Research Log / Projects / Vision などのDOM描画は `src/scripts/content-renderers.js` に切り出し、既存 `script.js` は描画起動とhover対象更新だけを受け持つ。
+- Projectsの棚フィルターは `src/scripts/project-filter.js` に切り出し、カード生成は `src/scripts/content-renderers.js` 側から呼び出す。
 - Quote前の循環メモ描画は `src/scripts/quote-prelude.js` に切り出し、あとから演出だけ差し替えやすい境界にする。
 - ゾーンナビのDOM生成とactive表示は `src/scripts/zone-nav.js` に切り出し、ゾーン司令塔から操作する。
 - ゾーン雰囲気レイヤーのDOM生成とCSS変数更新は `src/scripts/zone-atmosphere.js` に切り出し、ブレンド計算はゾーン司令塔へ移す。

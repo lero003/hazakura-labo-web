@@ -41,6 +41,7 @@ const requiredAssets = [
   'dist/style.css',
   'dist/script.js',
   'dist/content.js',
+  'dist/content-renderers.js',
   'dist/project-filter.js',
   'dist/quote-prelude.js',
   'dist/zone-nav.js',
@@ -86,6 +87,7 @@ assert(
 );
 
 const scriptJs = readFile('dist/script.js');
+const contentRenderersJs = readFile('dist/content-renderers.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const quotePreludeJs = readFile('dist/quote-prelude.js');
 const zoneNavJs = readFile('dist/zone-nav.js');
@@ -113,8 +115,7 @@ const auroraCanvasJs = readFile('dist/aurora-canvas.js');
 const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
 const sakuraPetalsJs = readFile('dist/sakura-petals.js');
-assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
-assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
+assert('legacy script delegates content renderers', scriptJs.includes('HazakuraContentRenderers?.create'));
 assert('legacy script delegates zone performance', scriptJs.includes('HazakuraZonePerformance?.create'));
 assert('legacy script delegates hero aurora overlay', scriptJs.includes('HazakuraHeroAuroraOverlay?.create'));
 assert('legacy script delegates hero image loader', scriptJs.includes('HazakuraHeroImageLoader?.init'));
@@ -136,6 +137,9 @@ assert('legacy script delegates aurora canvas', scriptJs.includes('HazakuraAuror
 assert('legacy script delegates shooting stars', scriptJs.includes('HazakuraShootingStars?.create'));
 assert('legacy script delegates cursor follow', scriptJs.includes('HazakuraCursorFollow?.create'));
 assert('legacy script delegates sakura petals', scriptJs.includes('HazakuraSakuraPetals?.create'));
+assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
+assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
+assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
