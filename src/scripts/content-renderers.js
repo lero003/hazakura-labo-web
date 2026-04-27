@@ -412,14 +412,20 @@
             const why = item.why
                 ? `<p class="project-note project-why"><span>Why</span>${escapeHtml(item.why)}</p>`
                 : '';
-            const origin = item.origin
-                ? `<p class="project-note project-origin"><span>Origin</span>${escapeHtml(item.origin)}</p>`
-                : '';
-            const surprise = item.surprise
-                ? `<p class="project-note project-surprise"><span>Surprise</span>${escapeHtml(item.surprise)}</p>`
-                : '';
-            const nextStep = item.nextStep
-                ? `<p class="project-note project-next"><span>Next</span>${escapeHtml(item.nextStep)}</p>`
+            const trailItems = [
+                ['origin', 'Origin', item.origin],
+                ['surprise', 'Surprise', item.surprise],
+                ['next', 'Next', item.nextStep]
+            ].filter(([, , value]) => value);
+            const trail = trailItems.length
+                ? `<div class="project-trail" aria-label="${escapeHtml(item.title)}の実験の道筋">
+                    ${trailItems.map(([kind, label, value]) => `
+                        <p class="project-trail__item" data-trail-kind="${escapeHtml(kind)}">
+                            <span>${escapeHtml(label)}</span>
+                            ${escapeHtml(value)}
+                        </p>
+                    `).join('')}
+                </div>`
                 : '';
             const actionNote = item.actionNote
                 ? `<p class="project-action-note"><span>${escapeHtml(item.actionNote.label || 'Note')}</span>${escapeHtml(item.actionNote.text || '')}</p>`
@@ -457,9 +463,7 @@
                         <h3 class="project-title">${escapeHtml(item.title)}</h3>
                         <p class="project-desc">${escapeHtml(item.text)}</p>
                         ${why}
-                        ${origin}
-                        ${surprise}
-                        ${nextStep}
+                        ${trail}
                         ${actionNote}
                         ${returnLink}
                         ${cycle}

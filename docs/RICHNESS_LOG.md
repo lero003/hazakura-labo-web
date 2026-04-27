@@ -1,5 +1,12 @@
 # リッチ化ログ
 
+## 2026-04-28
+
+- Focus: Access / Visual / Structure
+- Changed: Projects カードの `Origin` / `Surprise` / `Next` を縦に積む個別注釈から、1つの `project-trail` へ圧縮した。旧個別CSSを削り、phase gate に圧縮表示の保護を追加した。
+- Learned: 制作棚は情報を削らなくても、二次情報を「実験の道筋」として同じ器にまとめるだけで、カードの読み始めが軽くなる。
+- Next: Projects の `cycle` 表示があるカードだけ、道筋と「問い→実験→発見」の二重表示が重く見えないか次回点検する。
+
 ## 2026-04-27
 
 - Focus: Structure / Access

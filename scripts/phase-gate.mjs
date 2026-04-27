@@ -162,6 +162,17 @@ assert('vision process interlude style is emitted', styleCss.includes('.process-
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
+assert(
+  'project cards compress trail notes',
+  contentRenderersJs.includes('class="project-trail"')
+    && styleCss.includes('.project-trail')
+    && ["['origin', 'Origin'", "['surprise', 'Surprise'", "['next', 'Next'"].every((snippet) => contentRenderersJs.includes(snippet))
+    && contentRenderersJs.includes('data-trail-kind="${escapeHtml(kind)}"'),
+  JSON.stringify({
+    hasTrailRenderer: contentRenderersJs.includes('class="project-trail"'),
+    hasTrailStyles: styleCss.includes('.project-trail')
+  })
+);
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert(
   'projects action types back filter status labels',

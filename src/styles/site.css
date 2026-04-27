@@ -4510,78 +4510,75 @@ body.theme-night .section-layers .layer-sequence__beam {
     text-transform: uppercase;
 }
 
-.project-origin {
-    display: flex;
-    gap: 0.65rem;
-    align-items: flex-start;
-    margin: -0.45rem 0 1rem;
-    padding: 0.78rem 0.9rem;
-    border-left: 3px solid rgba(71, 137, 120, 0.42);
-    background: rgba(71, 137, 120, 0.07);
-    color: var(--ink-600);
-    font-size: 0.84rem;
-    line-height: 1.75;
-}
-
-.project-origin span {
-    flex: 0 0 auto;
-    color: #478978;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.project-surprise {
-    display: flex;
-    gap: 0.65rem;
-    align-items: flex-start;
-    margin: -0.45rem 0 1rem;
-    padding: 0.78rem 0.9rem;
-    border-left: 3px solid rgba(90, 158, 95, 0.4);
-    background: rgba(90, 158, 95, 0.07);
-    color: var(--ink-600);
-    font-size: 0.84rem;
-    line-height: 1.75;
-}
-
-.project-surprise span {
-    flex: 0 0 auto;
-    color: var(--green-500);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.project-next {
-    display: flex;
-    gap: 0.65rem;
-    align-items: flex-start;
-    margin: -0.45rem 0 1rem;
-    padding: 0.78rem 0.9rem;
-    border-left: 3px solid rgba(167, 139, 250, 0.42);
-    background: rgba(167, 139, 250, 0.07);
-    color: var(--ink-600);
-    font-size: 0.84rem;
-    line-height: 1.75;
-}
-
-.project-next span {
-    flex: 0 0 auto;
-    color: var(--purple-500);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
 .project-note {
     display: grid;
     grid-template-columns: minmax(4.7rem, max-content) minmax(0, 1fr);
     gap: 0.65rem;
     align-items: flex-start;
     min-width: 0;
+}
+
+.project-trail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+    gap: 0.7rem;
+    margin: -0.35rem 0 1rem;
+    padding: 0.78rem;
+    border: 1px solid rgba(167, 139, 250, 0.16);
+    border-radius: 16px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.56), rgba(167, 139, 250, 0.06)),
+        radial-gradient(circle at 12% 14%, rgba(232, 88, 122, 0.12), transparent 42%);
+}
+
+.project-trail__item {
+    position: relative;
+    min-width: 0;
+    padding-left: 0.82rem;
+    color: var(--ink-600);
+    font-size: 0.78rem;
+    line-height: 1.65;
+}
+
+.project-trail__item::before {
+    content: '';
+    position: absolute;
+    top: 0.28rem;
+    bottom: 0.28rem;
+    left: 0;
+    width: 3px;
+    border-radius: 999px;
+    background: rgba(167, 139, 250, 0.5);
+}
+
+.project-trail__item[data-trail-kind="origin"]::before {
+    background: rgba(71, 137, 120, 0.58);
+}
+
+.project-trail__item[data-trail-kind="surprise"]::before {
+    background: rgba(90, 158, 95, 0.56);
+}
+
+.project-trail__item[data-trail-kind="next"]::before {
+    background: rgba(167, 139, 250, 0.6);
+}
+
+.project-trail__item span {
+    display: block;
+    margin-bottom: 0.18rem;
+    color: var(--purple-500);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.project-trail__item[data-trail-kind="origin"] span {
+    color: #478978;
+}
+
+.project-trail__item[data-trail-kind="surprise"] span {
+    color: var(--green-500);
 }
 
 .project-action-note {
@@ -5318,34 +5315,27 @@ body.theme-night .section-projects .project-why span {
     color: var(--sakura-400);
 }
 
-body.theme-night .section-projects .project-origin {
-    background: rgba(52, 211, 153, 0.08);
-    border-left-color: rgba(52, 211, 153, 0.34);
+body.theme-night .section-projects .project-trail {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(167, 139, 250, 0.08)),
+        radial-gradient(circle at 12% 14%, rgba(232, 88, 122, 0.12), transparent 42%);
+    border-color: rgba(167, 139, 250, 0.22);
+}
+
+body.theme-night .section-projects .project-trail__item {
     color: var(--body-text);
 }
 
-body.theme-night .section-projects .project-origin span {
+body.theme-night .section-projects .project-trail__item span {
+    color: var(--purple-400);
+}
+
+body.theme-night .section-projects .project-trail__item[data-trail-kind="origin"] span {
     color: rgba(186, 255, 231, 0.82);
 }
 
-body.theme-night .section-projects .project-surprise {
-    background: rgba(82, 183, 150, 0.08);
-    border-left-color: rgba(82, 183, 150, 0.48);
-    color: var(--body-text);
-}
-
-body.theme-night .section-projects .project-surprise span {
+body.theme-night .section-projects .project-trail__item[data-trail-kind="surprise"] span {
     color: var(--green-400);
-}
-
-body.theme-night .section-projects .project-next {
-    background: rgba(167, 139, 250, 0.08);
-    border-left-color: rgba(167, 139, 250, 0.5);
-    color: var(--body-text);
-}
-
-body.theme-night .section-projects .project-next span {
-    color: var(--purple-400);
 }
 
 body.theme-night .section-projects .project-action-note {
@@ -5594,42 +5584,6 @@ body.theme-night .nav-links a::after {
         margin-bottom: 0.2rem;
     }
 
-    .project-origin {
-        display: block;
-        font-size: 0.84rem;
-        line-height: 1.7;
-        overflow-wrap: anywhere;
-    }
-
-    .project-origin span {
-        display: block;
-        margin-bottom: 0.2rem;
-    }
-
-    .project-surprise {
-        display: block;
-        font-size: 0.84rem;
-        line-height: 1.7;
-        overflow-wrap: anywhere;
-    }
-
-    .project-surprise span {
-        display: block;
-        margin-bottom: 0.2rem;
-    }
-
-    .project-next {
-        display: block;
-        font-size: 0.84rem;
-        line-height: 1.7;
-        overflow-wrap: anywhere;
-    }
-
-    .project-next span {
-        display: block;
-        margin-bottom: 0.2rem;
-    }
-
     .project-action-note {
         display: block;
         font-size: 0.84rem;
@@ -5655,6 +5609,18 @@ body.theme-night .nav-links a::after {
         display: inline;
         margin-bottom: 0;
         overflow-wrap: normal;
+    }
+
+    .project-trail {
+        grid-template-columns: 1fr;
+        gap: 0.62rem;
+        padding: 0.72rem 0.78rem;
+    }
+
+    .project-trail__item {
+        font-size: 0.82rem;
+        line-height: 1.65;
+        overflow-wrap: anywhere;
     }
 
     .project-return-link {
@@ -5982,11 +5948,6 @@ body.theme-night .nav-links a::after {
     }
 
     .project-why {
-        padding: 0.72rem 0.78rem;
-        font-size: 0.82rem;
-    }
-
-    .project-next {
         padding: 0.72rem 0.78rem;
         font-size: 0.82rem;
     }
