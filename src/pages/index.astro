@@ -1,3 +1,7 @@
+---
+import { scriptLoadOrder } from '../data/script-load-order.js';
+---
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -364,37 +368,7 @@
         </div>
     </footer>
 
-    <script is:inline src="/content.js"></script>
-    <script is:inline src="/project-filter.js"></script>
-    <script is:inline src="/quote-prelude.js"></script>
-    <script is:inline src="/content-renderers.js"></script>
-    <script is:inline src="/zone-nav.js"></script>
-    <script is:inline src="/zone-atmosphere.js"></script>
-    <script is:inline src="/zone-performance.js"></script>
-    <script is:inline src="/hero-aurora-overlay.js"></script>
-    <script is:inline src="/hero-image-loader.js"></script>
-    <script is:inline src="/motion-preferences.js"></script>
-    <script is:inline src="/smooth-scroll.js"></script>
-    <script is:inline src="/scroll-indicators.js"></script>
-    <script is:inline src="/text-reveal.js"></script>
-    <script is:inline src="/hero-parallax.js"></script>
-    <script is:inline src="/scroll-animations.js"></script>
-    <script is:inline src="/canvas-size.js"></script>
-    <script is:inline src="/visibility-playback.js"></script>
-    <script is:inline src="/resize-listener.js"></script>
-    <script is:inline src="/animation-frames.js"></script>
-    <script is:inline src="/canvas-clear.js"></script>
-    <script is:inline src="/cursor-hover.js"></script>
-    <script is:inline src="/card-hover-fields.js"></script>
-    <script is:inline src="/book-tilt.js"></script>
-    <script is:inline src="/pointer-input.js"></script>
-    <script is:inline src="/scroll-ticker.js"></script>
-    <script is:inline src="/effects-lifecycle.js"></script>
-    <script is:inline src="/aurora-canvas.js"></script>
-    <script is:inline src="/shooting-stars.js"></script>
-    <script is:inline src="/cursor-follow.js"></script>
-    <script is:inline src="/sakura-petals.js"></script>
-    <script is:inline src="/app-controller.js"></script>
+    {scriptLoadOrder.map((scriptSrc) => <script is:inline src={scriptSrc}></script>)}
 </body>
 
 </html>

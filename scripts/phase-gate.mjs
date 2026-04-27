@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { hazakuraContent } from '../src/data/content.js';
+import { scriptLoadOrder } from '../src/data/script-load-order.js';
 
 const checks = [];
 
@@ -38,39 +39,16 @@ assert(
 );
 assert('legacy script is not loaded', !html.includes('/script.js'));
 
+const scriptPositions = scriptLoadOrder.map((path) => [path, html.indexOf(`src="${path}"`)]);
+assert(
+  'script load order is stable',
+  scriptPositions.every(([, index], itemIndex) => index >= 0 && (itemIndex === 0 || scriptPositions[itemIndex - 1][1] < index)),
+  JSON.stringify(scriptPositions)
+);
+
 const requiredAssets = [
   'dist/style.css',
-  'dist/app-controller.js',
-  'dist/content.js',
-  'dist/content-renderers.js',
-  'dist/project-filter.js',
-  'dist/quote-prelude.js',
-  'dist/zone-nav.js',
-  'dist/zone-atmosphere.js',
-  'dist/zone-performance.js',
-  'dist/hero-aurora-overlay.js',
-  'dist/hero-image-loader.js',
-  'dist/motion-preferences.js',
-  'dist/smooth-scroll.js',
-  'dist/scroll-indicators.js',
-  'dist/text-reveal.js',
-  'dist/hero-parallax.js',
-  'dist/scroll-animations.js',
-  'dist/canvas-size.js',
-  'dist/visibility-playback.js',
-  'dist/resize-listener.js',
-  'dist/animation-frames.js',
-  'dist/canvas-clear.js',
-  'dist/cursor-hover.js',
-  'dist/card-hover-fields.js',
-  'dist/book-tilt.js',
-  'dist/pointer-input.js',
-  'dist/scroll-ticker.js',
-  'dist/effects-lifecycle.js',
-  'dist/aurora-canvas.js',
-  'dist/shooting-stars.js',
-  'dist/cursor-follow.js',
-  'dist/sakura-petals.js',
+  ...scriptLoadOrder.map((path) => `dist${path}`),
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];

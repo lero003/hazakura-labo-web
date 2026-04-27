@@ -3,6 +3,13 @@
 ## 2026-04-27
 
 - Focus: Structure / Motion
+- Changed: scriptの読み込み順を `src/data/script-load-order.js` に集約し、`index.astro` と `scripts/phase-gate.mjs` が同じリストを見るようにした。新しい演出scriptを足す時に、ページ側とチェック側の更新漏れが起きにくい形へ寄せた。
+- Learned: 演出追加の足枷は抽象化そのものより、読み込み順や必須assetの重複管理にも出やすい。manifestを1つ持つだけなら管理コストを増やさず、追加時の迷いを減らせる。
+- Next: scriptごとの役割が増えてきたら、manifestに短い用途メモを持たせるか、今の軽さを保つかを一度だけ点検する。
+
+## 2026-04-27
+
+- Focus: Structure / Motion
 - Changed: Sakura / Aurora / Cursor の start / stop / resize / clear を `effects-lifecycle.js` の薄い棚に集め、`app-controller.js` から個別に呼ぶ箇所を減らした。見た目は変えず、次に演出を足す時のライフサイクル入口を揃えた。
 - Learned: CSSの肥大化よりも、演出ごとの停止・再開・縮小モーション対応が散ることのほうが足枷になりやすい。抽象化は大きくせず、共有hookだけを揃えると管理コストを抑えられる。
 - Next: 新しい演出を足す前に、`effects-lifecycle.js` の棚へ入れるべきものと、DOM描画系として別扱いすべきものの線引きを1つだけ点検する。
