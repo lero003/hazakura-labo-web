@@ -3784,8 +3784,44 @@ body.theme-night .section-layers .layer-sequence__beam {
    Projects Section
    ============================================ */
 .section-projects {
-    background: linear-gradient(180deg, var(--warm-50) 0%, var(--sakura-100) 50%, var(--warm-50) 100%);
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% -4rem, rgba(168, 116, 48, 0.16), transparent 18rem),
+        linear-gradient(180deg, var(--warm-50) 0%, var(--sakura-100) 50%, var(--warm-50) 100%);
     transition: background 3s ease;
+}
+
+.section-projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(56rem, calc(100% - 2rem));
+    height: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, rgba(168, 116, 48, 0.42), rgba(232, 88, 122, 0.3), transparent);
+    opacity: 0.78;
+    pointer-events: none;
+}
+
+.section-projects::after {
+    content: '';
+    position: absolute;
+    top: 0.9rem;
+    left: 50%;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999px;
+    background: rgba(232, 88, 122, 0.54);
+    box-shadow: 0 0 0 0.42rem rgba(232, 88, 122, 0.08), 0 0 1.6rem rgba(168, 116, 48, 0.3);
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.section-projects .section-inner {
+    position: relative;
+    z-index: 1;
 }
 
 .section-projects .section-label {
