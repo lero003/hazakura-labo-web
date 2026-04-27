@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure
+- Changed: `site.css` の Library -> Projects bridge で散っていた昼/夜テーマの色、線、光、CTA状態を `.library-projects-bridge` 内のCSS変数へまとめ、夜テーマは親の変数差し替えだけで成立する形にした。モバイルの縦レールも専用変数で保護し、phase gate にトークン化契約を追加した。
+- Learned: 橋のような間奏UIは、演出が小さくても色と状態の上書きが増えやすい。コンポーネント内トークンにまとめると、次回の余白・光・テーマ調整で読む範囲が狭くなる。
+- Next: Library の書籍HTML直書き部分を、見た目を変えずに `src/data/` へ寄せられる境界だけ点検する。
+
+## 2026-04-28
+
 - Focus: Motion / Structure
 - Changed: 書庫の本3D tilt が最初の1冊だけを対象にしていたため、`book-tilt.js` を `.book-3d` 全体へ広げ、各本の glare を本ごとに扱う形へ整理した。phase gate で複数冊対応の契約も保護した。
 - Learned: 書庫に新しい本を増やしても、触り味のscriptが単数DOM前提のままだと「本を手に取る」演出が片側だけで止まる。対象を複数化しておくと、今後の書籍追加にも同じ空気を渡しやすい。

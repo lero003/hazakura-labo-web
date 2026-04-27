@@ -174,6 +174,17 @@ assert(
 );
 assert('style sheet contains library projects bridge', styleCss.includes('.library-projects-bridge'));
 assert(
+  'library projects bridge theme is tokenized',
+  ['--bridge-step-rail', '--bridge-step-rail-vertical', '--bridge-link-hover-border'].every((snippet) => styleCss.includes(snippet))
+    && !styleCss.includes('body.theme-night .section-library .library-projects-bridge__steps::before'),
+  JSON.stringify({
+    hasRailToken: styleCss.includes('--bridge-step-rail'),
+    hasVerticalRailToken: styleCss.includes('--bridge-step-rail-vertical'),
+    hasLinkHoverToken: styleCss.includes('--bridge-link-hover-border'),
+    hasNightStepRailOverride: styleCss.includes('body.theme-night .section-library .library-projects-bridge__steps::before')
+  })
+);
+assert(
   'library projects bridge keeps handoff path styling',
   ['.library-projects-bridge::after', '.library-projects-bridge__steps::before', '.library-projects-bridge__steps li::before', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet)),
   JSON.stringify({

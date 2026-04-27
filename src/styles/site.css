@@ -62,10 +62,6 @@ html {
     scroll-padding-top: var(--hazakura-anchor-offset);
 }
 
-:root {
-    --sakura-50: #fff9fa;
-}
-
 /* --- Night Theme Variables --- */
 body.theme-night {
     --warm-50: #0b0c10;
@@ -1613,6 +1609,35 @@ a {
 }
 
 .library-projects-bridge {
+    --bridge-border-top: rgba(168, 116, 48, 0.2);
+    --bridge-border-bottom: rgba(232, 88, 122, 0.16);
+    --bridge-text: var(--ink-600);
+    --bridge-heading: var(--ink-900);
+    --bridge-copy: var(--ink-500);
+    --bridge-accent: var(--sakura-500);
+    --bridge-mist:
+        radial-gradient(ellipse at 18% 0%, rgba(255, 184, 198, 0.22), transparent 15rem),
+        linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0));
+    --bridge-seed-bg: rgba(255, 255, 255, 0.78);
+    --bridge-seed-border: rgba(232, 88, 122, 0.22);
+    --bridge-seed-color: rgba(232, 88, 122, 0.68);
+    --bridge-seed-shadow: 0 0 1rem rgba(232, 88, 122, 0.18), 0 0 2rem rgba(90, 158, 95, 0.12);
+    --bridge-thread: linear-gradient(90deg, transparent, rgba(232, 88, 122, 0.38), rgba(90, 158, 95, 0.25), transparent);
+    --bridge-node-bg: rgba(255, 255, 255, 0.82);
+    --bridge-node-border: rgba(232, 88, 122, 0.34);
+    --bridge-node-shadow: 0 0 1rem rgba(232, 88, 122, 0.24);
+    --bridge-step-rail: linear-gradient(90deg, rgba(232, 88, 122, 0.18), rgba(168, 116, 48, 0.28), rgba(90, 158, 95, 0.2));
+    --bridge-step-rail-vertical: linear-gradient(180deg, rgba(232, 88, 122, 0.2), rgba(168, 116, 48, 0.24), rgba(90, 158, 95, 0.18));
+    --bridge-step-bg: rgba(255, 255, 255, 0.38);
+    --bridge-step-border: rgba(232, 88, 122, 0.12);
+    --bridge-step-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.54);
+    --bridge-dot-bg: rgba(255, 255, 255, 0.9);
+    --bridge-dot-border: rgba(232, 88, 122, 0.32);
+    --bridge-dot-shadow: 0 0 0 0.26rem rgba(232, 88, 122, 0.07);
+    --bridge-link-bg: rgba(255, 255, 255, 0.56);
+    --bridge-link-border: rgba(232, 88, 122, 0.24);
+    --bridge-link-hover-bg: rgba(255, 255, 255, 0.78);
+    --bridge-link-hover-border: rgba(232, 88, 122, 0.42);
     position: relative;
     isolation: isolate;
     display: grid;
@@ -1621,9 +1646,9 @@ a {
     align-items: center;
     margin-top: 3.6rem;
     padding: 1.45rem 0;
-    border-top: 1px solid rgba(168, 116, 48, 0.2);
-    border-bottom: 1px solid rgba(232, 88, 122, 0.16);
-    color: var(--ink-600);
+    border-top: 1px solid var(--bridge-border-top);
+    border-bottom: 1px solid var(--bridge-border-bottom);
+    color: var(--bridge-text);
 }
 
 .library-projects-bridge::before {
@@ -1631,9 +1656,7 @@ a {
     position: absolute;
     inset: -1.5rem -2rem;
     z-index: -1;
-    background:
-        radial-gradient(ellipse at 18% 0%, rgba(255, 184, 198, 0.22), transparent 15rem),
-        linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0));
+    background: var(--bridge-mist);
     opacity: 0.9;
     pointer-events: none;
 }
@@ -1647,13 +1670,13 @@ a {
     height: 1.28rem;
     display: grid;
     place-items: center;
-    border: 1px solid rgba(232, 88, 122, 0.22);
+    border: 1px solid var(--bridge-seed-border);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.78);
-    color: rgba(232, 88, 122, 0.68);
+    background: var(--bridge-seed-bg);
+    color: var(--bridge-seed-color);
     font-size: 0.68rem;
     line-height: 1;
-    box-shadow: 0 0 1rem rgba(232, 88, 122, 0.18), 0 0 2rem rgba(90, 158, 95, 0.12);
+    box-shadow: var(--bridge-seed-shadow);
     transform: translateY(50%);
     pointer-events: none;
     animation: bridgeSeedFloat 4.8s ease-in-out infinite;
@@ -1665,7 +1688,7 @@ a {
     right: 0;
     top: -0.16rem;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(232, 88, 122, 0.38), rgba(90, 158, 95, 0.25), transparent);
+    background: var(--bridge-thread);
 }
 
 .library-projects-bridge__thread::after {
@@ -1676,9 +1699,9 @@ a {
     width: 0.48rem;
     height: 0.48rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.82);
-    border: 1px solid rgba(232, 88, 122, 0.34);
-    box-shadow: 0 0 1rem rgba(232, 88, 122, 0.24);
+    background: var(--bridge-node-bg);
+    border: 1px solid var(--bridge-node-border);
+    box-shadow: var(--bridge-node-shadow);
     transform: translate(-50%, -50%);
     animation: bridgeThreadPulse 5.4s ease-in-out infinite;
 }
@@ -1690,7 +1713,7 @@ a {
 .library-projects-bridge__eyebrow {
     display: inline-flex;
     margin-bottom: 0.45rem;
-    color: var(--sakura-500);
+    color: var(--bridge-accent);
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -1699,7 +1722,7 @@ a {
 
 .library-projects-bridge h3 {
     margin-bottom: 0.45rem;
-    color: var(--ink-900);
+    color: var(--bridge-heading);
     font-family: var(--font-serif);
     font-size: clamp(1.25rem, 2vw, 1.7rem);
     font-weight: 600;
@@ -1709,7 +1732,7 @@ a {
 
 .library-projects-bridge__copy p {
     max-width: 42rem;
-    color: var(--ink-500);
+    color: var(--bridge-copy);
     font-size: 0.9rem;
     line-height: 1.85;
 }
@@ -1729,7 +1752,7 @@ a {
     right: 0.9rem;
     top: 0.82rem;
     height: 1px;
-    background: linear-gradient(90deg, rgba(232, 88, 122, 0.18), rgba(168, 116, 48, 0.28), rgba(90, 158, 95, 0.2));
+    background: var(--bridge-step-rail);
     pointer-events: none;
 }
 
@@ -1737,10 +1760,10 @@ a {
     position: relative;
     min-width: 0;
     padding: 1.25rem 0.65rem 0.36rem 0.65rem;
-    border: 1px solid rgba(232, 88, 122, 0.12);
+    border: 1px solid var(--bridge-step-border);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.38);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.54);
+    background: var(--bridge-step-bg);
+    box-shadow: var(--bridge-step-shadow);
 }
 
 .library-projects-bridge__steps li::before {
@@ -1751,22 +1774,22 @@ a {
     width: 0.43rem;
     height: 0.43rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(232, 88, 122, 0.32);
-    box-shadow: 0 0 0 0.26rem rgba(232, 88, 122, 0.07);
+    background: var(--bridge-dot-bg);
+    border: 1px solid var(--bridge-dot-border);
+    box-shadow: var(--bridge-dot-shadow);
 }
 
 .library-projects-bridge__steps span {
     display: block;
     margin-bottom: 0.2rem;
-    color: var(--sakura-500);
+    color: var(--bridge-accent);
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.08em;
 }
 
 .library-projects-bridge__steps p {
-    color: var(--ink-500);
+    color: var(--bridge-copy);
     font-size: 0.78rem;
     line-height: 1.65;
 }
@@ -1781,10 +1804,10 @@ a {
     min-width: 9.5rem;
     min-height: 2.55rem;
     padding: 0.55rem 0.95rem;
-    border: 1px solid rgba(232, 88, 122, 0.24);
+    border: 1px solid var(--bridge-link-border);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.56);
-    color: var(--sakura-500);
+    background: var(--bridge-link-bg);
+    color: var(--bridge-accent);
     font-family: var(--font-serif);
     font-size: 0.85rem;
     font-weight: 600;
@@ -1805,8 +1828,8 @@ a {
 
 .library-projects-bridge__link:hover {
     transform: translateY(-2px);
-    border-color: rgba(232, 88, 122, 0.42);
-    background: rgba(255, 255, 255, 0.78);
+    border-color: var(--bridge-link-hover-border);
+    background: var(--bridge-link-hover-bg);
 }
 
 .library-projects-bridge__link:hover::before,
@@ -3837,7 +3860,7 @@ body.theme-night.zone-aurora #aurora-canvas {
         right: auto;
         width: 1px;
         height: auto;
-        background: linear-gradient(180deg, rgba(232, 88, 122, 0.2), rgba(168, 116, 48, 0.24), rgba(90, 158, 95, 0.18));
+        background: var(--bridge-step-rail-vertical);
     }
 
     .library-projects-bridge__steps li {
@@ -5612,73 +5635,35 @@ body.theme-night .section-library .book-volume {
 }
 
 body.theme-night .section-library .library-projects-bridge {
-    border-top-color: rgba(255, 255, 255, 0.12);
-    border-bottom-color: rgba(167, 139, 250, 0.18);
-    color: rgba(255, 255, 255, 0.68);
-}
-
-body.theme-night .section-library .library-projects-bridge::before {
-    background:
+    --bridge-border-top: rgba(255, 255, 255, 0.12);
+    --bridge-border-bottom: rgba(167, 139, 250, 0.18);
+    --bridge-text: rgba(255, 255, 255, 0.68);
+    --bridge-heading: #f2f2f7;
+    --bridge-copy: rgba(255, 255, 255, 0.58);
+    --bridge-accent: var(--sakura-400);
+    --bridge-mist:
         radial-gradient(ellipse at 18% 0%, rgba(167, 139, 250, 0.2), transparent 15rem),
         linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
-}
-
-body.theme-night .section-library .library-projects-bridge::after {
-    background: rgba(18, 16, 28, 0.95);
-    border-color: rgba(167, 139, 250, 0.34);
-    color: rgba(167, 139, 250, 0.82);
-    box-shadow: 0 0 1.2rem rgba(167, 139, 250, 0.28), 0 0 2.4rem rgba(82, 183, 150, 0.12);
-}
-
-body.theme-night .section-library .library-projects-bridge__thread {
-    background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.34), rgba(82, 183, 150, 0.24), transparent);
-}
-
-body.theme-night .section-library .library-projects-bridge__thread::after {
-    background: rgba(18, 16, 28, 0.92);
-    border-color: rgba(167, 139, 250, 0.42);
-    box-shadow: 0 0 1rem rgba(167, 139, 250, 0.28);
-}
-
-body.theme-night .section-library .library-projects-bridge__eyebrow,
-body.theme-night .section-library .library-projects-bridge__steps span,
-body.theme-night .section-library .library-projects-bridge__link {
-    color: var(--sakura-400);
-}
-
-body.theme-night .section-library .library-projects-bridge h3 {
-    color: #f2f2f7;
-}
-
-body.theme-night .section-library .library-projects-bridge__copy p,
-body.theme-night .section-library .library-projects-bridge__steps p {
-    color: rgba(255, 255, 255, 0.58);
-}
-
-body.theme-night .section-library .library-projects-bridge__steps::before {
-    background: linear-gradient(90deg, rgba(167, 139, 250, 0.22), rgba(82, 183, 150, 0.24), rgba(255, 255, 255, 0.08));
-}
-
-body.theme-night .section-library .library-projects-bridge__steps li {
-    border-color: rgba(167, 139, 250, 0.18);
-    background: rgba(255, 255, 255, 0.045);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-body.theme-night .section-library .library-projects-bridge__steps li::before {
-    background: rgba(18, 16, 28, 0.95);
-    border-color: rgba(167, 139, 250, 0.38);
-    box-shadow: 0 0 0 0.26rem rgba(167, 139, 250, 0.08);
-}
-
-body.theme-night .section-library .library-projects-bridge__link {
-    border-color: rgba(167, 139, 250, 0.26);
-    background: rgba(255, 255, 255, 0.06);
-}
-
-body.theme-night .section-library .library-projects-bridge__link:hover {
-    border-color: rgba(167, 139, 250, 0.44);
-    background: rgba(255, 255, 255, 0.1);
+    --bridge-seed-bg: rgba(18, 16, 28, 0.95);
+    --bridge-seed-border: rgba(167, 139, 250, 0.34);
+    --bridge-seed-color: rgba(167, 139, 250, 0.82);
+    --bridge-seed-shadow: 0 0 1.2rem rgba(167, 139, 250, 0.28), 0 0 2.4rem rgba(82, 183, 150, 0.12);
+    --bridge-thread: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.34), rgba(82, 183, 150, 0.24), transparent);
+    --bridge-node-bg: rgba(18, 16, 28, 0.92);
+    --bridge-node-border: rgba(167, 139, 250, 0.42);
+    --bridge-node-shadow: 0 0 1rem rgba(167, 139, 250, 0.28);
+    --bridge-step-rail: linear-gradient(90deg, rgba(167, 139, 250, 0.22), rgba(82, 183, 150, 0.24), rgba(255, 255, 255, 0.08));
+    --bridge-step-rail-vertical: linear-gradient(180deg, rgba(167, 139, 250, 0.22), rgba(82, 183, 150, 0.24), rgba(255, 255, 255, 0.08));
+    --bridge-step-bg: rgba(255, 255, 255, 0.045);
+    --bridge-step-border: rgba(167, 139, 250, 0.18);
+    --bridge-step-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    --bridge-dot-bg: rgba(18, 16, 28, 0.95);
+    --bridge-dot-border: rgba(167, 139, 250, 0.38);
+    --bridge-dot-shadow: 0 0 0 0.26rem rgba(167, 139, 250, 0.08);
+    --bridge-link-bg: rgba(255, 255, 255, 0.06);
+    --bridge-link-border: rgba(167, 139, 250, 0.26);
+    --bridge-link-hover-bg: rgba(255, 255, 255, 0.1);
+    --bridge-link-hover-border: rgba(167, 139, 250, 0.44);
 }
 
 /* Vision section night */
