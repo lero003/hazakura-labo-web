@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Narrative / Visual / Access / Structure
+- Changed: Quote のあとにすぐ実務的なフッターへ落ちる弱さを、既存フッター内の `footer-garden-close` で整えた。最後の余韻を「読み終えた問いを庭へ戻す」小さな小径に変え、Heroへ戻る導線、終端の光、モバイル折り返し、phase gate の保護を追加した。
+- Learned: 終盤の循環メモが整っていても、フッターがただのリンク置き場だと読後の体験が急に閉じる。新しいセクションを足さず、footer の入口だけを庭らしくすると、1ページをもう一度巡る理由が残る。
+- Next: preview 可能な環境で、Quote から Footer へ落ちる暗さの変化と、`はじまりへ戻る` のピルがモバイル幅で強すぎないか確認する。
+
+## 2026-04-28
+
 - Focus: Narrative / Visual / Structure
 - Changed: Projects 冒頭に `projectsGroup.threshold` 由来の小さな着地点を追加し、書庫から渡った問いが道具・ログ・物語の三つの棚へ分かれる一拍を置いた。既存の棚ガイド、フィルター、状態文は `project-control-deck` にまとめ、phase gate で threshold のデータ・描画・reveal を保護した。
 - Learned: Library 側の橋が整っても、Projects 側がすぐ棚ガイドから始まると「渡された問いを受け取る」感触が弱い。新しいカードを足さず、入口の一拍と既存操作群の器を分けるだけで、一覧開始の事務感を抑えられる。

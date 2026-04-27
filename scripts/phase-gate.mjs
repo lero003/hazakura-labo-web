@@ -251,6 +251,18 @@ assert(
 );
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert(
+  'footer keeps final return path to hero',
+  html.includes('class="footer-garden-close"')
+    && html.includes('href="#hero" class="footer-garden-close__link"')
+    && styleCss.includes('.footer-garden-close')
+    && styleCss.includes('.footer-garden-close__link'),
+  JSON.stringify({
+    hasMarkup: html.includes('class="footer-garden-close"'),
+    hasHeroLink: html.includes('href="#hero" class="footer-garden-close__link"'),
+    hasStyles: styleCss.includes('.footer-garden-close')
+  })
+);
+assert(
   'vision entry focus links guide kinds to cards',
   visionEntryFocusJs.includes('window.HazakuraVisionEntryFocus')
     && visionEntryFocusJs.includes('.vision-entry-guide__kind[data-entry-kind]')
