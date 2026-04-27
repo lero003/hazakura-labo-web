@@ -674,11 +674,21 @@
                                     ${item.target ? `<span>${escapeHtml(item.target)}へ接続</span>` : ''}
                                 </small>
                                 ${item.flow ? `<span class="vision-entry-guide__flow">${escapeHtml(item.flow)}</span>` : ''}
+                                ${renderVisionEntryFields(item.fields)}
                             </div>
                         `).join('')}
                     </div>
                 ` : ''}
             </article>
+        `;
+    }
+
+    function renderVisionEntryFields(fields) {
+        if (!Array.isArray(fields) || !fields.length) return '';
+        return `
+            <ul class="vision-entry-guide__fields" aria-label="受付メモ">
+                ${fields.map((field) => `<li>${escapeHtml(field)}</li>`).join('')}
+            </ul>
         `;
     }
 

@@ -1958,7 +1958,7 @@ body.theme-night .section-vision {
 
 .vision-entry-guide__kinds {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
 }
 
@@ -2011,6 +2011,28 @@ body.theme-night .section-vision {
     color: var(--ink-600);
     font-size: 0.74rem;
     line-height: 1.65;
+}
+
+.vision-entry-guide__fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.28rem;
+    margin: 0.62rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.vision-entry-guide__fields li {
+    max-width: 100%;
+    padding: 0.22rem 0.42rem;
+    border: 1px solid rgba(var(--entry-accent-rgb), 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.44);
+    color: var(--ink-600);
+    font-size: 0.67rem;
+    font-weight: 700;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
 }
 
 .vision-card[data-entry-kind],
@@ -2781,7 +2803,7 @@ body.theme-night.zone-aurora #aurora-canvas {
     }
 
     .vision-entry-guide__kinds {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .vision-card {
@@ -4200,7 +4222,8 @@ body.theme-night .section-vision .vision-entry-guide h3 {
 
 body.theme-night .section-vision .vision-entry-guide__copy > p:last-child,
 body.theme-night .section-vision .vision-entry-guide__kind p,
-body.theme-night .section-vision .vision-entry-guide__flow {
+body.theme-night .section-vision .vision-entry-guide__flow,
+body.theme-night .section-vision .vision-entry-guide__fields li {
     color: var(--body-text);
 }
 
@@ -4280,6 +4303,11 @@ body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] {
 
 body.theme-night .section-vision .vision-entry-guide__flow {
     border-top-color: rgba(var(--entry-accent-rgb), 0.24);
+}
+
+body.theme-night .section-vision .vision-entry-guide__fields li {
+    border-color: rgba(var(--entry-accent-rgb), 0.22);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 body.theme-night .section-vision .vision-entry-kind-badge {
@@ -5032,6 +5060,10 @@ body.theme-night .nav-links a::after {
         overflow-wrap: anywhere;
     }
 
+    .vision-entry-guide__fields {
+        gap: 0.24rem;
+    }
+
     .vision-card {
         padding: 1.45rem;
         border-radius: 16px;
@@ -5164,8 +5196,16 @@ body.theme-night .nav-links a::after {
         padding: 0.68rem 0.72rem;
     }
 
+    .vision-entry-guide__kinds {
+        grid-template-columns: 1fr;
+    }
+
     .vision-entry-guide__flow {
         font-size: 0.7rem;
+    }
+
+    .vision-entry-guide__fields li {
+        font-size: 0.65rem;
     }
 
     .vision-card {
