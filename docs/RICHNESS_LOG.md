@@ -3,6 +3,13 @@
 ## 2026-04-27
 
 - Focus: Content / Access
+- Changed: Research Log 004 に `sourceProject` を追加し、`地域LLM 知恵棚（構想メモ）` 由来の構想を次の問いへ戻す実験として読めるようにした。あわせてレトロ・ガジェット再生カードへ `entry.handoff` を追加し、古い道具を記憶とワークショップの問いへ巡らせる流れを1文で示した。
+- Learned: Projects から Research Log へ戻る導線と、Vision の入口から預けた後の巡りを同じ短い型で足すと、1ページのまま「保存して終わらない」感じを増やせる。
+- Next: レトロ・ガジェット再生の Research Log 002 側にも、道具カードやワークショップ由来の source 表示が必要か小さく見る。
+
+## 2026-04-27
+
+- Focus: Content / Access
 - Changed: 地域LLMカードの `entry.handoff` を追加し、預かった知恵を由来・場面・問いへ分けて地域の言葉で返す流れを1文で示した。あわせて Research Log 004 にアンカーを付け、`地域LLM 知恵棚（構想メモ）` から同ログへ戻れる `returnLink` を追加した。
 - Learned: 知恵棚は Vision の入口文と Projects の構想カードを同じ Research Log へ戻すだけでも、循環型CMSの「保存して終わらない」感じが強まる。
 - Next: 地域LLMの往復導線が増えたら、Research Log 004 側にも Projects 由来であることを短く示すか検討する。
