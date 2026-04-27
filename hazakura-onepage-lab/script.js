@@ -864,12 +864,13 @@
             : '';
         const cards = items.map((item) => {
             const actionType = getProjectActionType(item);
-            const actionIcon = actionType === 'download' ? '↓' : '↗';
-            const actionLabel = item.actionLabel || (actionType === 'download' ? 'DL' : '外部');
+            const actionIcon = actionType === 'download' ? '↓' : (actionType === 'status' ? '・' : '↗');
+            const actionLabel = item.actionLabel || (actionType === 'download' ? 'DL' : (actionType === 'status' ? '準備' : '外部'));
             const actionClass = `project-action project-action--${escapeHtml(actionType)}`;
-            const actionText = escapeHtml(item.action || (actionType === 'download' ? 'Download' : 'Open'));
-            const actionHint = item.actionHint
-                ? `<span class="project-action__hint">${escapeHtml(item.actionHint)}</span>`
+            const actionText = escapeHtml(item.action || item.status || (actionType === 'download' ? 'Download' : 'Open'));
+            const actionHintText = item.actionHint || (actionType === 'status' ? item.statusHint : '');
+            const actionHint = actionHintText
+                ? `<span class="project-action__hint">${escapeHtml(actionHintText)}</span>`
                 : '';
             const actionDestination = formatProjectDestination(item);
             const actionDestinationText = actionDestination
@@ -877,7 +878,7 @@
                 : '';
             const actionAria = actionType === 'download'
                 ? `${item.title}をダウンロードする`
-                : `${item.title}を外部サイトで開く`;
+                : (actionType === 'status' ? `${item.title}は${item.status || '準備中'}です` : `${item.title}を外部サイトで開く`);
             const thumb = item.image
                 ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}" class="project-img" loading="lazy" decoding="async">`
                 : `<div class="project-thumb-placeholder" ${item.placeholderAlt ? `role="img" aria-label="${escapeHtml(item.placeholderAlt)}"` : 'aria-hidden="true"'}>
@@ -886,7 +887,7 @@
                 </div>`;
             const live = item.href
                 ? `<a href="${escapeHtml(item.href)}" class="${actionClass}" aria-label="${escapeHtml(actionAria)}" ${item.download ? 'download' : 'target="_blank" rel="noopener noreferrer"'}><span class="project-action__label">${escapeHtml(actionLabel)}</span><span class="project-action__copy"><span class="project-action__text">${actionText}</span>${actionHint}${actionDestinationText}</span><span class="project-action__icon" aria-hidden="true">${actionIcon}</span></a>`
-                : `<span class="project-live__badge">${escapeHtml(item.status || 'Concept')}</span>`;
+                : `<span class="${actionClass} project-action--inactive" role="status" aria-label="${escapeHtml(actionAria)}"><span class="project-action__label">${escapeHtml(actionLabel)}</span><span class="project-action__copy"><span class="project-action__text">${actionText}</span>${actionHint}</span><span class="project-action__icon" aria-hidden="true">${actionIcon}</span></span>`;
             const lane = item.lane
                 ? `<span class="project-lane">${escapeHtml(item.lane)}</span>`
                 : '';

@@ -3,6 +3,13 @@
 ## 2026-04-27
 
 - Focus: Content / Access
+- Changed: Vision の自分史・レトロガジェット・地域LLMカードにも受付メモの `fields` を追加し、Projects のリンクなしカードを外部・DLと同じ `project-action--status` ピルで表示するようにした。
+- Learned: 将来フォーム化する入口と制作物カードの状態表示を同じデータ境界で揃えると、1ページ内の「預けるもの」と「まだ育てているもの」が読み分けやすくなる。
+- Next: `project-action--status` の短い状態文を棚フィルターと連動させ、準備中カードだけを見た時の説明をもう一段だけ濃くする。
+
+## 2026-04-27
+
+- Focus: Content / Access
 - Changed: Research Log 006 の `paperSample` に実論文 `Generative Agents: Interactive Simulacra of Human Behavior` と arXiv URL を追加し、読む前の3分メモを地域LLM・AI万屋へ返す問いとして具体化した。あわせて `paperSample.source` を表示する `research-paper-source` を追加し、出典リンクが本文メモと分かれて読めるようにした。
 - Learned: 実論文のURLを1件だけ置く場合も、リンク単体ではなく「どの語を拾い、どの実験へ戻すか」を同じデータ境界に持たせると、arxiv_scout が検索道具ではなく Research Log へ巡る入口として読める。
 - Next: 次回は `paperSample.source` が複数ログへ増えても重くならないように、出典表示のラベルやリンク色を Projects の外部リンク表記と揃えるか検討する。

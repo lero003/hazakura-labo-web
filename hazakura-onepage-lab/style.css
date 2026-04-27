@@ -4128,6 +4128,20 @@ body.theme-night .section-layers .layer-sequence__beam {
     border-color: rgba(90, 158, 95, 0.36);
 }
 
+.project-action--status {
+    color: var(--purple-500);
+    background: rgba(167, 139, 250, 0.1);
+    border-color: rgba(167, 139, 250, 0.22);
+}
+
+.project-action--inactive {
+    cursor: default;
+}
+
+.project-action--inactive:hover {
+    transform: none;
+}
+
 .project-action__label {
     font-size: 0.64rem;
     font-weight: 700;
@@ -5070,6 +5084,12 @@ body.theme-night .section-projects .project-action--download {
     color: var(--green-400);
     background: rgba(82, 183, 150, 0.1);
     border-color: rgba(82, 183, 150, 0.28);
+}
+
+body.theme-night .section-projects .project-action--status {
+    color: var(--purple-400);
+    background: rgba(167, 139, 250, 0.1);
+    border-color: rgba(167, 139, 250, 0.28);
 }
 
 body.theme-night .section-projects .project-live__badge {

@@ -253,7 +253,8 @@ window.HAZAKURA_CONTENT = {
                 entry: {
                     kind: 'memory',
                     label: 'まず預けたい記憶',
-                    prompt: 'いま誰かに残しておきたい風景、声、手ざわりは何ですか？'
+                    prompt: 'いま誰かに残しておきたい風景、声、手ざわりは何ですか？',
+                    fields: ['残したい場面', '関わった人', '次へ渡したい理由']
                 }
             },
             {
@@ -264,7 +265,8 @@ window.HAZAKURA_CONTENT = {
                 entry: {
                     kind: 'object',
                     label: 'まず預けたい古い道具',
-                    prompt: 'もう一度声を聞きたいラジオ、写真、ガジェットはありますか？'
+                    prompt: 'もう一度声を聞きたいラジオ、写真、ガジェットはありますか？',
+                    fields: ['道具の名前', '使っていた場面', 'もう一度試したいこと']
                 },
                 tag: 'Workshop seed'
             },
@@ -276,7 +278,8 @@ window.HAZAKURA_CONTENT = {
                 entry: {
                     kind: 'knowledge',
                     label: 'まず預けたい地域の知恵',
-                    prompt: '暮らしの中で、次の人に渡したい工夫や言葉はありますか？'
+                    prompt: '暮らしの中で、次の人に渡したい工夫や言葉はありますか？',
+                    fields: ['知恵の由来', '使う場面', '次の人への問い']
                 },
                 tag: 'CMS seed'
             },
@@ -363,6 +366,7 @@ window.HAZAKURA_CONTENT = {
                 placeholderText: 'arxiv scout',
                 placeholderAlt: '虫眼鏡で未知の論文を探す arxiv_scout の仮サムネイル',
                 status: 'Seed',
+                statusHint: 'Research Logへ育成中',
                 text: '未知の論文をただ集めるのではなく、問いの種、使えそうな概念、次に試す手順へ分けて読みほどくための小さな探索道具の構想。',
                 why: 'AIの知性を、答えを出す機械ではなく「まだ知らない概念へ連れていく相棒」として扱いたくて置いた種。',
                 origin: '検索結果を増やす前に、知らない言葉へ立ち止まる時間を道具側に持たせたくて置いた。',
@@ -388,6 +392,7 @@ window.HAZAKURA_CONTENT = {
                 placeholderText: 'message agent',
                 placeholderAlt: '相談を次の人へ届ける封筒の仮サムネイル',
                 status: 'Seed',
+                statusHint: '引き継ぎ型を設計中',
                 text: '人の言葉、制作メモ、未整理の依頼を受け取り、次に動ける小さな手順へ翻訳するための伝令役エージェントの構想。',
                 why: 'AI万屋の相談を、いきなり大きなシステムにせず、まず「何を預かり、誰へ渡すか」を整える相棒が必要だから。',
                 origin: '相談をAIが抱え込むのではなく、人・ログ・地域の知恵へ渡す役割を先に分けるところから考えた。',
@@ -408,6 +413,7 @@ window.HAZAKURA_CONTENT = {
                 placeholderText: '問い → 実験 → 発見',
                 placeholderAlt: '問いから実験と発見へ巡る Research Log の仮サムネイル',
                 status: 'Seed',
+                statusHint: '短いログを育成中',
                 text: 'AIの返答を、ただ正しい説明ではなく「もう少し考えたくなる入口」に変えるための小さな記録。文章の温度、余白、問い返しを比べながら、葉桜ラボらしい対話の型を育てていきます。',
                 why: 'Magic Toolsを道具単体で終わらせず、作る過程で見つけた驚きも同じ棚に残すための種。',
                 surprise: '同じ情報でも、問いを先に置くだけで説明が「答え」から「続きを考える入口」に変わる。',
@@ -427,6 +433,7 @@ window.HAZAKURA_CONTENT = {
                 placeholderText: 'local wisdom shelf',
                 placeholderAlt: '地域の知恵を地図へ残す知恵棚の仮サムネイル',
                 status: 'Seed',
+                statusHint: '知恵棚の構想',
                 text: '自分史、寺子屋、AI万屋の相談からこぼれた地域の言葉や手順を、次の問いへ返せる小さな知恵棚として残す構想。',
                 why: '循環型CMSを「情報を保存する場所」ではなく、地域の言葉で返事を育てる器として考えるため。',
                 surprise: '大きなモデルを先に作らなくても、預かった知恵を問い・背景・使いどころに分けるだけで、地域LLMの輪郭が見え始める。',
@@ -470,6 +477,7 @@ window.HAZAKURA_CONTENT = {
                 placeholderText: 'Harunohi Monitor（仮）',
                 placeholderAlt: 'Macの状態を春の日の気配として眺める仮サムネイル',
                 status: '開発中？',
+                statusHint: 'Mac専用の試作中',
                 text: 'ハルノヒのような、ポカポカした気分で動く常駐アプリ。少しだけ自分のMacのことを知るために、こういうの欲しいと作っております。できたら書きます。Mac専用。',
                 why: '機械の状態を冷たい数値ではなく、暮らしの気配として受け取る形を探っているもの。',
                 origin: 'CPUやメモリを監視する前に、Macが今どんな調子に見えるかを柔らかく受け取る入口がほしかった。',
@@ -484,6 +492,7 @@ window.HAZAKURA_CONTENT = {
                 image: './img/project_anime.png',
                 alt: '夜明けの湖畔に桜と光が浮かぶ、オリジナルアニメ映画「葉桜」の構想ビジュアル',
                 status: 'Concept',
+                statusHint: '物語の棚で温め中',
                 text: 'オリジナルアニメ映画「葉桜」。思いの中では、アニメ化してます。思いだけです。',
                 why: '葉桜ラボの思想を、説明ではなく物語と風景で伝える入口として温めている構想。',
                 surprise: 'まだ形のない構想でも、カードとして置くと次の制作やResearch Logへ戻る種になる。',
