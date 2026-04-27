@@ -32,6 +32,7 @@
 - Quote前の循環メモ描画は `src/scripts/quote-prelude.js` に切り出し、あとから演出だけ差し替えやすい境界にする。
 - ゾーンナビのDOM生成とactive表示は `src/scripts/zone-nav.js` に切り出し、スクロール判定や背景更新は既存 `script.js` 側に残す。
 - ゾーン雰囲気レイヤーのDOM生成とCSS変数更新は `src/scripts/zone-atmosphere.js` に切り出し、ブレンド計算は既存 `script.js` 側に残す。
+- Heroのオーロラ用オーバーレイ生成は `src/scripts/hero-aurora-overlay.js` に切り出し、表示切り替えは既存CSSとゾーン状態に任せる。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。

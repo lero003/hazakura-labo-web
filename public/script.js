@@ -1189,12 +1189,7 @@
     }
 
     function createHeroAuroraOverlay() {
-        const hero = document.querySelector('.hero');
-        if (!hero) return;
-        if (hero.querySelector('.hero-aurora-overlay')) return;
-        const overlay = document.createElement('div');
-        overlay.className = 'hero-aurora-overlay';
-        hero.querySelector('.hero-overlay').insertAdjacentElement('afterend', overlay);
+        window.HazakuraHeroAuroraOverlay?.create();
     }
 
     function updateZoneIndicator() {
