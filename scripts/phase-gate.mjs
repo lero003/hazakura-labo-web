@@ -213,6 +213,19 @@ assert(
   })
 );
 assert(
+  'projects controls stay compact before cards',
+  contentRenderersJs.includes('class="project-control-deck"')
+    && styleCss.includes('grid-template-columns: minmax(0, 1.22fr) minmax(17rem, 0.62fr)')
+    && styleCss.includes('scroll-snap-type: x proximity')
+    && styleCss.includes('.project-lane-guide::before'),
+  JSON.stringify({
+    hasControlDeck: contentRenderersJs.includes('class="project-control-deck"'),
+    hasDesktopGrid: styleCss.includes('grid-template-columns: minmax(0, 1.22fr) minmax(17rem, 0.62fr)'),
+    hasMobileScroller: styleCss.includes('scroll-snap-type: x proximity'),
+    hasPathRail: styleCss.includes('.project-lane-guide::before')
+  })
+);
+assert(
   'project cards compress trail notes',
   contentRenderersJs.includes('class="project-trail"')
     && styleCss.includes('.project-trail')

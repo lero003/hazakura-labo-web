@@ -4743,21 +4743,41 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-control-deck {
     display: grid;
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1.22fr) minmax(17rem, 0.62fr);
+    gap: 0.82rem 1.15rem;
+    align-items: start;
+    min-width: 0;
+    margin: -0.12rem 0 0.35rem;
 }
 
 .project-lane-guide {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1 / span 2;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.75rem;
-    margin-bottom: -0.1rem;
+    min-width: 0;
+    padding-top: 0.38rem;
+}
+
+.project-lane-guide::before {
+    content: '';
+    position: absolute;
+    top: 1.05rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.24), rgba(90, 158, 95, 0.22), rgba(167, 139, 250, 0.18), rgba(232, 88, 122, 0));
+    pointer-events: none;
+    opacity: 0.78;
 }
 
 .project-lane-guide__item {
     position: relative;
     overflow: hidden;
-    min-height: 126px;
-    padding: 1rem 1rem 1.05rem;
+    min-height: 116px;
+    padding: 1.05rem 1rem 1rem;
     border: 1px solid rgba(232, 88, 122, 0.16);
     border-left: 3px solid rgba(232, 88, 122, 0.42);
     border-radius: 8px;
@@ -4822,11 +4842,17 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-lane-filter {
+    grid-column: 2;
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
     align-items: center;
-    margin: -0.4rem 0 0.2rem;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0.62rem;
+    border: 1px solid rgba(232, 88, 122, 0.13);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.34);
 }
 
 .project-lane-filter__button {
@@ -4876,9 +4902,10 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-lane-status {
-    margin: -0.15rem 0 0.25rem;
-    max-width: 720px;
-    padding: 0.75rem 0.95rem 0.75rem 1rem;
+    grid-column: 2;
+    margin: 0;
+    max-width: none;
+    padding: 0.82rem 0.95rem 0.82rem 1rem;
     border-left: 3px solid rgba(232, 88, 122, 0.36);
     background: rgba(255, 255, 255, 0.42);
     color: var(--ink-500);
@@ -6153,6 +6180,11 @@ body.theme-night .section-projects .project-lane-guide__item p {
     color: var(--body-text);
 }
 
+body.theme-night .section-projects .project-lane-filter {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(167, 139, 250, 0.14);
+}
+
 body.theme-night .section-projects .project-lane-filter__button {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(167, 139, 250, 0.2);
@@ -6401,6 +6433,12 @@ body.theme-night .nav-links a::after {
         gap: 1.25rem;
     }
 
+    .project-control-deck {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.78rem;
+        overflow: hidden;
+    }
+
     .project-threshold {
         grid-template-columns: auto minmax(0, 1fr);
         gap: 0.85rem;
@@ -6413,11 +6451,29 @@ body.theme-night .nav-links a::after {
     }
 
     .project-lane-guide {
-        grid-template-columns: 1fr;
-        gap: 0.7rem;
+        grid-column: auto;
+        grid-row: auto;
+        grid-template-columns: repeat(3, minmax(12.25rem, 1fr));
+        gap: 0.68rem;
+        margin: 0 -0.25rem;
+        padding: 0.35rem 0.25rem 0.18rem;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+    }
+
+    .project-lane-guide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .project-lane-guide::before {
+        left: 1.35rem;
+        right: 1.35rem;
     }
 
     .project-lane-guide__item {
+        scroll-snap-align: start;
         min-height: 0;
         padding: 0.9rem;
     }
@@ -6432,8 +6488,11 @@ body.theme-night .nav-links a::after {
     }
 
     .project-lane-filter {
+        grid-column: auto;
         gap: 0.45rem;
-        margin-top: -0.2rem;
+        justify-content: stretch;
+        margin-top: 0;
+        padding: 0.55rem;
     }
 
     .project-lane-filter__button {
@@ -6446,6 +6505,7 @@ body.theme-night .nav-links a::after {
     }
 
     .project-lane-status {
+        grid-column: auto;
         margin: -0.15rem 0 0;
         font-size: 0.82rem;
         line-height: 1.75;
