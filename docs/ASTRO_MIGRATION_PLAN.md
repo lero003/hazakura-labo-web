@@ -46,6 +46,7 @@
 - アニメーションフレームの複数キャンセルは `src/scripts/animation-frames.js` に切り出し、描画ループ自体は既存 `script.js` に残す。
 - Canvasのクリア処理は `src/scripts/canvas-clear.js` に切り出し、reduced motion時の停止処理から呼び出す。
 - カーソルリングのhover class制御は `src/scripts/cursor-hover.js` に切り出し、マウス座標やカードtilt処理は既存 `script.js` に残す。
+- カードtilt用の `--mouse-x` / `--mouse-y` 更新は `src/scripts/card-hover-fields.js` に切り出し、mousemove内の風入力やBook 3D処理は既存 `script.js` に残す。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。

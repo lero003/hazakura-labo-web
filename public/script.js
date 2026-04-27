@@ -464,12 +464,12 @@
     }
 
     // ===== Mouse tracking =====
-    let hoverTargets = [];
+    const cardHoverFields = window.HazakuraCardHoverFields?.create();
     const book3dEl = document.getElementById('book-3d');
     const bookGlareEl = document.querySelector('.book-glare');
 
     function refreshHoverTargets() {
-        hoverTargets = Array.from(document.querySelectorAll('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card, .cycle-bridge-card, .quote-prelude-card'));
+        cardHoverFields?.refresh();
     }
 
     function escapeHtml(value) {
@@ -960,21 +960,7 @@
         cursorY = e.clientY;
         targetWindX = (e.movementX || 0) * 0.15;
 
-        // Card hover — elementFromPoint (no layout thrashing)
-        const el = document.elementFromPoint(e.clientX, e.clientY);
-        const hoverCard = el?.closest('.vision-card, .philosophy-card, .layer-card, .project-card, .research-log-card, .cycle-bridge-card, .quote-prelude-card');
-        for (const card of hoverTargets) {
-            if (card === hoverCard) {
-                const rect = card.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
-                const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
-                card.style.setProperty('--mouse-x', x + '%');
-                card.style.setProperty('--mouse-y', y + '%');
-            } else {
-                card.style.removeProperty('--mouse-x');
-                card.style.removeProperty('--mouse-y');
-            }
-        }
+        cardHoverFields?.update(e);
 
         // Book 3D
         if (book3dEl) {
