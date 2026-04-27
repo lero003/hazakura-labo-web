@@ -1020,22 +1020,6 @@
     });
 
     // ===== Scroll handlers =====
-    function handleNavScroll() {
-        const nav = document.getElementById('nav-main');
-        if (nav) {
-            if (window.scrollY > 80) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        }
-    }
-
-    function updateScrollProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        const bar = document.getElementById('scroll-progress');
-        if (bar) bar.style.width = progress + '%';
-    }
-
     function handleParallax() {
         const scrollY = window.scrollY;
         const heroDepth = document.querySelector('.hero-depth-layer');
@@ -1528,8 +1512,8 @@
         window.HazakuraSmoothScroll?.init({
             getPrefersReducedMotion: () => prefersReducedMotion
         });
-        handleNavScroll();
-        updateScrollProgress();
+        const scrollIndicators = window.HazakuraScrollIndicators?.create();
+        scrollIndicators?.update();
         if (!prefersReducedMotion) handleParallax();
         updateScrollZones();
 
@@ -1537,8 +1521,7 @@
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 requestAnimationFrame(() => {
-                    handleNavScroll();
-                    updateScrollProgress();
+                    scrollIndicators?.update();
                     if (!prefersReducedMotion) handleParallax();
                     updateScrollZones();
                     ticking = false;
@@ -1557,6 +1540,7 @@
                 initAuroraWaves();
                 if (shootingStars.length > 0) initShootingStars();
                 if (!prefersReducedMotion) handleParallax();
+                scrollIndicators?.update();
                 updateScrollZones();
             }, 150);
         });

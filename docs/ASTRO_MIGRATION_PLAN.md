@@ -36,6 +36,7 @@
 - Hero画像のloaded class付与は `src/scripts/hero-image-loader.js` に切り出し、初期表示のフェードインだけを独立管理する。
 - 縮小モーション設定の読み取りとbody class同期は `src/scripts/motion-preferences.js` に切り出し、Canvas停止/再開処理は既存 `script.js` 側に残す。
 - ページ内リンクのスムーススクロールは `src/scripts/smooth-scroll.js` に切り出し、縮小モーション時の挙動だけ既存初期化から渡す。
+- スクロール進捗バーとナビのscrolled状態は `src/scripts/scroll-indicators.js` に切り出し、スクロールループから `update()` だけを呼ぶ。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。
