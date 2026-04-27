@@ -284,6 +284,7 @@ window.HAZAKURA_CONTENT = {
                 text: 'MarkdownからプロフェッショナルなKindle EPUBをブラウザ完結で生成するツール。ローカル処理、自動目次生成、GFMテーブル対応。',
                 why: 'Kindle公開作業を、誰かのサーバーに預けず自分の手元で完結させたくて作ったもの。',
                 surprise: '出版の工程は大きな仕組みでなくても、小さなブラウザ道具へ分解すると「自分で直せる知恵」になる。',
+                nextStep: '原稿テンプレートや出版メモを足し、Library の問いへ戻せる道具に育てる。',
                 tags: ['Markdown', 'EPUB', 'Kindle', 'クライアントサイド']
             },
             {
@@ -292,10 +293,12 @@ window.HAZAKURA_CONTENT = {
                 title: 'arxiv_scout（試作メモ）',
                 placeholderIcon: '🔍',
                 placeholderText: 'arxiv scout',
+                placeholderAlt: '虫眼鏡で未知の論文を探す arxiv_scout の仮サムネイル',
                 status: 'Seed',
                 text: '未知の論文をただ集めるのではなく、問いの種、使えそうな概念、次に試す手順へ分けて読みほどくための小さな探索道具の構想。',
                 why: 'AIの知性を、答えを出す機械ではなく「まだ知らない概念へ連れていく相棒」として扱いたくて置いた種。',
                 surprise: '論文タイトルの一覧も、問いと実験の型に通すと、Research Logへ戻せる発見の入口になる。',
+                nextStep: '読んだ論文を1件だけ、問い・実験・発見の短いログへ返す。',
                 cycle: {
                     question: '未知の論文から、自分の次の問いをどう取り出すか。',
                     experiment: 'タイトル、要約、気になる概念を分け、Research Logへ移せる短い仮説に整える。',
@@ -309,10 +312,12 @@ window.HAZAKURA_CONTENT = {
                 title: 'AI万屋 伝令エージェント（構想メモ）',
                 placeholderIcon: '✉️',
                 placeholderText: 'message agent',
+                placeholderAlt: '相談を次の人へ届ける封筒の仮サムネイル',
                 status: 'Seed',
                 text: '人の言葉、制作メモ、未整理の依頼を受け取り、次に動ける小さな手順へ翻訳するための伝令役エージェントの構想。',
                 why: 'AI万屋の相談を、いきなり大きなシステムにせず、まず「何を預かり、誰へ渡すか」を整える相棒が必要だから。',
                 surprise: 'エージェントを答える存在ではなく伝える存在として置くと、地域の知恵や制作メモが次の人へ巡りやすくなる。',
+                nextStep: '相談メモを、困りごと・背景・次に聞くこと・渡す相手の型へ分ける。',
                 cycle: {
                     question: '未整理の相談を、どうすれば次の一手へ渡せるか。',
                     experiment: '相談の本文を、困りごと、背景、追加で聞くこと、渡す相手の四つに分けて短い引き継ぎ文へ整える。',
@@ -326,10 +331,12 @@ window.HAZAKURA_CONTENT = {
                 title: '情緒プロンプト実験ノート',
                 placeholderIcon: '🧪',
                 placeholderText: '問い → 実験 → 発見',
+                placeholderAlt: '問いから実験と発見へ巡る Research Log の仮サムネイル',
                 status: 'Seed',
                 text: 'AIの返答を、ただ正しい説明ではなく「もう少し考えたくなる入口」に変えるための小さな記録。文章の温度、余白、問い返しを比べながら、葉桜ラボらしい対話の型を育てていきます。',
                 why: 'Magic Toolsを道具単体で終わらせず、作る過程で見つけた驚きも同じ棚に残すための種。',
                 surprise: '同じ情報でも、問いを先に置くだけで説明が「答え」から「続きを考える入口」に変わる。',
+                nextStep: '同じ案内文を複数トーンで比べ、葉桜ラボらしい問い返しを1つ残す。',
                 cycle: {
                     question: 'AIの答えに、読み手の気持ちが動く余白は作れるか。',
                     experiment: '同じ案内文を説明調、物語調、対話調に分けて、印象の差を比べる。',
@@ -343,10 +350,12 @@ window.HAZAKURA_CONTENT = {
                 title: '地域LLM 知恵棚（構想メモ）',
                 placeholderIcon: '🗺️',
                 placeholderText: 'local wisdom shelf',
+                placeholderAlt: '地域の知恵を地図へ残す知恵棚の仮サムネイル',
                 status: 'Seed',
                 text: '自分史、寺子屋、AI万屋の相談からこぼれた地域の言葉や手順を、次の問いへ返せる小さな知恵棚として残す構想。',
                 why: '循環型CMSを「情報を保存する場所」ではなく、地域の言葉で返事を育てる器として考えるため。',
                 surprise: '大きなモデルを先に作らなくても、預かった知恵を問い・背景・使いどころに分けるだけで、地域LLMの輪郭が見え始める。',
+                nextStep: '預かった言葉を由来・場面・次に返す問いへ分け、Research Log に戻す。',
                 cycle: {
                     question: '地域の知恵を、どうすれば次の人の問いへ返せる形で残せるか。',
                     experiment: '預かった言葉を、由来、場面、次に使えそうな問いの三つに分けて短いカードへ整える。',
@@ -360,6 +369,7 @@ window.HAZAKURA_CONTENT = {
                 title: 'Sakura Sky（実験作品）',
                 placeholderIcon: '🌸',
                 placeholderText: 'Sakura Sky（実験作品）',
+                placeholderAlt: 'デスクトップに桜と葉桜の光を舞わせる Sakura Sky の仮サムネイル',
                 href: 'downloads/SakuraSky.dmg',
                 action: 'DMG',
                 actionType: 'download',
@@ -369,6 +379,7 @@ window.HAZAKURA_CONTENT = {
                 text: 'デスクトップの上に、桜・葉桜・魔法の光がふわりと舞うmacOSアプリ。作業の邪魔をほんの少しだけする、葉桜ラボらしい実験的な遊び道具です。',
                 why: '効率だけではない、少し余白のあるコンピュータ体験を試したくて作ったもの。',
                 surprise: '役に立たない揺らぎをあえて置くと、作業画面にも季節や気分の余白が生まれる。',
+                nextStep: '署名や配布条件を整え、安心して試せる小さな案内へ分ける。',
                 actionNote: {
                     label: '未署名版',
                     text: '環境によってはインストールや起動が止まったり、システムアラートが出る可能性があります。試す前に手元の設定とリスクを確認してください。'
@@ -381,10 +392,12 @@ window.HAZAKURA_CONTENT = {
                 title: 'Harunohi Monitor（仮）',
                 placeholderIcon: '🌸',
                 placeholderText: 'Harunohi Monitor（仮）',
+                placeholderAlt: 'Macの状態を春の日の気配として眺める仮サムネイル',
                 status: '開発中？',
                 text: 'ハルノヒのような、ポカポカした気分で動く常駐アプリ。少しだけ自分のMacのことを知るために、こういうの欲しいと作っております。できたら書きます。Mac専用。',
                 why: '機械の状態を冷たい数値ではなく、暮らしの気配として受け取る形を探っているもの。',
                 surprise: '監視ツールも、温度や余裕を感じる言葉に置き換えると、Macとの付き合い方まで少し変わる。',
+                nextStep: 'CPUやメモリの数値を、疲れ・余白・休憩の言葉へ翻訳する試作を置く。',
                 tags: ['macOS 26+', 'Swift?', '開発中']
             },
             {
@@ -397,6 +410,7 @@ window.HAZAKURA_CONTENT = {
                 text: 'オリジナルアニメ映画「葉桜」。思いの中では、アニメ化してます。思いだけです。',
                 why: '葉桜ラボの思想を、説明ではなく物語と風景で伝える入口として温めている構想。',
                 surprise: 'まだ形のない構想でも、カードとして置くと次の制作やResearch Logへ戻る種になる。',
+                nextStep: '風景から生まれる問いを、1シーンずつ Research Log へ戻す。',
                 returnLink: {
                     href: '#research-log-hazakura-anime',
                     label: 'Research Log 005',

@@ -819,7 +819,7 @@
                 : `${item.title}を外部サイトで開く`;
             const thumb = item.image
                 ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}" class="project-img" loading="lazy" decoding="async">`
-                : `<div class="project-thumb-placeholder" aria-hidden="true">
+                : `<div class="project-thumb-placeholder" ${item.placeholderAlt ? `role="img" aria-label="${escapeHtml(item.placeholderAlt)}"` : 'aria-hidden="true"'}>
                     <span class="placeholder-icon">${escapeHtml(item.placeholderIcon || '🌸')}</span>
                     <span class="placeholder-text">${escapeHtml(item.placeholderText || item.title)}</span>
                 </div>`;
@@ -834,6 +834,9 @@
                 : '';
             const surprise = item.surprise
                 ? `<p class="project-surprise"><span>Surprise</span>${escapeHtml(item.surprise)}</p>`
+                : '';
+            const nextStep = item.nextStep
+                ? `<p class="project-next"><span>Next</span>${escapeHtml(item.nextStep)}</p>`
                 : '';
             const actionNote = item.actionNote
                 ? `<p class="project-action-note"><span>${escapeHtml(item.actionNote.label || 'Note')}</span>${escapeHtml(item.actionNote.text || '')}</p>`
@@ -872,6 +875,7 @@
                         <p class="project-desc">${escapeHtml(item.text)}</p>
                         ${why}
                         ${surprise}
+                        ${nextStep}
                         ${actionNote}
                         ${returnLink}
                         ${cycle}
