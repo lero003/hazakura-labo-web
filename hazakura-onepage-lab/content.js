@@ -67,20 +67,16 @@ window.HAZAKURA_CONTENT = {
     ],
     quotePrelude: {
         eyebrow: 'Before the last poem',
-        title: 'ページの最後で、問いをもう一度入口へ戻す。',
-        text: '読み終えたあとに残った小さな気配を、Research Log、制作物、地域の知恵へ返すための余白です。',
+        title: '最後の詩の前で、残った問いをそっと畳む。',
+        text: 'ここまでに触れた本、道具、構想から、一つだけ手元へ持ち帰るための余白です。',
         steps: [
             {
-                label: '読む',
-                text: '思想、本、道具、構想のどこで心が止まったかを拾う。'
+                label: '拾う',
+                text: '心が止まった一文や道具を選ぶ。'
             },
             {
-                label: '預ける',
-                text: '問い・記憶・古い道具・地域の知恵のどれとして残せるかを見る。'
-            },
-            {
-                label: '巡らせる',
-                text: '次のResearch LogやMagic Toolへ戻し、また一枚の中で育てる。'
+                label: '残す',
+                text: '次に試したい小さな問いとして書き留める。'
             }
         ]
     },
@@ -196,8 +192,8 @@ window.HAZAKURA_CONTENT = {
         ],
         cycleBridge: {
             eyebrow: 'Circulation note',
-            title: '問いは記憶になり、また誰かの問いへ戻る。',
-            text: 'Research Logに残した発見、自分史に預けた記憶、寺子屋で交わした学び。それらを地域LLMが少しずつ受け取り、次の人の言葉で返していく。葉桜ラボは、その巡りを一枚のページで育てる実験場です。'
+            title: '構想の種を、研究ログへ戻す。',
+            text: '気になった入口だけを一つ選び、問い、記憶、道具、知恵のどれとして育てるかを見るための短い橋です。'
         }
     },
     visionsGroup: {

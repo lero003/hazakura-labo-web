@@ -1750,7 +1750,7 @@ a {
 .research-log-strip {
     display: grid;
     gap: 1rem;
-    margin: 0 auto 2.2rem;
+    margin: 2.4rem auto 2.2rem;
     max-width: 980px;
 }
 
@@ -2577,7 +2577,7 @@ body.theme-night .section-vision {
 
 .quote-prelude-steps {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
     gap: 0.7rem;
     margin: 0;
     padding: 0;
