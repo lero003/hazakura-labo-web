@@ -53,6 +53,7 @@ const requiredAssets = [
   'dist/text-reveal.js',
   'dist/hero-parallax.js',
   'dist/scroll-animations.js',
+  'dist/canvas-size.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -83,6 +84,7 @@ const scrollIndicatorsJs = readFile('dist/scroll-indicators.js');
 const textRevealJs = readFile('dist/text-reveal.js');
 const heroParallaxJs = readFile('dist/hero-parallax.js');
 const scrollAnimationsJs = readFile('dist/scroll-animations.js');
+const canvasSizeJs = readFile('dist/canvas-size.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -95,6 +97,7 @@ assert('legacy script delegates scroll indicators', scriptJs.includes('HazakuraS
 assert('legacy script delegates text reveal', scriptJs.includes('HazakuraTextReveal?.prepare'));
 assert('legacy script delegates hero parallax', scriptJs.includes('HazakuraHeroParallax?.create'));
 assert('legacy script delegates scroll animations', scriptJs.includes('HazakuraScrollAnimations?.init'));
+assert('legacy script delegates canvas size', scriptJs.includes('HazakuraCanvasSize?.resize'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -107,6 +110,7 @@ assert('scroll indicators script exposes global', scrollIndicatorsJs.includes('w
 assert('text reveal script exposes global', textRevealJs.includes('window.HazakuraTextReveal'));
 assert('hero parallax script exposes global', heroParallaxJs.includes('window.HazakuraHeroParallax'));
 assert('scroll animations script exposes global', scrollAnimationsJs.includes('window.HazakuraScrollAnimations'));
+assert('canvas size script exposes global', canvasSizeJs.includes('window.HazakuraCanvasSize'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {

@@ -19,11 +19,6 @@
     let targetWindX = 0;
     let windX = 0;
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
     class Petal {
         constructor(layer) {
             this.layer = layer || (Math.random() < 0.4 ? 0 : (Math.random() < 0.65 ? 1 : 2));
@@ -299,12 +294,6 @@
         auroraCanvas.style.cssText = 'position:fixed;inset:0;z-index:9995;pointer-events:none;opacity:0;transition:opacity 3s ease;';
         document.body.appendChild(auroraCanvas);
         auroraCtx = auroraCanvas.getContext('2d');
-    }
-
-    function resizeAuroraCanvas() {
-        if (!auroraCanvas) return;
-        auroraCanvas.width = window.innerWidth;
-        auroraCanvas.height = window.innerHeight;
     }
 
     class AuroraWave {
@@ -1380,10 +1369,10 @@
     function init() {
         renderContent();
         motionPreferences?.syncBodyClass();
-        resizeCanvas();
+        window.HazakuraCanvasSize?.resize(canvas);
         initPetals();
         createAuroraCanvas();
-        resizeAuroraCanvas();
+        window.HazakuraCanvasSize?.resize(auroraCanvas);
         initAuroraWaves();
         createHeroAuroraOverlay();
         if (!prefersReducedMotion) {
@@ -1421,8 +1410,8 @@
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
-                resizeCanvas();
-                resizeAuroraCanvas();
+                window.HazakuraCanvasSize?.resize(canvas);
+                window.HazakuraCanvasSize?.resize(auroraCanvas);
                 initPetals();
                 initAuroraWaves();
                 if (shootingStars.length > 0) initShootingStars();
