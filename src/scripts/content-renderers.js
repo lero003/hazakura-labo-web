@@ -48,20 +48,6 @@
         `).join('');
     }
 
-    function renderStats(items) {
-        const root = document.querySelector('[data-render="stats"]');
-        if (!root || !items) return;
-        root.innerHTML = items.map((item) => `
-            <div class="stat-item">
-                <div class="stat-number-wrap">
-                    <span class="stat-number" data-target="${escapeHtml(item.target)}" data-suffix="${escapeHtml(item.suffix)}">0</span>
-                </div>
-                <p class="stat-label">${escapeHtml(item.label)}</p>
-                <p class="stat-sub">${escapeHtml(item.sub)}</p>
-            </div>
-        `).join('');
-    }
-
     function renderProcess(items) {
         const root = document.querySelector('[data-render="process"]');
         if (!root || !items) return;
@@ -551,7 +537,6 @@
         if (!content) return;
         renderPhilosophy(content.philosophy);
         renderExperienceLayers(content.experienceLayers);
-        renderStats(content.stats);
         renderProcess(content.process);
         renderResearchGroup(content.researchGroup);
         renderVisions(content.visionsGroup || content.visions);

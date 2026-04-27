@@ -97,7 +97,6 @@ body.theme-night {
 .section,
 .philosophy-card,
 .vision-card,
-.stat-item,
 .footer,
 body {
     transition: background-color 1.5s var(--ease-out-expo), color 1.5s var(--ease-out-expo), border-color 1.5s var(--ease-out-expo), box-shadow 1.5s var(--ease-out-expo);
@@ -1251,69 +1250,6 @@ a {
     font-size: 0.86rem;
     line-height: 1.85;
     color: var(--ink-600);
-}
-
-/* ============================================
-   Stats Section — Counter Animation
-   ============================================ */
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    text-align: center;
-}
-
-.stat-item {
-    padding: 2rem;
-    border-radius: 20px;
-    background: var(--card-bg, rgba(255, 255, 255, 0.6));
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--ink-200);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s var(--ease-out-expo);
-}
-
-.stat-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.stat-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-    border-color: var(--sakura-200);
-}
-
-.stat-number-wrap {
-    font-family: var(--font-serif);
-    font-size: 3.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--sakura-500), var(--purple-500));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-}
-
-.stat-number-wrap .suffix {
-    font-size: 2rem;
-}
-
-.stat-label {
-    font-family: var(--font-serif);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--ink-800);
-    letter-spacing: 0.05em;
-}
-
-.stat-sub {
-    font-size: 0.8rem;
-    color: var(--ink-500);
-    margin-top: 0.3rem;
 }
 
 /* ============================================
@@ -3673,10 +3609,6 @@ body.zone-dusk .philosophy-card {
     background: rgba(255, 248, 240, 0.7);
 }
 
-body.zone-dusk .stat-item {
-    background: rgba(255, 248, 240, 0.6);
-}
-
 body.zone-dusk .process-icon {
     background: rgba(255, 248, 240, 0.8);
 }
@@ -3774,10 +3706,6 @@ body.theme-night.zone-aurora #aurora-canvas {
    Responsive
    ============================================ */
 @media (max-width: 1024px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .book-showcase {
         gap: 3rem;
     }
@@ -3850,19 +3778,6 @@ body.theme-night.zone-aurora #aurora-canvas {
 
     .philosophy-card {
         padding: 2.5rem 2rem;
-    }
-
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    .stat-item {
-        padding: 1.5rem;
-    }
-
-    .stat-number-wrap {
-        font-size: 2.5rem;
     }
 
     .book-showcase {
@@ -4044,14 +3959,6 @@ body.theme-night.zone-aurora #aurora-canvas {
 }
 
 @media (max-width: 480px) {
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .stat-number-wrap {
-        font-size: 2rem;
-    }
-
     .book-3d {
         width: 200px;
         height: 290px;
@@ -4145,7 +4052,6 @@ body.theme-night.zone-aurora #aurora-canvas {
     .philosophy-card,
     .layer-card,
     .book-showcase,
-    .stat-item,
     .vision-card,
     .research-log-card,
     .cycle-bridge-card,
@@ -4591,16 +4497,6 @@ body.theme-night .vision-card:hover {
     border-color: rgba(167, 139, 250, 0.5);
     box-shadow: 0 0 40px rgba(139, 92, 246, 0.2), 0 0 80px rgba(232, 88, 122, 0.1);
 }
-
-body.theme-night .stat-item {
-    border-color: rgba(167, 139, 250, 0.2);
-}
-
-body.theme-night .stat-item:hover {
-    border-color: rgba(139, 92, 246, 0.4);
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
-}
-
 
 /* ===== night: card spotlight ===== */
 body.theme-night .philosophy-card::before {
@@ -5713,20 +5609,6 @@ body.theme-night .section-library .book-badge {
 body.theme-night .section-library .book-authors,
 body.theme-night .section-library .book-volume {
     color: var(--body-text);
-}
-
-/* Stats within library section */
-body.theme-night .section-library .stat-item {
-    border-color: rgba(139, 92, 246, 0.2);
-    background: rgba(255, 255, 255, 0.03);
-}
-
-body.theme-night .section-library .stat-label {
-    color: var(--header-text);
-}
-
-body.theme-night .section-library .stat-sub {
-    color: var(--body-text-dim);
 }
 
 body.theme-night .section-library .library-projects-bridge {

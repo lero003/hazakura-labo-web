@@ -50,16 +50,15 @@ assert(
   })
 );
 assert(
-  'library to projects bridge appears before projects',
-  html.indexOf('class="library-projects-bridge"') > html.indexOf('id="stats-grid"')
+  'library to projects bridge follows book shelf and appears before projects',
+  html.indexOf('class="library-projects-bridge"') > html.indexOf('class="book-shelf"')
     && html.indexOf('class="library-projects-bridge"') < html.indexOf('id="projects"'),
   JSON.stringify({
-    statsGrid: html.indexOf('id="stats-grid"'),
+    bookShelf: html.indexOf('class="book-shelf"'),
     bridge: html.indexOf('class="library-projects-bridge"'),
     projects: html.indexOf('id="projects"')
   })
 );
-
 const scriptPositions = scriptLoadOrder.map((path) => [path, html.indexOf(`src="${path}"`)]);
 assert(
   'script load order is stable',
@@ -128,6 +127,19 @@ const auroraCanvasJs = readFile('dist/aurora-canvas.js');
 const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
 const sakuraPetalsJs = readFile('dist/sakura-petals.js');
+assert(
+  'library handoff is not interrupted by legacy stats grid',
+  !html.includes('id="stats-grid"')
+    && !contentRenderersJs.includes('data-render="stats"')
+    && !scrollAnimationsJs.includes('stat-number')
+    && !styleCss.includes('.stats-grid'),
+  JSON.stringify({
+    hasStatsGridMarkup: html.includes('id="stats-grid"'),
+    hasStatsRenderer: contentRenderersJs.includes('data-render="stats"'),
+    hasCounterScript: scrollAnimationsJs.includes('stat-number'),
+    hasStatsStyles: styleCss.includes('.stats-grid')
+  })
+);
 assert('app controller delegates content renderers', appControllerJs.includes('HazakuraContentRenderers?.create'));
 assert('app controller delegates vision entry focus', appControllerJs.includes('HazakuraVisionEntryFocus?.init'));
 assert('app controller delegates zone performance', appControllerJs.includes('HazakuraZonePerformance?.create'));

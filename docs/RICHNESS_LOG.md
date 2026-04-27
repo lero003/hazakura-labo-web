@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure / Access
+- Changed: Library の末尾から数値カウンターを削り、書庫の本から Library → Projects の橋へ直接つながる流れに整理した。未使用になった `stats` データ、描画関数、カウンター演出、CSS、phase gate 契約も削除した。
+- Learned: 書庫から実験棚へ渡す場面では、ページ数や冊数の実績表示よりも「問いをどう次へ戻すか」の導線を残したほうが、1ページの参道が途切れにくい。
+- Next: Projects のカード本文がさらに重く見える場合は、タグや trail の密度をカード内で一段だけ畳む。
+
+## 2026-04-28
+
 - Focus: Motion / Access / Structure
 - Changed: Quote 前の折り返しリンクを通常アンカーから測定済みスムーススクロールへ接続し、Library / Projects / Vision へ戻った時に `is-quote-return-arrival` の淡い着地光が一拍だけ出るようにした。phase gate でこの終盤導線も保護した。
 - Learned: 最後の詩へ向かう前の折り返しは、リンク先へ飛べるだけだと「戻る理由」はあっても「戻ってきた感触」が薄い。新しい説明を足さず、到着先の見出しが受け取るだけで循環の手触りが増える。
