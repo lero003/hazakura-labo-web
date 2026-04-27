@@ -81,6 +81,6 @@ Status: 完了。旧 `public/script.js` は削除し、起動処理は `/app-con
 
 ## 現時点の方針
 
-Astro版を本線として扱います。`hazakura-onepage-lab/` は比較用の旧静的版アーカイブとして残し、現在の公開候補は `src/` と `public/` から組み立てます。Cloudflare Pagesは root directory をリポジトリルート、build command を `npm run build`、output を `dist` にする前提です。
+Astro版だけを本線として扱います。旧 `hazakura-onepage-lab/` の比較用アーカイブは削除済みで、現在の公開候補は `src/` と `public/` から組み立てます。Cloudflare Pagesは root directory をリポジトリルート、build command を `npm run build`、output を `dist` にする前提です。
 
-大きい演出を切り出す前後に、`npm run check:phase` で静的な完了条件を確認します。このチェックは `dist/index.html`、主要セクション順、生成JS、必須assets、旧 `/script.js` が出力されていないこと、`src/data/` と `/content.js` の一致を見ます。ブラウザ上の目視確認は別途行います。
+大きい演出を切り出す前後に、`npm run check:phase` で静的な完了条件を確認します。このチェックは `dist/index.html`、主要セクション順、生成JS、必須assets、旧 `/script.js` が出力されていないこと、旧静的版ディレクトリが残っていないこと、`src/data/` と `/content.js` の一致を見ます。ブラウザ上の目視確認は別途行います。

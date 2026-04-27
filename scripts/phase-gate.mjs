@@ -80,6 +80,7 @@ assert(
 );
 assert('legacy public script is not emitted', !fs.existsSync('dist/script.js'));
 assert('legacy public stylesheet source is not used', !fs.existsSync('public/style.css'));
+assert('legacy onepage archive is removed', !fs.existsSync('hazakura-onepage-lab'));
 
 const contentJs = readFile('dist/content.js');
 const contentSandbox = { window: {} };
