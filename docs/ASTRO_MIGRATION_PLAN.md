@@ -30,6 +30,7 @@
 
 - Projectsの棚フィルターは `src/scripts/project-filter.js` に切り出し、`src/pages/project-filter.js.ts` から従来のscriptとして配信する。カード生成はまだ既存 `script.js` 側に残す。
 - Quote前の循環メモ描画は `src/scripts/quote-prelude.js` に切り出し、あとから演出だけ差し替えやすい境界にする。
+- ゾーンナビのDOM生成とactive表示は `src/scripts/zone-nav.js` に切り出し、スクロール判定や背景更新は既存 `script.js` 側に残す。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。

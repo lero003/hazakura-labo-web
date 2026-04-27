@@ -1126,36 +1126,23 @@
     const zoneNameToIndex = { day: 1, dusk: 2, night: 3, moon: 4, aurora: 5 };
     const zoneIndexToName = ['', 'day', 'dusk', 'night', 'moon', 'aurora'];
 
-    // Zone nav buttons
-    const zoneNav = document.createElement('div');
-    zoneNav.className = 'zone-nav';
-    zoneNav.innerHTML = `
-        <div class="zone-btn zone-btn-1" data-zone="1" title="Day — 桜">🌸</div>
-        <div class="zone-btn zone-btn-2" data-zone="2" title="Dusk — 夕景">🌅</div>
-        <div class="zone-btn zone-btn-3" data-zone="3" title="Night — 夜">🌙</div>
-        <div class="zone-btn zone-btn-4" data-zone="4" title="Moon — 月明">⭐</div>
-        <div class="zone-btn zone-btn-5" data-zone="5" title="Aurora — 瑠璃">🌌</div>
-    `;
-    document.body.appendChild(zoneNav);
-
-    const zoneAtmosphere = createZoneAtmosphere();
-
-    zoneNav.querySelectorAll('.zone-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetZone = parseInt(btn.dataset.zone);
+    const zoneNav = window.HazakuraZoneNav?.create({
+        zones: zoneIndexToName,
+        onSelect(targetZone) {
             const zoneName = zoneIndexToName[targetZone];
             const target = document.querySelector(`section[data-zone="${zoneName}"]`);
-            if (target) {
-                const offset = 72;
-                const y = target.getBoundingClientRect().top + window.scrollY - offset;
-                setActiveZone(targetZone, true);
-                updateBackgroundZones(targetZone, 0);
-                updateSectionZones(targetZone);
-                updateAtmosphereBlend(targetZone);
-                window.scrollTo({ top: Math.max(0, y), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-            }
-        });
+            if (!target) return;
+            const offset = 72;
+            const y = target.getBoundingClientRect().top + window.scrollY - offset;
+            setActiveZone(targetZone, true);
+            updateBackgroundZones(targetZone, 0);
+            updateSectionZones(targetZone);
+            updateAtmosphereBlend(targetZone);
+            window.scrollTo({ top: Math.max(0, y), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        }
     });
+
+    const zoneAtmosphere = createZoneAtmosphere();
     updateZoneIndicator();
 
     function createZoneAtmosphere() {
@@ -1222,9 +1209,7 @@
     }
 
     function updateZoneIndicator() {
-        zoneNav.querySelectorAll('.zone-btn').forEach(btn => {
-            btn.classList.toggle('active', parseInt(btn.dataset.zone) === currentZone);
-        });
+        zoneNav?.setActive(currentZone);
     }
 
     function updateZoneBorders(progress) {

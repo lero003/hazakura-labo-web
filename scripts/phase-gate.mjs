@@ -43,6 +43,7 @@ const requiredAssets = [
   'dist/content.js',
   'dist/project-filter.js',
   'dist/quote-prelude.js',
+  'dist/zone-nav.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -63,10 +64,13 @@ assert(
 const scriptJs = readFile('dist/script.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const quotePreludeJs = readFile('dist/quote-prelude.js');
+const zoneNavJs = readFile('dist/zone-nav.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
+assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
+assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {
