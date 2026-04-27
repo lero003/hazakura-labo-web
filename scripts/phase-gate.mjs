@@ -38,6 +38,17 @@ assert(
   JSON.stringify(sectionPositions)
 );
 assert('legacy script is not loaded', !html.includes('/script.js'));
+assert(
+  'vision entry appears before process flow',
+  html.indexOf('id="vision-grid"') >= 0
+    && html.indexOf('id="process-flow"') > html.indexOf('id="vision-grid"')
+    && html.indexOf('id="process-flow"') < html.indexOf('id="research-log-strip"'),
+  JSON.stringify({
+    visionGrid: html.indexOf('id="vision-grid"'),
+    processFlow: html.indexOf('id="process-flow"'),
+    researchLogStrip: html.indexOf('id="research-log-strip"')
+  })
+);
 
 const scriptPositions = scriptLoadOrder.map((path) => [path, html.indexOf(`src="${path}"`)]);
 assert(
@@ -129,6 +140,7 @@ assert('app controller delegates shooting stars', appControllerJs.includes('Haza
 assert('app controller delegates cursor follow', appControllerJs.includes('HazakuraCursorFollow?.create'));
 assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
 assert('style sheet contains design tokens', styleCss.includes('--sakura-500') && styleCss.includes('.hero'));
+assert('vision process interlude style is emitted', styleCss.includes('.process-flow--vision'));
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));

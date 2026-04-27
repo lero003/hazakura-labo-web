@@ -1656,6 +1656,7 @@ a {
    Process Flow
    ============================================ */
 .process-flow {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1752,6 +1753,41 @@ a {
 
 .process-connector.visible {
     opacity: 1;
+}
+
+.process-flow--vision {
+    width: min(100%, 780px);
+    margin: 2.6rem auto 2.2rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 999px;
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.58), rgba(255, 246, 250, 0.42)),
+        radial-gradient(circle at 12% 50%, rgba(232, 88, 122, 0.1), transparent 12rem),
+        radial-gradient(circle at 88% 50%, rgba(77, 161, 169, 0.09), transparent 12rem);
+    box-shadow: 0 18px 46px rgba(46, 42, 45, 0.06);
+}
+
+.process-flow--vision::before,
+.process-flow--vision::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: rgba(232, 88, 122, 0.42);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.process-flow--vision::before {
+    left: 1rem;
+}
+
+.process-flow--vision::after {
+    right: 1rem;
+    background: rgba(77, 161, 169, 0.42);
 }
 
 .research-log-strip {
@@ -3164,6 +3200,11 @@ body.theme-night.zone-aurora #aurora-canvas {
     .process-flow {
         flex-wrap: wrap;
         gap: 1rem;
+    }
+
+    .process-flow--vision {
+        border-radius: 20px;
+        padding: 1.2rem;
     }
 
     .process-connector {
@@ -4739,6 +4780,15 @@ body.theme-night .section-vision .vision-card .vision-tag {
 
 body.theme-night .section-vision .process-label {
     color: var(--body-text);
+}
+
+body.theme-night .section-vision .process-flow--vision {
+    border-color: rgba(139, 92, 246, 0.24);
+    background:
+        linear-gradient(90deg, rgba(18, 21, 34, 0.76), rgba(28, 20, 36, 0.62)),
+        radial-gradient(circle at 12% 50%, rgba(232, 88, 122, 0.14), transparent 12rem),
+        radial-gradient(circle at 88% 50%, rgba(77, 161, 169, 0.12), transparent 12rem);
+    box-shadow: 0 22px 58px rgba(0, 0, 0, 0.2);
 }
 
 body.theme-night .section-vision .process-icon {

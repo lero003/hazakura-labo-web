@@ -3,6 +3,13 @@
 ## 2026-04-27
 
 - Focus: Narrative / Access / Structure
+- Changed: Vision の見出しを「次に育つ問い」へ寄せ、入口カードを先に読ませてからプロセスフロー、Research Log へ巡る順序へ並べ直した。あわせて process flow を Vision 内の小さな間奏として見えるように整え、phase gate でこの順序を保護した。
+- Learned: 構想は最初に抽象的な循環図を置くより、何を預ける入口なのかを先に見せたほうが、未来予告ではなく実験庭園の導線として読める。
+- Next: Vision の末尾から Quote prelude へ入る直前の余白が重く見えないか、モバイル幅で cycle bridge の密度を点検する。
+
+## 2026-04-27
+
+- Focus: Narrative / Access / Structure
 - Changed: Quote 前の `quotePrelude` を、書庫・制作棚・構想へ戻れる三つの折り返しリンクとして整えた。あわせて紙片のような細い接続線と hover 表現を足し、`scripts/phase-gate.mjs` で `#library` / `#projects` / `#vision` への折り返しを守るようにした。
 - Learned: 終盤の間奏は抽象的な余白だけだと最後の詩へ漂うが、上流セクションへ戻る小さなアンカーを持つと「読んで終わり」ではなく、問いをもう一度庭へ返す導線になる。
 - Next: Quote prelude の折り返しリンクが実ブラウザで重く見えないか、preview 可能な環境でモバイル幅の余白とタップ感を確認する。
