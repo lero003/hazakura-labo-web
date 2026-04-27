@@ -8,7 +8,7 @@
 
 - Astro projectをリポジトリルートに置く。
 - 既存の `index.html` 相当を `src/pages/index.astro` として移植する。
-- 既存の `content.js` / 画像 / downloads は、まず `public/` 互換で読み込む。旧 `script.js` は Astro配信の小さなscript群へ移し、`style.css` も `src/styles/site.css` から `/style.css` として配信する。
+- 既存の画像 / downloads は、まず `public/` 互換で読み込む。`content.js` / `style.css` / 旧 `script.js` はAstro配信の互換ルートへ移した。
 - 既存JSはAstroにバンドルさせず、`is:inline` 付きの外部scriptとして読み込む。
 - Cloudflare Pagesは root directory をリポジトリルート、build command を `npm run build`、output を `dist` にする。
 - `npm run build` が通ることをPhase Aの完了条件にする。
