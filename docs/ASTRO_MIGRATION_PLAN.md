@@ -22,7 +22,7 @@ Status: 完了。リポジトリルートの Astro project から `dist/` を生
 - `src/data/` にコンテンツを分け、Astroの静的エンドポイント `src/pages/content.js.ts` から従来どおり `window.HAZAKURA_CONTENT` を配信する。
 - `content.js` の Research Log / Projects / Vision / stats / philosophy を分割候補にする。
 - 最初はJSONまたはTS dataでよい。Markdown/MDXやAstro Content Collectionsは、編集頻度が上がってから判断する。
-- Projectsは `lanes` / `overview` / `actionGuide` / `items` を同じ境界として扱う。
+- Projectsは `lanes` / `overview` / `actionTypes` / `items` を同じ境界として扱う。`actionTypes` は独立したガイドを再表示するためではなく、CTAと棚ステータス文のラベル契約として扱う。
 - Visionは `entryGuide` と `items` を分けつつ、描画上の見え方は変えない。
 - 既存のカード構造、フィルター、アンカー、CTAは大きく変えない。
 

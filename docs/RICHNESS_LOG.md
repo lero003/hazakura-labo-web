@@ -2,6 +2,13 @@
 
 ## 2026-04-27
 
+- Focus: Structure / Access
+- Changed: Projects のリンク種別データを `actionGuide` から `actionTypes` へ整理し、独立ガイドではなくCTAと棚ステータス文のラベル契約として扱う形にした。`project-filter` と `content-renderers` が同じ `actionTypes` を参照し、phase gate で旧キーが戻らないことも保護した。
+- Learned: 一度削った表示ガイドの名前がデータ側に残ると、画面は増えていなくても次の編集で説明レイヤーを戻しやすくなる。表示しない情報ほど、用途が名前で読めることが大事。
+- Next: Projects カード内の Why / Origin / Surprise / Next が4段続くカードを1件選び、注釈の密度を見た目だけで少し軽くできるか点検する。
+
+## 2026-04-27
+
 - Focus: Access / Motion / Structure
 - Changed: モバイルのページ内導線で見出しが固定ナビ下へ潜りやすい弱点を、`scroll-offset` の小さな境界で整理した。CSSの `--hazakura-anchor-offset` と実測ナビ高を使い、通常リンクとゾーンナビのスクロール着地を同じ計算に揃えた。
 - Learned: セクション間の橋渡しを増やした後は、橋そのものより「着地した瞬間に何が見えるか」が体験の質を左右する。固定値のままだと、モバイルの参道だけが少し窮屈になる。

@@ -163,6 +163,18 @@ assert('content renderers script exposes global', contentRenderersJs.includes('w
 assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
+assert(
+  'projects action types back filter status labels',
+  Array.isArray(hazakuraContent.projectsGroup?.actionTypes)
+    && ['external', 'download', 'status'].every((type) => hazakuraContent.projectsGroup.actionTypes.some((item) => item.type === type))
+    && !Object.prototype.hasOwnProperty.call(hazakuraContent.projectsGroup || {}, 'actionGuide')
+    && projectFilterJs.includes('projectsGroup.actionTypes')
+    && contentRenderersJs.includes('projectsGroup.actionTypes'),
+  JSON.stringify({
+    actionTypes: hazakuraContent.projectsGroup?.actionTypes?.map((item) => item.type) || [],
+    hasActionGuide: Object.prototype.hasOwnProperty.call(hazakuraContent.projectsGroup || {}, 'actionGuide')
+  })
+);
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
 assert('zone atmosphere script exposes global', zoneAtmosphereJs.includes('window.HazakuraZoneAtmosphere'));

@@ -13,12 +13,12 @@
       copy[lane.label] = lane.filterText || lane.text || '';
       return copy;
     }, {});
-    const actionLabels = Array.isArray(projectsGroup.actionGuide)
-      ? projectsGroup.actionGuide.reduce((labels, guide) => {
-          if (guide.type) labels[guide.type] = guide.label || guide.type;
-          return labels;
-        }, {})
-      : {};
+    const actionTypes = Array.isArray(projectsGroup.actionTypes) ? projectsGroup.actionTypes : [];
+    const actionLabels = actionTypes.reduce((labels, guide) => {
+      if (guide.type) labels[guide.type] = guide.label || guide.type;
+      return labels;
+    }, {});
+    const actionOrder = actionTypes.length ? actionTypes.map((guide) => guide.type).filter(Boolean) : ['external', 'download', 'status'];
     const overview = projectsGroup.overview || '制作物を棚ごとに眺められます。';
 
     const buildLaneStatus = (selectedLane) => {
@@ -29,7 +29,7 @@
         counts[actionType] = (counts[actionType] || 0) + 1;
         return counts;
       }, {});
-      const actionSummary = ['external', 'download', 'status']
+      const actionSummary = actionOrder
         .filter((type) => actionCounts[type])
         .map((type) => `${actionLabels[type] || type}${actionCounts[type]}件`)
         .join(' / ');

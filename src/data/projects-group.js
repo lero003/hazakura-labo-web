@@ -20,23 +20,26 @@ export const projectsGroup = {
     }
   ],
   "overview": "公開済み、試作中、構想中を一列に混ぜ、どのカードが外へ出るか、どれが問いへ戻るかを眺めます。",
-  "actionGuide": [
+  "actionTypes": [
     {
       "type": "external",
       "icon": "↗",
       "label": "外部サイト",
+      "shortLabel": "外部",
       "text": "別タブで外の実験場へ移動します。"
     },
     {
       "type": "download",
       "icon": "↓",
       "label": "保存ファイル",
+      "shortLabel": "DL",
       "text": "ファイルを手元へ保存します。注意文を読んでから試してください。"
     },
     {
       "type": "status",
       "icon": "・",
       "label": "準備中",
+      "shortLabel": "準備",
       "text": "まだ外へ移動しない、構想や制作途中のカードです。"
     }
   ],

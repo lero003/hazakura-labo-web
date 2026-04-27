@@ -327,6 +327,11 @@
         if (!root || !projectsGroup) return;
         const items = Array.isArray(projectsGroup.items) ? projectsGroup.items : [];
         const projectLanes = projectsGroup.lanes || [];
+        const actionTypes = Array.isArray(projectsGroup.actionTypes) ? projectsGroup.actionTypes : [];
+        const actionTypeDetails = actionTypes.reduce((details, actionType) => {
+            if (actionType.type) details[actionType.type] = actionType;
+            return details;
+        }, {});
         const getProjectActionType = (item) => {
             if (!item.href) return 'status';
             return item.actionType || (item.download ? 'download' : 'external');
@@ -376,8 +381,9 @@
             : '';
         const cards = items.map((item) => {
             const actionType = getProjectActionType(item);
-            const actionIcon = actionType === 'download' ? '↓' : (actionType === 'status' ? '・' : '↗');
-            const actionLabel = item.actionLabel || (actionType === 'download' ? 'DL' : (actionType === 'status' ? '準備' : '外部'));
+            const actionDetail = actionTypeDetails[actionType] || {};
+            const actionIcon = actionDetail.icon || (actionType === 'download' ? '↓' : (actionType === 'status' ? '・' : '↗'));
+            const actionLabel = item.actionLabel || actionDetail.shortLabel || (actionType === 'download' ? 'DL' : (actionType === 'status' ? '準備' : '外部'));
             const actionClass = `project-action project-action--${escapeHtml(actionType)}`;
             const actionText = escapeHtml(item.action || item.status || (actionType === 'download' ? 'Download' : 'Open'));
             const actionHintText = item.actionHint || (actionType === 'status' ? item.statusHint : '');
