@@ -953,14 +953,16 @@
         refreshHoverTargets();
     }
 
-    document.addEventListener('mousemove', (e) => {
-        if (prefersReducedMotion) return;
-        cursorX = e.clientX;
-        cursorY = e.clientY;
-        targetWindX = (e.movementX || 0) * 0.15;
+    window.HazakuraPointerInput?.init({
+        getDisabled: () => prefersReducedMotion,
+        onMove(event) {
+            cursorX = event.clientX;
+            cursorY = event.clientY;
+            targetWindX = (event.movementX || 0) * 0.15;
 
-        cardHoverFields?.update(e);
-        bookTilt?.update(e);
+            cardHoverFields?.update(event);
+            bookTilt?.update(event);
+        }
     });
 
     // ===== 5-zone scroll theme: Day → Dusk → Night → Moon → Aurora =====
