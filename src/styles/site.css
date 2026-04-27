@@ -2586,10 +2586,54 @@ body.theme-night .section-vision {
 }
 
 .vision-entry-guide__kind[data-entry-kind] {
+    position: relative;
     border-color: rgba(var(--entry-accent-rgb), 0.24);
     background:
         linear-gradient(180deg, rgba(var(--entry-accent-rgb), 0.08), rgba(255, 255, 255, 0.48)),
         rgba(255, 255, 255, 0.54);
+    cursor: pointer;
+    outline: none;
+    transition:
+        transform var(--duration-fast) var(--ease-out-expo),
+        border-color var(--duration-fast) var(--ease-out-expo),
+        background-color var(--duration-fast) var(--ease-out-expo),
+        box-shadow var(--duration-fast) var(--ease-out-expo),
+        opacity var(--duration-fast) var(--ease-out-expo);
+}
+
+.vision-entry-guide__kind[data-entry-kind]::after {
+    content: '';
+    position: absolute;
+    inset: 0.42rem;
+    border-radius: 6px;
+    border: 1px solid rgba(var(--entry-accent-rgb), 0.22);
+    opacity: 0;
+    transform: scale(0.96);
+    pointer-events: none;
+    transition: opacity var(--duration-fast) var(--ease-out-expo), transform var(--duration-fast) var(--ease-out-expo);
+}
+
+.vision-entry-guide__kind[data-entry-kind]:hover,
+.vision-entry-guide__kind[data-entry-kind]:focus-visible,
+.vision-entry-guide__kind.is-entry-active {
+    transform: translateY(-2px);
+    border-color: rgba(var(--entry-accent-rgb), 0.5);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(var(--entry-accent-rgb), 0.18), transparent 72%),
+        linear-gradient(180deg, rgba(var(--entry-accent-rgb), 0.12), rgba(255, 255, 255, 0.58)),
+        rgba(255, 255, 255, 0.66);
+    box-shadow: 0 14px 34px rgba(var(--entry-accent-rgb), 0.12);
+}
+
+.vision-entry-guide__kind[data-entry-kind]:hover::after,
+.vision-entry-guide__kind[data-entry-kind]:focus-visible::after,
+.vision-entry-guide__kind.is-entry-active::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.vision-grid.is-entry-focus .vision-entry-guide__kind[data-entry-kind]:not(.is-entry-active) {
+    opacity: 0.58;
 }
 
 .vision-card {
@@ -2625,6 +2669,36 @@ body.theme-night .section-vision {
     width: 3px;
     background: linear-gradient(180deg, rgba(var(--entry-accent-rgb), 0.72), rgba(var(--entry-accent-rgb), 0.08));
     z-index: 0;
+}
+
+.vision-grid.is-entry-focus .vision-card {
+    transition:
+        opacity var(--duration-fast) var(--ease-out-expo),
+        transform var(--duration-fast) var(--ease-out-expo),
+        border-color var(--duration-fast) var(--ease-out-expo),
+        box-shadow var(--duration-fast) var(--ease-out-expo),
+        background-color var(--duration-fast) var(--ease-out-expo);
+}
+
+.vision-card.is-entry-muted {
+    opacity: 0.34;
+    transform: translateY(8px) scale(0.985);
+}
+
+.vision-card.is-entry-match {
+    border-color: rgba(var(--entry-accent-rgb), 0.64);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(var(--entry-accent-rgb), 0.18), transparent 18rem),
+        var(--card-bg-hover, rgba(255, 255, 255, 0.9));
+    box-shadow:
+        0 24px 54px rgba(var(--entry-accent-rgb), 0.16),
+        0 0 0 1px rgba(var(--entry-accent-rgb), 0.12);
+    transform: translateY(-4px) scale(1.012);
+}
+
+.vision-card.is-entry-match::after {
+    width: 5px;
+    background: linear-gradient(180deg, rgba(var(--entry-accent-rgb), 0.92), rgba(var(--entry-accent-rgb), 0.22));
 }
 
 .vision-card.visible {
@@ -5275,6 +5349,20 @@ body.theme-night .section-vision .vision-card[data-entry-kind]:hover {
     box-shadow: 0 0 36px rgba(var(--entry-accent-rgb), 0.14), 0 0 80px rgba(232, 88, 122, 0.08);
 }
 
+body.theme-night .section-vision .vision-card.is-entry-muted {
+    opacity: 0.28;
+}
+
+body.theme-night .section-vision .vision-card.is-entry-match {
+    border-color: rgba(var(--entry-accent-rgb), 0.7);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(var(--entry-accent-rgb), 0.22), transparent 18rem),
+        rgba(20, 22, 34, 0.78);
+    box-shadow:
+        0 24px 56px rgba(var(--entry-accent-rgb), 0.22),
+        0 0 0 1px rgba(var(--entry-accent-rgb), 0.16);
+}
+
 body.theme-night .section-vision .vision-entry-question[data-entry-kind] {
     border-left-color: rgba(var(--entry-accent-rgb), 0.58);
     background: linear-gradient(90deg, rgba(var(--entry-accent-rgb), 0.12), transparent 72%);
@@ -5293,6 +5381,17 @@ body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] {
     background:
         linear-gradient(180deg, rgba(var(--entry-accent-rgb), 0.13), rgba(255, 255, 255, 0.04)),
         rgba(255, 255, 255, 0.05);
+}
+
+body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind]:hover,
+body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind]:focus-visible,
+body.theme-night .section-vision .vision-entry-guide__kind.is-entry-active {
+    border-color: rgba(var(--entry-accent-rgb), 0.62);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(var(--entry-accent-rgb), 0.24), transparent 70%),
+        linear-gradient(180deg, rgba(var(--entry-accent-rgb), 0.18), rgba(255, 255, 255, 0.06)),
+        rgba(255, 255, 255, 0.07);
+    box-shadow: 0 18px 42px rgba(var(--entry-accent-rgb), 0.2);
 }
 
 body.theme-night .section-vision .vision-entry-guide__flow {

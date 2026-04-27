@@ -35,7 +35,10 @@
     const bookTilt = window.HazakuraBookTilt?.create();
 
     const contentRenderers = window.HazakuraContentRenderers?.create({
-        onRendered: () => cardHoverFields?.refresh()
+        onRendered: () => {
+            cardHoverFields?.refresh();
+            window.HazakuraVisionEntryFocus?.init(document.querySelector('[data-render="visions"]'));
+        }
     });
 
     window.HazakuraPointerInput?.init({

@@ -2,6 +2,7 @@ export const scriptLoadOrder = [
   '/content.js',
   '/project-filter.js',
   '/quote-prelude.js',
+  '/vision-entry-focus.js',
   '/content-renderers.js',
   '/zone-nav.js',
   '/zone-atmosphere.js',

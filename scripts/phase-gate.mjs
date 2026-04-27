@@ -100,6 +100,7 @@ const styleCss = readFile('dist/style.css');
 const contentRenderersJs = readFile('dist/content-renderers.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const quotePreludeJs = readFile('dist/quote-prelude.js');
+const visionEntryFocusJs = readFile('dist/vision-entry-focus.js');
 const zoneNavJs = readFile('dist/zone-nav.js');
 const zoneAtmosphereJs = readFile('dist/zone-atmosphere.js');
 const zonePerformanceJs = readFile('dist/zone-performance.js');
@@ -128,6 +129,7 @@ const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
 const sakuraPetalsJs = readFile('dist/sakura-petals.js');
 assert('app controller delegates content renderers', appControllerJs.includes('HazakuraContentRenderers?.create'));
+assert('app controller delegates vision entry focus', appControllerJs.includes('HazakuraVisionEntryFocus?.init'));
 assert('app controller delegates zone performance', appControllerJs.includes('HazakuraZonePerformance?.create'));
 assert('app controller delegates hero aurora overlay', appControllerJs.includes('HazakuraHeroAuroraOverlay?.create'));
 assert('app controller delegates hero image loader', appControllerJs.includes('HazakuraHeroImageLoader?.init'));
@@ -221,6 +223,19 @@ assert(
   })
 );
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
+assert(
+  'vision entry focus links guide kinds to cards',
+  visionEntryFocusJs.includes('window.HazakuraVisionEntryFocus')
+    && visionEntryFocusJs.includes('.vision-entry-guide__kind[data-entry-kind]')
+    && visionEntryFocusJs.includes('is-entry-match')
+    && styleCss.includes('.vision-grid.is-entry-focus')
+    && styleCss.includes('.vision-card.is-entry-match'),
+  JSON.stringify({
+    hasScript: visionEntryFocusJs.includes('window.HazakuraVisionEntryFocus'),
+    hasGuideSelector: visionEntryFocusJs.includes('.vision-entry-guide__kind[data-entry-kind]'),
+    hasStyles: styleCss.includes('.vision-grid.is-entry-focus')
+  })
+);
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
 assert('zone atmosphere script exposes global', zoneAtmosphereJs.includes('window.HazakuraZoneAtmosphere'));
 assert('zone performance script exposes global', zonePerformanceJs.includes('window.HazakuraZonePerformance'));
