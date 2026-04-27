@@ -3943,98 +3943,6 @@ body.theme-night .section-layers .layer-sequence__beam {
     line-height: 1.85;
 }
 
-.project-action-guide {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-    align-items: center;
-    margin: -0.25rem 0 0.35rem;
-}
-
-.project-action-guide + .project-card {
-    margin-top: 0.25rem;
-}
-
-.project-action-guide__item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 2.25rem;
-    padding: 0.42rem 0.72rem;
-    border: 1px solid rgba(232, 88, 122, 0.16);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.42);
-    color: var(--ink-500);
-    font-size: 0.75rem;
-    line-height: 1.5;
-}
-
-.project-action-guide__icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.45rem;
-    height: 1.45rem;
-    flex: 0 0 auto;
-    border-radius: 999px;
-    background: rgba(232, 88, 122, 0.1);
-    color: var(--sakura-500);
-    font-size: 0.78rem;
-    line-height: 1;
-}
-
-.project-action-guide__item strong {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.4rem;
-    min-height: 1.25rem;
-    padding: 0.05rem 0.45rem;
-    border-radius: 999px;
-    background: rgba(232, 88, 122, 0.1);
-    color: var(--sakura-500);
-    font-size: 0.64rem;
-    letter-spacing: 0.06em;
-}
-
-.project-action-guide__item em {
-    display: inline-flex;
-    align-items: center;
-    min-height: 1.25rem;
-    padding: 0.05rem 0.4rem;
-    border-radius: 999px;
-    background: rgba(26, 26, 46, 0.05);
-    color: var(--ink-500);
-    font-style: normal;
-    font-size: 0.64rem;
-    font-weight: 700;
-    line-height: 1.35;
-}
-
-.project-action-guide__item--download {
-    border-color: rgba(90, 158, 95, 0.2);
-}
-
-.project-action-guide__item--download strong {
-    background: rgba(90, 158, 95, 0.12);
-    color: var(--green-500);
-}
-
-.project-action-guide__item--download .project-action-guide__icon {
-    background: rgba(90, 158, 95, 0.12);
-    color: var(--green-500);
-}
-
-.project-action-guide__item--status {
-    border-color: rgba(167, 139, 250, 0.2);
-}
-
-.project-action-guide__item--status strong,
-.project-action-guide__item--status .project-action-guide__icon {
-    background: rgba(167, 139, 250, 0.12);
-    color: var(--purple-500);
-}
-
 .project-card {
     --project-thumb-ratio: 3 / 2;
     display: grid;
@@ -5007,51 +4915,6 @@ body.theme-night .section-projects .project-lane-status {
     color: rgba(255, 255, 255, 0.58);
 }
 
-body.theme-night .section-projects .project-action-guide__item {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(232, 88, 122, 0.22);
-    color: var(--body-text);
-}
-
-body.theme-night .section-projects .project-action-guide__item strong {
-    background: rgba(232, 88, 122, 0.12);
-    color: var(--sakura-400);
-}
-
-body.theme-night .section-projects .project-action-guide__item em {
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.58);
-}
-
-body.theme-night .section-projects .project-action-guide__icon {
-    background: rgba(232, 88, 122, 0.12);
-    color: var(--sakura-400);
-}
-
-body.theme-night .section-projects .project-action-guide__item--download {
-    border-color: rgba(82, 183, 150, 0.28);
-}
-
-body.theme-night .section-projects .project-action-guide__item--download strong {
-    background: rgba(82, 183, 150, 0.12);
-    color: var(--green-400);
-}
-
-body.theme-night .section-projects .project-action-guide__item--download .project-action-guide__icon {
-    background: rgba(82, 183, 150, 0.12);
-    color: var(--green-400);
-}
-
-body.theme-night .section-projects .project-action-guide__item--status {
-    border-color: rgba(167, 139, 250, 0.3);
-}
-
-body.theme-night .section-projects .project-action-guide__item--status strong,
-body.theme-night .section-projects .project-action-guide__item--status .project-action-guide__icon {
-    background: rgba(167, 139, 250, 0.14);
-    color: var(--purple-400);
-}
-
 body.theme-night .section-projects .project-thumb-placeholder {
     background: rgba(255, 255, 255, 0.04);
 }
@@ -5275,28 +5138,6 @@ body.theme-night .nav-links a::after {
         font-size: 0.82rem;
         line-height: 1.75;
         overflow-wrap: anywhere;
-    }
-
-    .project-action-guide {
-        gap: 0.45rem;
-        margin: -0.3rem 0 0.1rem;
-    }
-
-    .project-action-guide__item {
-        width: 100%;
-        align-items: flex-start;
-        border-radius: 12px;
-        font-size: 0.78rem;
-        overflow-wrap: anywhere;
-    }
-
-    .project-action-guide__item strong,
-    .project-action-guide__item em {
-        flex: 0 0 auto;
-    }
-
-    .project-action-guide__icon {
-        margin-top: 0.05rem;
     }
 
     .project-card {

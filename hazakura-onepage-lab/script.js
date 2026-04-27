@@ -845,11 +845,6 @@
             if (item.lane) counts[item.lane] = (counts[item.lane] || 0) + 1;
             return counts;
         }, {});
-        const actionTypeCounts = items.reduce((counts, item) => {
-            const actionType = getProjectActionType(item);
-            counts[actionType] = (counts[actionType] || 0) + 1;
-            return counts;
-        }, {});
         const laneFilters = projectLanes.length
             ? `<div class="project-lane-filter" aria-label="制作物の棚で絞り込む">
                 <button class="project-lane-filter__button is-active" type="button" data-lane-filter="all" aria-pressed="true">
@@ -878,18 +873,6 @@
             : '';
         const laneStatus = projectLanes.length
             ? `<p class="project-lane-status" data-project-lane-status aria-live="polite">${escapeHtml(projectsGroup.overview || '制作物を棚ごとに眺められます。')}</p>`
-            : '';
-        const actionGuide = Array.isArray(projectsGroup.actionGuide) && projectsGroup.actionGuide.length
-            ? `<div class="project-action-guide" aria-label="制作物リンクの種類">
-                ${projectsGroup.actionGuide.map((guide) => `
-                    <span class="project-action-guide__item project-action-guide__item--${escapeHtml(guide.type || 'info')}">
-                        ${guide.icon ? `<span class="project-action-guide__icon" aria-hidden="true">${escapeHtml(guide.icon)}</span>` : ''}
-                        <strong>${escapeHtml(guide.label)}</strong>
-                        <em>${escapeHtml(String(actionTypeCounts[guide.type] || 0))}件</em>
-                        <span>${escapeHtml(guide.text)}</span>
-                    </span>
-                `).join('')}
-            </div>`
             : '';
         const cards = items.map((item) => {
             const actionType = getProjectActionType(item);
@@ -981,7 +964,7 @@
                 </article>
             `;
         }).join('');
-        root.innerHTML = `${laneGuide}${laneFilters}${laneStatus}${actionGuide}${cards}`;
+        root.innerHTML = `${laneGuide}${laneFilters}${laneStatus}${cards}`;
         initProjectLaneFilter(root, projectsGroup);
     }
 
