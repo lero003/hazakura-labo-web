@@ -413,6 +413,18 @@ assert('canvas clear script exposes global', canvasClearJs.includes('window.Haza
 assert('cursor hover script exposes global', cursorHoverJs.includes('window.HazakuraCursorHover'));
 assert('card hover fields script exposes global', cardHoverFieldsJs.includes('window.HazakuraCardHoverFields'));
 assert('book tilt script exposes global', bookTiltJs.includes('window.HazakuraBookTilt'));
+assert(
+  'book tilt covers every library book',
+  bookTiltJs.includes("bookSelector = '.book-3d'")
+    && bookTiltJs.includes('document.querySelectorAll(bookSelector)')
+    && bookTiltJs.includes('book.querySelector(glareSelector)')
+    && bookTiltJs.includes('books.forEach(resetBook)'),
+  JSON.stringify({
+    targetsAllBooks: bookTiltJs.includes("bookSelector = '.book-3d'"),
+    usesAllMatches: bookTiltJs.includes('document.querySelectorAll(bookSelector)'),
+    scopesGlareToBook: bookTiltJs.includes('book.querySelector(glareSelector)')
+  })
+);
 assert('pointer input script exposes global', pointerInputJs.includes('window.HazakuraPointerInput'));
 assert('scroll ticker script exposes global', scrollTickerJs.includes('window.HazakuraScrollTicker'));
 assert('effects lifecycle script exposes global', effectsLifecycleJs.includes('window.HazakuraEffectsLifecycle'));

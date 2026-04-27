@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Motion / Structure
+- Changed: 書庫の本3D tilt が最初の1冊だけを対象にしていたため、`book-tilt.js` を `.book-3d` 全体へ広げ、各本の glare を本ごとに扱う形へ整理した。phase gate で複数冊対応の契約も保護した。
+- Learned: 書庫に新しい本を増やしても、触り味のscriptが単数DOM前提のままだと「本を手に取る」演出が片側だけで止まる。対象を複数化しておくと、今後の書籍追加にも同じ空気を渡しやすい。
+- Next: 書籍データ自体も `src/data/` 側へ寄せられるか、小さな境界だけを次回以降に検討する。
+
+## 2026-04-28
+
 - Focus: Structure
 - Changed: `content-renderers.js` に残っていた Projects のカード生成を `project-renderer.js` へ分け、`project-filter.js` と並ぶ Projects 専用の描画境界にした。読み込み順、Astro配信ルート、phase gate も新しい境界を守るように更新した。
 - Learned: Projects は trail / cycle / action / filter の契約が多く、汎用レンダラー内に残すと次の棚改善で読む範囲が広がりすぎる。見た目を変えずに描画単位を分けるだけでも、実験棚を触る時の迷いが減る。

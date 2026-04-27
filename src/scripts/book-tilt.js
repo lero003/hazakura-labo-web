@@ -3,34 +3,49 @@
 
     function create(options = {}) {
         const {
-            bookSelector = '#book-3d',
+            bookSelector = '.book-3d',
             glareSelector = '.book-glare',
             hoverPadding = 50
         } = options;
 
-        const book = document.querySelector(bookSelector);
-        const glare = document.querySelector(glareSelector);
+        const books = Array.from(document.querySelectorAll(bookSelector)).map((book) => ({
+            book,
+            glare: book.querySelector(glareSelector)
+        }));
 
-        function reset() {
+        function resetBook({ book, glare }) {
             if (book) book.style.transform = 'rotateY(-20deg) rotateX(5deg)';
             if (glare) glare.style.transform = 'translateX(-150%)';
         }
 
-        function update(event) {
-            if (!book) return;
-
+        function isNearBook(book, event) {
             const rect = book.getBoundingClientRect();
-            const isNear =
+            return (
                 event.clientX >= rect.left - hoverPadding &&
                 event.clientX <= rect.right + hoverPadding &&
                 event.clientY >= rect.top - hoverPadding &&
-                event.clientY <= rect.bottom + hoverPadding;
+                event.clientY <= rect.bottom + hoverPadding
+            );
+        }
 
-            if (!isNear) {
-                reset();
+        function reset() {
+            books.forEach(resetBook);
+        }
+
+        function update(event) {
+            if (!books.length) return;
+
+            const activeBook = books.find(({ book }) => isNearBook(book, event));
+            books.forEach((book) => {
+                if (book !== activeBook) resetBook(book);
+            });
+
+            if (!activeBook) {
                 return;
             }
 
+            const { book, glare } = activeBook;
+            const rect = book.getBoundingClientRect();
             const x = event.clientX - rect.left;
             const y = event.clientY - rect.top;
             const cx = rect.width / 2;
