@@ -17,6 +17,7 @@
 
 目的: 表示構造は大きく変えず、コンテンツだけを育てやすい単位へ分ける。
 
+- `src/data/` にコンテンツを分け、Astroの静的エンドポイント `src/pages/content.js.ts` から従来どおり `window.HAZAKURA_CONTENT` を配信する。
 - `content.js` の Research Log / Projects / Vision / stats / philosophy を分割候補にする。
 - 最初はJSONまたはTS dataでよい。Markdown/MDXやAstro Content Collectionsは、編集頻度が上がってから判断する。
 - Projectsは `lanes` / `overview` / `actionGuide` / `items` を同じ境界として扱う。
