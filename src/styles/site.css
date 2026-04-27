@@ -1885,7 +1885,10 @@ a {
 
 @media (prefers-reduced-motion: reduce) {
     .library-projects-bridge::after,
-    .library-projects-bridge__thread::after {
+    .library-projects-bridge__thread::after,
+    .section-projects.is-handoff-arrival .project-threshold__sigil,
+    .section-projects.is-handoff-arrival .project-threshold__rail::after,
+    .section-projects.is-handoff-arrival .project-control-deck {
         animation: none;
     }
 }
@@ -4778,6 +4781,65 @@ body.theme-night .section-layers .layer-sequence__beam {
     border: 1px solid rgba(90, 158, 95, 0.36);
     box-shadow: 0 0 1rem rgba(90, 158, 95, 0.18);
     transform: translateY(-50%);
+}
+
+.section-projects.is-handoff-arrival .project-threshold__sigil {
+    animation: projectHandoffSigil 1.4s var(--ease-out-expo) both;
+}
+
+.section-projects.is-handoff-arrival .project-threshold__rail::after {
+    animation: projectHandoffSeed 1.4s var(--ease-out-expo) both;
+}
+
+.section-projects.is-handoff-arrival .project-control-deck {
+    animation: projectHandoffDeck 1.2s var(--ease-out-expo) 0.12s both;
+}
+
+.section-projects.is-handoff-arrival .project-lane-filter {
+    border-color: rgba(232, 88, 122, 0.28);
+    box-shadow: 0 0 0 1px rgba(232, 88, 122, 0.08), 0 18px 46px rgba(168, 116, 48, 0.12);
+}
+
+@keyframes projectHandoffSigil {
+    0% {
+        transform: rotate(-10deg) scale(1);
+        box-shadow: 0 0 1.6rem rgba(232, 88, 122, 0.14);
+    }
+    42% {
+        transform: rotate(8deg) scale(1.18);
+        box-shadow: 0 0 0 0.55rem rgba(232, 88, 122, 0.08), 0 0 2.8rem rgba(232, 88, 122, 0.28);
+    }
+    100% {
+        transform: rotate(-10deg) scale(1);
+        box-shadow: 0 0 1.6rem rgba(232, 88, 122, 0.14);
+    }
+}
+
+@keyframes projectHandoffSeed {
+    0% {
+        transform: translateY(-50%) translateX(-6.4rem) scale(0.82);
+        opacity: 0;
+    }
+    34% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50%) translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes projectHandoffDeck {
+    0% {
+        transform: translateY(12px);
+        opacity: 0.72;
+        filter: saturate(0.9);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+        filter: saturate(1);
+    }
 }
 
 .project-control-deck {

@@ -23,7 +23,23 @@
                     top: Math.max(0, y),
                     behavior: getPrefersReducedMotion() ? 'auto' : 'smooth'
                 });
+
+                if (link.matches('.library-projects-bridge__link')) {
+                    markHandoffArrival(target, getPrefersReducedMotion());
+                }
             });
+        });
+    }
+
+    function markHandoffArrival(target, isReducedMotion) {
+        if (!target || isReducedMotion) return;
+
+        target.classList.remove('is-handoff-arrival');
+        window.requestAnimationFrame(() => {
+            target.classList.add('is-handoff-arrival');
+            window.setTimeout(() => {
+                target.classList.remove('is-handoff-arrival');
+            }, 1800);
         });
     }
 

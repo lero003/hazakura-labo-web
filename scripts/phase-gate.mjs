@@ -336,6 +336,19 @@ assert('smooth scroll script exposes global', smoothScrollJs.includes('window.Ha
 assert('smooth scroll uses measured offset', smoothScrollJs.includes('HazakuraScrollOffset?.get'));
 assert('zone performance uses measured offset', zonePerformanceJs.includes('HazakuraScrollOffset?.get'));
 assert('smooth scroll includes library projects bridge', smoothScrollJs.includes('.library-projects-bridge__link'));
+assert(
+  'library bridge click marks projects handoff arrival',
+  smoothScrollJs.includes('markHandoffArrival')
+    && smoothScrollJs.includes('is-handoff-arrival')
+    && styleCss.includes('.section-projects.is-handoff-arrival .project-threshold__sigil')
+    && styleCss.includes('@keyframes projectHandoffSeed'),
+  JSON.stringify({
+    hasHandler: smoothScrollJs.includes('markHandoffArrival'),
+    hasArrivalClass: smoothScrollJs.includes('is-handoff-arrival'),
+    hasSigilStyle: styleCss.includes('.section-projects.is-handoff-arrival .project-threshold__sigil'),
+    hasSeedKeyframes: styleCss.includes('@keyframes projectHandoffSeed')
+  })
+);
 assert('scroll indicators script exposes global', scrollIndicatorsJs.includes('window.HazakuraScrollIndicators'));
 assert('text reveal script exposes global', textRevealJs.includes('window.HazakuraTextReveal'));
 assert('hero parallax script exposes global', heroParallaxJs.includes('window.HazakuraHeroParallax'));
