@@ -48,6 +48,7 @@ const requiredAssets = [
   'dist/hero-aurora-overlay.js',
   'dist/hero-image-loader.js',
   'dist/motion-preferences.js',
+  'dist/smooth-scroll.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -73,6 +74,7 @@ const zoneAtmosphereJs = readFile('dist/zone-atmosphere.js');
 const heroAuroraOverlayJs = readFile('dist/hero-aurora-overlay.js');
 const heroImageLoaderJs = readFile('dist/hero-image-loader.js');
 const motionPreferencesJs = readFile('dist/motion-preferences.js');
+const smoothScrollJs = readFile('dist/smooth-scroll.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -80,6 +82,7 @@ assert('legacy script delegates zone atmosphere', scriptJs.includes('HazakuraZon
 assert('legacy script delegates hero aurora overlay', scriptJs.includes('HazakuraHeroAuroraOverlay?.create'));
 assert('legacy script delegates hero image loader', scriptJs.includes('HazakuraHeroImageLoader?.init'));
 assert('legacy script delegates motion preferences', scriptJs.includes('HazakuraMotionPreferences?.create'));
+assert('legacy script delegates smooth scroll', scriptJs.includes('HazakuraSmoothScroll?.init'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -87,6 +90,7 @@ assert('zone atmosphere script exposes global', zoneAtmosphereJs.includes('windo
 assert('hero aurora overlay script exposes global', heroAuroraOverlayJs.includes('window.HazakuraHeroAuroraOverlay'));
 assert('hero image loader script exposes global', heroImageLoaderJs.includes('window.HazakuraHeroImageLoader'));
 assert('motion preferences script exposes global', motionPreferencesJs.includes('window.HazakuraMotionPreferences'));
+assert('smooth scroll script exposes global', smoothScrollJs.includes('window.HazakuraSmoothScroll'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {

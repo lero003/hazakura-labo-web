@@ -1508,22 +1508,6 @@
         el.textContent = target.toLocaleString() + suffix;
     }
 
-    // ===== Smooth scroll =====
-    function initSmoothScroll() {
-        document.querySelectorAll('.nav-links a[href^="#"], .footer-nav a[href^="#"], .hero-cta[href^="#"]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const href = link.getAttribute('href');
-                const target = document.querySelector(href);
-                if (target) {
-                    const offset = 72;
-                    const y = target.getBoundingClientRect().top + window.scrollY - offset;
-                    window.scrollTo({ top: y, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-                }
-            });
-        });
-    }
-
     // ===== Initialization =====
     function init() {
         renderContent();
@@ -1541,7 +1525,9 @@
         }
         prepareTextReveal();
         initScrollAnimations();
-        initSmoothScroll();
+        window.HazakuraSmoothScroll?.init({
+            getPrefersReducedMotion: () => prefersReducedMotion
+        });
         handleNavScroll();
         updateScrollProgress();
         if (!prefersReducedMotion) handleParallax();
