@@ -169,6 +169,17 @@ assert(
     hasStepDots: styleCss.includes('.library-projects-bridge__steps li::before')
   })
 );
+assert(
+  'small mobile library bridge keeps step path spacing',
+  styleCss.includes('padding: 0.62rem 0.72rem 0.64rem 1.7rem')
+    && styleCss.includes('min-height: 4.15rem')
+    && styleCss.includes('font-size: 0.74rem'),
+  JSON.stringify({
+    hasMobileStepPadding: styleCss.includes('padding: 0.62rem 0.72rem 0.64rem 1.7rem'),
+    hasMobileStepHeight: styleCss.includes('min-height: 4.15rem'),
+    hasCompactStepText: styleCss.includes('font-size: 0.74rem')
+  })
+);
 assert('vision process interlude style is emitted', styleCss.includes('.process-flow--vision'));
 assert(
   'research log handoff bridges vision entries to logs',

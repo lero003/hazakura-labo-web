@@ -3968,10 +3968,21 @@ body.theme-night.zone-aurora #aurora-canvas {
 
     .library-projects-bridge__steps {
         grid-template-columns: 1fr;
+        gap: 0.5rem;
     }
 
     .library-projects-bridge__steps li {
-        padding: 0.2rem 0 0.2rem 0.7rem;
+        min-height: 4.15rem;
+        padding: 0.62rem 0.72rem 0.64rem 1.7rem;
+    }
+
+    .library-projects-bridge__steps span {
+        margin-bottom: 0.12rem;
+    }
+
+    .library-projects-bridge__steps p {
+        font-size: 0.74rem;
+        line-height: 1.55;
     }
 
     .process-step {
