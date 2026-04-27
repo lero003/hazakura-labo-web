@@ -158,6 +158,15 @@ assert(
     && styleCss.includes('scroll-padding-top: var(--hazakura-anchor-offset)')
 );
 assert('style sheet contains library projects bridge', styleCss.includes('.library-projects-bridge'));
+assert(
+  'library projects bridge keeps handoff path styling',
+  ['.library-projects-bridge::after', '.library-projects-bridge__steps::before', '.library-projects-bridge__steps li::before', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet)),
+  JSON.stringify({
+    hasSeed: styleCss.includes('.library-projects-bridge::after'),
+    hasStepPath: styleCss.includes('.library-projects-bridge__steps::before'),
+    hasStepDots: styleCss.includes('.library-projects-bridge__steps li::before')
+  })
+);
 assert('vision process interlude style is emitted', styleCss.includes('.process-flow--vision'));
 assert(
   'vision entry fields stay folded',
