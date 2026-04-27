@@ -1421,11 +1421,13 @@
             }, 150);
         });
 
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
+        window.HazakuraVisibilityPlayback?.init({
+            onHidden() {
                 cancelAnimationFrame(animationId);
                 cancelAnimationFrame(auroraId);
-            } else if (!prefersReducedMotion) {
+            },
+            onVisible() {
+                if (prefersReducedMotion) return;
                 animatePetals();
                 animateAurora();
             }
