@@ -555,6 +555,15 @@
         `).join('');
     }
 
+    function formatExternalDestination(url) {
+        if (!url) return '';
+        try {
+            return new URL(url, window.location.href).hostname.replace(/^www\./, '');
+        } catch {
+            return url;
+        }
+    }
+
     function renderResearchLogs(items) {
         const root = document.querySelector('[data-render="researchLogs"]');
         if (!root || !items) return;
@@ -578,16 +587,24 @@
                 </p>`
                 : '';
             const paperSample = item.paperSample
-                ? `<div class="research-paper-sample" aria-label="${escapeHtml(item.paperSample.title || '論文メモサンプル')}">
+                ? (() => {
+                    const source = item.paperSample.source;
+                    const destination = source ? (source.destination || formatExternalDestination(source.url)) : '';
+                    return `<div class="research-paper-sample" aria-label="${escapeHtml(item.paperSample.title || '論文メモサンプル')}">
                     <div class="research-paper-sample__copy">
                         <span>${escapeHtml(item.paperSample.eyebrow || 'Paper memo')}</span>
                         <strong>${escapeHtml(item.paperSample.title || '')}</strong>
                         <p>${escapeHtml(item.paperSample.text || '')}</p>
-                        ${item.paperSample.source ? `
-                            <a class="research-paper-source" href="${escapeHtml(item.paperSample.source.url || '#')}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml((item.paperSample.source.title || item.paperSample.source.label || '論文') + 'を開く')}">
-                                <span>${escapeHtml(item.paperSample.source.label || 'Source')}</span>
-                                <strong>${escapeHtml(item.paperSample.source.title || '')}</strong>
-                                ${item.paperSample.source.note ? `<em>${escapeHtml(item.paperSample.source.note)}</em>` : ''}
+                        ${source ? `
+                            <a class="research-paper-source" href="${escapeHtml(source.url || '#')}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml((source.title || source.label || '論文') + 'を開く')}">
+                                <span class="research-paper-source__label">${escapeHtml(source.actionLabel || '外部')}</span>
+                                <span class="research-paper-source__copy">
+                                    <span class="research-paper-source__hint">${escapeHtml(source.actionHint || source.label || 'Source')}</span>
+                                    <strong>${escapeHtml(source.title || '')}</strong>
+                                    ${source.note ? `<em>${escapeHtml(source.note)}</em>` : ''}
+                                    ${destination ? `<span class="research-paper-source__destination">${escapeHtml(destination)}</span>` : ''}
+                                </span>
+                                <span class="research-paper-source__icon" aria-hidden="true">↗</span>
                             </a>
                         ` : ''}
                     </div>
@@ -601,7 +618,8 @@
                             `).join('')}
                         </dl>
                     ` : ''}
-                </div>`
+                </div>`;
+                })()
                 : '';
             return `
             <article class="research-log-card"${cardId} data-tilt>

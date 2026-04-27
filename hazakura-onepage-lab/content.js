@@ -164,6 +164,8 @@ window.HAZAKURA_CONTENT = {
                     title: 'Generative Agentsを読む前の、3分メモ',
                     text: '論文を読み切る前に、地域LLMやAI万屋へ返せそうな「記憶」「日課」「ふるまい」の語だけを先に拾う。',
                     source: {
+                        actionLabel: '外部',
+                        actionHint: '論文ページ',
                         label: 'arXiv 2304.03442',
                         title: 'Generative Agents: Interactive Simulacra of Human Behavior',
                         url: 'https://arxiv.org/abs/2304.03442',
@@ -258,7 +260,11 @@ window.HAZAKURA_CONTENT = {
                     kind: 'memory',
                     label: 'まず預けたい記憶',
                     prompt: 'いま誰かに残しておきたい風景、声、手ざわりは何ですか？',
-                    fields: ['残したい場面', '関わった人', '次へ渡したい理由']
+                    fields: ['残したい場面', '関わった人', '次へ渡したい理由'],
+                    handoff: {
+                        label: '預けたあとの巡り',
+                        text: '記憶を一場面ずつ自分史の断片に整え、地域LLMの知恵棚へ渡せる言葉にする。'
+                    }
                 }
             },
             {

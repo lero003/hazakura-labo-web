@@ -1961,7 +1961,9 @@ a {
 
 .research-paper-source {
     display: grid;
-    gap: 0.2rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.45rem;
+    align-items: center;
     margin-top: 0.75rem;
     padding: 0.68rem 0.72rem;
     border: 1px solid rgba(77, 161, 169, 0.24);
@@ -1978,12 +1980,32 @@ a {
     background: rgba(255, 255, 255, 0.78);
 }
 
-.research-paper-source span {
+.research-paper-source__label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.45rem;
+    padding: 0.12rem 0.46rem;
+    border-radius: 999px;
+    background: rgba(77, 161, 169, 0.12);
     color: var(--green-500);
     font-size: 0.66rem;
     font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+}
+
+.research-paper-source__copy {
+    display: grid;
+    gap: 0.16rem;
+    min-width: 0;
+}
+
+.research-paper-source__hint {
+    color: var(--green-500);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
 }
 
 .research-paper-source strong {
@@ -1997,6 +2019,19 @@ a {
     font-size: 0.74rem;
     font-style: normal;
     line-height: 1.65;
+}
+
+.research-paper-source__destination {
+    color: var(--ink-500);
+    font-size: 0.66rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.research-paper-source__icon {
+    color: var(--green-500);
+    font-size: 0.82rem;
+    line-height: 1;
 }
 
 .research-paper-sample__notes {
@@ -4786,15 +4821,22 @@ body.theme-night .section-vision .research-paper-source:hover {
     background: rgba(255, 255, 255, 0.09);
 }
 
-body.theme-night .section-vision .research-paper-source span {
+body.theme-night .section-vision .research-paper-source__label,
+body.theme-night .section-vision .research-paper-source__hint,
+body.theme-night .section-vision .research-paper-source__icon {
     color: var(--green-400);
+}
+
+body.theme-night .section-vision .research-paper-source__label {
+    background: rgba(77, 161, 169, 0.14);
 }
 
 body.theme-night .section-vision .research-paper-source strong {
     color: var(--header-text);
 }
 
-body.theme-night .section-vision .research-paper-source em {
+body.theme-night .section-vision .research-paper-source em,
+body.theme-night .section-vision .research-paper-source__destination {
     color: var(--body-text);
 }
 
@@ -5478,6 +5520,15 @@ body.theme-night .nav-links a::after {
     .research-paper-sample__notes dd,
     .research-paper-source {
         overflow-wrap: anywhere;
+    }
+
+    .research-paper-source {
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: flex-start;
+    }
+
+    .research-paper-source__icon {
+        display: none;
     }
 
     .cycle-bridge {
