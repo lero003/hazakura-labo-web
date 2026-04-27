@@ -1,5 +1,6 @@
 ---
 import { scriptLoadOrder } from '../data/script-load-order.js';
+import { libraryProjectsBridge } from '../data/library-projects-bridge.js';
 ---
 
 <!DOCTYPE html>
@@ -265,6 +266,26 @@ import { scriptLoadOrder } from '../data/script-load-order.js';
 
             <!-- 付帯情報: 実績 -->
             <div class="stats-grid" id="stats-grid" data-render="stats" style="margin-top: 5rem;">
+            </div>
+            <div class="library-projects-bridge" aria-labelledby="library-projects-bridge-title">
+                <span class="library-projects-bridge__thread" aria-hidden="true"></span>
+                <div class="library-projects-bridge__copy">
+                    <span class="library-projects-bridge__eyebrow">{libraryProjectsBridge.eyebrow}</span>
+                    <h3 id="library-projects-bridge-title">{libraryProjectsBridge.title}</h3>
+                    <p>{libraryProjectsBridge.text}</p>
+                </div>
+                <ol class="library-projects-bridge__steps" aria-label="書庫の問いを制作棚へ渡す流れ">
+                    {libraryProjectsBridge.steps.map((step) => (
+                        <li>
+                            <span>{step.label}</span>
+                            <p>{step.text}</p>
+                        </li>
+                    ))}
+                </ol>
+                <a href={libraryProjectsBridge.action.href} class="library-projects-bridge__link">
+                    <span>{libraryProjectsBridge.action.label}</span>
+                    <span aria-hidden="true">→</span>
+                </a>
             </div>
         </div>
     </section>

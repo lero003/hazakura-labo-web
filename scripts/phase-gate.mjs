@@ -49,6 +49,16 @@ assert(
     researchLogStrip: html.indexOf('id="research-log-strip"')
   })
 );
+assert(
+  'library to projects bridge appears before projects',
+  html.indexOf('class="library-projects-bridge"') > html.indexOf('id="stats-grid"')
+    && html.indexOf('class="library-projects-bridge"') < html.indexOf('id="projects"'),
+  JSON.stringify({
+    statsGrid: html.indexOf('id="stats-grid"'),
+    bridge: html.indexOf('class="library-projects-bridge"'),
+    projects: html.indexOf('id="projects"')
+  })
+);
 
 const scriptPositions = scriptLoadOrder.map((path) => [path, html.indexOf(`src="${path}"`)]);
 assert(
@@ -140,6 +150,7 @@ assert('app controller delegates shooting stars', appControllerJs.includes('Haza
 assert('app controller delegates cursor follow', appControllerJs.includes('HazakuraCursorFollow?.create'));
 assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
 assert('style sheet contains design tokens', styleCss.includes('--sakura-500') && styleCss.includes('.hero'));
+assert('style sheet contains library projects bridge', styleCss.includes('.library-projects-bridge'));
 assert('vision process interlude style is emitted', styleCss.includes('.process-flow--vision'));
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
@@ -153,6 +164,7 @@ assert('hero aurora overlay script exposes global', heroAuroraOverlayJs.includes
 assert('hero image loader script exposes global', heroImageLoaderJs.includes('window.HazakuraHeroImageLoader'));
 assert('motion preferences script exposes global', motionPreferencesJs.includes('window.HazakuraMotionPreferences'));
 assert('smooth scroll script exposes global', smoothScrollJs.includes('window.HazakuraSmoothScroll'));
+assert('smooth scroll includes library projects bridge', smoothScrollJs.includes('.library-projects-bridge__link'));
 assert('scroll indicators script exposes global', scrollIndicatorsJs.includes('window.HazakuraScrollIndicators'));
 assert('text reveal script exposes global', textRevealJs.includes('window.HazakuraTextReveal'));
 assert('hero parallax script exposes global', heroParallaxJs.includes('window.HazakuraHeroParallax'));

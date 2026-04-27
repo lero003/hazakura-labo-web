@@ -3,7 +3,7 @@
 
     function init(options = {}) {
         const {
-            selector = '.nav-links a[href^="#"], .footer-nav a[href^="#"], .hero-cta[href^="#"]',
+            selector = '.nav-links a[href^="#"], .footer-nav a[href^="#"], .hero-cta[href^="#"], .library-projects-bridge__link[href^="#"]',
             offset = 72,
             getPrefersReducedMotion = () => false
         } = options;

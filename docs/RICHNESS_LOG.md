@@ -3,6 +3,13 @@
 ## 2026-04-27
 
 - Focus: Narrative / Access / Structure
+- Changed: Library 末尾に `libraryProjectsBridge` を追加し、書庫で読んだ問いを「読む→ほどく→置く」の短い間奏として Projects へ渡せるようにした。橋渡しリンクも既存のスムーススクロール対象に加え、phase gate で Stats 後から Projects 前に存在することを保護した。
+- Learned: 書庫の直後に実績数値だけが残ると、販売・成果で一度閉じて見えやすい。短い余白の橋を置くと、新しい情報を増やさずに「本が実験棚へ戻る」流れを読ませられる。
+- Next: 実ブラウザで Library 末尾の橋が重すぎないか確認し、必要ならステップ文か上部の光線だけをさらに削る。
+
+## 2026-04-27
+
+- Focus: Narrative / Access / Structure
 - Changed: Vision の見出しを「次に育つ問い」へ寄せ、入口カードを先に読ませてからプロセスフロー、Research Log へ巡る順序へ並べ直した。あわせて process flow を Vision 内の小さな間奏として見えるように整え、phase gate でこの順序を保護した。
 - Learned: 構想は最初に抽象的な循環図を置くより、何を預ける入口なのかを先に見せたほうが、未来予告ではなく実験庭園の導線として読める。
 - Next: Vision の末尾から Quote prelude へ入る直前の余白が重く見えないか、モバイル幅で cycle bridge の密度を点検する。
