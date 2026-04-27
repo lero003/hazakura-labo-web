@@ -436,19 +436,28 @@
                     ${escapeHtml(item.returnLink.text || '')}
                 </a>`
                 : '';
-            const cycle = item.cycle ? `
-                <dl class="project-cycle" aria-label="${escapeHtml(item.title)}の問い、実験、発見">
-                    ${[
-                        ['問い', item.cycle.question],
-                        ['実験', item.cycle.experiment],
-                        ['発見', item.cycle.finding]
-                    ].filter(([, value]) => value).map(([label, value]) => `
-                        <div>
-                            <dt>${escapeHtml(label)}</dt>
-                            <dd>${escapeHtml(value)}</dd>
-                        </div>
-                    `).join('')}
-                </dl>
+            const cycleSteps = item.cycle
+                ? [
+                    ['問い', item.cycle.question],
+                    ['実験', item.cycle.experiment],
+                    ['発見', item.cycle.finding]
+                ].filter(([, value]) => value)
+                : [];
+            const cycle = cycleSteps.length ? `
+                <details class="project-cycle-drawer">
+                    <summary>
+                        <span class="project-cycle-drawer__label">問い → 実験 → 発見</span>
+                        <span class="project-cycle-drawer__hint">三段メモを開く</span>
+                    </summary>
+                    <dl class="project-cycle" aria-label="${escapeHtml(item.title)}の問い、実験、発見">
+                        ${cycleSteps.map(([label, value]) => `
+                            <div>
+                                <dt>${escapeHtml(label)}</dt>
+                                <dd>${escapeHtml(value)}</dd>
+                            </div>
+                        `).join('')}
+                    </dl>
+                </details>
             ` : '';
             const cardClass = item.image ? 'project-card' : 'project-card project-card--placeholder';
             return `

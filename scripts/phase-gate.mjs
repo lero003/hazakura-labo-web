@@ -173,6 +173,17 @@ assert(
     hasTrailStyles: styleCss.includes('.project-trail')
   })
 );
+assert(
+  'project cycles are folded behind a drawer',
+  contentRenderersJs.includes('class="project-cycle-drawer"')
+    && contentRenderersJs.includes('三段メモを開く')
+    && styleCss.includes('.project-cycle-drawer')
+    && styleCss.includes('.project-cycle-drawer[open] summary::after'),
+  JSON.stringify({
+    hasDrawerRenderer: contentRenderersJs.includes('class="project-cycle-drawer"'),
+    hasDrawerStyles: styleCss.includes('.project-cycle-drawer')
+  })
+);
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert(
   'projects action types back filter status labels',

@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Access / Structure
+- Changed: Projects カードの `問い → 実験 → 発見` を常時表示の3列ブロックから、必要な時だけ開く `project-cycle-drawer` へ畳んだ。`project-trail` の直後に同じ道筋が二重に見える重さを抑え、phase gate で折り畳み契約を保護した。
+- Learned: 制作棚は情報を消すより、最初に読む層とあとで開く層を分けるだけで、問いの循環を残したままカードの歩幅を軽くできる。
+- Next: 折り畳んだ cycle の summary 文言が Magic Tool / Research Log / Story Seed のどの棚でも自然に読めるか、preview 可能な環境でタップ感を確認する。
+
+## 2026-04-28
+
 - Focus: Access / Visual / Structure
 - Changed: Projects カードの `Origin` / `Surprise` / `Next` を縦に積む個別注釈から、1つの `project-trail` へ圧縮した。旧個別CSSを削り、phase gate に圧縮表示の保護を追加した。
 - Learned: 制作棚は情報を削らなくても、二次情報を「実験の道筋」として同じ器にまとめるだけで、カードの読み始めが軽くなる。
