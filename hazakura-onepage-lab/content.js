@@ -137,6 +137,20 @@ window.HAZAKURA_CONTENT = {
                     title: 'オリジナルアニメ映画',
                     text: '風景の構想を、作品紹介で閉じずに次の問いへ戻す。'
                 }
+            },
+            {
+                id: 'research-log-arxiv-scout',
+                eyebrow: 'Research Log 006',
+                theme: '未知の論文',
+                title: '未知の論文は、どう問いへ変わるか',
+                question: '論文をたくさん集める前に、まだ知らない概念から自分の次の問いをどう取り出せるのか。',
+                experiment: 'arxiv_scoutの試作メモを、タイトル、気になる語、次に試す仮説の三つへ分け、1件だけResearch Logへ戻す前提で読む。',
+                finding: '探索道具は情報量を増やすより、驚いた言葉を「次に何を試すか」まで小さく整えると、AIと人の探求が循環しやすい。',
+                sourceProject: {
+                    label: 'Magic Tool',
+                    title: 'arxiv_scout（試作メモ）',
+                    text: '未知の論文探索を、道具紹介から問いの記録へ戻す。'
+                }
             }
         ],
         cycleBridge: {
@@ -319,6 +333,11 @@ window.HAZAKURA_CONTENT = {
                 why: 'AIの知性を、答えを出す機械ではなく「まだ知らない概念へ連れていく相棒」として扱いたくて置いた種。',
                 surprise: '論文タイトルの一覧も、問いと実験の型に通すと、Research Logへ戻せる発見の入口になる。',
                 nextStep: '読んだ論文を1件だけ、問い・実験・発見の短いログへ返す。',
+                returnLink: {
+                    href: '#research-log-arxiv-scout',
+                    label: 'Research Log 006',
+                    text: '探索道具から問いへ戻す'
+                },
                 cycle: {
                     question: '未知の論文から、自分の次の問いをどう取り出すか。',
                     experiment: 'タイトル、要約、気になる概念を分け、Research Logへ移せる短い仮説に整える。',

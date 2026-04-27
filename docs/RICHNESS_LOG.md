@@ -3,6 +3,13 @@
 ## 2026-04-27
 
 - Focus: Narrative / Content
+- Changed: Research Log に「未知の論文は、どう問いへ変わるか」を追加し、`arxiv_scout（試作メモ）` から Research Log 006 へ戻れる導線を表示した。
+- Learned: 未知の論文探索は検索結果を増やす話にせず、驚いた語を次の仮説へ戻すログとして置くと、RFPの「探求の可視化」と Magic Tools の循環が近づく。
+- Next: Research Log 006 を起点に、実際の論文メモを1件だけ `問い / 実験 / 発見` へ落とし込む小さなサンプルを足す。
+
+## 2026-04-27
+
+- Focus: Narrative / Content
 - Changed: Quote セクション直前に `quotePrelude` を追加し、読む・預ける・巡らせるの三段で、最後の引用へ入る前に問いがもう一度入口へ戻る余韻を置いた。あわせて AI寺子屋カードの `entry.fields` を表示できるようにし、将来フォーム化する時の受付メモをカード側にも持たせた。
 - Learned: 終盤の詩へ向かう前に短い循環メモを挟むと、Visionで増えた入口群がページの余韻とつながり、RFPの「循環する魔法の拠点」として読み終わりが閉じすぎない。
 - Next: Quote 前の `quotePrelude` が重く感じる場合は、Research Log や Projects の状態に応じて三段メモの文言だけを差し替えられるようにする。
