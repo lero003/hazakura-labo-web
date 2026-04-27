@@ -159,6 +159,18 @@ assert(
 );
 assert('style sheet contains library projects bridge', styleCss.includes('.library-projects-bridge'));
 assert('vision process interlude style is emitted', styleCss.includes('.process-flow--vision'));
+assert(
+  'vision entry fields stay folded',
+  contentRenderersJs.includes('class="vision-entry-guide__field-drawer"')
+    && contentRenderersJs.includes('<summary>')
+    && contentRenderersJs.includes('受付メモ')
+    && styleCss.includes('.vision-entry-guide__field-drawer')
+    && styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after'),
+  JSON.stringify({
+    hasDrawerRenderer: contentRenderersJs.includes('class="vision-entry-guide__field-drawer"'),
+    hasDrawerStyles: styleCss.includes('.vision-entry-guide__field-drawer')
+  })
+);
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates project filter', contentRenderersJs.includes('HazakuraProjectFilter?.init'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));

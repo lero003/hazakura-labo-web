@@ -2363,13 +2363,79 @@ body.theme-night .section-vision {
     line-height: 1.65;
 }
 
+.vision-entry-guide__field-drawer {
+    margin-top: 0.58rem;
+    border: 1px solid rgba(var(--entry-accent-rgb), 0.18);
+    border-radius: 7px;
+    background:
+        linear-gradient(135deg, rgba(var(--entry-accent-rgb), 0.08), rgba(255, 255, 255, 0.34));
+    overflow: hidden;
+}
+
+.vision-entry-guide__field-drawer summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    padding: 0.42rem 0.56rem;
+    color: var(--entry-accent);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    list-style: none;
+}
+
+.vision-entry-guide__field-drawer summary::-webkit-details-marker {
+    display: none;
+}
+
+.vision-entry-guide__field-drawer summary::after {
+    content: '+';
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 1px solid rgba(var(--entry-accent-rgb), 0.2);
+    border-radius: 999px;
+    color: var(--entry-accent);
+    font-size: 0.76rem;
+    line-height: 1;
+    transition: transform 0.28s var(--ease-out-expo), background-color 0.28s var(--ease-out-expo);
+}
+
+.vision-entry-guide__field-drawer[open] summary::after {
+    transform: rotate(45deg);
+    background: rgba(var(--entry-accent-rgb), 0.1);
+}
+
+.vision-entry-guide__field-drawer summary small {
+    margin-left: auto;
+    color: var(--ink-500);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.vision-entry-guide__kind .vision-entry-guide__field-drawer summary small {
+    display: inline;
+    gap: 0;
+    margin: 0 0 0 auto;
+    line-height: 1;
+}
+
 .vision-entry-guide__fields {
     display: flex;
     flex-wrap: wrap;
     gap: 0.28rem;
-    margin: 0.62rem 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
+}
+
+.vision-entry-guide__field-drawer .vision-entry-guide__fields {
+    padding: 0 0.56rem 0.56rem;
 }
 
 .vision-entry-guide__fields li {
@@ -5041,6 +5107,29 @@ body.theme-night .section-vision .vision-entry-guide__flow {
     border-top-color: rgba(var(--entry-accent-rgb), 0.24);
 }
 
+body.theme-night .section-vision .vision-entry-guide__field-drawer {
+    border-color: rgba(var(--entry-accent-rgb), 0.2);
+    background:
+        linear-gradient(135deg, rgba(var(--entry-accent-rgb), 0.14), rgba(255, 255, 255, 0.04));
+}
+
+body.theme-night .section-vision .vision-entry-guide__field-drawer summary {
+    color: var(--entry-accent);
+}
+
+body.theme-night .section-vision .vision-entry-guide__field-drawer summary::after {
+    border-color: rgba(var(--entry-accent-rgb), 0.3);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+body.theme-night .section-vision .vision-entry-guide__field-drawer summary small {
+    color: rgba(239, 246, 255, 0.62);
+}
+
+body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] .vision-entry-guide__field-drawer summary small {
+    color: rgba(239, 246, 255, 0.62);
+}
+
 body.theme-night .section-vision .vision-entry-guide__fields li {
     border-color: rgba(var(--entry-accent-rgb), 0.22);
     background: rgba(255, 255, 255, 0.06);
@@ -5916,6 +6005,16 @@ body.theme-night .nav-links a::after {
         overflow-wrap: anywhere;
     }
 
+    .vision-entry-guide__field-drawer {
+        margin-top: 0.48rem;
+        border-radius: 10px;
+    }
+
+    .vision-entry-guide__field-drawer summary {
+        min-height: 2.2rem;
+        padding: 0.44rem 0.58rem;
+    }
+
     .vision-entry-guide__fields {
         gap: 0.24rem;
     }
@@ -6121,6 +6220,10 @@ body.theme-night .nav-links a::after {
 
     .vision-entry-guide__flow {
         font-size: 0.7rem;
+    }
+
+    .vision-entry-guide__field-drawer summary {
+        font-size: 0.66rem;
     }
 
     .vision-entry-guide__fields li {

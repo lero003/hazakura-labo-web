@@ -251,9 +251,15 @@
     function renderVisionEntryFields(fields) {
         if (!Array.isArray(fields) || !fields.length) return '';
         return `
-            <ul class="vision-entry-guide__fields" aria-label="受付メモ">
-                ${fields.map((field) => `<li>${escapeHtml(field)}</li>`).join('')}
-            </ul>
+            <details class="vision-entry-guide__field-drawer">
+                <summary>
+                    <span>受付メモ</span>
+                    <small>${escapeHtml(String(fields.length))}つ</small>
+                </summary>
+                <ul class="vision-entry-guide__fields" aria-label="受付メモ">
+                    ${fields.map((field) => `<li>${escapeHtml(field)}</li>`).join('')}
+                </ul>
+            </details>
         `;
     }
 

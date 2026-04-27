@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Access / Structure
+- Changed: Vision 入口ガイドの受付メモを `vision-entry-guide__field-drawer` として折り畳み、四つの預け方は見せたまま、フォーム仕様のように見える項目列を一段奥へ下げた。phase gate で折り畳み契約も保護した。
+- Learned: 構想セクションは入力項目を丁寧に出しすぎると、庭を歩く体験より仕様確認に寄りやすい。最初は「何を預けるか」と「どこへ巡るか」だけを見せ、項目は必要な時に開くほうが空気を保てる。
+- Next: Vision の個別カード側に残る受付メモと handoff が、ガイドを畳んだ後でも重複して見えないかモバイル幅で点検する。
+
+## 2026-04-28
+
+- Focus: Access / Structure
 - Changed: Projects カードの `問い → 実験 → 発見` を常時表示の3列ブロックから、必要な時だけ開く `project-cycle-drawer` へ畳んだ。`project-trail` の直後に同じ道筋が二重に見える重さを抑え、phase gate で折り畳み契約を保護した。
 - Learned: 制作棚は情報を消すより、最初に読む層とあとで開く層を分けるだけで、問いの循環を残したままカードの歩幅を軽くできる。
 - Next: 折り畳んだ cycle の summary 文言が Magic Tool / Research Log / Story Seed のどの棚でも自然に読めるか、preview 可能な環境でタップ感を確認する。
