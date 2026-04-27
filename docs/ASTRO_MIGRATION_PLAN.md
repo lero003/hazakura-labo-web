@@ -49,3 +49,5 @@
 ## 現時点の方針
 
 今はPhase Aのスパイク段階です。`hazakura-onepage-lab/` は比較用の現行静的サイトとして残し、Astro版は `src/` と `public/` から組み立てます。本線採用前に、Cloudflare Pagesの設定変更と公開ページの目視確認を行います。
+
+大きい演出を切り出す前に、`npm run check:phase` で静的な完了条件を確認します。このチェックは `dist/index.html`、主要セクション順、生成JS、必須assets、`src/data/` と `/content.js` の一致を見ます。ブラウザ上の目視確認は別途行います。

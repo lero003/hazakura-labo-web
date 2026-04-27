@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:phase": "npm run build && node scripts/phase-gate.mjs"
   },
   "dependencies": {
     "astro": "6.1.9"
