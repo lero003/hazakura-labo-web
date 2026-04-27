@@ -1351,18 +1351,13 @@
         updateScrollZones();
         window.HazakuraCursorHover?.init();
 
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    scrollIndicators?.update();
-                    if (!prefersReducedMotion) heroParallax?.update();
-                    updateScrollZones();
-                    ticking = false;
-                });
-                ticking = true;
+        window.HazakuraScrollTicker?.init({
+            onTick() {
+                scrollIndicators?.update();
+                if (!prefersReducedMotion) heroParallax?.update();
+                updateScrollZones();
             }
-        }, { passive: true });
+        });
 
         window.HazakuraResizeListener?.init({
             onResize() {

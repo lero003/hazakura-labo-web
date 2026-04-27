@@ -49,6 +49,7 @@
 - カードtilt用の `--mouse-x` / `--mouse-y` 更新は `src/scripts/card-hover-fields.js` に切り出し、mousemove内の風入力やBook 3D処理は既存 `script.js` に残す。
 - 書籍表紙の3D tiltとglare更新は `src/scripts/book-tilt.js` に切り出し、mousemove内から `update()` だけを呼ぶ。
 - pointer/mousemoveのイベント登録は `src/scripts/pointer-input.js` に切り出し、座標・風・hover更新の処理は既存 `script.js` のコールバックに残す。
+- scrollイベントのrequestAnimationFrameスロットリングは `src/scripts/scroll-ticker.js` に切り出し、進捗・Hero・ゾーン更新は既存 `script.js` のコールバックに残す。
 - 棚フィルターをProjects islandとして分離する。
 - 花びら/葉/光のCanvas演出を、初期化と破棄ができる小さなscriptへ分ける。
 - Quote前の循環演出を、文言とモーションを別々に調整できる単位にする。
