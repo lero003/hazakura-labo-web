@@ -284,107 +284,8 @@
         animationId = requestAnimationFrame(animatePetals);
     }
 
-    // ===== Aurora Canvas (单独的 for aurora effect) =====
-    let auroraCanvas, auroraCtx, auroraId;
-    let auroraWaves = [];
-
-    function createAuroraCanvas() {
-        auroraCanvas = document.createElement('canvas');
-        auroraCanvas.id = 'aurora-canvas';
-        auroraCanvas.style.cssText = 'position:fixed;inset:0;z-index:9995;pointer-events:none;opacity:0;transition:opacity 3s ease;';
-        document.body.appendChild(auroraCanvas);
-        auroraCtx = auroraCanvas.getContext('2d');
-    }
-
-    class AuroraWave {
-        constructor(index, total) {
-            this.index = index;
-            this.total = total;
-        }
-        update(time) {
-            this.phase += this.speed;
-        }
-        draw(ctx, w, h, time) {
-            const layerIndex = this.index;
-            const baseY = h * 0.35 + (layerIndex / Math.max(this.total - 1, 1)) * h * 0.35;
-            const timeFactor = Math.sin(time * 0.0007 + layerIndex * 1.5) * 0.5 + 0.5;
-
-            const colors = [
-                [52, 181, 153],   // green
-                [59, 213, 209],   // teal
-                [56, 189, 248],   // blue
-                [134, 239, 172],  // light green
-                [167, 139, 250],  // purple
-                [236, 72, 153],   // pink
-            ];
-            const cIdx = layerIndex % colors.length;
-            const cNext = (layerIndex + 1) % colors.length;
-            const [r1, g1, b1] = colors[cIdx];
-            const [r2, g2, b2] = colors[cNext];
-            const r = r1 + (r2 - r1) * timeFactor;
-            const g = g1 + (g2 - g1) * timeFactor;
-            const b = b1 + (b2 - b1) * timeFactor;
-
-            const amp = this.amplitude * (0.7 + timeFactor * 0.3);
-
-            ctx.save();
-            ctx.beginPath();
-            ctx.moveTo(-10, h);
-            ctx.lineTo(-10, baseY);
-
-            for (let x = -10; x <= w + 10; x += 4) {
-                const wy = baseY
-                    + Math.sin(x * this.freq + this.phase) * amp
-                    + Math.sin(x * this.freq2 + this.phase * 1.7) * amp * 0.4
-                    + Math.cos(x * this.freq3 - this.phase * 0.5) * amp * 0.2;
-                ctx.lineTo(x, wy);
-            }
-
-            ctx.lineTo(w + 10, h);
-            ctx.closePath();
-
-            const bandH = this.bandHeight;
-            const grad = ctx.createLinearGradient(0, baseY - bandH, 0, baseY + bandH + 80);
-            const alpha = this.baseAlpha * (0.4 + timeFactor * 0.6);
-            grad.addColorStop(0, `rgba(${r|0},${g|0},${b|0},0)`);
-            grad.addColorStop(0.15, `rgba(${r|0},${g|0},${b|0},${alpha * 0.3})`);
-            grad.addColorStop(0.4, `rgba(${r|0},${g|0},${b|0},${alpha})`);
-            grad.addColorStop(0.6, `rgba(${r|0},${g|0},${b|0},${alpha * 0.5})`);
-            grad.addColorStop(1, `rgba(${r|0},${g|0},${b|0},0)`);
-            ctx.fillStyle = grad;
-            ctx.fill();
-            ctx.restore();
-        }
-    }
-
-    function initAuroraWaves() {
-        if (!auroraCanvas) return;
-        auroraWaves = [];
-        for (let i = 0; i < 10; i++) {
-            const wave = new AuroraWave(i, 10);
-            wave.freq = 0.0008 + Math.random() * 0.0015;
-            wave.freq2 = 0.0015 + Math.random() * 0.002;
-            wave.freq3 = 0.002 + Math.random() * 0.003;
-            wave.amplitude = 30 + Math.random() * 80;
-            wave.speed = 0.003 + Math.random() * 0.006;
-            wave.phase = Math.random() * Math.PI * 2;
-            wave.bandHeight = 25 + Math.random() * 40;
-            wave.baseAlpha = 0.08 + Math.random() * 0.12;
-            auroraWaves.push(wave);
-        }
-    }
-
-    function animateAurora() {
-        if (prefersReducedMotion) return;
-        if (!auroraCanvas || !auroraCtx) return;
-        const time = Date.now();
-        auroraCtx.clearRect(0, 0, auroraCanvas.width, auroraCanvas.height);
-        auroraWaves.forEach(wave => {
-            wave.update(time);
-            wave.draw(auroraCtx, auroraCanvas.width, auroraCanvas.height, time);
-        });
-        auroraId = requestAnimationFrame(animateAurora);
-    }
+    // ===== Aurora Canvas =====
+    const auroraEngine = window.HazakuraAuroraCanvas?.create();
 
     // ===== Shooting stars (zone 4 moon) =====
     let shootingStars = [];
@@ -1141,16 +1042,14 @@
         updateParticleEvolution(zone);
 
         // Aurora canvas visibility
-        if (auroraCanvas) {
-            if (zone === 4) {
-                auroraCanvas.style.opacity = '0.15';
-            } else if (zone === 5) {
-                auroraCanvas.style.opacity = '0.5';
-            } else if (zone === 3) {
-                auroraCanvas.style.opacity = '0.3';
-            } else {
-                auroraCanvas.style.opacity = '0';
-            }
+        if (zone === 4) {
+            auroraEngine?.setOpacity('0.15');
+        } else if (zone === 5) {
+            auroraEngine?.setOpacity('0.5');
+        } else if (zone === 3) {
+            auroraEngine?.setOpacity('0.3');
+        } else {
+            auroraEngine?.setOpacity('0');
         }
 
         // Shooting stars at moon zone
@@ -1328,13 +1227,13 @@
         motionPreferences?.syncBodyClass();
         window.HazakuraCanvasSize?.resize(canvas);
         initPetals();
-        createAuroraCanvas();
-        window.HazakuraCanvasSize?.resize(auroraCanvas);
-        initAuroraWaves();
+        auroraEngine?.mount();
+        auroraEngine?.resize();
+        auroraEngine?.initWaves();
         createHeroAuroraOverlay();
         if (!prefersReducedMotion) {
             animatePetals();
-            animateAurora();
+            auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
             updateCursor();
         }
         window.HazakuraTextReveal?.prepare();
@@ -1362,9 +1261,9 @@
         window.HazakuraResizeListener?.init({
             onResize() {
                 window.HazakuraCanvasSize?.resize(canvas);
-                window.HazakuraCanvasSize?.resize(auroraCanvas);
+                auroraEngine?.resize();
                 initPetals();
-                initAuroraWaves();
+                auroraEngine?.initWaves();
                 if (shootingStars.length > 0) initShootingStars();
                 if (!prefersReducedMotion) heroParallax?.update();
                 scrollIndicators?.update();
@@ -1374,12 +1273,13 @@
 
         window.HazakuraVisibilityPlayback?.init({
             onHidden() {
-                window.HazakuraAnimationFrames?.cancelAll(animationId, auroraId);
+                window.HazakuraAnimationFrames?.cancelAll(animationId);
+                auroraEngine?.stop();
             },
             onVisible() {
                 if (prefersReducedMotion) return;
                 animatePetals();
-                animateAurora();
+                auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
             }
         });
 
@@ -1387,15 +1287,16 @@
             prefersReducedMotion = event.matches;
             motionPreferences.syncBodyClass();
             if (prefersReducedMotion) {
-                window.HazakuraAnimationFrames?.cancelAll(animationId, auroraId);
+                window.HazakuraAnimationFrames?.cancelAll(animationId);
+                auroraEngine?.stop();
                 window.HazakuraCanvasClear?.clearAll(
-                    { context: ctx, canvas },
-                    { context: auroraCtx, canvas: auroraCanvas }
+                    { context: ctx, canvas }
                 );
+                auroraEngine?.clear();
                 scrollAnimations?.setAllCounters();
             } else {
                 animatePetals();
-                animateAurora();
+                auroraEngine?.start({ getPrefersReducedMotion: () => prefersReducedMotion });
                 updateCursor();
             }
         });

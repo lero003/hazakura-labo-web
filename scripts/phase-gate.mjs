@@ -63,6 +63,7 @@ const requiredAssets = [
   'dist/book-tilt.js',
   'dist/pointer-input.js',
   'dist/scroll-ticker.js',
+  'dist/aurora-canvas.js',
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -103,6 +104,7 @@ const cardHoverFieldsJs = readFile('dist/card-hover-fields.js');
 const bookTiltJs = readFile('dist/book-tilt.js');
 const pointerInputJs = readFile('dist/pointer-input.js');
 const scrollTickerJs = readFile('dist/scroll-ticker.js');
+const auroraCanvasJs = readFile('dist/aurora-canvas.js');
 assert('legacy script delegates project filter', scriptJs.includes('HazakuraProjectFilter?.init'));
 assert('legacy script delegates quote prelude', scriptJs.includes('HazakuraQuotePrelude?.render'));
 assert('legacy script delegates zone nav', scriptJs.includes('HazakuraZoneNav?.create'));
@@ -125,6 +127,7 @@ assert('legacy script delegates card hover fields', scriptJs.includes('HazakuraC
 assert('legacy script delegates book tilt', scriptJs.includes('HazakuraBookTilt?.create'));
 assert('legacy script delegates pointer input', scriptJs.includes('HazakuraPointerInput?.init'));
 assert('legacy script delegates scroll ticker', scriptJs.includes('HazakuraScrollTicker?.init'));
+assert('legacy script delegates aurora canvas', scriptJs.includes('HazakuraAuroraCanvas?.create'));
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
@@ -147,6 +150,7 @@ assert('card hover fields script exposes global', cardHoverFieldsJs.includes('wi
 assert('book tilt script exposes global', bookTiltJs.includes('window.HazakuraBookTilt'));
 assert('pointer input script exposes global', pointerInputJs.includes('window.HazakuraPointerInput'));
 assert('scroll ticker script exposes global', scrollTickerJs.includes('window.HazakuraScrollTicker'));
+assert('aurora canvas script exposes global', auroraCanvasJs.includes('window.HazakuraAuroraCanvas'));
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {
