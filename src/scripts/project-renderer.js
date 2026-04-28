@@ -168,7 +168,7 @@
     const lane = item.lane ? `<span class="project-lane">${escapeHtml(item.lane)}</span>` : '';
     const why = item.why ? `<p class="project-note project-why"><span>Why</span>${escapeHtml(item.why)}</p>` : '';
     const actionNote = item.actionNote
-      ? `<p class="project-action-note"><span>${escapeHtml(item.actionNote.label || 'Note')}</span>${escapeHtml(item.actionNote.text || '')}</p>`
+      ? `<p class="project-note project-action-note"><span>${escapeHtml(item.actionNote.label || 'Note')}</span>${escapeHtml(item.actionNote.text || '')}</p>`
       : '';
     const returnLink = item.returnLink
       ? `<a class="project-return-link" href="${escapeHtml(item.returnLink.href || '#')}">

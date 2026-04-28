@@ -5595,34 +5595,37 @@ body.theme-night .section-layers .layer-sequence__beam {
     margin-bottom: 1rem;
 }
 
-.project-why {
-    display: flex;
-    gap: 0.65rem;
-    align-items: flex-start;
-    margin: 0 0 1rem;
-    padding: 0.8rem 0.9rem;
-    border-left: 3px solid rgba(232, 88, 122, 0.45);
-    background: rgba(255, 255, 255, 0.5);
-    color: var(--ink-600);
-    font-size: 0.84rem;
-    line-height: 1.75;
-}
-
-.project-why span {
-    flex: 0 0 auto;
-    color: var(--sakura-500);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
 .project-note {
+    --project-note-margin: 0 0 1rem;
+    --project-note-padding: 0.8rem 0.9rem;
+    --project-note-border: 0;
+    --project-note-border-left: rgba(232, 88, 122, 0.45);
+    --project-note-radius: 0;
+    --project-note-bg: rgba(255, 255, 255, 0.5);
+    --project-note-color: var(--ink-600);
+    --project-note-label-color: var(--sakura-500);
     display: grid;
     grid-template-columns: minmax(4.7rem, max-content) minmax(0, 1fr);
     gap: 0.65rem;
     align-items: flex-start;
     min-width: 0;
+    margin: var(--project-note-margin);
+    padding: var(--project-note-padding);
+    border: var(--project-note-border);
+    border-left: 3px solid var(--project-note-border-left);
+    border-radius: var(--project-note-radius);
+    background: var(--project-note-bg);
+    color: var(--project-note-color);
+    font-size: 0.84rem;
+    line-height: 1.75;
+}
+
+.project-note > span {
+    color: var(--project-note-label-color);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .project-trail {
@@ -5689,27 +5692,13 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-action-note {
-    display: flex;
-    gap: 0.65rem;
-    align-items: flex-start;
-    margin: -0.45rem 0 1rem;
-    padding: 0.78rem 0.9rem;
-    border: 1px solid rgba(168, 116, 48, 0.2);
-    border-left: 3px solid rgba(168, 116, 48, 0.48);
-    border-radius: 0 12px 12px 0;
-    background: rgba(168, 116, 48, 0.07);
-    color: var(--ink-600);
-    font-size: 0.84rem;
-    line-height: 1.75;
-}
-
-.project-action-note span {
-    flex: 0 0 auto;
-    color: #a87430;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    --project-note-margin: -0.45rem 0 1rem;
+    --project-note-padding: 0.78rem 0.9rem;
+    --project-note-border: 1px solid rgba(168, 116, 48, 0.2);
+    --project-note-border-left: rgba(168, 116, 48, 0.48);
+    --project-note-radius: 0 12px 12px 0;
+    --project-note-bg: rgba(168, 116, 48, 0.07);
+    --project-note-label-color: #a87430;
 }
 
 .project-return-link {
@@ -6436,13 +6425,10 @@ body.theme-night .section-projects .project-desc {
 }
 
 body.theme-night .section-projects .project-why {
-    background: rgba(255, 255, 255, 0.05);
-    border-left-color: rgba(232, 88, 122, 0.55);
-    color: var(--body-text);
-}
-
-body.theme-night .section-projects .project-why span {
-    color: var(--sakura-400);
+    --project-note-bg: rgba(255, 255, 255, 0.05);
+    --project-note-border-left: rgba(232, 88, 122, 0.55);
+    --project-note-color: var(--body-text);
+    --project-note-label-color: var(--sakura-400);
 }
 
 body.theme-night .section-projects .project-trail {
@@ -6469,14 +6455,11 @@ body.theme-night .section-projects .project-trail__item[data-trail-kind="surpris
 }
 
 body.theme-night .section-projects .project-action-note {
-    background: rgba(168, 116, 48, 0.1);
-    border-color: rgba(168, 116, 48, 0.26);
-    border-left-color: rgba(168, 116, 48, 0.62);
-    color: var(--body-text);
-}
-
-body.theme-night .section-projects .project-action-note span {
-    color: #d4a45f;
+    --project-note-border: 1px solid rgba(168, 116, 48, 0.26);
+    --project-note-border-left: rgba(168, 116, 48, 0.62);
+    --project-note-bg: rgba(168, 116, 48, 0.1);
+    --project-note-color: var(--body-text);
+    --project-note-label-color: #d4a45f;
 }
 
 body.theme-night .section-projects .project-return-link {
@@ -6786,35 +6769,13 @@ body.theme-night .nav-links a::after {
         line-height: 1.75;
     }
 
-    .project-why {
-        display: block;
-        font-size: 0.84rem;
-        line-height: 1.7;
-    }
-
-    .project-why span {
-        display: block;
-        margin-bottom: 0.2rem;
-    }
-
-    .project-action-note {
-        display: block;
-        font-size: 0.84rem;
-        line-height: 1.7;
-    }
-
-    .project-action-note span {
-        display: block;
-        margin-bottom: 0.2rem;
-    }
-
     .project-note {
         display: grid;
         grid-template-columns: minmax(4.2rem, max-content) minmax(0, 1fr);
         gap: 0.45rem;
         padding: 0.72rem 0.78rem;
-        font-size: 0.82rem;
-        line-height: 1.65;
+        font-size: 0.84rem;
+        line-height: 1.7;
     }
 
     .project-note span {
@@ -7259,16 +7220,6 @@ body.theme-night .nav-links a::after {
 
     .project-desc {
         font-size: 0.88rem;
-    }
-
-    .project-why {
-        padding: 0.72rem 0.78rem;
-        font-size: 0.82rem;
-    }
-
-    .project-action-note {
-        padding: 0.72rem 0.78rem;
-        font-size: 0.82rem;
     }
 
     .project-note {

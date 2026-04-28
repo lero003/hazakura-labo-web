@@ -741,6 +741,25 @@ assert(
   })
 );
 assert(
+  'project side notes share note chrome',
+  projectRendererJs.includes('class="project-note project-why"')
+    && projectRendererJs.includes('class="project-note project-action-note"')
+    && ['--project-note-bg', '--project-note-border-left', '--project-note-label-color'].every((snippet) => styleCss.includes(snippet))
+    && styleCss.includes('.project-note > span')
+    && !styleCss.includes('body.theme-night .section-projects .project-why span')
+    && !styleCss.includes('body.theme-night .section-projects .project-action-note span'),
+  JSON.stringify({
+    hasWhyNoteClass: projectRendererJs.includes('class="project-note project-why"'),
+    hasActionNoteClass: projectRendererJs.includes('class="project-note project-action-note"'),
+    hasBgToken: styleCss.includes('--project-note-bg'),
+    hasBorderToken: styleCss.includes('--project-note-border-left'),
+    hasLabelToken: styleCss.includes('--project-note-label-color'),
+    hasSharedLabelRule: styleCss.includes('.project-note > span'),
+    hasDirectNightWhyLabel: styleCss.includes('body.theme-night .section-projects .project-why span'),
+    hasDirectNightActionLabel: styleCss.includes('body.theme-night .section-projects .project-action-note span')
+  })
+);
+assert(
   'project cycles are folded behind a drawer',
   projectRendererJs.includes('class="project-cycle-drawer"')
     && projectRendererJs.includes('class="project-cycle-drawer__sigil"')

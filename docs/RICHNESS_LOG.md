@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Structure / Access
+- Changed: Projectsカード内の `Why` と `Note` を同じ `project-note` chrome へ参加させ、余白、ラベル、昼夜テーマ差分を `--project-note-*` 変数へまとめた。`project-action-note` のrenderer markupも共通クラスを持つ形にし、phase gate で注釈UIが分岐し直さないよう保護した。
+- Learned: 制作カードの小さな補足札は、見た目が近いままCSSだけ分かれると、次の文言整理やモバイル調整で片方だけ歩幅がずれやすい。注釈として同じ骨格へ寄せると、情報を増やさずにProjectsの読み筋を保守しやすくなる。
+- Next: Projects の trail / action / return / note が十分に整理されたので、次は Quote 前 route marker のモバイル実表示か、OGP画像の相対パス点検を小さく見る。
+
+## 2026-04-29
+
 - Focus: Access / Visual / Structure
 - Changed: Quote 前の折り返しステップを、ラベルと本文を分けた小さな route marker 構造へ整理し、既存のCSS counterを `01` から `04` の巡回札として見える化した。昼夜テーマの marker 色は `--quote-prelude-step-marker-*` 変数へ閉じ、phase gate で compact route marker 構造を保護した。
 - Learned: 折り返し先が Library / Projects / Research / Vision の4つに増えると、単なるカード列では終盤の参道として少し平板に見える。情報を増やさず、番号札と本文境界だけを足すと、最後の詩へ向かう前の「巡る順番」が拾いやすい。
