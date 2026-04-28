@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Access / Motion / Structure
+- Changed: 常設ロゴの `#hero` 帰還を、フッターの「はじまりへ戻る」と同じ測定済みスムーススクロールへ参加させた。Hero到着演出は `is-garden-return-arrival` として共通化し、`smooth-scroll.js` の到着演出分岐を `arrivalRules` の小さな対応表へ整理した。
+- Learned: 終端導線だけが庭らしく戻れても、常設ロゴが急にジャンプするとページ全体の循環感が少し欠ける。戻り方を同じ所作へ揃えると、情報を増やさずに1ページを巡る導線が自然になる。
+- Next: ナビ内の各アンカーも、到着先ごとの受け取り演出が必要か、過剰にならない範囲で1導線だけ点検する。
+
+## 2026-04-28
+
 - Focus: Structure
 - Changed: `src/pages/index.astro` に残っていた Library の書籍棚と Library -> Projects bridge のAstro markupを `src/components/LibrarySection.astro` へ切り出した。書籍データと橋データの参照はコンポーネント側へ閉じ、phase gate でページ本体がLibraryの細部を持ち直さないことも保護した。
 - Learned: 書庫の文脈と橋の演出は一体で育つため、ページ本体に残ると次の文言・余白調整で読む範囲が広がる。見た目を変えずにセクション単位へ分けるだけでも、1ページの骨格と書庫の庭仕事を分けて考えやすくなる。

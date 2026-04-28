@@ -754,30 +754,32 @@ assert('smooth scroll uses measured offset', smoothScrollJs.includes('HazakuraSc
 assert('zone performance uses measured offset', zonePerformanceJs.includes('HazakuraScrollOffset?.get'));
 assert('smooth scroll includes library projects bridge', smoothScrollJs.includes('.library-projects-bridge__link'));
 assert(
-  'footer return path uses smooth scroll arrival',
-  smoothScrollJs.includes('.footer-garden-close__link[href^="#"]')
-    && smoothScrollJs.includes('markFooterReturnArrival')
-    && smoothScrollJs.includes('is-footer-return-arrival')
-    && styleCss.includes('.hero.is-footer-return-arrival::after')
-    && styleCss.includes('@keyframes footerReturnThread'),
+  'hero return paths use measured smooth scroll arrival',
+  smoothScrollJs.includes('.nav-logo[href^="#"]')
+    && smoothScrollJs.includes('.footer-garden-close__link[href^="#"]')
+    && smoothScrollJs.includes('markMatchingArrival')
+    && smoothScrollJs.includes('is-garden-return-arrival')
+    && styleCss.includes('.hero.is-garden-return-arrival::after')
+    && styleCss.includes('@keyframes gardenReturnThread'),
   JSON.stringify({
-    hasSelector: smoothScrollJs.includes('.footer-garden-close__link[href^="#"]'),
-    hasHandler: smoothScrollJs.includes('markFooterReturnArrival'),
-    hasArrivalClass: smoothScrollJs.includes('is-footer-return-arrival'),
-    hasStyle: styleCss.includes('.hero.is-footer-return-arrival::after'),
-    hasKeyframes: styleCss.includes('@keyframes footerReturnThread')
+    hasLogoSelector: smoothScrollJs.includes('.nav-logo[href^="#"]'),
+    hasFooterSelector: smoothScrollJs.includes('.footer-garden-close__link[href^="#"]'),
+    hasHandler: smoothScrollJs.includes('markMatchingArrival'),
+    hasArrivalClass: smoothScrollJs.includes('is-garden-return-arrival'),
+    hasStyle: styleCss.includes('.hero.is-garden-return-arrival::after'),
+    hasKeyframes: styleCss.includes('@keyframes gardenReturnThread')
   })
 );
 assert(
   'quote prelude foldback uses smooth scroll arrival',
   smoothScrollJs.includes('.quote-prelude-step[href^="#"]')
-    && smoothScrollJs.includes('markQuoteReturnArrival')
+    && smoothScrollJs.includes('markMatchingArrival')
     && smoothScrollJs.includes('is-quote-return-arrival')
     && styleCss.includes('.section.is-quote-return-arrival .section-header::after')
     && styleCss.includes('@keyframes quoteReturnGlow'),
   JSON.stringify({
     hasSelector: smoothScrollJs.includes('.quote-prelude-step[href^="#"]'),
-    hasHandler: smoothScrollJs.includes('markQuoteReturnArrival'),
+    hasHandler: smoothScrollJs.includes('markMatchingArrival'),
     hasArrivalClass: smoothScrollJs.includes('is-quote-return-arrival'),
     hasStyle: styleCss.includes('.section.is-quote-return-arrival .section-header::after'),
     hasKeyframes: styleCss.includes('@keyframes quoteReturnGlow')
@@ -785,12 +787,12 @@ assert(
 );
 assert(
   'library bridge click marks projects handoff arrival',
-  smoothScrollJs.includes('markHandoffArrival')
+  smoothScrollJs.includes('markMatchingArrival')
     && smoothScrollJs.includes('is-handoff-arrival')
     && styleCss.includes('.section-projects.is-handoff-arrival .project-threshold__sigil')
     && styleCss.includes('@keyframes projectHandoffSeed'),
   JSON.stringify({
-    hasHandler: smoothScrollJs.includes('markHandoffArrival'),
+    hasHandler: smoothScrollJs.includes('markMatchingArrival'),
     hasArrivalClass: smoothScrollJs.includes('is-handoff-arrival'),
     hasSigilStyle: styleCss.includes('.section-projects.is-handoff-arrival .project-threshold__sigil'),
     hasSeedKeyframes: styleCss.includes('@keyframes projectHandoffSeed')

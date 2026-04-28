@@ -1,9 +1,37 @@
 (function () {
     'use strict';
 
+    const defaultSelector = [
+        '.nav-logo[href^="#"]',
+        '.nav-links a[href^="#"]',
+        '.footer-nav a[href^="#"]',
+        '.footer-garden-close__link[href^="#"]',
+        '.hero-cta[href^="#"]',
+        '.library-projects-bridge__link[href^="#"]',
+        '.quote-prelude-step[href^="#"]'
+    ].join(', ');
+
+    const arrivalRules = [
+        {
+            selector: '.library-projects-bridge__link',
+            className: 'is-handoff-arrival',
+            duration: 1800
+        },
+        {
+            selector: '.quote-prelude-step',
+            className: 'is-quote-return-arrival',
+            duration: 1600
+        },
+        {
+            selector: '.nav-logo, .footer-garden-close__link',
+            className: 'is-garden-return-arrival',
+            duration: 1700
+        }
+    ];
+
     function init(options = {}) {
         const {
-            selector = '.nav-links a[href^="#"], .footer-nav a[href^="#"], .footer-garden-close__link[href^="#"], .hero-cta[href^="#"], .library-projects-bridge__link[href^="#"], .quote-prelude-step[href^="#"]',
+            selector = defaultSelector,
             offset = 72,
             getPrefersReducedMotion = () => false
         } = options;
@@ -24,31 +52,15 @@
                     behavior: getPrefersReducedMotion() ? 'auto' : 'smooth'
                 });
 
-                if (link.matches('.library-projects-bridge__link')) {
-                    markHandoffArrival(target, getPrefersReducedMotion());
-                }
-
-                if (link.matches('.quote-prelude-step')) {
-                    markQuoteReturnArrival(target, getPrefersReducedMotion());
-                }
-
-                if (link.matches('.footer-garden-close__link')) {
-                    markFooterReturnArrival(target, getPrefersReducedMotion());
-                }
+                markMatchingArrival(link, target, getPrefersReducedMotion());
             });
         });
     }
 
-    function markHandoffArrival(target, isReducedMotion) {
-        markArrival(target, 'is-handoff-arrival', 1800, isReducedMotion);
-    }
-
-    function markQuoteReturnArrival(target, isReducedMotion) {
-        markArrival(target, 'is-quote-return-arrival', 1600, isReducedMotion);
-    }
-
-    function markFooterReturnArrival(target, isReducedMotion) {
-        markArrival(target, 'is-footer-return-arrival', 1700, isReducedMotion);
+    function markMatchingArrival(link, target, isReducedMotion) {
+        const rule = arrivalRules.find(({ selector }) => link.matches(selector));
+        if (!rule) return;
+        markArrival(target, rule.className, rule.duration, isReducedMotion);
     }
 
     function markArrival(target, className, duration, isReducedMotion) {
