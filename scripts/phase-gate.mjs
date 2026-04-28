@@ -970,6 +970,22 @@ assert(
 );
 assert('smooth scroll script exposes global', smoothScrollJs.includes('window.HazakuraSmoothScroll'));
 assert('smooth scroll uses shared scroll target', smoothScrollJs.includes('HazakuraScrollTarget?.scrollTo'));
+assert(
+  'smooth scroll delegates dynamic route clicks',
+  smoothScrollJs.includes("document.addEventListener('click', handleRouteClick)")
+    && smoothScrollJs.includes("document.removeEventListener('click', handleRouteClick)")
+    && smoothScrollJs.includes('findRouteLink(event.target, selector)')
+    && smoothScrollJs.includes('targetElement?.closest(selector)')
+    && smoothScrollJs.includes('findHashTarget(link.getAttribute')
+    && !smoothScrollJs.includes('document.querySelectorAll(selector).forEach'),
+  JSON.stringify({
+    hasDelegatedClick: smoothScrollJs.includes("document.addEventListener('click', handleRouteClick)"),
+    hasCleanup: smoothScrollJs.includes("document.removeEventListener('click', handleRouteClick)"),
+    findsClosestRoute: smoothScrollJs.includes('targetElement?.closest(selector)'),
+    hasHashGuard: smoothScrollJs.includes('findHashTarget(link.getAttribute'),
+    hasDirectBinding: smoothScrollJs.includes('document.querySelectorAll(selector).forEach')
+  })
+);
 assert('zone performance uses shared scroll target', zonePerformanceJs.includes('HazakuraScrollTarget?.scrollTo'));
 assert(
   'vision entry focus uses controller motion state for nudges',

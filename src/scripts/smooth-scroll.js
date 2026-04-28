@@ -40,6 +40,8 @@
         }
     ];
 
+    let removeRouteClickHandler = null;
+
     function init(options = {}) {
         const {
             selector = defaultSelector,
@@ -47,23 +49,58 @@
             getPrefersReducedMotion = () => false
         } = options;
 
-        document.querySelectorAll(selector).forEach((link) => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const href = link.getAttribute('href');
-                if (!href) return;
+        removeRouteClickHandler?.();
 
-                const target = document.querySelector(href);
-                if (!target) return;
+        const handleRouteClick = (event) => {
+            if (shouldIgnoreClick(event)) return;
 
-                window.HazakuraScrollTarget?.scrollTo(target, {
-                    offset,
-                    getPrefersReducedMotion
-                });
+            const link = findRouteLink(event.target, selector);
+            if (!link) return;
 
-                markMatchingArrival(link, target, getPrefersReducedMotion());
+            const target = findHashTarget(link.getAttribute('href'));
+            if (!target) return;
+
+            event.preventDefault();
+
+            window.HazakuraScrollTarget?.scrollTo(target, {
+                offset,
+                getPrefersReducedMotion
             });
-        });
+
+            markMatchingArrival(link, target, getPrefersReducedMotion());
+        };
+
+        document.addEventListener('click', handleRouteClick);
+        removeRouteClickHandler = () => {
+            document.removeEventListener('click', handleRouteClick);
+            removeRouteClickHandler = null;
+        };
+    }
+
+    function shouldIgnoreClick(event) {
+        return event.defaultPrevented
+            || event.button !== 0
+            || event.metaKey
+            || event.ctrlKey
+            || event.shiftKey
+            || event.altKey;
+    }
+
+    function findRouteLink(eventTarget, selector) {
+        const targetElement = eventTarget instanceof Element
+            ? eventTarget
+            : eventTarget?.parentElement;
+        const link = targetElement?.closest(selector);
+        return link && document.contains(link) ? link : null;
+    }
+
+    function findHashTarget(href) {
+        if (!href) return null;
+        try {
+            return document.querySelector(href);
+        } catch (error) {
+            return null;
+        }
     }
 
     function markMatchingArrival(link, target, isReducedMotion) {

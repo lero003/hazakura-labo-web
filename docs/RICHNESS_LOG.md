@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure / Access
+- Changed: ページ内リンクのスムーススクロールを、初期描画済みリンクへの直接 listener 登録から document への委譲型クリック受け口へ整理した。Quote 前ステップ、Projects から Research Log への戻り道、常設ナビ、フッター帰還の到着演出はそのまま維持し、再初期化時は古い受け口を外して二重登録しない形にした。phase gate でも直接バインドへ戻らないよう保護した。
+- Learned: 1ページの小径が増えるほど、リンクごとの listener 登録は見た目に出ない弱さになる。委譲型にしておくと、今後 Quote / Projects / Research の描画境界を触っても、導線演出の受け口を再登録し忘れにくい。
+- Next: preview 可能な環境で、ナビ、Quote 前の4ステップ、Projectsカード内の Research Log 戻りリンクを1回ずつ触り、到着光とフォーカス位置が従来通りに見えるか確認する。
+
+## 2026-04-29
+
+- Focus: Structure / Access
 - Changed: 常設ナビのリンク色、hover色、下線色、モバイル6分割ナビの背景・境界・hover背景を `--garden-nav-*` トークンへ寄せた。夜テーマと未スクロールHero上の色も同じ変数境界で受ける形にし、phase gate で `body.theme-night .nav-links a` の直指定へ戻らないよう保護した。
 - Learned: Research Log まで巡回路が増えた後は、見た目の小さな色差分でも昼夜・Hero・モバイルで指定場所が散ると、導線演出の次の調整が重くなる。ナビ単位の色契約に閉じると、情報を増やさずに参道の保守面積を小さくできる。
 - Next: ポート起動が許可される環境で、640px以下の昼夜ナビを実表示し、未スクロールHero上とスクロール後で文字色・hover背景が同じ意図に見えるか確認する。
