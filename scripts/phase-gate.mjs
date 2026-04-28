@@ -3,6 +3,7 @@ import vm from 'node:vm';
 import { hazakuraContent } from '../src/data/content.js';
 import { scriptLoadGroups, scriptLoadOrder } from '../src/data/script-load-order.js';
 import { libraryBooks } from '../src/data/library-books.js';
+import { siteMeta, siteSocialImageUrl } from '../src/data/site-meta.js';
 
 const checks = [];
 
@@ -67,6 +68,31 @@ assert(
   JSON.stringify(sectionPositions)
 );
 assert('legacy script is not loaded', !html.includes('/script.js'));
+assert(
+  'site metadata uses canonical absolute social routes',
+  siteMeta.siteUrl === 'https://hazakura-labo-web.pages.dev/'
+    && siteMeta.imagePath === '/img/hero.png'
+    && siteSocialImageUrl === 'https://hazakura-labo-web.pages.dev/img/hero.png'
+    && indexSource.includes("import { siteMeta, siteSocialImageUrl }")
+    && html.includes(`<link rel="canonical" href="${siteMeta.siteUrl}">`)
+    && html.includes(`<meta property="og:url" content="${siteMeta.siteUrl}">`)
+    && html.includes(`<meta property="og:image" content="${siteSocialImageUrl}">`)
+    && html.includes(`<meta name="twitter:image" content="${siteSocialImageUrl}">`)
+    && html.includes(`<link rel="icon" type="image/png" href="${siteMeta.imagePath}">`)
+    && html.includes(`src="${siteMeta.imagePath}"`)
+    && !html.includes('property="og:image" content="./img/hero.png"')
+    && !html.includes('name="twitter:image" content="./img/hero.png"'),
+  JSON.stringify({
+    siteUrl: siteMeta.siteUrl,
+    imagePath: siteMeta.imagePath,
+    socialImage: siteSocialImageUrl,
+    importsMeta: indexSource.includes("import { siteMeta, siteSocialImageUrl }"),
+    hasCanonical: html.includes(`<link rel="canonical" href="${siteMeta.siteUrl}">`),
+    hasOgUrl: html.includes(`<meta property="og:url" content="${siteMeta.siteUrl}">`),
+    hasOgImage: html.includes(`<meta property="og:image" content="${siteSocialImageUrl}">`),
+    hasTwitterImage: html.includes(`<meta name="twitter:image" content="${siteSocialImageUrl}">`)
+  })
+);
 assert(
   'vision entry appears before process flow',
   html.indexOf('id="vision-grid"') >= 0

@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Structure / Access
+- Changed: head内に直書きしていたタイトル、説明、OGP/Twitter画像、favicon、Hero画像altを `src/data/site-meta.js` へ寄せ、canonical / og:url / og:image / twitter:image を Cloudflare Pages の絶対URLで出力するようにした。phase gate にも相対OGPへ戻らない検査を追加した。
+- Learned: 庭の中の導線が整っても、外部共有や検索結果から入る最初の札が相対パス任せだと、入口の完成度が弱く見える。metaを小さなデータ境界へ置くと、今後のOGP画像差し替えやサイト説明の調整もページ構造を掘らずに済む。
+- Next: 実ブラウザまたは公開後のカードプレビューで、SNSカードが `hero.png` を拾えているか確認し、必要なら専用OGP画像の比率だけを次回小さく整える。
+
+## 2026-04-29
+
 - Focus: Access / Motion / Structure
 - Changed: 常設ナビとフッターの巡回路へ Research Log への `#research-log-strip` 導線を足し、ナビ・フッターから入った時も研究ログの handoff が短く光る `is-research-route-arrival` を追加した。モバイルナビは6項目グリッドへ更新し、phase gate で研究ログ導線と到着演出の契約を保護した。
 - Learned: Research Log はQuote前やProjectsカードから戻れるようになっていても、常設の巡回路に名前がないと、活動母艦の核である「問い・実験・発見」が少し隠れて見える。情報を増やさず、既存ランドマークへ入口を通すだけで、1ページの庭を巡る順路が読みやすくなる。
