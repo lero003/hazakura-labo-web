@@ -129,6 +129,7 @@ const contentRenderersJs = readFile('dist/content-renderers.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const projectRendererJs = readFile('dist/project-renderer.js');
 const quotePreludeJs = readFile('dist/quote-prelude.js');
+const visionRendererJs = readFile('dist/vision-renderer.js');
 const visionEntryFocusJs = readFile('dist/vision-entry-focus.js');
 const zoneNavJs = readFile('dist/zone-nav.js');
 const zoneAtmosphereJs = readFile('dist/zone-atmosphere.js');
@@ -264,19 +265,20 @@ assert(
 );
 assert(
   'vision entry fields stay folded',
-  contentRenderersJs.includes('class="vision-entry-guide__field-drawer"')
-    && contentRenderersJs.includes('<summary>')
-    && contentRenderersJs.includes('受付メモ')
+  visionRendererJs.includes('class="vision-entry-guide__field-drawer"')
+    && visionRendererJs.includes('<summary>')
+    && visionRendererJs.includes('受付メモ')
     && styleCss.includes('.vision-entry-guide__field-drawer')
     && styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after'),
   JSON.stringify({
-    hasDrawerRenderer: contentRenderersJs.includes('class="vision-entry-guide__field-drawer"'),
+    hasDrawerRenderer: visionRendererJs.includes('class="vision-entry-guide__field-drawer"'),
     hasDrawerStyles: styleCss.includes('.vision-entry-guide__field-drawer')
   })
 );
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates project renderer', contentRenderersJs.includes('HazakuraProjectRenderer?.render'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
+assert('content renderers delegates vision renderer', contentRenderersJs.includes('HazakuraVisionRenderer?.render'));
 assert(
   'content renderers keeps projects markup out of the orchestrator',
   !contentRenderersJs.includes('class="project-card"')
@@ -286,6 +288,17 @@ assert(
     hasProjectCard: contentRenderersJs.includes('class="project-card"'),
     hasProjectControlDeck: contentRenderersJs.includes('class="project-control-deck"'),
     hasProjectCycleDrawer: contentRenderersJs.includes('class="project-cycle-drawer"')
+  })
+);
+assert(
+  'content renderers keeps vision markup out of the orchestrator',
+  !contentRenderersJs.includes('class="vision-card"')
+    && !contentRenderersJs.includes('class="vision-entry-guide"')
+    && !contentRenderersJs.includes('class="vision-entry-question"'),
+  JSON.stringify({
+    hasVisionCard: contentRenderersJs.includes('class="vision-card"'),
+    hasVisionEntryGuide: contentRenderersJs.includes('class="vision-entry-guide"'),
+    hasVisionEntryQuestion: contentRenderersJs.includes('class="vision-entry-question"')
   })
 );
 assert('project renderer script exposes global', projectRendererJs.includes('window.HazakuraProjectRenderer'));
@@ -365,6 +378,29 @@ assert(
   })
 );
 assert('quote prelude script exposes global', quotePreludeJs.includes('window.HazakuraQuotePrelude'));
+assert('vision renderer script exposes global', visionRendererJs.includes('window.HazakuraVisionRenderer'));
+assert(
+  'vision renderer loads before content orchestrator and focus script',
+  html.indexOf('src="/vision-renderer.js"') >= 0
+    && html.indexOf('src="/vision-renderer.js"') < html.indexOf('src="/vision-entry-focus.js"')
+    && html.indexOf('src="/vision-renderer.js"') < html.indexOf('src="/content-renderers.js"'),
+  JSON.stringify({
+    visionRenderer: html.indexOf('src="/vision-renderer.js"'),
+    visionEntryFocus: html.indexOf('src="/vision-entry-focus.js"'),
+    contentRenderers: html.indexOf('src="/content-renderers.js"')
+  })
+);
+assert(
+  'vision renderer owns entry guide and card markup',
+  visionRendererJs.includes('class="vision-card"')
+    && visionRendererJs.includes('class="vision-entry-guide"')
+    && visionRendererJs.includes('class="vision-entry-kind-badge"'),
+  JSON.stringify({
+    hasVisionCard: visionRendererJs.includes('class="vision-card"'),
+    hasVisionEntryGuide: visionRendererJs.includes('class="vision-entry-guide"'),
+    hasKindBadge: visionRendererJs.includes('class="vision-entry-kind-badge"')
+  })
+);
 assert(
   'footer keeps final return path to hero',
   html.includes('class="footer-garden-close"')

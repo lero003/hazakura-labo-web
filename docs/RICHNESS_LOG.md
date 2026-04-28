@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: Vision の入口ガイド、入口バッジ、構想カード生成を `src/scripts/vision-renderer.js` へ切り出し、`content-renderers.js` は Vision 専用レンダラーへ委譲するだけにした。Astro配信ルートと script load order を追加し、phase gate で Vision markup が司令塔へ戻らないことも保護した。
+- Learned: 構想セクションは入口ガイド、カード、フォーカス演出が絡むため、汎用レンダラーに残すと次回の導線調整で読む範囲が広がる。見た目を変えない分割でも、預ける入口まわりを触る足場がかなり軽くなる。
+- Next: Research Log 側の handoff と log card 生成も、次に構想からログへの導線を触る前に専用レンダラー化するか点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: Library の2冊分の書籍カードを `src/data/library-books.js` へ切り出し、`index.astro` は同じ見た目のまま `libraryBooks.map` で描画する形にした。phase gate で書籍データ、表紙asset、CTA、`.book-3d` の複数冊描画契約を保護した。
 - Learned: 書庫は演出が育っていても、本文・表紙・価格・CTAがページ本体に残ると次の本追加や文脈調整で触る範囲が広がる。データ境界へ寄せると、書庫を「販売棚」ではなく「問いの結晶」として磨く入口が細くなる。
 - Next: Library 見出しと各本の短い説明が、販売情報より「どんな問いの結晶か」を先に読ませているか、文言だけで1冊ずつ点検する。
