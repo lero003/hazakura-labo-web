@@ -2927,27 +2927,38 @@ body.theme-night .section-vision {
     line-height: 1;
 }
 
-.vision-entry-guide__fields {
+.vision-entry-guide__fields,
+.vision-entry-question__fields {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.28rem;
-    margin: 0;
+    gap: var(--entry-field-gap, 0.28rem);
+    margin: var(--entry-field-margin, 0);
     padding: 0;
     list-style: none;
+}
+
+.vision-entry-question__fields {
+    --entry-field-gap: 0.3rem;
+    --entry-field-margin: 0.65rem 0 0;
+    --entry-field-padding: 0.22rem 0.48rem;
+    --entry-field-border-alpha: 0.22;
+    --entry-field-bg: rgba(var(--entry-accent-rgb), 0.08);
+    --entry-field-font-size: 0.68rem;
 }
 
 .vision-entry-guide__field-drawer .vision-entry-guide__fields {
     padding: 0 0.56rem 0.56rem;
 }
 
-.vision-entry-guide__fields li {
+.vision-entry-guide__fields li,
+.vision-entry-question__fields li {
     max-width: 100%;
-    padding: 0.22rem 0.42rem;
-    border: 1px solid rgba(var(--entry-accent-rgb), 0.2);
+    padding: var(--entry-field-padding, 0.22rem 0.42rem);
+    border: 1px solid rgba(var(--entry-accent-rgb), var(--entry-field-border-alpha, 0.2));
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.44);
+    background: var(--entry-field-bg, rgba(255, 255, 255, 0.44));
     color: var(--ink-600);
-    font-size: 0.67rem;
+    font-size: var(--entry-field-font-size, 0.67rem);
     font-weight: 700;
     line-height: 1.45;
     overflow-wrap: anywhere;
@@ -3223,28 +3234,6 @@ body.theme-night .section-vision {
 
 .vision-entry-question__prompt {
     display: block;
-}
-
-.vision-entry-question__fields {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    margin: 0.65rem 0 0;
-    padding: 0;
-    list-style: none;
-}
-
-.vision-entry-question__fields li {
-    max-width: 100%;
-    padding: 0.22rem 0.48rem;
-    border: 1px solid rgba(var(--entry-accent-rgb), 0.22);
-    border-radius: 6px;
-    background: rgba(var(--entry-accent-rgb), 0.08);
-    color: var(--ink-600);
-    font-size: 0.68rem;
-    font-weight: 700;
-    line-height: 1.45;
-    overflow-wrap: anywhere;
 }
 
 .vision-entry-question__handoff {
@@ -5248,16 +5237,6 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-card--placeholder {
     border-style: dashed;
-}
-
-.project-card--placeholder .project-thumb-placeholder {
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(139, 92, 246, 0.03) 10px,
-        rgba(139, 92, 246, 0.03) 20px
-    );
 }
 
 .project-thumb {

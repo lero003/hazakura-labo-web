@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure
+- Changed: Vision の入口ガイドと構想カード内で重複していたフィールドチップCSSを共通の `--entry-field-*` 変数へ寄せ、Projects のプレースホルダー背景定義の重複を1箇所に整理した。
+- Learned: 入力種別ガイドはカード側の質問フィールドと同じ「小さな預け口」なので、見た目を変えずにCSS契約だけ揃えると、次にフォーム下書きや種類追加を試す時の変更範囲が狭くなる。
+- Next: Vision の夜テーマ側に残る entry guide / entry question の上書きを1ブロックだけ点検し、昼テーマと同じ変数境界へ寄せられるか確認する。
+
+## 2026-04-28
+
 - Focus: Access / Structure
 - Changed: Research Log の由来表示、知恵断片、論文メモを `research-extra-drawer` にまとめ、本文の「問い・実験・発見」は常時見せたまま、補足だけを必要な時に開く小径へ畳んだ。夜テーマとモバイル幅の余白も追加し、phase gate で補足drawer契約を保護した。
 - Learned: Research Log は循環の厚みを出すほど、カードによって二次情報の重さがばらつく。補足を同じdrawerへ寄せると、ログの核は軽く読み進められ、深掘りしたいカードだけ開ける。
