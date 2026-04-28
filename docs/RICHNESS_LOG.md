@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: `src/pages/*.js.ts` と `style.css.ts` に散っていた互換配信の `new Response` / `Content-Type` 生成を、`src/route-responses.ts` の `javascriptResponse` / `stylesheetResponse` へ集約した。phase gate で各配信ルートが共通helperを使い、ローカルResponse生成へ戻らないことも保護した。
+- Learned: 演出scriptの粒度が細かくなるほど、ページ本体ではなく配信ルートのコピーが次の追加の迷いになる。見た目を変えない薄いhelperでも、script islandを増やす時の安全な差し込み口が読みやすくなる。
+- Next: `src/pages/index.astro` のLibrary周辺に残る表示用class組み立てが、次の書籍追加時にも十分軽いか、見た目を変えずに1ブロックだけ点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: 36本に増えた script load order を、`content-data` / `content-renderers` / `navigation-scroll` / `interaction-foundation` / `garden-effects` / `bootstrap` の責務グループへ整理した。生成される読み込み順は変えず、phase gate でグループ説明、重複なし、`app-controller.js` が最後に起動する契約を保護した。
 - Learned: 演出scriptが増えるほど、順番だけの配列では「どの庭仕事の層へ入れるべきか」が見えにくくなる。配信順をグループ化すると、次にスクロール間奏やCanvas演出を足す時も、起動順を崩さず差し込み場所を選びやすい。
 - Next: `src/pages/*.js.ts` の互換配信ルートに同じResponse生成が散っているため、見た目を変えない範囲で小さなroute helperへ寄せられるか点検する。

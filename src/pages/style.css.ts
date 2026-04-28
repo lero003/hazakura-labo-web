@@ -1,7 +1,6 @@
 import source from '../styles/site.css?raw';
+import { stylesheetResponse } from '../route-responses';
 
 export function GET() {
-  return new Response(source, {
-    headers: { 'Content-Type': 'text/css; charset=utf-8' }
-  });
+  return stylesheetResponse(source);
 }

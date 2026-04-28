@@ -1,9 +1,6 @@
 import source from '../scripts/shooting-stars.js?raw';
+import { javascriptResponse } from '../route-responses';
 
 export function GET() {
-  return new Response(source, {
-    headers: {
-      'Content-Type': 'text/javascript; charset=utf-8'
-    }
-  });
+  return javascriptResponse(source);
 }

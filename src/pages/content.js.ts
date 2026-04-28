@@ -1,9 +1,6 @@
 import { hazakuraContent } from '../data/content.js';
+import { javascriptResponse } from '../route-responses';
 
 export function GET() {
-  return new Response(`window.HAZAKURA_CONTENT = ${JSON.stringify(hazakuraContent, null, 2)};\n`, {
-    headers: {
-      'Content-Type': 'text/javascript; charset=utf-8'
-    }
-  });
+  return javascriptResponse(`window.HAZAKURA_CONTENT = ${JSON.stringify(hazakuraContent, null, 2)};\n`);
 }

@@ -25,6 +25,10 @@ function readFile(path) {
 
 const html = readFile('dist/index.html');
 const indexSource = readFile('src/pages/index.astro');
+const routeHelperSource = readFile('src/route-responses.ts');
+const pageEndpointFiles = fs.readdirSync('src/pages')
+  .filter((file) => file.endsWith('.js.ts') || file === 'style.css.ts')
+  .sort();
 const rendererScriptPaths = [
   '/project-renderer.js',
   '/quote-prelude.js',
@@ -90,6 +94,21 @@ assert(
   'script load order is stable',
   scriptPositions.every(([, index], itemIndex) => index >= 0 && (itemIndex === 0 || scriptPositions[itemIndex - 1][1] < index)),
   JSON.stringify(scriptPositions)
+);
+assert(
+  'compatible asset routes share response helper',
+  routeHelperSource.includes('javascriptResponse')
+    && routeHelperSource.includes('stylesheetResponse')
+    && routeHelperSource.includes('new Response')
+    && pageEndpointFiles.every((file) => readFile(`src/pages/${file}`).includes("../route-responses"))
+    && pageEndpointFiles.every((file) => !readFile(`src/pages/${file}`).includes('new Response'))
+    && readFile('src/pages/style.css.ts').includes('stylesheetResponse(source)')
+    && pageEndpointFiles.filter((file) => file.endsWith('.js.ts')).every((file) => readFile(`src/pages/${file}`).includes('javascriptResponse(')),
+  JSON.stringify({
+    endpointCount: pageEndpointFiles.length,
+    missingHelperImport: pageEndpointFiles.filter((file) => !readFile(`src/pages/${file}`).includes("../route-responses")),
+    localResponses: pageEndpointFiles.filter((file) => readFile(`src/pages/${file}`).includes('new Response'))
+  })
 );
 
 const requiredAssets = [
