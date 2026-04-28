@@ -484,6 +484,21 @@ assert('smooth scroll uses measured offset', smoothScrollJs.includes('HazakuraSc
 assert('zone performance uses measured offset', zonePerformanceJs.includes('HazakuraScrollOffset?.get'));
 assert('smooth scroll includes library projects bridge', smoothScrollJs.includes('.library-projects-bridge__link'));
 assert(
+  'footer return path uses smooth scroll arrival',
+  smoothScrollJs.includes('.footer-garden-close__link[href^="#"]')
+    && smoothScrollJs.includes('markFooterReturnArrival')
+    && smoothScrollJs.includes('is-footer-return-arrival')
+    && styleCss.includes('.hero.is-footer-return-arrival::after')
+    && styleCss.includes('@keyframes footerReturnThread'),
+  JSON.stringify({
+    hasSelector: smoothScrollJs.includes('.footer-garden-close__link[href^="#"]'),
+    hasHandler: smoothScrollJs.includes('markFooterReturnArrival'),
+    hasArrivalClass: smoothScrollJs.includes('is-footer-return-arrival'),
+    hasStyle: styleCss.includes('.hero.is-footer-return-arrival::after'),
+    hasKeyframes: styleCss.includes('@keyframes footerReturnThread')
+  })
+);
+assert(
   'quote prelude foldback uses smooth scroll arrival',
   smoothScrollJs.includes('.quote-prelude-step[href^="#"]')
     && smoothScrollJs.includes('markQuoteReturnArrival')

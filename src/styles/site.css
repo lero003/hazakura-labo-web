@@ -666,6 +666,28 @@ a {
     animation: fadeUp 1s var(--ease-out-expo) 1s forwards;
 }
 
+.hero.is-footer-return-arrival::after {
+    content: '';
+    position: absolute;
+    z-index: 4;
+    left: max(1.5rem, calc(50% - 34rem));
+    right: max(1.5rem, calc(50% - 34rem));
+    bottom: clamp(5.5rem, 14vh, 10rem);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(232, 88, 122, 0.42), rgba(90, 158, 95, 0.32), transparent);
+    opacity: 0;
+    pointer-events: none;
+    animation: footerReturnThread 1.65s ease-out;
+}
+
+.hero.is-footer-return-arrival .title-accent-line {
+    animation: footerReturnAccent 1.5s ease-out both;
+}
+
+.hero.is-footer-return-arrival .hero-scroll-hint {
+    animation: footerReturnScrollHint 1.45s ease-out;
+}
+
 .hero-subtitle {
     font-family: var(--font-serif);
     font-size: 1rem;
@@ -1908,6 +1930,55 @@ a {
     }
 }
 
+@keyframes footerReturnThread {
+    0% {
+        opacity: 0;
+        transform: scaleX(0.18);
+        filter: blur(6px);
+    }
+    30% {
+        opacity: 0.88;
+    }
+    100% {
+        opacity: 0;
+        transform: scaleX(1);
+        filter: blur(14px);
+    }
+}
+
+@keyframes footerReturnAccent {
+    0% {
+        opacity: 1;
+        transform: translateY(0.18rem);
+        filter: drop-shadow(0 0 0 rgba(232, 88, 122, 0));
+    }
+    42% {
+        opacity: 1;
+        transform: translateY(-0.06rem);
+        filter: drop-shadow(0 0 18px rgba(232, 88, 122, 0.34));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: drop-shadow(0 0 0 rgba(232, 88, 122, 0));
+    }
+}
+
+@keyframes footerReturnScrollHint {
+    0% {
+        opacity: 0.45;
+        transform: translateY(0.45rem);
+    }
+    45% {
+        opacity: 1;
+        transform: translateY(-0.2rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .library-projects-bridge::after,
     .library-projects-bridge__thread::after,
@@ -1916,7 +1987,10 @@ a {
     .section-projects.is-handoff-arrival .project-control-deck,
     .section.is-quote-return-arrival .section-header::after,
     .section.is-quote-return-arrival .section-label,
-    .section.is-quote-return-arrival .section-title {
+    .section.is-quote-return-arrival .section-title,
+    .hero.is-footer-return-arrival::after,
+    .hero.is-footer-return-arrival .title-accent-line,
+    .hero.is-footer-return-arrival .hero-scroll-hint {
         animation: none;
     }
 }

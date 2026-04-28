@@ -3,7 +3,7 @@
 
     function init(options = {}) {
         const {
-            selector = '.nav-links a[href^="#"], .footer-nav a[href^="#"], .hero-cta[href^="#"], .library-projects-bridge__link[href^="#"], .quote-prelude-step[href^="#"]',
+            selector = '.nav-links a[href^="#"], .footer-nav a[href^="#"], .footer-garden-close__link[href^="#"], .hero-cta[href^="#"], .library-projects-bridge__link[href^="#"], .quote-prelude-step[href^="#"]',
             offset = 72,
             getPrefersReducedMotion = () => false
         } = options;
@@ -31,6 +31,10 @@
                 if (link.matches('.quote-prelude-step')) {
                     markQuoteReturnArrival(target, getPrefersReducedMotion());
                 }
+
+                if (link.matches('.footer-garden-close__link')) {
+                    markFooterReturnArrival(target, getPrefersReducedMotion());
+                }
             });
         });
     }
@@ -41,6 +45,10 @@
 
     function markQuoteReturnArrival(target, isReducedMotion) {
         markArrival(target, 'is-quote-return-arrival', 1600, isReducedMotion);
+    }
+
+    function markFooterReturnArrival(target, isReducedMotion) {
+        markArrival(target, 'is-footer-return-arrival', 1700, isReducedMotion);
     }
 
     function markArrival(target, className, duration, isReducedMotion) {

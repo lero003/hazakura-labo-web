@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Motion / Access / Structure
+- Changed: フッターの `はじまりへ戻る` を通常ジャンプから測定済みスムーススクロールへ接続し、Hero到着時に短い帰還光とアクセント行の受け取りを出すようにした。Phase gate でフッター帰還導線と到着演出の契約も保護した。
+- Learned: 最後の小径は見た目だけ庭らしくても、クリック後に急に先頭へ飛ぶと読後の余韻が切れる。既存のsmooth-scroll境界へ入れるだけで、情報を増やさず循環の体験を閉じられる。
+- Next: preview可能な環境で、FooterからHeroへ戻るスクロール距離とHero到着光がモバイル幅で強すぎないか確認する。
+
+## 2026-04-28
+
 - Focus: Structure
 - Changed: Research Log への橋渡しCSSを `--research-handoff-*` トークンへ寄せ、夜テーマの疑似要素・テキスト色上書きをコンポーネント変数だけで扱うようにした。Phase gate に直指定へ戻らない保護も追加した。
 - Learned: Library / Projects の橋渡しだけでなく Vision 内の Research 導線も同じトークン境界へ揃えると、次の間奏演出を足す時に夜テーマ差分を追いやすくなる。
