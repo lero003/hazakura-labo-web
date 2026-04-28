@@ -876,6 +876,9 @@ assert(
     && styleCss.includes('.research-log-card.is-research-return-arrival')
     && styleCss.includes('@keyframes researchReturnGlow')
     && styleCss.includes('.project-return-link:focus-visible')
+    && ['--project-return-bg', '--project-return-hover-bg', '--project-return-focus-outline', '--project-return-label-color'].every((snippet) => styleCss.includes(snippet))
+    && !styleCss.includes('body.theme-night .section-projects .project-return-link:hover')
+    && !styleCss.includes('body.theme-night .section-projects .project-return-link span')
     && hazakuraContent.projectsGroup.items
       .filter((item) => item.returnLink?.href?.startsWith('#'))
       .every((item) => hazakuraContent.researchGroup.logs.some((log) => item.returnLink.href === `#${log.id}`)),
@@ -885,6 +888,12 @@ assert(
     hasArrivalStyle: styleCss.includes('.research-log-card.is-research-return-arrival'),
     hasKeyframes: styleCss.includes('@keyframes researchReturnGlow'),
     hasFocusStyle: styleCss.includes('.project-return-link:focus-visible'),
+    hasReturnBgToken: styleCss.includes('--project-return-bg'),
+    hasReturnHoverToken: styleCss.includes('--project-return-hover-bg'),
+    hasReturnFocusToken: styleCss.includes('--project-return-focus-outline'),
+    hasReturnLabelToken: styleCss.includes('--project-return-label-color'),
+    hasDirectNightHover: styleCss.includes('body.theme-night .section-projects .project-return-link:hover'),
+    hasDirectNightLabel: styleCss.includes('body.theme-night .section-projects .project-return-link span'),
     returnTargets: hazakuraContent.projectsGroup.items
       .filter((item) => item.returnLink?.href?.startsWith('#'))
       .map((item) => item.returnLink.href)

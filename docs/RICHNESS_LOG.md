@@ -1,5 +1,12 @@
 # リッチ化ログ
 
+## 2026-04-29
+
+- Focus: Structure / Access
+- Changed: Projectsカード内のResearch Log戻りリンクを、直指定の昼夜テーマから `--project-return-*` のローカルCSS変数へ寄せた。hover / focus / ラベル色も同じ境界で扱い、phase gate で夜テーマの子セレクタ上書きへ戻らないよう保護した。
+- Learned: スムーススクロールや到着光が整っても、リンク本体の見た目契約が散ると次の小径調整で昼夜差分とキーボード状態を追い直すことになる。戻り道をリンク単位の変数にまとめると、体験を変えずに導線の保守面積を減らせる。
+- Next: Projectsカード内の `project-why` / `project-action-note` も、同じ注釈系UIとして昼夜テーマが直指定に散っていないか1テーマだけ点検する。
+
 ## 2026-04-28
 
 - Focus: Access / Motion / Structure

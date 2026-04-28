@@ -5661,6 +5661,13 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-return-link {
+    --project-return-bg: rgba(232, 88, 122, 0.08);
+    --project-return-border: rgba(232, 88, 122, 0.2);
+    --project-return-color: var(--ink-600);
+    --project-return-hover-bg: rgba(232, 88, 122, 0.13);
+    --project-return-hover-border: rgba(232, 88, 122, 0.36);
+    --project-return-focus-outline: rgba(232, 88, 122, 0.38);
+    --project-return-label-color: var(--sakura-500);
     display: inline-flex;
     flex-wrap: wrap;
     gap: 0.32rem 0.55rem;
@@ -5669,10 +5676,10 @@ body.theme-night .section-layers .layer-sequence__beam {
     max-width: 100%;
     margin: -0.35rem 0 1rem;
     padding: 0.58rem 0.78rem;
-    border: 1px solid rgba(232, 88, 122, 0.2);
+    border: 1px solid var(--project-return-border);
     border-radius: 999px;
-    background: rgba(232, 88, 122, 0.08);
-    color: var(--ink-600);
+    background: var(--project-return-bg);
+    color: var(--project-return-color);
     font-size: 0.78rem;
     font-weight: 700;
     line-height: 1.45;
@@ -5681,21 +5688,21 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-return-link:hover {
     transform: translateY(-1px);
-    border-color: rgba(232, 88, 122, 0.36);
-    background: rgba(232, 88, 122, 0.13);
+    border-color: var(--project-return-hover-border);
+    background: var(--project-return-hover-bg);
 }
 
 .project-return-link:focus-visible {
-    outline: 2px solid rgba(232, 88, 122, 0.38);
+    outline: 2px solid var(--project-return-focus-outline);
     outline-offset: 3px;
     transform: translateY(-1px);
-    border-color: rgba(232, 88, 122, 0.38);
-    background: rgba(232, 88, 122, 0.13);
+    border-color: var(--project-return-focus-border, var(--project-return-hover-border));
+    background: var(--project-return-focus-bg, var(--project-return-hover-bg));
 }
 
 .project-return-link span {
     flex: 0 0 auto;
-    color: var(--sakura-500);
+    color: var(--project-return-label-color);
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -6418,18 +6425,13 @@ body.theme-night .section-projects .project-action-note span {
 }
 
 body.theme-night .section-projects .project-return-link {
-    background: rgba(232, 88, 122, 0.1);
-    border-color: rgba(232, 88, 122, 0.24);
-    color: var(--body-text);
-}
-
-body.theme-night .section-projects .project-return-link:hover {
-    background: rgba(232, 88, 122, 0.16);
-    border-color: rgba(232, 88, 122, 0.4);
-}
-
-body.theme-night .section-projects .project-return-link span {
-    color: var(--sakura-400);
+    --project-return-bg: rgba(232, 88, 122, 0.1);
+    --project-return-border: rgba(232, 88, 122, 0.24);
+    --project-return-color: var(--body-text);
+    --project-return-hover-bg: rgba(232, 88, 122, 0.16);
+    --project-return-hover-border: rgba(232, 88, 122, 0.4);
+    --project-return-focus-outline: rgba(232, 88, 122, 0.48);
+    --project-return-label-color: var(--sakura-400);
 }
 
 body.theme-night .section-projects .project-cycle-drawer {
