@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: 36本に増えた script load order を、`content-data` / `content-renderers` / `navigation-scroll` / `interaction-foundation` / `garden-effects` / `bootstrap` の責務グループへ整理した。生成される読み込み順は変えず、phase gate でグループ説明、重複なし、`app-controller.js` が最後に起動する契約を保護した。
+- Learned: 演出scriptが増えるほど、順番だけの配列では「どの庭仕事の層へ入れるべきか」が見えにくくなる。配信順をグループ化すると、次にスクロール間奏やCanvas演出を足す時も、起動順を崩さず差し込み場所を選びやすい。
+- Next: `src/pages/*.js.ts` の互換配信ルートに同じResponse生成が散っているため、見た目を変えない範囲で小さなroute helperへ寄せられるか点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: DOM文字列を生成する各レンダラーに重複していたHTMLエスケープ処理と外部リンク表示名の整形を、`src/scripts/dom-helpers.js` へ集約した。Astro配信ルートと script load order を追加し、phase gate で共通ヘルパーがレンダラーより先に読み込まれること、重複した `escapeHtml` が戻らないことを保護した。
 - Learned: Projects / Vision / Research / Quote の描画は見た目の責務が分かれていても、DOM文字列の安全処理は同じ土台を共有している。ここが散ると、次にカードや間奏を足す時に安全処理の差分を追う範囲が無駄に広がる。
 - Next: `project-renderer.js` の action / trail / cycle の小関数が、次のProjects改善時に読みやすい順序になっているか、見た目を変えずに1ブロックだけ点検する。

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { hazakuraContent } from '../src/data/content.js';
-import { scriptLoadOrder } from '../src/data/script-load-order.js';
+import { scriptLoadGroups, scriptLoadOrder } from '../src/data/script-load-order.js';
 import { libraryBooks } from '../src/data/library-books.js';
 
 const checks = [];
@@ -69,6 +69,23 @@ assert(
   })
 );
 const scriptPositions = scriptLoadOrder.map((path) => [path, html.indexOf(`src="${path}"`)]);
+const scriptGroupNames = scriptLoadGroups.map((group) => group.name);
+const groupedScriptPaths = scriptLoadGroups.flatMap((group) => group.scripts);
+const duplicateScriptPaths = groupedScriptPaths.filter((path, index) => groupedScriptPaths.indexOf(path) !== index);
+assert(
+  'script load manifest stays grouped by responsibility',
+  ['content-data', 'content-renderers', 'navigation-scroll', 'interaction-foundation', 'garden-effects', 'bootstrap'].every((name) => scriptGroupNames.includes(name))
+    && scriptLoadGroups.every((group) => group.description && Array.isArray(group.scripts) && group.scripts.length > 0)
+    && JSON.stringify(groupedScriptPaths) === JSON.stringify(scriptLoadOrder)
+    && duplicateScriptPaths.length === 0
+    && scriptLoadOrder.at(-1) === '/app-controller.js',
+  JSON.stringify({
+    groups: scriptGroupNames,
+    hasDescriptions: scriptLoadGroups.every((group) => Boolean(group.description)),
+    duplicateScriptPaths,
+    finalScript: scriptLoadOrder.at(-1)
+  })
+);
 assert(
   'script load order is stable',
   scriptPositions.every(([, index], itemIndex) => index >= 0 && (itemIndex === 0 || scriptPositions[itemIndex - 1][1] < index)),
