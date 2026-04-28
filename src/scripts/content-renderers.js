@@ -1,18 +1,10 @@
 (function () {
     'use strict';
 
+    const { escapeHtml } = window.HazakuraDom;
+
     function create(options = {}) {
         const { onRendered } = options;
-
-        function escapeHtml(value) {
-            return String(value ?? '').replace(/[&<>"']/g, (char) => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;'
-            })[char]);
-        }
 
         function renderPhilosophy(items) {
             const root = document.querySelector('[data-render="philosophy"]');

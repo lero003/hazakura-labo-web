@@ -25,6 +25,13 @@ function readFile(path) {
 
 const html = readFile('dist/index.html');
 const indexSource = readFile('src/pages/index.astro');
+const rendererScriptPaths = [
+  '/project-renderer.js',
+  '/quote-prelude.js',
+  '/vision-renderer.js',
+  '/research-renderer.js',
+  '/content-renderers.js'
+];
 assert('dist/index.html exists', Boolean(html));
 
 const sections = ['hero', 'philosophy', 'layers', 'library', 'projects', 'vision', 'quote'];
@@ -125,6 +132,7 @@ assert(
 
 const appControllerJs = readFile('dist/app-controller.js');
 const styleCss = readFile('dist/style.css');
+const domHelpersJs = readFile('dist/dom-helpers.js');
 const contentRenderersJs = readFile('dist/content-renderers.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const projectRendererJs = readFile('dist/project-renderer.js');
@@ -196,6 +204,35 @@ assert('app controller delegates aurora canvas', appControllerJs.includes('Hazak
 assert('app controller delegates shooting stars', appControllerJs.includes('HazakuraShootingStars?.create'));
 assert('app controller delegates cursor follow', appControllerJs.includes('HazakuraCursorFollow?.create'));
 assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
+assert('dom helpers script exposes global', domHelpersJs.includes('window.HazakuraDom'));
+assert(
+  'dom helpers load before DOM string renderers',
+  html.indexOf('src="/dom-helpers.js"') >= 0
+    && rendererScriptPaths.every((path) => html.indexOf(`src="${path}"`) > html.indexOf('src="/dom-helpers.js"')),
+  JSON.stringify({
+    domHelpers: html.indexOf('src="/dom-helpers.js"'),
+    renderers: Object.fromEntries(rendererScriptPaths.map((path) => [path, html.indexOf(`src="${path}"`)]))
+  })
+);
+assert(
+  'DOM string renderers share escape helper',
+  [contentRenderersJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => source.includes('window.HazakuraDom'))
+    && [contentRenderersJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => !source.includes('function escapeHtml')),
+  JSON.stringify({
+    contentUsesHelper: contentRenderersJs.includes('window.HazakuraDom'),
+    projectUsesHelper: projectRendererJs.includes('window.HazakuraDom'),
+    quoteUsesHelper: quotePreludeJs.includes('window.HazakuraDom'),
+    researchUsesHelper: researchRendererJs.includes('window.HazakuraDom'),
+    visionUsesHelper: visionRendererJs.includes('window.HazakuraDom'),
+    duplicateEscapeFunctions: [
+      ['content-renderers', contentRenderersJs.includes('function escapeHtml')],
+      ['project-renderer', projectRendererJs.includes('function escapeHtml')],
+      ['quote-prelude', quotePreludeJs.includes('function escapeHtml')],
+      ['research-renderer', researchRendererJs.includes('function escapeHtml')],
+      ['vision-renderer', visionRendererJs.includes('function escapeHtml')]
+    ].filter(([, hasDuplicate]) => hasDuplicate).map(([name]) => name)
+  })
+);
 assert('style sheet contains design tokens', styleCss.includes('--sakura-500') && styleCss.includes('.hero'));
 assert(
   'style sheet contains shared anchor offset',

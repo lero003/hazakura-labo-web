@@ -1,15 +1,7 @@
 (function () {
   'use strict';
 
-  function escapeHtml(value) {
-    return String(value ?? '').replace(/[&<>"']/g, (char) => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    })[char]);
-  }
+  const { escapeHtml } = window.HazakuraDom;
 
   function getProjectActionType(item) {
     if (!item.href) return 'status';

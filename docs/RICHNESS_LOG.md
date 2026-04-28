@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: DOM文字列を生成する各レンダラーに重複していたHTMLエスケープ処理と外部リンク表示名の整形を、`src/scripts/dom-helpers.js` へ集約した。Astro配信ルートと script load order を追加し、phase gate で共通ヘルパーがレンダラーより先に読み込まれること、重複した `escapeHtml` が戻らないことを保護した。
+- Learned: Projects / Vision / Research / Quote の描画は見た目の責務が分かれていても、DOM文字列の安全処理は同じ土台を共有している。ここが散ると、次にカードや間奏を足す時に安全処理の差分を追う範囲が無駄に広がる。
+- Next: `project-renderer.js` の action / trail / cycle の小関数が、次のProjects改善時に読みやすい順序になっているか、見た目を変えずに1ブロックだけ点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: Vision の入口ガイドとカード内の受付メモで散っていた夜テーマ上書きを、`--vision-entry-*` / `--vision-question-*` のローカルCSS変数へ寄せた。Phase gate に、入口ガイド・受付メモの夜テーマが子セレクタ直指定へ戻らない保護も追加した。
 - Learned: Vision の入口はガイド、受付メモ、カード内質問が同じ「預け口」として連動するため、色や背景を子要素ごとに上書きすると次の演出調整で追う範囲が広がる。入口単位の変数に寄せると、見た目を変えずに小さな遊びを足す余地が残る。
 - Next: Vision の `entry-kind` 別アクセント背景と hover / active 背景も、必要なら同じ変数境界へ一段だけ寄せられるか点検する。

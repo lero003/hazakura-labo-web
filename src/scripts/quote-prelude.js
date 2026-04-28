@@ -1,11 +1,7 @@
 (function () {
   'use strict';
 
-  function escapeHtml(value) {
-    const div = document.createElement('div');
-    div.textContent = value ?? '';
-    return div.innerHTML;
-  }
+  const { escapeHtml } = window.HazakuraDom;
 
   function render(item) {
     const root = document.querySelector('[data-render="quotePrelude"]');

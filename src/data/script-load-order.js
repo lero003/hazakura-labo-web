@@ -1,5 +1,6 @@
 export const scriptLoadOrder = [
   '/content.js',
+  '/dom-helpers.js',
   '/project-filter.js',
   '/project-renderer.js',
   '/quote-prelude.js',
