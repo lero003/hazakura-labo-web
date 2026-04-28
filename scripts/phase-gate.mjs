@@ -120,6 +120,8 @@ assert(
   'persistent garden routes are data-backed',
   indexSource.includes("import { siteNavigation }")
     && indexSource.includes('siteNavigation.map')
+    && indexSource.includes('aria-label="葉桜ラボの主要巡回路"')
+    && indexSource.includes('aria-label="葉桜ラボの終端巡回路"')
     && !indexSource.includes('<li><a href="#philosophy">')
     && !indexSource.includes('<a href="#philosophy">哲学</a>')
     && JSON.stringify(siteNavigation.map((item) => item.href)) === JSON.stringify(expectedNavigationHrefs)
@@ -129,6 +131,8 @@ assert(
   JSON.stringify({
     importsNavigation: indexSource.includes("import { siteNavigation }"),
     mapsNavigation: indexSource.includes('siteNavigation.map'),
+    hasMainRouteLabel: indexSource.includes('aria-label="葉桜ラボの主要巡回路"'),
+    hasFooterRouteLabel: indexSource.includes('aria-label="葉桜ラボの終端巡回路"'),
     hardcodedNavPhilosophy: indexSource.includes('<li><a href="#philosophy">'),
     hardcodedFooterPhilosophy: indexSource.includes('<a href="#philosophy">哲学</a>'),
     hrefs: siteNavigation.map((item) => item.href),
@@ -318,6 +322,9 @@ assert(
   html.includes('href="#research-log-strip">記 録</a>')
     && html.includes('href="#research-log-strip">記録</a>')
     && styleCss.includes('grid-template-columns: repeat(6, minmax(0, 1fr))')
+    && styleCss.includes('.nav-logo:focus-visible')
+    && styleCss.includes('.footer-nav a:focus-visible')
+    && styleCss.includes('--garden-route-focus-outline')
     && smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]')
     && smoothScrollJs.includes('is-research-route-arrival')
     && styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff'),
@@ -325,6 +332,9 @@ assert(
     hasNavLink: html.includes('href="#research-log-strip">記 録</a>'),
     hasFooterLink: html.includes('href="#research-log-strip">記録</a>'),
     hasSixColumnMobileNav: styleCss.includes('grid-template-columns: repeat(6, minmax(0, 1fr))'),
+    hasMainRouteFocus: styleCss.includes('.nav-logo:focus-visible'),
+    hasFooterRouteFocus: styleCss.includes('.footer-nav a:focus-visible'),
+    hasFocusToken: styleCss.includes('--garden-route-focus-outline'),
     hasSmoothScrollSelector: smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]'),
     hasArrivalClass: smoothScrollJs.includes('is-research-route-arrival'),
     hasArrivalStyle: styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff')

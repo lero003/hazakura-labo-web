@@ -390,6 +390,9 @@ a {
 
 /* --- Navigation --- */
 .nav {
+    --garden-route-focus-outline: rgba(232, 88, 122, 0.38);
+    --garden-route-focus-bg: rgba(255, 255, 255, 0.48);
+    --garden-route-focus-shadow: 0 0 0 6px rgba(232, 88, 122, 0.08);
     position: fixed;
     top: 0;
     left: 0;
@@ -424,6 +427,7 @@ a {
     font-size: 1.25rem;
     color: var(--ink-800);
     letter-spacing: 0.1em;
+    transition: color var(--duration-fast) ease, background var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
 }
 
 .logo-icon {
@@ -457,7 +461,7 @@ a {
     color: var(--ink-600);
     position: relative;
     padding-bottom: 4px;
-    transition: color var(--duration-fast) ease;
+    transition: color var(--duration-fast) ease, background var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
 }
 
 .nav-links a::after {
@@ -476,6 +480,25 @@ a {
 }
 
 .nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-logo:focus-visible,
+.nav-links a:focus-visible,
+.footer-nav a:focus-visible {
+    outline: 2px solid var(--garden-route-focus-outline);
+    outline-offset: 4px;
+    border-radius: 999px;
+    background: var(--garden-route-focus-bg);
+    box-shadow: var(--garden-route-focus-shadow);
+}
+
+.nav-logo:focus-visible,
+.nav-links a:focus-visible {
+    color: var(--sakura-500);
+}
+
+.nav-links a:focus-visible::after {
     width: 100%;
 }
 
@@ -3819,6 +3842,9 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .footer-nav {
+    --garden-route-focus-outline: rgba(232, 88, 122, 0.38);
+    --garden-route-focus-bg: rgba(255, 255, 255, 0.12);
+    --garden-route-focus-shadow: 0 0 0 6px rgba(232, 88, 122, 0.08);
     display: flex;
     justify-content: center;
     gap: 2rem;
@@ -3829,10 +3855,11 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     font-size: 0.8rem;
     color: var(--ink-500);
     letter-spacing: 0.1em;
-    transition: color var(--duration-fast) ease;
+    transition: color var(--duration-fast) ease, background var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
 }
 
-.footer-nav a:hover {
+.footer-nav a:hover,
+.footer-nav a:focus-visible {
     color: var(--sakura-400);
 }
 
@@ -6555,6 +6582,12 @@ body.theme-night .section-projects .tag {
    ============================================================ */
 
 /* Scrolled nav becomes dark when theme-night */
+body.theme-night .nav {
+    --garden-route-focus-outline: rgba(247, 135, 154, 0.46);
+    --garden-route-focus-bg: rgba(255, 255, 255, 0.08);
+    --garden-route-focus-shadow: 0 0 0 6px rgba(247, 135, 154, 0.1);
+}
+
 body.theme-night .nav.scrolled {
     background: rgba(15, 12, 30, 0.9);
     backdrop-filter: blur(20px) saturate(180%);
@@ -6576,6 +6609,12 @@ body.theme-night .nav-links a:hover {
 
 body.theme-night .nav-links a::after {
     background: var(--sakura-400);
+}
+
+body.theme-night .footer-nav {
+    --garden-route-focus-outline: rgba(247, 135, 154, 0.46);
+    --garden-route-focus-bg: rgba(255, 255, 255, 0.08);
+    --garden-route-focus-shadow: 0 0 0 6px rgba(247, 135, 154, 0.1);
 }
 
 /* ============================================

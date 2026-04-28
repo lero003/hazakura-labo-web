@@ -51,7 +51,7 @@ import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
     <canvas id="sakura-canvas"></canvas>
 
     <!-- ナビゲーション -->
-    <nav id="nav-main" class="nav">
+    <nav id="nav-main" class="nav" aria-label="葉桜ラボの主要巡回路">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo" id="nav-logo">
                 <span class="logo-icon">🌸</span>
@@ -234,11 +234,11 @@ import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
                         <span aria-hidden="true">↑</span>
                     </a>
                 </div>
-                <div class="footer-nav">
+                <nav class="footer-nav" aria-label="葉桜ラボの終端巡回路">
                     {siteNavigation.map((item) => (
                         <a href={item.href}>{item.footerLabel}</a>
                     ))}
-                </div>
+                </nav>
                 <div class="footer-links">
                     <a href="https://www.amazon.co.jp/dp/B0GSWNNZL7" target="_blank"
                         rel="noopener noreferrer">Kindleで読む</a>
