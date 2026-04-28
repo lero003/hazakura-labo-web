@@ -2003,6 +2003,7 @@ a {
     .section.is-quote-return-arrival .section-label,
     .section.is-quote-return-arrival .section-title,
     .research-log-strip.is-quote-return-arrival .research-log-handoff,
+    .research-log-strip.is-research-route-arrival .research-log-handoff,
     .research-log-card.is-research-return-arrival,
     .hero.is-garden-return-arrival::after,
     .hero.is-garden-return-arrival .title-accent-line,
@@ -2234,7 +2235,7 @@ a {
     transform: translateY(0);
 }
 
-.research-log-strip.is-quote-return-arrival .research-log-handoff {
+.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff {
     animation: researchReturnGlow 1.45s var(--ease-out-expo) both;
 }
 
@@ -7367,7 +7368,7 @@ body.theme-night .nav:not(.scrolled) .nav-links a:hover {
 
     .nav-links {
         display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 0.3rem;
         width: 100%;
         padding: 0.3rem;

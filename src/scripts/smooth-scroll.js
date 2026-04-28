@@ -29,6 +29,11 @@
             duration: 1500
         },
         {
+            selector: '.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]',
+            className: 'is-research-route-arrival',
+            duration: 1500
+        },
+        {
             selector: '.nav-logo, .footer-garden-close__link',
             className: 'is-garden-return-arrival',
             duration: 1700

@@ -266,6 +266,23 @@ assert(
   })
 );
 assert(
+  'research log is reachable from persistent garden routes',
+  html.includes('href="#research-log-strip">記 録</a>')
+    && html.includes('href="#research-log-strip">記録</a>')
+    && styleCss.includes('grid-template-columns: repeat(6, minmax(0, 1fr))')
+    && smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]')
+    && smoothScrollJs.includes('is-research-route-arrival')
+    && styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff'),
+  JSON.stringify({
+    hasNavLink: html.includes('href="#research-log-strip">記 録</a>'),
+    hasFooterLink: html.includes('href="#research-log-strip">記録</a>'),
+    hasSixColumnMobileNav: styleCss.includes('grid-template-columns: repeat(6, minmax(0, 1fr))'),
+    hasSmoothScrollSelector: smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]'),
+    hasArrivalClass: smoothScrollJs.includes('is-research-route-arrival'),
+    hasArrivalStyle: styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff')
+  })
+);
+assert(
   'quote prelude theme is tokenized',
   [
     '--quote-prelude-bg',
@@ -914,14 +931,14 @@ assert(
     && smoothScrollJs.includes('markMatchingArrival')
     && smoothScrollJs.includes('is-quote-return-arrival')
     && styleCss.includes('.section.is-quote-return-arrival .section-header::after')
-    && styleCss.includes('.research-log-strip.is-quote-return-arrival .research-log-handoff')
+    && styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff')
     && styleCss.includes('@keyframes quoteReturnGlow'),
   JSON.stringify({
     hasSelector: smoothScrollJs.includes('.quote-prelude-step[href^="#"]'),
     hasHandler: smoothScrollJs.includes('markMatchingArrival'),
     hasArrivalClass: smoothScrollJs.includes('is-quote-return-arrival'),
     hasStyle: styleCss.includes('.section.is-quote-return-arrival .section-header::after'),
-    hasResearchStyle: styleCss.includes('.research-log-strip.is-quote-return-arrival .research-log-handoff'),
+    hasResearchStyle: styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff'),
     hasKeyframes: styleCss.includes('@keyframes quoteReturnGlow')
   })
 );

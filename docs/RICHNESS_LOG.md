@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Access / Motion / Structure
+- Changed: 常設ナビとフッターの巡回路へ Research Log への `#research-log-strip` 導線を足し、ナビ・フッターから入った時も研究ログの handoff が短く光る `is-research-route-arrival` を追加した。モバイルナビは6項目グリッドへ更新し、phase gate で研究ログ導線と到着演出の契約を保護した。
+- Learned: Research Log はQuote前やProjectsカードから戻れるようになっていても、常設の巡回路に名前がないと、活動母艦の核である「問い・実験・発見」が少し隠れて見える。情報を増やさず、既存ランドマークへ入口を通すだけで、1ページの庭を巡る順路が読みやすくなる。
+- Next: ブラウザ確認が可能な環境で、360px前後の6分割ナビが窮屈すぎないか、研究ログ到着光が夜テーマで強すぎないかを1スクロールだけ見る。
+
+## 2026-04-29
+
 - Focus: Structure / Access
 - Changed: Projectsカード内の `Why` と `Note` を同じ `project-note` chrome へ参加させ、余白、ラベル、昼夜テーマ差分を `--project-note-*` 変数へまとめた。`project-action-note` のrenderer markupも共通クラスを持つ形にし、phase gate で注釈UIが分岐し直さないよう保護した。
 - Learned: 制作カードの小さな補足札は、見た目が近いままCSSだけ分かれると、次の文言整理やモバイル調整で片方だけ歩幅がずれやすい。注釈として同じ骨格へ寄せると、情報を増やさずにProjectsの読み筋を保守しやすくなる。
