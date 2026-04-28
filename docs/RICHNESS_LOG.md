@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Access / Structure
+- Changed: Research Log の由来表示、知恵断片、論文メモを `research-extra-drawer` にまとめ、本文の「問い・実験・発見」は常時見せたまま、補足だけを必要な時に開く小径へ畳んだ。夜テーマとモバイル幅の余白も追加し、phase gate で補足drawer契約を保護した。
+- Learned: Research Log は循環の厚みを出すほど、カードによって二次情報の重さがばらつく。補足を同じdrawerへ寄せると、ログの核は軽く読み進められ、深掘りしたいカードだけ開ける。
+- Next: 実ブラウザで Research Log 004-006 をモバイル幅で開閉し、drawerのラベルが抽象的すぎないか、また開いた後の論文リンクが詰まりすぎないか確認する。
+
+## 2026-04-28
+
 - Focus: Structure
 - Changed: Research Log の handoff、ログカード、cycle bridge 生成を `src/scripts/research-renderer.js` へ切り出し、`content-renderers.js` は Research 専用レンダラーへ委譲するだけにした。Astro配信ルートと script load order を追加し、phase gate で Research markup が司令塔へ戻らないことも保護した。
 - Learned: Vision から Research Log へ戻る導線は、入口・ログ・最後の循環メモが一塊で育つため、汎用レンダラーに残すと次回の余白や文脈調整で読む範囲が広がる。専用境界に寄せると、研究ログの「問いへ戻す」体験だけを小さく磨きやすくなる。

@@ -109,6 +109,30 @@
         </div>`;
     }
 
+    function renderResearchAddons(item) {
+        const addons = [
+            renderWisdomTrail(item),
+            renderSourceProject(item),
+            renderPaperSample(item)
+        ].filter(Boolean);
+
+        if (!addons.length) return '';
+        return `
+            <details class="research-extra-drawer">
+                <summary>
+                    <span class="research-extra-drawer__sigil" aria-hidden="true">✧</span>
+                    <span class="research-extra-drawer__copy">
+                        <span class="research-extra-drawer__label">由来・断片・論文メモ</span>
+                        <span class="research-extra-drawer__hint">小径をひらく</span>
+                    </span>
+                </summary>
+                <div class="research-extra-drawer__body">
+                    ${addons.join('')}
+                </div>
+            </details>
+        `;
+    }
+
     function renderResearchLogCard(item) {
         const cardId = item.id ? ` id="${escapeHtml(item.id)}"` : '';
         return `
@@ -132,9 +156,7 @@
                         <dd>${escapeHtml(item.finding)}</dd>
                     </div>
                 </dl>
-                ${renderWisdomTrail(item)}
-                ${renderSourceProject(item)}
-                ${renderPaperSample(item)}
+                ${renderResearchAddons(item)}
             </article>
         `;
     }

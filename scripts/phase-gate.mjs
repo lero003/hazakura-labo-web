@@ -355,6 +355,21 @@ assert(
     hasCycleBridge: researchRendererJs.includes('class="cycle-bridge-card"')
   })
 );
+assert(
+  'research optional notes are folded behind a drawer',
+  researchRendererJs.includes('class="research-extra-drawer"')
+    && researchRendererJs.includes('class="research-extra-drawer__sigil"')
+    && researchRendererJs.includes('由来・断片・論文メモ')
+    && researchRendererJs.includes('小径をひらく')
+    && styleCss.includes('.research-extra-drawer')
+    && styleCss.includes('.research-extra-drawer[open] summary::after')
+    && styleCss.includes('.research-extra-drawer__body'),
+  JSON.stringify({
+    hasDrawerRenderer: researchRendererJs.includes('class="research-extra-drawer"'),
+    hasDrawerStyles: styleCss.includes('.research-extra-drawer'),
+    hasDrawerBody: styleCss.includes('.research-extra-drawer__body')
+  })
+);
 assert('project renderer script exposes global', projectRendererJs.includes('window.HazakuraProjectRenderer'));
 assert(
   'project renderer loads between filter and content orchestrator',
