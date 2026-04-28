@@ -1966,6 +1966,21 @@ a {
     }
 }
 
+@keyframes researchReturnGlow {
+    0% {
+        border-color: var(--research-return-border-start);
+        box-shadow: var(--research-return-shadow-start);
+    }
+    34% {
+        border-color: var(--research-return-border-peak);
+        box-shadow: var(--research-return-shadow-peak);
+    }
+    100% {
+        border-color: var(--research-return-border-end);
+        box-shadow: var(--research-return-shadow-end);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .library-projects-bridge::after,
     .library-projects-bridge__thread::after,
@@ -1975,6 +1990,7 @@ a {
     .section.is-quote-return-arrival .section-header::after,
     .section.is-quote-return-arrival .section-label,
     .section.is-quote-return-arrival .section-title,
+    .research-log-card.is-research-return-arrival,
     .hero.is-garden-return-arrival::after,
     .hero.is-garden-return-arrival .title-accent-line,
     .hero.is-garden-return-arrival .hero-scroll-hint {
@@ -2315,6 +2331,14 @@ a {
 }
 
 .research-log-card {
+    --research-return-border-start: rgba(232, 88, 122, 0.18);
+    --research-return-border-peak: rgba(232, 88, 122, 0.54);
+    --research-return-border-end: rgba(232, 88, 122, 0.2);
+    --research-return-shadow-start: 0 18px 45px rgba(46, 42, 45, 0.07);
+    --research-return-shadow-peak:
+        0 0 0 0.55rem rgba(232, 88, 122, 0.08),
+        0 28px 72px rgba(232, 88, 122, 0.16);
+    --research-return-shadow-end: 0 18px 45px rgba(46, 42, 45, 0.07);
     position: relative;
     overflow: hidden;
     padding: 2rem;
@@ -2338,6 +2362,10 @@ a {
 .research-log-card:hover {
     border-color: rgba(232, 88, 122, 0.36);
     box-shadow: 0 24px 60px rgba(46, 42, 45, 0.1);
+}
+
+.research-log-card.is-research-return-arrival {
+    animation: researchReturnGlow 1.45s var(--ease-out-expo) both;
 }
 
 .research-log-card:target {
@@ -5657,6 +5685,14 @@ body.theme-night .section-layers .layer-sequence__beam {
     background: rgba(232, 88, 122, 0.13);
 }
 
+.project-return-link:focus-visible {
+    outline: 2px solid rgba(232, 88, 122, 0.38);
+    outline-offset: 3px;
+    transform: translateY(-1px);
+    border-color: rgba(232, 88, 122, 0.38);
+    background: rgba(232, 88, 122, 0.13);
+}
+
 .project-return-link span {
     flex: 0 0 auto;
     color: var(--sakura-500);
@@ -5991,6 +6027,14 @@ body.theme-night .section-vision .process-icon {
 }
 
 body.theme-night .section-vision .research-log-card {
+    --research-return-border-start: rgba(139, 92, 246, 0.22);
+    --research-return-border-peak: rgba(167, 139, 250, 0.56);
+    --research-return-border-end: rgba(139, 92, 246, 0.24);
+    --research-return-shadow-start: 0 22px 60px rgba(0, 0, 0, 0.24);
+    --research-return-shadow-peak:
+        0 0 0 0.55rem rgba(167, 139, 250, 0.12),
+        0 30px 76px rgba(139, 92, 246, 0.24);
+    --research-return-shadow-end: 0 22px 60px rgba(0, 0, 0, 0.24);
     border-color: rgba(139, 92, 246, 0.24);
     background:
         radial-gradient(520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.12), transparent 42%),

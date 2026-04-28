@@ -8,7 +8,8 @@
         '.footer-garden-close__link[href^="#"]',
         '.hero-cta[href^="#"]',
         '.library-projects-bridge__link[href^="#"]',
-        '.quote-prelude-step[href^="#"]'
+        '.quote-prelude-step[href^="#"]',
+        '.project-return-link[href^="#"]'
     ].join(', ');
 
     const arrivalRules = [
@@ -21,6 +22,11 @@
             selector: '.quote-prelude-step',
             className: 'is-quote-return-arrival',
             duration: 1600
+        },
+        {
+            selector: '.project-return-link',
+            className: 'is-research-return-arrival',
+            duration: 1500
         },
         {
             selector: '.nav-logo, .footer-garden-close__link',

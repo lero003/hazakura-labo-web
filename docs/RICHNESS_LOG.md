@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Access / Motion / Structure
+- Changed: Projectsカード内のResearch Log戻りリンクを、通常ジャンプから `smooth-scroll.js` の測定済みスクロールへ参加させた。対応するResearch Logカードには `is-research-return-arrival` の短い到着光を足し、キーボード操作でも戻りリンクのフォーカス位置が見えるようにした。
+- Learned: LibraryやQuoteの大きな折り返し導線が整っていても、カード内の小さな戻り道だけがブラウザ標準ジャンプだと、問いがログへ巡る感触がそこで途切れる。既存のスクロール境界に乗せるだけで、情報を増やさず循環の所作を揃えられる。
+- Next: sandbox外でpreview可能な時に、ProjectsカードからResearch Log 004-006へ戻る距離と到着光がモバイル幅で強すぎないか1件ずつ見る。
+
+## 2026-04-28
+
 - Focus: Structure / Access
 - Changed: モバイル終盤の Projects / Research / Vision / Quote に散っていた `overflow-wrap: anywhere` を、共有の long-copy guard セレクタへ集約した。
 - Learned: 狭幅で長い問いや補足文を守る指定が各カードに散ると、次の導線調整で「どこが崩れ止めなのか」が見えにくくなる。庭全体の小径に対するガードとして置くと、見た目を変えずにモバイルの読み筋を保守しやすい。

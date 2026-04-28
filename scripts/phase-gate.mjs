@@ -870,6 +870,27 @@ assert(
   })
 );
 assert(
+  'project research return links use measured smooth scroll arrival',
+  smoothScrollJs.includes('.project-return-link[href^="#"]')
+    && smoothScrollJs.includes('is-research-return-arrival')
+    && styleCss.includes('.research-log-card.is-research-return-arrival')
+    && styleCss.includes('@keyframes researchReturnGlow')
+    && styleCss.includes('.project-return-link:focus-visible')
+    && hazakuraContent.projectsGroup.items
+      .filter((item) => item.returnLink?.href?.startsWith('#'))
+      .every((item) => hazakuraContent.researchGroup.logs.some((log) => item.returnLink.href === `#${log.id}`)),
+  JSON.stringify({
+    hasSelector: smoothScrollJs.includes('.project-return-link[href^="#"]'),
+    hasArrivalClass: smoothScrollJs.includes('is-research-return-arrival'),
+    hasArrivalStyle: styleCss.includes('.research-log-card.is-research-return-arrival'),
+    hasKeyframes: styleCss.includes('@keyframes researchReturnGlow'),
+    hasFocusStyle: styleCss.includes('.project-return-link:focus-visible'),
+    returnTargets: hazakuraContent.projectsGroup.items
+      .filter((item) => item.returnLink?.href?.startsWith('#'))
+      .map((item) => item.returnLink.href)
+  })
+);
+assert(
   'library bridge click marks projects handoff arrival',
   smoothScrollJs.includes('markMatchingArrival')
     && smoothScrollJs.includes('is-handoff-arrival')
