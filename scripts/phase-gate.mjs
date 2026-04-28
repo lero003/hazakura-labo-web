@@ -328,6 +328,12 @@ assert(
     && styleCss.includes('outline-offset: var(--garden-route-focus-offset, 4px)')
     && styleCss.includes('body.theme-night :is(.nav, .footer-nav)')
     && styleCss.includes('--garden-route-focus-offset: 2px')
+    && styleCss.includes('--garden-nav-link-color')
+    && styleCss.includes('--garden-nav-mobile-link-hover-bg')
+    && styleCss.includes('body.theme-night .nav {')
+    && styleCss.includes('body.theme-night .nav:not(.scrolled) .nav-links a')
+    && !styleCss.includes('body.theme-night .nav-links a {')
+    && !styleCss.includes('body.theme-night .nav-links a:hover {')
     && smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]')
     && smoothScrollJs.includes('is-research-route-arrival')
     && styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff'),
@@ -341,6 +347,12 @@ assert(
     hasFocusOffsetToken: styleCss.includes('outline-offset: var(--garden-route-focus-offset, 4px)'),
     hasSharedNightRouteTokens: styleCss.includes('body.theme-night :is(.nav, .footer-nav)'),
     hasCompactMobileFocusOffset: styleCss.includes('--garden-route-focus-offset: 2px'),
+    hasNavToneToken: styleCss.includes('--garden-nav-link-color'),
+    hasMobileRouteToneToken: styleCss.includes('--garden-nav-mobile-link-hover-bg'),
+    hasNightNavTokenScope: styleCss.includes('body.theme-night .nav {'),
+    hasHeroNavState: styleCss.includes('body.theme-night .nav:not(.scrolled) .nav-links a'),
+    hasDirectNightNavColor: styleCss.includes('body.theme-night .nav-links a {'),
+    hasDirectNightNavHover: styleCss.includes('body.theme-night .nav-links a:hover {'),
     hasSmoothScrollSelector: smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]'),
     hasArrivalClass: smoothScrollJs.includes('is-research-route-arrival'),
     hasArrivalStyle: styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff')
