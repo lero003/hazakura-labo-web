@@ -1,6 +1,7 @@
 ---
 import LibrarySection from '../components/LibrarySection.astro';
 import { scriptLoadOrder } from '../data/script-load-order.js';
+import { siteNavigation } from '../data/site-navigation.js';
 import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
 ---
 
@@ -57,12 +58,9 @@ import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
                 <span class="logo-text">葉桜ラボ</span>
             </a>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#philosophy">哲 学</a></li>
-                <li><a href="#layers">構 造</a></li>
-                <li><a href="#library">書 庫</a></li>
-                <li><a href="#projects">制 作</a></li>
-                <li><a href="#research-log-strip">記 録</a></li>
-                <li><a href="#vision">構 想</a></li>
+                {siteNavigation.map((item) => (
+                    <li><a href={item.href}>{item.navLabel}</a></li>
+                ))}
             </ul>
         </div>
     </nav>
@@ -237,12 +235,9 @@ import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
                     </a>
                 </div>
                 <div class="footer-nav">
-                    <a href="#philosophy">哲学</a>
-                    <a href="#layers">構造</a>
-                    <a href="#library">書庫</a>
-                    <a href="#projects">制作</a>
-                    <a href="#research-log-strip">記録</a>
-                    <a href="#vision">構想</a>
+                    {siteNavigation.map((item) => (
+                        <a href={item.href}>{item.footerLabel}</a>
+                    ))}
                 </div>
                 <div class="footer-links">
                     <a href="https://www.amazon.co.jp/dp/B0GSWNNZL7" target="_blank"

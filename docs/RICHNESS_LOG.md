@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure / Access
+- Changed: 常設ナビとフッターに二重で直書きしていた巡回路を `src/data/site-navigation.js` へ切り出し、`src/pages/index.astro` は同じ配列から上部ナビと終端ナビを描画する形へ寄せた。phase gate にも、巡回路がデータ境界から外れない検査を追加した。
+- Learned: Research Log への入口を増やした直後は、表示そのものよりも「次にアンカーを触る場所」が散っていることが弱点になる。巡回路を小さなデータに束ねると、1ページの参道を保ったまま次の導線調整で片側だけ忘れるリスクを減らせる。
+- Next: モバイル6分割ナビの見た目を実ブラウザで確認できる環境で、文字間とタップ面積が窮屈すぎないか1スクロールだけ見る。
+
+## 2026-04-29
+
+- Focus: Structure / Access
 - Changed: head内に直書きしていたタイトル、説明、OGP/Twitter画像、favicon、Hero画像altを `src/data/site-meta.js` へ寄せ、canonical / og:url / og:image / twitter:image を Cloudflare Pages の絶対URLで出力するようにした。phase gate にも相対OGPへ戻らない検査を追加した。
 - Learned: 庭の中の導線が整っても、外部共有や検索結果から入る最初の札が相対パス任せだと、入口の完成度が弱く見える。metaを小さなデータ境界へ置くと、今後のOGP画像差し替えやサイト説明の調整もページ構造を掘らずに済む。
 - Next: 実ブラウザまたは公開後のカードプレビューで、SNSカードが `hero.png` を拾えているか確認し、必要なら専用OGP画像の比率だけを次回小さく整える。

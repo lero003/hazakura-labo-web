@@ -3,6 +3,7 @@ import vm from 'node:vm';
 import { hazakuraContent } from '../src/data/content.js';
 import { scriptLoadGroups, scriptLoadOrder } from '../src/data/script-load-order.js';
 import { libraryBooks } from '../src/data/library-books.js';
+import { siteNavigation } from '../src/data/site-navigation.js';
 import { siteMeta, siteSocialImageUrl } from '../src/data/site-meta.js';
 
 const checks = [];
@@ -112,6 +113,27 @@ assert(
     bookShelf: html.indexOf('class="book-shelf"'),
     bridge: html.indexOf('class="library-projects-bridge"'),
     projects: html.indexOf('id="projects"')
+  })
+);
+const expectedNavigationHrefs = ['#philosophy', '#layers', '#library', '#projects', '#research-log-strip', '#vision'];
+assert(
+  'persistent garden routes are data-backed',
+  indexSource.includes("import { siteNavigation }")
+    && indexSource.includes('siteNavigation.map')
+    && !indexSource.includes('<li><a href="#philosophy">')
+    && !indexSource.includes('<a href="#philosophy">哲学</a>')
+    && JSON.stringify(siteNavigation.map((item) => item.href)) === JSON.stringify(expectedNavigationHrefs)
+    && siteNavigation.every((item) => item.navLabel && item.footerLabel)
+    && siteNavigation.every((item) => html.includes(`href="${item.href}">${item.navLabel}</a>`))
+    && siteNavigation.every((item) => html.includes(`href="${item.href}">${item.footerLabel}</a>`)),
+  JSON.stringify({
+    importsNavigation: indexSource.includes("import { siteNavigation }"),
+    mapsNavigation: indexSource.includes('siteNavigation.map'),
+    hardcodedNavPhilosophy: indexSource.includes('<li><a href="#philosophy">'),
+    hardcodedFooterPhilosophy: indexSource.includes('<a href="#philosophy">哲学</a>'),
+    hrefs: siteNavigation.map((item) => item.href),
+    navLabels: siteNavigation.map((item) => item.navLabel),
+    footerLabels: siteNavigation.map((item) => item.footerLabel)
   })
 );
 const scriptPositions = scriptLoadOrder.map((path) => [path, html.indexOf(`src="${path}"`)]);
