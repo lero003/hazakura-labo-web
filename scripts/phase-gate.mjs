@@ -264,6 +264,26 @@ assert(
   })
 );
 assert(
+  'research log handoff theme is tokenized',
+  [
+    '--research-handoff-bg',
+    '--research-handoff-edge-rail',
+    '--research-handoff-step-rail',
+    '--research-handoff-step-rail-vertical',
+    '--research-handoff-count-strong'
+  ].every((snippet) => styleCss.includes(snippet))
+    && !styleCss.includes('body.theme-night .section-vision .research-log-handoff::before')
+    && !styleCss.includes('body.theme-night .section-vision .research-log-handoff__steps::before'),
+  JSON.stringify({
+    hasBackgroundToken: styleCss.includes('--research-handoff-bg'),
+    hasEdgeRailToken: styleCss.includes('--research-handoff-edge-rail'),
+    hasStepRailToken: styleCss.includes('--research-handoff-step-rail'),
+    hasVerticalRailToken: styleCss.includes('--research-handoff-step-rail-vertical'),
+    hasNightEdgeOverride: styleCss.includes('body.theme-night .section-vision .research-log-handoff::before'),
+    hasNightStepOverride: styleCss.includes('body.theme-night .section-vision .research-log-handoff__steps::before')
+  })
+);
+assert(
   'vision entry fields stay folded',
   visionRendererJs.includes('class="vision-entry-guide__field-drawer"')
     && visionRendererJs.includes('<summary>')

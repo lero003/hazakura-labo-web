@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: Research Log への橋渡しCSSを `--research-handoff-*` トークンへ寄せ、夜テーマの疑似要素・テキスト色上書きをコンポーネント変数だけで扱うようにした。Phase gate に直指定へ戻らない保護も追加した。
+- Learned: Library / Projects の橋渡しだけでなく Vision 内の Research 導線も同じトークン境界へ揃えると、次の間奏演出を足す時に夜テーマ差分を追いやすくなる。
+- Next: Quote prelude と Research handoff のレール表現に共通化できる最小の設計トークンがあるか、見た目を変えずにもう一段だけ点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: Vision の入口ガイド、入口バッジ、構想カード生成を `src/scripts/vision-renderer.js` へ切り出し、`content-renderers.js` は Vision 専用レンダラーへ委譲するだけにした。Astro配信ルートと script load order を追加し、phase gate で Vision markup が司令塔へ戻らないことも保護した。
 - Learned: 構想セクションは入口ガイド、カード、フォーカス演出が絡むため、汎用レンダラーに残すと次回の導線調整で読む範囲が広がる。見た目を変えない分割でも、預ける入口まわりを触る足場がかなり軽くなる。
 - Next: Research Log 側の handoff と log card 生成も、次に構想からログへの導線を触る前に専用レンダラー化するか点検する。
