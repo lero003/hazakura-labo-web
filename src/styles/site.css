@@ -2418,6 +2418,8 @@ a {
     --garden-drawer-toggle-bg: rgba(255, 255, 255, 0.46);
     --garden-drawer-toggle-hover-bg: rgba(255, 255, 255, 0.72);
     --garden-drawer-toggle-color: var(--green-500);
+    --garden-drawer-focus-outline: rgba(77, 161, 169, 0.42);
+    --garden-drawer-focus-bg: rgba(255, 255, 255, 0.38);
     --garden-drawer-sigil-size: 1.68rem;
     --garden-drawer-sigil-border: rgba(77, 161, 169, 0.24);
     --garden-drawer-sigil-active-border: rgba(77, 161, 169, 0.4);
@@ -2469,6 +2471,7 @@ a {
     place-items: center;
     width: var(--garden-drawer-toggle-size, 1.55rem);
     height: var(--garden-drawer-toggle-size, 1.55rem);
+    margin-left: var(--garden-drawer-toggle-margin-left, auto);
     border: 1px solid var(--garden-drawer-toggle-border);
     border-radius: 999px;
     background: var(--garden-drawer-toggle-bg);
@@ -2480,6 +2483,12 @@ a {
 
 :is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer) summary:hover::after {
     background: var(--garden-drawer-toggle-hover-bg);
+}
+
+:is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer) summary:focus-visible {
+    outline: 2px solid var(--garden-drawer-focus-outline);
+    outline-offset: var(--garden-drawer-focus-offset, 3px);
+    background: var(--garden-drawer-focus-bg, transparent);
 }
 
 :is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)[open] summary::after {
@@ -2939,11 +2948,15 @@ body.theme-night .section-vision {
     --garden-drawer-toggle-bg: var(--vision-entry-drawer-toggle-bg);
     --garden-drawer-toggle-hover-bg: var(--vision-entry-drawer-open-toggle-bg);
     --garden-drawer-toggle-color: var(--vision-entry-drawer-summary);
+    --garden-drawer-toggle-margin-left: 0;
     --garden-drawer-toggle-size: 1.2rem;
     --garden-drawer-toggle-font-size: 0.76rem;
     --garden-drawer-toggle-content: '+';
     --garden-drawer-toggle-open-content: '+';
     --garden-drawer-toggle-open-transform: rotate(45deg);
+    --garden-drawer-focus-outline: rgba(var(--entry-accent-rgb), 0.42);
+    --garden-drawer-focus-bg: rgba(var(--entry-accent-rgb), 0.08);
+    --garden-drawer-focus-offset: 2px;
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -5650,6 +5663,8 @@ body.theme-night .section-layers .layer-sequence__beam {
     --garden-drawer-toggle-bg: rgba(255, 255, 255, 0.45);
     --garden-drawer-toggle-hover-bg: rgba(255, 255, 255, 0.72);
     --garden-drawer-toggle-color: var(--purple-500);
+    --garden-drawer-focus-outline: rgba(167, 139, 250, 0.44);
+    --garden-drawer-focus-bg: rgba(255, 255, 255, 0.34);
     --garden-drawer-sigil-size: 1.65rem;
     --garden-drawer-sigil-border: rgba(232, 88, 122, 0.22);
     --garden-drawer-sigil-active-border: rgba(232, 88, 122, 0.38);
@@ -6040,6 +6055,8 @@ body.theme-night .section-vision .research-extra-drawer {
     --garden-drawer-toggle-bg: rgba(255, 255, 255, 0.06);
     --garden-drawer-toggle-hover-bg: rgba(255, 255, 255, 0.1);
     --garden-drawer-toggle-color: var(--green-400);
+    --garden-drawer-focus-outline: rgba(77, 161, 169, 0.52);
+    --garden-drawer-focus-bg: rgba(77, 161, 169, 0.08);
     --garden-drawer-sigil-border: rgba(77, 161, 169, 0.34);
     --garden-drawer-sigil-active-border: rgba(77, 161, 169, 0.4);
     --garden-drawer-sigil-bg:
@@ -6396,6 +6413,8 @@ body.theme-night .section-projects .project-cycle-drawer {
     --garden-drawer-toggle-border: rgba(167, 139, 250, 0.28);
     --garden-drawer-toggle-hover-bg: rgba(255, 255, 255, 0.1);
     --garden-drawer-toggle-color: var(--purple-400);
+    --garden-drawer-focus-outline: rgba(167, 139, 250, 0.52);
+    --garden-drawer-focus-bg: rgba(167, 139, 250, 0.08);
     --garden-drawer-sigil-border: rgba(232, 88, 122, 0.32);
     --garden-drawer-sigil-active-border: rgba(232, 88, 122, 0.38);
     --garden-drawer-sigil-bg:

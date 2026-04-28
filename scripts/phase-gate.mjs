@@ -474,7 +474,10 @@ assert(
     '--garden-drawer-bg',
     '--garden-drawer-summary-color',
     '--garden-drawer-toggle-bg',
+    '--garden-drawer-toggle-margin-left',
+    '--garden-drawer-focus-outline',
     '--garden-drawer-sigil-bg',
+    'summary:focus-visible',
     ':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)'
   ].every((snippet) => styleCss.includes(snippet))
     && !styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary')
@@ -484,6 +487,9 @@ assert(
     hasSharedSelector: styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)'),
     hasBgToken: styleCss.includes('--garden-drawer-bg'),
     hasSummaryToken: styleCss.includes('--garden-drawer-summary-color'),
+    hasToggleAlignmentToken: styleCss.includes('--garden-drawer-toggle-margin-left'),
+    hasFocusToken: styleCss.includes('--garden-drawer-focus-outline'),
+    hasFocusVisible: styleCss.includes('summary:focus-visible'),
     hasDirectResearchSummaryTheme: styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary'),
     hasDirectProjectSummaryTheme: styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary'),
     hasDirectVisionOpenToggleRule: styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after')
