@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: `src/pages/index.astro` に残っていた Library の書籍棚と Library -> Projects bridge のAstro markupを `src/components/LibrarySection.astro` へ切り出した。書籍データと橋データの参照はコンポーネント側へ閉じ、phase gate でページ本体がLibraryの細部を持ち直さないことも保護した。
+- Learned: 書庫の文脈と橋の演出は一体で育つため、ページ本体に残ると次の文言・余白調整で読む範囲が広がる。見た目を変えずにセクション単位へ分けるだけでも、1ページの骨格と書庫の庭仕事を分けて考えやすくなる。
+- Next: `src/pages/index.astro` に残る Hero / Footer などの静的塊も、次回以降に「分けるほど軽くなるか」を1ブロックだけ点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: Vision の `data-entry-kind` アクセント色指定を、guide / question / badge / card に散った4列セレクタから `:is(...)` の共有セレクタへ集約した。昼夜それぞれの種別色は同じ場所で読む形にし、phase gate で旧セレクタ列へ戻らない保護を追加した。
 - Learned: Vision の預け口は演出が複数パーツへ渡るため、色の契約がセレクタ列で散ると次の入口種別追加時に見落としやすい。見た目を変えずに accent map を一段共有すると、構想の入口を育てる時のCSS面積が小さくなる。
 - Next: `src/pages/index.astro` に残る Library bridge のAstro直書き部分が、将来の間奏差し替えに十分軽いか、見た目を変えずに1ブロックだけ点検する。

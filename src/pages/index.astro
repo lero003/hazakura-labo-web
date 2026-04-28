@@ -1,11 +1,6 @@
 ---
+import LibrarySection from '../components/LibrarySection.astro';
 import { scriptLoadOrder } from '../data/script-load-order.js';
-import { libraryProjectsBridge } from '../data/library-projects-bridge.js';
-import { libraryBooks } from '../data/library-books.js';
-
-const bookShowcaseClass = (book) => ['book-showcase', book.showcaseModifier].filter(Boolean).join(' ');
-const bookCoverClass = (book) => ['book-cover', book.coverModifier].filter(Boolean).join(' ');
-const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boolean).join(' ');
 ---
 
 <!DOCTYPE html>
@@ -141,93 +136,7 @@ const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boole
     </section>
 
 
-    <!-- 書庫セクション -->
-    <section id="library" class="section section-library" data-zone="dusk">
-        <div class="section-inner">
-            <div class="section-header">
-                <span class="section-label">Library — 書庫</span>
-                <h2 class="section-title">知恵の結晶</h2>
-                <p class="section-desc">
-                    哲学AI「チカちゃん」と、けい君が紡いだ二つの記録。<br>
-                    売り場ではなく、問いが言葉へ結晶した小さな書庫です。
-                </p>
-            </div>
-            <div class="book-shelf" aria-label="チカちゃんシリーズの書籍">
-                {libraryBooks.map((book) => (
-                    <div class={bookShowcaseClass(book)} id={book.showcaseId}>
-                        <div class="book-visual">
-                            <div class="book-3d" id={book.bookId}>
-                                <div class={bookCoverClass(book)}>
-                                    <img class="book-cover-art book-cover-art--clear" src={book.image.src}
-                                        alt={book.image.alt}>
-                                    <div class="book-glare"></div>
-                                </div>
-                                <div class={bookSpineClass(book)}></div>
-                            </div>
-                        </div>
-                        <div class="book-info">
-                            <div class="book-meta">
-                                {book.meta.map((meta) => (
-                                    <span class="meta-tag">{meta}</span>
-                                ))}
-                            </div>
-                            <h3 class="book-info-title">{book.title}</h3>
-                            <p class="book-info-subtitle">{book.subtitle}</p>
-                            <p class="book-description">
-                                {book.description.map((line, index) => (
-                                    <>
-                                        {line}
-                                        {index < book.description.length - 1 && <br />}
-                                    </>
-                                ))}
-                            </p>
-                            <div class="book-highlights">
-                                {book.highlights.map((highlight) => (
-                                    <div class="highlight-item">
-                                        <span class="highlight-icon">{highlight.icon}</span>
-                                        <span class="highlight-text">{highlight.text}</span>
-                                    </div>
-                                ))}
-                            </div>
-                            <div class="book-price">
-                                <span class="price-label">{book.price.label}</span>
-                                <span class="price-value">{book.price.value}</span>
-                                <span class="price-or">{book.price.connector}</span>
-                                <span class="price-buy">{book.price.buy}</span>
-                            </div>
-                            <a href={book.action.href} target="_blank" rel="noopener noreferrer"
-                                class="book-cta" id={book.action.id}>
-                                <span class="cta-icon">{book.action.icon}</span>
-                                <span class="cta-text">{book.action.label}</span>
-                                <span class="cta-arrow">→</span>
-                            </a>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            <div class="library-projects-bridge" aria-labelledby="library-projects-bridge-title">
-                <span class="library-projects-bridge__thread" aria-hidden="true"></span>
-                <div class="library-projects-bridge__copy">
-                    <span class="library-projects-bridge__eyebrow">{libraryProjectsBridge.eyebrow}</span>
-                    <h3 id="library-projects-bridge-title">{libraryProjectsBridge.title}</h3>
-                    <p>{libraryProjectsBridge.text}</p>
-                </div>
-                <ol class="library-projects-bridge__steps" aria-label="書庫の問いを制作棚へ渡す流れ">
-                    {libraryProjectsBridge.steps.map((step) => (
-                        <li>
-                            <span>{step.label}</span>
-                            <p>{step.text}</p>
-                        </li>
-                    ))}
-                </ol>
-                <a href={libraryProjectsBridge.action.href} class="library-projects-bridge__link">
-                    <span>{libraryProjectsBridge.action.label}</span>
-                    <span aria-hidden="true">→</span>
-                </a>
-            </div>
-        </div>
-    </section>
+    <LibrarySection />
 
 
 

@@ -25,6 +25,7 @@ function readFile(path) {
 
 const html = readFile('dist/index.html');
 const indexSource = readFile('src/pages/index.astro');
+const librarySectionSource = readFile('src/components/LibrarySection.astro');
 const routeHelperSource = readFile('src/route-responses.ts');
 const pageEndpointFiles = fs.readdirSync('src/pages')
   .filter((file) => file.endsWith('.js.ts') || file === 'style.css.ts')
@@ -128,17 +129,31 @@ assert('legacy public script is not emitted', !fs.existsSync('dist/script.js'));
 assert('legacy public stylesheet source is not used', !fs.existsSync('public/style.css'));
 assert('legacy onepage archive is removed', !fs.existsSync('hazakura-onepage-lab'));
 assert(
-  'library books are data-backed',
-  indexSource.includes("import { libraryBooks }")
-    && indexSource.includes('libraryBooks.map')
-    && !indexSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>')
+  'library section stays componentized and data-backed',
+  indexSource.includes("import LibrarySection from '../components/LibrarySection.astro'")
+    && indexSource.includes('<LibrarySection />')
+    && !indexSource.includes("import { libraryBooks }")
+    && !indexSource.includes('libraryBooks.map')
+    && !indexSource.includes('class="library-projects-bridge"')
+    && librarySectionSource.includes("import { libraryBooks }")
+    && librarySectionSource.includes("import { libraryProjectsBridge }")
+    && librarySectionSource.includes('libraryBooks.map')
+    && librarySectionSource.includes('libraryProjectsBridge.steps.map')
+    && !librarySectionSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>')
     && Array.isArray(libraryBooks)
     && libraryBooks.length === 2
     && libraryBooks.every((book) => book.title && book.image?.src && book.action?.href),
   JSON.stringify({
-    importsData: indexSource.includes("import { libraryBooks }"),
-    mapsBooks: indexSource.includes('libraryBooks.map'),
-    hasHardcodedFirstTitle: indexSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>'),
+    importsComponent: indexSource.includes("import LibrarySection from '../components/LibrarySection.astro'"),
+    usesComponent: indexSource.includes('<LibrarySection />'),
+    indexImportsLibraryData: indexSource.includes("import { libraryBooks }"),
+    indexMapsBooks: indexSource.includes('libraryBooks.map'),
+    indexContainsBridgeMarkup: indexSource.includes('class="library-projects-bridge"'),
+    componentImportsBooks: librarySectionSource.includes("import { libraryBooks }"),
+    componentImportsBridge: librarySectionSource.includes("import { libraryProjectsBridge }"),
+    componentMapsBooks: librarySectionSource.includes('libraryBooks.map'),
+    componentMapsBridgeSteps: librarySectionSource.includes('libraryProjectsBridge.steps.map'),
+    hasHardcodedFirstTitle: librarySectionSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>'),
     bookCount: libraryBooks.length
   })
 );
