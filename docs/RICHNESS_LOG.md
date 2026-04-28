@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure
+- Changed: Quote 前の折り返しカードに散っていた昼夜テーマ、ステップレール、hover / focus 色を `--quote-prelude-*` のローカルCSS変数へまとめた。モバイルの縦レールも同じ変数境界へ寄せ、phase gate で夜テーマが子セレクタ直指定へ戻らないよう保護した。
+- Learned: 最後の詩へ入る前の折り返しは、Library / Projects / Vision を畳む重要な余韻なので、小さな色調整でも読み筋が散ると次の演出が迷いやすい。カード単位のトークンに寄せると、終盤の遊びを足す余白だけ残せる。
+- Next: Quote 本体と footer close の暗転の歩幅が、モバイルで急に閉じて見えないか、次回 preview 可能な環境で1スクロールだけ点検する。
+
+## 2026-04-28
+
 - Focus: Access / Motion / Structure
 - Changed: 常設ロゴの `#hero` 帰還を、フッターの「はじまりへ戻る」と同じ測定済みスムーススクロールへ参加させた。Hero到着演出は `is-garden-return-arrival` として共通化し、`smooth-scroll.js` の到着演出分岐を `arrivalRules` の小さな対応表へ整理した。
 - Learned: 終端導線だけが庭らしく戻れても、常設ロゴが急にジャンプするとページ全体の循環感が少し欠ける。戻り方を同じ所作へ揃えると、情報を増やさずに1ページを巡る導線が自然になる。

@@ -3416,14 +3416,32 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .quote-prelude-card {
+    --quote-prelude-border: rgba(232, 88, 122, 0.16);
+    --quote-prelude-bg:
+        radial-gradient(520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(167, 139, 250, 0.1), transparent 46%),
+        rgba(255, 255, 255, 0.54);
+    --quote-prelude-orbit-border: rgba(232, 88, 122, 0.12);
+    --quote-prelude-orbit-bg:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.38), transparent 48%),
+        radial-gradient(circle, rgba(90, 158, 95, 0.18), transparent 62%);
+    --quote-prelude-accent: var(--sakura-500);
+    --quote-prelude-marker: var(--purple-500);
+    --quote-prelude-heading: var(--ink-800);
+    --quote-prelude-copy: var(--ink-600);
+    --quote-prelude-step-rail: linear-gradient(90deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.2), rgba(167, 139, 250, 0.2), rgba(90, 158, 95, 0));
+    --quote-prelude-step-rail-vertical: linear-gradient(180deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.18), rgba(167, 139, 250, 0.18), rgba(90, 158, 95, 0));
+    --quote-prelude-step-border: rgba(167, 139, 250, 0.18);
+    --quote-prelude-step-bg: rgba(255, 255, 255, 0.42);
+    --quote-prelude-step-hover-border: rgba(232, 88, 122, 0.26);
+    --quote-prelude-step-hover-bg: rgba(255, 255, 255, 0.62);
+    --quote-prelude-step-hover-color: var(--ink-800);
+    --quote-prelude-focus-outline: rgba(232, 88, 122, 0.42);
     position: relative;
     overflow: hidden;
     padding: 1.6rem;
-    border: 1px solid rgba(232, 88, 122, 0.16);
+    border: 1px solid var(--quote-prelude-border);
     border-radius: 20px;
-    background:
-        radial-gradient(520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(167, 139, 250, 0.1), transparent 46%),
-        rgba(255, 255, 255, 0.54);
+    background: var(--quote-prelude-bg);
     backdrop-filter: blur(14px);
     box-shadow: 0 18px 45px rgba(26, 26, 46, 0.06);
     opacity: 0;
@@ -3438,11 +3456,9 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     right: 1.2rem;
     width: 4.4rem;
     height: 4.4rem;
-    border: 1px solid rgba(232, 88, 122, 0.12);
+    border: 1px solid var(--quote-prelude-orbit-border);
     border-radius: 50%;
-    background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.38), transparent 48%),
-        radial-gradient(circle, rgba(90, 158, 95, 0.18), transparent 62%);
+    background: var(--quote-prelude-orbit-bg);
     opacity: 0.72;
     pointer-events: none;
 }
@@ -3454,7 +3470,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 
 .quote-prelude-eyebrow {
     margin: 0 0 0.45rem;
-    color: var(--sakura-500);
+    color: var(--quote-prelude-accent);
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.16em;
@@ -3463,7 +3479,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 
 .quote-prelude-title {
     margin: 0 0 0.65rem;
-    color: var(--ink-800);
+    color: var(--quote-prelude-heading);
     font-family: var(--font-serif);
     font-size: 1.18rem;
     font-weight: 600;
@@ -3474,7 +3490,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 .quote-prelude-text {
     max-width: 42rem;
     margin: 0 auto 1.1rem;
-    color: var(--ink-600);
+    color: var(--quote-prelude-copy);
     font-size: 0.88rem;
     line-height: 1.9;
 }
@@ -3497,7 +3513,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     left: 1rem;
     right: 1rem;
     height: 1px;
-    background: linear-gradient(90deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.2), rgba(167, 139, 250, 0.2), rgba(90, 158, 95, 0));
+    background: var(--quote-prelude-step-rail);
     transform: translateY(-50%);
     pointer-events: none;
 }
@@ -3512,10 +3528,10 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     min-height: 100%;
     min-width: 0;
     padding: 0.8rem;
-    border: 1px solid rgba(167, 139, 250, 0.18);
+    border: 1px solid var(--quote-prelude-step-border);
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.42);
-    color: var(--ink-600);
+    background: var(--quote-prelude-step-bg);
+    color: var(--quote-prelude-copy);
     font-size: 0.78rem;
     line-height: 1.7;
     overflow-wrap: anywhere;
@@ -3524,20 +3540,20 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 
 .quote-prelude-step[href]:hover {
     transform: translateY(-2px);
-    border-color: rgba(232, 88, 122, 0.26);
-    background: rgba(255, 255, 255, 0.62);
-    color: var(--ink-800);
+    border-color: var(--quote-prelude-step-hover-border);
+    background: var(--quote-prelude-step-hover-bg);
+    color: var(--quote-prelude-step-hover-color);
 }
 
 .quote-prelude-step[href]:focus-visible {
-    outline: 2px solid rgba(232, 88, 122, 0.42);
+    outline: 2px solid var(--quote-prelude-focus-outline);
     outline-offset: 3px;
 }
 
 .quote-prelude-step > span {
     display: block;
     margin-bottom: 0.28rem;
-    color: var(--purple-500);
+    color: var(--quote-prelude-marker);
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.1em;
@@ -6167,35 +6183,19 @@ body.theme-night .section-quote {
 }
 
 body.theme-night .quote-prelude-card {
-    border-color: rgba(167, 139, 250, 0.22);
-    background:
+    --quote-prelude-border: rgba(167, 139, 250, 0.22);
+    --quote-prelude-bg:
         radial-gradient(520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(90, 158, 95, 0.12), transparent 46%),
         rgba(255, 255, 255, 0.05);
-}
-
-body.theme-night .quote-prelude-eyebrow,
-body.theme-night .quote-prelude-step > span {
-    color: var(--purple-400);
-}
-
-body.theme-night .quote-prelude-title {
-    color: var(--header-text);
-}
-
-body.theme-night .quote-prelude-text,
-body.theme-night .quote-prelude-step {
-    color: var(--body-text);
-}
-
-body.theme-night .quote-prelude-step {
-    border-color: rgba(167, 139, 250, 0.18);
-    background: rgba(255, 255, 255, 0.05);
-}
-
-body.theme-night .quote-prelude-step[href]:hover {
-    border-color: rgba(167, 139, 250, 0.3);
-    background: rgba(255, 255, 255, 0.09);
-    color: rgba(255, 255, 255, 0.86);
+    --quote-prelude-accent: var(--purple-400);
+    --quote-prelude-marker: var(--purple-400);
+    --quote-prelude-heading: var(--header-text);
+    --quote-prelude-copy: var(--body-text);
+    --quote-prelude-step-border: rgba(167, 139, 250, 0.18);
+    --quote-prelude-step-bg: rgba(255, 255, 255, 0.05);
+    --quote-prelude-step-hover-border: rgba(167, 139, 250, 0.3);
+    --quote-prelude-step-hover-bg: rgba(255, 255, 255, 0.09);
+    --quote-prelude-step-hover-color: rgba(255, 255, 255, 0.86);
 }
 
 body.theme-night .quote-text {
@@ -7100,7 +7100,7 @@ body.theme-night .nav-links a::after {
         right: auto;
         width: 1px;
         height: auto;
-        background: linear-gradient(180deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.18), rgba(167, 139, 250, 0.18), rgba(90, 158, 95, 0));
+        background: var(--quote-prelude-step-rail-vertical);
         transform: none;
     }
 

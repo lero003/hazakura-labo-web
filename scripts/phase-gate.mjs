@@ -221,6 +221,37 @@ const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
 const sakuraPetalsJs = readFile('dist/sakura-petals.js');
 assert(
+  'quote prelude theme is tokenized',
+  [
+    '--quote-prelude-bg',
+    '--quote-prelude-accent',
+    '--quote-prelude-step-rail',
+    '--quote-prelude-step-rail-vertical',
+    '--quote-prelude-step-hover-bg'
+  ].every((snippet) => styleCss.includes(snippet))
+    && styleCss.includes('body.theme-night .quote-prelude-card')
+    && !styleCss.includes('body.theme-night .quote-prelude-eyebrow')
+    && !styleCss.includes('body.theme-night .quote-prelude-title')
+    && !styleCss.includes('body.theme-night .quote-prelude-text')
+    && !styleCss.includes('body.theme-night .quote-prelude-step {')
+    && !styleCss.includes('body.theme-night .quote-prelude-step[href]:hover')
+    && !styleCss.includes('body.theme-night .quote-prelude-step > span'),
+  JSON.stringify({
+    hasBackgroundToken: styleCss.includes('--quote-prelude-bg'),
+    hasAccentToken: styleCss.includes('--quote-prelude-accent'),
+    hasRailToken: styleCss.includes('--quote-prelude-step-rail'),
+    hasVerticalRailToken: styleCss.includes('--quote-prelude-step-rail-vertical'),
+    hasHoverToken: styleCss.includes('--quote-prelude-step-hover-bg'),
+    hasNightCardTokenScope: styleCss.includes('body.theme-night .quote-prelude-card'),
+    hasDirectNightEyebrow: styleCss.includes('body.theme-night .quote-prelude-eyebrow'),
+    hasDirectNightTitle: styleCss.includes('body.theme-night .quote-prelude-title'),
+    hasDirectNightText: styleCss.includes('body.theme-night .quote-prelude-text'),
+    hasDirectNightStep: styleCss.includes('body.theme-night .quote-prelude-step {'),
+    hasDirectNightStepHover: styleCss.includes('body.theme-night .quote-prelude-step[href]:hover'),
+    hasDirectNightMarker: styleCss.includes('body.theme-night .quote-prelude-step > span')
+  })
+);
+assert(
   'library reading access row stays quieter than a sales block',
   libraryBooks.every((book) => book.price?.label === '読書入口')
     && ['--book-access-bg', '--book-access-label-bg', '--book-access-buy'].every((snippet) => styleCss.includes(snippet))
