@@ -2410,6 +2410,7 @@ a {
         rgba(90, 158, 95, 0.045);
     --garden-drawer-open-border: rgba(77, 161, 169, 0.26);
     --garden-drawer-open-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+    --garden-drawer-summary-align: center;
     --garden-drawer-summary-gap: 0.72rem;
     --garden-drawer-summary-min: 3rem;
     --garden-drawer-summary-padding: 0.78rem 0.9rem;
@@ -2428,6 +2429,7 @@ a {
         radial-gradient(circle, rgba(77, 161, 169, 0.16), transparent 58%),
         rgba(255, 255, 255, 0.42);
     --garden-drawer-sigil-color: var(--green-500);
+    --garden-drawer-sigil-margin-top: 0;
     --garden-drawer-sigil-rotate: 12deg;
     --garden-drawer-label-color: var(--green-500);
     --garden-drawer-hint-color: var(--ink-400);
@@ -2452,7 +2454,7 @@ a {
     position: relative;
     display: flex;
     gap: var(--garden-drawer-summary-gap);
-    align-items: center;
+    align-items: var(--garden-drawer-summary-align, center);
     min-height: var(--garden-drawer-summary-min);
     padding: var(--garden-drawer-summary-padding);
     color: var(--garden-drawer-summary-color);
@@ -2508,6 +2510,7 @@ a {
     color: var(--garden-drawer-sigil-color);
     font-size: 0.78rem;
     line-height: 1;
+    margin-top: var(--garden-drawer-sigil-margin-top, 0);
     transform: rotate(var(--garden-drawer-sigil-rotate));
     transition: transform var(--duration-fast) var(--ease-out-expo), border-color var(--duration-fast) ease;
 }
@@ -6730,15 +6733,11 @@ body.theme-night .nav-links a::after {
         overflow-wrap: anywhere;
     }
 
-    :is(.research-extra-drawer, .project-cycle-drawer) summary {
-        align-items: flex-start;
-        min-height: 0;
-    }
-
-    :is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil) {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-top: 0.05rem;
+    :is(.research-extra-drawer, .project-cycle-drawer) {
+        --garden-drawer-summary-align: flex-start;
+        --garden-drawer-summary-min: 0;
+        --garden-drawer-sigil-size: 1.5rem;
+        --garden-drawer-sigil-margin-top: 0.05rem;
     }
 
     .project-cycle-drawer {

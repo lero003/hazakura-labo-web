@@ -472,11 +472,13 @@ assert(
   'garden drawer chrome is shared between research, project, and vision entry drawers',
   [
     '--garden-drawer-bg',
+    '--garden-drawer-summary-align',
     '--garden-drawer-summary-color',
     '--garden-drawer-toggle-bg',
     '--garden-drawer-toggle-margin-left',
     '--garden-drawer-focus-outline',
     '--garden-drawer-sigil-bg',
+    '--garden-drawer-sigil-margin-top',
     'summary:focus-visible',
     ':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)'
   ].every((snippet) => styleCss.includes(snippet))
@@ -486,9 +488,11 @@ assert(
   JSON.stringify({
     hasSharedSelector: styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)'),
     hasBgToken: styleCss.includes('--garden-drawer-bg'),
+    hasSummaryAlignToken: styleCss.includes('--garden-drawer-summary-align'),
     hasSummaryToken: styleCss.includes('--garden-drawer-summary-color'),
     hasToggleAlignmentToken: styleCss.includes('--garden-drawer-toggle-margin-left'),
     hasFocusToken: styleCss.includes('--garden-drawer-focus-outline'),
+    hasSigilOffsetToken: styleCss.includes('--garden-drawer-sigil-margin-top'),
     hasFocusVisible: styleCss.includes('summary:focus-visible'),
     hasDirectResearchSummaryTheme: styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary'),
     hasDirectProjectSummaryTheme: styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary'),

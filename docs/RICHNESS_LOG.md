@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure
+- Changed: Research / Projects の drawer モバイル調整に残っていた summary の整列と sigil のサイズ・余白直指定を、`--garden-drawer-summary-align` / `--garden-drawer-sigil-margin-top` などの共通変数へ寄せた。見た目は保ったまま、phase gate で drawer の共有chrome契約も更新した。
+- Learned: 共通drawer骨格を作っても、狭幅だけ直指定が残ると次回のモバイル調整で読む場所が散る。小さな位置調整も `--garden-drawer-*` に乗せると、Research / Projects の小径を同じ庭具として扱いやすい。
+- Next: Vision の field drawer 側も、モバイル幅で summary 内の補足テキストが詰まりすぎていないか実表示で1件だけ見る。
+
+## 2026-04-28
+
 - Focus: Access / Visual / Structure
 - Changed: Research / Projects / Vision の共有 details drawer に `summary:focus-visible` のフォーカスリングと背景を足し、Research / Projects 側の開閉トグルを右端へ揃える `--garden-drawer-toggle-margin-left` を追加した。Vision の受付メモは既存の件数表示を保つため、同じ変数で個別に0へ戻した。
 - Learned: drawer骨格を共通化しても、キーボードで辿った時の着地点とトグル位置が弱いと「小径をひらく」所作が見た目だけに寄る。共有変数で触り口を整えると、情報を足さずに遊びの入口を実用にも寄せられる。
