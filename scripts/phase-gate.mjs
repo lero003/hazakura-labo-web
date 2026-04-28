@@ -30,6 +30,7 @@ const pageEndpointFiles = fs.readdirSync('src/pages')
   .filter((file) => file.endsWith('.js.ts') || file === 'style.css.ts')
   .sort();
 const rendererScriptPaths = [
+  '/section-foundation-renderer.js',
   '/project-renderer.js',
   '/quote-prelude.js',
   '/vision-renderer.js',
@@ -170,6 +171,7 @@ const appControllerJs = readFile('dist/app-controller.js');
 const styleCss = readFile('dist/style.css');
 const domHelpersJs = readFile('dist/dom-helpers.js');
 const contentRenderersJs = readFile('dist/content-renderers.js');
+const sectionFoundationRendererJs = readFile('dist/section-foundation-renderer.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const projectRendererJs = readFile('dist/project-renderer.js');
 const researchRendererJs = readFile('dist/research-renderer.js');
@@ -267,16 +269,17 @@ assert(
 );
 assert(
   'DOM string renderers share escape helper',
-  [contentRenderersJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => source.includes('window.HazakuraDom'))
-    && [contentRenderersJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => !source.includes('function escapeHtml')),
+  [sectionFoundationRendererJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => source.includes('window.HazakuraDom'))
+    && [contentRenderersJs, sectionFoundationRendererJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => !source.includes('function escapeHtml')),
   JSON.stringify({
-    contentUsesHelper: contentRenderersJs.includes('window.HazakuraDom'),
+    foundationUsesHelper: sectionFoundationRendererJs.includes('window.HazakuraDom'),
     projectUsesHelper: projectRendererJs.includes('window.HazakuraDom'),
     quoteUsesHelper: quotePreludeJs.includes('window.HazakuraDom'),
     researchUsesHelper: researchRendererJs.includes('window.HazakuraDom'),
     visionUsesHelper: visionRendererJs.includes('window.HazakuraDom'),
     duplicateEscapeFunctions: [
       ['content-renderers', contentRenderersJs.includes('function escapeHtml')],
+      ['section-foundation-renderer', sectionFoundationRendererJs.includes('function escapeHtml')],
       ['project-renderer', projectRendererJs.includes('function escapeHtml')],
       ['quote-prelude', quotePreludeJs.includes('function escapeHtml')],
       ['research-renderer', researchRendererJs.includes('function escapeHtml')],
@@ -414,10 +417,45 @@ assert(
   })
 );
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
+assert('content renderers delegates foundation renderer', contentRenderersJs.includes('HazakuraSectionFoundationRenderer?.render'));
 assert('content renderers delegates project renderer', contentRenderersJs.includes('HazakuraProjectRenderer?.render'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
 assert('content renderers delegates vision renderer', contentRenderersJs.includes('HazakuraVisionRenderer?.render'));
 assert('content renderers delegates research renderer', contentRenderersJs.includes('HazakuraResearchRenderer?.render'));
+assert(
+  'content renderers keeps foundation markup out of the orchestrator',
+  !contentRenderersJs.includes('class="philosophy-card"')
+    && !contentRenderersJs.includes('class="layer-card"')
+    && !contentRenderersJs.includes('class="process-step"')
+    && !contentRenderersJs.includes('.innerHTML'),
+  JSON.stringify({
+    hasPhilosophyCard: contentRenderersJs.includes('class="philosophy-card"'),
+    hasLayerCard: contentRenderersJs.includes('class="layer-card"'),
+    hasProcessStep: contentRenderersJs.includes('class="process-step"'),
+    writesHtml: contentRenderersJs.includes('.innerHTML')
+  })
+);
+assert('foundation renderer script exposes global', sectionFoundationRendererJs.includes('window.HazakuraSectionFoundationRenderer'));
+assert(
+  'foundation renderer loads before content orchestrator',
+  html.indexOf('src="/section-foundation-renderer.js"') >= 0
+    && html.indexOf('src="/section-foundation-renderer.js"') < html.indexOf('src="/content-renderers.js"'),
+  JSON.stringify({
+    sectionFoundationRenderer: html.indexOf('src="/section-foundation-renderer.js"'),
+    contentRenderers: html.indexOf('src="/content-renderers.js"')
+  })
+);
+assert(
+  'foundation renderer owns static section markup',
+  sectionFoundationRendererJs.includes('class="philosophy-card"')
+    && sectionFoundationRendererJs.includes('class="layer-card"')
+    && sectionFoundationRendererJs.includes('class="process-step"'),
+  JSON.stringify({
+    hasPhilosophyCard: sectionFoundationRendererJs.includes('class="philosophy-card"'),
+    hasLayerCard: sectionFoundationRendererJs.includes('class="layer-card"'),
+    hasProcessStep: sectionFoundationRendererJs.includes('class="process-step"')
+  })
+);
 assert(
   'content renderers keeps projects markup out of the orchestrator',
   !contentRenderersJs.includes('class="project-card"')

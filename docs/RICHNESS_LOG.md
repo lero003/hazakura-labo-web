@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure
+- Changed: `content-renderers.js` に残っていた Philosophy / Layers / Process の静的DOM生成を `section-foundation-renderer.js` へ切り出し、司令塔側は各専用rendererを呼ぶだけの形へ寄せた。互換配信ルート、script load order、phase gate も追加して、基礎セクションの描画境界が戻らないようにした。
+- Learned: Projects / Vision / Research を専用rendererへ分けても、基礎セクションのDOM文字列が司令塔に残ると「どこで何を描くか」の読み筋がまだ混ざる。静的セクションも小さく分けると、次の演出追加時に司令塔を汚さず済む。
+- Next: `src/pages/index.astro` に残る Library bridge のAstro直書き部分が、将来の間奏差し替えに十分軽いか、見た目を変えずに1ブロックだけ点検する。
+
+## 2026-04-28
+
 - Focus: Narrative / Visual / Structure
 - Changed: Library 冒頭コピーと Library -> Projects bridge を「販売棚」ではなく「問いの結晶」から次の実験へ渡す文脈へ寄せた。書籍の価格行は `読書入口` の小さなメモとして扱い、価格だけが強く見えないように `--book-access-*` 変数で昼夜テーマを整理した。
 - Learned: Kindleリンクや価格は必要でも、視覚的に価格が一番強いと書庫の空気が売り場へ寄る。読書入口として控えめに束ねると、書籍を制作循環の起点として読みやすい。
