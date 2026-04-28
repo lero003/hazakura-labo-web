@@ -272,6 +272,7 @@ assert(
     '--quote-prelude-accent',
     '--quote-prelude-step-rail',
     '--quote-prelude-step-rail-vertical',
+    '--quote-prelude-step-marker-bg',
     '--quote-prelude-step-hover-bg'
   ].every((snippet) => styleCss.includes(snippet))
     && styleCss.includes('body.theme-night .quote-prelude-card')
@@ -280,12 +281,15 @@ assert(
     && !styleCss.includes('body.theme-night .quote-prelude-text')
     && !styleCss.includes('body.theme-night .quote-prelude-step {')
     && !styleCss.includes('body.theme-night .quote-prelude-step[href]:hover')
-    && !styleCss.includes('body.theme-night .quote-prelude-step > span'),
+    && !styleCss.includes('body.theme-night .quote-prelude-step::before')
+    && !styleCss.includes('body.theme-night .quote-prelude-step__label')
+    && !styleCss.includes('body.theme-night .quote-prelude-step__text'),
   JSON.stringify({
     hasBackgroundToken: styleCss.includes('--quote-prelude-bg'),
     hasAccentToken: styleCss.includes('--quote-prelude-accent'),
     hasRailToken: styleCss.includes('--quote-prelude-step-rail'),
     hasVerticalRailToken: styleCss.includes('--quote-prelude-step-rail-vertical'),
+    hasMarkerBgToken: styleCss.includes('--quote-prelude-step-marker-bg'),
     hasHoverToken: styleCss.includes('--quote-prelude-step-hover-bg'),
     hasNightCardTokenScope: styleCss.includes('body.theme-night .quote-prelude-card'),
     hasDirectNightEyebrow: styleCss.includes('body.theme-night .quote-prelude-eyebrow'),
@@ -293,7 +297,26 @@ assert(
     hasDirectNightText: styleCss.includes('body.theme-night .quote-prelude-text'),
     hasDirectNightStep: styleCss.includes('body.theme-night .quote-prelude-step {'),
     hasDirectNightStepHover: styleCss.includes('body.theme-night .quote-prelude-step[href]:hover'),
-    hasDirectNightMarker: styleCss.includes('body.theme-night .quote-prelude-step > span')
+    hasDirectNightMarker: styleCss.includes('body.theme-night .quote-prelude-step::before'),
+    hasDirectNightStepLabel: styleCss.includes('body.theme-night .quote-prelude-step__label'),
+    hasDirectNightStepText: styleCss.includes('body.theme-night .quote-prelude-step__text')
+  })
+);
+assert(
+  'quote prelude steps keep a compact route marker structure',
+  quotePreludeJs.includes('quote-prelude-step__label')
+    && quotePreludeJs.includes('quote-prelude-step__text')
+    && styleCss.includes('counter-increment: quote-prelude')
+    && styleCss.includes('.quote-prelude-step::before')
+    && styleCss.includes('counter(quote-prelude, decimal-leading-zero)')
+    && styleCss.includes('grid-template-columns: 1.75rem minmax(0, 1fr)'),
+  JSON.stringify({
+    hasLabelSpan: quotePreludeJs.includes('quote-prelude-step__label'),
+    hasTextSpan: quotePreludeJs.includes('quote-prelude-step__text'),
+    hasCounterIncrement: styleCss.includes('counter-increment: quote-prelude'),
+    hasMarkerPseudo: styleCss.includes('.quote-prelude-step::before'),
+    hasDecimalMarker: styleCss.includes('counter(quote-prelude, decimal-leading-zero)'),
+    hasMobileMarkerGrid: styleCss.includes('grid-template-columns: 1.75rem minmax(0, 1fr)')
   })
 );
 assert(

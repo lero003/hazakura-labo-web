@@ -12,8 +12,8 @@
           ${item.steps.map((step) => `
             <li>
               ${step.href ? `<a class="quote-prelude-step" href="${escapeHtml(step.href)}">` : '<span class="quote-prelude-step">'}
-                <span>${escapeHtml(step.label || '')}</span>
-                ${escapeHtml(step.text || '')}
+                <span class="quote-prelude-step__label">${escapeHtml(step.label || '')}</span>
+                <span class="quote-prelude-step__text">${escapeHtml(step.text || '')}</span>
               ${step.href ? '</a>' : '</span>'}
             </li>
           `).join('')}

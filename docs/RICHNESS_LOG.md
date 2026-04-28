@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Access / Visual / Structure
+- Changed: Quote 前の折り返しステップを、ラベルと本文を分けた小さな route marker 構造へ整理し、既存のCSS counterを `01` から `04` の巡回札として見える化した。昼夜テーマの marker 色は `--quote-prelude-step-marker-*` 変数へ閉じ、phase gate で compact route marker 構造を保護した。
+- Learned: 折り返し先が Library / Projects / Research / Vision の4つに増えると、単なるカード列では終盤の参道として少し平板に見える。情報を増やさず、番号札と本文境界だけを足すと、最後の詩へ向かう前の「巡る順番」が拾いやすい。
+- Next: preview が許可される環境で、Quote 前ステップの番号札と縦レールがモバイル幅で強すぎないか1スクロールだけ見る。
+
+## 2026-04-29
+
 - Focus: Access / Motion / Structure
 - Changed: Research Log の描画領域を名前付きの小さなランドマークにし、Quote 前の折り返し導線から `#research-log-strip` へ戻れるようにした。到着時は既存の研究ログ光を handoff にも受け渡し、phase gate でアンカーと非表示見出しの契約を保護した。
 - Learned: Research Log は内容が育っていても、ページ構造上の入口が弱いと Vision の中に沈んで見える。新しいカードを増やさず、既存の折り返し導線に「記録をひらく」を混ぜるだけで、問い -> 実験 -> 発見の循環が拾いやすくなる。

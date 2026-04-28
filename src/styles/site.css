@@ -3480,6 +3480,9 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     --quote-prelude-step-rail-vertical: linear-gradient(180deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.18), rgba(167, 139, 250, 0.18), rgba(90, 158, 95, 0));
     --quote-prelude-step-border: rgba(167, 139, 250, 0.18);
     --quote-prelude-step-bg: rgba(255, 255, 255, 0.42);
+    --quote-prelude-step-marker-bg: rgba(255, 255, 255, 0.58);
+    --quote-prelude-step-marker-border: rgba(232, 88, 122, 0.22);
+    --quote-prelude-step-marker-shadow: 0 0 0 4px rgba(232, 88, 122, 0.08);
     --quote-prelude-step-hover-border: rgba(232, 88, 122, 0.26);
     --quote-prelude-step-hover-bg: rgba(255, 255, 255, 0.62);
     --quote-prelude-step-hover-color: var(--ink-800);
@@ -3569,10 +3572,15 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 .quote-prelude-steps li {
     position: relative;
     min-width: 0;
+    counter-increment: quote-prelude;
 }
 
 .quote-prelude-step {
-    display: block;
+    display: grid;
+    grid-template-columns: 1.9rem minmax(0, 1fr);
+    align-content: start;
+    align-items: start;
+    column-gap: 0.66rem;
     min-height: 100%;
     min-width: 0;
     padding: 0.8rem;
@@ -3584,6 +3592,22 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     line-height: 1.7;
     overflow-wrap: anywhere;
     transition: transform var(--duration-fast) ease, border-color var(--duration-fast) ease, background var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+.quote-prelude-step::before {
+    content: counter(quote-prelude, decimal-leading-zero);
+    display: grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 1px solid var(--quote-prelude-step-marker-border);
+    border-radius: 999px 999px 999px 6px;
+    background: var(--quote-prelude-step-marker-bg);
+    box-shadow: var(--quote-prelude-step-marker-shadow);
+    color: var(--quote-prelude-marker);
+    font-size: 0.64rem;
+    font-weight: 800;
+    line-height: 1;
 }
 
 .quote-prelude-step[href]:hover {
@@ -3598,13 +3622,18 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     outline-offset: 3px;
 }
 
-.quote-prelude-step > span {
+.quote-prelude-step__label {
     display: block;
     margin-bottom: 0.28rem;
     color: var(--quote-prelude-marker);
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.1em;
+}
+
+.quote-prelude-step__text {
+    grid-column: 2;
+    display: block;
 }
 
 .quote-block {
@@ -6264,6 +6293,9 @@ body.theme-night .quote-prelude-card {
     --quote-prelude-copy: var(--body-text);
     --quote-prelude-step-border: rgba(167, 139, 250, 0.18);
     --quote-prelude-step-bg: rgba(255, 255, 255, 0.05);
+    --quote-prelude-step-marker-bg: rgba(255, 255, 255, 0.08);
+    --quote-prelude-step-marker-border: rgba(167, 139, 250, 0.24);
+    --quote-prelude-step-marker-shadow: 0 0 0 4px rgba(167, 139, 250, 0.08);
     --quote-prelude-step-hover-border: rgba(167, 139, 250, 0.3);
     --quote-prelude-step-hover-bg: rgba(255, 255, 255, 0.09);
     --quote-prelude-step-hover-color: rgba(255, 255, 255, 0.86);
@@ -7174,8 +7206,16 @@ body.theme-night .nav-links a::after {
     }
 
     .quote-prelude-step {
+        grid-template-columns: 1.75rem minmax(0, 1fr);
+        column-gap: 0.58rem;
         padding: 0.72rem;
         border-radius: 12px;
+    }
+
+    .quote-prelude-step::before {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.6rem;
     }
 }
 
