@@ -1556,40 +1556,54 @@ a {
 }
 
 .book-price {
+    --book-access-border: rgba(168, 116, 48, 0.18);
+    --book-access-bg:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.48), rgba(255, 245, 247, 0.4));
+    --book-access-edge: rgba(232, 88, 122, 0.22);
+    --book-access-label: var(--sakura-500);
+    --book-access-label-bg: rgba(255, 255, 255, 0.62);
+    --book-access-label-border: rgba(232, 88, 122, 0.18);
+    --book-access-value: var(--ink-600);
+    --book-access-connector: var(--ink-400);
+    --book-access-buy: var(--ink-700);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 0.6rem;
-    padding: 1rem 0;
-    border-top: 1px solid var(--ink-200);
-    border-bottom: 1px solid var(--ink-200);
+    gap: 0.45rem 0.62rem;
+    padding: 0.72rem 0.82rem;
+    border: 1px solid var(--book-access-border);
+    border-left: 3px solid var(--book-access-edge);
+    border-radius: 14px;
+    background: var(--book-access-bg);
 }
 
 .price-label {
     font-size: 0.75rem;
-    font-weight: 500;
-    color: white;
-    background: linear-gradient(135deg, var(--sakura-400), var(--sakura-500));
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
+    font-weight: 700;
+    color: var(--book-access-label);
+    background: var(--book-access-label-bg);
+    padding: 0.26rem 0.68rem;
+    border: 1px solid var(--book-access-label-border);
+    border-radius: 999px;
+    letter-spacing: 0.08em;
 }
 
 .price-value {
     font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--sakura-500);
+    font-weight: 600;
+    color: var(--book-access-value);
 }
 
 .price-or {
     font-size: 0.8rem;
-    color: var(--ink-400);
+    color: var(--book-access-connector);
 }
 
 .price-buy {
-    font-family: var(--font-serif);
-    font-size: 1.4rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--ink-800);
+    color: var(--book-access-buy);
 }
 
 .book-cta {
@@ -5780,8 +5794,7 @@ body.theme-night .section-library .book-title-display {
 }
 
 body.theme-night .section-library .book-info-subtitle,
-body.theme-night .section-library .book-description,
-body.theme-night .section-library .book-price .price-value {
+body.theme-night .section-library .book-description {
     color: var(--body-text);
 }
 
@@ -5798,20 +5811,16 @@ body.theme-night .section-library .highlight-item {
 }
 
 body.theme-night .section-library .book-price {
-    border-top-color: rgba(139, 92, 246, 0.2);
-    border-bottom-color: rgba(139, 92, 246, 0.2);
-}
-
-body.theme-night .section-library .price-label {
-    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-}
-
-body.theme-night .section-library .price-or {
-    color: var(--body-text-dim);
-}
-
-body.theme-night .section-library .price-buy {
-    color: var(--header-text);
+    --book-access-border: rgba(167, 139, 250, 0.2);
+    --book-access-bg:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(167, 139, 250, 0.08));
+    --book-access-edge: rgba(167, 139, 250, 0.3);
+    --book-access-label: var(--purple-400);
+    --book-access-label-bg: rgba(255, 255, 255, 0.07);
+    --book-access-label-border: rgba(167, 139, 250, 0.24);
+    --book-access-value: var(--body-text);
+    --book-access-connector: var(--body-text-dim);
+    --book-access-buy: var(--header-text);
 }
 
 body.theme-night .section-library .book-badge {

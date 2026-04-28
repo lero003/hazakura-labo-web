@@ -204,6 +204,21 @@ const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
 const sakuraPetalsJs = readFile('dist/sakura-petals.js');
 assert(
+  'library reading access row stays quieter than a sales block',
+  libraryBooks.every((book) => book.price?.label === '読書入口')
+    && ['--book-access-bg', '--book-access-label-bg', '--book-access-buy'].every((snippet) => styleCss.includes(snippet))
+    && !styleCss.includes('body.theme-night .section-library .price-label')
+    && !/\.price-buy\s*{[^}]*font-size:\s*1\.4rem/s.test(styleCss),
+  JSON.stringify({
+    priceLabels: libraryBooks.map((book) => book.price?.label),
+    hasAccessBgToken: styleCss.includes('--book-access-bg'),
+    hasAccessLabelBgToken: styleCss.includes('--book-access-label-bg'),
+    hasAccessBuyToken: styleCss.includes('--book-access-buy'),
+    hasDirectNightPriceLabel: styleCss.includes('body.theme-night .section-library .price-label'),
+    hasLargePriceFont: /\.price-buy\s*{[^}]*font-size:\s*1\.4rem/s.test(styleCss)
+  })
+);
+assert(
   'library handoff is not interrupted by legacy stats grid',
   !html.includes('id="stats-grid"')
     && !contentRenderersJs.includes('data-render="stats"')

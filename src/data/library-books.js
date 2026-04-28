@@ -22,10 +22,10 @@ export const libraryBooks = [
       { icon: '✨', text: '世界愛 —— 最短距離を外れて歩く' }
     ],
     price: {
-      label: 'Kindle Unlimited',
-      value: '読み放題対象',
+      label: '読書入口',
+      value: 'Kindle Unlimited',
       connector: 'または',
-      buy: '¥1,200'
+      buy: '単品 ¥1,200'
     },
     action: {
       href: 'https://www.amazon.co.jp/dp/B0GSWNNZL7',
@@ -56,9 +56,9 @@ export const libraryBooks = [
       { icon: '📝', text: 'チカちゃんの冒険出版、新しい一冊' }
     ],
     price: {
-      label: 'Kindle版',
-      value: '新刊',
-      connector: '価格',
+      label: '読書入口',
+      value: 'Kindle版',
+      connector: '新刊',
       buy: '¥400'
     },
     action: {

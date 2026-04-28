@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Narrative / Visual / Structure
+- Changed: Library 冒頭コピーと Library -> Projects bridge を「販売棚」ではなく「問いの結晶」から次の実験へ渡す文脈へ寄せた。書籍の価格行は `読書入口` の小さなメモとして扱い、価格だけが強く見えないように `--book-access-*` 変数で昼夜テーマを整理した。
+- Learned: Kindleリンクや価格は必要でも、視覚的に価格が一番強いと書庫の空気が売り場へ寄る。読書入口として控えめに束ねると、書籍を制作循環の起点として読みやすい。
+- Next: Library のハイライト4項目が、内容紹介として重すぎず「問いの断片」として読めるか、1冊分だけ文言と余白を点検する。
+
+## 2026-04-28
+
 - Focus: Access / Structure
 - Changed: Vision 入口ガイドの受付メモ drawer で、summary の文字サイズと件数カウント表示を `--garden-drawer-summary-font-size` / `--vision-entry-drawer-note-*` 変数へ寄せた。狭幅の調整も drawer 本体の変数だけで扱い、直書きの summary 上書きを削った。
 - Learned: 受付メモは小さな補助UIでも、件数と開閉記号が狭幅で詰まるとフォーム仕様の確認に見えやすい。summary とカウントを変数化すると、Vision の入口だけを軽くしながら drawer 共通骨格を崩さずに済む。

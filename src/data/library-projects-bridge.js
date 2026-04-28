@@ -1,7 +1,7 @@
 export const libraryProjectsBridge = {
-  eyebrow: 'Margin between Library and Projects',
-  title: '本の余白を、次の実験へ渡す。',
-  text: '書庫で結晶化した問いを、買って終わりにせず、道具、ログ、物語の種へそっと戻します。',
+  eyebrow: 'Question handoff',
+  title: '読み終えた問いを、次の実験へ渡す。',
+  text: '書庫で結晶化した問いを、読んで閉じずに、道具、ログ、物語の種へそっと戻します。',
   steps: [
     {
       label: '読む',
