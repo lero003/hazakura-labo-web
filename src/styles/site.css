@@ -700,35 +700,22 @@ a {
     animation: fadeUp 1s var(--ease-out-expo) 1.2s forwards;
 }
 
-/* CTA ボタン（磁石効果） */
-.hero-cta-group {
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-}
-
-.hero-cta {
+/* Shared action links */
+.hero-cta,
+.book-cta {
+    --cta-arrow-shift: 4px;
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 1rem 2rem;
-    border-radius: 60px;
     font-family: var(--font-serif);
-    font-size: 0.95rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     transition: all var(--duration-normal) var(--ease-spring);
     position: relative;
     overflow: hidden;
-    cursor: pointer;
 }
 
-.hero-cta--primary {
-    background: var(--ink-900);
-    color: white;
-}
-
-.hero-cta--primary::before {
+.hero-cta--primary::before,
+.book-cta::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -737,13 +724,50 @@ a {
     transition: opacity var(--duration-normal) ease;
 }
 
+.hero-cta--primary:hover::before,
+.book-cta:hover::before {
+    opacity: 1;
+}
+
+.hero-cta > *,
+.book-cta > *,
+.library-projects-bridge__link > span {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-arrow {
+    transition: transform var(--duration-fast) ease;
+}
+
+.hero-cta:hover .cta-arrow,
+.book-cta:hover .cta-arrow {
+    transform: translateX(var(--cta-arrow-shift));
+}
+
+/* CTA ボタン（磁石効果） */
+.hero-cta-group {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.hero-cta {
+    gap: 0.6rem;
+    padding: 1rem 2rem;
+    border-radius: 60px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.hero-cta--primary {
+    background: var(--ink-900);
+    color: white;
+}
+
 .hero-cta--primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 40px rgba(232, 88, 122, 0.35);
-}
-
-.hero-cta--primary:hover::before {
-    opacity: 1;
 }
 
 .hero-cta--secondary {
@@ -765,19 +789,6 @@ a {
 
 .hero-cta--secondary .cta-arrow {
     opacity: 0.65;
-}
-
-.hero-cta>* {
-    position: relative;
-    z-index: 1;
-}
-
-.cta-arrow {
-    transition: transform var(--duration-fast) ease;
-}
-
-.hero-cta:hover .cta-arrow {
-    transform: translateX(4px);
 }
 
 /* scroll hint */
@@ -1582,52 +1593,19 @@ a {
 }
 
 .book-cta {
-    display: inline-flex;
-    align-items: center;
+    --cta-arrow-shift: 5px;
     gap: 0.8rem;
     padding: 1rem 2.5rem;
     background: linear-gradient(135deg, var(--ink-900), var(--ink-800));
     color: white;
     border-radius: 14px;
-    font-family: var(--font-serif);
     font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    transition: all var(--duration-normal) var(--ease-spring);
-    position: relative;
-    overflow: hidden;
     align-self: flex-start;
-}
-
-.book-cta::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--sakura-500), var(--purple-500));
-    opacity: 0;
-    transition: opacity var(--duration-normal) ease;
-}
-
-.book-cta:hover::before {
-    opacity: 1;
 }
 
 .book-cta:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 40px rgba(232, 88, 122, 0.35);
-}
-
-.book-cta>* {
-    position: relative;
-    z-index: 1;
-}
-
-.cta-arrow {
-    transition: transform var(--duration-fast) ease;
-}
-
-.book-cta:hover .cta-arrow {
-    transform: translateX(5px);
 }
 
 .library-projects-bridge {
@@ -1857,11 +1835,6 @@ a {
 .library-projects-bridge__link:hover::before,
 .library-projects-bridge__link:focus-visible::before {
     transform: translateX(120%);
-}
-
-.library-projects-bridge__link > span {
-    position: relative;
-    z-index: 1;
 }
 
 @keyframes bridgeSeedFloat {
