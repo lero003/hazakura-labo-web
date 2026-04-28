@@ -450,7 +450,17 @@ assert('app controller delegates smooth scroll', appControllerJs.includes('Hazak
 assert('app controller delegates scroll indicators', appControllerJs.includes('HazakuraScrollIndicators?.create'));
 assert('app controller delegates text reveal', appControllerJs.includes('HazakuraTextReveal?.prepare'));
 assert('app controller delegates hero parallax', appControllerJs.includes('HazakuraHeroParallax?.create'));
-assert('app controller delegates scroll animations', appControllerJs.includes('HazakuraScrollAnimations?.init'));
+assert(
+  'app controller delegates scroll animations with reduced-motion reveal fallback',
+  appControllerJs.includes('HazakuraScrollAnimations?.init')
+    && appControllerJs.includes('scrollAnimations?.revealAll()')
+    && !appControllerJs.includes('scrollAnimations?.setAllCounters()'),
+  JSON.stringify({
+    initializesScrollAnimations: appControllerJs.includes('HazakuraScrollAnimations?.init'),
+    revealsOnReducedMotionChange: appControllerJs.includes('scrollAnimations?.revealAll()'),
+    hasStaleCounterFallback: appControllerJs.includes('scrollAnimations?.setAllCounters()')
+  })
+);
 assert('app controller delegates canvas size', appControllerJs.includes('HazakuraCanvasSize?.resize'));
 assert('app controller delegates visibility playback', appControllerJs.includes('HazakuraVisibilityPlayback?.init'));
 assert('app controller delegates resize listener', appControllerJs.includes('HazakuraResizeListener?.init'));
@@ -1111,6 +1121,25 @@ assert('scroll indicators script exposes global', scrollIndicatorsJs.includes('w
 assert('text reveal script exposes global', textRevealJs.includes('window.HazakuraTextReveal'));
 assert('hero parallax script exposes global', heroParallaxJs.includes('window.HazakuraHeroParallax'));
 assert('scroll animations script exposes global', scrollAnimationsJs.includes('window.HazakuraScrollAnimations'));
+assert(
+  'scroll animations share one reveal target contract',
+  scrollAnimationsJs.includes('const revealTargetSelectors = [')
+    && scrollAnimationsJs.includes('const revealSelector = revealTargetSelectors.join')
+    && scrollAnimationsJs.includes('function revealAll()')
+    && scrollAnimationsJs.includes('document.querySelectorAll(revealSelector).forEach')
+    && scrollAnimationsJs.includes('document.querySelectorAll(processSelector).forEach')
+    && scrollAnimationsJs.includes('window.HazakuraScrollAnimations = { init }')
+    && !scrollAnimationsJs.includes('setAllCounters'),
+  JSON.stringify({
+    hasRevealTargetList: scrollAnimationsJs.includes('const revealTargetSelectors = ['),
+    hasJoinedSelector: scrollAnimationsJs.includes('const revealSelector = revealTargetSelectors.join'),
+    hasRevealAll: scrollAnimationsJs.includes('function revealAll()'),
+    usesRevealSelectorForAll: scrollAnimationsJs.includes('document.querySelectorAll(revealSelector).forEach'),
+    observesProcessSelector: scrollAnimationsJs.includes('document.querySelectorAll(processSelector).forEach'),
+    exposesGlobal: scrollAnimationsJs.includes('window.HazakuraScrollAnimations = { init }'),
+    hasStaleCounterName: scrollAnimationsJs.includes('setAllCounters')
+  })
+);
 assert('canvas size script exposes global', canvasSizeJs.includes('window.HazakuraCanvasSize'));
 assert('visibility playback script exposes global', visibilityPlaybackJs.includes('window.HazakuraVisibilityPlayback'));
 assert('resize listener script exposes global', resizeListenerJs.includes('window.HazakuraResizeListener'));

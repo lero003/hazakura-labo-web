@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Structure / Access / Motion
+- Changed: `scroll-animations.js` の表示対象を単一の `revealTargetSelectors` 契約へまとめ、通常観測・reduced-motion初期表示・途中切り替え時の強制表示が同じ対象を見るようにした。`app-controller.js` 側の古い `setAllCounters()` 呼び出しは `revealAll()` に置き換え、phase gate でも縮小モーション時の表示契約を保護した。
+- Learned: カードや間奏が増えた後は、スクロール表示対象の直書きが複数箇所へ散るだけで、縮小モーションや後続のセクション追加時に「見えないまま残る」弱さになる。演出を増やさなくても、表示契約をひとつに戻すことで庭の導線は壊れにくくなる。
+- Next: 実ブラウザで reduced motion を切り替えられる環境がある時に、途中スクロール位置から未到達の Projects / Vision / Quote 前カードがすべて表示されるか確認する。
+
+## 2026-04-29
+
 - Focus: Structure / Access
 - Changed: Vision入口ガイドの各種別を、JS初期化時に `role="button"` と `aria-pressed` を持つ選択コントロールとして扱うようにした。固定選択後に別種別を一時プレビューして離れた時は、固定中の入口へ表示が戻るようにし、受付メモの `summary` 操作は入口選択として誤発火しないよう境界を分けた。
 - Learned: Visionの入口ガイドは見た目の光だけでなく、選んだ状態がDOMにも残り、寄り道から戻れることで「預け口を選ぶ」所作として安定する。情報を増やさない小さなAccess整理でも、構想セクションの遊びを実用に寄せられる。

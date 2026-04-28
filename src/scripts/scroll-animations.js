@@ -1,12 +1,34 @@
 (function () {
     'use strict';
 
-    const revealSelectors = '.philosophy-card, .vision-card, .layer-card, .research-log-handoff, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-threshold, .project-card, .book-showcase, .quote-block';
-    const staggeredSelectors = '.philosophy-card, .vision-card, .layer-card, .research-log-card';
+    const revealTargetSelectors = [
+        '.philosophy-card',
+        '.vision-card',
+        '.layer-card',
+        '.research-log-handoff',
+        '.research-log-card',
+        '.cycle-bridge-card',
+        '.quote-prelude-card',
+        '.section-title',
+        '.project-threshold',
+        '.project-card',
+        '.book-showcase',
+        '.quote-block'
+    ];
+    const staggeredTargetSelectors = [
+        '.philosophy-card',
+        '.vision-card',
+        '.layer-card',
+        '.research-log-card'
+    ];
+    const processSelector = '.process-flow';
 
-    function revealReducedMotion() {
-        document.querySelectorAll(revealSelectors).forEach((el) => el.classList.add('visible'));
-        document.querySelectorAll('.process-step, .process-connector').forEach((el) => el.classList.add('visible'));
+    const revealSelector = revealTargetSelectors.join(', ');
+    const staggeredSelector = staggeredTargetSelectors.join(', ');
+
+    function revealAll() {
+        document.querySelectorAll(revealSelector).forEach((el) => el.classList.add('visible'));
+        document.querySelectorAll(`${processSelector} .process-step, ${processSelector} .process-connector`).forEach((el) => el.classList.add('visible'));
     }
 
     function revealStaggered(el) {
@@ -31,8 +53,11 @@
         } = options;
 
         if (getPrefersReducedMotion()) {
-            revealReducedMotion();
-            return {};
+            revealAll();
+            return {
+                revealAll,
+                disconnect() {}
+            };
         }
 
         const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -30px 0px' };
@@ -47,7 +72,7 @@
                     return;
                 }
 
-                if (el.matches(staggeredSelectors)) {
+                if (el.matches(staggeredSelector)) {
                     revealStaggered(el);
                 } else if (el.id === 'process-flow') {
                     revealProcess(el);
@@ -59,11 +84,11 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.philosophy-card, .vision-card, .layer-card, .research-log-handoff, .research-log-card, .cycle-bridge-card, .quote-prelude-card, .section-title, .project-threshold, .project-card').forEach((el) => observer.observe(el));
-        document.querySelectorAll('.book-showcase, .quote-block').forEach((el) => observer.observe(el));
-        document.querySelectorAll('.process-flow').forEach((el) => observer.observe(el));
+        document.querySelectorAll(revealSelector).forEach((el) => observer.observe(el));
+        document.querySelectorAll(processSelector).forEach((el) => observer.observe(el));
 
         return {
+            revealAll,
             disconnect() {
                 observer.disconnect();
             }

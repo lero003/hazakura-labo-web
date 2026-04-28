@@ -143,7 +143,7 @@
             if (prefersReducedMotion) {
                 motionEffects?.stopAll();
                 motionEffects?.clearAll();
-                scrollAnimations?.setAllCounters();
+                scrollAnimations?.revealAll();
             } else {
                 startMotionEffects();
             }
