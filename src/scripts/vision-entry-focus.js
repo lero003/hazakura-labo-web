@@ -11,6 +11,7 @@
     root.dataset.visionEntryFocusReady = 'true';
     let pinnedKind = '';
     let jumpTimer = 0;
+    const activationKeys = new Set(['Enter', ' ']);
 
     const getScrollOffset = () => window.HazakuraScrollOffset?.get(72) || 72;
 
@@ -50,8 +51,10 @@
 
       guideItems.forEach((item) => {
         const isActive = Boolean(activeKind) && item.dataset.entryKind === activeKind;
+        const isPinned = Boolean(pinnedKind) && item.dataset.entryKind === pinnedKind;
         item.classList.toggle('is-entry-active', isActive);
         item.setAttribute('aria-current', isActive ? 'true' : 'false');
+        item.setAttribute('aria-pressed', isPinned ? 'true' : 'false');
       });
       cards.forEach((card) => {
         const isMatch = Boolean(activeKind) && card.dataset.entryKind === activeKind;
@@ -61,12 +64,23 @@
     };
 
     const clearTransient = () => {
-      if (!pinnedKind) applyKind('');
+      applyKind(pinnedKind || '');
+    };
+
+    const isFromNestedSummary = (event) => event.target instanceof Element
+      && Boolean(event.target.closest('summary'));
+
+    const togglePinnedKind = (kind) => {
+      const nextKind = pinnedKind === kind ? '' : kind;
+      applyKind(nextKind, true);
+      if (nextKind) nudgeMatchingCard(nextKind);
     };
 
     guideItems.forEach((item) => {
       item.tabIndex = 0;
+      item.setAttribute('role', 'button');
       item.setAttribute('aria-current', 'false');
+      item.setAttribute('aria-pressed', 'false');
       const kind = item.dataset.entryKind || '';
 
       item.addEventListener('mouseenter', () => applyKind(kind));
@@ -74,17 +88,14 @@
       item.addEventListener('mouseleave', clearTransient);
       item.addEventListener('focusout', clearTransient);
       item.addEventListener('click', (event) => {
-        if (event.target.closest('summary')) return;
-        const nextKind = pinnedKind === kind ? '' : kind;
-        applyKind(nextKind, true);
-        if (nextKind) nudgeMatchingCard(nextKind);
+        if (isFromNestedSummary(event)) return;
+        togglePinnedKind(kind);
       });
       item.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
+        if (isFromNestedSummary(event)) return;
+        if (activationKeys.has(event.key)) {
           event.preventDefault();
-          const nextKind = pinnedKind === kind ? '' : kind;
-          applyKind(nextKind, true);
-          if (nextKind) nudgeMatchingCard(nextKind);
+          togglePinnedKind(kind);
         }
       });
     });

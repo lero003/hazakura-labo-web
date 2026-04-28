@@ -928,6 +928,23 @@ assert(
   })
 );
 assert(
+  'vision entry focus exposes a stable selection control',
+  visionEntryFocusJs.includes("item.setAttribute('role', 'button')")
+    && visionEntryFocusJs.includes("item.setAttribute('aria-pressed', 'false')")
+    && visionEntryFocusJs.includes("item.setAttribute('aria-pressed', isPinned ? 'true' : 'false')")
+    && visionEntryFocusJs.includes("applyKind(pinnedKind || '')")
+    && visionEntryFocusJs.includes('isFromNestedSummary(event)')
+    && visionEntryFocusJs.includes('togglePinnedKind(kind)'),
+  JSON.stringify({
+    hasButtonRole: visionEntryFocusJs.includes("item.setAttribute('role', 'button')"),
+    initializesPressed: visionEntryFocusJs.includes("item.setAttribute('aria-pressed', 'false')"),
+    syncsPressedState: visionEntryFocusJs.includes("item.setAttribute('aria-pressed', isPinned ? 'true' : 'false')"),
+    restoresPinnedPreview: visionEntryFocusJs.includes("applyKind(pinnedKind || '')"),
+    protectsNestedSummary: visionEntryFocusJs.includes('isFromNestedSummary(event)'),
+    hasSharedToggle: visionEntryFocusJs.includes('togglePinnedKind(kind)')
+  })
+);
+assert(
   'vision entry focus can nudge selected cards into view',
   visionEntryFocusJs.includes('nudgeMatchingCard')
     && visionEntryFocusJs.includes('HazakuraScrollTarget?.scrollTo')
