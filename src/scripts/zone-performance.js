@@ -44,15 +44,12 @@
             const zoneName = zoneIndexToName[targetZone];
             const target = document.querySelector(`section[data-zone="${zoneName}"]`);
             if (!target) return;
-            const scrollOffset = window.HazakuraScrollOffset?.get(72) || 72;
-            const y = target.getBoundingClientRect().top + window.scrollY - scrollOffset;
             setActiveZone(targetZone, true);
             updateBackgroundZones(targetZone);
             updateSectionZones(targetZone);
             updateAtmosphereBlend(targetZone);
-            window.scrollTo({
-                top: Math.max(0, y),
-                behavior: getPrefersReducedMotion() ? 'auto' : 'smooth'
+            window.HazakuraScrollTarget?.scrollTo(target, {
+                getPrefersReducedMotion
             });
         }
 

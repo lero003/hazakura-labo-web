@@ -17,7 +17,6 @@ export const scriptLoadGroups = [
       '/quote-prelude.js',
       '/vision-renderer.js',
       '/research-renderer.js',
-      '/vision-entry-focus.js',
       '/content-renderers.js'
     ]
   },
@@ -28,7 +27,9 @@ export const scriptLoadGroups = [
       '/zone-nav.js',
       '/zone-atmosphere.js',
       '/scroll-offset.js',
+      '/scroll-target.js',
       '/zone-performance.js',
+      '/vision-entry-focus.js',
       '/hero-aurora-overlay.js',
       '/hero-image-loader.js',
       '/motion-preferences.js',

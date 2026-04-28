@@ -1,8 +1,9 @@
 (function () {
   'use strict';
 
-  function init(root) {
+  function init(root, options = {}) {
     if (!root || root.dataset.visionEntryFocusReady === 'true') return;
+    const { getPrefersReducedMotion = () => false } = options;
     const guideItems = Array.from(root.querySelectorAll('.vision-entry-guide__kind[data-entry-kind]'));
     const cards = Array.from(root.querySelectorAll('.vision-card'));
     if (!guideItems.length || !cards.length) return;
@@ -12,8 +13,6 @@
     let jumpTimer = 0;
 
     const getScrollOffset = () => window.HazakuraScrollOffset?.get(72) || 72;
-
-    const prefersReducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches || false;
 
     const isMostlyVisible = (element) => {
       const rect = element.getBoundingClientRect();
@@ -38,10 +37,8 @@
       });
 
       if (isMostlyVisible(card)) return;
-      const y = card.getBoundingClientRect().top + window.scrollY - getScrollOffset();
-      window.scrollTo({
-        top: Math.max(0, y),
-        behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+      window.HazakuraScrollTarget?.scrollTo(card, {
+        getPrefersReducedMotion
       });
     };
 

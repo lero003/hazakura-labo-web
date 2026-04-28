@@ -201,6 +201,7 @@ const heroImageLoaderJs = readFile('dist/hero-image-loader.js');
 const motionPreferencesJs = readFile('dist/motion-preferences.js');
 const smoothScrollJs = readFile('dist/smooth-scroll.js');
 const scrollOffsetJs = readFile('dist/scroll-offset.js');
+const scrollTargetJs = readFile('dist/scroll-target.js');
 const scrollIndicatorsJs = readFile('dist/scroll-indicators.js');
 const textRevealJs = readFile('dist/text-reveal.js');
 const heroParallaxJs = readFile('dist/hero-parallax.js');
@@ -750,13 +751,13 @@ assert(
 assert(
   'vision entry focus can nudge selected cards into view',
   visionEntryFocusJs.includes('nudgeMatchingCard')
-    && visionEntryFocusJs.includes('HazakuraScrollOffset?.get')
+    && visionEntryFocusJs.includes('HazakuraScrollTarget?.scrollTo')
     && visionEntryFocusJs.includes('is-entry-jump')
     && styleCss.includes('.vision-card.visible.is-entry-match')
     && styleCss.includes('@keyframes visionEntryNudge'),
   JSON.stringify({
     hasNudge: visionEntryFocusJs.includes('nudgeMatchingCard'),
-    usesMeasuredOffset: visionEntryFocusJs.includes('HazakuraScrollOffset?.get'),
+    usesMeasuredScrollTarget: visionEntryFocusJs.includes('HazakuraScrollTarget?.scrollTo'),
     hasJumpClass: visionEntryFocusJs.includes('is-entry-jump'),
     hasVisibleMatchStyle: styleCss.includes('.vision-card.visible.is-entry-match'),
     hasNudgeKeyframes: styleCss.includes('@keyframes visionEntryNudge')
@@ -769,20 +770,40 @@ assert('hero aurora overlay script exposes global', heroAuroraOverlayJs.includes
 assert('hero image loader script exposes global', heroImageLoaderJs.includes('window.HazakuraHeroImageLoader'));
 assert('motion preferences script exposes global', motionPreferencesJs.includes('window.HazakuraMotionPreferences'));
 assert('scroll offset script exposes global', scrollOffsetJs.includes('window.HazakuraScrollOffset'));
+assert('scroll target script exposes global', scrollTargetJs.includes('window.HazakuraScrollTarget'));
+assert('scroll target uses measured offset', scrollTargetJs.includes('HazakuraScrollOffset?.get'));
 assert(
-  'scroll offset loads before scroll consumers',
+  'scroll target loads between offset and scroll consumers',
   html.indexOf('src="/scroll-offset.js"') >= 0
+    && html.indexOf('src="/scroll-target.js"') > html.indexOf('src="/scroll-offset.js"')
+    && html.indexOf('src="/scroll-target.js"') < html.indexOf('src="/smooth-scroll.js"')
+    && html.indexOf('src="/scroll-target.js"') < html.indexOf('src="/zone-performance.js"')
+    && html.indexOf('src="/scroll-target.js"') < html.indexOf('src="/vision-entry-focus.js"')
     && html.indexOf('src="/scroll-offset.js"') < html.indexOf('src="/smooth-scroll.js"')
     && html.indexOf('src="/scroll-offset.js"') < html.indexOf('src="/zone-performance.js"'),
   JSON.stringify({
     scrollOffset: html.indexOf('src="/scroll-offset.js"'),
+    scrollTarget: html.indexOf('src="/scroll-target.js"'),
     smoothScroll: html.indexOf('src="/smooth-scroll.js"'),
-    zonePerformance: html.indexOf('src="/zone-performance.js"')
+    zonePerformance: html.indexOf('src="/zone-performance.js"'),
+    visionEntryFocus: html.indexOf('src="/vision-entry-focus.js"')
   })
 );
 assert('smooth scroll script exposes global', smoothScrollJs.includes('window.HazakuraSmoothScroll'));
-assert('smooth scroll uses measured offset', smoothScrollJs.includes('HazakuraScrollOffset?.get'));
-assert('zone performance uses measured offset', zonePerformanceJs.includes('HazakuraScrollOffset?.get'));
+assert('smooth scroll uses shared scroll target', smoothScrollJs.includes('HazakuraScrollTarget?.scrollTo'));
+assert('zone performance uses shared scroll target', zonePerformanceJs.includes('HazakuraScrollTarget?.scrollTo'));
+assert(
+  'vision entry focus uses controller motion state for nudges',
+  appControllerJs.includes('HazakuraVisionEntryFocus?.init')
+    && appControllerJs.includes('getPrefersReducedMotion: () => prefersReducedMotion')
+    && visionEntryFocusJs.includes('getPrefersReducedMotion')
+    && !visionEntryFocusJs.includes('window.matchMedia?.('),
+  JSON.stringify({
+    appPassesMotionState: appControllerJs.includes('getPrefersReducedMotion: () => prefersReducedMotion'),
+    focusAcceptsMotionState: visionEntryFocusJs.includes('getPrefersReducedMotion'),
+    hasDirectMatchMedia: visionEntryFocusJs.includes('window.matchMedia?.(')
+  })
+);
 assert('smooth scroll includes library projects bridge', smoothScrollJs.includes('.library-projects-bridge__link'));
 assert(
   'hero return paths use measured smooth scroll arrival',

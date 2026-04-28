@@ -37,7 +37,9 @@
     const contentRenderers = window.HazakuraContentRenderers?.create({
         onRendered: () => {
             cardHoverFields?.refresh();
-            window.HazakuraVisionEntryFocus?.init(document.querySelector('[data-render="visions"]'));
+            window.HazakuraVisionEntryFocus?.init(document.querySelector('[data-render="visions"]'), {
+                getPrefersReducedMotion: () => prefersReducedMotion
+            });
         }
     });
 

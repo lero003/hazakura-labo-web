@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure / Access / Motion
+- Changed: 通常アンカー、ゾーンナビ、Vision入口カードへの寄せを `src/scripts/scroll-target.js` の共有境界へ集めた。`scroll-offset` の測定値と reduced-motion 判断を各導線で同じ扱いにし、Vision入口フォーカスは controller から受け取る motion 状態でスクロールするようにした。
+- Learned: セクション間の小径が増えるほど、同じ「どこへ寄せるか」の計算がscriptごとに散ると到着演出の調整範囲が広がる。スクロール先だけを共有すると、見た目を変えずに次の間奏や導線演出を足しやすくなる。
+- Next: preview 可能な環境で、ゾーンナビ、書庫CTA、Vision入口ガイドをモバイル幅で1回ずつ触り、到着位置の歩幅が揃っているか確認する。
+
+## 2026-04-28
+
 - Focus: Structure
 - Changed: Quote 前の折り返しカードに散っていた昼夜テーマ、ステップレール、hover / focus 色を `--quote-prelude-*` のローカルCSS変数へまとめた。モバイルの縦レールも同じ変数境界へ寄せ、phase gate で夜テーマが子セレクタ直指定へ戻らないよう保護した。
 - Learned: 最後の詩へ入る前の折り返しは、Library / Projects / Vision を畳む重要な余韻なので、小さな色調整でも読み筋が散ると次の演出が迷いやすい。カード単位のトークンに寄せると、終盤の遊びを足す余白だけ残せる。

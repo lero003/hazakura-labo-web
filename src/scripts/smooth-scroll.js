@@ -45,11 +45,9 @@
                 const target = document.querySelector(href);
                 if (!target) return;
 
-                const scrollOffset = window.HazakuraScrollOffset?.get(offset) || offset;
-                const y = target.getBoundingClientRect().top + window.scrollY - scrollOffset;
-                window.scrollTo({
-                    top: Math.max(0, y),
-                    behavior: getPrefersReducedMotion() ? 'auto' : 'smooth'
+                window.HazakuraScrollTarget?.scrollTo(target, {
+                    offset,
+                    getPrefersReducedMotion
                 });
 
                 markMatchingArrival(link, target, getPrefersReducedMotion());
