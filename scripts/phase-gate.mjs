@@ -185,6 +185,20 @@ assert(
   })
 );
 assert(
+  'project threshold theme is tokenized',
+  ['--project-threshold-mist', '--project-threshold-sigil-bg', '--project-threshold-rail', '--project-threshold-node-bg'].every((snippet) => styleCss.includes(snippet))
+    && !styleCss.includes('body.theme-night .section-projects .project-threshold__sigil {')
+    && !styleCss.includes('body.theme-night .section-projects .project-threshold__rail {'),
+  JSON.stringify({
+    hasMistToken: styleCss.includes('--project-threshold-mist'),
+    hasSigilToken: styleCss.includes('--project-threshold-sigil-bg'),
+    hasRailToken: styleCss.includes('--project-threshold-rail'),
+    hasNodeToken: styleCss.includes('--project-threshold-node-bg'),
+    hasNightSigilOverride: styleCss.includes('body.theme-night .section-projects .project-threshold__sigil {'),
+    hasNightRailOverride: styleCss.includes('body.theme-night .section-projects .project-threshold__rail {')
+  })
+);
+assert(
   'library projects bridge keeps handoff path styling',
   ['.library-projects-bridge::after', '.library-projects-bridge__steps::before', '.library-projects-bridge__steps li::before', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet)),
   JSON.stringify({

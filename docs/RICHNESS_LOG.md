@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: Projects 入口の `project-threshold` に散っていた昼/夜テーマの色、霧、しるし、レール、終端ノードをローカルCSS変数へまとめた。夜テーマは親セレクタの変数差し替えだけにし、phase gate でこのトークン化契約を保護した。
+- Learned: Library から Projects へ渡る間奏は演出としては小さくても、昼夜の上書きが子要素に散ると次の調整で読み筋が増える。入口単位の変数へ寄せると、導線の光だけを迷わず磨ける。
+- Next: Research Log handoff と Vision entry guide も、昼夜テーマの直指定が増えすぎていないか1ブロックだけ点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: `site.css` の Library -> Projects bridge で散っていた昼/夜テーマの色、線、光、CTA状態を `.library-projects-bridge` 内のCSS変数へまとめ、夜テーマは親の変数差し替えだけで成立する形にした。モバイルの縦レールも専用変数で保護し、phase gate にトークン化契約を追加した。
 - Learned: 橋のような間奏UIは、演出が小さくても色と状態の上書きが増えやすい。コンポーネント内トークンにまとめると、次回の余白・光・テーマ調整で読む範囲が狭くなる。
 - Next: Library の書籍HTML直書き部分を、見た目を変えずに `src/data/` へ寄せられる境界だけ点検する。

@@ -4666,6 +4666,22 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-threshold {
+    --project-threshold-border-top: rgba(232, 88, 122, 0.18);
+    --project-threshold-border-bottom: rgba(168, 116, 48, 0.18);
+    --project-threshold-mist:
+        radial-gradient(ellipse at 8% 50%, rgba(232, 88, 122, 0.16), transparent 14rem),
+        linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0));
+    --project-threshold-sigil-border: rgba(232, 88, 122, 0.28);
+    --project-threshold-sigil-bg:
+        radial-gradient(circle, rgba(232, 88, 122, 0.14), transparent 58%),
+        rgba(255, 255, 255, 0.56);
+    --project-threshold-sigil-color: var(--sakura-500);
+    --project-threshold-eyebrow: var(--sakura-500);
+    --project-threshold-heading: var(--ink-900);
+    --project-threshold-copy: var(--ink-500);
+    --project-threshold-rail: linear-gradient(90deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.42), rgba(90, 158, 95, 0.28));
+    --project-threshold-node-bg: rgba(255, 255, 255, 0.86);
+    --project-threshold-node-border: rgba(90, 158, 95, 0.36);
     position: relative;
     overflow: hidden;
     display: grid;
@@ -4674,8 +4690,8 @@ body.theme-night .section-layers .layer-sequence__beam {
     align-items: center;
     margin: -0.2rem 0 0;
     padding: 1rem 0;
-    border-top: 1px solid rgba(232, 88, 122, 0.18);
-    border-bottom: 1px solid rgba(168, 116, 48, 0.18);
+    border-top: 1px solid var(--project-threshold-border-top);
+    border-bottom: 1px solid var(--project-threshold-border-bottom);
     opacity: 0;
     transform: translateY(24px);
     transition: opacity var(--duration-slow) var(--ease-out-expo), transform var(--duration-slow) var(--ease-out-expo);
@@ -4690,9 +4706,7 @@ body.theme-night .section-layers .layer-sequence__beam {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(ellipse at 8% 50%, rgba(232, 88, 122, 0.16), transparent 14rem),
-        linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0));
+    background: var(--project-threshold-mist);
     opacity: 0.82;
     pointer-events: none;
 }
@@ -4704,12 +4718,10 @@ body.theme-night .section-layers .layer-sequence__beam {
     place-items: center;
     width: 2.25rem;
     height: 2.25rem;
-    border: 1px solid rgba(232, 88, 122, 0.28);
+    border: 1px solid var(--project-threshold-sigil-border);
     border-radius: 999px 999px 999px 6px;
-    background:
-        radial-gradient(circle, rgba(232, 88, 122, 0.14), transparent 58%),
-        rgba(255, 255, 255, 0.56);
-    color: var(--sakura-500);
+    background: var(--project-threshold-sigil-bg);
+    color: var(--project-threshold-sigil-color);
     font-size: 0.9rem;
     line-height: 1;
     transform: rotate(-10deg);
@@ -4724,7 +4736,7 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-threshold__eyebrow {
     margin-bottom: 0.26rem;
-    color: var(--sakura-500);
+    color: var(--project-threshold-eyebrow);
     font-size: 0.68rem;
     font-weight: 800;
     line-height: 1.4;
@@ -4734,7 +4746,7 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-threshold h3 {
     margin-bottom: 0.28rem;
-    color: var(--ink-900);
+    color: var(--project-threshold-heading);
     font-family: var(--font-serif);
     font-size: clamp(1.08rem, 1.65vw, 1.42rem);
     font-weight: 600;
@@ -4744,7 +4756,7 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-threshold__copy p:not(.project-threshold__eyebrow) {
     max-width: 42rem;
-    color: var(--ink-500);
+    color: var(--project-threshold-copy);
     font-size: 0.84rem;
     line-height: 1.75;
 }
@@ -4754,7 +4766,7 @@ body.theme-night .section-layers .layer-sequence__beam {
     z-index: 1;
     justify-self: stretch;
     height: 1px;
-    background: linear-gradient(90deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.42), rgba(90, 158, 95, 0.28));
+    background: var(--project-threshold-rail);
 }
 
 .project-threshold__rail::after {
@@ -4765,8 +4777,8 @@ body.theme-night .section-layers .layer-sequence__beam {
     width: 0.48rem;
     height: 0.48rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid rgba(90, 158, 95, 0.36);
+    background: var(--project-threshold-node-bg);
+    border: 1px solid var(--project-threshold-node-border);
     box-shadow: 0 0 1rem rgba(90, 158, 95, 0.18);
     transform: translateY(-50%);
 }
@@ -6147,43 +6159,22 @@ body.theme-night .section-projects .section-title {
 }
 
 body.theme-night .section-projects .project-threshold {
-    border-top-color: rgba(232, 88, 122, 0.22);
-    border-bottom-color: rgba(167, 139, 250, 0.18);
-}
-
-body.theme-night .section-projects .project-threshold::before {
-    background:
+    --project-threshold-border-top: rgba(232, 88, 122, 0.22);
+    --project-threshold-border-bottom: rgba(167, 139, 250, 0.18);
+    --project-threshold-mist:
         radial-gradient(ellipse at 8% 50%, rgba(232, 88, 122, 0.16), transparent 14rem),
         linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0));
-}
-
-body.theme-night .section-projects .project-threshold__sigil {
-    border-color: rgba(232, 88, 122, 0.34);
-    background:
+    --project-threshold-sigil-border: rgba(232, 88, 122, 0.34);
+    --project-threshold-sigil-bg:
         radial-gradient(circle, rgba(232, 88, 122, 0.2), transparent 58%),
         rgba(255, 255, 255, 0.06);
-    color: var(--sakura-400);
-}
-
-body.theme-night .section-projects .project-threshold__eyebrow {
-    color: var(--sakura-400);
-}
-
-body.theme-night .section-projects .project-threshold h3 {
-    color: var(--header-text);
-}
-
-body.theme-night .section-projects .project-threshold__copy p:not(.project-threshold__eyebrow) {
-    color: var(--body-text);
-}
-
-body.theme-night .section-projects .project-threshold__rail {
-    background: linear-gradient(90deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.42), rgba(82, 183, 150, 0.28));
-}
-
-body.theme-night .section-projects .project-threshold__rail::after {
-    background: rgba(20, 16, 40, 0.9);
-    border-color: rgba(82, 183, 150, 0.42);
+    --project-threshold-sigil-color: var(--sakura-400);
+    --project-threshold-eyebrow: var(--sakura-400);
+    --project-threshold-heading: var(--header-text);
+    --project-threshold-copy: var(--body-text);
+    --project-threshold-rail: linear-gradient(90deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.42), rgba(82, 183, 150, 0.28));
+    --project-threshold-node-bg: rgba(20, 16, 40, 0.9);
+    --project-threshold-node-border: rgba(82, 183, 150, 0.42);
 }
 
 body.theme-night .section-projects .project-card {
