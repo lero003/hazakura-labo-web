@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: Vision 入口ガイドの `vision-entry-guide__field-drawer` を、Research / Projects と同じ garden drawer の共通CSS骨格へ参加させた。受付メモの小ささは `--garden-drawer-*` 変数で維持し、専用の summary / toggle / open ルールを削って phase gate の保護対象も三者共有へ広げた。
+- Learned: 同じ「小径をひらく」所作がセクションごとに別実装だと、見た目が近くても次の演出調整で追う範囲が増える。Vision の受付メモも共通骨格に乗せると、構想の入口を重くせずに開閉UIだけまとめて磨ける。
+- Next: drawer 本体は揃ったので、次は Vision カード内の `vision-entry-question__fields` とガイド側の受付メモが、モバイル幅で二重に重く見えないか1ブロックだけ点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: Research Log の補足drawerと Projects の cycle drawer に重複していたsummary、開閉トグル、sigil、label/hintのCSS骨格を `--garden-drawer-*` 変数と共有 `:is(.research-extra-drawer, .project-cycle-drawer)` ルールへまとめた。夜テーマの子セレクタ上書きも、drawer単位の変数差し替えへ寄せ、phase gate で共有契約を保護した。
 - Learned: 「小径をひらく」UIはセクションごとに色が違っても、触り方と開閉の所作は同じ庭具として読ませたほうが保守しやすい。共通骨格に寄せると、次回のdrawer演出調整がResearchとProjectsで二重化しにくい。
 - Next: Vision の受付メモdrawerも同じ garden drawer 骨格へ寄せられるか、見た目を変えずに1ブロックだけ点検する。
