@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure
+- Changed: `scripts/phase-gate.mjs` に、`src/data/script-load-order.js` のmanifest、`src/scripts/*.js` の実体、`src/pages/*.js.ts` の互換配信ルートが一対一で揃っているかを確認する検査を追加した。
+- Learned: 演出scriptが細かく分かれた今は、見た目を増やすよりも「追加した小径が配信されない」「消したscriptのルートだけ残る」状態を早く検出できるほうが、次の遊びを安心して足せる。
+- Next: preview可能な環境で、ProjectsフィルターとQuote折り返し導線をモバイル幅で触り、script境界の保護が実体験の崩れ検出にも十分か確認する。
+
+## 2026-04-28
+
 - Focus: Structure / Access / Motion
 - Changed: 通常アンカー、ゾーンナビ、Vision入口カードへの寄せを `src/scripts/scroll-target.js` の共有境界へ集めた。`scroll-offset` の測定値と reduced-motion 判断を各導線で同じ扱いにし、Vision入口フォーカスは controller から受け取る motion 状態でスクロールするようにした。
 - Learned: セクション間の小径が増えるほど、同じ「どこへ寄せるか」の計算がscriptごとに散ると到着演出の調整範囲が広がる。スクロール先だけを共有すると、見た目を変えずに次の間奏や導線演出を足しやすくなる。

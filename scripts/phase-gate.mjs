@@ -30,6 +30,20 @@ const routeHelperSource = readFile('src/route-responses.ts');
 const pageEndpointFiles = fs.readdirSync('src/pages')
   .filter((file) => file.endsWith('.js.ts') || file === 'style.css.ts')
   .sort();
+const sourceScriptPaths = fs.readdirSync('src/scripts')
+  .filter((file) => file.endsWith('.js'))
+  .sort()
+  .map((file) => `/${file}`);
+const manifestScriptPaths = scriptLoadOrder.filter((path) => path !== '/content.js');
+const manifestScriptEndpointFiles = manifestScriptPaths.map((path) => `${path.slice(1)}.ts`);
+const staleScriptEndpointFiles = pageEndpointFiles
+  .filter((file) => file.endsWith('.js.ts') && file !== 'content.js.ts' && !manifestScriptEndpointFiles.includes(file));
+const missingScriptEndpointFiles = manifestScriptEndpointFiles
+  .filter((file) => !pageEndpointFiles.includes(file));
+const missingScriptSources = manifestScriptPaths
+  .filter((path) => !sourceScriptPaths.includes(path));
+const unlistedScriptSources = sourceScriptPaths
+  .filter((path) => !manifestScriptPaths.includes(path));
 const rendererScriptPaths = [
   '/section-foundation-renderer.js',
   '/project-renderer.js',
@@ -96,6 +110,24 @@ assert(
   'script load order is stable',
   scriptPositions.every(([, index], itemIndex) => index >= 0 && (itemIndex === 0 || scriptPositions[itemIndex - 1][1] < index)),
   JSON.stringify(scriptPositions)
+);
+assert(
+  'script manifest mirrors source files and route endpoints',
+  missingScriptSources.length === 0
+    && unlistedScriptSources.length === 0
+    && missingScriptEndpointFiles.length === 0
+    && staleScriptEndpointFiles.length === 0
+    && manifestScriptPaths.every((path) => {
+      const endpointSource = readFile(`src/pages/${path.slice(1)}.ts`);
+      return endpointSource.includes(`import source from '../scripts/${path.slice(1)}?raw'`)
+        && endpointSource.includes('javascriptResponse(source)');
+    }),
+  JSON.stringify({
+    missingScriptSources,
+    unlistedScriptSources,
+    missingScriptEndpointFiles,
+    staleScriptEndpointFiles
+  })
 );
 assert(
   'compatible asset routes share response helper',
