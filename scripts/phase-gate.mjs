@@ -325,6 +325,9 @@ assert(
     && styleCss.includes('.nav-logo:focus-visible')
     && styleCss.includes('.footer-nav a:focus-visible')
     && styleCss.includes('--garden-route-focus-outline')
+    && styleCss.includes('outline-offset: var(--garden-route-focus-offset, 4px)')
+    && styleCss.includes('body.theme-night :is(.nav, .footer-nav)')
+    && styleCss.includes('--garden-route-focus-offset: 2px')
     && smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]')
     && smoothScrollJs.includes('is-research-route-arrival')
     && styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff'),
@@ -335,6 +338,9 @@ assert(
     hasMainRouteFocus: styleCss.includes('.nav-logo:focus-visible'),
     hasFooterRouteFocus: styleCss.includes('.footer-nav a:focus-visible'),
     hasFocusToken: styleCss.includes('--garden-route-focus-outline'),
+    hasFocusOffsetToken: styleCss.includes('outline-offset: var(--garden-route-focus-offset, 4px)'),
+    hasSharedNightRouteTokens: styleCss.includes('body.theme-night :is(.nav, .footer-nav)'),
+    hasCompactMobileFocusOffset: styleCss.includes('--garden-route-focus-offset: 2px'),
     hasSmoothScrollSelector: smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]'),
     hasArrivalClass: smoothScrollJs.includes('is-research-route-arrival'),
     hasArrivalStyle: styleCss.includes('.research-log-strip:is(.is-quote-return-arrival, .is-research-route-arrival) .research-log-handoff')

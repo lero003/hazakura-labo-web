@@ -46,6 +46,10 @@
     --duration-normal: 0.5s;
     --duration-fast: 0.3s;
     --hazakura-anchor-offset: 84px;
+    --garden-route-focus-outline: rgba(232, 88, 122, 0.38);
+    --garden-route-focus-bg: rgba(255, 255, 255, 0.48);
+    --garden-route-focus-shadow: 0 0 0 6px rgba(232, 88, 122, 0.08);
+    --garden-route-focus-offset: 4px;
 }
 
 *,
@@ -390,9 +394,6 @@ a {
 
 /* --- Navigation --- */
 .nav {
-    --garden-route-focus-outline: rgba(232, 88, 122, 0.38);
-    --garden-route-focus-bg: rgba(255, 255, 255, 0.48);
-    --garden-route-focus-shadow: 0 0 0 6px rgba(232, 88, 122, 0.08);
     position: fixed;
     top: 0;
     left: 0;
@@ -487,7 +488,7 @@ a {
 .nav-links a:focus-visible,
 .footer-nav a:focus-visible {
     outline: 2px solid var(--garden-route-focus-outline);
-    outline-offset: 4px;
+    outline-offset: var(--garden-route-focus-offset, 4px);
     border-radius: 999px;
     background: var(--garden-route-focus-bg);
     box-shadow: var(--garden-route-focus-shadow);
@@ -3842,9 +3843,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .footer-nav {
-    --garden-route-focus-outline: rgba(232, 88, 122, 0.38);
     --garden-route-focus-bg: rgba(255, 255, 255, 0.12);
-    --garden-route-focus-shadow: 0 0 0 6px rgba(232, 88, 122, 0.08);
     display: flex;
     justify-content: center;
     gap: 2rem;
@@ -6582,7 +6581,7 @@ body.theme-night .section-projects .tag {
    ============================================================ */
 
 /* Scrolled nav becomes dark when theme-night */
-body.theme-night .nav {
+body.theme-night :is(.nav, .footer-nav) {
     --garden-route-focus-outline: rgba(247, 135, 154, 0.46);
     --garden-route-focus-bg: rgba(255, 255, 255, 0.08);
     --garden-route-focus-shadow: 0 0 0 6px rgba(247, 135, 154, 0.1);
@@ -6609,12 +6608,6 @@ body.theme-night .nav-links a:hover {
 
 body.theme-night .nav-links a::after {
     background: var(--sakura-400);
-}
-
-body.theme-night .footer-nav {
-    --garden-route-focus-outline: rgba(247, 135, 154, 0.46);
-    --garden-route-focus-bg: rgba(255, 255, 255, 0.08);
-    --garden-route-focus-shadow: 0 0 0 6px rgba(247, 135, 154, 0.1);
 }
 
 /* ============================================
@@ -7406,6 +7399,7 @@ body.theme-night .nav:not(.scrolled) .nav-links a:hover {
     }
 
     .nav-links {
+        --garden-route-focus-offset: 2px;
         display: grid;
         grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 0.3rem;
