@@ -363,10 +363,14 @@ assert(
     && visionRendererJs.includes('<summary>')
     && visionRendererJs.includes('受付メモ')
     && styleCss.includes('.vision-entry-guide__field-drawer')
+    && styleCss.includes('--vision-entry-drawer-note-display')
+    && styleCss.includes('--vision-entry-drawer-note-white-space')
     && styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)[open] summary::after'),
   JSON.stringify({
     hasDrawerRenderer: visionRendererJs.includes('class="vision-entry-guide__field-drawer"'),
-    hasDrawerStyles: styleCss.includes('.vision-entry-guide__field-drawer')
+    hasDrawerStyles: styleCss.includes('.vision-entry-guide__field-drawer'),
+    hasNoteDisplayToken: styleCss.includes('--vision-entry-drawer-note-display'),
+    hasNoteWhitespaceToken: styleCss.includes('--vision-entry-drawer-note-white-space')
   })
 );
 assert(
@@ -474,6 +478,7 @@ assert(
     '--garden-drawer-bg',
     '--garden-drawer-summary-align',
     '--garden-drawer-summary-color',
+    '--garden-drawer-summary-font-size',
     '--garden-drawer-toggle-bg',
     '--garden-drawer-toggle-margin-left',
     '--garden-drawer-focus-outline',
@@ -484,18 +489,21 @@ assert(
   ].every((snippet) => styleCss.includes(snippet))
     && !styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary')
     && !styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary')
+    && !styleCss.includes('.vision-entry-guide__field-drawer summary {')
     && !styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after'),
   JSON.stringify({
     hasSharedSelector: styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)'),
     hasBgToken: styleCss.includes('--garden-drawer-bg'),
     hasSummaryAlignToken: styleCss.includes('--garden-drawer-summary-align'),
     hasSummaryToken: styleCss.includes('--garden-drawer-summary-color'),
+    hasSummaryFontSizeToken: styleCss.includes('--garden-drawer-summary-font-size'),
     hasToggleAlignmentToken: styleCss.includes('--garden-drawer-toggle-margin-left'),
     hasFocusToken: styleCss.includes('--garden-drawer-focus-outline'),
     hasSigilOffsetToken: styleCss.includes('--garden-drawer-sigil-margin-top'),
     hasFocusVisible: styleCss.includes('summary:focus-visible'),
     hasDirectResearchSummaryTheme: styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary'),
     hasDirectProjectSummaryTheme: styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary'),
+    hasDirectVisionSummaryRule: styleCss.includes('.vision-entry-guide__field-drawer summary {'),
     hasDirectVisionOpenToggleRule: styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after')
   })
 );

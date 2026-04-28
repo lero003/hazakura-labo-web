@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Access / Structure
+- Changed: Vision 入口ガイドの受付メモ drawer で、summary の文字サイズと件数カウント表示を `--garden-drawer-summary-font-size` / `--vision-entry-drawer-note-*` 変数へ寄せた。狭幅の調整も drawer 本体の変数だけで扱い、直書きの summary 上書きを削った。
+- Learned: 受付メモは小さな補助UIでも、件数と開閉記号が狭幅で詰まるとフォーム仕様の確認に見えやすい。summary とカウントを変数化すると、Vision の入口だけを軽くしながら drawer 共通骨格を崩さずに済む。
+- Next: Vision カード内の受付メモチップが、入口ガイド側の drawer と重なって情報過多に見えないか、カード1件だけモバイル幅で点検する。
+
+## 2026-04-28
+
 - Focus: Structure
 - Changed: Research / Projects の drawer モバイル調整に残っていた summary の整列と sigil のサイズ・余白直指定を、`--garden-drawer-summary-align` / `--garden-drawer-sigil-margin-top` などの共通変数へ寄せた。見た目は保ったまま、phase gate で drawer の共有chrome契約も更新した。
 - Learned: 共通drawer骨格を作っても、狭幅だけ直指定が残ると次回のモバイル調整で読む場所が散る。小さな位置調整も `--garden-drawer-*` に乗せると、Research / Projects の小径を同じ庭具として扱いやすい。

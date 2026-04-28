@@ -2458,6 +2458,7 @@ a {
     min-height: var(--garden-drawer-summary-min);
     padding: var(--garden-drawer-summary-padding);
     color: var(--garden-drawer-summary-color);
+    font-size: var(--garden-drawer-summary-font-size, inherit);
     cursor: pointer;
     list-style: none;
 }
@@ -2946,6 +2947,7 @@ body.theme-night .section-vision {
     --garden-drawer-summary-gap: 0.65rem;
     --garden-drawer-summary-min: auto;
     --garden-drawer-summary-padding: 0.42rem 0.56rem;
+    --garden-drawer-summary-font-size: 0.68rem;
     --garden-drawer-summary-color: var(--vision-entry-drawer-summary);
     --garden-drawer-toggle-border: var(--vision-entry-drawer-toggle-border);
     --garden-drawer-toggle-bg: var(--vision-entry-drawer-toggle-bg);
@@ -2960,24 +2962,24 @@ body.theme-night .section-vision {
     --garden-drawer-focus-outline: rgba(var(--entry-accent-rgb), 0.42);
     --garden-drawer-focus-bg: rgba(var(--entry-accent-rgb), 0.08);
     --garden-drawer-focus-offset: 2px;
+    --vision-entry-drawer-note-display: inline;
+    --vision-entry-drawer-note-margin: 0 0 0 auto;
+    --vision-entry-drawer-note-line-height: 1;
+    --vision-entry-drawer-note-white-space: nowrap;
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.08em;
 }
 
 .vision-entry-guide__field-drawer summary small {
-    margin-left: auto;
+    display: var(--vision-entry-drawer-note-display);
+    margin: var(--vision-entry-drawer-note-margin);
     color: var(--vision-entry-drawer-note);
     font-size: 0.64rem;
     font-weight: 700;
     letter-spacing: 0.06em;
-}
-
-.vision-entry-guide__kind .vision-entry-guide__field-drawer summary small {
-    display: inline;
-    gap: 0;
-    margin: 0 0 0 auto;
-    line-height: 1;
+    line-height: var(--vision-entry-drawer-note-line-height);
+    white-space: var(--vision-entry-drawer-note-white-space);
 }
 
 .vision-entry-guide__fields,
@@ -7020,9 +7022,6 @@ body.theme-night .nav-links a::after {
     .vision-entry-guide__field-drawer {
         --garden-drawer-margin: 0.48rem 0 0;
         --garden-drawer-radius: 10px;
-    }
-
-    .vision-entry-guide__field-drawer summary {
         --garden-drawer-summary-min: 2.2rem;
         --garden-drawer-summary-padding: 0.44rem 0.58rem;
     }
@@ -7249,8 +7248,8 @@ body.theme-night .nav-links a::after {
         font-size: 0.7rem;
     }
 
-    .vision-entry-guide__field-drawer summary {
-        font-size: 0.66rem;
+    .vision-entry-guide__field-drawer {
+        --garden-drawer-summary-font-size: 0.66rem;
     }
 
     .vision-entry-guide__fields li {
