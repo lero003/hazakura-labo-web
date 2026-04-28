@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: Library の2冊分の書籍カードを `src/data/library-books.js` へ切り出し、`index.astro` は同じ見た目のまま `libraryBooks.map` で描画する形にした。phase gate で書籍データ、表紙asset、CTA、`.book-3d` の複数冊描画契約を保護した。
+- Learned: 書庫は演出が育っていても、本文・表紙・価格・CTAがページ本体に残ると次の本追加や文脈調整で触る範囲が広がる。データ境界へ寄せると、書庫を「販売棚」ではなく「問いの結晶」として磨く入口が細くなる。
+- Next: Library 見出しと各本の短い説明が、販売情報より「どんな問いの結晶か」を先に読ませているか、文言だけで1冊ずつ点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: Projects 入口の `project-threshold` に散っていた昼/夜テーマの色、霧、しるし、レール、終端ノードをローカルCSS変数へまとめた。夜テーマは親セレクタの変数差し替えだけにし、phase gate でこのトークン化契約を保護した。
 - Learned: Library から Projects へ渡る間奏は演出としては小さくても、昼夜の上書きが子要素に散ると次の調整で読み筋が増える。入口単位の変数へ寄せると、導線の光だけを迷わず磨ける。
 - Next: Research Log handoff と Vision entry guide も、昼夜テーマの直指定が増えすぎていないか1ブロックだけ点検する。

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { hazakuraContent } from '../src/data/content.js';
 import { scriptLoadOrder } from '../src/data/script-load-order.js';
+import { libraryBooks } from '../src/data/library-books.js';
 
 const checks = [];
 
@@ -23,6 +24,7 @@ function readFile(path) {
 }
 
 const html = readFile('dist/index.html');
+const indexSource = readFile('src/pages/index.astro');
 assert('dist/index.html exists', Boolean(html));
 
 const sections = ['hero', 'philosophy', 'layers', 'library', 'projects', 'vision', 'quote'];
@@ -69,6 +71,7 @@ assert(
 const requiredAssets = [
   'dist/style.css',
   ...scriptLoadOrder.map((path) => `dist${path}`),
+  ...libraryBooks.map((book) => `dist/${book.image.src.replace(/^\.\//, '')}`),
   'dist/img/hero.png',
   'dist/downloads/SakuraSky.dmg'
 ];
@@ -80,6 +83,32 @@ assert(
 assert('legacy public script is not emitted', !fs.existsSync('dist/script.js'));
 assert('legacy public stylesheet source is not used', !fs.existsSync('public/style.css'));
 assert('legacy onepage archive is removed', !fs.existsSync('hazakura-onepage-lab'));
+assert(
+  'library books are data-backed',
+  indexSource.includes("import { libraryBooks }")
+    && indexSource.includes('libraryBooks.map')
+    && !indexSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>')
+    && Array.isArray(libraryBooks)
+    && libraryBooks.length === 2
+    && libraryBooks.every((book) => book.title && book.image?.src && book.action?.href),
+  JSON.stringify({
+    importsData: indexSource.includes("import { libraryBooks }"),
+    mapsBooks: indexSource.includes('libraryBooks.map'),
+    hasHardcodedFirstTitle: indexSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>'),
+    bookCount: libraryBooks.length
+  })
+);
+assert(
+  'library book markup renders all data books',
+  libraryBooks.every((book) => html.includes(book.title) && html.includes(book.image.src) && html.includes(book.action.href))
+    && (html.match(/class="book-showcase/g) || []).length === libraryBooks.length
+    && (html.match(/class="book-3d"/g) || []).length === libraryBooks.length,
+  JSON.stringify({
+    titles: libraryBooks.map((book) => [book.title, html.includes(book.title)]),
+    showcaseCount: (html.match(/class="book-showcase/g) || []).length,
+    bookTiltTargets: (html.match(/class="book-3d"/g) || []).length
+  })
+);
 
 const contentJs = readFile('dist/content.js');
 const contentSandbox = { window: {} };

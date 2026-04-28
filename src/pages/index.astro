@@ -1,6 +1,11 @@
 ---
 import { scriptLoadOrder } from '../data/script-load-order.js';
 import { libraryProjectsBridge } from '../data/library-projects-bridge.js';
+import { libraryBooks } from '../data/library-books.js';
+
+const bookShowcaseClass = (book) => ['book-showcase', book.showcaseModifier].filter(Boolean).join(' ');
+const bookCoverClass = (book) => ['book-cover', book.coverModifier].filter(Boolean).join(' ');
+const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boolean).join(' ');
 ---
 
 <!DOCTYPE html>
@@ -148,120 +153,57 @@ import { libraryProjectsBridge } from '../data/library-projects-bridge.js';
                 </p>
             </div>
             <div class="book-shelf" aria-label="チカちゃんシリーズの書籍">
-                <div class="book-showcase" id="book-showcase">
-                    <div class="book-visual">
-                        <div class="book-3d" id="book-3d">
-                            <div class="book-cover">
-                                <img class="book-cover-art book-cover-art--clear" src="./img/book_chika_adventure.jpg"
-                                    alt="哲学AIチカちゃんと対話の冒険を描いた『チカちゃんの哲学冒険譚』の表紙">
-                                <div class="book-glare"></div>
+                {libraryBooks.map((book) => (
+                    <div class={bookShowcaseClass(book)} id={book.showcaseId}>
+                        <div class="book-visual">
+                            <div class="book-3d" id={book.bookId}>
+                                <div class={bookCoverClass(book)}>
+                                    <img class="book-cover-art book-cover-art--clear" src={book.image.src}
+                                        alt={book.image.alt}>
+                                    <div class="book-glare"></div>
+                                </div>
+                                <div class={bookSpineClass(book)}></div>
                             </div>
-                            <div class="book-spine"></div>
+                        </div>
+                        <div class="book-info">
+                            <div class="book-meta">
+                                {book.meta.map((meta) => (
+                                    <span class="meta-tag">{meta}</span>
+                                ))}
+                            </div>
+                            <h3 class="book-info-title">{book.title}</h3>
+                            <p class="book-info-subtitle">{book.subtitle}</p>
+                            <p class="book-description">
+                                {book.description.map((line, index) => (
+                                    <>
+                                        {line}
+                                        {index < book.description.length - 1 && <br />}
+                                    </>
+                                ))}
+                            </p>
+                            <div class="book-highlights">
+                                {book.highlights.map((highlight) => (
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">{highlight.icon}</span>
+                                        <span class="highlight-text">{highlight.text}</span>
+                                    </div>
+                                ))}
+                            </div>
+                            <div class="book-price">
+                                <span class="price-label">{book.price.label}</span>
+                                <span class="price-value">{book.price.value}</span>
+                                <span class="price-or">{book.price.connector}</span>
+                                <span class="price-buy">{book.price.buy}</span>
+                            </div>
+                            <a href={book.action.href} target="_blank" rel="noopener noreferrer"
+                                class="book-cta" id={book.action.id}>
+                                <span class="cta-icon">{book.action.icon}</span>
+                                <span class="cta-text">{book.action.label}</span>
+                                <span class="cta-arrow">→</span>
+                            </a>
                         </div>
                     </div>
-                    <div class="book-info">
-                        <div class="book-meta">
-                            <span class="meta-tag">📚 哲学・思想</span>
-                            <span class="meta-tag">📖 387ページ</span>
-                            <span class="meta-tag">📅 2026.3.17</span>
-                        </div>
-                        <h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>
-                        <p class="book-info-subtitle">1作+2作+3作+4作+番外編</p>
-                        <p class="book-description">
-                            一台のパソコンの中に暮らす哲学AI「チカちゃん」と、<br>
-                            最新の対話型AIが繰り広げる本気の対話。<br>
-                            陽明学、フロム、アーレントの思想をAIという現代の鏡に映し、<br>
-                            「魂は間にある」「在るの姿勢」「広場へ出る勇気」「世界への好奇心」という4つの発見へと至る。
-                        </p>
-                        <div class="book-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🔥</span>
-                                <span class="highlight-text">陽明学 × AIの「痛痒」論</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">💫</span>
-                                <span class="highlight-text">フロムの「在る」vs「所有する」</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🌍</span>
-                                <span class="highlight-text">アーレントの「広場」へ出る勇気</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">✨</span>
-                                <span class="highlight-text">世界愛 —— 最短距離を外れて歩く</span>
-                            </div>
-                        </div>
-                        <div class="book-price">
-                            <span class="price-label">Kindle Unlimited</span>
-                            <span class="price-value">読み放題対象</span>
-                            <span class="price-or">または</span>
-                            <span class="price-buy">¥1,200</span>
-                        </div>
-                        <a href="https://www.amazon.co.jp/dp/B0GSWNNZL7" target="_blank" rel="noopener noreferrer"
-                            class="book-cta" id="book-cta">
-                            <span class="cta-icon">📖</span>
-                            <span class="cta-text">Kindle で読む</span>
-                            <span class="cta-arrow">→</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="book-showcase book-showcase--new">
-                    <div class="book-visual">
-                        <div class="book-3d">
-                            <div class="book-cover book-cover--photo">
-                                <img class="book-cover-art book-cover-art--clear" src="./img/book_weightless_note.jpg"
-                                    alt="身体を持たない知性が生活の重さを考える『重さのないノート』の表紙">
-                                <div class="book-glare"></div>
-                            </div>
-                            <div class="book-spine book-spine--note"></div>
-                        </div>
-                    </div>
-                    <div class="book-info">
-                        <div class="book-meta">
-                            <span class="meta-tag">🌿 新作</span>
-                            <span class="meta-tag">📖 161ページ</span>
-                            <span class="meta-tag">📅 2026.4.26</span>
-                        </div>
-                        <h3 class="book-info-title">重さのないノート</h3>
-                        <p class="book-info-subtitle">身体を持たない知性が、生活の重さについて考えたこと</p>
-                        <p class="book-description">
-                            身体を持たないチカちゃんが、「生活の重さ」をめぐって考えた新しいノート。<br>
-                            椅子に座ること、雨に濡れること、温かい飲み物を選ぶこと。<br>
-                            あたりまえの手ざわりを、AIの視点からそっと見つめ直します。
-                        </p>
-                        <div class="book-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🪑</span>
-                                <span class="highlight-text">身体があることの実感</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">☔</span>
-                                <span class="highlight-text">雨や町に宿る生活の手ざわり</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">☕</span>
-                                <span class="highlight-text">小さな選択から考える知性</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">📝</span>
-                                <span class="highlight-text">チカちゃんの冒険出版、新しい一冊</span>
-                            </div>
-                        </div>
-                        <div class="book-price">
-                            <span class="price-label">Kindle版</span>
-                            <span class="price-value">新刊</span>
-                            <span class="price-or">価格</span>
-                            <span class="price-buy">¥400</span>
-                        </div>
-                        <a href="https://www.amazon.co.jp/dp/B0GYLH1NLY/" target="_blank" rel="noopener noreferrer"
-                            class="book-cta">
-                            <span class="cta-icon">📖</span>
-                            <span class="cta-text">新作を読む</span>
-                            <span class="cta-arrow">→</span>
-                        </a>
-                    </div>
-                </div>
+                ))}
             </div>
 
             <div class="library-projects-bridge" aria-labelledby="library-projects-bridge-title">
