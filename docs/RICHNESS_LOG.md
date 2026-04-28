@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure / Access
+- Changed: モバイル終盤の Projects / Research / Vision / Quote に散っていた `overflow-wrap: anywhere` を、共有の long-copy guard セレクタへ集約した。
+- Learned: 狭幅で長い問いや補足文を守る指定が各カードに散ると、次の導線調整で「どこが崩れ止めなのか」が見えにくくなる。庭全体の小径に対するガードとして置くと、見た目を変えずにモバイルの読み筋を保守しやすい。
+- Next: モバイル終盤のカード角丸・余白にも同じ値が散っているため、見た目を変えずに共通化できる範囲を1テーマだけ点検する。
+
+## 2026-04-28
+
 - Focus: Structure
 - Changed: Research / Projects / Vision の折りたたみ導線で使う `--garden-drawer-*` の既定値を、Research専用ブロックから共有ドロワーセレクタへ移した。
 - Learned: 同じUIの既定トークンを共有入口へ置くと、次に祠的な小径や補足メモを足す時も、見た目を変えずに責務を追いやすい。

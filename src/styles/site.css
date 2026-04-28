@@ -6507,6 +6507,34 @@ body.theme-night .nav-links a::after {
         display: none;
     }
 
+    /* Mobile long-copy guard across the garden path sections. */
+    :is(
+        .project-lane-status,
+        .project-desc,
+        .project-why,
+        .project-action-note,
+        .project-trail__item,
+        .project-return-link,
+        .research-log-handoff__copy > p:last-child,
+        .research-log-handoff__steps p,
+        .research-log-cycle dd,
+        .research-wisdom-trail dd,
+        .research-source,
+        .research-paper-sample__copy p,
+        .research-paper-sample__notes dd,
+        .research-paper-source,
+        .cycle-bridge-text,
+        .vision-entry-guide__copy > p:last-child,
+        .vision-entry-guide__kind p,
+        .vision-entry-guide__flow,
+        .vision-text,
+        .vision-entry-question,
+        .vision-entry-question__handoff,
+        .quote-prelude-text
+    ) {
+        overflow-wrap: anywhere;
+    }
+
     .project-list {
         gap: 1.25rem;
     }
@@ -6587,7 +6615,6 @@ body.theme-night .nav-links a::after {
         margin: -0.15rem 0 0;
         font-size: 0.82rem;
         line-height: 1.75;
-        overflow-wrap: anywhere;
     }
 
     .project-card {
@@ -6656,14 +6683,12 @@ body.theme-night .nav-links a::after {
     .project-desc {
         font-size: 0.92rem;
         line-height: 1.75;
-        overflow-wrap: anywhere;
     }
 
     .project-why {
         display: block;
         font-size: 0.84rem;
         line-height: 1.7;
-        overflow-wrap: anywhere;
     }
 
     .project-why span {
@@ -6675,7 +6700,6 @@ body.theme-night .nav-links a::after {
         display: block;
         font-size: 0.84rem;
         line-height: 1.7;
-        overflow-wrap: anywhere;
     }
 
     .project-action-note span {
@@ -6707,14 +6731,12 @@ body.theme-night .nav-links a::after {
     .project-trail__item {
         font-size: 0.82rem;
         line-height: 1.65;
-        overflow-wrap: anywhere;
     }
 
     .project-return-link {
         width: 100%;
         border-radius: 12px;
         font-size: 0.78rem;
-        overflow-wrap: anywhere;
     }
 
     :is(.research-extra-drawer, .project-cycle-drawer) {
@@ -6782,7 +6804,6 @@ body.theme-night .nav-links a::after {
     .research-log-handoff__copy > p:last-child {
         font-size: 0.84rem;
         line-height: 1.8;
-        overflow-wrap: anywhere;
     }
 
     .research-log-handoff__steps {
@@ -6812,7 +6833,6 @@ body.theme-night .nav-links a::after {
 
     .research-log-handoff__steps p {
         font-size: 0.78rem;
-        overflow-wrap: anywhere;
     }
 
     .research-log-handoff__count {
@@ -6850,7 +6870,6 @@ body.theme-night .nav-links a::after {
     .research-log-cycle dd {
         font-size: 0.84rem;
         line-height: 1.75;
-        overflow-wrap: anywhere;
     }
 
     .research-extra-drawer {
@@ -6878,7 +6897,6 @@ body.theme-night .nav-links a::after {
 
     .research-wisdom-trail dd {
         font-size: 0.8rem;
-        overflow-wrap: anywhere;
     }
 
     .research-source {
@@ -6886,7 +6904,6 @@ body.theme-night .nav-links a::after {
         padding: 0.7rem;
         border-radius: 12px;
         font-size: 0.78rem;
-        overflow-wrap: anywhere;
     }
 
     .research-paper-sample {
@@ -6894,12 +6911,6 @@ body.theme-night .nav-links a::after {
         gap: 0.7rem;
         padding: 0.75rem;
         border-radius: 14px;
-    }
-
-    .research-paper-sample__copy p,
-    .research-paper-sample__notes dd,
-    .research-paper-source {
-        overflow-wrap: anywhere;
     }
 
     .research-paper-source {
@@ -6933,7 +6944,6 @@ body.theme-night .nav-links a::after {
     .cycle-bridge-text {
         font-size: 0.86rem;
         line-height: 1.85;
-        overflow-wrap: anywhere;
     }
 
     .section-vision .section-desc br {
@@ -6958,7 +6968,6 @@ body.theme-night .nav-links a::after {
     .vision-entry-guide__copy > p:last-child {
         font-size: 0.84rem;
         line-height: 1.75;
-        overflow-wrap: anywhere;
     }
 
     .vision-entry-guide__kinds {
@@ -6978,7 +6987,6 @@ body.theme-night .nav-links a::after {
     .vision-entry-guide__kind p {
         font-size: 0.78rem;
         line-height: 1.65;
-        overflow-wrap: anywhere;
     }
 
     .vision-entry-guide__kind small {
@@ -6998,7 +7006,6 @@ body.theme-night .nav-links a::after {
         padding-top: 0.45rem;
         font-size: 0.72rem;
         line-height: 1.6;
-        overflow-wrap: anywhere;
     }
 
     .vision-entry-guide__field-drawer {
@@ -7044,14 +7051,12 @@ body.theme-night .nav-links a::after {
     .vision-text {
         font-size: 0.86rem;
         line-height: 1.75;
-        overflow-wrap: anywhere;
     }
 
     .vision-entry-question {
         margin-top: 0.8rem;
         font-size: 0.81rem;
         line-height: 1.7;
-        overflow-wrap: anywhere;
     }
 
     .vision-entry-question__fields {
@@ -7062,7 +7067,6 @@ body.theme-night .nav-links a::after {
         margin-top: 0.65rem;
         padding-top: 0.55rem;
         font-size: 0.74rem;
-        overflow-wrap: anywhere;
     }
 
     .quote-prelude {
@@ -7082,7 +7086,6 @@ body.theme-night .nav-links a::after {
     .quote-prelude-text {
         font-size: 0.84rem;
         line-height: 1.8;
-        overflow-wrap: anywhere;
     }
 
     .quote-prelude-steps {
