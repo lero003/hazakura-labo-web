@@ -504,6 +504,19 @@ assert(
     ].filter(([, hasDuplicate]) => hasDuplicate).map(([name]) => name)
   })
 );
+assert(
+  'project action destinations share DOM helper formatting',
+  projectRendererJs.includes('formatExternalDestination')
+    && !projectRendererJs.includes('new URL(item.href')
+    && researchRendererJs.includes('formatExternalDestination(source.url)')
+    && domHelpersJs.includes('formatExternalDestination'),
+  JSON.stringify({
+    projectUsesHelper: projectRendererJs.includes('formatExternalDestination'),
+    projectHasInlineUrlParser: projectRendererJs.includes('new URL(item.href'),
+    researchUsesHelper: researchRendererJs.includes('formatExternalDestination(source.url)'),
+    helperExposesFormatter: domHelpersJs.includes('formatExternalDestination')
+  })
+);
 assert('style sheet contains design tokens', styleCss.includes('--sakura-500') && styleCss.includes('.hero'));
 assert(
   'style sheet contains shared anchor offset',

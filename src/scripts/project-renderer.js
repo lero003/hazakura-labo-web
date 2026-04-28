@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { escapeHtml } = window.HazakuraDom;
+  const { escapeHtml, formatExternalDestination } = window.HazakuraDom;
 
   function getProjectActionType(item) {
     if (!item.href) return 'status';
@@ -12,11 +12,7 @@
     if (!item.href) return '';
     if (item.actionDestination) return item.actionDestination;
     if (item.download) return item.href.split('/').pop() || item.href;
-    try {
-      return new URL(item.href, window.location.href).hostname || item.href;
-    } catch (error) {
-      return item.href;
-    }
+    return formatExternalDestination(item.href);
   }
 
   function getActionTypeDetails(projectsGroup) {

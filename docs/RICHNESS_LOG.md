@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Structure / Access
+- Changed: Projects CTA の行き先表示を、Research の論文リンクと同じ `formatExternalDestination` helper に寄せた。ダウンロード導線はファイル名表示のまま残し、外部リンクだけ共通のホスト名整形を使うようにし、phase gate で Projects 側に個別の `new URL(item.href)` 分岐が戻らないよう保護した。
+- Learned: 外へ出る小径は見た目が似ているほど、行き先表記の整形が別々に増えると次の導線調整で揺れやすい。小さな helper 境界に戻すだけでも、カードの追加やCTA文言変更時に迷う場所が減る。
+- Next: 次は実ブラウザで Projects の外部リンク・DMGダウンロード・準備中ステータスを見比べ、CTAの情報量がカード本文を押していないか確認する。
+
+## 2026-04-29
+
 - Focus: Structure / Access / Motion
 - Changed: `scroll-animations.js` の表示対象を単一の `revealTargetSelectors` 契約へまとめ、通常観測・reduced-motion初期表示・途中切り替え時の強制表示が同じ対象を見るようにした。`app-controller.js` 側の古い `setAllCounters()` 呼び出しは `revealAll()` に置き換え、phase gate でも縮小モーション時の表示契約を保護した。
 - Learned: カードや間奏が増えた後は、スクロール表示対象の直書きが複数箇所へ散るだけで、縮小モーションや後続のセクション追加時に「見えないまま残る」弱さになる。演出を増やさなくても、表示契約をひとつに戻すことで庭の導線は壊れにくくなる。
