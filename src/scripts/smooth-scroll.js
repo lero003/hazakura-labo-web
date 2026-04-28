@@ -57,7 +57,8 @@
             const link = findRouteLink(event.target, selector);
             if (!link) return;
 
-            const target = findHashTarget(link.getAttribute('href'));
+            const href = link.getAttribute('href');
+            const target = findHashTarget(href);
             if (!target) return;
 
             event.preventDefault();
@@ -67,6 +68,7 @@
                 getPrefersReducedMotion
             });
 
+            updateRouteHash(href);
             markMatchingArrival(link, target, getPrefersReducedMotion());
         };
 
@@ -101,6 +103,11 @@
         } catch (error) {
             return null;
         }
+    }
+
+    function updateRouteHash(href) {
+        if (!href || !href.startsWith('#') || window.location.hash === href) return;
+        window.history.pushState(null, '', href);
     }
 
     function markMatchingArrival(link, target, isReducedMotion) {

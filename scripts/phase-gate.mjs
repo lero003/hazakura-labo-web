@@ -971,18 +971,31 @@ assert(
 assert('smooth scroll script exposes global', smoothScrollJs.includes('window.HazakuraSmoothScroll'));
 assert('smooth scroll uses shared scroll target', smoothScrollJs.includes('HazakuraScrollTarget?.scrollTo'));
 assert(
+  'smooth scroll preserves addressable garden routes',
+  smoothScrollJs.includes('updateRouteHash(href)')
+    && smoothScrollJs.includes("href.startsWith('#')")
+    && smoothScrollJs.includes('window.history.pushState(null, \'\', href)'),
+  JSON.stringify({
+    callsRouteHashSync: smoothScrollJs.includes('updateRouteHash(href)'),
+    guardsHashRoutes: smoothScrollJs.includes("href.startsWith('#')"),
+    pushesHistoryState: smoothScrollJs.includes('window.history.pushState(null, \'\', href)')
+  })
+);
+assert(
   'smooth scroll delegates dynamic route clicks',
   smoothScrollJs.includes("document.addEventListener('click', handleRouteClick)")
     && smoothScrollJs.includes("document.removeEventListener('click', handleRouteClick)")
     && smoothScrollJs.includes('findRouteLink(event.target, selector)')
     && smoothScrollJs.includes('targetElement?.closest(selector)')
-    && smoothScrollJs.includes('findHashTarget(link.getAttribute')
+    && smoothScrollJs.includes("const href = link.getAttribute('href')")
+    && smoothScrollJs.includes('findHashTarget(href)')
     && !smoothScrollJs.includes('document.querySelectorAll(selector).forEach'),
   JSON.stringify({
     hasDelegatedClick: smoothScrollJs.includes("document.addEventListener('click', handleRouteClick)"),
     hasCleanup: smoothScrollJs.includes("document.removeEventListener('click', handleRouteClick)"),
     findsClosestRoute: smoothScrollJs.includes('targetElement?.closest(selector)'),
-    hasHashGuard: smoothScrollJs.includes('findHashTarget(link.getAttribute'),
+    hasHashGuard: smoothScrollJs.includes("const href = link.getAttribute('href')")
+      && smoothScrollJs.includes('findHashTarget(href)'),
     hasDirectBinding: smoothScrollJs.includes('document.querySelectorAll(selector).forEach')
   })
 );
