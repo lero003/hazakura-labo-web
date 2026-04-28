@@ -296,6 +296,31 @@ assert(
     hasDrawerStyles: styleCss.includes('.vision-entry-guide__field-drawer')
   })
 );
+assert(
+  'vision entry night theme is tokenized',
+  [
+    '--vision-entry-guide-bg',
+    '--vision-entry-drawer-bg',
+    '--vision-entry-field-color',
+    '--vision-question-entry-bg',
+    '--vision-question-handoff-text'
+  ].every((snippet) => styleCss.includes(snippet))
+    && !styleCss.includes('body.theme-night .section-vision .vision-entry-guide {')
+    && !styleCss.includes('body.theme-night .section-vision .vision-entry-question {')
+    && !styleCss.includes('body.theme-night .section-vision .vision-entry-guide__field-drawer {')
+    && !styleCss.includes('body.theme-night .section-vision .vision-entry-guide__fields li {')
+    && !styleCss.includes('body.theme-night .section-vision .vision-entry-question__fields li {'),
+  JSON.stringify({
+    hasGuideBgToken: styleCss.includes('--vision-entry-guide-bg'),
+    hasDrawerBgToken: styleCss.includes('--vision-entry-drawer-bg'),
+    hasFieldColorToken: styleCss.includes('--vision-entry-field-color'),
+    hasQuestionBgToken: styleCss.includes('--vision-question-entry-bg'),
+    hasNightGuideOverride: styleCss.includes('body.theme-night .section-vision .vision-entry-guide {'),
+    hasNightQuestionOverride: styleCss.includes('body.theme-night .section-vision .vision-entry-question {'),
+    hasNightGuideFieldOverride: styleCss.includes('body.theme-night .section-vision .vision-entry-guide__fields li {'),
+    hasNightQuestionFieldOverride: styleCss.includes('body.theme-night .section-vision .vision-entry-question__fields li {')
+  })
+);
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates project renderer', contentRenderersJs.includes('HazakuraProjectRenderer?.render'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));

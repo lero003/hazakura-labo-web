@@ -2746,12 +2746,73 @@ a {
    Vision Section — Enhanced
    ============================================ */
 .section-vision {
+    --vision-entry-guide-border: rgba(232, 88, 122, 0.18);
+    --vision-entry-guide-bg:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(240, 248, 240, 0.58)),
+        radial-gradient(circle at 100% 0%, rgba(232, 88, 122, 0.08), transparent 18rem);
+    --vision-entry-guide-accent: var(--sakura-500);
+    --vision-entry-guide-heading: var(--ink-800);
+    --vision-entry-guide-copy: var(--ink-600);
+    --vision-entry-kind-border: rgba(90, 158, 95, 0.18);
+    --vision-entry-kind-bg: rgba(255, 255, 255, 0.54);
+    --vision-entry-kind-copy: var(--ink-600);
+    --vision-entry-kind-meta: var(--entry-accent);
+    --vision-entry-kind-meta-note: var(--ink-500);
+    --vision-entry-flow-border: rgba(var(--entry-accent-rgb), 0.2);
+    --vision-entry-flow-copy: var(--ink-600);
+    --vision-entry-drawer-border: rgba(var(--entry-accent-rgb), 0.18);
+    --vision-entry-drawer-bg:
+        linear-gradient(135deg, rgba(var(--entry-accent-rgb), 0.08), rgba(255, 255, 255, 0.34));
+    --vision-entry-drawer-summary: var(--entry-accent);
+    --vision-entry-drawer-toggle-border: rgba(var(--entry-accent-rgb), 0.2);
+    --vision-entry-drawer-toggle-bg: transparent;
+    --vision-entry-drawer-open-toggle-bg: rgba(var(--entry-accent-rgb), 0.1);
+    --vision-entry-drawer-note: var(--ink-500);
+    --vision-entry-field-color: var(--ink-600);
+    --vision-question-text: var(--ink-700);
+    --vision-question-border: var(--sakura-300);
+    --vision-question-label: var(--entry-accent, var(--sakura-500));
+    --vision-question-entry-border: rgba(var(--entry-accent-rgb), 0.58);
+    --vision-question-entry-bg: linear-gradient(90deg, rgba(var(--entry-accent-rgb), 0.08), transparent 72%);
+    --vision-question-handoff-border: rgba(var(--entry-accent-rgb), 0.18);
+    --vision-question-handoff-text: var(--ink-500);
+    --vision-question-handoff-accent: var(--entry-accent, var(--sakura-500));
     background: var(--warm-50);
     position: relative;
     overflow: hidden;
     transition: background 3s ease;
 }
 body.theme-night .section-vision {
+    --vision-entry-guide-border: rgba(139, 92, 246, 0.24);
+    --vision-entry-guide-bg:
+        linear-gradient(135deg, rgba(25, 20, 35, 0.72), rgba(16, 22, 32, 0.62)),
+        radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.14), transparent 18rem);
+    --vision-entry-guide-accent: var(--purple-400);
+    --vision-entry-guide-heading: var(--header-text);
+    --vision-entry-guide-copy: var(--body-text);
+    --vision-entry-kind-border: rgba(139, 92, 246, 0.2);
+    --vision-entry-kind-bg: rgba(255, 255, 255, 0.05);
+    --vision-entry-kind-copy: var(--body-text);
+    --vision-entry-kind-meta: var(--purple-300);
+    --vision-entry-kind-meta-note: rgba(239, 246, 255, 0.72);
+    --vision-entry-flow-border: rgba(var(--entry-accent-rgb), 0.24);
+    --vision-entry-flow-copy: var(--body-text);
+    --vision-entry-drawer-border: rgba(var(--entry-accent-rgb), 0.2);
+    --vision-entry-drawer-bg:
+        linear-gradient(135deg, rgba(var(--entry-accent-rgb), 0.14), rgba(255, 255, 255, 0.04));
+    --vision-entry-drawer-summary: var(--entry-accent);
+    --vision-entry-drawer-toggle-border: rgba(var(--entry-accent-rgb), 0.3);
+    --vision-entry-drawer-toggle-bg: rgba(255, 255, 255, 0.03);
+    --vision-entry-drawer-note: rgba(239, 246, 255, 0.62);
+    --vision-entry-field-color: var(--body-text);
+    --vision-question-text: var(--header-text);
+    --vision-question-border: rgba(139, 92, 246, 0.45);
+    --vision-question-label: var(--purple-400);
+    --vision-question-entry-border: rgba(var(--entry-accent-rgb), 0.58);
+    --vision-question-entry-bg: linear-gradient(90deg, rgba(var(--entry-accent-rgb), 0.12), transparent 72%);
+    --vision-question-handoff-border: rgba(var(--entry-accent-rgb), 0.24);
+    --vision-question-handoff-text: var(--body-text);
+    --vision-question-handoff-accent: var(--entry-accent);
     background: #0b0d17;
 }
 
@@ -2769,11 +2830,9 @@ body.theme-night .section-vision {
     gap: 1.5rem;
     align-items: center;
     padding: 1.5rem;
-    border: 1px solid rgba(232, 88, 122, 0.18);
+    border: 1px solid var(--vision-entry-guide-border);
     border-radius: 8px;
-    background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(240, 248, 240, 0.58)),
-        radial-gradient(circle at 100% 0%, rgba(232, 88, 122, 0.08), transparent 18rem);
+    background: var(--vision-entry-guide-bg);
     backdrop-filter: blur(14px);
     overflow: hidden;
 }
@@ -2786,7 +2845,7 @@ body.theme-night .section-vision {
 
 .vision-entry-guide__eyebrow {
     margin-bottom: 0.35rem;
-    color: var(--sakura-500);
+    color: var(--vision-entry-guide-accent);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -2795,7 +2854,7 @@ body.theme-night .section-vision {
 
 .vision-entry-guide h3 {
     font-family: var(--font-serif);
-    color: var(--ink-800);
+    color: var(--vision-entry-guide-heading);
     font-size: 1.15rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -2803,7 +2862,7 @@ body.theme-night .section-vision {
 
 .vision-entry-guide__copy > p:last-child {
     margin-top: 0.45rem;
-    color: var(--ink-600);
+    color: var(--vision-entry-guide-copy);
     font-size: 0.9rem;
     line-height: 1.9;
 }
@@ -2819,9 +2878,9 @@ body.theme-night .section-vision {
     --entry-accent: var(--green-500);
     min-height: 100%;
     padding: 0.85rem;
-    border: 1px solid rgba(90, 158, 95, 0.18);
+    border: 1px solid var(--vision-entry-kind-border);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.54);
+    background: var(--vision-entry-kind-bg);
 }
 
 .vision-entry-guide__kind > span {
@@ -2834,7 +2893,7 @@ body.theme-night .section-vision {
 }
 
 .vision-entry-guide__kind p {
-    color: var(--ink-600);
+    color: var(--vision-entry-kind-copy);
     font-size: 0.8rem;
     line-height: 1.75;
 }
@@ -2843,14 +2902,14 @@ body.theme-night .section-vision {
     display: grid;
     gap: 0.18rem;
     margin-top: 0.65rem;
-    color: var(--entry-accent);
+    color: var(--vision-entry-kind-meta);
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.08em;
 }
 
 .vision-entry-guide__kind small span + span {
-    color: var(--ink-500);
+    color: var(--vision-entry-kind-meta-note);
     font-weight: 600;
     letter-spacing: 0.04em;
 }
@@ -2859,18 +2918,17 @@ body.theme-night .section-vision {
     display: block;
     margin-top: 0.55rem;
     padding-top: 0.55rem;
-    border-top: 1px solid rgba(var(--entry-accent-rgb), 0.2);
-    color: var(--ink-600);
+    border-top: 1px solid var(--vision-entry-flow-border);
+    color: var(--vision-entry-flow-copy);
     font-size: 0.74rem;
     line-height: 1.65;
 }
 
 .vision-entry-guide__field-drawer {
     margin-top: 0.58rem;
-    border: 1px solid rgba(var(--entry-accent-rgb), 0.18);
+    border: 1px solid var(--vision-entry-drawer-border);
     border-radius: 7px;
-    background:
-        linear-gradient(135deg, rgba(var(--entry-accent-rgb), 0.08), rgba(255, 255, 255, 0.34));
+    background: var(--vision-entry-drawer-bg);
     overflow: hidden;
 }
 
@@ -2880,7 +2938,7 @@ body.theme-night .section-vision {
     justify-content: space-between;
     gap: 0.65rem;
     padding: 0.42rem 0.56rem;
-    color: var(--entry-accent);
+    color: var(--vision-entry-drawer-summary);
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -2899,9 +2957,10 @@ body.theme-night .section-vision {
     flex: 0 0 auto;
     width: 1.2rem;
     height: 1.2rem;
-    border: 1px solid rgba(var(--entry-accent-rgb), 0.2);
+    border: 1px solid var(--vision-entry-drawer-toggle-border);
     border-radius: 999px;
-    color: var(--entry-accent);
+    background: var(--vision-entry-drawer-toggle-bg);
+    color: var(--vision-entry-drawer-summary);
     font-size: 0.76rem;
     line-height: 1;
     transition: transform 0.28s var(--ease-out-expo), background-color 0.28s var(--ease-out-expo);
@@ -2909,12 +2968,12 @@ body.theme-night .section-vision {
 
 .vision-entry-guide__field-drawer[open] summary::after {
     transform: rotate(45deg);
-    background: rgba(var(--entry-accent-rgb), 0.1);
+    background: var(--vision-entry-drawer-open-toggle-bg);
 }
 
 .vision-entry-guide__field-drawer summary small {
     margin-left: auto;
-    color: var(--ink-500);
+    color: var(--vision-entry-drawer-note);
     font-size: 0.64rem;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -2950,6 +3009,16 @@ body.theme-night .section-vision {
     padding: 0 0.56rem 0.56rem;
 }
 
+body.theme-night .section-vision .vision-entry-question__fields {
+    --entry-field-border-alpha: 0.28;
+    --entry-field-bg: rgba(var(--entry-accent-rgb), 0.12);
+}
+
+body.theme-night .section-vision .vision-entry-guide__fields {
+    --entry-field-border-alpha: 0.22;
+    --entry-field-bg: rgba(255, 255, 255, 0.06);
+}
+
 .vision-entry-guide__fields li,
 .vision-entry-question__fields li {
     max-width: 100%;
@@ -2957,7 +3026,7 @@ body.theme-night .section-vision {
     border: 1px solid rgba(var(--entry-accent-rgb), var(--entry-field-border-alpha, 0.2));
     border-radius: 6px;
     background: var(--entry-field-bg, rgba(255, 255, 255, 0.44));
-    color: var(--ink-600);
+    color: var(--vision-entry-field-color);
     font-size: var(--entry-field-font-size, 0.67rem);
     font-weight: 700;
     line-height: 1.45;
@@ -2997,6 +3066,7 @@ body.theme-night .section-vision {
 }
 
 .vision-entry-guide__kind[data-entry-kind] {
+    --vision-entry-kind-meta: var(--entry-accent);
     position: relative;
     border-color: rgba(var(--entry-accent-rgb), 0.24);
     background:
@@ -3211,8 +3281,8 @@ body.theme-night .section-vision {
 .vision-entry-question {
     margin-top: 1rem;
     padding: 0.2rem 0 0.2rem 0.9rem;
-    border-left: 2px solid var(--sakura-300);
-    color: var(--ink-700);
+    border-left: 2px solid var(--vision-question-border);
+    color: var(--vision-question-text);
     font-size: 0.84rem;
     line-height: 1.8;
     position: relative;
@@ -3220,15 +3290,17 @@ body.theme-night .section-vision {
 }
 
 .vision-entry-question[data-entry-kind] {
-    border-left-color: rgba(var(--entry-accent-rgb), 0.58);
-    background: linear-gradient(90deg, rgba(var(--entry-accent-rgb), 0.08), transparent 72%);
+    --vision-question-label: var(--entry-accent);
+    --vision-question-handoff-accent: var(--entry-accent);
+    border-left-color: var(--vision-question-entry-border);
+    background: var(--vision-question-entry-bg);
 }
 
 .vision-entry-question__label {
     display: block;
     font-size: 0.72rem;
     font-weight: 700;
-    color: var(--entry-accent, var(--sakura-500));
+    color: var(--vision-question-label);
     letter-spacing: 0.08em;
 }
 
@@ -3239,8 +3311,8 @@ body.theme-night .section-vision {
 .vision-entry-question__handoff {
     margin-top: 0.75rem;
     padding-top: 0.65rem;
-    border-top: 1px solid rgba(var(--entry-accent-rgb), 0.18);
-    color: var(--ink-500);
+    border-top: 1px solid var(--vision-question-handoff-border);
+    color: var(--vision-question-handoff-text);
     font-size: 0.76rem;
     line-height: 1.7;
 }
@@ -3248,7 +3320,7 @@ body.theme-night .section-vision {
 .vision-entry-question__handoff span {
     display: block;
     margin-bottom: 0.12rem;
-    color: var(--entry-accent, var(--sakura-500));
+    color: var(--vision-question-handoff-accent);
     font-size: 0.66rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -5883,66 +5955,6 @@ body.theme-night .section-vision .vision-card .vision-text {
     color: var(--body-text);
 }
 
-body.theme-night .section-vision .vision-entry-question {
-    color: var(--header-text);
-    border-color: rgba(139, 92, 246, 0.45);
-}
-
-body.theme-night .section-vision .vision-entry-question__label {
-    color: var(--purple-400);
-}
-
-body.theme-night .section-vision .vision-entry-question__fields li {
-    border-color: rgba(var(--entry-accent-rgb), 0.28);
-    background: rgba(var(--entry-accent-rgb), 0.12);
-    color: var(--body-text);
-}
-
-body.theme-night .section-vision .vision-entry-question__handoff {
-    border-top-color: rgba(var(--entry-accent-rgb), 0.24);
-    color: var(--body-text);
-}
-
-body.theme-night .section-vision .vision-entry-question__handoff span {
-    color: var(--entry-accent);
-}
-
-body.theme-night .section-vision .vision-entry-guide {
-    border-color: rgba(139, 92, 246, 0.24);
-    background:
-        linear-gradient(135deg, rgba(25, 20, 35, 0.72), rgba(16, 22, 32, 0.62)),
-        radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.14), transparent 18rem);
-}
-
-body.theme-night .section-vision .vision-entry-guide__eyebrow,
-body.theme-night .section-vision .vision-entry-guide__kind > span {
-    color: var(--purple-400);
-}
-
-body.theme-night .section-vision .vision-entry-guide h3 {
-    color: var(--header-text);
-}
-
-body.theme-night .section-vision .vision-entry-guide__copy > p:last-child,
-body.theme-night .section-vision .vision-entry-guide__kind p,
-body.theme-night .section-vision .vision-entry-guide__flow,
-body.theme-night .section-vision .vision-entry-guide__fields li {
-    color: var(--body-text);
-}
-
-body.theme-night .section-vision .vision-entry-guide__kind small {
-    color: var(--purple-300);
-}
-
-body.theme-night .section-vision .vision-entry-guide__kind small span + span {
-    color: rgba(239, 246, 255, 0.72);
-}
-
-body.theme-night .section-vision .vision-entry-guide__kind {
-    border-color: rgba(139, 92, 246, 0.2);
-    background: rgba(255, 255, 255, 0.05);
-}
-
 body.theme-night .section-vision .vision-card[data-entry-kind],
 body.theme-night .section-vision .vision-entry-question[data-entry-kind],
 body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind],
@@ -5998,19 +6010,6 @@ body.theme-night .section-vision .vision-card.is-entry-match {
         0 0 0 1px rgba(var(--entry-accent-rgb), 0.16);
 }
 
-body.theme-night .section-vision .vision-entry-question[data-entry-kind] {
-    border-left-color: rgba(var(--entry-accent-rgb), 0.58);
-    background: linear-gradient(90deg, rgba(var(--entry-accent-rgb), 0.12), transparent 72%);
-}
-
-body.theme-night .section-vision .vision-entry-question[data-entry-kind] .vision-entry-question__label,
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] > span,
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] small,
-body.theme-night .section-vision .vision-card[data-entry-kind] .vision-jp,
-body.theme-night .section-vision .vision-entry-kind-badge[data-entry-kind] {
-    color: var(--entry-accent);
-}
-
 body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] {
     border-color: rgba(var(--entry-accent-rgb), 0.24);
     background:
@@ -6027,38 +6026,6 @@ body.theme-night .section-vision .vision-entry-guide__kind.is-entry-active {
         linear-gradient(180deg, rgba(var(--entry-accent-rgb), 0.18), rgba(255, 255, 255, 0.06)),
         rgba(255, 255, 255, 0.07);
     box-shadow: 0 18px 42px rgba(var(--entry-accent-rgb), 0.2);
-}
-
-body.theme-night .section-vision .vision-entry-guide__flow {
-    border-top-color: rgba(var(--entry-accent-rgb), 0.24);
-}
-
-body.theme-night .section-vision .vision-entry-guide__field-drawer {
-    border-color: rgba(var(--entry-accent-rgb), 0.2);
-    background:
-        linear-gradient(135deg, rgba(var(--entry-accent-rgb), 0.14), rgba(255, 255, 255, 0.04));
-}
-
-body.theme-night .section-vision .vision-entry-guide__field-drawer summary {
-    color: var(--entry-accent);
-}
-
-body.theme-night .section-vision .vision-entry-guide__field-drawer summary::after {
-    border-color: rgba(var(--entry-accent-rgb), 0.3);
-    background: rgba(255, 255, 255, 0.03);
-}
-
-body.theme-night .section-vision .vision-entry-guide__field-drawer summary small {
-    color: rgba(239, 246, 255, 0.62);
-}
-
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind] .vision-entry-guide__field-drawer summary small {
-    color: rgba(239, 246, 255, 0.62);
-}
-
-body.theme-night .section-vision .vision-entry-guide__fields li {
-    border-color: rgba(var(--entry-accent-rgb), 0.22);
-    background: rgba(255, 255, 255, 0.06);
 }
 
 body.theme-night .section-vision .vision-entry-kind-badge {
