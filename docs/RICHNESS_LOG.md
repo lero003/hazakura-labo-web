@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: Research / Projects の drawer モバイル調整を、個別の `summary` / `sigil` 指定から garden drawer 共通変数へ寄せた。Vision も含む共通drawer骨格の意図がわかる短いコメントを足し、開閉UIの小径を次回以降まとめて調整しやすくした。
+- Learned: drawer本体を共通化しても、モバイル幅だけ個別指定が残ると次の調整で見落としやすい。サイズ差は `--garden-drawer-*` へ逃がし、所作だけ共有すると見た目を保ったまま保守範囲を狭められる。
+- Next: drawer内のチップやtrail類が、狭い幅で情報の重さを増やしていないか、Research / Vision どちらか1ブロックだけ実表示で点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: Vision 入口ガイドの `vision-entry-guide__field-drawer` を、Research / Projects と同じ garden drawer の共通CSS骨格へ参加させた。受付メモの小ささは `--garden-drawer-*` 変数で維持し、専用の summary / toggle / open ルールを削って phase gate の保護対象も三者共有へ広げた。
 - Learned: 同じ「小径をひらく」所作がセクションごとに別実装だと、見た目が近くても次の演出調整で追う範囲が増える。Vision の受付メモも共通骨格に乗せると、構想の入口を重くせずに開閉UIだけまとめて磨ける。
 - Next: drawer 本体は揃ったので、次は Vision カード内の `vision-entry-question__fields` とガイド側の受付メモが、モバイル幅で二重に重く見えないか1ブロックだけ点検する。

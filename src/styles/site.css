@@ -2400,6 +2400,7 @@ a {
     line-height: 1.85;
 }
 
+/* Shared details drawer used by Research, Projects, and Vision entry notes. */
 .research-extra-drawer {
     --garden-drawer-margin: 1.2rem 0 0;
     --garden-drawer-radius: 16px;
@@ -6710,16 +6711,19 @@ body.theme-night .nav-links a::after {
         overflow-wrap: anywhere;
     }
 
-    .project-cycle-drawer summary {
+    :is(.research-extra-drawer, .project-cycle-drawer) summary {
         align-items: flex-start;
         min-height: 0;
-        padding: 0.68rem 0.74rem;
     }
 
-    .project-cycle-drawer__sigil {
+    :is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil) {
         width: 1.5rem;
         height: 1.5rem;
         margin-top: 0.05rem;
+    }
+
+    .project-cycle-drawer {
+        --garden-drawer-summary-padding: 0.68rem 0.74rem;
     }
 
     .project-cycle-drawer__hint {
@@ -6848,20 +6852,9 @@ body.theme-night .nav-links a::after {
     }
 
     .research-extra-drawer {
-        margin-top: 1rem;
-        border-radius: 14px;
-    }
-
-    .research-extra-drawer summary {
-        align-items: flex-start;
-        min-height: 0;
-        padding: 0.72rem 0.78rem;
-    }
-
-    .research-extra-drawer__sigil {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-top: 0.05rem;
+        --garden-drawer-margin: 1rem 0 0;
+        --garden-drawer-radius: 14px;
+        --garden-drawer-summary-padding: 0.72rem 0.78rem;
     }
 
     .research-extra-drawer__body {
