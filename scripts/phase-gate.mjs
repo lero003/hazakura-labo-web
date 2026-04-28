@@ -460,12 +460,31 @@ assert(
     && researchRendererJs.includes('由来・断片・論文メモ')
     && researchRendererJs.includes('小径をひらく')
     && styleCss.includes('.research-extra-drawer')
-    && styleCss.includes('.research-extra-drawer[open] summary::after')
+    && styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer)[open] summary::after')
     && styleCss.includes('.research-extra-drawer__body'),
   JSON.stringify({
     hasDrawerRenderer: researchRendererJs.includes('class="research-extra-drawer"'),
     hasDrawerStyles: styleCss.includes('.research-extra-drawer'),
     hasDrawerBody: styleCss.includes('.research-extra-drawer__body')
+  })
+);
+assert(
+  'garden drawer chrome is shared between research and project drawers',
+  [
+    '--garden-drawer-bg',
+    '--garden-drawer-summary-color',
+    '--garden-drawer-toggle-bg',
+    '--garden-drawer-sigil-bg',
+    ':is(.research-extra-drawer, .project-cycle-drawer)'
+  ].every((snippet) => styleCss.includes(snippet))
+    && !styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary')
+    && !styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary'),
+  JSON.stringify({
+    hasSharedSelector: styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer)'),
+    hasBgToken: styleCss.includes('--garden-drawer-bg'),
+    hasSummaryToken: styleCss.includes('--garden-drawer-summary-color'),
+    hasDirectResearchSummaryTheme: styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary'),
+    hasDirectProjectSummaryTheme: styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary')
   })
 );
 assert('project renderer script exposes global', projectRendererJs.includes('window.HazakuraProjectRenderer'));
@@ -525,7 +544,7 @@ assert(
     && projectRendererJs.includes('小径をひらく')
     && styleCss.includes('.project-cycle-drawer')
     && styleCss.includes('.project-cycle-drawer__sigil')
-    && styleCss.includes('.project-cycle-drawer[open] summary::after'),
+    && styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer)[open] summary::after'),
   JSON.stringify({
     hasDrawerRenderer: projectRendererJs.includes('class="project-cycle-drawer"'),
     hasDrawerStyles: styleCss.includes('.project-cycle-drawer')

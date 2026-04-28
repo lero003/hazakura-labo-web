@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: Research Log の補足drawerと Projects の cycle drawer に重複していたsummary、開閉トグル、sigil、label/hintのCSS骨格を `--garden-drawer-*` 変数と共有 `:is(.research-extra-drawer, .project-cycle-drawer)` ルールへまとめた。夜テーマの子セレクタ上書きも、drawer単位の変数差し替えへ寄せ、phase gate で共有契約を保護した。
+- Learned: 「小径をひらく」UIはセクションごとに色が違っても、触り方と開閉の所作は同じ庭具として読ませたほうが保守しやすい。共通骨格に寄せると、次回のdrawer演出調整がResearchとProjectsで二重化しにくい。
+- Next: Vision の受付メモdrawerも同じ garden drawer 骨格へ寄せられるか、見た目を変えずに1ブロックだけ点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: Hero CTA と書庫CTAに重複していた前面レイヤー、グラデーションオーバーレイ、矢印モーションを `src/styles/site.css` の shared action link へ集約した。橋渡しリンクの中身を前面に出す指定も同じ境界へ寄せた。
 - Learned: 小さな導線の演出ほど、CTAごとに同じ指定が散ると次の調整で差分が迷子になる。見た目を足さずに共通境界を作るだけでも、書庫から制作棚へ渡す導線を崩さず磨きやすくなる。
 - Next: CTA系の hover / focus-visible の扱いを、モバイルとキーボード操作で同じ意図に見えるか1ブロックだけ点検する。

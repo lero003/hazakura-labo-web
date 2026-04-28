@@ -2401,102 +2401,128 @@ a {
 }
 
 .research-extra-drawer {
-    position: relative;
-    margin: 1.2rem 0 0;
-    border: 1px solid rgba(77, 161, 169, 0.16);
-    border-radius: 16px;
-    background:
+    --garden-drawer-margin: 1.2rem 0 0;
+    --garden-drawer-radius: 16px;
+    --garden-drawer-border: rgba(77, 161, 169, 0.16);
+    --garden-drawer-bg:
         radial-gradient(circle at 1.2rem 1.2rem, rgba(77, 161, 169, 0.12), transparent 5.8rem),
         rgba(90, 158, 95, 0.045);
+    --garden-drawer-open-border: rgba(77, 161, 169, 0.26);
+    --garden-drawer-open-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+    --garden-drawer-summary-gap: 0.72rem;
+    --garden-drawer-summary-min: 3rem;
+    --garden-drawer-summary-padding: 0.78rem 0.9rem;
+    --garden-drawer-summary-color: var(--ink-600);
+    --garden-drawer-toggle-border: rgba(77, 161, 169, 0.24);
+    --garden-drawer-toggle-bg: rgba(255, 255, 255, 0.46);
+    --garden-drawer-toggle-hover-bg: rgba(255, 255, 255, 0.72);
+    --garden-drawer-toggle-color: var(--green-500);
+    --garden-drawer-sigil-size: 1.68rem;
+    --garden-drawer-sigil-border: rgba(77, 161, 169, 0.24);
+    --garden-drawer-sigil-active-border: rgba(77, 161, 169, 0.4);
+    --garden-drawer-sigil-radius: 999px 999px 5px 999px;
+    --garden-drawer-sigil-bg:
+        radial-gradient(circle, rgba(77, 161, 169, 0.16), transparent 58%),
+        rgba(255, 255, 255, 0.42);
+    --garden-drawer-sigil-color: var(--green-500);
+    --garden-drawer-sigil-rotate: 12deg;
+    --garden-drawer-label-color: var(--green-500);
+    --garden-drawer-hint-color: var(--ink-400);
+}
+
+:is(.research-extra-drawer, .project-cycle-drawer) {
+    position: relative;
+    margin: var(--garden-drawer-margin);
+    border: 1px solid var(--garden-drawer-border);
+    border-radius: var(--garden-drawer-radius);
+    background: var(--garden-drawer-bg);
     overflow: hidden;
     transition: border-color var(--duration-fast) ease, background var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
 }
 
-.research-extra-drawer[open] {
-    border-color: rgba(77, 161, 169, 0.26);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+:is(.research-extra-drawer, .project-cycle-drawer)[open] {
+    border-color: var(--garden-drawer-open-border);
+    box-shadow: var(--garden-drawer-open-shadow);
 }
 
-.research-extra-drawer summary {
+:is(.research-extra-drawer, .project-cycle-drawer) summary {
     position: relative;
     display: flex;
-    gap: 0.72rem;
+    gap: var(--garden-drawer-summary-gap);
     align-items: center;
-    min-height: 3rem;
-    padding: 0.78rem 0.9rem;
-    color: var(--ink-600);
+    min-height: var(--garden-drawer-summary-min);
+    padding: var(--garden-drawer-summary-padding);
+    color: var(--garden-drawer-summary-color);
     cursor: pointer;
     list-style: none;
 }
 
-.research-extra-drawer summary::-webkit-details-marker {
+:is(.research-extra-drawer, .project-cycle-drawer) summary::-webkit-details-marker {
     display: none;
 }
 
-.research-extra-drawer summary::after {
+:is(.research-extra-drawer, .project-cycle-drawer) summary::after {
     content: '＋';
     flex: 0 0 auto;
     display: grid;
     place-items: center;
     width: 1.55rem;
     height: 1.55rem;
-    border: 1px solid rgba(77, 161, 169, 0.24);
+    border: 1px solid var(--garden-drawer-toggle-border);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.46);
-    color: var(--green-500);
+    background: var(--garden-drawer-toggle-bg);
+    color: var(--garden-drawer-toggle-color);
     font-size: 0.78rem;
     line-height: 1;
     transition: transform var(--duration-fast) ease, background var(--duration-fast) ease;
 }
 
-.research-extra-drawer summary:hover::after {
-    background: rgba(255, 255, 255, 0.72);
+:is(.research-extra-drawer, .project-cycle-drawer) summary:hover::after {
+    background: var(--garden-drawer-toggle-hover-bg);
 }
 
-.research-extra-drawer[open] summary::after {
+:is(.research-extra-drawer, .project-cycle-drawer)[open] summary::after {
     content: '−';
     transform: rotate(180deg);
 }
 
-.research-extra-drawer__sigil {
+:is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil) {
     flex: 0 0 auto;
     display: grid;
     place-items: center;
-    width: 1.68rem;
-    height: 1.68rem;
-    border: 1px solid rgba(77, 161, 169, 0.24);
-    border-radius: 999px 999px 5px 999px;
-    background:
-        radial-gradient(circle, rgba(77, 161, 169, 0.16), transparent 58%),
-        rgba(255, 255, 255, 0.42);
-    color: var(--green-500);
+    width: var(--garden-drawer-sigil-size);
+    height: var(--garden-drawer-sigil-size);
+    border: 1px solid var(--garden-drawer-sigil-border);
+    border-radius: var(--garden-drawer-sigil-radius);
+    background: var(--garden-drawer-sigil-bg);
+    color: var(--garden-drawer-sigil-color);
     font-size: 0.78rem;
     line-height: 1;
-    transform: rotate(12deg);
+    transform: rotate(var(--garden-drawer-sigil-rotate));
     transition: transform var(--duration-fast) var(--ease-out-expo), border-color var(--duration-fast) ease;
 }
 
-.research-extra-drawer[open] .research-extra-drawer__sigil,
-.research-extra-drawer summary:hover .research-extra-drawer__sigil {
-    border-color: rgba(77, 161, 169, 0.4);
+:is(.research-extra-drawer, .project-cycle-drawer)[open] :is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil),
+:is(.research-extra-drawer, .project-cycle-drawer) summary:hover :is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil) {
+    border-color: var(--garden-drawer-sigil-active-border);
     transform: rotate(0deg) scale(1.04);
 }
 
-.research-extra-drawer__copy {
+:is(.research-extra-drawer__copy, .project-cycle-drawer__copy) {
     display: grid;
     gap: 0.1rem;
     min-width: 0;
 }
 
-.research-extra-drawer__label {
-    color: var(--green-500);
+:is(.research-extra-drawer__label, .project-cycle-drawer__label) {
+    color: var(--garden-drawer-label-color);
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.08em;
 }
 
-.research-extra-drawer__hint {
-    color: var(--ink-400);
+:is(.research-extra-drawer__hint, .project-cycle-drawer__hint) {
+    color: var(--garden-drawer-hint-color);
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -5629,105 +5655,33 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-cycle-drawer {
-    position: relative;
-    margin: -0.25rem 0 1rem;
-    border: 1px solid rgba(167, 139, 250, 0.16);
-    border-radius: 14px;
-    background:
+    --garden-drawer-margin: -0.25rem 0 1rem;
+    --garden-drawer-radius: 14px;
+    --garden-drawer-border: rgba(167, 139, 250, 0.16);
+    --garden-drawer-bg:
         radial-gradient(circle at 1.2rem 1.2rem, rgba(232, 88, 122, 0.12), transparent 5.5rem),
         rgba(167, 139, 250, 0.045);
-    overflow: hidden;
-    transition: border-color var(--duration-fast) ease, background var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
-}
-
-.project-cycle-drawer[open] {
-    border-color: rgba(167, 139, 250, 0.24);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
-}
-
-.project-cycle-drawer summary {
-    position: relative;
-    display: flex;
-    gap: 0.7rem;
-    align-items: center;
-    min-height: 2.85rem;
-    padding: 0.72rem 0.88rem;
-    color: var(--ink-600);
-    cursor: pointer;
-    list-style: none;
-}
-
-.project-cycle-drawer summary::-webkit-details-marker {
-    display: none;
-}
-
-.project-cycle-drawer summary::after {
-    content: '＋';
-    flex: 0 0 auto;
-    width: 1.55rem;
-    height: 1.55rem;
-    border: 1px solid rgba(167, 139, 250, 0.24);
-    border-radius: 999px;
-    display: grid;
-    place-items: center;
-    color: var(--purple-500);
-    font-size: 0.78rem;
-    line-height: 1;
-    background: rgba(255, 255, 255, 0.45);
-    transition: transform var(--duration-fast) ease, background var(--duration-fast) ease;
-}
-
-.project-cycle-drawer summary:hover::after {
-    background: rgba(255, 255, 255, 0.72);
-}
-
-.project-cycle-drawer[open] summary::after {
-    content: '−';
-    transform: rotate(180deg);
-}
-
-.project-cycle-drawer__sigil {
-    flex: 0 0 auto;
-    display: grid;
-    place-items: center;
-    width: 1.65rem;
-    height: 1.65rem;
-    border: 1px solid rgba(232, 88, 122, 0.22);
-    border-radius: 999px 999px 999px 5px;
-    background:
+    --garden-drawer-open-border: rgba(167, 139, 250, 0.24);
+    --garden-drawer-open-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+    --garden-drawer-summary-gap: 0.7rem;
+    --garden-drawer-summary-min: 2.85rem;
+    --garden-drawer-summary-padding: 0.72rem 0.88rem;
+    --garden-drawer-summary-color: var(--ink-600);
+    --garden-drawer-toggle-border: rgba(167, 139, 250, 0.24);
+    --garden-drawer-toggle-bg: rgba(255, 255, 255, 0.45);
+    --garden-drawer-toggle-hover-bg: rgba(255, 255, 255, 0.72);
+    --garden-drawer-toggle-color: var(--purple-500);
+    --garden-drawer-sigil-size: 1.65rem;
+    --garden-drawer-sigil-border: rgba(232, 88, 122, 0.22);
+    --garden-drawer-sigil-active-border: rgba(232, 88, 122, 0.38);
+    --garden-drawer-sigil-radius: 999px 999px 999px 5px;
+    --garden-drawer-sigil-bg:
         radial-gradient(circle, rgba(232, 88, 122, 0.16), transparent 58%),
         rgba(255, 255, 255, 0.42);
-    color: var(--sakura-500);
-    font-size: 0.78rem;
-    line-height: 1;
-    transform: rotate(-12deg);
-    transition: transform var(--duration-fast) var(--ease-out-expo), border-color var(--duration-fast) ease;
-}
-
-.project-cycle-drawer[open] .project-cycle-drawer__sigil,
-.project-cycle-drawer summary:hover .project-cycle-drawer__sigil {
-    border-color: rgba(232, 88, 122, 0.38);
-    transform: rotate(0deg) scale(1.04);
-}
-
-.project-cycle-drawer__copy {
-    display: grid;
-    gap: 0.1rem;
-    min-width: 0;
-}
-
-.project-cycle-drawer__label {
-    color: var(--purple-500);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-}
-
-.project-cycle-drawer__hint {
-    color: var(--ink-400);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    --garden-drawer-sigil-color: var(--sakura-500);
+    --garden-drawer-sigil-rotate: -12deg;
+    --garden-drawer-label-color: var(--purple-500);
+    --garden-drawer-hint-color: var(--ink-400);
 }
 
 .project-cycle {
@@ -6096,45 +6050,25 @@ body.theme-night .section-vision .research-log-handoff {
 }
 
 body.theme-night .section-vision .research-extra-drawer {
-    border-color: rgba(77, 161, 169, 0.22);
-    background:
+    --garden-drawer-border: rgba(77, 161, 169, 0.22);
+    --garden-drawer-bg:
         radial-gradient(circle at 1.2rem 1.2rem, rgba(77, 161, 169, 0.14), transparent 5.8rem),
         rgba(90, 158, 95, 0.055);
-}
-
-body.theme-night .section-vision .research-extra-drawer[open] {
-    border-color: rgba(77, 161, 169, 0.34);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.055);
-}
-
-body.theme-night .section-vision .research-extra-drawer summary {
-    color: var(--body-text);
-}
-
-body.theme-night .section-vision .research-extra-drawer summary::after {
-    border-color: rgba(77, 161, 169, 0.3);
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--green-400);
-}
-
-body.theme-night .section-vision .research-extra-drawer summary:hover::after {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-body.theme-night .section-vision .research-extra-drawer__sigil {
-    border-color: rgba(77, 161, 169, 0.34);
-    background:
+    --garden-drawer-open-border: rgba(77, 161, 169, 0.34);
+    --garden-drawer-open-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.055);
+    --garden-drawer-summary-color: var(--body-text);
+    --garden-drawer-toggle-border: rgba(77, 161, 169, 0.3);
+    --garden-drawer-toggle-bg: rgba(255, 255, 255, 0.06);
+    --garden-drawer-toggle-hover-bg: rgba(255, 255, 255, 0.1);
+    --garden-drawer-toggle-color: var(--green-400);
+    --garden-drawer-sigil-border: rgba(77, 161, 169, 0.34);
+    --garden-drawer-sigil-active-border: rgba(77, 161, 169, 0.4);
+    --garden-drawer-sigil-bg:
         radial-gradient(circle, rgba(77, 161, 169, 0.2), transparent 58%),
         rgba(255, 255, 255, 0.06);
-    color: var(--green-400);
-}
-
-body.theme-night .section-vision .research-extra-drawer__label {
-    color: var(--green-400);
-}
-
-body.theme-night .section-vision .research-extra-drawer__hint {
-    color: var(--body-text-dim);
+    --garden-drawer-sigil-color: var(--green-400);
+    --garden-drawer-label-color: var(--green-400);
+    --garden-drawer-hint-color: var(--body-text-dim);
 }
 
 body.theme-night .section-vision .research-wisdom-trail {
@@ -6472,45 +6406,25 @@ body.theme-night .section-projects .project-return-link span {
 }
 
 body.theme-night .section-projects .project-cycle-drawer {
-    background:
+    --garden-drawer-bg:
         radial-gradient(circle at 1.2rem 1.2rem, rgba(232, 88, 122, 0.12), transparent 5.5rem),
         rgba(167, 139, 250, 0.06);
-    border-color: rgba(167, 139, 250, 0.24);
-}
-
-body.theme-night .section-projects .project-cycle-drawer[open] {
-    border-color: rgba(167, 139, 250, 0.36);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.055);
-}
-
-body.theme-night .section-projects .project-cycle-drawer summary {
-    color: var(--body-text);
-}
-
-body.theme-night .section-projects .project-cycle-drawer summary::after {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(167, 139, 250, 0.28);
-    color: var(--purple-400);
-}
-
-body.theme-night .section-projects .project-cycle-drawer summary:hover::after {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-body.theme-night .section-projects .project-cycle-drawer__sigil {
-    border-color: rgba(232, 88, 122, 0.32);
-    background:
+    --garden-drawer-border: rgba(167, 139, 250, 0.24);
+    --garden-drawer-open-border: rgba(167, 139, 250, 0.36);
+    --garden-drawer-open-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.055);
+    --garden-drawer-summary-color: var(--body-text);
+    --garden-drawer-toggle-bg: rgba(255, 255, 255, 0.06);
+    --garden-drawer-toggle-border: rgba(167, 139, 250, 0.28);
+    --garden-drawer-toggle-hover-bg: rgba(255, 255, 255, 0.1);
+    --garden-drawer-toggle-color: var(--purple-400);
+    --garden-drawer-sigil-border: rgba(232, 88, 122, 0.32);
+    --garden-drawer-sigil-active-border: rgba(232, 88, 122, 0.38);
+    --garden-drawer-sigil-bg:
         radial-gradient(circle, rgba(232, 88, 122, 0.2), transparent 58%),
         rgba(255, 255, 255, 0.06);
-    color: var(--sakura-400);
-}
-
-body.theme-night .section-projects .project-cycle-drawer__label {
-    color: var(--purple-400);
-}
-
-body.theme-night .section-projects .project-cycle-drawer__hint {
-    color: var(--body-text-dim);
+    --garden-drawer-sigil-color: var(--sakura-400);
+    --garden-drawer-label-color: var(--purple-400);
+    --garden-drawer-hint-color: var(--body-text-dim);
 }
 
 body.theme-night .section-projects .project-cycle div {
