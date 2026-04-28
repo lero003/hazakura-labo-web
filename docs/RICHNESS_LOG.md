@@ -2,6 +2,13 @@
 
 ## 2026-04-28
 
+- Focus: Structure
+- Changed: Research Log の handoff、ログカード、cycle bridge 生成を `src/scripts/research-renderer.js` へ切り出し、`content-renderers.js` は Research 専用レンダラーへ委譲するだけにした。Astro配信ルートと script load order を追加し、phase gate で Research markup が司令塔へ戻らないことも保護した。
+- Learned: Vision から Research Log へ戻る導線は、入口・ログ・最後の循環メモが一塊で育つため、汎用レンダラーに残すと次回の余白や文脈調整で読む範囲が広がる。専用境界に寄せると、研究ログの「問いへ戻す」体験だけを小さく磨きやすくなる。
+- Next: Research Log カード内の paper sample / wisdom trail / source 表示が、モバイル幅で一度に重く見えないか、表示順か折り畳み候補だけを点検する。
+
+## 2026-04-28
+
 - Focus: Motion / Access / Structure
 - Changed: フッターの `はじまりへ戻る` を通常ジャンプから測定済みスムーススクロールへ接続し、Hero到着時に短い帰還光とアクセント行の受け取りを出すようにした。Phase gate でフッター帰還導線と到着演出の契約も保護した。
 - Learned: 最後の小径は見た目だけ庭らしくても、クリック後に急に先頭へ飛ぶと読後の余韻が切れる。既存のsmooth-scroll境界へ入れるだけで、情報を増やさず循環の体験を閉じられる。

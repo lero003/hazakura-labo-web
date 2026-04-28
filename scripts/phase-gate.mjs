@@ -128,6 +128,7 @@ const styleCss = readFile('dist/style.css');
 const contentRenderersJs = readFile('dist/content-renderers.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const projectRendererJs = readFile('dist/project-renderer.js');
+const researchRendererJs = readFile('dist/research-renderer.js');
 const quotePreludeJs = readFile('dist/quote-prelude.js');
 const visionRendererJs = readFile('dist/vision-renderer.js');
 const visionEntryFocusJs = readFile('dist/vision-entry-focus.js');
@@ -253,12 +254,12 @@ assert(
   'research log handoff bridges vision entries to logs',
   Array.isArray(hazakuraContent.researchGroup?.handoff?.steps)
     && hazakuraContent.researchGroup.handoff.steps.length === 3
-    && contentRenderersJs.includes('class="research-log-handoff"')
+    && researchRendererJs.includes('class="research-log-handoff"')
     && styleCss.includes('.research-log-handoff')
     && scrollAnimationsJs.includes('.research-log-handoff'),
   JSON.stringify({
     steps: hazakuraContent.researchGroup?.handoff?.steps?.length || 0,
-    hasRenderer: contentRenderersJs.includes('class="research-log-handoff"'),
+    hasRenderer: researchRendererJs.includes('class="research-log-handoff"'),
     hasStyles: styleCss.includes('.research-log-handoff'),
     hasReveal: scrollAnimationsJs.includes('.research-log-handoff')
   })
@@ -299,6 +300,7 @@ assert('content renderers script exposes global', contentRenderersJs.includes('w
 assert('content renderers delegates project renderer', contentRenderersJs.includes('HazakuraProjectRenderer?.render'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
 assert('content renderers delegates vision renderer', contentRenderersJs.includes('HazakuraVisionRenderer?.render'));
+assert('content renderers delegates research renderer', contentRenderersJs.includes('HazakuraResearchRenderer?.render'));
 assert(
   'content renderers keeps projects markup out of the orchestrator',
   !contentRenderersJs.includes('class="project-card"')
@@ -319,6 +321,38 @@ assert(
     hasVisionCard: contentRenderersJs.includes('class="vision-card"'),
     hasVisionEntryGuide: contentRenderersJs.includes('class="vision-entry-guide"'),
     hasVisionEntryQuestion: contentRenderersJs.includes('class="vision-entry-question"')
+  })
+);
+assert(
+  'content renderers keeps research markup out of the orchestrator',
+  !contentRenderersJs.includes('class="research-log-card"')
+    && !contentRenderersJs.includes('class="research-log-handoff"')
+    && !contentRenderersJs.includes('class="cycle-bridge-card"'),
+  JSON.stringify({
+    hasResearchCard: contentRenderersJs.includes('class="research-log-card"'),
+    hasResearchHandoff: contentRenderersJs.includes('class="research-log-handoff"'),
+    hasCycleBridge: contentRenderersJs.includes('class="cycle-bridge-card"')
+  })
+);
+assert('research renderer script exposes global', researchRendererJs.includes('window.HazakuraResearchRenderer'));
+assert(
+  'research renderer loads before content orchestrator',
+  html.indexOf('src="/research-renderer.js"') >= 0
+    && html.indexOf('src="/research-renderer.js"') < html.indexOf('src="/content-renderers.js"'),
+  JSON.stringify({
+    researchRenderer: html.indexOf('src="/research-renderer.js"'),
+    contentRenderers: html.indexOf('src="/content-renderers.js"')
+  })
+);
+assert(
+  'research renderer owns handoff cards and cycle bridge',
+  researchRendererJs.includes('class="research-log-handoff"')
+    && researchRendererJs.includes('class="research-log-card"')
+    && researchRendererJs.includes('class="cycle-bridge-card"'),
+  JSON.stringify({
+    hasHandoff: researchRendererJs.includes('class="research-log-handoff"'),
+    hasCard: researchRendererJs.includes('class="research-log-card"'),
+    hasCycleBridge: researchRendererJs.includes('class="cycle-bridge-card"')
   })
 );
 assert('project renderer script exposes global', projectRendererJs.includes('window.HazakuraProjectRenderer'));
