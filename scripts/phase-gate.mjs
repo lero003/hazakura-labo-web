@@ -210,7 +210,7 @@ assert(
 );
 assert(
   'quote prelude folds back to main anchors',
-  ['#library', '#projects', '#vision'].every((href) => hazakuraContent.quotePrelude?.steps?.some((step) => step.href === href)),
+  ['#library', '#projects', '#research-log-strip', '#vision'].every((href) => hazakuraContent.quotePrelude?.steps?.some((step) => step.href === href)),
   JSON.stringify(hazakuraContent.quotePrelude?.steps || [])
 );
 
@@ -253,6 +253,18 @@ const auroraCanvasJs = readFile('dist/aurora-canvas.js');
 const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
 const sakuraPetalsJs = readFile('dist/sakura-petals.js');
+assert(
+  'research log strip is a named landmark target',
+  html.includes('class="research-log-strip" id="research-log-strip"')
+    && html.includes('aria-labelledby="research-log-strip-title"')
+    && researchRendererJs.includes('id="research-log-strip-title"')
+    && researchRendererJs.includes('Research Log'),
+  JSON.stringify({
+    hasSectionTarget: html.includes('class="research-log-strip" id="research-log-strip"'),
+    hasLabelReference: html.includes('aria-labelledby="research-log-strip-title"'),
+    rendererOwnsHeading: researchRendererJs.includes('id="research-log-strip-title"')
+  })
+);
 assert(
   'quote prelude theme is tokenized',
   [
@@ -860,12 +872,14 @@ assert(
     && smoothScrollJs.includes('markMatchingArrival')
     && smoothScrollJs.includes('is-quote-return-arrival')
     && styleCss.includes('.section.is-quote-return-arrival .section-header::after')
+    && styleCss.includes('.research-log-strip.is-quote-return-arrival .research-log-handoff')
     && styleCss.includes('@keyframes quoteReturnGlow'),
   JSON.stringify({
     hasSelector: smoothScrollJs.includes('.quote-prelude-step[href^="#"]'),
     hasHandler: smoothScrollJs.includes('markMatchingArrival'),
     hasArrivalClass: smoothScrollJs.includes('is-quote-return-arrival'),
     hasStyle: styleCss.includes('.section.is-quote-return-arrival .section-header::after'),
+    hasResearchStyle: styleCss.includes('.research-log-strip.is-quote-return-arrival .research-log-handoff'),
     hasKeyframes: styleCss.includes('@keyframes quoteReturnGlow')
   })
 );

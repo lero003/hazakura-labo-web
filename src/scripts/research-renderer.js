@@ -151,7 +151,11 @@
         if (!items) return;
         const handoff = Array.isArray(researchGroup) ? '' : renderResearchLogHandoff(researchGroup.handoff, items);
         const cards = items.map((item) => renderResearchLogCard(item)).join('');
-        root.innerHTML = `${handoff}${cards}`;
+        root.innerHTML = `
+            <h2 class="visually-hidden" id="research-log-strip-title">Research Log</h2>
+            ${handoff}
+            ${cards}
+        `;
     }
 
     function renderCycleBridge(item) {

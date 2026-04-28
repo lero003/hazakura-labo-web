@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Access / Motion / Structure
+- Changed: Research Log の描画領域を名前付きの小さなランドマークにし、Quote 前の折り返し導線から `#research-log-strip` へ戻れるようにした。到着時は既存の研究ログ光を handoff にも受け渡し、phase gate でアンカーと非表示見出しの契約を保護した。
+- Learned: Research Log は内容が育っていても、ページ構造上の入口が弱いと Vision の中に沈んで見える。新しいカードを増やさず、既存の折り返し導線に「記録をひらく」を混ぜるだけで、問い -> 実験 -> 発見の循環が拾いやすくなる。
+- Next: preview 可能な環境で、Quote 前の4分割ステップがモバイル幅で詰まりすぎないか、1スクロールだけ実表示で見る。
+
+## 2026-04-29
+
 - Focus: Structure / Access
 - Changed: Projectsカード内のResearch Log戻りリンクを、直指定の昼夜テーマから `--project-return-*` のローカルCSS変数へ寄せた。hover / focus / ラベル色も同じ境界で扱い、phase gate で夜テーマの子セレクタ上書きへ戻らないよう保護した。
 - Learned: スムーススクロールや到着光が整っても、リンク本体の見た目契約が散ると次の小径調整で昼夜差分とキーボード状態を追い直すことになる。戻り道をリンク単位の変数にまとめると、体験を変えずに導線の保守面積を減らせる。
