@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: Research / Projects / Vision の折りたたみ導線で使う `--garden-drawer-*` の既定値を、Research専用ブロックから共有ドロワーセレクタへ移した。
+- Learned: 同じUIの既定トークンを共有入口へ置くと、次に祠的な小径や補足メモを足す時も、見た目を変えずに責務を追いやすい。
+- Next: `site.css` の大型テーマブロックをもう1箇所だけ選び、夜テーマの直接指定を共通トークンへ寄せられるか点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: `scripts/phase-gate.mjs` に、`src/data/script-load-order.js` のmanifest、`src/scripts/*.js` の実体、`src/pages/*.js.ts` の互換配信ルートが一対一で揃っているかを確認する検査を追加した。
 - Learned: 演出scriptが細かく分かれた今は、見た目を増やすよりも「追加した小径が配信されない」「消したscriptのルートだけ残る」状態を早く検出できるほうが、次の遊びを安心して足せる。
 - Next: preview可能な環境で、ProjectsフィルターとQuote折り返し導線をモバイル幅で触り、script境界の保護が実体験の崩れ検出にも十分か確認する。

@@ -2415,7 +2415,7 @@ a {
 }
 
 /* Shared details drawer used by Research, Projects, and Vision entry notes. */
-.research-extra-drawer {
+:is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer) {
     --garden-drawer-margin: 1.2rem 0 0;
     --garden-drawer-radius: 16px;
     --garden-drawer-border: rgba(77, 161, 169, 0.16);
@@ -2447,9 +2447,6 @@ a {
     --garden-drawer-sigil-rotate: 12deg;
     --garden-drawer-label-color: var(--green-500);
     --garden-drawer-hint-color: var(--ink-400);
-}
-
-:is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer) {
     position: relative;
     margin: var(--garden-drawer-margin);
     border: 1px solid var(--garden-drawer-border);
