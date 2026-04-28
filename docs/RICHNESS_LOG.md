@@ -3,6 +3,13 @@
 ## 2026-04-28
 
 - Focus: Structure
+- Changed: Vision の `data-entry-kind` アクセント色指定を、guide / question / badge / card に散った4列セレクタから `:is(...)` の共有セレクタへ集約した。昼夜それぞれの種別色は同じ場所で読む形にし、phase gate で旧セレクタ列へ戻らない保護を追加した。
+- Learned: Vision の預け口は演出が複数パーツへ渡るため、色の契約がセレクタ列で散ると次の入口種別追加時に見落としやすい。見た目を変えずに accent map を一段共有すると、構想の入口を育てる時のCSS面積が小さくなる。
+- Next: `src/pages/index.astro` に残る Library bridge のAstro直書き部分が、将来の間奏差し替えに十分軽いか、見た目を変えずに1ブロックだけ点検する。
+
+## 2026-04-28
+
+- Focus: Structure
 - Changed: `content-renderers.js` に残っていた Philosophy / Layers / Process の静的DOM生成を `section-foundation-renderer.js` へ切り出し、司令塔側は各専用rendererを呼ぶだけの形へ寄せた。互換配信ルート、script load order、phase gate も追加して、基礎セクションの描画境界が戻らないようにした。
 - Learned: Projects / Vision / Research を専用rendererへ分けても、基礎セクションのDOM文字列が司令塔に残ると「どこで何を描くか」の読み筋がまだ混ざる。静的セクションも小さく分けると、次の演出追加時に司令塔を汚さず済む。
 - Next: `src/pages/index.astro` に残る Library bridge のAstro直書き部分が、将来の間奏差し替えに十分軽いか、見た目を変えずに1ブロックだけ点検する。

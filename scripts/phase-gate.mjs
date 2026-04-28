@@ -416,6 +416,22 @@ assert(
     hasNightQuestionFieldOverride: styleCss.includes('body.theme-night .section-vision .vision-entry-question__fields li {')
   })
 );
+assert(
+  'vision entry kind accent selectors stay shared',
+  styleCss.includes(':is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind]')
+    && styleCss.includes(':is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind="memory"]')
+    && styleCss.includes(':is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind="object"]')
+    && styleCss.includes(':is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind="knowledge"]')
+    && styleCss.includes('body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind]')
+    && !styleCss.includes('.vision-card[data-entry-kind],\n.vision-entry-guide__kind[data-entry-kind]')
+    && !styleCss.includes('body.theme-night .section-vision .vision-card[data-entry-kind],\nbody.theme-night .section-vision .vision-entry-question[data-entry-kind]'),
+  JSON.stringify({
+    hasSharedDaySelector: styleCss.includes(':is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind]'),
+    hasSharedNightSelector: styleCss.includes('body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind]'),
+    hasLegacyDayList: styleCss.includes('.vision-card[data-entry-kind],\n.vision-entry-guide__kind[data-entry-kind]'),
+    hasLegacyNightList: styleCss.includes('body.theme-night .section-vision .vision-card[data-entry-kind],\nbody.theme-night .section-vision .vision-entry-question[data-entry-kind]')
+  })
+);
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates foundation renderer', contentRenderersJs.includes('HazakuraSectionFoundationRenderer?.render'));
 assert('content renderers delegates project renderer', contentRenderersJs.includes('HazakuraProjectRenderer?.render'));

@@ -3043,34 +3043,22 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     overflow-wrap: anywhere;
 }
 
-.vision-card[data-entry-kind],
-.vision-entry-guide__kind[data-entry-kind],
-.vision-entry-question[data-entry-kind],
-.vision-entry-kind-badge[data-entry-kind] {
+:is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind] {
     --entry-accent-rgb: 232, 88, 122;
     --entry-accent: var(--sakura-500);
 }
 
-.vision-card[data-entry-kind="memory"],
-.vision-entry-guide__kind[data-entry-kind="memory"],
-.vision-entry-question[data-entry-kind="memory"],
-.vision-entry-kind-badge[data-entry-kind="memory"] {
+:is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind="memory"] {
     --entry-accent-rgb: 90, 158, 95;
     --entry-accent: var(--green-500);
 }
 
-.vision-card[data-entry-kind="object"],
-.vision-entry-guide__kind[data-entry-kind="object"],
-.vision-entry-question[data-entry-kind="object"],
-.vision-entry-kind-badge[data-entry-kind="object"] {
+:is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind="object"] {
     --entry-accent-rgb: 168, 116, 48;
     --entry-accent: #a87430;
 }
 
-.vision-card[data-entry-kind="knowledge"],
-.vision-entry-guide__kind[data-entry-kind="knowledge"],
-.vision-entry-question[data-entry-kind="knowledge"],
-.vision-entry-kind-badge[data-entry-kind="knowledge"] {
+:is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind="knowledge"] {
     --entry-accent-rgb: 59, 130, 168;
     --entry-accent: #3b82a8;
 }
@@ -5890,34 +5878,22 @@ body.theme-night .section-vision .vision-card .vision-text {
     color: var(--body-text);
 }
 
-body.theme-night .section-vision .vision-card[data-entry-kind],
-body.theme-night .section-vision .vision-entry-question[data-entry-kind],
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind],
-body.theme-night .section-vision .vision-entry-kind-badge[data-entry-kind] {
+body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind] {
     --entry-accent-rgb: 167, 139, 250;
     --entry-accent: var(--purple-400);
 }
 
-body.theme-night .section-vision .vision-card[data-entry-kind="memory"],
-body.theme-night .section-vision .vision-entry-question[data-entry-kind="memory"],
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind="memory"],
-body.theme-night .section-vision .vision-entry-kind-badge[data-entry-kind="memory"] {
+body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind="memory"] {
     --entry-accent-rgb: 82, 183, 150;
     --entry-accent: #52b796;
 }
 
-body.theme-night .section-vision .vision-card[data-entry-kind="object"],
-body.theme-night .section-vision .vision-entry-question[data-entry-kind="object"],
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind="object"],
-body.theme-night .section-vision .vision-entry-kind-badge[data-entry-kind="object"] {
+body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind="object"] {
     --entry-accent-rgb: 245, 194, 105;
     --entry-accent: #f5c269;
 }
 
-body.theme-night .section-vision .vision-card[data-entry-kind="knowledge"],
-body.theme-night .section-vision .vision-entry-question[data-entry-kind="knowledge"],
-body.theme-night .section-vision .vision-entry-guide__kind[data-entry-kind="knowledge"],
-body.theme-night .section-vision .vision-entry-kind-badge[data-entry-kind="knowledge"] {
+body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind="knowledge"] {
     --entry-accent-rgb: 93, 203, 225;
     --entry-accent: #5dcbe1;
 }
