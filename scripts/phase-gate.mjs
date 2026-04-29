@@ -562,21 +562,32 @@ assert(
 );
 assert(
   'library projects bridge keeps handoff path styling',
-  ['.library-projects-bridge::after', '.garden-handoff-steps::before', '.garden-handoff-steps li::before', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet)),
+  ['.library-projects-bridge::after', '.garden-handoff-steps::before', '.garden-handoff-steps li::before', '--handoff-step-label-margin-bottom', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet))
+    && librarySectionSource.includes('class="library-projects-bridge__steps garden-handoff-steps"')
+    && researchRendererJs.includes('class="research-log-handoff__steps garden-handoff-steps"')
+    && !styleCss.includes('.library-projects-bridge__steps li {')
+    && !styleCss.includes('.library-projects-bridge__steps span {'),
   JSON.stringify({
     hasSeed: styleCss.includes('.library-projects-bridge::after'),
     hasStepPath: styleCss.includes('.garden-handoff-steps::before'),
-    hasStepDots: styleCss.includes('.garden-handoff-steps li::before')
+    hasStepDots: styleCss.includes('.garden-handoff-steps li::before'),
+    hasLabelSpacingToken: styleCss.includes('--handoff-step-label-margin-bottom'),
+    libraryUsesSharedSteps: librarySectionSource.includes('class="library-projects-bridge__steps garden-handoff-steps"'),
+    researchUsesSharedSteps: researchRendererJs.includes('class="research-log-handoff__steps garden-handoff-steps"'),
+    hasDirectLibraryStepItemRule: styleCss.includes('.library-projects-bridge__steps li {'),
+    hasDirectLibraryStepLabelRule: styleCss.includes('.library-projects-bridge__steps span {')
   })
 );
 assert(
   'small mobile library bridge keeps step path spacing',
   styleCss.includes('padding: 0.62rem 0.72rem 0.64rem 1.7rem')
     && styleCss.includes('min-height: 4.15rem')
+    && styleCss.includes('--handoff-step-label-margin-bottom: 0.12rem')
     && styleCss.includes('font-size: 0.74rem'),
   JSON.stringify({
     hasMobileStepPadding: styleCss.includes('padding: 0.62rem 0.72rem 0.64rem 1.7rem'),
     hasMobileStepHeight: styleCss.includes('min-height: 4.15rem'),
+    hasCompactLabelSpacing: styleCss.includes('--handoff-step-label-margin-bottom: 0.12rem'),
     hasCompactStepText: styleCss.includes('font-size: 0.74rem')
   })
 );

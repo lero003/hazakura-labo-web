@@ -1720,6 +1720,7 @@ a {
     --handoff-step-label-color: var(--bridge-accent);
     --handoff-step-label-size: 0.68rem;
     --handoff-step-label-spacing: 0.08em;
+    --handoff-step-label-margin-bottom: 0.2rem;
     --handoff-step-text-margin: 0;
     --handoff-step-text-color: var(--bridge-copy);
     --handoff-step-text-size: 0.78rem;
@@ -1823,10 +1824,6 @@ a {
     line-height: 1.85;
 }
 
-.library-projects-bridge__steps span {
-    margin-bottom: 0.2rem;
-}
-
 .garden-handoff-steps {
     position: relative;
     display: grid;
@@ -1876,6 +1873,7 @@ a {
 
 .garden-handoff-steps span {
     display: block;
+    margin-bottom: var(--handoff-step-label-margin-bottom, 0);
     color: var(--handoff-step-label-color);
     font-size: var(--handoff-step-label-size, 0.72rem);
     font-weight: 700;
@@ -4391,16 +4389,8 @@ body.theme-night.zone-aurora #aurora-canvas {
         --handoff-step-gap: 0.5rem;
         --handoff-step-item-min-height: 4.15rem;
         --handoff-step-item-padding: 0.62rem 0.72rem 0.64rem 1.7rem;
+        --handoff-step-label-margin-bottom: 0.12rem;
         --handoff-step-text-size: 0.74rem;
-    }
-
-    .library-projects-bridge__steps li {
-        min-height: 4.15rem;
-        padding: 0.62rem 0.72rem 0.64rem 1.7rem;
-    }
-
-    .library-projects-bridge__steps span {
-        margin-bottom: 0.12rem;
     }
 
     .process-step {

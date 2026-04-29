@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure / Access
+- Changed: `garden-handoff-steps` にラベル下余白のCSS変数を足し、Library→Projects のモバイル橋渡しだけが `li` / `span` を直指定していた重複を削除した。phase gate には、Library と Research の橋が同じ共有classを使い、Library専用の直指定が戻らない保護を追加した。
+- Learned: 橋渡しの見た目は同じでも、モバイルだけ個別セレクタが残ると次の間奏や縦線調整で保守境界がぼやける。余白まで共有部品の変数に寄せると、情報を増やさず参道の整え方を次回へ渡しやすい。
+- Next: preview可能な環境で、Library→Projects の縦線と Research handoff の縦線をモバイル幅で見比べ、共有変数へさらに寄せられる差分がないか確認する。
+
+## 2026-04-29
+
+- Focus: Structure / Access
 - Changed: Library→Projects と Vision→Research Log の橋渡しステップを `garden-handoff-steps` class へ参加させ、線・点・ラベル・本文のCSSを共通セレクタで扱うようにした。Library の「制作棚へ渡す」リンクには focus-visible の輪郭も足し、phase gate で共通classとフォーカス契約を保護した。
 - Learned: 変数だけを揃えてもセレクタが別々に残ると、次の橋や間奏を足す時に「どちらを真似るか」で迷いやすい。橋のステップを一つのclass名へ寄せると、見た目を増やさず小径の保守境界がはっきりする。
 - Next: preview可能な環境で、Library→Projects のTab移動とモバイル縦線を見て、フォーカスの光が橋の余韻より強く出すぎていないか確認する。
