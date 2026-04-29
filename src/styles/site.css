@@ -3984,6 +3984,7 @@ body::before {
 }
 
 .zone-nav:hover,
+.zone-nav:focus-within,
 .zone-nav.expanded {
     opacity: 1;
 }
@@ -3992,7 +3993,8 @@ body.theme-night .zone-nav {
     opacity: 0.6;
 }
 
-body.theme-night .zone-nav:hover {
+body.theme-night .zone-nav:hover,
+body.theme-night .zone-nav:focus-within {
     opacity: 1;
 }
 
@@ -4002,11 +4004,15 @@ body.zone-aurora .zone-nav {
 }
 
 body.zone-moon .zone-nav:hover,
-body.zone-aurora .zone-nav:hover {
+body.zone-moon .zone-nav:focus-within,
+body.zone-aurora .zone-nav:hover,
+body.zone-aurora .zone-nav:focus-within {
     opacity: 1;
 }
 
 .zone-btn {
+    appearance: none;
+    padding: 0;
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -4017,16 +4023,23 @@ body.zone-aurora .zone-nav:hover {
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
+    line-height: 1;
+    color: inherit;
     cursor: pointer;
     transition: all 0.4s var(--ease-spring);
     position: relative;
     user-select: none;
 }
 
-.zone-btn:hover {
+.zone-btn:is(:hover, :focus-visible) {
     transform: scale(1.2);
     border-color: var(--sakura-400);
     box-shadow: 0 4px 20px rgba(232, 88, 122, 0.2);
+}
+
+.zone-btn:focus-visible {
+    outline: 2px solid rgba(232, 88, 122, 0.42);
+    outline-offset: 4px;
 }
 
 .zone-btn.active {
@@ -4099,7 +4112,7 @@ body.zone-dusk .meta-tag {
 
 /* Zone indicator label */
 .zone-btn::after {
-    content: attr(title);
+    content: attr(data-zone-label);
     position: absolute;
     left: 55px;
     background: rgba(255, 255, 255, 0.9);
@@ -4116,7 +4129,7 @@ body.zone-dusk .meta-tag {
     letter-spacing: 0.05em;
 }
 
-.zone-btn:hover::after {
+.zone-btn:is(:hover, :focus-visible)::after {
     opacity: 1;
     transform: translateX(0);
 }
@@ -4127,9 +4140,13 @@ body.theme-night .zone-btn {
     border-color: rgba(139, 92, 246, 0.3);
 }
 
-body.theme-night .zone-btn:hover {
+body.theme-night .zone-btn:is(:hover, :focus-visible) {
     border-color: rgba(167, 139, 250, 0.5);
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1), 0 4px 20px rgba(139, 92, 246, 0.2);
+}
+
+body.theme-night .zone-btn:focus-visible {
+    outline-color: rgba(167, 139, 250, 0.56);
 }
 
 body.theme-night .zone-btn.active {

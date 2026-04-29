@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Access / Structure
+- Changed: デスクトップ左端のゾーン巡回を `div` クリック領域から `nav` 内の実ボタンへ整理した。各ボタンに `aria-label` と `aria-pressed` を持たせ、hover だけでなく keyboard focus でもゾーン名の札が出るようにし、phase gate でこの契約を保護した。
+- Learned: 季節ゾーンは装飾に見えても、スクロール体験を任意に辿る小さな入口でもある。見た目を増やさず実ボタン化すると、遊びの導線がマウス専用の隠し仕掛けに閉じず、次の演出調整でも壊れにくい。
+- Next: GUI権限のある環境で、デスクトップ幅のゾーン巡回をTab移動し、左端の札とfocus ringが本文より強く出すぎないか確認する。
+
+## 2026-04-29
+
 - Focus: Structure
 - Changed: Hero の装飾レイヤー、画像、CTA、スクロールヒントを `src/components/HeroSection.astro` へ切り出し、`src/pages/index.astro` はページ全体の章立てを読むためのシェルに寄せた。phase gate には Hero がコンポーネント化されたまま戻らない保護を追加した。
 - Learned: Hero は演出密度が高いため、ページ本体に残ると Philosophy 以降の参道を読む前に構造の見通しを奪いやすい。見た目を変えずに最初の庭だけを閉じると、次回以降の演出調整とページ順序の判断を分けやすくなる。

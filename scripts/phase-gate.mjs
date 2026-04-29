@@ -1125,6 +1125,29 @@ assert(
   })
 );
 assert('zone nav script exposes global', zoneNavJs.includes('window.HazakuraZoneNav'));
+assert(
+  'zone nav uses semantic buttons with keyboard-visible state',
+  zoneNavJs.includes("document.createElement('nav')")
+    && zoneNavJs.includes("aria-label', '季節のゾーン巡回'")
+    && zoneNavJs.includes('<button type="button"')
+    && zoneNavJs.includes('aria-pressed="false"')
+    && zoneNavJs.includes("setAttribute('aria-pressed'")
+    && zoneNavJs.includes('data-zone-label')
+    && styleCss.includes('.zone-nav:focus-within')
+    && styleCss.includes('.zone-btn:focus-visible')
+    && styleCss.includes('content: attr(data-zone-label)'),
+  JSON.stringify({
+    createsNav: zoneNavJs.includes("document.createElement('nav')"),
+    hasNavLabel: zoneNavJs.includes("aria-label', '季節のゾーン巡回'"),
+    usesButtons: zoneNavJs.includes('<button type="button"'),
+    hasPressedDefault: zoneNavJs.includes('aria-pressed="false"'),
+    updatesPressed: zoneNavJs.includes("setAttribute('aria-pressed'"),
+    hasPseudoLabelData: zoneNavJs.includes('data-zone-label'),
+    hasFocusWithin: styleCss.includes('.zone-nav:focus-within'),
+    hasFocusStyle: styleCss.includes('.zone-btn:focus-visible'),
+    usesDataLabel: styleCss.includes('content: attr(data-zone-label)')
+  })
+);
 assert('zone atmosphere script exposes global', zoneAtmosphereJs.includes('window.HazakuraZoneAtmosphere'));
 assert('zone performance script exposes global', zonePerformanceJs.includes('window.HazakuraZonePerformance'));
 assert('hero aurora overlay script exposes global', heroAuroraOverlayJs.includes('window.HazakuraHeroAuroraOverlay'));

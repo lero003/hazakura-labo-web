@@ -10,12 +10,13 @@
   };
 
   function create({ zones, onSelect }) {
-    const root = document.createElement('div');
+    const root = document.createElement('nav');
     root.className = 'zone-nav';
+    root.setAttribute('aria-label', '季節のゾーン巡回');
     root.innerHTML = zones.slice(1).map((zoneName, index) => {
       const zone = index + 1;
       const detail = zoneDetails[zone];
-      return `<div class="zone-btn ${detail.className}" data-zone="${zone}" data-zone-name="${zoneName}" title="${detail.title}">${detail.icon}</div>`;
+      return `<button type="button" class="zone-btn ${detail.className}" data-zone="${zone}" data-zone-name="${zoneName}" data-zone-label="${detail.title}" title="${detail.title}" aria-label="${detail.title}へ移動" aria-pressed="false"><span aria-hidden="true">${detail.icon}</span></button>`;
     }).join('');
     document.body.appendChild(root);
 
@@ -29,7 +30,9 @@
       root,
       setActive(zone) {
         root.querySelectorAll('.zone-btn').forEach((button) => {
-          button.classList.toggle('active', parseInt(button.dataset.zone, 10) === zone);
+          const isActive = parseInt(button.dataset.zone, 10) === zone;
+          button.classList.toggle('active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
         });
       }
     };
