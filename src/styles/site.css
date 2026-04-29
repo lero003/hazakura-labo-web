@@ -3425,15 +3425,24 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .cycle-bridge-card {
+    --cycle-bridge-border: rgba(139, 92, 246, 0.18);
+    --cycle-bridge-bg:
+        radial-gradient(540px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.13), transparent 44%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 246, 250, 0.52));
+    --cycle-bridge-shadow: 0 20px 54px rgba(46, 42, 45, 0.08);
+    --cycle-bridge-orbit-border: rgba(232, 88, 122, 0.12);
+    --cycle-bridge-hover-border: rgba(139, 92, 246, 0.34);
+    --cycle-bridge-hover-shadow: 0 26px 66px rgba(46, 42, 45, 0.11);
+    --cycle-bridge-accent: var(--sakura-500);
+    --cycle-bridge-heading: var(--ink-800);
+    --cycle-bridge-copy: var(--ink-600);
     position: relative;
     overflow: hidden;
     padding: 2rem 2.4rem;
-    border: 1px solid rgba(139, 92, 246, 0.18);
+    border: 1px solid var(--cycle-bridge-border);
     border-radius: 22px;
-    background:
-        radial-gradient(540px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.13), transparent 44%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 246, 250, 0.52));
-    box-shadow: 0 20px 54px rgba(46, 42, 45, 0.08);
+    background: var(--cycle-bridge-bg);
+    box-shadow: var(--cycle-bridge-shadow);
     opacity: 0;
     transform: translateY(32px);
     transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo), border-color var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
@@ -3443,7 +3452,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     content: '';
     position: absolute;
     inset: 1rem;
-    border: 1px solid rgba(232, 88, 122, 0.12);
+    border: 1px solid var(--cycle-bridge-orbit-border);
     border-radius: 16px;
     pointer-events: none;
 }
@@ -3454,13 +3463,13 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .cycle-bridge-card:hover {
-    border-color: rgba(139, 92, 246, 0.34);
-    box-shadow: 0 26px 66px rgba(46, 42, 45, 0.11);
+    border-color: var(--cycle-bridge-hover-border);
+    box-shadow: var(--cycle-bridge-hover-shadow);
 }
 
 .cycle-bridge-eyebrow {
     margin-bottom: 0.55rem;
-    color: var(--sakura-500);
+    color: var(--cycle-bridge-accent);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.18em;
@@ -3469,7 +3478,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 
 .cycle-bridge-title {
     margin-bottom: 0.8rem;
-    color: var(--ink-800);
+    color: var(--cycle-bridge-heading);
     font-family: var(--font-serif);
     font-size: clamp(1.25rem, 2vw, 1.65rem);
     font-weight: 600;
@@ -3478,7 +3487,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 
 .cycle-bridge-text {
     max-width: 760px;
-    color: var(--ink-600);
+    color: var(--cycle-bridge-copy);
     font-size: 0.92rem;
     line-height: 2;
 }
@@ -6256,27 +6265,17 @@ body.theme-night .section-vision .research-paper-sample__notes div {
 }
 
 body.theme-night .section-vision .cycle-bridge-card {
-    border-color: rgba(139, 92, 246, 0.28);
-    background:
+    --cycle-bridge-border: rgba(139, 92, 246, 0.28);
+    --cycle-bridge-bg:
         radial-gradient(540px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.16), transparent 44%),
         rgba(255, 255, 255, 0.065);
-    box-shadow: 0 24px 66px rgba(0, 0, 0, 0.26);
-}
-
-body.theme-night .section-vision .cycle-bridge-card::before {
-    border-color: rgba(139, 92, 246, 0.16);
-}
-
-body.theme-night .section-vision .cycle-bridge-eyebrow {
-    color: var(--purple-400);
-}
-
-body.theme-night .section-vision .cycle-bridge-title {
-    color: var(--header-text);
-}
-
-body.theme-night .section-vision .cycle-bridge-text {
-    color: var(--body-text);
+    --cycle-bridge-shadow: 0 24px 66px rgba(0, 0, 0, 0.26);
+    --cycle-bridge-orbit-border: rgba(139, 92, 246, 0.16);
+    --cycle-bridge-hover-border: rgba(139, 92, 246, 0.28);
+    --cycle-bridge-hover-shadow: 0 24px 66px rgba(0, 0, 0, 0.26);
+    --cycle-bridge-accent: var(--purple-400);
+    --cycle-bridge-heading: var(--header-text);
+    --cycle-bridge-copy: var(--body-text);
 }
 
 /* Quote section */

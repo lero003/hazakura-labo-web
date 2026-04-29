@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Structure
+- Changed: Research Log の直後にある `cycle-bridge` の昼夜テーマを `--cycle-bridge-*` 変数へ寄せた。終盤の橋だけが `::before`、eyebrow、title、text の夜テーマ直指定を持たないよう整理し、phase gate でトークン境界と直指定の不在を保護した。
+- Learned: 研究ログから最後の詩へ折り返す橋は、見た目の情報量を増やさなくても、調整場所が散ると終盤の余韻を磨くたびに読み直す範囲が増える。橋単位のローカルトークンへ閉じると、次回の演出や余白調整を小さく戻せる。
+- Next: preview可能な環境で、Research Log末尾からcycle bridge、Quote前カードまでをモバイル幅で続けて見て、終盤の橋が強すぎず次の詩へ渡せているか確認する。
+
+## 2026-04-29
+
 - Focus: Structure / Access
 - Changed: フッター終端の「はじまりへ戻る」リンクを、ナビと終端巡回路で使っている共有 `--garden-route-focus-*` トークンへ参加させた。個別の `outline` 直指定を削り、終端リンクだけが別のfocus-visible契約を持たないよう phase gate でも保護した。
 - Learned: Heroへ戻る小径はスクロール演出では巡回路に参加していても、キーボード到達時の光が別実装だと終端だけ保守の外へ出やすい。見た目を増やさず同じfocus境界へ戻すことで、最後の余韻と実用導線を一緒に保てる。

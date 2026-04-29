@@ -757,6 +757,35 @@ assert(
   })
 );
 assert(
+  'cycle bridge theme is tokenized',
+  [
+    '--cycle-bridge-border',
+    '--cycle-bridge-bg',
+    '--cycle-bridge-orbit-border',
+    '--cycle-bridge-accent',
+    '--cycle-bridge-heading',
+    '--cycle-bridge-copy'
+  ].every((snippet) => styleCss.includes(snippet))
+    && styleCss.includes('body.theme-night .section-vision .cycle-bridge-card')
+    && !styleCss.includes('body.theme-night .section-vision .cycle-bridge-card::before')
+    && !styleCss.includes('body.theme-night .section-vision .cycle-bridge-eyebrow')
+    && !styleCss.includes('body.theme-night .section-vision .cycle-bridge-title')
+    && !styleCss.includes('body.theme-night .section-vision .cycle-bridge-text'),
+  JSON.stringify({
+    hasBorderToken: styleCss.includes('--cycle-bridge-border'),
+    hasBackgroundToken: styleCss.includes('--cycle-bridge-bg'),
+    hasOrbitToken: styleCss.includes('--cycle-bridge-orbit-border'),
+    hasAccentToken: styleCss.includes('--cycle-bridge-accent'),
+    hasHeadingToken: styleCss.includes('--cycle-bridge-heading'),
+    hasCopyToken: styleCss.includes('--cycle-bridge-copy'),
+    hasNightCardTokenScope: styleCss.includes('body.theme-night .section-vision .cycle-bridge-card'),
+    hasDirectNightOrbit: styleCss.includes('body.theme-night .section-vision .cycle-bridge-card::before'),
+    hasDirectNightEyebrow: styleCss.includes('body.theme-night .section-vision .cycle-bridge-eyebrow'),
+    hasDirectNightTitle: styleCss.includes('body.theme-night .section-vision .cycle-bridge-title'),
+    hasDirectNightText: styleCss.includes('body.theme-night .section-vision .cycle-bridge-text')
+  })
+);
+assert(
   'research optional notes are folded behind a drawer',
   researchRendererJs.includes('class="research-extra-drawer"')
     && researchRendererJs.includes('class="research-extra-drawer__sigil"')
