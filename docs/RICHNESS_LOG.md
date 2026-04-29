@@ -2,6 +2,13 @@
 
 ## 2026-04-30
 
+- Focus: Visual / Structure
+- Changed: Library のメタ札、ハイライト、Kindle CTA をOS絵文字の `icon` から、`sigil` / `mark` を持つ書庫専用の小印へ置き換えた。Astro側は共通の `bookSigilClass` でclassを生成し、CSSは文字印の器とCTAの小さな本型だけを描く。phase gate には、Library の詳細印が絵文字データへ戻らない契約を追加した。
+- Learned: 表紙や橋渡しが整ってくるほど、書庫の細部だけOS絵文字に依存すると「問いの結晶」より汎用カードの印象が出やすい。すべてを精密なCSS絵にせず、文字印の器に寄せると、質感と保守面積のバランスを取りやすい。
+- Next: まだ `process` と `visionsGroup` には絵文字系の icon が残るため、次回以降はまず Vision カードだけ、意味データと表示印を分けるべきか点検する。
+
+## 2026-04-30
+
 - Focus: Structure
 - Changed: Research / Projects / Vision entry の details ドロワーに共有 `garden-drawer` class と `garden-drawer__*` 内部フックを持たせ、CSSの長い `:is(...)` 共有セレクタを単一の `.garden-drawer` 契約へ寄せた。phase gate も、各レンダラーが共有classを出し、summary helperが共有フックを供給することを確認する形へ更新した。
 - Learned: 見た目が揃った小径ドロワーでも、DOM側に共有の入口がないとCSSだけが部品化を背負い、次の受付メモや実験メモ追加時にセレクタリストが伸びやすい。共通classを一枚足すだけで、個別の質感を残したまま保守の入口を細くできる。

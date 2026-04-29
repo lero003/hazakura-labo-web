@@ -505,6 +505,7 @@ const auroraCanvasJs = readFile('dist/aurora-canvas.js');
 const shootingStarsJs = readFile('dist/shooting-stars.js');
 const cursorFollowJs = readFile('dist/cursor-follow.js');
 const sakuraPetalsJs = readFile('dist/sakura-petals.js');
+const pictographicEmojiPattern = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u;
 assert(
   'research log strip is a named landmark target',
   html.includes('class="research-log-strip" id="research-log-strip"')
@@ -652,6 +653,28 @@ assert(
     hasDelayFormula: styleCss.includes('transition-delay: calc(var(--quote-prelude-step-delay, 0) * 82ms)'),
     rendererSetsDelay: quotePreludeJs.includes('style="--quote-prelude-step-delay: ${index + 1};"'),
     fixedStepSelectors: styleCss.includes('.quote-prelude-steps li:nth-child(')
+  })
+);
+assert(
+  'library detail marks are CSS-rendered rather than emoji-rendered',
+  libraryBooks.every((book) => book.meta?.every((meta) => meta.sigil && meta.mark && meta.label))
+    && libraryBooks.every((book) => book.highlights?.every((highlight) => highlight.sigil && highlight.mark && highlight.text && !highlight.icon))
+    && libraryBooks.every((book) => book.action?.sigil && !book.action?.icon)
+    && !pictographicEmojiPattern.test(JSON.stringify(libraryBooks))
+    && librarySectionSource.includes("bookSigilClass('book-meta-sigil'")
+    && librarySectionSource.includes("bookSigilClass('highlight-sigil'")
+    && librarySectionSource.includes("bookSigilClass('book-cta-sigil'")
+    && !librarySectionSource.includes('highlight.icon')
+    && !librarySectionSource.includes('book.action.icon')
+    && ['.book-meta-sigil--theme', '.book-meta-sigil--pages', '.book-meta-sigil--date', '.book-meta-sigil--leaf', '.highlight-sigil--heat', '.highlight-sigil--note', '.book-cta-sigil'].every((snippet) => styleCss.includes(snippet)),
+  JSON.stringify({
+    meta: libraryBooks.map((book) => book.meta),
+    highlights: libraryBooks.map((book) => book.highlights),
+    actions: libraryBooks.map((book) => book.action),
+    hasEmojiData: pictographicEmojiPattern.test(JSON.stringify(libraryBooks)),
+    usesMetaSigil: librarySectionSource.includes("bookSigilClass('book-meta-sigil'"),
+    usesHighlightSigil: librarySectionSource.includes("bookSigilClass('highlight-sigil'"),
+    usesCtaSigil: librarySectionSource.includes("bookSigilClass('book-cta-sigil'")
   })
 );
 assert(

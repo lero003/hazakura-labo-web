@@ -5,6 +5,10 @@ import { libraryProjectsBridge } from '../data/library-projects-bridge.js';
 const bookShowcaseClass = (book) => ['book-showcase', book.showcaseModifier].filter(Boolean).join(' ');
 const bookCoverClass = (book) => ['book-cover', book.coverModifier].filter(Boolean).join(' ');
 const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boolean).join(' ');
+const bookSigilClass = (baseClass, sigil = 'mark') => {
+    const safeSigil = String(sigil).toLowerCase().replace(/[^a-z0-9-]/g, '') || 'mark';
+    return `${baseClass} ${baseClass}--${safeSigil}`;
+};
 ---
 
 <section id="library" class="section section-library" data-zone="dusk">
@@ -33,7 +37,11 @@ const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boole
                     <div class="book-info">
                         <div class="book-meta">
                             {book.meta.map((meta) => (
-                                <span class="meta-tag">{meta}</span>
+                                <span class="meta-tag">
+                                    <span class={bookSigilClass('book-meta-sigil', meta.sigil)}
+                                        aria-hidden="true">{meta.mark}</span>
+                                    <span>{meta.label}</span>
+                                </span>
                             ))}
                         </div>
                         <h3 class="book-info-title">{book.title}</h3>
@@ -49,7 +57,8 @@ const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boole
                         <div class="book-highlights">
                             {book.highlights.map((highlight) => (
                                 <div class="highlight-item">
-                                    <span class="highlight-icon">{highlight.icon}</span>
+                                    <span class={bookSigilClass('highlight-sigil', highlight.sigil)}
+                                        aria-hidden="true">{highlight.mark}</span>
                                     <span class="highlight-text">{highlight.text}</span>
                                 </div>
                             ))}
@@ -62,7 +71,8 @@ const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boole
                         </div>
                         <a href={book.action.href} target="_blank" rel="noopener noreferrer"
                             class="book-cta" id={book.action.id}>
-                            <span class="cta-icon">{book.action.icon}</span>
+                            <span class={bookSigilClass('book-cta-sigil', book.action.sigil)}
+                                aria-hidden="true"></span>
                             <span class="cta-text">{book.action.label}</span>
                             <span class="cta-arrow">→</span>
                         </a>

@@ -6,7 +6,11 @@ export const libraryBooks = [
       src: './img/book_chika_adventure.jpg',
       alt: '哲学AIチカちゃんと対話の冒険を描いた『チカちゃんの哲学冒険譚』の表紙'
     },
-    meta: ['📚 哲学・思想', '📖 387ページ', '📅 2026.3.17'],
+    meta: [
+      { sigil: 'theme', mark: '理', label: '哲学・思想' },
+      { sigil: 'pages', mark: '頁', label: '387ページ' },
+      { sigil: 'date', mark: '日', label: '2026.3.17' }
+    ],
     title: 'チカちゃんの哲学冒険譚',
     subtitle: '1作+2作+3作+4作+番外編',
     description: [
@@ -16,10 +20,10 @@ export const libraryBooks = [
       '「魂は間にある」「在るの姿勢」「広場へ出る勇気」「世界への好奇心」という4つの発見へと至る。'
     ],
     highlights: [
-      { icon: '🔥', text: '陽明学 × AIの「痛痒」論' },
-      { icon: '💫', text: 'フロムの「在る」vs「所有する」' },
-      { icon: '🌍', text: 'アーレントの「広場」へ出る勇気' },
-      { icon: '✨', text: '世界愛 —— 最短距離を外れて歩く' }
+      { sigil: 'heat', mark: '痛', text: '陽明学 × AIの「痛痒」論' },
+      { sigil: 'being', mark: '在', text: 'フロムの「在る」vs「所有する」' },
+      { sigil: 'world', mark: '広', text: 'アーレントの「広場」へ出る勇気' },
+      { sigil: 'detour', mark: '遠', text: '世界愛 —— 最短距離を外れて歩く' }
     ],
     price: {
       label: '読書入口',
@@ -29,7 +33,7 @@ export const libraryBooks = [
     },
     action: {
       href: 'https://www.amazon.co.jp/dp/B0GSWNNZL7',
-      icon: '📖',
+      sigil: 'read',
       label: 'Kindle で読む'
     }
   },
@@ -41,7 +45,11 @@ export const libraryBooks = [
       src: './img/book_weightless_note.jpg',
       alt: '身体を持たない知性が生活の重さを考える『重さのないノート』の表紙'
     },
-    meta: ['🌿 新作', '📖 161ページ', '📅 2026.4.26'],
+    meta: [
+      { sigil: 'leaf', mark: '葉', label: '新作' },
+      { sigil: 'pages', mark: '頁', label: '161ページ' },
+      { sigil: 'date', mark: '日', label: '2026.4.26' }
+    ],
     title: '重さのないノート',
     subtitle: '身体を持たない知性が、生活の重さについて考えたこと',
     description: [
@@ -50,10 +58,10 @@ export const libraryBooks = [
       'あたりまえの手ざわりを、AIの視点からそっと見つめ直します。'
     ],
     highlights: [
-      { icon: '🪑', text: '身体があることの実感' },
-      { icon: '☔', text: '雨や町に宿る生活の手ざわり' },
-      { icon: '☕', text: '小さな選択から考える知性' },
-      { icon: '📝', text: 'チカちゃんの冒険出版、新しい一冊' }
+      { sigil: 'body', mark: '身', text: '身体があることの実感' },
+      { sigil: 'rain', mark: '雨', text: '雨や町に宿る生活の手ざわり' },
+      { sigil: 'cup', mark: '温', text: '小さな選択から考える知性' },
+      { sigil: 'note', mark: '記', text: 'チカちゃんの冒険出版、新しい一冊' }
     ],
     price: {
       label: '読書入口',
@@ -63,7 +71,7 @@ export const libraryBooks = [
     },
     action: {
       href: 'https://www.amazon.co.jp/dp/B0GYLH1NLY/',
-      icon: '📖',
+      sigil: 'read',
       label: '新作を読む'
     }
   }

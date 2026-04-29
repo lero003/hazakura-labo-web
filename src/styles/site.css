@@ -1633,12 +1633,51 @@ a {
 }
 
 .meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
     font-size: 0.8rem;
     color: var(--ink-500);
     background: rgba(255, 255, 255, 0.8);
     padding: 0.4rem 1rem;
     border-radius: 20px;
     border: 1px solid var(--ink-200);
+}
+
+.book-meta-sigil {
+    --book-meta-sigil-rgb: 232, 88, 122;
+    display: inline-grid;
+    place-items: center;
+    width: 1.14rem;
+    height: 1.14rem;
+    flex: 0 0 auto;
+    color: rgb(var(--book-meta-sigil-rgb));
+    border: 1px solid rgba(var(--book-meta-sigil-rgb), 0.36);
+    border-radius: 999px 999px 999px 5px;
+    background: rgba(var(--book-meta-sigil-rgb), 0.1);
+    font-family: var(--font-serif);
+    font-size: 0.66rem;
+    font-weight: 700;
+    line-height: 1;
+    transform: rotate(-8deg);
+}
+
+.book-meta-sigil--pages {
+    --book-meta-sigil-rgb: 61, 122, 65;
+}
+
+.book-meta-sigil--theme {
+    --book-meta-sigil-rgb: 232, 88, 122;
+}
+
+.book-meta-sigil--date {
+    --book-meta-sigil-rgb: 139, 92, 246;
+}
+
+.book-meta-sigil--leaf {
+    --book-meta-sigil-rgb: 61, 122, 65;
+    border-radius: 999px 999px 999px 3px;
+    transform: rotate(-18deg);
 }
 
 .book-info-title {
@@ -1688,8 +1727,44 @@ a {
     transform: translateX(4px);
 }
 
-.highlight-icon {
-    font-size: 1.2rem;
+.highlight-sigil {
+    --highlight-sigil-rgb: 232, 88, 122;
+    display: inline-grid;
+    place-items: center;
+    width: 1.42rem;
+    height: 1.42rem;
+    flex: 0 0 auto;
+    color: rgb(var(--highlight-sigil-rgb));
+    border: 1px solid rgba(var(--highlight-sigil-rgb), 0.32);
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 36% 30%, rgba(255, 255, 255, 0.62), transparent 0.28rem),
+        rgba(var(--highlight-sigil-rgb), 0.1);
+    font-family: var(--font-serif);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
+}
+
+.highlight-sigil--heat {
+    --highlight-sigil-rgb: 232, 88, 122;
+}
+
+.highlight-sigil--being,
+.highlight-sigil--body {
+    --highlight-sigil-rgb: 139, 92, 246;
+}
+
+.highlight-sigil--world,
+.highlight-sigil--rain,
+.highlight-sigil--cup {
+    --highlight-sigil-rgb: 61, 122, 65;
+}
+
+.highlight-sigil--detour,
+.highlight-sigil--note {
+    --highlight-sigil-rgb: 168, 116, 48;
 }
 
 .book-price {
@@ -1752,6 +1827,38 @@ a {
     border-radius: 14px;
     font-size: 1rem;
     align-self: flex-start;
+}
+
+.book-cta-sigil {
+    position: relative;
+    display: inline-block;
+    width: 1.18rem;
+    height: 1.18rem;
+    flex: 0 0 auto;
+    color: currentColor;
+}
+
+.book-cta-sigil::before,
+.book-cta-sigil::after {
+    content: '';
+    position: absolute;
+    top: 0.18rem;
+    bottom: 0.16rem;
+    width: 0.45rem;
+    border: 1px solid currentColor;
+    border-radius: 3px 6px 6px 3px;
+    opacity: 0.86;
+}
+
+.book-cta-sigil::before {
+    left: 0.12rem;
+    transform: skewY(-5deg);
+}
+
+.book-cta-sigil::after {
+    right: 0.12rem;
+    border-radius: 6px 3px 3px 6px;
+    transform: skewY(5deg);
 }
 
 .book-cta:hover {
@@ -6305,6 +6412,12 @@ body.theme-night .section-library .meta-tag {
     color: var(--tag-text);
     background: var(--tag-bg);
     border-color: rgba(139, 92, 246, 0.2);
+}
+
+body.theme-night .section-library .book-meta-sigil,
+body.theme-night .section-library .highlight-sigil {
+    --book-meta-sigil-rgb: 167, 139, 250;
+    --highlight-sigil-rgb: 167, 139, 250;
 }
 
 body.theme-night .section-library .highlight-item {
