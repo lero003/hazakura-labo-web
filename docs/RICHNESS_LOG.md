@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure / Motion
+- Changed: カード光追従の対象を `card-hover-fields.js` 内のクラス名固定リストから、各レンダラーが持つ `data-tilt` 契約へ寄せた。phase gate でも、Foundation / Projects / Research / Quote prelude / Vision の描画側が `data-tilt` を出し、hover fields が同じ属性だけを見ることを保護した。
+- Learned: reveal と同じく、tilt も「見た目のclass」と「演出参加の印」が分かれている方が次の小物を足しやすい。クラス名リストをスクリプト側に重ねると、カードを増やした時に光だけ追従しない取りこぼしが起きやすい。
+- Next: `data-tilt` 対象のうち、実際に `--mouse-x` / `--mouse-y` を使っていないカードがあれば、次回は参加札を外すかCSS側に小さな光を持たせるかを1種類だけ点検する。
+
+## 2026-04-29
+
+- Focus: Structure / Motion
 - Changed: スクロールで立ち上がる見出し・カード・終端引用の契約を、`scroll-animations.js` 内のクラス名リストから `data-reveal` / `data-reveal-stagger` / `data-reveal-process` へ寄せた。reduced-motion CSS も同じ属性契約を見る形にし、phase gate で古いクラス名同期へ戻らないよう保護した。
 - Learned: 見た目の演出対象が JS と CSS の別リストに散ると、次の小さな間奏カードを足す時に「見えるが reduced-motion では残る」ような漏れが起きやすい。属性で入口を揃えると、庭の新しい小物は markup 側で opt-in するだけで済む。
 - Next: `data-tilt` も同じように hover 対象とカードDOMへ散っているため、次回は tilt 対象の契約が `card-hover-fields.js` と各レンダラーで過剰に結合していないか1箇所だけ点検する。

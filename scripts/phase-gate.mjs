@@ -1689,6 +1689,33 @@ assert('animation frames script exposes global', animationFramesJs.includes('win
 assert('canvas clear script exposes global', canvasClearJs.includes('window.HazakuraCanvasClear'));
 assert('cursor hover script exposes global', cursorHoverJs.includes('window.HazakuraCursorHover'));
 assert('card hover fields script exposes global', cardHoverFieldsJs.includes('window.HazakuraCardHoverFields'));
+assert(
+  'card hover fields follow the data tilt contract',
+  cardHoverFieldsJs.includes("const defaultSelector = '[data-tilt]'")
+    && cardHoverFieldsJs.includes('document.querySelectorAll(selector)')
+    && cardHoverFieldsJs.includes('element?.closest(selector)')
+    && [
+      sectionFoundationRendererJs,
+      projectRendererJs,
+      researchRendererJs,
+      quotePreludeJs,
+      visionRendererJs
+    ].every((source) => source.includes('data-tilt'))
+    && !cardHoverFieldsJs.includes("'.vision-card, .philosophy-card"),
+  JSON.stringify({
+    usesDataTiltSelector: cardHoverFieldsJs.includes("const defaultSelector = '[data-tilt]'"),
+    queriesConfiguredSelector: cardHoverFieldsJs.includes('document.querySelectorAll(selector)'),
+    matchesConfiguredSelector: cardHoverFieldsJs.includes('element?.closest(selector)'),
+    renderersExposeTilt: {
+      foundation: sectionFoundationRendererJs.includes('data-tilt'),
+      projects: projectRendererJs.includes('data-tilt'),
+      research: researchRendererJs.includes('data-tilt'),
+      quotePrelude: quotePreludeJs.includes('data-tilt'),
+      vision: visionRendererJs.includes('data-tilt')
+    },
+    hasLegacyClassList: cardHoverFieldsJs.includes("'.vision-card, .philosophy-card")
+  })
+);
 assert('book tilt script exposes global', bookTiltJs.includes('window.HazakuraBookTilt'));
 assert(
   'book tilt covers every library book',
