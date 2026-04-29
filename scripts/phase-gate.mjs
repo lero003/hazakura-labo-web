@@ -1102,11 +1102,14 @@ assert(
   'process flow uses CSS-rendered sigils rather than emoji icons',
   hazakuraContent.process.every((item) => item.sigil && item.mark && item.label && !item.icon)
     && sectionFoundationRendererJs.includes('process-sigil process-sigil--')
+    && sectionFoundationRendererJs.includes('--process-sigil-delay')
     && sectionFoundationRendererJs.includes('data-process-sigil')
     && sectionFoundationRendererJs.includes('process-sigil__mark')
     && !sectionFoundationRendererJs.includes('class="process-icon"')
     && !sectionFoundationRendererJs.includes('item.icon)</div>')
     && ['question', 'experiment', 'discovery', 'cycle'].every((sigil) => styleCss.includes(`.process-sigil--${sigil}`))
+    && styleCss.includes('animation-delay: var(--process-sigil-delay, 0s)')
+    && !styleCss.includes('.process-step:nth-child(')
     && !styleCss.includes('.process-icon'),
   JSON.stringify({
     process: hazakuraContent.process.map((item) => ({
@@ -1115,8 +1118,11 @@ assert(
       icon: item.icon
     })),
     rendererHasSigil: sectionFoundationRendererJs.includes('process-sigil process-sigil--'),
+    rendererHasDelayVariable: sectionFoundationRendererJs.includes('--process-sigil-delay'),
     rendererHasLegacyIcon: sectionFoundationRendererJs.includes('class="process-icon"') || sectionFoundationRendererJs.includes('item.icon)</div>'),
     missingStyles: ['question', 'experiment', 'discovery', 'cycle'].filter((sigil) => !styleCss.includes(`.process-sigil--${sigil}`)),
+    hasDelayVariable: styleCss.includes('animation-delay: var(--process-sigil-delay, 0s)'),
+    hasFixedStepDelay: styleCss.includes('.process-step:nth-child('),
     hasLegacyStyle: styleCss.includes('.process-icon')
   })
 );

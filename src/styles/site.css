@@ -2444,22 +2444,7 @@ a {
 
 .process-step.visible .process-sigil {
     animation: popIn 0.6s var(--ease-spring) backwards;
-}
-
-.process-step:nth-child(1).visible .process-sigil {
-    animation-delay: 0s;
-}
-
-.process-step:nth-child(3).visible .process-sigil {
-    animation-delay: 0.15s;
-}
-
-.process-step:nth-child(5).visible .process-sigil {
-    animation-delay: 0.3s;
-}
-
-.process-step:nth-child(7).visible .process-sigil {
-    animation-delay: 0.45s;
+    animation-delay: var(--process-sigil-delay, 0s);
 }
 
 @keyframes popIn {

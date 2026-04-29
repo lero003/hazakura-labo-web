@@ -49,7 +49,7 @@
             const mark = item.mark || item.label;
             return `
             ${index > 0 ? '<div class="process-connector"></div>' : ''}
-            <div class="process-step">
+            <div class="process-step" style="--process-sigil-delay: ${(index * 0.15).toFixed(2)}s">
                 <div class="process-sigil process-sigil--${escapeHtml(sigil)}" data-process-sigil="${escapeHtml(sigil)}" aria-hidden="true">
                     <span class="process-sigil__mark">${escapeHtml(mark)}</span>
                 </div>

@@ -2,6 +2,13 @@
 
 ## 2026-04-30
 
+- Focus: Structure / Motion
+- Changed: Vision後半の process flow で、小印の `popIn` 遅延をCSSの `.process-step:nth-child(1/3/5/7)` 固定から、`section-foundation-renderer.js` が各ステップへ渡す `--process-sigil-delay` へ移した。phase gate も固定子セレクタへ戻らず、レンダラー側の遅延契約を持つことを確認する形へ更新した。
+- Learned: process flow は4ステップに見えても、DOM上ではコネクタが間に挟まるため、奇数番目CSSに演出タイミングを焼き付けると次のステップ追加や並び替えで壊れやすい。遅延を描画データの順序へ寄せると、見た目を変えずにResearch Logへ渡る橋の保守性が上がる。
+- Next: GUI権限のある環境で、process flow の小印とResearch Log冒頭の間隔をデスクトップ/モバイル幅で見て、橋の余韻が強すぎないか確認する。
+
+## 2026-04-30
+
 - Focus: Visual / Structure
 - Changed: Vision後半の「問い -> 実験 -> 発見 -> 循環」process flow を、OS絵文字 `icon` から `sigil` / `mark` データへ置き換えた。`section-foundation-renderer.js` は `process-sigil` DOMを生成し、question / experiment / discovery / cycle の小さな印をCSSで描く。昼・夕景・夜テーマ、モバイルサイズ、phase gate も同じ契約へ揃えた。
 - Learned: Visionカードのシジルが整った後は、その直後の循環ステップだけ絵文字の丸バッジに残ると、構想からResearch Logへ渡る橋が少し既製UIに戻って見える。意味データと表示印を分けると、終盤の小さな間奏も庭の私物感として保てる。
