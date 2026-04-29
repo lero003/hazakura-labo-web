@@ -593,6 +593,24 @@ assert(
     && styleCss.includes('--hazakura-anchor-offset: 116px')
     && styleCss.includes('scroll-padding-top: var(--hazakura-anchor-offset)')
 );
+assert(
+  'hero viewport rhythm is tokenized for mobile browser chrome',
+  styleCss.includes('--hero-min-block-size: 100vh')
+    && styleCss.includes('@supports (min-height: 100dvh)')
+    && styleCss.includes('--hero-min-block-size: 100dvh')
+    && styleCss.includes('min-height: var(--hero-min-block-size)')
+    && styleCss.includes('--hero-content-bottom: clamp(5.5rem, 12vh, 7rem)')
+    && styleCss.includes('--hero-content-bottom: clamp(4rem, 9vh, 4.75rem)')
+    && styleCss.includes('bottom: var(--hero-scroll-hint-bottom)'),
+  JSON.stringify({
+    hasFallbackViewport: styleCss.includes('--hero-min-block-size: 100vh'),
+    hasDynamicViewportSupport: styleCss.includes('@supports (min-height: 100dvh)'),
+    heroUsesToken: styleCss.includes('min-height: var(--hero-min-block-size)'),
+    hasDesktopBottomToken: styleCss.includes('--hero-content-bottom: clamp(5.5rem, 12vh, 7rem)'),
+    hasMobileBottomToken: styleCss.includes('--hero-content-bottom: clamp(4rem, 9vh, 4.75rem)'),
+    scrollHintUsesToken: styleCss.includes('bottom: var(--hero-scroll-hint-bottom)')
+  })
+);
 assert('style sheet contains library projects bridge', styleCss.includes('.library-projects-bridge'));
 assert(
   'library projects bridge theme is tokenized',

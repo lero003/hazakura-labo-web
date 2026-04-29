@@ -46,10 +46,20 @@
     --duration-normal: 0.5s;
     --duration-fast: 0.3s;
     --hazakura-anchor-offset: 84px;
+    --hero-min-block-size: 100vh;
+    --hero-content-inline: 2rem;
+    --hero-content-bottom: clamp(5.5rem, 12vh, 7rem);
+    --hero-scroll-hint-bottom: clamp(1.5rem, 4vh, 2rem);
     --garden-route-focus-outline: rgba(232, 88, 122, 0.38);
     --garden-route-focus-bg: rgba(255, 255, 255, 0.48);
     --garden-route-focus-shadow: 0 0 0 6px rgba(232, 88, 122, 0.08);
     --garden-route-focus-offset: 4px;
+}
+
+@supports (min-height: 100dvh) {
+    :root {
+        --hero-min-block-size: 100dvh;
+    }
 }
 
 *,
@@ -529,7 +539,7 @@ a {
    ============================================ */
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: var(--hero-min-block-size);
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -665,8 +675,8 @@ a {
     z-index: 3;
     max-width: 1300px;
     margin: 0 auto;
-    padding: 0 2rem;
-    padding-bottom: 7rem;
+    padding: 0 var(--hero-content-inline);
+    padding-bottom: var(--hero-content-bottom);
     width: 100%;
 }
 
@@ -851,7 +861,7 @@ a {
 /* scroll hint */
 .hero-scroll-hint {
     position: absolute;
-    bottom: 2rem;
+    bottom: var(--hero-scroll-hint-bottom);
     right: 2rem;
     display: flex;
     flex-direction: column;
@@ -4198,6 +4208,11 @@ body.theme-night.zone-aurora #aurora-canvas {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --hero-content-inline: 1.2rem;
+        --hero-content-bottom: clamp(4rem, 9vh, 4.75rem);
+    }
+
     html {
         font-size: 15px;
     }
@@ -4224,8 +4239,8 @@ body.theme-night.zone-aurora #aurora-canvas {
     }
 
     .hero-content {
-        padding: 0 1.2rem;
-        padding-bottom: 4rem;
+        padding: 0 var(--hero-content-inline);
+        padding-bottom: var(--hero-content-bottom);
     }
 
     .hero-title {

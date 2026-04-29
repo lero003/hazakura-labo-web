@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Access / Structure
+- Changed: Hero の `100vh` 固定と下余白の直指定を、`--hero-min-block-size` / `--hero-content-bottom` / `--hero-scroll-hint-bottom` の小さなトークンへ整理した。対応ブラウザでは `100dvh` を使い、モバイル幅ではCTAの下余白だけを控えめに詰める。phase gate にもこの参道寸法の契約を追加した。
+- Learned: 最初の庭は情報量よりも、ブラウザUIの伸縮で入口の重心が揺れないことが体験の完成度に効く。Hero寸法をトークン化すると、今後の演出を足す時も固定値探しに戻らず調整できる。
+- Next: GUI権限のある環境で、390px前後のモバイル幅と実機ブラウザUIの表示/非表示を切り替え、CTAが下端に詰まりすぎないか確認する。
+
+## 2026-04-29
+
+- Focus: Access / Structure
 - Changed: スクロール reveal 対象のうち、`project-threshold`、`research-log-handoff`、`quote-prelude-card`、`section-title` が `prefers-reduced-motion` のCSS救済リストから漏れていたため、静かな環境では即時表示に戻るよう揃えた。phase gate にも staged interlude の reduced-motion 契約を追加した。
 - Learned: 間奏カードや橋渡しは演出の起点になりやすいほど、通常JSの `visible` 付与だけに頼ると縮小モーション経路の保守が後追いになりやすい。CSS側にも reveal 対象の最低限の出口を置くと、遊びを増やしても読み筋を閉じ込めにくい。
 - Next: 次に reveal 対象を増やす時は、`scroll-animations.js` と reduced-motion CSS、phase gate の3点を同じ単位で更新できるよう、共通名やコメントの置き方をもう一段整理する。
