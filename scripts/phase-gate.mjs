@@ -27,6 +27,7 @@ function readFile(path) {
 
 const html = readFile('dist/index.html');
 const indexSource = readFile('src/pages/index.astro');
+const heroSectionSource = readFile('src/components/HeroSection.astro');
 const librarySectionSource = readFile('src/components/LibrarySection.astro');
 const routeHelperSource = readFile('src/route-responses.ts');
 const pageEndpointFiles = fs.readdirSync('src/pages')
@@ -212,6 +213,35 @@ assert(
 assert('legacy public script is not emitted', !fs.existsSync('dist/script.js'));
 assert('legacy public stylesheet source is not used', !fs.existsSync('public/style.css'));
 assert('legacy onepage archive is removed', !fs.existsSync('hazakura-onepage-lab'));
+assert(
+  'hero section stays componentized and data-backed',
+  indexSource.includes("import HeroSection from '../components/HeroSection.astro'")
+    && indexSource.includes('<HeroSection />')
+    && !indexSource.includes('class="hero-mesh"')
+    && !indexSource.includes('id="hero-title"')
+    && heroSectionSource.includes("import { siteMeta }")
+    && heroSectionSource.includes('id="hero"')
+    && heroSectionSource.includes('class="hero-mesh"')
+    && heroSectionSource.includes('siteMeta.imagePath')
+    && heroSectionSource.includes('siteMeta.imageAlt')
+    && heroSectionSource.includes('AIと、語ろう。')
+    && html.includes('id="hero"')
+    && html.includes('id="hero-title"')
+    && html.includes(`src="${siteMeta.imagePath}"`),
+  JSON.stringify({
+    importsComponent: indexSource.includes("import HeroSection from '../components/HeroSection.astro'"),
+    usesComponent: indexSource.includes('<HeroSection />'),
+    indexContainsHeroMesh: indexSource.includes('class="hero-mesh"'),
+    indexContainsHeroTitle: indexSource.includes('id="hero-title"'),
+    componentImportsMeta: heroSectionSource.includes("import { siteMeta }"),
+    componentHasHero: heroSectionSource.includes('id="hero"'),
+    componentHasMesh: heroSectionSource.includes('class="hero-mesh"'),
+    componentUsesImagePath: heroSectionSource.includes('siteMeta.imagePath'),
+    componentUsesImageAlt: heroSectionSource.includes('siteMeta.imageAlt'),
+    htmlHasHero: html.includes('id="hero"'),
+    htmlHasHeroTitle: html.includes('id="hero-title"')
+  })
+);
 assert(
   'library section stays componentized and data-backed',
   indexSource.includes("import LibrarySection from '../components/LibrarySection.astro'")

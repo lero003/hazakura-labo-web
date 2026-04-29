@@ -1,4 +1,5 @@
 ---
+import HeroSection from '../components/HeroSection.astro';
 import LibrarySection from '../components/LibrarySection.astro';
 import { scriptLoadOrder } from '../data/script-load-order.js';
 import { siteNavigation } from '../data/site-navigation.js';
@@ -65,50 +66,7 @@ import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
         </div>
     </nav>
 
-    <!-- ヒーローセクション -->
-    <section id="hero" class="hero" data-zone="day">
-        <!-- メッシュグラデーション背景 -->
-        <div class="hero-mesh">
-            <div class="mesh-blob mesh-blob--1"></div>
-            <div class="mesh-blob mesh-blob--2"></div>
-            <div class="mesh-blob mesh-blob--3"></div>
-            <div class="mesh-blob mesh-blob--4"></div>
-        </div>
-        <!-- 奥行きグラデーションレイヤー -->
-        <div class="hero-depth-layer"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-image-container">
-            <img src={siteMeta.imagePath} alt={siteMeta.imageAlt} class="hero-image" id="hero-image">
-        </div>
-        <div class="hero-content">
-            <div class="hero-intro">
-                <p class="hero-kana" id="hero-kana">はざくら・らぼ</p>
-                <h1 class="hero-title" id="hero-title">
-                    <span class="title-line title-line--1">AIと、語ろう。</span>
-                    <span class="title-line title-line--2">自然と、遊ぼう。</span>
-                </h1>
-                <span class="title-accent-line title-line--3">—— 変化を楽しむ研究所</span>
-            </div>
-            <p class="hero-subtitle" id="hero-subtitle">
-                満開の先にある、移ろいの美しさ。<br>
-                理と情が習合する、循環する魔法の拠点。
-            </p>
-            <div class="hero-cta-group">
-                <a href="#philosophy" class="hero-cta hero-cta--primary">
-                    <span>探る</span>
-                    <span class="cta-arrow">→</span>
-                </a>
-                <a href="#library" class="hero-cta hero-cta--secondary">
-                    <span>書庫へ寄る</span>
-                    <span class="cta-arrow">→</span>
-                </a>
-            </div>
-        </div>
-        <div class="hero-scroll-hint" id="hero-scroll-hint">
-            <span class="scroll-text">scroll</span>
-            <span class="scroll-line"></span>
-        </div>
-    </section>
+    <HeroSection />
 
     <!-- 哲学科セクション -->
     <section id="philosophy" class="section section-philosophy" data-zone="day">

@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Structure
+- Changed: Hero の装飾レイヤー、画像、CTA、スクロールヒントを `src/components/HeroSection.astro` へ切り出し、`src/pages/index.astro` はページ全体の章立てを読むためのシェルに寄せた。phase gate には Hero がコンポーネント化されたまま戻らない保護を追加した。
+- Learned: Hero は演出密度が高いため、ページ本体に残ると Philosophy 以降の参道を読む前に構造の見通しを奪いやすい。見た目を変えずに最初の庭だけを閉じると、次回以降の演出調整とページ順序の判断を分けやすくなる。
+- Next: Hero と Library 以外で、`index.astro` に残すべき「章立て」と、コンポーネントへ閉じるべき「演出の塊」の境界を1つだけ点検する。
+
+## 2026-04-29
+
 - Focus: Access / Structure
 - Changed: 現在地同期の判定を、基準線上の最内 `section[id]` から対応する巡回路を直接引く `getRouteAtProbe()` へ整理した。`offsetTop` で並べ直して上から最後のrouteを拾う二段判定を削り、phase gate で入れ子section優先と再スキャン不在を保護した。
 - Learned: Research Log のように Vision 内へ沈む小径は、見た目の点灯だけでなく「なぜその札が現在地になるか」がコード上でも一手で読める方が壊れにくい。情報や演出を増やさず、判定の寄り道を削るだけでも参道の保守性は上がる。
