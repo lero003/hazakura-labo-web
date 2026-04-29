@@ -29,6 +29,7 @@ const html = readFile('dist/index.html');
 const indexSource = readFile('src/pages/index.astro');
 const heroSectionSource = readFile('src/components/HeroSection.astro');
 const librarySectionSource = readFile('src/components/LibrarySection.astro');
+const mainNavigationSource = readFile('src/components/MainNavigation.astro');
 const footerSectionSource = readFile('src/components/FooterSection.astro');
 const logoMarkSource = readFile('src/components/LogoMark.astro');
 const routeHelperSource = readFile('src/route-responses.ts');
@@ -121,9 +122,9 @@ assert(
 const expectedNavigationHrefs = ['#philosophy', '#layers', '#library', '#projects', '#research-log-strip', '#vision'];
 assert(
   'persistent garden routes are data-backed',
-  indexSource.includes("import { siteNavigation }")
-    && indexSource.includes('siteNavigation.map')
-    && indexSource.includes('aria-label="葉桜ラボの主要巡回路"')
+  mainNavigationSource.includes("import { siteNavigation }")
+    && mainNavigationSource.includes('siteNavigation.map')
+    && mainNavigationSource.includes('aria-label="葉桜ラボの主要巡回路"')
     && footerSectionSource.includes('aria-label="葉桜ラボの終端巡回路"')
     && !indexSource.includes('<li><a href="#philosophy">')
     && !indexSource.includes('<a href="#philosophy">哲学</a>')
@@ -132,15 +133,44 @@ assert(
     && siteNavigation.every((item) => html.includes(`href="${item.href}">${item.navLabel}</a>`))
     && siteNavigation.every((item) => html.includes(`href="${item.href}">${item.footerLabel}</a>`)),
   JSON.stringify({
-    importsNavigation: indexSource.includes("import { siteNavigation }"),
-    mapsNavigation: indexSource.includes('siteNavigation.map'),
-    hasMainRouteLabel: indexSource.includes('aria-label="葉桜ラボの主要巡回路"'),
+    importsNavigation: mainNavigationSource.includes("import { siteNavigation }"),
+    mapsNavigation: mainNavigationSource.includes('siteNavigation.map'),
+    hasMainRouteLabel: mainNavigationSource.includes('aria-label="葉桜ラボの主要巡回路"'),
     hasFooterRouteLabel: footerSectionSource.includes('aria-label="葉桜ラボの終端巡回路"'),
     hardcodedNavPhilosophy: indexSource.includes('<li><a href="#philosophy">'),
     hardcodedFooterPhilosophy: indexSource.includes('<a href="#philosophy">哲学</a>'),
     hrefs: siteNavigation.map((item) => item.href),
     navLabels: siteNavigation.map((item) => item.navLabel),
     footerLabels: siteNavigation.map((item) => item.footerLabel)
+  })
+);
+assert(
+  'main navigation stays componentized and data-backed',
+  indexSource.includes("import MainNavigation from '../components/MainNavigation.astro'")
+    && indexSource.includes('<MainNavigation />')
+    && !indexSource.includes('class="nav-inner"')
+    && !indexSource.includes('id="nav-links"')
+    && !indexSource.includes("import { siteNavigation }")
+    && mainNavigationSource.includes("import LogoMark from './LogoMark.astro'")
+    && mainNavigationSource.includes("import { siteNavigation }")
+    && mainNavigationSource.includes('id="nav-main"')
+    && mainNavigationSource.includes('id="nav-logo"')
+    && mainNavigationSource.includes('id="nav-links"')
+    && mainNavigationSource.includes('siteNavigation.map')
+    && html.includes('id="nav-main"')
+    && html.includes('id="nav-links"'),
+  JSON.stringify({
+    importsComponent: indexSource.includes("import MainNavigation from '../components/MainNavigation.astro'"),
+    usesComponent: indexSource.includes('<MainNavigation />'),
+    indexContainsNavInner: indexSource.includes('class="nav-inner"'),
+    indexContainsNavLinks: indexSource.includes('id="nav-links"'),
+    indexImportsNavigation: indexSource.includes("import { siteNavigation }"),
+    componentImportsLogo: mainNavigationSource.includes("import LogoMark from './LogoMark.astro'"),
+    componentImportsNavigation: mainNavigationSource.includes("import { siteNavigation }"),
+    componentHasMainNav: mainNavigationSource.includes('id="nav-main"'),
+    componentHasLogoTarget: mainNavigationSource.includes('id="nav-logo"'),
+    componentHasRouteList: mainNavigationSource.includes('id="nav-links"'),
+    componentMapsRoutes: mainNavigationSource.includes('siteNavigation.map')
   })
 );
 const scriptPositions = scriptLoadOrder.map((path) => [path, html.indexOf(`src="${path}"`)]);
@@ -591,33 +621,38 @@ assert(
 assert('style sheet contains design tokens', styleCss.includes('--sakura-500') && styleCss.includes('.hero'));
 assert(
   'site logo mark is CSS-rendered rather than emoji-rendered',
-  indexSource.includes("import LogoMark from '../components/LogoMark.astro'")
+  mainNavigationSource.includes("import LogoMark from './LogoMark.astro'")
     && footerSectionSource.includes("import LogoMark from './LogoMark.astro'")
-    && (indexSource.match(/<LogoMark \/>/g) || []).length === 1
+    && (mainNavigationSource.match(/<LogoMark \/>/g) || []).length === 1
     && (footerSectionSource.match(/<LogoMark \/>/g) || []).length === 1
     && logoMarkSource.includes("['logo-icon', 'logo-mark', className]")
     && logoMarkSource.includes('class="logo-mark__petal logo-mark__petal--top"')
     && logoMarkSource.includes('class="logo-mark__leaf"')
     && logoMarkSource.includes('class="logo-mark__core"')
     && !indexSource.includes('class="logo-mark__petal')
+    && !mainNavigationSource.includes('class="logo-mark__petal')
     && !footerSectionSource.includes('class="logo-mark__petal')
     && !indexSource.includes('<span class="logo-icon">🌸</span>')
+    && !mainNavigationSource.includes('<span class="logo-icon">🌸</span>')
     && !footerSectionSource.includes('<span class="logo-icon">🌸</span>')
     && (html.match(/class="logo-icon logo-mark"/g) || []).length === 2
     && ['.logo-mark__petal', '.logo-mark__leaf', '.logo-mark__core'].every((snippet) => styleCss.includes(snippet))
     && styleCss.includes('body.theme-night .logo-icon'),
   JSON.stringify({
-    importsLogoMark: indexSource.includes("import LogoMark from '../components/LogoMark.astro'"),
+    importsLogoMark: mainNavigationSource.includes("import LogoMark from './LogoMark.astro'"),
     footerImportsLogoMark: footerSectionSource.includes("import LogoMark from './LogoMark.astro'"),
-    indexLogoMarkUsages: (indexSource.match(/<LogoMark \/>/g) || []).length,
+    mainNavigationLogoMarkUsages: (mainNavigationSource.match(/<LogoMark \/>/g) || []).length,
     footerLogoMarkUsages: (footerSectionSource.match(/<LogoMark \/>/g) || []).length,
     componentHasBaseClasses: logoMarkSource.includes("['logo-icon', 'logo-mark', className]"),
     componentHasPetalMarkup: logoMarkSource.includes('class="logo-mark__petal logo-mark__petal--top"'),
     componentHasLeafMarkup: logoMarkSource.includes('class="logo-mark__leaf"'),
     componentHasCoreMarkup: logoMarkSource.includes('class="logo-mark__core"'),
     indexHasInlineMarkPetals: indexSource.includes('class="logo-mark__petal'),
+    mainNavigationHasInlineMarkPetals: mainNavigationSource.includes('class="logo-mark__petal'),
     footerHasInlineMarkPetals: footerSectionSource.includes('class="logo-mark__petal'),
-    hasEmojiLogo: indexSource.includes('<span class="logo-icon">🌸</span>') || footerSectionSource.includes('<span class="logo-icon">🌸</span>'),
+    hasEmojiLogo: indexSource.includes('<span class="logo-icon">🌸</span>')
+      || mainNavigationSource.includes('<span class="logo-icon">🌸</span>')
+      || footerSectionSource.includes('<span class="logo-icon">🌸</span>'),
     renderedMarkCount: (html.match(/class="logo-icon logo-mark"/g) || []).length,
     hasPetalStyle: styleCss.includes('.logo-mark__petal'),
     hasLeafStyle: styleCss.includes('.logo-mark__leaf'),

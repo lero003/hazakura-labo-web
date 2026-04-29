@@ -2,9 +2,8 @@
 import HeroSection from '../components/HeroSection.astro';
 import LibrarySection from '../components/LibrarySection.astro';
 import FooterSection from '../components/FooterSection.astro';
-import LogoMark from '../components/LogoMark.astro';
+import MainNavigation from '../components/MainNavigation.astro';
 import { scriptLoadOrder } from '../data/script-load-order.js';
-import { siteNavigation } from '../data/site-navigation.js';
 import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
 ---
 
@@ -53,20 +52,7 @@ import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
     <!-- 桜の花びらキャンバス -->
     <canvas id="sakura-canvas"></canvas>
 
-    <!-- ナビゲーション -->
-    <nav id="nav-main" class="nav" aria-label="葉桜ラボの主要巡回路">
-        <div class="nav-inner">
-            <a href="#hero" class="nav-logo" id="nav-logo">
-                <LogoMark />
-                <span class="logo-text">葉桜ラボ</span>
-            </a>
-            <ul class="nav-links" id="nav-links">
-                {siteNavigation.map((item) => (
-                    <li><a href={item.href}>{item.navLabel}</a></li>
-                ))}
-            </ul>
-        </div>
-    </nav>
+    <MainNavigation />
 
     <HeroSection />
 
