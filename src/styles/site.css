@@ -488,6 +488,14 @@ a {
     color: var(--garden-nav-link-hover-color);
 }
 
+.nav-logo[aria-current="location"] {
+    color: var(--garden-nav-link-hover-color);
+}
+
+.nav-logo[aria-current="location"] .logo-icon {
+    filter: saturate(1.16) drop-shadow(0 0 8px rgba(232, 88, 122, 0.18));
+}
+
 .nav-links a:hover::after {
     width: 100%;
 }
@@ -3858,7 +3866,8 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .footer-garden-close__link:hover,
-.footer-garden-close__link:focus-visible {
+.footer-garden-close__link:focus-visible,
+.footer-garden-close__link[aria-current="location"] {
     transform: translateY(-1px);
     border-color: rgba(232, 88, 122, 0.32);
     background: rgba(232, 88, 122, 0.1);

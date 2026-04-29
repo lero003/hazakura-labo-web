@@ -330,13 +330,16 @@ assert(
     && styleCss.includes('--garden-route-focus-offset: 2px')
     && styleCss.includes('--garden-nav-link-color')
     && styleCss.includes('--garden-nav-mobile-link-hover-bg')
+    && styleCss.includes('.nav-logo[aria-current="location"]')
     && styleCss.includes('.nav-links a[aria-current="location"]')
+    && styleCss.includes('.footer-garden-close__link[aria-current="location"]')
     && styleCss.includes('.footer-nav a[aria-current="location"]')
     && styleCss.includes('body.theme-night .nav {')
     && styleCss.includes('body.theme-night .nav:not(.scrolled) .nav-links a')
     && !styleCss.includes('body.theme-night .nav-links a {')
     && !styleCss.includes('body.theme-night .nav-links a:hover {')
-    && scrollIndicatorsJs.includes("routeLinkSelector = '.nav-links a[href^=\"#\"], .footer-nav a[href^=\"#\"]'")
+    && scrollIndicatorsJs.includes("routeLinkSelector = '.nav-logo[href^=\"#\"], .nav-links a[href^=\"#\"], .footer-garden-close__link[href^=\"#\"], .footer-nav a[href^=\"#\"]'")
+    && scrollIndicatorsJs.includes('if (!sectionAtProbe || !routeTargets.some((route) => route.element === sectionAtProbe))')
     && scrollIndicatorsJs.includes("link.setAttribute('aria-current', 'location')")
     && scrollIndicatorsJs.includes("link.removeAttribute('aria-current')")
     && smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]')
@@ -354,13 +357,16 @@ assert(
     hasCompactMobileFocusOffset: styleCss.includes('--garden-route-focus-offset: 2px'),
     hasNavToneToken: styleCss.includes('--garden-nav-link-color'),
     hasMobileRouteToneToken: styleCss.includes('--garden-nav-mobile-link-hover-bg'),
+    hasCurrentLogoStyle: styleCss.includes('.nav-logo[aria-current="location"]'),
     hasCurrentNavStyle: styleCss.includes('.nav-links a[aria-current="location"]'),
+    hasCurrentReturnStyle: styleCss.includes('.footer-garden-close__link[aria-current="location"]'),
     hasCurrentFooterStyle: styleCss.includes('.footer-nav a[aria-current="location"]'),
     hasNightNavTokenScope: styleCss.includes('body.theme-night .nav {'),
     hasHeroNavState: styleCss.includes('body.theme-night .nav:not(.scrolled) .nav-links a'),
     hasDirectNightNavColor: styleCss.includes('body.theme-night .nav-links a {'),
     hasDirectNightNavHover: styleCss.includes('body.theme-night .nav-links a:hover {'),
-    hasRouteCurrentSelector: scrollIndicatorsJs.includes("routeLinkSelector = '.nav-links a[href^=\"#\"], .footer-nav a[href^=\"#\"]'"),
+    hasRouteCurrentSelector: scrollIndicatorsJs.includes("routeLinkSelector = '.nav-logo[href^=\"#\"], .nav-links a[href^=\"#\"], .footer-garden-close__link[href^=\"#\"], .footer-nav a[href^=\"#\"]'"),
+    clearsUnmatchedProbe: scrollIndicatorsJs.includes('if (!sectionAtProbe || !routeTargets.some((route) => route.element === sectionAtProbe))'),
     setsRouteCurrent: scrollIndicatorsJs.includes("link.setAttribute('aria-current', 'location')"),
     clearsRouteCurrent: scrollIndicatorsJs.includes("link.removeAttribute('aria-current')"),
     hasSmoothScrollSelector: smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]'),

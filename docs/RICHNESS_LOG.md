@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Access / Structure
+- Changed: 現在地同期の対象に、Heroへ戻る `nav-logo` とフッターの「はじまりへ戻る」を加えた。Hero滞在時は始点の小径も `aria-current="location"` を持ち、Quoteやフッターなど主要巡回路外にいる時は古い現在地が残らないよう `scroll-indicators.js` の判定を締めた。
+- Learned: 1ページ庭園の巡回路は中間セクションだけ点灯しても、始点と終端の帰還導線が状態表示から外れていると、最後に戻る所作が少し別物に見える。スムーススクロール対象と現在地同期対象を揃えると、情報を増やさず導線の輪郭が閉じる。
+- Next: preview可能な環境で、Hero / Quote / footer をモバイル幅でスクロールし、ロゴ点灯と現在地解除が強すぎず自然に切り替わるか確認する。
+
+## 2026-04-29
+
 - Focus: Structure / Access
 - Changed: `garden-handoff-steps` にラベル下余白のCSS変数を足し、Library→Projects のモバイル橋渡しだけが `li` / `span` を直指定していた重複を削除した。phase gate には、Library と Research の橋が同じ共有classを使い、Library専用の直指定が戻らない保護を追加した。
 - Learned: 橋渡しの見た目は同じでも、モバイルだけ個別セレクタが残ると次の間奏や縦線調整で保守境界がぼやける。余白まで共有部品の変数に寄せると、情報を増やさず参道の整え方を次回へ渡しやすい。

@@ -5,7 +5,7 @@
         const {
             navSelector = '#nav-main',
             progressSelector = '#scroll-progress',
-            routeLinkSelector = '.nav-links a[href^="#"], .footer-nav a[href^="#"]',
+            routeLinkSelector = '.nav-logo[href^="#"], .nav-links a[href^="#"], .footer-garden-close__link[href^="#"], .footer-nav a[href^="#"]',
             scrolledThreshold = 80
         } = options;
 
@@ -51,7 +51,7 @@
                 return rect.top <= window.innerHeight * 0.42 && rect.bottom > window.innerHeight * 0.42;
             });
 
-            if (sectionAtProbe && !routeTargets.some((route) => route.element === sectionAtProbe)) {
+            if (!sectionAtProbe || !routeTargets.some((route) => route.element === sectionAtProbe)) {
                 return '';
             }
 
