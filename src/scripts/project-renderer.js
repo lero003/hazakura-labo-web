@@ -142,7 +142,7 @@
 
     if (!cycleSteps.length) return '';
     return `
-      <details class="project-cycle-drawer">
+      <details class="garden-drawer project-cycle-drawer">
         ${renderDrawerSummary({
           className: 'project-cycle-drawer',
           label: '問い → 実験 → 発見'

@@ -30,20 +30,20 @@
     } = options;
     const baseClass = escapeHtml(className || 'garden-drawer');
     const sigilMarkup = sigil
-      ? `<span class="${baseClass}__sigil" aria-hidden="true">${escapeHtml(sigil)}</span>`
+      ? `<span class="garden-drawer__sigil ${baseClass}__sigil" aria-hidden="true">${escapeHtml(sigil)}</span>`
       : '';
     const hintMarkup = hint
-      ? `<span class="${baseClass}__hint">${escapeHtml(hint)}</span>`
+      ? `<span class="garden-drawer__hint ${baseClass}__hint">${escapeHtml(hint)}</span>`
       : '';
     const noteMarkup = note
-      ? `<small class="${baseClass}__note">${escapeHtml(note)}</small>`
+      ? `<small class="garden-drawer__note ${baseClass}__note">${escapeHtml(note)}</small>`
       : '';
 
     return `
       <summary>
         ${sigilMarkup}
-        <span class="${baseClass}__copy">
-          <span class="${baseClass}__label">${escapeHtml(label || '')}</span>
+        <span class="garden-drawer__copy ${baseClass}__copy">
+          <span class="garden-drawer__label ${baseClass}__label">${escapeHtml(label || '')}</span>
           ${hintMarkup}
         </span>
         ${noteMarkup}

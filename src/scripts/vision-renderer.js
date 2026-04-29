@@ -23,7 +23,7 @@
     function renderVisionEntryFields(fields) {
         if (!Array.isArray(fields) || !fields.length) return '';
         return `
-            <details class="vision-entry-guide__field-drawer">
+            <details class="garden-drawer vision-entry-guide__field-drawer">
                 ${renderDrawerSummary({
                     className: 'vision-entry-field-drawer',
                     label: '受付メモ',

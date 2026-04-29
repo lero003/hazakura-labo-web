@@ -2,6 +2,13 @@
 
 ## 2026-04-30
 
+- Focus: Structure
+- Changed: Research / Projects / Vision entry の details ドロワーに共有 `garden-drawer` class と `garden-drawer__*` 内部フックを持たせ、CSSの長い `:is(...)` 共有セレクタを単一の `.garden-drawer` 契約へ寄せた。phase gate も、各レンダラーが共有classを出し、summary helperが共有フックを供給することを確認する形へ更新した。
+- Learned: 見た目が揃った小径ドロワーでも、DOM側に共有の入口がないとCSSだけが部品化を背負い、次の受付メモや実験メモ追加時にセレクタリストが伸びやすい。共通classを一枚足すだけで、個別の質感を残したまま保守の入口を細くできる。
+- Next: 次回はドロワー本文側の `.research-extra-drawer__body` / `.project-cycle` / `.vision-entry-guide__fields` にも、共有化すべき余白契約があるか1種類だけ点検する。
+
+## 2026-04-30
+
 - Focus: Visual / Structure
 - Changed: Projects の画像なしカードを `placeholderIcon` の絵文字表示から `placeholderSigil` に置き換え、レンダラーが共通の `placeholder-sigil` DOMを出す形へ寄せた。scout / message / experiment / map / sakura の小さな印はCSSで描き、phase gateで旧 `placeholderIcon` と `.placeholder-icon` へ戻らない契約を追加した。
 - Learned: 制作物カードの本文や導線が育つほど、仮サムネイルだけOS絵文字に任せると実験棚の完成度が一段弱く見える。データには意味だけを置き、見た目はCSSの小物として閉じると、次のカード追加でも庭の質感を保ちやすい。

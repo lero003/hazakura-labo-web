@@ -101,7 +101,7 @@
 
         if (!addons.length) return '';
         return `
-            <details class="research-extra-drawer">
+            <details class="garden-drawer research-extra-drawer">
                 ${renderDrawerSummary({
                     className: 'research-extra-drawer',
                     label: '由来・断片・論文メモ'
