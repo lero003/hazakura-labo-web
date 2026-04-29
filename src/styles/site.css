@@ -4086,13 +4086,93 @@ body.zone-aurora .zone-nav:focus-within {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
     line-height: 1;
     color: inherit;
     cursor: pointer;
     transition: all 0.4s var(--ease-spring);
     position: relative;
     user-select: none;
+}
+
+.zone-sigil {
+    --zone-sigil-shadow: rgba(232, 88, 122, 0.22);
+    position: relative;
+    display: block;
+    width: 18px;
+    height: 18px;
+    filter: drop-shadow(0 3px 8px var(--zone-sigil-shadow));
+}
+
+.zone-sigil::before,
+.zone-sigil::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.zone-sigil--petal::before {
+    border-radius: 70% 28% 70% 28%;
+    background: linear-gradient(145deg, rgba(255, 248, 252, 0.98), rgba(232, 88, 122, 0.72));
+    transform: rotate(44deg) translate(0, -1px);
+}
+
+.zone-sigil--petal::after {
+    inset: 9px 1px 1px 9px;
+    border-radius: 74% 26% 74% 26%;
+    background: linear-gradient(145deg, rgba(212, 237, 218, 0.95), rgba(90, 158, 95, 0.72));
+    transform: rotate(12deg);
+}
+
+.zone-sigil--dusk::before {
+    inset: 2px 1px 5px;
+    border-radius: 999px 999px 4px 4px;
+    background: linear-gradient(180deg, #f4b56f 0%, #e88672 72%);
+}
+
+.zone-sigil--dusk::after {
+    inset: auto 1px 3px;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(116, 76, 74, 0.34);
+    box-shadow: 0 5px 0 rgba(116, 76, 74, 0.18);
+}
+
+.zone-sigil--crescent::before {
+    border-radius: 50%;
+    background: #f4edff;
+}
+
+.zone-sigil--crescent::after {
+    inset: -1px -2px 1px 5px;
+    border-radius: 50%;
+    background: rgba(30, 25, 50, 0.92);
+}
+
+.zone-sigil--star::before {
+    inset: 1px;
+    background: linear-gradient(145deg, #fff7cc, #bfa4ff);
+    clip-path: polygon(50% 0, 61% 34%, 98% 34%, 68% 55%, 80% 100%, 50% 72%, 20% 100%, 32% 55%, 2% 34%, 39% 34%);
+}
+
+.zone-sigil--star::after {
+    inset: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.zone-sigil--aurora::before {
+    inset: 2px 3px;
+    border-radius: 999px 2px 999px 2px;
+    background: linear-gradient(135deg, rgba(82, 183, 150, 0.95), rgba(116, 183, 255, 0.9), rgba(167, 139, 250, 0.86));
+    transform: skewX(-18deg);
+}
+
+.zone-sigil--aurora::after {
+    inset: 6px 1px 4px 7px;
+    border-radius: 999px 2px 999px 2px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(82, 183, 150, 0));
+    transform: skewX(-18deg);
 }
 
 .zone-btn:is(:hover, :focus-visible) {

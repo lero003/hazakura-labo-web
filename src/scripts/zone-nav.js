@@ -2,11 +2,11 @@
   'use strict';
 
   const zoneDetails = {
-    1: { className: 'zone-btn-1', title: 'Day — 桜', icon: '🌸' },
-    2: { className: 'zone-btn-2', title: 'Dusk — 夕景', icon: '🌅' },
-    3: { className: 'zone-btn-3', title: 'Night — 夜', icon: '🌙' },
-    4: { className: 'zone-btn-4', title: 'Moon — 月明', icon: '⭐' },
-    5: { className: 'zone-btn-5', title: 'Aurora — 瑠璃', icon: '🌌' }
+    1: { className: 'zone-btn-1', title: 'Day — 桜', sigil: 'petal' },
+    2: { className: 'zone-btn-2', title: 'Dusk — 夕景', sigil: 'dusk' },
+    3: { className: 'zone-btn-3', title: 'Night — 夜', sigil: 'crescent' },
+    4: { className: 'zone-btn-4', title: 'Moon — 月明', sigil: 'star' },
+    5: { className: 'zone-btn-5', title: 'Aurora — 瑠璃', sigil: 'aurora' }
   };
 
   function create({ zones, onSelect }) {
@@ -16,7 +16,7 @@
     root.innerHTML = zones.slice(1).map((zoneName, index) => {
       const zone = index + 1;
       const detail = zoneDetails[zone];
-      return `<button type="button" class="zone-btn ${detail.className}" data-zone="${zone}" data-zone-name="${zoneName}" data-zone-label="${detail.title}" title="${detail.title}" aria-label="${detail.title}へ移動" aria-pressed="false"><span aria-hidden="true">${detail.icon}</span></button>`;
+      return `<button type="button" class="zone-btn ${detail.className}" data-zone="${zone}" data-zone-name="${zoneName}" data-zone-label="${detail.title}" title="${detail.title}" aria-label="${detail.title}へ移動" aria-pressed="false"><span class="zone-sigil zone-sigil--${detail.sigil}" aria-hidden="true"></span></button>`;
     }).join('');
     document.body.appendChild(root);
 

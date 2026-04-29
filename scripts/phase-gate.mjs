@@ -1440,6 +1440,27 @@ assert(
     usesDataLabel: styleCss.includes('content: attr(data-zone-label)')
   })
 );
+const zoneEmojiIcons = [0x1f338, 0x1f305, 0x1f319, 0x2b50, 0x1f30c].map((codePoint) => String.fromCodePoint(codePoint));
+const zoneSigilSelectors = [
+  '.zone-sigil--petal::before',
+  '.zone-sigil--dusk::before',
+  '.zone-sigil--crescent::before',
+  '.zone-sigil--star::before',
+  '.zone-sigil--aurora::before'
+];
+assert(
+  'zone nav sigils are CSS-rendered rather than emoji-rendered',
+  zoneNavJs.includes('zone-sigil zone-sigil--')
+    && ['petal', 'dusk', 'crescent', 'star', 'aurora'].every((sigil) => zoneNavJs.includes(`sigil: '${sigil}'`))
+    && !zoneEmojiIcons.some((icon) => zoneNavJs.includes(icon))
+    && zoneSigilSelectors.every((selector) => styleCss.includes(selector)),
+  JSON.stringify({
+    rendersSigilSpan: zoneNavJs.includes('zone-sigil zone-sigil--'),
+    sigils: ['petal', 'dusk', 'crescent', 'star', 'aurora'].map((sigil) => [sigil, zoneNavJs.includes(`sigil: '${sigil}'`)]),
+    hasEmojiIcons: zoneEmojiIcons.filter((icon) => zoneNavJs.includes(icon)),
+    styledSigils: zoneSigilSelectors.map((selector) => [selector, styleCss.includes(selector)])
+  })
+);
 assert('zone atmosphere script exposes global', zoneAtmosphereJs.includes('window.HazakuraZoneAtmosphere'));
 assert('zone performance script exposes global', zonePerformanceJs.includes('window.HazakuraZonePerformance'));
 assert('hero aurora overlay script exposes global', heroAuroraOverlayJs.includes('window.HazakuraHeroAuroraOverlay'));

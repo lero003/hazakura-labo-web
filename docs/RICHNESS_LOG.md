@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Visual / Structure
+- Changed: 左端の季節ゾーン巡回ボタンをOS絵文字表示からCSSで描く5種類の小さなシジルへ置き換えた。Dayは葉桜、Duskは沈む光、Nightは三日月、Moonは星、Auroraは瑠璃の帯として、既存のボタン構造・aria-label・現在地同期は維持した。phase gate にはゾーン巡回が絵文字へ戻らず、CSSシジルの契約を持つことを追加した。
+- Learned: ロゴだけをCSS意匠化しても、常時見えるゾーン巡回がOS絵文字のままだと、庭全体の完成度が少しだけ外部環境へ引っ張られる。情報を増やさず小物の質感を揃えるだけでも、1ページ実験庭園の私物感と遊び心は強まる。
+- Next: GUI権限のある環境で、デスクトップ左端の5シジルを昼・夜ゾーンで実表示し、44pxボタン内で細部が潰れすぎないか確認する。
+
+## 2026-04-29
+
 - Focus: Structure / Motion
 - Changed: カード光追従の対象を `card-hover-fields.js` 内のクラス名固定リストから、各レンダラーが持つ `data-tilt` 契約へ寄せた。phase gate でも、Foundation / Projects / Research / Quote prelude / Vision の描画側が `data-tilt` を出し、hover fields が同じ属性だけを見ることを保護した。
 - Learned: reveal と同じく、tilt も「見た目のclass」と「演出参加の印」が分かれている方が次の小物を足しやすい。クラス名リストをスクリプト側に重ねると、カードを増やした時に光だけ追従しない取りこぼしが起きやすい。
