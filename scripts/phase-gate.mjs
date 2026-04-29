@@ -339,6 +339,8 @@ assert(
     && !styleCss.includes('body.theme-night .nav-links a {')
     && !styleCss.includes('body.theme-night .nav-links a:hover {')
     && scrollIndicatorsJs.includes("routeLinkSelector = '.nav-logo[href^=\"#\"], .nav-links a[href^=\"#\"], .footer-garden-close__link[href^=\"#\"], .footer-nav a[href^=\"#\"]'")
+    && scrollIndicatorsJs.includes('const sectionsAtProbe = Array.from(document.querySelectorAll(\'section[id]\')).filter')
+    && scrollIndicatorsJs.includes('const sectionAtProbe = sectionsAtProbe.at(-1)')
     && scrollIndicatorsJs.includes('if (!sectionAtProbe || !routeTargets.some((route) => route.element === sectionAtProbe))')
     && scrollIndicatorsJs.includes("link.setAttribute('aria-current', 'location')")
     && scrollIndicatorsJs.includes("link.removeAttribute('aria-current')")
@@ -366,6 +368,8 @@ assert(
     hasDirectNightNavColor: styleCss.includes('body.theme-night .nav-links a {'),
     hasDirectNightNavHover: styleCss.includes('body.theme-night .nav-links a:hover {'),
     hasRouteCurrentSelector: scrollIndicatorsJs.includes("routeLinkSelector = '.nav-logo[href^=\"#\"], .nav-links a[href^=\"#\"], .footer-garden-close__link[href^=\"#\"], .footer-nav a[href^=\"#\"]'"),
+    hasNestedSectionProbeList: scrollIndicatorsJs.includes('const sectionsAtProbe = Array.from(document.querySelectorAll(\'section[id]\')).filter'),
+    hasNestedSectionPreference: scrollIndicatorsJs.includes('const sectionAtProbe = sectionsAtProbe.at(-1)'),
     clearsUnmatchedProbe: scrollIndicatorsJs.includes('if (!sectionAtProbe || !routeTargets.some((route) => route.element === sectionAtProbe))'),
     setsRouteCurrent: scrollIndicatorsJs.includes("link.setAttribute('aria-current', 'location')"),
     clearsRouteCurrent: scrollIndicatorsJs.includes("link.removeAttribute('aria-current')"),

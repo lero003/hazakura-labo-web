@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Access / Structure
+- Changed: Research Log が Vision 内の入れ子 section であるため、現在地判定が親の `#vision` を先に拾って「記録」導線を点灯しにくい状態を直した。`scroll-indicators.js` はビューポート基準線に重なる section のうち内側に現れるものを優先し、phase gate にもこの契約を追加した。
+- Learned: 1ページ内でセクションを入れ子にすると、見た目の流れは自然でもナビの現在地同期では親が子を隠しやすい。導線の正しさは文言やカードを増やさず、スクロール判定の小さな優先順位だけで整えられる。
+- Next: preview可能な環境で、Vision から Research Log へスクロールし、モバイル6分割ナビの「記録」点灯が早すぎず遅すぎないか確認する。
+
+## 2026-04-29
+
 - Focus: Structure / Access
 - Changed: Projectsカード内の `project-cycle` の横レール、モバイル縦レール、小札の昼夜色を `--project-cycle-*` トークンへ寄せた。夜テーマの `project-cycle div/dt/dd` 直指定を削り、phase gate でレールと小札色が drawer 単位の契約に戻るよう保護した。
 - Learned: カード内の小さな drawer は見た目の密度が高いほど、線や文字色の直書きが残るとモバイル調整のたびに読み直す場所が増える。巡りの小径を drawer のローカルトークンに閉じると、体験を変えずに次の遊びを差し込みやすい。

@@ -46,10 +46,11 @@
         }
 
         function getActiveRouteHref() {
-            const sectionAtProbe = Array.from(document.querySelectorAll('section[id]')).find((section) => {
+            const sectionsAtProbe = Array.from(document.querySelectorAll('section[id]')).filter((section) => {
                 const rect = section.getBoundingClientRect();
                 return rect.top <= window.innerHeight * 0.42 && rect.bottom > window.innerHeight * 0.42;
             });
+            const sectionAtProbe = sectionsAtProbe.at(-1);
 
             if (!sectionAtProbe || !routeTargets.some((route) => route.element === sectionAtProbe)) {
                 return '';
