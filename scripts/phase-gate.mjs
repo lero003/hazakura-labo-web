@@ -722,15 +722,20 @@ assert(
   domHelpersJs.includes('function renderDrawerSummary')
     && domHelpersJs.includes('className')
     && domHelpersJs.includes('__sigil')
+    && domHelpersJs.includes('__note')
     && researchRendererJs.includes('renderDrawerSummary')
     && researchRendererJs.includes("className: 'research-extra-drawer'")
     && projectRendererJs.includes('renderDrawerSummary')
-    && projectRendererJs.includes("className: 'project-cycle-drawer'"),
+    && projectRendererJs.includes("className: 'project-cycle-drawer'")
+    && visionRendererJs.includes('renderDrawerSummary')
+    && visionRendererJs.includes("className: 'vision-entry-field-drawer'"),
   JSON.stringify({
     helperExists: domHelpersJs.includes('function renderDrawerSummary'),
     helperHasSigilSlot: domHelpersJs.includes('__sigil'),
+    helperHasNoteSlot: domHelpersJs.includes('__note'),
     researchUsesHelper: researchRendererJs.includes('renderDrawerSummary'),
-    projectUsesHelper: projectRendererJs.includes('renderDrawerSummary')
+    projectUsesHelper: projectRendererJs.includes('renderDrawerSummary'),
+    visionUsesHelper: visionRendererJs.includes('renderDrawerSummary')
   })
 );
 assert(
@@ -967,17 +972,19 @@ assert(
 assert(
   'vision entry fields stay folded',
   visionRendererJs.includes('class="vision-entry-guide__field-drawer"')
-    && visionRendererJs.includes('<summary>')
+    && visionRendererJs.includes('renderDrawerSummary')
+    && visionRendererJs.includes("className: 'vision-entry-field-drawer'")
     && visionRendererJs.includes('受付メモ')
     && styleCss.includes('.vision-entry-guide__field-drawer')
-    && styleCss.includes('--vision-entry-drawer-note-display')
-    && styleCss.includes('--vision-entry-drawer-note-white-space')
+    && styleCss.includes('.vision-entry-field-drawer__note')
+    && styleCss.includes('--garden-drawer-note-white-space')
     && styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)[open] summary::after'),
   JSON.stringify({
     hasDrawerRenderer: visionRendererJs.includes('class="vision-entry-guide__field-drawer"'),
+    usesSharedSummary: visionRendererJs.includes('renderDrawerSummary'),
     hasDrawerStyles: styleCss.includes('.vision-entry-guide__field-drawer'),
-    hasNoteDisplayToken: styleCss.includes('--vision-entry-drawer-note-display'),
-    hasNoteWhitespaceToken: styleCss.includes('--vision-entry-drawer-note-white-space')
+    hasNoteClass: styleCss.includes('.vision-entry-field-drawer__note'),
+    hasNoteWhitespaceToken: styleCss.includes('--garden-drawer-note-white-space')
   })
 );
 assert(
@@ -1171,12 +1178,14 @@ assert(
     '--garden-drawer-focus-outline',
     '--garden-drawer-sigil-bg',
     '--garden-drawer-sigil-margin-top',
+    '--garden-drawer-note-white-space',
     'summary:focus-visible',
     ':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)'
   ].every((snippet) => styleCss.includes(snippet))
     && !styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary')
     && !styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary')
     && !styleCss.includes('.vision-entry-guide__field-drawer summary {')
+    && !visionRendererJs.includes('<summary>')
     && !styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after'),
   JSON.stringify({
     hasSharedSelector: styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)'),
@@ -1187,10 +1196,12 @@ assert(
     hasToggleAlignmentToken: styleCss.includes('--garden-drawer-toggle-margin-left'),
     hasFocusToken: styleCss.includes('--garden-drawer-focus-outline'),
     hasSigilOffsetToken: styleCss.includes('--garden-drawer-sigil-margin-top'),
+    hasNoteToken: styleCss.includes('--garden-drawer-note-white-space'),
     hasFocusVisible: styleCss.includes('summary:focus-visible'),
     hasDirectResearchSummaryTheme: styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary'),
     hasDirectProjectSummaryTheme: styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary'),
     hasDirectVisionSummaryRule: styleCss.includes('.vision-entry-guide__field-drawer summary {'),
+    hasHandRolledVisionSummary: visionRendererJs.includes('<summary>'),
     hasDirectVisionOpenToggleRule: styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after')
   })
 );

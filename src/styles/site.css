@@ -2689,7 +2689,7 @@ a {
     transform: var(--garden-drawer-toggle-open-transform, rotate(180deg));
 }
 
-:is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil) {
+:is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil, .vision-entry-field-drawer__sigil) {
     flex: 0 0 auto;
     display: grid;
     place-items: center;
@@ -2706,30 +2706,41 @@ a {
     transition: transform var(--duration-fast) var(--ease-out-expo), border-color var(--duration-fast) ease;
 }
 
-:is(.research-extra-drawer, .project-cycle-drawer)[open] :is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil),
-:is(.research-extra-drawer, .project-cycle-drawer) summary:hover :is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil) {
+:is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)[open] :is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil, .vision-entry-field-drawer__sigil),
+:is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer) summary:hover :is(.research-extra-drawer__sigil, .project-cycle-drawer__sigil, .vision-entry-field-drawer__sigil) {
     border-color: var(--garden-drawer-sigil-active-border);
     transform: rotate(0deg) scale(1.04);
 }
 
-:is(.research-extra-drawer__copy, .project-cycle-drawer__copy) {
+:is(.research-extra-drawer__copy, .project-cycle-drawer__copy, .vision-entry-field-drawer__copy) {
     display: grid;
-    gap: 0.1rem;
+    gap: var(--garden-drawer-copy-gap, 0.1rem);
     min-width: 0;
 }
 
-:is(.research-extra-drawer__label, .project-cycle-drawer__label) {
+:is(.research-extra-drawer__label, .project-cycle-drawer__label, .vision-entry-field-drawer__label) {
     color: var(--garden-drawer-label-color);
-    font-size: 0.72rem;
+    font-size: var(--garden-drawer-label-font-size, 0.72rem);
     font-weight: 800;
     letter-spacing: 0.08em;
 }
 
-:is(.research-extra-drawer__hint, .project-cycle-drawer__hint) {
+:is(.research-extra-drawer__hint, .project-cycle-drawer__hint, .vision-entry-field-drawer__hint) {
     color: var(--garden-drawer-hint-color);
-    font-size: 0.68rem;
+    font-size: var(--garden-drawer-hint-font-size, 0.68rem);
     font-weight: 700;
     letter-spacing: 0.05em;
+}
+
+:is(.research-extra-drawer__note, .project-cycle-drawer__note, .vision-entry-field-drawer__note) {
+    display: var(--garden-drawer-note-display, inline);
+    margin: var(--garden-drawer-note-margin, 0 0 0 auto);
+    color: var(--garden-drawer-note-color, var(--garden-drawer-hint-color));
+    font-size: var(--garden-drawer-note-font-size, 0.64rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: var(--garden-drawer-note-line-height, 1);
+    white-space: var(--garden-drawer-note-white-space, nowrap);
 }
 
 .research-extra-drawer__body {
@@ -3152,24 +3163,26 @@ body.theme-night .section-vision {
     --garden-drawer-focus-outline: rgba(var(--entry-accent-rgb), 0.42);
     --garden-drawer-focus-bg: rgba(var(--entry-accent-rgb), 0.08);
     --garden-drawer-focus-offset: 2px;
-    --vision-entry-drawer-note-display: inline;
-    --vision-entry-drawer-note-margin: 0 0 0 auto;
-    --vision-entry-drawer-note-line-height: 1;
-    --vision-entry-drawer-note-white-space: nowrap;
+    --garden-drawer-copy-gap: 0.02rem;
+    --garden-drawer-sigil-size: 1.12rem;
+    --garden-drawer-sigil-border: var(--vision-entry-drawer-toggle-border);
+    --garden-drawer-sigil-active-border: rgba(var(--entry-accent-rgb), 0.34);
+    --garden-drawer-sigil-radius: 999px;
+    --garden-drawer-sigil-bg: var(--vision-entry-drawer-toggle-bg);
+    --garden-drawer-sigil-color: var(--vision-entry-drawer-summary);
+    --garden-drawer-sigil-rotate: -8deg;
+    --garden-drawer-label-color: var(--vision-entry-drawer-summary);
+    --garden-drawer-label-font-size: 0.68rem;
+    --garden-drawer-hint-color: var(--vision-entry-drawer-note);
+    --garden-drawer-hint-font-size: 0.62rem;
+    --garden-drawer-note-color: var(--vision-entry-drawer-note);
+    --garden-drawer-note-display: inline;
+    --garden-drawer-note-margin: 0 0 0 auto;
+    --garden-drawer-note-line-height: 1;
+    --garden-drawer-note-white-space: nowrap;
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.08em;
-}
-
-.vision-entry-guide__field-drawer summary small {
-    display: var(--vision-entry-drawer-note-display);
-    margin: var(--vision-entry-drawer-note-margin);
-    color: var(--vision-entry-drawer-note);
-    font-size: 0.64rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    line-height: var(--vision-entry-drawer-note-line-height);
-    white-space: var(--vision-entry-drawer-note-white-space);
 }
 
 .vision-entry-guide__fields,

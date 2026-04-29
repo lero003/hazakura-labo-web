@@ -25,17 +25,28 @@
       className,
       label,
       hint = '小径をひらく',
-      sigil = '✧'
+      sigil = '✧',
+      note = ''
     } = options;
     const baseClass = escapeHtml(className || 'garden-drawer');
+    const sigilMarkup = sigil
+      ? `<span class="${baseClass}__sigil" aria-hidden="true">${escapeHtml(sigil)}</span>`
+      : '';
+    const hintMarkup = hint
+      ? `<span class="${baseClass}__hint">${escapeHtml(hint)}</span>`
+      : '';
+    const noteMarkup = note
+      ? `<small class="${baseClass}__note">${escapeHtml(note)}</small>`
+      : '';
 
     return `
       <summary>
-        <span class="${baseClass}__sigil" aria-hidden="true">${escapeHtml(sigil)}</span>
+        ${sigilMarkup}
         <span class="${baseClass}__copy">
           <span class="${baseClass}__label">${escapeHtml(label || '')}</span>
-          <span class="${baseClass}__hint">${escapeHtml(hint)}</span>
+          ${hintMarkup}
         </span>
+        ${noteMarkup}
       </summary>
     `;
   }

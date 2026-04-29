@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const { escapeHtml } = window.HazakuraDom;
+    const { escapeHtml, renderDrawerSummary } = window.HazakuraDom;
 
     function getVisionEntryKinds(guide) {
         const kinds = Array.isArray(guide.kinds) ? guide.kinds : [];
@@ -20,10 +20,13 @@
         if (!Array.isArray(fields) || !fields.length) return '';
         return `
             <details class="vision-entry-guide__field-drawer">
-                <summary>
-                    <span>受付メモ</span>
-                    <small>${escapeHtml(String(fields.length))}つ</small>
-                </summary>
+                ${renderDrawerSummary({
+                    className: 'vision-entry-field-drawer',
+                    label: '受付メモ',
+                    hint: '入口で聞くこと',
+                    note: `${fields.length}つ`,
+                    sigil: 'i'
+                })}
                 <ul class="vision-entry-guide__fields" aria-label="受付メモ">
                     ${fields.map((field) => `<li>${escapeHtml(field)}</li>`).join('')}
                 </ul>

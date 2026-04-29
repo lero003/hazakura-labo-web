@@ -3,6 +3,13 @@
 ## 2026-04-30
 
 - Focus: Structure
+- Changed: Vision入口ガイドの「受付メモ」ドロワーを、手書きの `summary` から `HazakuraDom.renderDrawerSummary` へ寄せた。共有helperには任意の `note` スロットを足し、Research / Projects / Vision の小径summaryが同じ生成口とCSS chromeを使うよう phase gate で保護した。
+- Learned: 小さな受付メモでも、summary構造だけ別管理のままだと次の入口種別追加で文言・開閉記号・focus表現がずれやすい。Vision特有の軽さはCSSトークンで残し、DOM生成口だけ揃える方が戻しやすい。
+- Next: GUI権限のある環境で、Vision入口ガイドの4つの受付メモをモバイル幅で開き、`i`シジルと件数表示がカード本文より強く見えすぎないか確認する。
+
+## 2026-04-30
+
+- Focus: Structure
 - Changed: Research と Projects の details ドロワー見出しを、各レンダラーの手書きHTMLから `HazakuraDom.renderDrawerSummary` へ寄せた。phase gate には、共有helperが `research-extra-drawer` と `project-cycle-drawer` のシジル・ラベル・ヒントを供給する契約を追加した。
 - Learned: 「小径をひらく」ような小さな遊びの部品は、見た目が揃っているだけでなく、生成口も揃っている方が次のResearch/Projects間奏を増やしやすい。
 - Next: Vision の受付メモドロワーだけは別形状のsummaryを持つため、次回以降に同じhelperへ寄せるべきか、受付メモとして別系統に残すべきかを見た目込みで点検する。
