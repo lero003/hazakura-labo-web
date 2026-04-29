@@ -41,6 +41,7 @@
     ];
 
     let removeRouteClickHandler = null;
+    let routeFocusTimer = 0;
 
     function init(options = {}) {
         const {
@@ -69,7 +70,9 @@
             });
 
             updateRouteHash(href);
-            markMatchingArrival(link, target, getPrefersReducedMotion());
+            const isReducedMotion = getPrefersReducedMotion();
+            focusRouteTarget(target, isReducedMotion);
+            markMatchingArrival(link, target, isReducedMotion);
         };
 
         document.addEventListener('click', handleRouteClick);
@@ -108,6 +111,16 @@
     function updateRouteHash(href) {
         if (!href || !href.startsWith('#') || window.location.hash === href) return;
         window.history.pushState(null, '', href);
+    }
+
+    function focusRouteTarget(target, isReducedMotion) {
+        if (!target || typeof target.focus !== 'function') return;
+        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+
+        window.clearTimeout(routeFocusTimer);
+        routeFocusTimer = window.setTimeout(() => {
+            target.focus({ preventScroll: true });
+        }, isReducedMotion ? 0 : 420);
     }
 
     function markMatchingArrival(link, target, isReducedMotion) {

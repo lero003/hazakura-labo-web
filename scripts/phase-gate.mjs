@@ -1261,6 +1261,23 @@ assert(
 assert('smooth scroll script exposes global', smoothScrollJs.includes('window.HazakuraSmoothScroll'));
 assert('smooth scroll uses shared scroll target', smoothScrollJs.includes('HazakuraScrollTarget?.scrollTo'));
 assert(
+  'smooth scroll hands focus to route targets',
+  smoothScrollJs.includes('function focusRouteTarget(target, isReducedMotion)')
+    && smoothScrollJs.includes("target.setAttribute('tabindex', '-1')")
+    && smoothScrollJs.includes('target.focus({ preventScroll: true })')
+    && smoothScrollJs.includes('isReducedMotion ? 0 : 420')
+    && smoothScrollJs.includes('focusRouteTarget(target, isReducedMotion)')
+    && smoothScrollJs.includes('markMatchingArrival(link, target, isReducedMotion)'),
+  JSON.stringify({
+    hasFocusHelper: smoothScrollJs.includes('function focusRouteTarget(target, isReducedMotion)'),
+    addsTabIndex: smoothScrollJs.includes("target.setAttribute('tabindex', '-1')"),
+    preventsFocusScroll: smoothScrollJs.includes('target.focus({ preventScroll: true })'),
+    respectsReducedMotion: smoothScrollJs.includes('isReducedMotion ? 0 : 420'),
+    callsFocusBeforeArrival: smoothScrollJs.includes('focusRouteTarget(target, isReducedMotion)'),
+    reusesMotionStateForArrival: smoothScrollJs.includes('markMatchingArrival(link, target, isReducedMotion)')
+  })
+);
+assert(
   'smooth scroll preserves addressable garden routes',
   smoothScrollJs.includes('updateRouteHash(href)')
     && smoothScrollJs.includes("href.startsWith('#')")
