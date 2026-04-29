@@ -1180,7 +1180,8 @@ assert(
     '--garden-drawer-sigil-margin-top',
     '--garden-drawer-note-white-space',
     'summary:focus-visible',
-    ':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)'
+    ':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)',
+    ':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer) {\n        --garden-drawer-summary-align: flex-start;'
   ].every((snippet) => styleCss.includes(snippet))
     && !styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary')
     && !styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary')
@@ -1198,6 +1199,7 @@ assert(
     hasSigilOffsetToken: styleCss.includes('--garden-drawer-sigil-margin-top'),
     hasNoteToken: styleCss.includes('--garden-drawer-note-white-space'),
     hasFocusVisible: styleCss.includes('summary:focus-visible'),
+    hasSharedMobileAlignment: styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer) {\n        --garden-drawer-summary-align: flex-start;'),
     hasDirectResearchSummaryTheme: styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary'),
     hasDirectProjectSummaryTheme: styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary'),
     hasDirectVisionSummaryRule: styleCss.includes('.vision-entry-guide__field-drawer summary {'),

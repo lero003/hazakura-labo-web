@@ -7172,7 +7172,7 @@ body.theme-night .nav-logo {
         font-size: 0.78rem;
     }
 
-    :is(.research-extra-drawer, .project-cycle-drawer) {
+    :is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer) {
         --garden-drawer-summary-align: flex-start;
         --garden-drawer-summary-min: 0;
         --garden-drawer-sigil-size: 1.5rem;

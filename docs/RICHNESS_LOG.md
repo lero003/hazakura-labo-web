@@ -1154,3 +1154,10 @@
 - Changed: Vision の入力種別ガイドから対応する構想カードへ `aria-controls` と安定IDを付け、フォーカスJSが明示されたカードIDを優先してスクロールするようにした。
 - Learned: 入口と受け皿の対応をDOM上にも出しておくと、カードが増えても「どの入口がどこへ巡るか」をCSS/JSの暗黙順序だけに頼らず保てる。
 - Next: Vision 入口の選択状態がモバイルで長く残った時の解除感を、表示追加なしでさらに軽くできるか見る。
+
+## 2026-04-30
+
+- Focus: Structure / Access
+- Changed: モバイル幅の共有 drawer 調整に `vision-entry-guide__field-drawer` を含め、Research / Projects / Vision の折りたたみUIが同じアラインメント規則を使うようにした。
+- Learned: 小さな受付メモでも共有 drawer から外れると、狭い幅の読み口と将来のCSS整理がずれやすい。共通ルールと phase gate を同時に直す方が戻しやすい。
+- Next: Vision 入口のピン留め状態を、モバイルでスクロール後に自然に解けるかどうかを小さく検証する。
