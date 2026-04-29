@@ -747,6 +747,27 @@ assert('app controller delegates cursor follow', appControllerJs.includes('Hazak
 assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
 assert('dom helpers script exposes global', domHelpersJs.includes('window.HazakuraDom'));
 assert(
+  'CSS sigil tokens are normalized through the shared DOM helper',
+  domHelpersJs.includes('function toCssToken')
+    && domHelpersJs.includes('replace(/[^a-z0-9-]/g, \'\')')
+    && sectionFoundationRendererJs.includes("toCssToken(item.sigil, 'question')")
+    && projectRendererJs.includes("toCssToken(item.placeholderSigil, 'sakura')")
+    && visionRendererJs.includes("toCssToken(item.sigil, 'seed')")
+    && !sectionFoundationRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g')
+    && !projectRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g')
+    && !visionRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g'),
+  JSON.stringify({
+    helperHasNormalizer: domHelpersJs.includes('function toCssToken'),
+    helperHasTokenRegex: domHelpersJs.includes('replace(/[^a-z0-9-]/g, \'\')'),
+    processUsesHelper: sectionFoundationRendererJs.includes("toCssToken(item.sigil, 'question')"),
+    projectUsesHelper: projectRendererJs.includes("toCssToken(item.placeholderSigil, 'sakura')"),
+    visionUsesHelper: visionRendererJs.includes("toCssToken(item.sigil, 'seed')"),
+    processHasInlineNormalizer: sectionFoundationRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g'),
+    projectHasInlineNormalizer: projectRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g'),
+    visionHasInlineNormalizer: visionRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g')
+  })
+);
+assert(
   'shared drawer summary helper feeds research, project, and vision drawers',
   domHelpersJs.includes('function renderDrawerSummary')
     && domHelpersJs.includes('className')

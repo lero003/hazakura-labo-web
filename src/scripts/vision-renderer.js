@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const { escapeHtml, renderDrawerSummary } = window.HazakuraDom;
+    const { escapeHtml, renderDrawerSummary, toCssToken } = window.HazakuraDom;
 
     function getVisionEntryKinds(guide) {
         const kinds = Array.isArray(guide.kinds) ? guide.kinds : [];
@@ -20,12 +20,8 @@
         return kind ? `vision-entry-${kind}-${index + 1}` : '';
     }
 
-    function getVisionSigilClass(sigil) {
-        return String(sigil || 'seed').toLowerCase().replace(/[^a-z0-9-]/g, '') || 'seed';
-    }
-
     function renderVisionSigil(item) {
-        const sigil = getVisionSigilClass(item.sigil);
+        const sigil = toCssToken(item.sigil, 'seed');
         const mark = item.mark || item.title?.slice(0, 1) || '種';
         return `
             <span class="vision-sigil vision-sigil--${escapeHtml(sigil)}" data-vision-sigil="${escapeHtml(sigil)}" aria-hidden="true">

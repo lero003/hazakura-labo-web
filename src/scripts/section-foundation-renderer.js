@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const { escapeHtml } = window.HazakuraDom;
+    const { escapeHtml, toCssToken } = window.HazakuraDom;
 
     function renderPhilosophy(items) {
         const root = document.querySelector('[data-render="philosophy"]');
@@ -37,15 +37,11 @@
         `).join('');
     }
 
-    function getProcessSigilClass(sigil) {
-        return String(sigil || 'question').toLowerCase().replace(/[^a-z0-9-]/g, '') || 'question';
-    }
-
     function renderProcess(items) {
         const root = document.querySelector('[data-render="process"]');
         if (!root || !items) return;
         root.innerHTML = items.map((item, index) => {
-            const sigil = getProcessSigilClass(item.sigil);
+            const sigil = toCssToken(item.sigil, 'question');
             const mark = item.mark || item.label;
             return `
             ${index > 0 ? '<div class="process-connector"></div>' : ''}

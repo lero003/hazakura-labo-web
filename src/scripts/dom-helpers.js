@@ -20,6 +20,11 @@
     }
   }
 
+  function toCssToken(value, fallback = 'seed') {
+    const token = String(value || fallback).toLowerCase().replace(/[^a-z0-9-]/g, '');
+    return token || fallback;
+  }
+
   function renderDrawerSummary(options = {}) {
     const {
       className,
@@ -54,6 +59,7 @@
   window.HazakuraDom = {
     escapeHtml,
     formatExternalDestination,
+    toCssToken,
     renderDrawerSummary
   };
 })();

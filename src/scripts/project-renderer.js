@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { escapeHtml, formatExternalDestination, renderDrawerSummary } = window.HazakuraDom;
+  const { escapeHtml, formatExternalDestination, renderDrawerSummary, toCssToken } = window.HazakuraDom;
 
   function getProjectActionType(item) {
     if (!item.href) return 'status';
@@ -103,7 +103,7 @@
       return `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}" class="project-img" loading="lazy" decoding="async">`;
     }
 
-    const sigil = String(item.placeholderSigil || 'sakura').toLowerCase().replace(/[^a-z0-9-]/g, '') || 'sakura';
+    const sigil = toCssToken(item.placeholderSigil, 'sakura');
 
     return `<div class="project-thumb-placeholder" data-placeholder-sigil="${escapeHtml(sigil)}" ${item.placeholderAlt ? `role="img" aria-label="${escapeHtml(item.placeholderAlt)}"` : 'aria-hidden="true"'}>
       <span class="placeholder-sigil placeholder-sigil--${escapeHtml(sigil)}" data-placeholder-sigil="${escapeHtml(sigil)}" aria-hidden="true">
