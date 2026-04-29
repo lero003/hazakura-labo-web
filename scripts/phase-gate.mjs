@@ -1248,13 +1248,18 @@ assert(
     '--garden-drawer-sigil-bg',
     '--garden-drawer-sigil-margin-top',
     '--garden-drawer-note-white-space',
+    '--garden-drawer-body-padding',
     'summary:focus-visible',
+    '.garden-drawer__body',
     '.garden-drawer',
     '.garden-drawer {\n        --garden-drawer-summary-align: flex-start;'
   ].every((snippet) => styleCss.includes(snippet))
     && researchRendererJs.includes('class="garden-drawer research-extra-drawer"')
+    && researchRendererJs.includes('class="garden-drawer__body research-extra-drawer__body"')
     && projectRendererJs.includes('class="garden-drawer project-cycle-drawer"')
+    && projectRendererJs.includes('class="garden-drawer__body project-cycle"')
     && visionRendererJs.includes('class="garden-drawer vision-entry-guide__field-drawer"')
+    && visionRendererJs.includes('class="garden-drawer__body vision-entry-guide__fields"')
     && domHelpersJs.includes('garden-drawer__sigil')
     && domHelpersJs.includes('garden-drawer__note')
     && !styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary')
@@ -1277,8 +1282,13 @@ assert(
     hasFocusToken: styleCss.includes('--garden-drawer-focus-outline'),
     hasSigilOffsetToken: styleCss.includes('--garden-drawer-sigil-margin-top'),
     hasNoteToken: styleCss.includes('--garden-drawer-note-white-space'),
+    hasBodyPaddingToken: styleCss.includes('--garden-drawer-body-padding'),
+    hasSharedBodySelector: styleCss.includes('.garden-drawer__body'),
     hasFocusVisible: styleCss.includes('summary:focus-visible'),
     hasSharedMobileAlignment: styleCss.includes('.garden-drawer {\n        --garden-drawer-summary-align: flex-start;'),
+    researchHasSharedBody: researchRendererJs.includes('class="garden-drawer__body research-extra-drawer__body"'),
+    projectHasSharedBody: projectRendererJs.includes('class="garden-drawer__body project-cycle"'),
+    visionHasSharedBody: visionRendererJs.includes('class="garden-drawer__body vision-entry-guide__fields"'),
     hasDirectResearchSummaryTheme: styleCss.includes('body.theme-night .section-vision .research-extra-drawer summary'),
     hasDirectProjectSummaryTheme: styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary'),
     hasDirectVisionSummaryRule: styleCss.includes('.vision-entry-guide__field-drawer summary {'),

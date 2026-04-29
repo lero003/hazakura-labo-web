@@ -147,7 +147,7 @@
           className: 'project-cycle-drawer',
           label: '問い → 実験 → 発見'
         })}
-        <dl class="project-cycle" aria-label="${escapeHtml(item.title)}の問い、実験、発見">
+        <dl class="garden-drawer__body project-cycle" aria-label="${escapeHtml(item.title)}の問い、実験、発見">
           ${cycleSteps.map(([label, value]) => `
             <div>
               <dt>${escapeHtml(label)}</dt>

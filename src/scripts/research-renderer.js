@@ -106,7 +106,7 @@
                     className: 'research-extra-drawer',
                     label: '由来・断片・論文メモ'
                 })}
-                <div class="research-extra-drawer__body">
+                <div class="garden-drawer__body research-extra-drawer__body">
                     ${addons.join('')}
                 </div>
             </details>

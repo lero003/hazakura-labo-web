@@ -45,7 +45,7 @@
                     note: `${fields.length}つ`,
                     sigil: 'i'
                 })}
-                <ul class="vision-entry-guide__fields" aria-label="受付メモ">
+                <ul class="garden-drawer__body vision-entry-guide__fields" aria-label="受付メモ">
                     ${fields.map((field) => `<li>${escapeHtml(field)}</li>`).join('')}
                 </ul>
             </details>
