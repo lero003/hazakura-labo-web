@@ -588,6 +588,27 @@ assert(
 );
 assert('style sheet contains design tokens', styleCss.includes('--sakura-500') && styleCss.includes('.hero'));
 assert(
+  'site logo mark is CSS-rendered rather than emoji-rendered',
+  indexSource.includes('class="logo-icon logo-mark"')
+    && indexSource.includes('class="logo-mark__petal logo-mark__petal--top"')
+    && indexSource.includes('class="logo-mark__leaf"')
+    && indexSource.includes('class="logo-mark__core"')
+    && !indexSource.includes('<span class="logo-icon">🌸</span>')
+    && ['.logo-mark__petal', '.logo-mark__leaf', '.logo-mark__core'].every((snippet) => styleCss.includes(snippet))
+    && styleCss.includes('body.theme-night .logo-icon'),
+  JSON.stringify({
+    hasMarkClass: indexSource.includes('class="logo-icon logo-mark"'),
+    hasPetalMarkup: indexSource.includes('class="logo-mark__petal logo-mark__petal--top"'),
+    hasLeafMarkup: indexSource.includes('class="logo-mark__leaf"'),
+    hasCoreMarkup: indexSource.includes('class="logo-mark__core"'),
+    hasEmojiLogo: indexSource.includes('<span class="logo-icon">🌸</span>'),
+    hasPetalStyle: styleCss.includes('.logo-mark__petal'),
+    hasLeafStyle: styleCss.includes('.logo-mark__leaf'),
+    hasCoreStyle: styleCss.includes('.logo-mark__core'),
+    hasNightLogoTokens: styleCss.includes('body.theme-night .logo-icon')
+  })
+);
+assert(
   'style sheet contains shared anchor offset',
   styleCss.includes('--hazakura-anchor-offset: 84px')
     && styleCss.includes('--hazakura-anchor-offset: 116px')

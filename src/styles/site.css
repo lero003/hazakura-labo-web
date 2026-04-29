@@ -446,8 +446,78 @@ a {
 }
 
 .logo-icon {
-    font-size: 1.5rem;
+    --logo-mark-petal: linear-gradient(160deg, rgba(255, 245, 248, 0.96), rgba(232, 88, 122, 0.62));
+    --logo-mark-leaf: linear-gradient(140deg, rgba(212, 237, 218, 0.98), rgba(90, 158, 95, 0.72));
+    --logo-mark-core: rgba(255, 248, 218, 0.92);
+    --logo-mark-shadow: 0 0 0 1px rgba(232, 88, 122, 0.12), 0 0 18px rgba(232, 88, 122, 0.18);
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 1.6rem;
+    height: 1.6rem;
+    filter: drop-shadow(0 0 8px rgba(232, 88, 122, 0.12));
     animation: bloom 3s ease-in-out infinite;
+}
+
+.logo-mark__petal,
+.logo-mark__leaf,
+.logo-mark__core {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+}
+
+.logo-mark__petal {
+    top: 50%;
+    left: 50%;
+    width: 0.46rem;
+    height: 0.78rem;
+    margin-top: -0.39rem;
+    margin-left: -0.23rem;
+    border: 1px solid rgba(255, 255, 255, 0.44);
+    border-radius: 999px 999px 999px 4px;
+    background: var(--logo-mark-petal);
+    box-shadow: var(--logo-mark-shadow);
+    transform-origin: 50% 0.8rem;
+}
+
+.logo-mark__petal--top {
+    transform: translateY(-0.4rem) rotate(-8deg);
+}
+
+.logo-mark__petal--right {
+    transform: translateX(0.42rem) rotate(76deg);
+}
+
+.logo-mark__petal--bottom {
+    transform: translateY(0.38rem) rotate(172deg);
+}
+
+.logo-mark__petal--left {
+    transform: translateX(-0.42rem) rotate(256deg);
+}
+
+.logo-mark__leaf {
+    right: 0.08rem;
+    bottom: 0.02rem;
+    width: 0.58rem;
+    height: 0.36rem;
+    border-radius: 999px 999px 4px 999px;
+    background: var(--logo-mark-leaf);
+    box-shadow: 0 0 12px rgba(90, 158, 95, 0.16);
+    transform: rotate(-24deg);
+}
+
+.logo-mark__core {
+    top: 50%;
+    left: 50%;
+    width: 0.36rem;
+    height: 0.36rem;
+    border-radius: 999px;
+    background: var(--logo-mark-core);
+    box-shadow: inset 0 0 0 1px rgba(232, 168, 124, 0.22), 0 0 10px rgba(255, 224, 170, 0.28);
+    transform: translate(-50%, -50%);
 }
 
 @keyframes bloom {
@@ -503,7 +573,7 @@ a {
 }
 
 .nav-logo[aria-current="location"] .logo-icon {
-    filter: saturate(1.16) drop-shadow(0 0 8px rgba(232, 88, 122, 0.18));
+    filter: saturate(1.16) drop-shadow(0 0 10px rgba(232, 88, 122, 0.22));
 }
 
 .nav-links a:hover::after {
@@ -7385,7 +7455,11 @@ body.theme-night .nav-logo {
 }
 
 body.theme-night .logo-icon {
-    filter: brightness(1.2);
+    --logo-mark-petal: linear-gradient(160deg, rgba(244, 232, 255, 0.92), rgba(167, 139, 250, 0.64));
+    --logo-mark-leaf: linear-gradient(140deg, rgba(132, 220, 180, 0.9), rgba(82, 183, 150, 0.62));
+    --logo-mark-core: rgba(255, 241, 214, 0.86);
+    --logo-mark-shadow: 0 0 0 1px rgba(167, 139, 250, 0.16), 0 0 18px rgba(167, 139, 250, 0.2);
+    filter: brightness(1.08) drop-shadow(0 0 9px rgba(167, 139, 250, 0.16));
 }
 
 /* Non-scrolled nav (hero area) — needs dark text on light hero */
@@ -7428,7 +7502,8 @@ body.theme-night .nav:not(.scrolled) .nav-links a:hover {
     }
 
     .logo-icon {
-        font-size: 1.15rem;
+        width: 1.26rem;
+        height: 1.26rem;
     }
 
     .logo-text {
