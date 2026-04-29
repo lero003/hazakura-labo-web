@@ -957,6 +957,33 @@ assert(
     hasDrawerStyles: styleCss.includes('.project-cycle-drawer')
   })
 );
+assert(
+  'project cycle path theme is tokenized',
+  [
+    '--project-cycle-rail',
+    '--project-cycle-rail-vertical',
+    '--project-cycle-item-border',
+    '--project-cycle-item-bg',
+    '--project-cycle-label-color',
+    '--project-cycle-copy-color'
+  ].every((snippet) => styleCss.includes(snippet))
+    && styleCss.includes('background: var(--project-cycle-rail)')
+    && styleCss.includes('background: var(--project-cycle-rail-vertical)')
+    && !styleCss.includes('body.theme-night .section-projects .project-cycle div')
+    && !styleCss.includes('body.theme-night .section-projects .project-cycle dt')
+    && !styleCss.includes('body.theme-night .section-projects .project-cycle dd'),
+  JSON.stringify({
+    hasRailToken: styleCss.includes('--project-cycle-rail'),
+    hasVerticalRailToken: styleCss.includes('--project-cycle-rail-vertical'),
+    hasItemBorderToken: styleCss.includes('--project-cycle-item-border'),
+    hasItemBgToken: styleCss.includes('--project-cycle-item-bg'),
+    hasLabelToken: styleCss.includes('--project-cycle-label-color'),
+    hasCopyToken: styleCss.includes('--project-cycle-copy-color'),
+    hasDirectNightItem: styleCss.includes('body.theme-night .section-projects .project-cycle div'),
+    hasDirectNightLabel: styleCss.includes('body.theme-night .section-projects .project-cycle dt'),
+    hasDirectNightCopy: styleCss.includes('body.theme-night .section-projects .project-cycle dd')
+  })
+);
 assert('project filter script exposes global', projectFilterJs.includes('window.HazakuraProjectFilter'));
 assert(
   'projects action types back filter status labels',

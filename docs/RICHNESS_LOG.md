@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Structure / Access
+- Changed: Projectsカード内の `project-cycle` の横レール、モバイル縦レール、小札の昼夜色を `--project-cycle-*` トークンへ寄せた。夜テーマの `project-cycle div/dt/dd` 直指定を削り、phase gate でレールと小札色が drawer 単位の契約に戻るよう保護した。
+- Learned: カード内の小さな drawer は見た目の密度が高いほど、線や文字色の直書きが残るとモバイル調整のたびに読み直す場所が増える。巡りの小径を drawer のローカルトークンに閉じると、体験を変えずに次の遊びを差し込みやすい。
+- Next: preview可能な環境で、Projectsカードの「巡りの小径」を開き、横幅768px以下で縦レールと3つの小札が本文より強く見えすぎないか確認する。
+
+## 2026-04-29
+
 - Focus: Motion / Visual
 - Changed: Quote 前の折り返しカードで、4つの route marker がカード表示と同時に一斉表示される状態をやめ、`visible` 状態に合わせて「本 → 実験 → 記録 → 入口」の順に少し遅れて浮くようにした。hover / focus は既存のリンク側に残し、phase gate で順番表示のCSS契約を保護した。
 - Learned: 終盤の折り返しは情報を増やさなくても、札の出る順番だけで「最後の詩へ畳む」感触が強くなる。動きは `li` 側のopacity / transformに閉じると、リンク操作や既存アンカー導線を汚さず戻しやすい。
