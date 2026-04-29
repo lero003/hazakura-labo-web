@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure
+- Changed: 終盤の Quote / quote-prelude / 詩の余韻を `src/components/QuoteSection.astro` へ切り出し、`index.astro` は章立てを並べるシェルに寄せた。phase gate には、Quote がコンポーネント化されたまま、`quote-prelude` の描画受け口と `quote-block` が出力される契約を追加した。
+- Learned: Quote 前の折り返しカードと詩は、見た目の小さな余韻に見えても、終端導線の演出・スクロール到着・最後の引用が集まる保守上の塊になっている。ここを閉じると、次の余韻演出をページ全体から切り離して磨きやすい。
+- Next: `index.astro` に残る Philosophy / Layers / Projects / Vision のうち、静的な章立てとして残すべき見出しと、データ描画や装飾を含む塊として切り出すべき境界を1つだけ続けて点検する。
+
+## 2026-04-29
+
+- Focus: Structure
 - Changed: 上部の常設ナビを `src/components/MainNavigation.astro` へ切り出し、`index.astro` はページの章立てと基礎レイヤーに集中する形へ寄せた。巡回路のデータ参照、CSS葉桜マーク、主要ナビの `aria-label` は新コンポーネント側に閉じ、phase gate でナビが部品化・データ駆動のまま保たれる契約を追加した。
 - Learned: フッターが部品化された後も入口ナビだけがページシェルに残ると、巡回路の調整時に始点と終端の責務が非対称になる。見た目を変えずに常設ナビを閉じることで、次の導線やロゴ演出を入口だけ迷子にせず触れる。
 - Next: `index.astro` に残る Philosophy / Layers / Projects / Vision / Quote のうち、静的な章立てとして残すべきものと、演出の塊として切り出すべきものを1セクションだけ点検する。

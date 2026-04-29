@@ -31,6 +31,7 @@ const heroSectionSource = readFile('src/components/HeroSection.astro');
 const librarySectionSource = readFile('src/components/LibrarySection.astro');
 const mainNavigationSource = readFile('src/components/MainNavigation.astro');
 const footerSectionSource = readFile('src/components/FooterSection.astro');
+const quoteSectionSource = readFile('src/components/QuoteSection.astro');
 const logoMarkSource = readFile('src/components/LogoMark.astro');
 const routeHelperSource = readFile('src/route-responses.ts');
 const pageEndpointFiles = fs.readdirSync('src/pages')
@@ -312,6 +313,36 @@ assert(
     titles: libraryBooks.map((book) => [book.title, html.includes(book.title)]),
     showcaseCount: (html.match(/class="book-showcase/g) || []).length,
     bookTiltTargets: (html.match(/class="book-3d"/g) || []).length
+  })
+);
+assert(
+  'quote section stays componentized as the final echo',
+  indexSource.includes("import QuoteSection from '../components/QuoteSection.astro'")
+    && indexSource.includes('<QuoteSection />')
+    && !indexSource.includes('class="quote-prelude"')
+    && !indexSource.includes('id="quote-block"')
+    && quoteSectionSource.includes('id="quote"')
+    && quoteSectionSource.includes('data-zone="aurora"')
+    && quoteSectionSource.includes('id="quote-prelude"')
+    && quoteSectionSource.includes('data-render="quotePrelude"')
+    && quoteSectionSource.includes('id="quote-block"')
+    && quoteSectionSource.includes('佐久間象山')
+    && html.includes('id="quote"')
+    && html.includes('id="quote-prelude"')
+    && html.includes('id="quote-block"'),
+  JSON.stringify({
+    importsComponent: indexSource.includes("import QuoteSection from '../components/QuoteSection.astro'"),
+    usesComponent: indexSource.includes('<QuoteSection />'),
+    indexContainsPreludeMarkup: indexSource.includes('class="quote-prelude"'),
+    indexContainsQuoteBlock: indexSource.includes('id="quote-block"'),
+    componentHasQuote: quoteSectionSource.includes('id="quote"'),
+    componentHasAuroraZone: quoteSectionSource.includes('data-zone="aurora"'),
+    componentHasPreludeTarget: quoteSectionSource.includes('id="quote-prelude"'),
+    componentHasPreludeRenderHook: quoteSectionSource.includes('data-render="quotePrelude"'),
+    componentHasQuoteBlock: quoteSectionSource.includes('id="quote-block"'),
+    htmlHasQuote: html.includes('id="quote"'),
+    htmlHasPrelude: html.includes('id="quote-prelude"'),
+    htmlHasQuoteBlock: html.includes('id="quote-block"')
   })
 );
 
