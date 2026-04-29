@@ -1448,6 +1448,31 @@ assert(
   })
 );
 assert(
+  'vision card marks are CSS-rendered rather than emoji-rendered',
+  hazakuraContent.visionsGroup.items.every((item) => item.sigil && item.mark && !item.icon)
+    && !pictographicEmojiPattern.test(JSON.stringify(hazakuraContent.visionsGroup))
+    && visionRendererJs.includes('vision-sigil vision-sigil--')
+    && visionRendererJs.includes('data-vision-sigil')
+    && visionRendererJs.includes('vision-sigil__mark')
+    && !visionRendererJs.includes('item.icon')
+    && !visionRendererJs.includes('class="vision-icon"')
+    && ['terakoya', 'memoir', 'radio', 'local', 'research', 'magic'].every((sigil) => styleCss.includes(`.vision-sigil--${sigil}`))
+    && !styleCss.includes('.vision-icon'),
+  JSON.stringify({
+    cards: hazakuraContent.visionsGroup.items.map((item) => ({
+      title: item.title,
+      sigil: item.sigil,
+      mark: item.mark,
+      icon: item.icon
+    })),
+    hasEmojiData: pictographicEmojiPattern.test(JSON.stringify(hazakuraContent.visionsGroup)),
+    rendererHasSigil: visionRendererJs.includes('vision-sigil vision-sigil--'),
+    rendererHasLegacyIcon: visionRendererJs.includes('class="vision-icon"') || visionRendererJs.includes('item.icon'),
+    missingStyles: ['terakoya', 'memoir', 'radio', 'local', 'research', 'magic'].filter((sigil) => !styleCss.includes(`.vision-sigil--${sigil}`)),
+    hasLegacyStyle: styleCss.includes('.vision-icon')
+  })
+);
+assert(
   'footer keeps final return path to hero',
   html.includes('class="footer-garden-close"')
     && html.includes('href="#hero" class="footer-garden-close__link"')

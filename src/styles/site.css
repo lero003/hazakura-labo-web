@@ -3497,17 +3497,188 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     background: var(--card-bg-hover, rgba(255, 255, 255, 0.9));
 }
 
-.vision-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    display: inline-block;
-    transition: transform var(--duration-normal) var(--ease-spring);
+.vision-sigil {
+    --vision-sigil-rgb: 232, 88, 122;
     position: relative;
     z-index: 1;
+    display: inline-grid;
+    place-items: center;
+    width: 3.15rem;
+    height: 3.15rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(var(--vision-sigil-rgb), 0.26);
+    border-radius: 999px 999px 999px 9px;
+    background:
+        radial-gradient(circle at 38% 28%, rgba(255, 255, 255, 0.72), transparent 0.52rem),
+        linear-gradient(145deg, rgba(var(--vision-sigil-rgb), 0.18), rgba(255, 255, 255, 0.56));
+    color: rgb(var(--vision-sigil-rgb));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.72),
+        0 14px 28px rgba(var(--vision-sigil-rgb), 0.12);
+    transform: rotate(-6deg);
+    transition:
+        transform var(--duration-normal) var(--ease-spring),
+        border-color var(--duration-normal) var(--ease-out-expo),
+        box-shadow var(--duration-normal) var(--ease-out-expo);
 }
 
-.vision-card:hover .vision-icon {
-    transform: scale(1.25) rotate(-5deg);
+.vision-sigil::before,
+.vision-sigil::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+}
+
+.vision-sigil__mark {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-serif);
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+}
+
+.vision-sigil--terakoya {
+    --vision-sigil-rgb: 90, 158, 95;
+}
+
+.vision-sigil--terakoya::before {
+    top: 0.72rem;
+    width: 1.45rem;
+    height: 0.78rem;
+    border-top: 2px solid currentColor;
+    border-left: 2px solid currentColor;
+    transform: rotate(45deg);
+    opacity: 0.38;
+}
+
+.vision-sigil--memoir {
+    --vision-sigil-rgb: 77, 161, 169;
+}
+
+.vision-sigil--memoir::before,
+.vision-sigil--memoir::after {
+    left: 0.82rem;
+    width: 1.42rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.32;
+}
+
+.vision-sigil--memoir::before {
+    top: 0.92rem;
+}
+
+.vision-sigil--memoir::after {
+    bottom: 0.9rem;
+}
+
+.vision-sigil--radio {
+    --vision-sigil-rgb: 168, 116, 48;
+}
+
+.vision-sigil--radio::before {
+    top: 0.56rem;
+    right: 0.72rem;
+    width: 0.74rem;
+    height: 0.74rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    opacity: 0.42;
+}
+
+.vision-sigil--radio::after {
+    left: 0.92rem;
+    bottom: 0.72rem;
+    width: 1.28rem;
+    height: 2px;
+    background: currentColor;
+    box-shadow: 0 0.32rem 0 rgba(var(--vision-sigil-rgb), 0.32);
+    opacity: 0.36;
+}
+
+.vision-sigil--local {
+    --vision-sigil-rgb: 139, 92, 246;
+}
+
+.vision-sigil--local::before {
+    inset: 0.72rem 0.9rem;
+    border-top: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: skewX(-16deg);
+    opacity: 0.32;
+}
+
+.vision-sigil--local::after {
+    right: 0.82rem;
+    bottom: 0.8rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: -1.2rem -0.9rem 0 rgba(var(--vision-sigil-rgb), 0.34);
+    opacity: 0.5;
+}
+
+.vision-sigil--research {
+    --vision-sigil-rgb: 232, 88, 122;
+}
+
+.vision-sigil--research::before {
+    right: 0.74rem;
+    bottom: 0.78rem;
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow:
+        -0.86rem -1rem 0 rgba(var(--vision-sigil-rgb), 0.36),
+        -1.14rem 0.08rem 0 rgba(var(--vision-sigil-rgb), 0.24);
+    opacity: 0.46;
+}
+
+.vision-sigil--research::after {
+    top: 0.78rem;
+    width: 0.88rem;
+    height: 1.42rem;
+    border: 1px solid currentColor;
+    border-top: 0;
+    border-radius: 0 0 999px 999px;
+    opacity: 0.28;
+}
+
+.vision-sigil--magic {
+    --vision-sigil-rgb: 245, 194, 105;
+}
+
+.vision-sigil--magic::before {
+    top: 0.7rem;
+    right: 0.82rem;
+    width: 0.72rem;
+    height: 0.72rem;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+    opacity: 0.45;
+}
+
+.vision-sigil--magic::after {
+    left: 0.82rem;
+    bottom: 0.72rem;
+    width: 1.46rem;
+    height: 1px;
+    background: currentColor;
+    transform: rotate(-18deg);
+    opacity: 0.38;
+}
+
+.vision-card:hover .vision-sigil {
+    transform: scale(1.12) rotate(-10deg);
+    border-color: rgba(var(--vision-sigil-rgb), 0.46);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.82),
+        0 18px 34px rgba(var(--vision-sigil-rgb), 0.18);
 }
 
 .vision-entry-kind-badge {
@@ -6587,6 +6758,16 @@ body.theme-night .section-vision .vision-card .vision-tag {
     border-color: rgba(139, 92, 246, 0.3);
 }
 
+body.theme-night .section-vision .vision-sigil {
+    background:
+        radial-gradient(circle at 38% 28%, rgba(255, 255, 255, 0.2), transparent 0.52rem),
+        linear-gradient(145deg, rgba(var(--vision-sigil-rgb), 0.2), rgba(255, 255, 255, 0.055));
+    border-color: rgba(var(--vision-sigil-rgb), 0.34);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        0 16px 32px rgba(var(--vision-sigil-rgb), 0.14);
+}
+
 body.theme-night .section-vision .process-label {
     color: var(--body-text);
 }
@@ -7557,9 +7738,14 @@ body.theme-night .nav-logo {
         border-radius: 16px;
     }
 
-    .vision-icon {
+    .vision-sigil {
         margin-bottom: 0.65rem;
-        font-size: 2rem;
+        width: 2.72rem;
+        height: 2.72rem;
+    }
+
+    .vision-sigil__mark {
+        font-size: 0.98rem;
     }
 
     .vision-card h3 {

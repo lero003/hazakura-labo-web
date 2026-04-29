@@ -3,6 +3,13 @@
 ## 2026-04-30
 
 - Focus: Visual / Structure
+- Changed: VisionカードのOS絵文字 `icon` を `sigil` / `mark` データに置き換え、`vision-renderer.js` が `vision-sigil` DOMを出す形へ寄せた。AI寺子屋、自分史、レトロ道具、地域LLM、Research Log、Magic Tools の印はCSSで描き、夜テーマとモバイルサイズも同じ部品で調整する。phase gate には、Visionカードが絵文字表示へ戻らない契約を追加した。
+- Learned: Visionは「未来の構想」なので、入口ガイドが整うほどカード冒頭のOS絵文字がサービス一覧のように見えやすい。意味データと表示印を分けると、構想の柔らかさを残しつつ、庭全体の小物の質感を揃えられる。
+- Next: `process` の4ステップだけ絵文字 `icon` が残っているため、次回は「問い -> 実験 -> 発見 -> 循環」の流れをCSSシジル化するか、現状のまま読ませるかを1箇所だけ判断する。
+
+## 2026-04-30
+
+- Focus: Visual / Structure
 - Changed: Library のメタ札、ハイライト、Kindle CTA をOS絵文字の `icon` から、`sigil` / `mark` を持つ書庫専用の小印へ置き換えた。Astro側は共通の `bookSigilClass` でclassを生成し、CSSは文字印の器とCTAの小さな本型だけを描く。phase gate には、Library の詳細印が絵文字データへ戻らない契約を追加した。
 - Learned: 表紙や橋渡しが整ってくるほど、書庫の細部だけOS絵文字に依存すると「問いの結晶」より汎用カードの印象が出やすい。すべてを精密なCSS絵にせず、文字印の器に寄せると、質感と保守面積のバランスを取りやすい。
 - Next: まだ `process` と `visionsGroup` には絵文字系の icon が残るため、次回以降はまず Vision カードだけ、意味データと表示印を分けるべきか点検する。

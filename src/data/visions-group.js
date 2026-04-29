@@ -56,7 +56,8 @@ export const visionsGroup = {
   },
   "items": [
     {
-      "icon": "🏠",
+      "sigil": "terakoya",
+      "mark": "学",
       "title": "AI 寺子屋",
       "jp": "道楽と循環",
       "text": "子どもの学びを支え、シニアの経験を「教える側」の知恵として迎える、世代を越えた未来の学び舎。",
@@ -76,7 +77,8 @@ export const visionsGroup = {
       }
     },
     {
-      "icon": "📜",
+      "sigil": "memoir",
+      "mark": "記",
       "title": "自分史編纂",
       "jp": "物語を紡ぐ",
       "text": "人々の思い出を物語として紡ぎ、デジタルアーカイブ化。あなたの記憶が、次の世代への贈り物になる。",
@@ -96,7 +98,8 @@ export const visionsGroup = {
       }
     },
     {
-      "icon": "📻",
+      "sigil": "radio",
+      "mark": "音",
       "title": "レトロ・ガジェット再生",
       "jp": "古いモノに魂を宿す",
       "text": "眠っているラジオや古い道具にAIの小さな対話を重ね、思い出と機能をもう一度めぐらせるワークショップの記録。",
@@ -117,7 +120,8 @@ export const visionsGroup = {
       "tag": "Workshop seed"
     },
     {
-      "icon": "🗺️",
+      "sigil": "local",
+      "mark": "地",
       "title": "地域LLM",
       "jp": "知恵を巡らせる",
       "text": "Research Logや自分史、寺子屋の問いを少しずつ蓄え、地域の言葉で答えを返す小さな知恵の循環炉。",
@@ -138,13 +142,15 @@ export const visionsGroup = {
       "tag": "CMS seed"
     },
     {
-      "icon": "🧪",
+      "sigil": "research",
+      "mark": "研",
       "title": "Research Log",
       "jp": "研究記録",
       "text": "「問い→実験→発見」のサイクルで記す、知的冒険の航海日誌。AIの思考プロセスから日常の哲学的驚き（thaumazein）まで。"
     },
     {
-      "icon": "✨",
+      "sigil": "magic",
+      "mark": "道",
       "title": "Magic Tools",
       "jp": "魔法の道具",
       "text": "「何ができるか」だけでなく、「なぜ作ったのか」と「どんな驚きがあったか」をセットにした、道具たちの物語。"

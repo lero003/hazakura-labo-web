@@ -20,6 +20,20 @@
         return kind ? `vision-entry-${kind}-${index + 1}` : '';
     }
 
+    function getVisionSigilClass(sigil) {
+        return String(sigil || 'seed').toLowerCase().replace(/[^a-z0-9-]/g, '') || 'seed';
+    }
+
+    function renderVisionSigil(item) {
+        const sigil = getVisionSigilClass(item.sigil);
+        const mark = item.mark || item.title?.slice(0, 1) || '種';
+        return `
+            <span class="vision-sigil vision-sigil--${escapeHtml(sigil)}" data-vision-sigil="${escapeHtml(sigil)}" aria-hidden="true">
+                <span class="vision-sigil__mark">${escapeHtml(mark)}</span>
+            </span>
+        `;
+    }
+
     function renderVisionEntryFields(fields) {
         if (!Array.isArray(fields) || !fields.length) return '';
         return `
@@ -152,7 +166,7 @@
             const entryKindBadge = entryKind ? renderVisionEntryKindBadge(entryKind, entryKinds[entryKind]) : '';
             return `
             <article class="vision-card"${entryKindAttribute}${entryCardIdAttribute} data-reveal data-reveal-stagger data-tilt>
-                <div class="vision-icon">${escapeHtml(item.icon)}</div>
+                ${renderVisionSigil(item)}
                 ${entryKindBadge}
                 <h3>${escapeHtml(item.title)}</h3>
                 <p class="vision-jp">${escapeHtml(item.jp)}</p>
