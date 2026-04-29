@@ -2047,7 +2047,7 @@ a {
     pointer-events: none;
 }
 
-.garden-handoff-steps li {
+.garden-handoff-steps > li {
     position: relative;
     min-width: 0;
     min-height: var(--handoff-step-item-min-height, 0);
@@ -2058,7 +2058,7 @@ a {
     box-shadow: var(--handoff-step-item-shadow, none);
 }
 
-.garden-handoff-steps li::before {
+.garden-handoff-steps > li::before {
     content: '';
     position: absolute;
     display: var(--handoff-step-dot-display, block);
@@ -2072,7 +2072,7 @@ a {
     box-shadow: var(--handoff-step-dot-shadow, none);
 }
 
-.garden-handoff-steps span {
+.garden-handoff-steps > li > span {
     display: block;
     margin-bottom: var(--handoff-step-label-margin-bottom, 0);
     color: var(--handoff-step-label-color);
@@ -2081,7 +2081,7 @@ a {
     letter-spacing: var(--handoff-step-label-spacing, 0.12em);
 }
 
-.garden-handoff-steps p {
+.garden-handoff-steps > li > p {
     margin-top: var(--handoff-step-text-margin, 0);
     color: var(--handoff-step-text-color);
     font-size: var(--handoff-step-text-size, 0.78rem);

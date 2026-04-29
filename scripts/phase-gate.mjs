@@ -941,7 +941,7 @@ assert(
 );
 assert(
   'library projects bridge keeps handoff path styling',
-  ['.library-projects-bridge::after', '.garden-handoff-steps::before', '.garden-handoff-steps li::before', '--handoff-step-label-margin-bottom', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet))
+  ['.library-projects-bridge::after', '.garden-handoff-steps::before', '.garden-handoff-steps > li::before', '--handoff-step-label-margin-bottom', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet))
     && librarySectionSource.includes('class="library-projects-bridge__steps garden-handoff-steps"')
     && researchRendererJs.includes('class="research-log-handoff__steps garden-handoff-steps"')
     && !styleCss.includes('.library-projects-bridge__steps li {')
@@ -949,7 +949,7 @@ assert(
   JSON.stringify({
     hasSeed: styleCss.includes('.library-projects-bridge::after'),
     hasStepPath: styleCss.includes('.garden-handoff-steps::before'),
-    hasStepDots: styleCss.includes('.garden-handoff-steps li::before'),
+    hasStepDots: styleCss.includes('.garden-handoff-steps > li::before'),
     hasLabelSpacingToken: styleCss.includes('--handoff-step-label-margin-bottom'),
     libraryUsesSharedSteps: librarySectionSource.includes('class="library-projects-bridge__steps garden-handoff-steps"'),
     researchUsesSharedSteps: researchRendererJs.includes('class="research-log-handoff__steps garden-handoff-steps"'),
@@ -1745,11 +1745,15 @@ assert(
     && quotePreludeJs.includes('aria-label="問いを引用前に巡らせる流れ"')
     && styleCss.includes('.garden-handoff-steps')
     && styleCss.includes('.garden-handoff-steps::before')
-    && styleCss.includes('.garden-handoff-steps li::before')
+    && styleCss.includes('.garden-handoff-steps > li::before')
     && styleCss.includes('--handoff-step-rail: linear-gradient')
     && styleCss.includes('--handoff-step-dot-border: 1px solid')
     && styleCss.includes('--handoff-step-text-color: var(--ink-600)')
     && styleCss.includes('padding: var(--handoff-step-item-padding, 1.25rem 0 0);')
+    && styleCss.includes('.garden-handoff-steps > li > span')
+    && styleCss.includes('.garden-handoff-steps > li > p')
+    && !styleCss.includes('.garden-handoff-steps span {')
+    && !styleCss.includes('.garden-handoff-steps p {')
     && styleCss.includes('.library-projects-bridge__link:focus-visible'),
   JSON.stringify({
     libraryUsesSharedClass: librarySectionSource.includes('library-projects-bridge__steps garden-handoff-steps'),
@@ -1758,11 +1762,15 @@ assert(
     quoteHasLabel: quotePreludeJs.includes('aria-label="問いを引用前に巡らせる流れ"'),
     hasSharedListStyle: styleCss.includes('.garden-handoff-steps'),
     hasSharedRailStyle: styleCss.includes('.garden-handoff-steps::before'),
-    hasSharedDotStyle: styleCss.includes('.garden-handoff-steps li::before'),
+    hasSharedDotStyle: styleCss.includes('.garden-handoff-steps > li::before'),
     hasRailDefault: styleCss.includes('--handoff-step-rail: linear-gradient'),
     hasDotDefault: styleCss.includes('--handoff-step-dot-border: 1px solid'),
     hasTextDefault: styleCss.includes('--handoff-step-text-color: var(--ink-600)'),
     hasPaddingFallback: styleCss.includes('padding: var(--handoff-step-item-padding, 1.25rem 0 0);'),
+    hasDirectLabelStyle: styleCss.includes('.garden-handoff-steps > li > span'),
+    hasDirectTextStyle: styleCss.includes('.garden-handoff-steps > li > p'),
+    hasBroadSpanStyle: styleCss.includes('.garden-handoff-steps span {'),
+    hasBroadParagraphStyle: styleCss.includes('.garden-handoff-steps p {'),
     hasBridgeFocusStyle: styleCss.includes('.library-projects-bridge__link:focus-visible')
   })
 );

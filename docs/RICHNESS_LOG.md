@@ -1224,3 +1224,10 @@
 - Changed: Quote前の循環ステップを `garden-handoff-steps` の共通レールへ乗せ、専用の `quote-prelude-steps::before` レールを削除した。番号マーカーと段階表示は維持し、phase gateで共通レール利用を保護した。
 - Learned: Library / Research / Quote の橋渡しを同じ道筋CSSで扱うと、セクション間の間奏を増やさずに1ページの循環感を揃えやすい。
 - Next: `garden-handoff-steps` の変数名を棚卸しし、Library / Research / Quote で未使用になった調整値があれば小さく減らす。
+
+## 2026-04-30
+
+- Focus: Structure
+- Changed: `garden-handoff-steps` の共有セレクタを直下の `li` / label / text だけに絞り、Quote前の循環カード内部のspanへ共有ラベルCSSが暗黙に届かないようにした。phase gateにも広い `span` / `p` セレクタが戻らない保護を追加した。
+- Learned: 共通レールは便利だが、Quoteの番号付きルートのような独自マーカーを混ぜる場合は、共有CSSの届く範囲を浅く保つ方が次の演出を安全に足せる。
+- Next: preview可能な環境で Library / Research / Quote の橋渡しを横断して見て、直下セレクタ化後も余白とラベルの見え方が各セクションらしく残っているか確認する。
