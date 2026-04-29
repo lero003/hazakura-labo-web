@@ -28,6 +28,7 @@ function readFile(path) {
 const html = readFile('dist/index.html');
 const indexSource = readFile('src/pages/index.astro');
 const heroSectionSource = readFile('src/components/HeroSection.astro');
+const foundationSectionsSource = readFile('src/components/FoundationSections.astro');
 const librarySectionSource = readFile('src/components/LibrarySection.astro');
 const mainNavigationSource = readFile('src/components/MainNavigation.astro');
 const footerSectionSource = readFile('src/components/FooterSection.astro');
@@ -273,6 +274,42 @@ assert(
     componentUsesImageAlt: heroSectionSource.includes('siteMeta.imageAlt'),
     htmlHasHero: html.includes('id="hero"'),
     htmlHasHeroTitle: html.includes('id="hero-title"')
+  })
+);
+assert(
+  'foundation sections stay componentized as the opening garden layers',
+  indexSource.includes("import FoundationSections from '../components/FoundationSections.astro'")
+    && indexSource.includes('<FoundationSections />')
+    && !indexSource.includes('id="philosophy"')
+    && !indexSource.includes('id="layers"')
+    && !indexSource.includes('data-render="philosophy"')
+    && !indexSource.includes('data-render="experienceLayers"')
+    && foundationSectionsSource.includes('id="philosophy"')
+    && foundationSectionsSource.includes('data-zone="day"')
+    && foundationSectionsSource.includes('id="philosophy-grid"')
+    && foundationSectionsSource.includes('data-render="philosophy"')
+    && foundationSectionsSource.includes('id="layers"')
+    && foundationSectionsSource.includes('data-zone="dusk"')
+    && foundationSectionsSource.includes('id="layer-grid"')
+    && foundationSectionsSource.includes('data-render="experienceLayers"')
+    && html.indexOf('id="philosophy"') > html.indexOf('id="hero"')
+    && html.indexOf('id="layers"') > html.indexOf('id="philosophy"')
+    && html.indexOf('id="library"') > html.indexOf('id="layers"'),
+  JSON.stringify({
+    importsComponent: indexSource.includes("import FoundationSections from '../components/FoundationSections.astro'"),
+    usesComponent: indexSource.includes('<FoundationSections />'),
+    indexContainsPhilosophy: indexSource.includes('id="philosophy"'),
+    indexContainsLayers: indexSource.includes('id="layers"'),
+    indexContainsPhilosophyRenderHook: indexSource.includes('data-render="philosophy"'),
+    indexContainsLayersRenderHook: indexSource.includes('data-render="experienceLayers"'),
+    componentHasPhilosophy: foundationSectionsSource.includes('id="philosophy"'),
+    componentHasPhilosophyRenderHook: foundationSectionsSource.includes('data-render="philosophy"'),
+    componentHasLayers: foundationSectionsSource.includes('id="layers"'),
+    componentHasLayersRenderHook: foundationSectionsSource.includes('data-render="experienceLayers"'),
+    heroPosition: html.indexOf('id="hero"'),
+    philosophyPosition: html.indexOf('id="philosophy"'),
+    layersPosition: html.indexOf('id="layers"'),
+    libraryPosition: html.indexOf('id="library"')
   })
 );
 assert(

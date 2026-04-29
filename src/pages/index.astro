@@ -1,5 +1,6 @@
 ---
 import HeroSection from '../components/HeroSection.astro';
+import FoundationSections from '../components/FoundationSections.astro';
 import LibrarySection from '../components/LibrarySection.astro';
 import FooterSection from '../components/FooterSection.astro';
 import MainNavigation from '../components/MainNavigation.astro';
@@ -57,41 +58,9 @@ import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
 
     <HeroSection />
 
-    <!-- 哲学科セクション -->
-    <section id="philosophy" class="section section-philosophy" data-zone="day">
-        <div class="section-inner">
-            <div class="section-header">
-                <span class="section-label">Core Philosophy</span>
-                <h2 class="section-title">三つの花弁</h2>
-                <p class="section-desc">
-                    葉桜ラボの根底に流れる、三つの思想。<br>
-                    それは佐久間象山の歌に倣った、「移ろい」への讃歌です。
-                </p>
-            </div>
-            <div class="philosophy-grid" id="philosophy-grid" data-render="philosophy">
-            </div>
-        </div>
-    </section>
-
-    <!-- リッチ化の構造セクション -->
-    <section id="layers" class="section section-layers" data-zone="dusk">
-        <div class="section-inner">
-            <div class="section-header">
-                <span class="section-label">One-page Architecture</span>
-                <h2 class="section-title">一枚の中に、層をつくる</h2>
-                <p class="section-desc">
-                    1ページのまま深くしていくために、思想・成果・演出・循環を<br>
-                    それぞれ独立して育てられるレイヤーとして扱います。
-                </p>
-            </div>
-            <div class="layer-grid" id="layer-grid" data-render="experienceLayers"></div>
-        </div>
-    </section>
-
+    <FoundationSections />
 
     <LibrarySection />
-
-
 
     <!-- 作品・プロジェクト紹介セクション -->
     <section id="projects" class="section section-projects" data-zone="night">

@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure
+- Changed: Philosophy / Layers の導入2セクションを `src/components/FoundationSections.astro` へ切り出し、`index.astro` は Hero から書庫へ続く章立てをコンポーネントで並べるシェルへさらに寄せた。phase gate には、思想・構造セクションのアンカー、zone、描画受け口、Hero -> Philosophy -> Layers -> Library の順序が維持される契約を追加した。
+- Learned: 三つの花弁と一枚の層は静かな導入に見えても、データ描画とスクロールゾーンの始まりを兼ねる保守上の単位になっている。ここを閉じると、次に入口の余白や章間の間奏を磨く時にページシェルを掘らずに済む。
+- Next: `index.astro` に残る Projects / Vision を、静的な章立てとして残すか、データ描画・夜空装飾を含むセクションコンポーネントへ分けるか1つだけ点検する。
+
+## 2026-04-29
+
+- Focus: Structure
 - Changed: 終盤の Quote / quote-prelude / 詩の余韻を `src/components/QuoteSection.astro` へ切り出し、`index.astro` は章立てを並べるシェルに寄せた。phase gate には、Quote がコンポーネント化されたまま、`quote-prelude` の描画受け口と `quote-block` が出力される契約を追加した。
 - Learned: Quote 前の折り返しカードと詩は、見た目の小さな余韻に見えても、終端導線の演出・スクロール到着・最後の引用が集まる保守上の塊になっている。ここを閉じると、次の余韻演出をページ全体から切り離して磨きやすい。
 - Next: `index.astro` に残る Philosophy / Layers / Projects / Vision のうち、静的な章立てとして残すべき見出しと、データ描画や装飾を含む塊として切り出すべき境界を1つだけ続けて点検する。
