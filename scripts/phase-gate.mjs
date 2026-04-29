@@ -562,11 +562,11 @@ assert(
 );
 assert(
   'library projects bridge keeps handoff path styling',
-  ['.library-projects-bridge::after', '.library-projects-bridge__steps::before', '.library-projects-bridge__steps li::before', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet)),
+  ['.library-projects-bridge::after', '.garden-handoff-steps::before', '.garden-handoff-steps li::before', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet)),
   JSON.stringify({
     hasSeed: styleCss.includes('.library-projects-bridge::after'),
-    hasStepPath: styleCss.includes('.library-projects-bridge__steps::before'),
-    hasStepDots: styleCss.includes('.library-projects-bridge__steps li::before')
+    hasStepPath: styleCss.includes('.garden-handoff-steps::before'),
+    hasStepDots: styleCss.includes('.garden-handoff-steps li::before')
   })
 );
 assert(
@@ -1098,6 +1098,23 @@ assert(
   })
 );
 assert('smooth scroll includes library projects bridge', smoothScrollJs.includes('.library-projects-bridge__link'));
+assert(
+  'handoff step chrome uses shared garden class',
+  librarySectionSource.includes('library-projects-bridge__steps garden-handoff-steps')
+    && researchRendererJs.includes('research-log-handoff__steps garden-handoff-steps')
+    && styleCss.includes('.garden-handoff-steps')
+    && styleCss.includes('.garden-handoff-steps::before')
+    && styleCss.includes('.garden-handoff-steps li::before')
+    && styleCss.includes('.library-projects-bridge__link:focus-visible'),
+  JSON.stringify({
+    libraryUsesSharedClass: librarySectionSource.includes('library-projects-bridge__steps garden-handoff-steps'),
+    researchUsesSharedClass: researchRendererJs.includes('research-log-handoff__steps garden-handoff-steps'),
+    hasSharedListStyle: styleCss.includes('.garden-handoff-steps'),
+    hasSharedRailStyle: styleCss.includes('.garden-handoff-steps::before'),
+    hasSharedDotStyle: styleCss.includes('.garden-handoff-steps li::before'),
+    hasBridgeFocusStyle: styleCss.includes('.library-projects-bridge__link:focus-visible')
+  })
+);
 assert(
   'hero return paths use measured smooth scroll arrival',
   smoothScrollJs.includes('.nav-logo[href^="#"]')

@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Structure / Access
+- Changed: Library→Projects と Vision→Research Log の橋渡しステップを `garden-handoff-steps` class へ参加させ、線・点・ラベル・本文のCSSを共通セレクタで扱うようにした。Library の「制作棚へ渡す」リンクには focus-visible の輪郭も足し、phase gate で共通classとフォーカス契約を保護した。
+- Learned: 変数だけを揃えてもセレクタが別々に残ると、次の橋や間奏を足す時に「どちらを真似るか」で迷いやすい。橋のステップを一つのclass名へ寄せると、見た目を増やさず小径の保守境界がはっきりする。
+- Next: preview可能な環境で、Library→Projects のTab移動とモバイル縦線を見て、フォーカスの光が橋の余韻より強く出すぎていないか確認する。
+
+## 2026-04-29
+
 - Focus: Access / Structure
 - Changed: 常設ナビとフッター巡回路に、スクロール位置から現在の小径を `aria-current="location"` で同期する処理を足した。モバイル6分割ナビは現在地セルを薄く点灯させ、デスクトップとフッターは既存のhover/focus表現に寄せて、どの棚を巡っているかを見失いにくくした。phase gate でも現在地同期と表示契約を保護した。
 - Learned: 研究ログまで巡回路が増えた後は、リンクが揃っていても「今どこを歩いているか」が見えないと、特に狭幅では六つの札が同じ重さに見える。情報を増やさず現在地だけを残すと、1ページ庭園の参道が少し読みやすくなる。

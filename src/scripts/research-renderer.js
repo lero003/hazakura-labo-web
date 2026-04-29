@@ -15,7 +15,7 @@
                     <p>${escapeHtml(handoff.text || '')}</p>
                 </div>
                 ${steps.length ? `
-                    <ol class="research-log-handoff__steps" aria-label="入口を研究ログへ戻す流れ">
+                    <ol class="research-log-handoff__steps garden-handoff-steps" aria-label="入口を研究ログへ戻す流れ">
                         ${steps.map((step) => `
                             <li>
                                 <span>${escapeHtml(step.label || '')}</span>

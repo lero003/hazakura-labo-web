@@ -78,7 +78,7 @@ const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boole
                 <h3 id="library-projects-bridge-title">{libraryProjectsBridge.title}</h3>
                 <p>{libraryProjectsBridge.text}</p>
             </div>
-            <ol class="library-projects-bridge__steps" aria-label="書庫の問いを制作棚へ渡す流れ">
+            <ol class="library-projects-bridge__steps garden-handoff-steps" aria-label="書庫の問いを制作棚へ渡す流れ">
                 {libraryProjectsBridge.steps.map((step) => (
                     <li>
                         <span>{step.label}</span>

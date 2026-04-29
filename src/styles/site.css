@@ -1827,8 +1827,7 @@ a {
     margin-bottom: 0.2rem;
 }
 
-.library-projects-bridge__steps,
-.research-log-handoff__steps {
+.garden-handoff-steps {
     position: relative;
     display: grid;
     grid-template-columns: var(--handoff-step-columns, repeat(3, minmax(0, 1fr)));
@@ -1838,8 +1837,7 @@ a {
     list-style: none;
 }
 
-.library-projects-bridge__steps::before,
-.research-log-handoff__steps::before {
+.garden-handoff-steps::before {
     content: '';
     position: absolute;
     top: var(--handoff-step-rail-top, 0.82rem);
@@ -1852,8 +1850,7 @@ a {
     pointer-events: none;
 }
 
-.library-projects-bridge__steps li,
-.research-log-handoff__steps li {
+.garden-handoff-steps li {
     position: relative;
     min-width: 0;
     min-height: var(--handoff-step-item-min-height, 0);
@@ -1864,8 +1861,7 @@ a {
     box-shadow: var(--handoff-step-item-shadow, none);
 }
 
-.library-projects-bridge__steps li::before,
-.research-log-handoff__steps li::before {
+.garden-handoff-steps li::before {
     content: '';
     position: absolute;
     top: var(--handoff-step-dot-top, 0.5rem);
@@ -1878,8 +1874,7 @@ a {
     box-shadow: var(--handoff-step-dot-shadow, none);
 }
 
-.library-projects-bridge__steps span,
-.research-log-handoff__steps span {
+.garden-handoff-steps span {
     display: block;
     color: var(--handoff-step-label-color);
     font-size: var(--handoff-step-label-size, 0.72rem);
@@ -1887,8 +1882,7 @@ a {
     letter-spacing: var(--handoff-step-label-spacing, 0.12em);
 }
 
-.library-projects-bridge__steps p,
-.research-log-handoff__steps p {
+.garden-handoff-steps p {
     margin-top: var(--handoff-step-text-margin, 0);
     color: var(--handoff-step-text-color);
     font-size: var(--handoff-step-text-size, 0.78rem);
@@ -1930,6 +1924,12 @@ a {
 .library-projects-bridge__link:hover {
     transform: translateY(-2px);
     border-color: var(--bridge-link-hover-border);
+    background: var(--bridge-link-hover-bg);
+}
+
+.library-projects-bridge__link:focus-visible {
+    outline: 2px solid var(--bridge-link-hover-border);
+    outline-offset: 3px;
     background: var(--bridge-link-hover-bg);
 }
 
