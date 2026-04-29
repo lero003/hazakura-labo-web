@@ -2,6 +2,13 @@
 
 ## 2026-04-30
 
+- Focus: Structure / Access
+- Changed: Library / Research / Quote の橋渡しステップが使う `.garden-handoff-steps` に、レール・点・文字色・余白の安全な初期値を持たせた。Quote前の循環ステップには `aria-label` を追加し、phase gate も Quote が共有レール契約に乗り続けることを確認する形へ広げた。
+- Learned: 共通classを付けていても、実際の表示が親セクションの変数だけに依存していると、次に小さな間奏を足す時に「どこまでが共通部品か」が弱くなる。初期値と読み上げ名を共通契約へ含めると、見た目を増やさず参道の保守性とアクセシビリティが上がる。
+- Next: 次回は `garden-handoff-steps` の3つの利用箇所を実表示で見て、モバイル縦レールの詰まり方が Library / Research / Quote で揃いすぎず、各セクションの空気を残せているか確認する。
+
+## 2026-04-30
+
 - Focus: Structure
 - Changed: Vision入口ガイドの受付メモdrawerで、外側の `vision-entry-guide__field-drawer` と共有summary helperへ渡す基底classがずれていたため、内部hookも同じ `vision-entry-guide__field-drawer__*` 系へ揃えた。phase gate には旧 `vision-entry-field-drawer` へ戻らない保護を追加した。
 - Learned: 見た目に出ない小さなclass名のずれでも、共通drawerの調整口が二重化すると、次に受付メモのシジルや注記だけ磨きたい時に保守境界がぼやける。外側classとhelper基底classを一致させると、Visionの小径もResearch / Projectsと同じ契約で追える。

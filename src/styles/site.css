@@ -2020,6 +2020,11 @@ a {
 }
 
 .garden-handoff-steps {
+    --handoff-step-rail: linear-gradient(90deg, rgba(232, 88, 122, 0.18), rgba(90, 158, 95, 0.18));
+    --handoff-step-dot-border: 1px solid rgba(232, 88, 122, 0.24);
+    --handoff-step-dot-bg: rgba(255, 255, 255, 0.86);
+    --handoff-step-label-color: var(--sakura-500);
+    --handoff-step-text-color: var(--ink-600);
     position: relative;
     display: grid;
     grid-template-columns: var(--handoff-step-columns, repeat(3, minmax(0, 1fr)));
@@ -2046,7 +2051,7 @@ a {
     position: relative;
     min-width: 0;
     min-height: var(--handoff-step-item-min-height, 0);
-    padding: var(--handoff-step-item-padding);
+    padding: var(--handoff-step-item-padding, 1.25rem 0 0);
     border: var(--handoff-step-item-border, 0);
     border-radius: var(--handoff-step-item-radius, 0);
     background: var(--handoff-step-item-bg, transparent);

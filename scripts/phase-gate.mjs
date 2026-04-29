@@ -1731,16 +1731,28 @@ assert(
   'handoff step chrome uses shared garden class',
   librarySectionSource.includes('library-projects-bridge__steps garden-handoff-steps')
     && researchRendererJs.includes('research-log-handoff__steps garden-handoff-steps')
+    && quotePreludeJs.includes('quote-prelude-steps garden-handoff-steps')
+    && quotePreludeJs.includes('aria-label="問いを引用前に巡らせる流れ"')
     && styleCss.includes('.garden-handoff-steps')
     && styleCss.includes('.garden-handoff-steps::before')
     && styleCss.includes('.garden-handoff-steps li::before')
+    && styleCss.includes('--handoff-step-rail: linear-gradient')
+    && styleCss.includes('--handoff-step-dot-border: 1px solid')
+    && styleCss.includes('--handoff-step-text-color: var(--ink-600)')
+    && styleCss.includes('padding: var(--handoff-step-item-padding, 1.25rem 0 0);')
     && styleCss.includes('.library-projects-bridge__link:focus-visible'),
   JSON.stringify({
     libraryUsesSharedClass: librarySectionSource.includes('library-projects-bridge__steps garden-handoff-steps'),
     researchUsesSharedClass: researchRendererJs.includes('research-log-handoff__steps garden-handoff-steps'),
+    quoteUsesSharedClass: quotePreludeJs.includes('quote-prelude-steps garden-handoff-steps'),
+    quoteHasLabel: quotePreludeJs.includes('aria-label="問いを引用前に巡らせる流れ"'),
     hasSharedListStyle: styleCss.includes('.garden-handoff-steps'),
     hasSharedRailStyle: styleCss.includes('.garden-handoff-steps::before'),
     hasSharedDotStyle: styleCss.includes('.garden-handoff-steps li::before'),
+    hasRailDefault: styleCss.includes('--handoff-step-rail: linear-gradient'),
+    hasDotDefault: styleCss.includes('--handoff-step-dot-border: 1px solid'),
+    hasTextDefault: styleCss.includes('--handoff-step-text-color: var(--ink-600)'),
+    hasPaddingFallback: styleCss.includes('padding: var(--handoff-step-item-padding, 1.25rem 0 0);'),
     hasBridgeFocusStyle: styleCss.includes('.library-projects-bridge__link:focus-visible')
   })
 );
