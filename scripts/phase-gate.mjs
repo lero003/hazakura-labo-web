@@ -1247,6 +1247,31 @@ assert(
   })
 );
 assert(
+  'project placeholder thumbnails use CSS-rendered sigils',
+  hazakuraContent.projectsGroup.items
+    .filter((item) => !item.image)
+    .every((item) => item.placeholderSigil && !item.placeholderIcon)
+    && projectRendererJs.includes('placeholder-sigil placeholder-sigil--')
+    && projectRendererJs.includes('data-placeholder-sigil')
+    && !projectRendererJs.includes('placeholderIcon')
+    && ['scout', 'message', 'experiment', 'map', 'sakura'].every((sigil) => styleCss.includes(`.placeholder-sigil--${sigil}`))
+    && styleCss.includes('.project-thumb-placeholder[data-placeholder-sigil="scout"]')
+    && !styleCss.includes('.placeholder-icon'),
+  JSON.stringify({
+    placeholders: hazakuraContent.projectsGroup.items
+      .filter((item) => !item.image)
+      .map((item) => ({
+        title: item.title,
+        placeholderSigil: item.placeholderSigil,
+        placeholderIcon: item.placeholderIcon
+      })),
+    rendererHasSigil: projectRendererJs.includes('placeholder-sigil placeholder-sigil--'),
+    rendererHasLegacyIcon: projectRendererJs.includes('placeholderIcon'),
+    missingSigilStyles: ['scout', 'message', 'experiment', 'map', 'sakura'].filter((sigil) => !styleCss.includes(`.placeholder-sigil--${sigil}`)),
+    hasLegacyIconStyle: styleCss.includes('.placeholder-icon')
+  })
+);
+assert(
   'projects control colors stay tokenized by section',
   [
     '--project-lane-guide-item-bg',

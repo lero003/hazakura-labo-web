@@ -5681,6 +5681,13 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-thumb-placeholder {
+    --placeholder-accent-rgb: 232, 88, 122;
+    --placeholder-sigil-bg:
+        radial-gradient(circle at 50% 36%, rgba(var(--placeholder-accent-rgb), 0.18), transparent 60%),
+        rgba(255, 255, 255, 0.54);
+    --placeholder-sigil-border: rgba(var(--placeholder-accent-rgb), 0.22);
+    --placeholder-sigil-color: rgba(var(--placeholder-accent-rgb), 0.78);
+    --placeholder-pattern: rgba(var(--placeholder-accent-rgb), 0.035);
     position: absolute;
     inset: 0;
     display: flex;
@@ -5692,18 +5699,162 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-card--placeholder .project-thumb-placeholder {
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(139, 92, 246, 0.03) 10px,
-        rgba(139, 92, 246, 0.03) 20px
-    );
+    background:
+        radial-gradient(circle at 50% 44%, rgba(var(--placeholder-accent-rgb), 0.1), transparent 6rem),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, var(--placeholder-pattern) 10px, var(--placeholder-pattern) 20px);
 }
 
-.placeholder-icon {
-    font-size: 3rem;
-    opacity: 0.5;
+.project-thumb-placeholder[data-placeholder-sigil="scout"] {
+    --placeholder-accent-rgb: 90, 158, 95;
+}
+
+.project-thumb-placeholder[data-placeholder-sigil="message"] {
+    --placeholder-accent-rgb: 232, 88, 122;
+}
+
+.project-thumb-placeholder[data-placeholder-sigil="experiment"] {
+    --placeholder-accent-rgb: 139, 92, 246;
+}
+
+.project-thumb-placeholder[data-placeholder-sigil="map"] {
+    --placeholder-accent-rgb: 71, 121, 157;
+}
+
+.project-thumb-placeholder[data-placeholder-sigil="sakura"] {
+    --placeholder-accent-rgb: 232, 88, 122;
+}
+
+.placeholder-sigil {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 4.35rem;
+    height: 4.35rem;
+    border: 1px solid var(--placeholder-sigil-border);
+    border-radius: 50%;
+    background: var(--placeholder-sigil-bg);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.54),
+        0 16px 36px rgba(var(--placeholder-accent-rgb), 0.12);
+    color: var(--placeholder-sigil-color);
+    opacity: 0.9;
+}
+
+.placeholder-sigil::before,
+.placeholder-sigil::after,
+.placeholder-sigil__mark {
+    content: '';
+    position: absolute;
+    display: block;
+}
+
+.placeholder-sigil--scout {
+    --placeholder-accent-rgb: 90, 158, 95;
+}
+
+.placeholder-sigil--message {
+    --placeholder-accent-rgb: 232, 88, 122;
+}
+
+.placeholder-sigil--experiment {
+    --placeholder-accent-rgb: 139, 92, 246;
+}
+
+.placeholder-sigil--map {
+    --placeholder-accent-rgb: 71, 121, 157;
+}
+
+.placeholder-sigil--sakura {
+    --placeholder-accent-rgb: 232, 88, 122;
+}
+
+.placeholder-sigil--scout::before {
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    transform: translate(-0.22rem, -0.2rem);
+}
+
+.placeholder-sigil--scout::after {
+    width: 1.2rem;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transform: translate(1rem, 1rem) rotate(42deg);
+}
+
+.placeholder-sigil--message::before {
+    width: 2.35rem;
+    height: 1.55rem;
+    border: 2px solid currentColor;
+    border-radius: 5px;
+}
+
+.placeholder-sigil--message::after {
+    width: 1.68rem;
+    height: 1.68rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-0.36rem) rotate(45deg);
+}
+
+.placeholder-sigil--experiment::before {
+    width: 0.78rem;
+    height: 1.4rem;
+    border: 2px solid currentColor;
+    border-bottom: 0;
+    border-radius: 5px 5px 2px 2px;
+    transform: translateY(-0.58rem);
+}
+
+.placeholder-sigil--experiment::after {
+    width: 2.25rem;
+    height: 1.72rem;
+    border: 2px solid currentColor;
+    border-radius: 0.35rem 0.35rem 1.1rem 1.1rem;
+    background: linear-gradient(180deg, transparent 44%, rgba(var(--placeholder-accent-rgb), 0.18) 45%);
+    clip-path: polygon(28% 0, 72% 0, 100% 100%, 0 100%);
+    transform: translateY(0.32rem);
+}
+
+.placeholder-sigil--map::before {
+    width: 2.65rem;
+    height: 1.9rem;
+    border: 2px solid currentColor;
+    border-radius: 5px;
+    transform: skewX(-8deg);
+}
+
+.placeholder-sigil--map::after {
+    width: 2px;
+    height: 1.9rem;
+    background: currentColor;
+    box-shadow: 0.72rem 0 0 currentColor;
+    opacity: 0.62;
+}
+
+.placeholder-sigil--sakura::before,
+.placeholder-sigil--sakura::after,
+.placeholder-sigil--sakura .placeholder-sigil__mark {
+    width: 1.08rem;
+    height: 1.78rem;
+    border-radius: 999px 999px 999px 0;
+    background: currentColor;
+    opacity: 0.72;
+    transform-origin: 50% 88%;
+}
+
+.placeholder-sigil--sakura::before {
+    transform: rotate(-38deg) translate(-0.28rem, -0.42rem);
+}
+
+.placeholder-sigil--sakura::after {
+    transform: rotate(38deg) translate(0.28rem, -0.42rem);
+}
+
+.placeholder-sigil--sakura .placeholder-sigil__mark {
+    transform: rotate(0deg) translateY(-0.42rem);
 }
 
 .placeholder-text {
@@ -6624,11 +6775,19 @@ body.theme-night .section-projects .project-card:hover {
 }
 
 body.theme-night .section-projects .project-thumb-placeholder {
+    --placeholder-sigil-bg:
+        radial-gradient(circle at 50% 36%, rgba(var(--placeholder-accent-rgb), 0.22), transparent 60%),
+        rgba(255, 255, 255, 0.045);
+    --placeholder-sigil-border: rgba(var(--placeholder-accent-rgb), 0.34);
+    --placeholder-sigil-color: rgba(255, 255, 255, 0.62);
+    --placeholder-pattern: rgba(255, 255, 255, 0.035);
     background: rgba(255, 255, 255, 0.04);
 }
 
-body.theme-night .section-projects .placeholder-icon {
-    opacity: 0.3;
+body.theme-night .section-projects .project-card--placeholder .project-thumb-placeholder {
+    background:
+        radial-gradient(circle at 50% 44%, rgba(var(--placeholder-accent-rgb), 0.14), transparent 6rem),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, var(--placeholder-pattern) 10px, var(--placeholder-pattern) 20px);
 }
 
 body.theme-night .section-projects .placeholder-text {
@@ -7427,8 +7586,9 @@ body.theme-night .nav-logo {
         font-size: 0.8rem;
     }
 
-    .placeholder-icon {
-        font-size: 2.4rem;
+    .placeholder-sigil {
+        width: 3.75rem;
+        height: 3.75rem;
     }
 
     .research-log-card {

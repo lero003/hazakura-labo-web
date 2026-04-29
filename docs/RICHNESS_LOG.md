@@ -2,6 +2,13 @@
 
 ## 2026-04-30
 
+- Focus: Visual / Structure
+- Changed: Projects の画像なしカードを `placeholderIcon` の絵文字表示から `placeholderSigil` に置き換え、レンダラーが共通の `placeholder-sigil` DOMを出す形へ寄せた。scout / message / experiment / map / sakura の小さな印はCSSで描き、phase gateで旧 `placeholderIcon` と `.placeholder-icon` へ戻らない契約を追加した。
+- Learned: 制作物カードの本文や導線が育つほど、仮サムネイルだけOS絵文字に任せると実験棚の完成度が一段弱く見える。データには意味だけを置き、見た目はCSSの小物として閉じると、次のカード追加でも庭の質感を保ちやすい。
+- Next: GUI権限のある環境で、Projects の6つの仮サムネイルをデスクトップ/モバイル幅と夜テーマで見て、CSSシジルの細部が潰れすぎないか確認する。
+
+## 2026-04-30
+
 - Focus: Structure
 - Changed: Vision入口ガイドの「受付メモ」ドロワーを、手書きの `summary` から `HazakuraDom.renderDrawerSummary` へ寄せた。共有helperには任意の `note` スロットを足し、Research / Projects / Vision の小径summaryが同じ生成口とCSS chromeを使うよう phase gate で保護した。
 - Learned: 小さな受付メモでも、summary構造だけ別管理のままだと次の入口種別追加で文言・開閉記号・focus表現がずれやすい。Vision特有の軽さはCSSトークンで残し、DOM生成口だけ揃える方が戻しやすい。
