@@ -1,18 +1,22 @@
 export const process = [
   {
-    "icon": "🔍",
+    "sigil": "question",
+    "mark": "問",
     "label": "問い"
   },
   {
-    "icon": "⚗️",
+    "sigil": "experiment",
+    "mark": "試",
     "label": "実験"
   },
   {
-    "icon": "💡",
+    "sigil": "discovery",
+    "mark": "灯",
     "label": "発見"
   },
   {
-    "icon": "🌸",
+    "sigil": "cycle",
+    "mark": "巡",
     "label": "循環"
   }
 ];

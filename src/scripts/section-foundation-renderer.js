@@ -37,16 +37,26 @@
         `).join('');
     }
 
+    function getProcessSigilClass(sigil) {
+        return String(sigil || 'question').toLowerCase().replace(/[^a-z0-9-]/g, '') || 'question';
+    }
+
     function renderProcess(items) {
         const root = document.querySelector('[data-render="process"]');
         if (!root || !items) return;
-        root.innerHTML = items.map((item, index) => `
+        root.innerHTML = items.map((item, index) => {
+            const sigil = getProcessSigilClass(item.sigil);
+            const mark = item.mark || item.label;
+            return `
             ${index > 0 ? '<div class="process-connector"></div>' : ''}
             <div class="process-step">
-                <div class="process-icon">${escapeHtml(item.icon)}</div>
+                <div class="process-sigil process-sigil--${escapeHtml(sigil)}" data-process-sigil="${escapeHtml(sigil)}" aria-hidden="true">
+                    <span class="process-sigil__mark">${escapeHtml(mark)}</span>
+                </div>
                 <span class="process-label">${escapeHtml(item.label)}</span>
             </div>
-        `).join('');
+        `;
+        }).join('');
     }
 
     function render(content) {

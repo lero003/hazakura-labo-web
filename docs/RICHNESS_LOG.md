@@ -3,6 +3,13 @@
 ## 2026-04-30
 
 - Focus: Visual / Structure
+- Changed: Vision後半の「問い -> 実験 -> 発見 -> 循環」process flow を、OS絵文字 `icon` から `sigil` / `mark` データへ置き換えた。`section-foundation-renderer.js` は `process-sigil` DOMを生成し、question / experiment / discovery / cycle の小さな印をCSSで描く。昼・夕景・夜テーマ、モバイルサイズ、phase gate も同じ契約へ揃えた。
+- Learned: Visionカードのシジルが整った後は、その直後の循環ステップだけ絵文字の丸バッジに残ると、構想からResearch Logへ渡る橋が少し既製UIに戻って見える。意味データと表示印を分けると、終盤の小さな間奏も庭の私物感として保てる。
+- Next: 次回は process flow の丸いコンテナとResearch Log冒頭の間隔を実表示で見て、モバイル幅で「橋」が強すぎず次の記録へ渡せているか確認する。
+
+## 2026-04-30
+
+- Focus: Visual / Structure
 - Changed: VisionカードのOS絵文字 `icon` を `sigil` / `mark` データに置き換え、`vision-renderer.js` が `vision-sigil` DOMを出す形へ寄せた。AI寺子屋、自分史、レトロ道具、地域LLM、Research Log、Magic Tools の印はCSSで描き、夜テーマとモバイルサイズも同じ部品で調整する。phase gate には、Visionカードが絵文字表示へ戻らない契約を追加した。
 - Learned: Visionは「未来の構想」なので、入口ガイドが整うほどカード冒頭のOS絵文字がサービス一覧のように見えやすい。意味データと表示印を分けると、構想の柔らかさを残しつつ、庭全体の小物の質感を揃えられる。
 - Next: `process` の4ステップだけ絵文字 `icon` が残っているため、次回は「問い -> 実験 -> 発見 -> 循環」の流れをCSSシジル化するか、現状のまま読ませるかを1箇所だけ判断する。

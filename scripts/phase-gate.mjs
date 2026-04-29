@@ -1099,6 +1099,28 @@ assert(
   })
 );
 assert(
+  'process flow uses CSS-rendered sigils rather than emoji icons',
+  hazakuraContent.process.every((item) => item.sigil && item.mark && item.label && !item.icon)
+    && sectionFoundationRendererJs.includes('process-sigil process-sigil--')
+    && sectionFoundationRendererJs.includes('data-process-sigil')
+    && sectionFoundationRendererJs.includes('process-sigil__mark')
+    && !sectionFoundationRendererJs.includes('class="process-icon"')
+    && !sectionFoundationRendererJs.includes('item.icon)</div>')
+    && ['question', 'experiment', 'discovery', 'cycle'].every((sigil) => styleCss.includes(`.process-sigil--${sigil}`))
+    && !styleCss.includes('.process-icon'),
+  JSON.stringify({
+    process: hazakuraContent.process.map((item) => ({
+      sigil: item.sigil,
+      mark: item.mark,
+      icon: item.icon
+    })),
+    rendererHasSigil: sectionFoundationRendererJs.includes('process-sigil process-sigil--'),
+    rendererHasLegacyIcon: sectionFoundationRendererJs.includes('class="process-icon"') || sectionFoundationRendererJs.includes('item.icon)</div>'),
+    missingStyles: ['question', 'experiment', 'discovery', 'cycle'].filter((sigil) => !styleCss.includes(`.process-sigil--${sigil}`)),
+    hasLegacyStyle: styleCss.includes('.process-icon')
+  })
+);
+assert(
   'content renderers keeps projects markup out of the orchestrator',
   !contentRenderersJs.includes('class="project-card"')
     && !contentRenderersJs.includes('class="project-control-deck"')

@@ -2308,37 +2308,157 @@ a {
     transform: translateY(0);
 }
 
-.process-icon {
+.process-sigil {
+    --process-sigil-rgb: 232, 88, 122;
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background: var(--card-bg-hover, rgba(255, 255, 255, 0.8));
+    background:
+        radial-gradient(circle at 50% 32%, rgba(var(--process-sigil-rgb), 0.18), transparent 54%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 250, 252, 0.62));
     backdrop-filter: blur(10px);
-    border: 1px solid var(--ink-200);
+    border: 1px solid rgba(var(--process-sigil-rgb), 0.28);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    transition: all var(--duration-normal) var(--ease-spring);
+    position: relative;
+    overflow: hidden;
+    color: rgb(var(--process-sigil-rgb));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.76),
+        0 12px 30px rgba(var(--process-sigil-rgb), 0.1);
+    transition:
+        transform var(--duration-normal) var(--ease-spring),
+        box-shadow var(--duration-normal) var(--ease-spring),
+        border-color var(--duration-normal) var(--ease-spring);
 }
 
-.process-step.visible .process-icon {
+.process-sigil::before,
+.process-sigil::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+}
+
+.process-sigil__mark {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-serif);
+    font-size: 1.42rem;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.process-sigil--question {
+    --process-sigil-rgb: 77, 161, 169;
+}
+
+.process-sigil--question::before {
+    width: 1.55rem;
+    height: 1.55rem;
+    border: 1px solid rgba(var(--process-sigil-rgb), 0.36);
+    border-radius: 50%;
+    inset: 0.72rem auto auto 0.82rem;
+}
+
+.process-sigil--question::after {
+    width: 0.74rem;
+    height: 1px;
+    background: rgba(var(--process-sigil-rgb), 0.4);
+    transform: rotate(42deg);
+    right: 1rem;
+    bottom: 1.1rem;
+}
+
+.process-sigil--experiment {
+    --process-sigil-rgb: 139, 92, 246;
+}
+
+.process-sigil--experiment::before {
+    width: 1.72rem;
+    height: 1.72rem;
+    border: 1px solid rgba(var(--process-sigil-rgb), 0.34);
+    border-radius: 999px 999px 42% 42%;
+    left: 50%;
+    bottom: 0.84rem;
+    transform: translateX(-50%);
+}
+
+.process-sigil--experiment::after {
+    width: 0.58rem;
+    height: 1.06rem;
+    border-inline: 1px solid rgba(var(--process-sigil-rgb), 0.32);
+    top: 0.78rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.process-sigil--discovery {
+    --process-sigil-rgb: 245, 194, 105;
+}
+
+.process-sigil--discovery::before {
+    width: 1.38rem;
+    height: 1.38rem;
+    border-radius: 50%;
+    background: rgba(var(--process-sigil-rgb), 0.22);
+    box-shadow: 0 0 0 0.42rem rgba(var(--process-sigil-rgb), 0.08);
+    top: 0.74rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.process-sigil--discovery::after {
+    width: 1.08rem;
+    height: 0.32rem;
+    border-radius: 999px;
+    background: rgba(var(--process-sigil-rgb), 0.32);
+    left: 50%;
+    bottom: 0.94rem;
+    transform: translateX(-50%);
+}
+
+.process-sigil--cycle {
+    --process-sigil-rgb: 90, 158, 95;
+}
+
+.process-sigil--cycle::before {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid rgba(var(--process-sigil-rgb), 0.36);
+    border-right-color: transparent;
+    border-radius: 50%;
+    inset: 0.72rem auto auto 50%;
+    transform: translateX(-50%) rotate(-24deg);
+}
+
+.process-sigil--cycle::after {
+    width: 0.46rem;
+    height: 0.46rem;
+    border-top: 1px solid rgba(var(--process-sigil-rgb), 0.44);
+    border-right: 1px solid rgba(var(--process-sigil-rgb), 0.44);
+    right: 1.12rem;
+    top: 1.25rem;
+    transform: rotate(42deg);
+}
+
+.process-step.visible .process-sigil {
     animation: popIn 0.6s var(--ease-spring) backwards;
 }
 
-.process-step:nth-child(1).visible .process-icon {
+.process-step:nth-child(1).visible .process-sigil {
     animation-delay: 0s;
 }
 
-.process-step:nth-child(3).visible .process-icon {
+.process-step:nth-child(3).visible .process-sigil {
     animation-delay: 0.15s;
 }
 
-.process-step:nth-child(5).visible .process-icon {
+.process-step:nth-child(5).visible .process-sigil {
     animation-delay: 0.3s;
 }
 
-.process-step:nth-child(7).visible .process-icon {
+.process-step:nth-child(7).visible .process-sigil {
     animation-delay: 0.45s;
 }
 
@@ -2376,10 +2496,12 @@ a {
     }
 }
 
-.process-step:hover .process-icon {
+.process-step:hover .process-sigil {
     transform: scale(1.15) rotate(5deg);
-    box-shadow: 0 10px 30px rgba(232, 88, 122, 0.15);
-    border-color: var(--sakura-200);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.82),
+        0 14px 32px rgba(var(--process-sigil-rgb), 0.18);
+    border-color: rgba(var(--process-sigil-rgb), 0.44);
 }
 
 .process-label {
@@ -4523,8 +4645,10 @@ body.zone-dusk .philosophy-card {
     background: rgba(255, 248, 240, 0.7);
 }
 
-body.zone-dusk .process-icon {
-    background: rgba(255, 248, 240, 0.8);
+body.zone-dusk .process-sigil {
+    background:
+        radial-gradient(circle at 50% 32%, rgba(var(--process-sigil-rgb), 0.2), transparent 54%),
+        linear-gradient(145deg, rgba(255, 248, 240, 0.9), rgba(255, 244, 232, 0.64));
 }
 
 body.zone-dusk .highlight-item {
@@ -4907,10 +5031,13 @@ body.theme-night.zone-aurora #aurora-canvas {
         flex-wrap: wrap;
     }
 
-    .process-icon {
+    .process-sigil {
         width: 55px;
         height: 55px;
-        font-size: 1.4rem;
+    }
+
+    .process-sigil__mark {
+        font-size: 1.12rem;
     }
 }
 
@@ -6781,9 +6908,15 @@ body.theme-night .section-vision .process-flow--vision {
     box-shadow: 0 22px 58px rgba(0, 0, 0, 0.2);
 }
 
-body.theme-night .section-vision .process-icon {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(139, 92, 246, 0.2);
+body.theme-night .section-vision .process-sigil {
+    background:
+        radial-gradient(circle at 50% 32%, rgba(var(--process-sigil-rgb), 0.22), transparent 54%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(18, 21, 34, 0.62));
+    border-color: rgba(var(--process-sigil-rgb), 0.34);
+    color: rgba(255, 255, 255, 0.78);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 14px 32px rgba(var(--process-sigil-rgb), 0.14);
 }
 
 body.theme-night .section-vision .research-log-card {
