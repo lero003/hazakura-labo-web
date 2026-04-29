@@ -1213,6 +1213,33 @@ assert(
   })
 );
 assert(
+  'projects control colors stay tokenized by section',
+  [
+    '--project-lane-guide-item-bg',
+    '--project-lane-guide-title',
+    '--project-lane-filter-button-hover-bg',
+    '--project-lane-filter-button-active-color',
+    '--project-lane-status-color'
+  ].every((snippet) => styleCss.includes(snippet))
+    && styleCss.includes('body.theme-night .section-projects {\n    --project-lane-guide-item-bg')
+    && !styleCss.includes('body.theme-night .section-projects .project-lane-guide__item {')
+    && !styleCss.includes('body.theme-night .section-projects .project-lane-filter {')
+    && !styleCss.includes('body.theme-night .section-projects .project-lane-filter__button {')
+    && !styleCss.includes('body.theme-night .section-projects .project-lane-status {'),
+  JSON.stringify({
+    hasGuideBgToken: styleCss.includes('--project-lane-guide-item-bg'),
+    hasGuideTitleToken: styleCss.includes('--project-lane-guide-title'),
+    hasFilterHoverToken: styleCss.includes('--project-lane-filter-button-hover-bg'),
+    hasFilterActiveToken: styleCss.includes('--project-lane-filter-button-active-color'),
+    hasStatusToken: styleCss.includes('--project-lane-status-color'),
+    hasNightTokenScope: styleCss.includes('body.theme-night .section-projects {\n    --project-lane-guide-item-bg'),
+    hasDirectNightGuide: styleCss.includes('body.theme-night .section-projects .project-lane-guide__item {'),
+    hasDirectNightFilter: styleCss.includes('body.theme-night .section-projects .project-lane-filter {'),
+    hasDirectNightButton: styleCss.includes('body.theme-night .section-projects .project-lane-filter__button {'),
+    hasDirectNightStatus: styleCss.includes('body.theme-night .section-projects .project-lane-status {')
+  })
+);
+assert(
   'project cards compress trail notes',
   projectRendererJs.includes('class="project-trail"')
     && styleCss.includes('.project-trail')

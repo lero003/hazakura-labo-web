@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure
+- Changed: Projects の棚ガイド、フィルター、状態文に散っていた昼夜の色指定を `.section-projects` のローカルトークンへ寄せた。夜テーマは操作面の子セレクタを直接上書きせず、棚全体の変数だけを差し替える形にし、phase gate で直指定へ戻らない契約を追加した。
+- Learned: Projects はコンポーネント化された後も、棚操作の色契約がCSS内でばらけていると、次にフィルターのリズムや夜の導線を磨く時に保守の小径が見えにくい。見た目の値を増やさず変数境界へ戻すだけでも、実験棚の調整口が細くなる。
+- Next: Projects のカード本体にもまだ夜テーマの直指定が残るため、次回は `project-card` / `project-meta-row` / `project-action` のどれか1系統だけ、見た目を変えずに同じローカルトークンへ寄せられるか点検する。
+
+## 2026-04-29
+
+- Focus: Structure
 - Changed: Projects と Vision をそれぞれ `src/components/ProjectsSection.astro` / `src/components/VisionSection.astro` へ切り出し、`index.astro` は Library から Quote へ続く章立てだけを並べる形に寄せた。phase gate には、Projects の夜ゾーン・描画受け口、Vision の月ゾーン・星/月装飾・Research Log 入れ子アンカーがコンポーネント側に残る契約を追加した。
 - Learned: Projects は制作棚の入口、Vision は夜空装飾と入れ子ログを持つ終盤の庭であり、ページシェルに残すには責務が重い。見た目を変えずに閉じると、次回以降の導線や間奏をセクション単位で磨きやすくなる。
 - Next: `src/styles/site.css` の Projects / Vision 周辺で、コンポーネント境界に合わせてコメントやセクション順だけ小さく整えられるか点検する。
