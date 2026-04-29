@@ -1147,3 +1147,10 @@
 - Changed: GitHub push後のCloudflare Pages自動デプロイ先 `https://hazakura-labo-web.pages.dev` と、現在の静的サイト運用設定をREADMEと改善ループに追記。
 - Learned: フレームワーク導入は将来の選択肢として残せるが、root/build設定、相対パス、スクロール・Canvas演出の初期化が崩れる可能性を先に見る必要がある。
 - Next: 必要になったら、現状維持 / Astro / Vite / Next.js の比較メモを作る。
+
+## 2026-04-30
+
+- Focus: Structure / Access
+- Changed: Vision の入力種別ガイドから対応する構想カードへ `aria-controls` と安定IDを付け、フォーカスJSが明示されたカードIDを優先してスクロールするようにした。
+- Learned: 入口と受け皿の対応をDOM上にも出しておくと、カードが増えても「どの入口がどこへ巡るか」をCSS/JSの暗黙順序だけに頼らず保てる。
+- Next: Vision 入口の選択状態がモバイルで長く残った時の解除感を、表示追加なしでさらに軽くできるか見る。

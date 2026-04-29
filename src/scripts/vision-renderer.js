@@ -16,6 +16,10 @@
         return entry && typeof entry === 'object' && entry.kind ? entry.kind : '';
     }
 
+    function getVisionEntryCardId(kind, index) {
+        return kind ? `vision-entry-${kind}-${index + 1}` : '';
+    }
+
     function renderVisionEntryFields(fields) {
         if (!Array.isArray(fields) || !fields.length) return '';
         return `
@@ -86,6 +90,15 @@
                 return counts;
             }, {})
             : {};
+        const kindCardIds = Array.isArray(visionItems)
+            ? visionItems.reduce((ids, item, index) => {
+                const kind = getVisionEntryKind(item);
+                if (!kind) return ids;
+                ids[kind] = ids[kind] || [];
+                ids[kind].push(getVisionEntryCardId(kind, index));
+                return ids;
+            }, {})
+            : {};
         return `
             <article class="vision-entry-guide" aria-label="${escapeHtml(guide.title || 'コミュニティ入力種別')}">
                 <div class="vision-entry-guide__copy">
@@ -95,8 +108,14 @@
                 </div>
                 ${kinds.length ? `
                     <div class="vision-entry-guide__kinds">
-                        ${kinds.map((item) => `
-                            <div class="vision-entry-guide__kind" data-entry-kind="${escapeHtml(item.kind || 'seed')}">
+                        ${kinds.map((item) => {
+                            const kind = item.kind || 'seed';
+                            const controlledIds = (kindCardIds[kind] || []).join(' ');
+                            const controlsAttribute = controlledIds
+                                ? ` data-entry-card-targets="${escapeHtml(controlledIds)}" aria-controls="${escapeHtml(controlledIds)}"`
+                                : '';
+                            return `
+                            <div class="vision-entry-guide__kind" data-entry-kind="${escapeHtml(kind)}"${controlsAttribute}>
                                 <span>${escapeHtml(item.label || item.kind || '種')}</span>
                                 <p>${escapeHtml(item.text || '')}</p>
                                 <small>
@@ -106,7 +125,8 @@
                                 ${item.flow ? `<span class="vision-entry-guide__flow">${escapeHtml(item.flow)}</span>` : ''}
                                 ${renderVisionEntryFields(item.fields)}
                             </div>
-                        `).join('')}
+                        `;
+                        }).join('')}
                     </div>
                 ` : ''}
             </article>
@@ -124,12 +144,14 @@
         const entryKinds = !Array.isArray(visionsGroup) && visionsGroup.entryGuide
             ? getVisionEntryKinds(visionsGroup.entryGuide)
             : {};
-        const cards = items.map((item) => {
+        const cards = items.map((item, index) => {
             const entryKind = getVisionEntryKind(item);
             const entryKindAttribute = entryKind ? ` data-entry-kind="${escapeHtml(entryKind)}"` : '';
+            const entryCardId = getVisionEntryCardId(entryKind, index);
+            const entryCardIdAttribute = entryCardId ? ` id="${escapeHtml(entryCardId)}"` : '';
             const entryKindBadge = entryKind ? renderVisionEntryKindBadge(entryKind, entryKinds[entryKind]) : '';
             return `
-            <article class="vision-card"${entryKindAttribute} data-reveal data-reveal-stagger data-tilt>
+            <article class="vision-card"${entryKindAttribute}${entryCardIdAttribute} data-reveal data-reveal-stagger data-tilt>
                 <div class="vision-icon">${escapeHtml(item.icon)}</div>
                 ${entryKindBadge}
                 <h3>${escapeHtml(item.title)}</h3>

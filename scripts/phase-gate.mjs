@@ -1437,20 +1437,41 @@ assert(
   })
 );
 assert(
+  'vision entry controls expose explicit card targets',
+  visionRendererJs.includes('getVisionEntryCardId')
+    && visionRendererJs.includes('data-entry-card-targets')
+    && visionRendererJs.includes('aria-controls')
+    && visionRendererJs.includes('id="${escapeHtml(entryCardId)}"')
+    && visionEntryFocusJs.includes('dataset.entryCardTargets')
+    && visionEntryFocusJs.includes('document.getElementById(id)')
+    && visionEntryFocusJs.includes('findMatchingCard(kind, item)')
+    && styleCss.includes('scroll-margin-top: calc(var(--hazakura-anchor-offset, 96px) + 1rem)'),
+  JSON.stringify({
+    hasCardIdHelper: visionRendererJs.includes('getVisionEntryCardId'),
+    hasTargetData: visionRendererJs.includes('data-entry-card-targets'),
+    hasAriaControls: visionRendererJs.includes('aria-controls'),
+    hasCardIdAttribute: visionRendererJs.includes('id="${escapeHtml(entryCardId)}"'),
+    focusReadsTargets: visionEntryFocusJs.includes('dataset.entryCardTargets'),
+    focusResolvesIds: visionEntryFocusJs.includes('document.getElementById(id)'),
+    focusUsesControlledTarget: visionEntryFocusJs.includes('findMatchingCard(kind, item)'),
+    hasScrollMargin: styleCss.includes('scroll-margin-top: calc(var(--hazakura-anchor-offset, 96px) + 1rem)')
+  })
+);
+assert(
   'vision entry focus exposes a stable selection control',
   visionEntryFocusJs.includes("item.setAttribute('role', 'button')")
     && visionEntryFocusJs.includes("item.setAttribute('aria-pressed', 'false')")
     && visionEntryFocusJs.includes("item.setAttribute('aria-pressed', isPinned ? 'true' : 'false')")
     && visionEntryFocusJs.includes("applyKind(pinnedKind || '')")
     && visionEntryFocusJs.includes('isFromNestedSummary(event)')
-    && visionEntryFocusJs.includes('togglePinnedKind(kind)'),
+    && visionEntryFocusJs.includes('togglePinnedKind(kind, item)'),
   JSON.stringify({
     hasButtonRole: visionEntryFocusJs.includes("item.setAttribute('role', 'button')"),
     initializesPressed: visionEntryFocusJs.includes("item.setAttribute('aria-pressed', 'false')"),
     syncsPressedState: visionEntryFocusJs.includes("item.setAttribute('aria-pressed', isPinned ? 'true' : 'false')"),
     restoresPinnedPreview: visionEntryFocusJs.includes("applyKind(pinnedKind || '')"),
     protectsNestedSummary: visionEntryFocusJs.includes('isFromNestedSummary(event)'),
-    hasSharedToggle: visionEntryFocusJs.includes('togglePinnedKind(kind)')
+    hasSharedToggle: visionEntryFocusJs.includes('togglePinnedKind(kind, item)')
   })
 );
 assert(

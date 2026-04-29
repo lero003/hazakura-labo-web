@@ -3328,6 +3328,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 
 .vision-card[data-entry-kind] {
     border-color: rgba(var(--entry-accent-rgb), 0.22);
+    scroll-margin-top: calc(var(--hazakura-anchor-offset, 96px) + 1rem);
 }
 
 .vision-card[data-entry-kind]::after {

@@ -22,10 +22,22 @@
       return rect.top >= topLimit && rect.top <= bottomLimit;
     };
 
-    const findMatchingCard = (kind) => cards.find((card) => card.dataset.entryKind === kind);
+    const getControlledCards = (item) => {
+      const ids = (item.dataset.entryCardTargets || '')
+        .split(/\s+/)
+        .filter(Boolean);
+      return ids
+        .map((id) => document.getElementById(id))
+        .filter((card) => card && cards.includes(card));
+    };
 
-    const nudgeMatchingCard = (kind) => {
-      const card = findMatchingCard(kind);
+    const findMatchingCard = (kind, item) => {
+      const controlledCards = item ? getControlledCards(item) : [];
+      return controlledCards[0] || cards.find((card) => card.dataset.entryKind === kind);
+    };
+
+    const nudgeMatchingCard = (kind, item) => {
+      const card = findMatchingCard(kind, item);
       if (!card) return;
 
       card.classList.remove('is-entry-jump');
@@ -70,10 +82,10 @@
     const isFromNestedSummary = (event) => event.target instanceof Element
       && Boolean(event.target.closest('summary'));
 
-    const togglePinnedKind = (kind) => {
+    const togglePinnedKind = (kind, item) => {
       const nextKind = pinnedKind === kind ? '' : kind;
       applyKind(nextKind, true);
-      if (nextKind) nudgeMatchingCard(nextKind);
+      if (nextKind) nudgeMatchingCard(nextKind, item);
     };
 
     guideItems.forEach((item) => {
@@ -89,13 +101,13 @@
       item.addEventListener('focusout', clearTransient);
       item.addEventListener('click', (event) => {
         if (isFromNestedSummary(event)) return;
-        togglePinnedKind(kind);
+        togglePinnedKind(kind, item);
       });
       item.addEventListener('keydown', (event) => {
         if (isFromNestedSummary(event)) return;
         if (activationKeys.has(event.key)) {
           event.preventDefault();
-          togglePinnedKind(kind);
+          togglePinnedKind(kind, item);
         }
       });
     });
