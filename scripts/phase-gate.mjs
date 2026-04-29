@@ -30,6 +30,8 @@ const indexSource = readFile('src/pages/index.astro');
 const heroSectionSource = readFile('src/components/HeroSection.astro');
 const foundationSectionsSource = readFile('src/components/FoundationSections.astro');
 const librarySectionSource = readFile('src/components/LibrarySection.astro');
+const projectsSectionSource = readFile('src/components/ProjectsSection.astro');
+const visionSectionSource = readFile('src/components/VisionSection.astro');
 const mainNavigationSource = readFile('src/components/MainNavigation.astro');
 const footerSectionSource = readFile('src/components/FooterSection.astro');
 const quoteSectionSource = readFile('src/components/QuoteSection.astro');
@@ -350,6 +352,74 @@ assert(
     titles: libraryBooks.map((book) => [book.title, html.includes(book.title)]),
     showcaseCount: (html.match(/class="book-showcase/g) || []).length,
     bookTiltTargets: (html.match(/class="book-3d"/g) || []).length
+  })
+);
+assert(
+  'projects section stays componentized as the night experiment shelf',
+  indexSource.includes("import ProjectsSection from '../components/ProjectsSection.astro'")
+    && indexSource.includes('<ProjectsSection />')
+    && !indexSource.includes('id="project-list"')
+    && !indexSource.includes('data-render="projects"')
+    && projectsSectionSource.includes('id="projects"')
+    && projectsSectionSource.includes('data-zone="night"')
+    && projectsSectionSource.includes('id="project-list"')
+    && projectsSectionSource.includes('data-render="projects"')
+    && projectsSectionSource.includes('Projects — 実験の棚')
+    && html.indexOf('id="projects"') > html.indexOf('id="library"')
+    && html.indexOf('id="vision"') > html.indexOf('id="projects"')
+    && html.includes('id="project-list"')
+    && html.includes('data-render="projects"'),
+  JSON.stringify({
+    importsComponent: indexSource.includes("import ProjectsSection from '../components/ProjectsSection.astro'"),
+    usesComponent: indexSource.includes('<ProjectsSection />'),
+    indexContainsProjectList: indexSource.includes('id="project-list"'),
+    indexContainsProjectsRenderHook: indexSource.includes('data-render="projects"'),
+    componentHasProjects: projectsSectionSource.includes('id="projects"'),
+    componentHasNightZone: projectsSectionSource.includes('data-zone="night"'),
+    componentHasRenderHook: projectsSectionSource.includes('data-render="projects"'),
+    libraryPosition: html.indexOf('id="library"'),
+    projectsPosition: html.indexOf('id="projects"'),
+    visionPosition: html.indexOf('id="vision"')
+  })
+);
+assert(
+  'vision section stays componentized with its moon garden and nested log targets',
+  indexSource.includes("import VisionSection from '../components/VisionSection.astro'")
+    && indexSource.includes('<VisionSection />')
+    && !indexSource.includes('class="star-layer')
+    && !indexSource.includes('class="night-moon"')
+    && !indexSource.includes('id="vision-grid"')
+    && !indexSource.includes('id="research-log-strip"')
+    && visionSectionSource.includes('id="vision"')
+    && visionSectionSource.includes('data-zone="moon"')
+    && visionSectionSource.includes('class="star-layer star-layer--large"')
+    && visionSectionSource.includes('class="night-moon"')
+    && visionSectionSource.includes('id="vision-grid"')
+    && visionSectionSource.includes('data-render="visions"')
+    && visionSectionSource.includes('id="process-flow"')
+    && visionSectionSource.includes('data-render="process"')
+    && visionSectionSource.includes('id="research-log-strip"')
+    && visionSectionSource.includes('data-render="researchLogs"')
+    && visionSectionSource.includes('id="cycle-bridge"')
+    && visionSectionSource.includes('data-render="cycleBridge"')
+    && html.indexOf('id="vision"') > html.indexOf('id="projects"')
+    && html.indexOf('id="quote"') > html.indexOf('id="vision"'),
+  JSON.stringify({
+    importsComponent: indexSource.includes("import VisionSection from '../components/VisionSection.astro'"),
+    usesComponent: indexSource.includes('<VisionSection />'),
+    indexContainsStars: indexSource.includes('class="star-layer'),
+    indexContainsMoon: indexSource.includes('class="night-moon"'),
+    indexContainsVisionGrid: indexSource.includes('id="vision-grid"'),
+    indexContainsResearchLog: indexSource.includes('id="research-log-strip"'),
+    componentHasVision: visionSectionSource.includes('id="vision"'),
+    componentHasMoonZone: visionSectionSource.includes('data-zone="moon"'),
+    componentHasStars: visionSectionSource.includes('class="star-layer star-layer--large"'),
+    componentHasMoon: visionSectionSource.includes('class="night-moon"'),
+    componentHasVisionHook: visionSectionSource.includes('data-render="visions"'),
+    componentHasResearchHook: visionSectionSource.includes('data-render="researchLogs"'),
+    projectsPosition: html.indexOf('id="projects"'),
+    visionPosition: html.indexOf('id="vision"'),
+    quotePosition: html.indexOf('id="quote"')
   })
 );
 assert(

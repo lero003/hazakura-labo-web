@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure
+- Changed: Projects と Vision をそれぞれ `src/components/ProjectsSection.astro` / `src/components/VisionSection.astro` へ切り出し、`index.astro` は Library から Quote へ続く章立てだけを並べる形に寄せた。phase gate には、Projects の夜ゾーン・描画受け口、Vision の月ゾーン・星/月装飾・Research Log 入れ子アンカーがコンポーネント側に残る契約を追加した。
+- Learned: Projects は制作棚の入口、Vision は夜空装飾と入れ子ログを持つ終盤の庭であり、ページシェルに残すには責務が重い。見た目を変えずに閉じると、次回以降の導線や間奏をセクション単位で磨きやすくなる。
+- Next: `src/styles/site.css` の Projects / Vision 周辺で、コンポーネント境界に合わせてコメントやセクション順だけ小さく整えられるか点検する。
+
+## 2026-04-29
+
+- Focus: Structure
 - Changed: Philosophy / Layers の導入2セクションを `src/components/FoundationSections.astro` へ切り出し、`index.astro` は Hero から書庫へ続く章立てをコンポーネントで並べるシェルへさらに寄せた。phase gate には、思想・構造セクションのアンカー、zone、描画受け口、Hero -> Philosophy -> Layers -> Library の順序が維持される契約を追加した。
 - Learned: 三つの花弁と一枚の層は静かな導入に見えても、データ描画とスクロールゾーンの始まりを兼ねる保守上の単位になっている。ここを閉じると、次に入口の余白や章間の間奏を磨く時にページシェルを掘らずに済む。
 - Next: `index.astro` に残る Projects / Vision を、静的な章立てとして残すか、データ描画・夜空装飾を含むセクションコンポーネントへ分けるか1つだけ点検する。
