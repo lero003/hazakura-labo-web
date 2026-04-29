@@ -3630,6 +3630,31 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     position: relative;
     min-width: 0;
     counter-increment: quote-prelude;
+    opacity: 0;
+    transform: translateY(0.65rem);
+    transition: opacity 0.58s var(--ease-out-expo), transform 0.58s var(--ease-out-expo);
+    transition-delay: calc(var(--quote-prelude-step-delay, 0) * 82ms);
+}
+
+.quote-prelude-card.visible .quote-prelude-steps li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quote-prelude-steps li:nth-child(1) {
+    --quote-prelude-step-delay: 1;
+}
+
+.quote-prelude-steps li:nth-child(2) {
+    --quote-prelude-step-delay: 2;
+}
+
+.quote-prelude-steps li:nth-child(3) {
+    --quote-prelude-step-delay: 3;
+}
+
+.quote-prelude-steps li:nth-child(4) {
+    --quote-prelude-step-delay: 4;
 }
 
 .quote-prelude-step {

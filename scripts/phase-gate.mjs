@@ -429,6 +429,19 @@ assert(
   })
 );
 assert(
+  'quote prelude route markers reveal in order',
+  styleCss.includes('.quote-prelude-card.visible .quote-prelude-steps li')
+    && styleCss.includes('--quote-prelude-step-delay')
+    && styleCss.includes('transition-delay: calc(var(--quote-prelude-step-delay, 0) * 82ms)')
+    && [1, 2, 3, 4].every((index) => styleCss.includes(`.quote-prelude-steps li:nth-child(${index})`)),
+  JSON.stringify({
+    hasVisibleStepRule: styleCss.includes('.quote-prelude-card.visible .quote-prelude-steps li'),
+    hasDelayToken: styleCss.includes('--quote-prelude-step-delay'),
+    hasDelayFormula: styleCss.includes('transition-delay: calc(var(--quote-prelude-step-delay, 0) * 82ms)'),
+    indexedSteps: [1, 2, 3, 4].filter((index) => styleCss.includes(`.quote-prelude-steps li:nth-child(${index})`))
+  })
+);
+assert(
   'library reading access row stays quieter than a sales block',
   libraryBooks.every((book) => book.price?.label === '読書入口')
     && ['--book-access-bg', '--book-access-label-bg', '--book-access-buy'].every((snippet) => styleCss.includes(snippet))
