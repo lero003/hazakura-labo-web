@@ -718,6 +718,22 @@ assert('app controller delegates cursor follow', appControllerJs.includes('Hazak
 assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
 assert('dom helpers script exposes global', domHelpersJs.includes('window.HazakuraDom'));
 assert(
+  'shared drawer summary helper feeds research and project drawers',
+  domHelpersJs.includes('function renderDrawerSummary')
+    && domHelpersJs.includes('className')
+    && domHelpersJs.includes('__sigil')
+    && researchRendererJs.includes('renderDrawerSummary')
+    && researchRendererJs.includes("className: 'research-extra-drawer'")
+    && projectRendererJs.includes('renderDrawerSummary')
+    && projectRendererJs.includes("className: 'project-cycle-drawer'"),
+  JSON.stringify({
+    helperExists: domHelpersJs.includes('function renderDrawerSummary'),
+    helperHasSigilSlot: domHelpersJs.includes('__sigil'),
+    researchUsesHelper: researchRendererJs.includes('renderDrawerSummary'),
+    projectUsesHelper: projectRendererJs.includes('renderDrawerSummary')
+  })
+);
+assert(
   'dom helpers load before DOM string renderers',
   html.indexOf('src="/dom-helpers.js"') >= 0
     && rendererScriptPaths.every((path) => html.indexOf(`src="${path}"`) > html.indexOf('src="/dom-helpers.js"')),
@@ -1131,9 +1147,9 @@ assert(
 assert(
   'research optional notes are folded behind a drawer',
   researchRendererJs.includes('class="research-extra-drawer"')
-    && researchRendererJs.includes('class="research-extra-drawer__sigil"')
+    && researchRendererJs.includes("className: 'research-extra-drawer'")
     && researchRendererJs.includes('由来・断片・論文メモ')
-    && researchRendererJs.includes('小径をひらく')
+    && domHelpersJs.includes('小径をひらく')
     && styleCss.includes('.research-extra-drawer')
     && styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)[open] summary::after')
     && styleCss.includes('.research-extra-drawer__body'),
@@ -1279,8 +1295,8 @@ assert(
 assert(
   'project cycles are folded behind a drawer',
   projectRendererJs.includes('class="project-cycle-drawer"')
-    && projectRendererJs.includes('class="project-cycle-drawer__sigil"')
-    && projectRendererJs.includes('小径をひらく')
+    && projectRendererJs.includes("className: 'project-cycle-drawer'")
+    && domHelpersJs.includes('小径をひらく')
     && styleCss.includes('.project-cycle-drawer')
     && styleCss.includes('.project-cycle-drawer__sigil')
     && styleCss.includes(':is(.research-extra-drawer, .project-cycle-drawer, .vision-entry-guide__field-drawer)[open] summary::after'),

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const { escapeHtml, formatExternalDestination } = window.HazakuraDom;
+    const { escapeHtml, formatExternalDestination, renderDrawerSummary } = window.HazakuraDom;
 
     function renderResearchLogHandoff(handoff, items) {
         if (!handoff) return '';
@@ -102,13 +102,10 @@
         if (!addons.length) return '';
         return `
             <details class="research-extra-drawer">
-                <summary>
-                    <span class="research-extra-drawer__sigil" aria-hidden="true">✧</span>
-                    <span class="research-extra-drawer__copy">
-                        <span class="research-extra-drawer__label">由来・断片・論文メモ</span>
-                        <span class="research-extra-drawer__hint">小径をひらく</span>
-                    </span>
-                </summary>
+                ${renderDrawerSummary({
+                    className: 'research-extra-drawer',
+                    label: '由来・断片・論文メモ'
+                })}
                 <div class="research-extra-drawer__body">
                     ${addons.join('')}
                 </div>

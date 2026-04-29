@@ -1,5 +1,12 @@
 # リッチ化ログ
 
+## 2026-04-30
+
+- Focus: Structure
+- Changed: Research と Projects の details ドロワー見出しを、各レンダラーの手書きHTMLから `HazakuraDom.renderDrawerSummary` へ寄せた。phase gate には、共有helperが `research-extra-drawer` と `project-cycle-drawer` のシジル・ラベル・ヒントを供給する契約を追加した。
+- Learned: 「小径をひらく」ような小さな遊びの部品は、見た目が揃っているだけでなく、生成口も揃っている方が次のResearch/Projects間奏を増やしやすい。
+- Next: Vision の受付メモドロワーだけは別形状のsummaryを持つため、次回以降に同じhelperへ寄せるべきか、受付メモとして別系統に残すべきかを見た目込みで点検する。
+
 ## 2026-04-29
 
 - Focus: Visual / Structure

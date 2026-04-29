@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { escapeHtml, formatExternalDestination } = window.HazakuraDom;
+  const { escapeHtml, formatExternalDestination, renderDrawerSummary } = window.HazakuraDom;
 
   function getProjectActionType(item) {
     if (!item.href) return 'status';
@@ -139,13 +139,10 @@
     if (!cycleSteps.length) return '';
     return `
       <details class="project-cycle-drawer">
-        <summary>
-          <span class="project-cycle-drawer__sigil" aria-hidden="true">✧</span>
-          <span class="project-cycle-drawer__copy">
-            <span class="project-cycle-drawer__label">問い → 実験 → 発見</span>
-            <span class="project-cycle-drawer__hint">小径をひらく</span>
-          </span>
-        </summary>
+        ${renderDrawerSummary({
+          className: 'project-cycle-drawer',
+          label: '問い → 実験 → 発見'
+        })}
         <dl class="project-cycle" aria-label="${escapeHtml(item.title)}の問い、実験、発見">
           ${cycleSteps.map(([label, value]) => `
             <div>
