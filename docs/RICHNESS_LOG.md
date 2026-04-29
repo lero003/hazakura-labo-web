@@ -2,6 +2,13 @@
 
 ## 2026-04-30
 
+- Focus: Structure
+- Changed: Vision入口ガイドの受付メモdrawerで、外側の `vision-entry-guide__field-drawer` と共有summary helperへ渡す基底classがずれていたため、内部hookも同じ `vision-entry-guide__field-drawer__*` 系へ揃えた。phase gate には旧 `vision-entry-field-drawer` へ戻らない保護を追加した。
+- Learned: 見た目に出ない小さなclass名のずれでも、共通drawerの調整口が二重化すると、次に受付メモのシジルや注記だけ磨きたい時に保守境界がぼやける。外側classとhelper基底classを一致させると、Visionの小径もResearch / Projectsと同じ契約で追える。
+- Next: 次回は生成後HTMLで `vision-entry-guide__field-drawer__sigil` / `__note` が出ていることを見つつ、受付メモの件数札がモバイル幅で詰まりすぎないか確認する。
+
+## 2026-04-30
+
 - Focus: Structure / Motion
 - Changed: Vision後半の process flow で、小印の `popIn` 遅延をCSSの `.process-step:nth-child(1/3/5/7)` 固定から、`section-foundation-renderer.js` が各ステップへ渡す `--process-sigil-delay` へ移した。phase gate も固定子セレクタへ戻らず、レンダラー側の遅延契約を持つことを確認する形へ更新した。
 - Learned: process flow は4ステップに見えても、DOM上ではコネクタが間に挟まるため、奇数番目CSSに演出タイミングを焼き付けると次のステップ追加や並び替えで壊れやすい。遅延を描画データの順序へ寄せると、見た目を変えずにResearch Logへ渡る橋の保守性が上がる。

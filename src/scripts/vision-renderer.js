@@ -39,7 +39,7 @@
         return `
             <details class="garden-drawer vision-entry-guide__field-drawer">
                 ${renderDrawerSummary({
-                    className: 'vision-entry-field-drawer',
+                    className: 'vision-entry-guide__field-drawer',
                     label: '受付メモ',
                     hint: '入口で聞くこと',
                     note: `${fields.length}つ`,

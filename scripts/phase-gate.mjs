@@ -747,7 +747,7 @@ assert('app controller delegates cursor follow', appControllerJs.includes('Hazak
 assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
 assert('dom helpers script exposes global', domHelpersJs.includes('window.HazakuraDom'));
 assert(
-  'shared drawer summary helper feeds research and project drawers',
+  'shared drawer summary helper feeds research, project, and vision drawers',
   domHelpersJs.includes('function renderDrawerSummary')
     && domHelpersJs.includes('className')
     && domHelpersJs.includes('garden-drawer__sigil')
@@ -762,7 +762,8 @@ assert(
     && projectRendererJs.includes("className: 'project-cycle-drawer'")
     && visionRendererJs.includes('renderDrawerSummary')
     && visionRendererJs.includes('class="garden-drawer vision-entry-guide__field-drawer"')
-    && visionRendererJs.includes("className: 'vision-entry-field-drawer'"),
+    && visionRendererJs.includes("className: 'vision-entry-guide__field-drawer'")
+    && !visionRendererJs.includes("className: 'vision-entry-field-drawer'"),
   JSON.stringify({
     helperExists: domHelpersJs.includes('function renderDrawerSummary'),
     helperHasSharedSigilClass: domHelpersJs.includes('garden-drawer__sigil'),
@@ -771,7 +772,8 @@ assert(
     helperHasNoteSlot: domHelpersJs.includes('__note'),
     researchUsesHelper: researchRendererJs.includes('renderDrawerSummary'),
     projectUsesHelper: projectRendererJs.includes('renderDrawerSummary'),
-    visionUsesHelper: visionRendererJs.includes('renderDrawerSummary')
+    visionUsesHelper: visionRendererJs.includes('renderDrawerSummary'),
+    hasLegacyVisionBaseClass: visionRendererJs.includes("className: 'vision-entry-field-drawer'")
   })
 );
 assert(
@@ -1009,7 +1011,8 @@ assert(
   'vision entry fields stay folded',
   visionRendererJs.includes('class="garden-drawer vision-entry-guide__field-drawer"')
     && visionRendererJs.includes('renderDrawerSummary')
-    && visionRendererJs.includes("className: 'vision-entry-field-drawer'")
+    && visionRendererJs.includes("className: 'vision-entry-guide__field-drawer'")
+    && !visionRendererJs.includes("className: 'vision-entry-field-drawer'")
     && visionRendererJs.includes('受付メモ')
     && styleCss.includes('.vision-entry-guide__field-drawer')
     && domHelpersJs.includes('${baseClass}__note')
@@ -1018,6 +1021,8 @@ assert(
   JSON.stringify({
     hasDrawerRenderer: visionRendererJs.includes('class="garden-drawer vision-entry-guide__field-drawer"'),
     usesSharedSummary: visionRendererJs.includes('renderDrawerSummary'),
+    usesMatchingDrawerBaseClass: visionRendererJs.includes("className: 'vision-entry-guide__field-drawer'"),
+    hasLegacyVisionBaseClass: visionRendererJs.includes("className: 'vision-entry-field-drawer'"),
     hasDrawerStyles: styleCss.includes('.vision-entry-guide__field-drawer'),
     hasNoteClass: domHelpersJs.includes('${baseClass}__note'),
     hasNoteWhitespaceToken: styleCss.includes('--garden-drawer-note-white-space')
