@@ -29,6 +29,7 @@ const html = readFile('dist/index.html');
 const indexSource = readFile('src/pages/index.astro');
 const heroSectionSource = readFile('src/components/HeroSection.astro');
 const librarySectionSource = readFile('src/components/LibrarySection.astro');
+const logoMarkSource = readFile('src/components/LogoMark.astro');
 const routeHelperSource = readFile('src/route-responses.ts');
 const pageEndpointFiles = fs.readdirSync('src/pages')
   .filter((file) => file.endsWith('.js.ts') || file === 'style.css.ts')
@@ -589,19 +590,27 @@ assert(
 assert('style sheet contains design tokens', styleCss.includes('--sakura-500') && styleCss.includes('.hero'));
 assert(
   'site logo mark is CSS-rendered rather than emoji-rendered',
-  indexSource.includes('class="logo-icon logo-mark"')
-    && indexSource.includes('class="logo-mark__petal logo-mark__petal--top"')
-    && indexSource.includes('class="logo-mark__leaf"')
-    && indexSource.includes('class="logo-mark__core"')
+  indexSource.includes("import LogoMark from '../components/LogoMark.astro'")
+    && (indexSource.match(/<LogoMark \/>/g) || []).length === 2
+    && logoMarkSource.includes("['logo-icon', 'logo-mark', className]")
+    && logoMarkSource.includes('class="logo-mark__petal logo-mark__petal--top"')
+    && logoMarkSource.includes('class="logo-mark__leaf"')
+    && logoMarkSource.includes('class="logo-mark__core"')
+    && !indexSource.includes('class="logo-mark__petal')
     && !indexSource.includes('<span class="logo-icon">🌸</span>')
+    && (html.match(/class="logo-icon logo-mark"/g) || []).length === 2
     && ['.logo-mark__petal', '.logo-mark__leaf', '.logo-mark__core'].every((snippet) => styleCss.includes(snippet))
     && styleCss.includes('body.theme-night .logo-icon'),
   JSON.stringify({
-    hasMarkClass: indexSource.includes('class="logo-icon logo-mark"'),
-    hasPetalMarkup: indexSource.includes('class="logo-mark__petal logo-mark__petal--top"'),
-    hasLeafMarkup: indexSource.includes('class="logo-mark__leaf"'),
-    hasCoreMarkup: indexSource.includes('class="logo-mark__core"'),
+    importsLogoMark: indexSource.includes("import LogoMark from '../components/LogoMark.astro'"),
+    logoMarkUsages: (indexSource.match(/<LogoMark \/>/g) || []).length,
+    componentHasBaseClasses: logoMarkSource.includes("['logo-icon', 'logo-mark', className]"),
+    componentHasPetalMarkup: logoMarkSource.includes('class="logo-mark__petal logo-mark__petal--top"'),
+    componentHasLeafMarkup: logoMarkSource.includes('class="logo-mark__leaf"'),
+    componentHasCoreMarkup: logoMarkSource.includes('class="logo-mark__core"'),
+    indexHasInlineMarkPetals: indexSource.includes('class="logo-mark__petal'),
     hasEmojiLogo: indexSource.includes('<span class="logo-icon">🌸</span>'),
+    renderedMarkCount: (html.match(/class="logo-icon logo-mark"/g) || []).length,
     hasPetalStyle: styleCss.includes('.logo-mark__petal'),
     hasLeafStyle: styleCss.includes('.logo-mark__leaf'),
     hasCoreStyle: styleCss.includes('.logo-mark__core'),
