@@ -8,7 +8,7 @@
         const steps = Array.isArray(handoff.steps) ? handoff.steps : [];
         const count = Array.isArray(items) ? items.length : 0;
         return `
-            <article class="research-log-handoff" data-tilt>
+            <article class="research-log-handoff" data-reveal data-tilt>
                 <div class="research-log-handoff__copy">
                     <p class="research-log-handoff__eyebrow">${escapeHtml(handoff.eyebrow || 'Return path')}</p>
                     <h3>${escapeHtml(handoff.title || '')}</h3>
@@ -119,7 +119,7 @@
     function renderResearchLogCard(item) {
         const cardId = item.id ? ` id="${escapeHtml(item.id)}"` : '';
         return `
-            <article class="research-log-card"${cardId} data-tilt>
+            <article class="research-log-card"${cardId} data-reveal data-reveal-stagger data-tilt>
                 <div class="research-log-meta">
                     <p class="research-log-eyebrow">${escapeHtml(item.eyebrow)}</p>
                     ${item.theme ? `<span class="research-log-theme">${escapeHtml(item.theme)}</span>` : ''}
@@ -162,7 +162,7 @@
         const root = document.querySelector('[data-render="cycleBridge"]');
         if (!root || !item) return;
         root.innerHTML = `
-            <article class="cycle-bridge-card" data-tilt>
+            <article class="cycle-bridge-card" data-reveal data-tilt>
                 <p class="cycle-bridge-eyebrow">${escapeHtml(item.eyebrow)}</p>
                 <h3 class="cycle-bridge-title">${escapeHtml(item.title)}</h3>
                 <p class="cycle-bridge-text">${escapeHtml(item.text)}</p>

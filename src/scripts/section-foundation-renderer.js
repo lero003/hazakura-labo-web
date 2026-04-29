@@ -7,7 +7,7 @@
         const root = document.querySelector('[data-render="philosophy"]');
         if (!root || !items) return;
         root.innerHTML = items.map((item) => `
-            <article class="philosophy-card" data-tilt>
+            <article class="philosophy-card" data-reveal data-reveal-stagger data-tilt>
                 <div class="card-icon-wrap">
                     <span class="card-icon">${escapeHtml(item.icon)}</span>
                 </div>
@@ -23,7 +23,7 @@
         const root = document.querySelector('[data-render="experienceLayers"]');
         if (!root || !items) return;
         root.innerHTML = items.map((item, index) => `
-            <article class="layer-card" data-tilt style="--layer-index: ${index + 1}">
+            <article class="layer-card" data-reveal data-reveal-stagger data-tilt style="--layer-index: ${index + 1}">
                 <span class="layer-sequence" aria-hidden="true">
                     <span class="layer-sequence__dot"></span>
                     <span class="layer-sequence__beam"></span>

@@ -4570,18 +4570,9 @@ body.theme-night.zone-aurora #aurora-canvas {
     .title-accent-line,
     .hero-subtitle,
     .hero-scroll-hint,
-    .philosophy-card,
-    .layer-card,
-    .book-showcase,
-    .project-threshold,
-    .vision-card,
-    .research-log-handoff,
-    .research-log-card,
-    .cycle-bridge-card,
-    .quote-prelude-card,
-    .section-title,
-    .project-card,
-    .quote-block,
+    [data-reveal],
+    [data-reveal-process] .process-step,
+    [data-reveal-process] .process-connector,
     .reveal-item {
         opacity: 1 !important;
         transform: none !important;

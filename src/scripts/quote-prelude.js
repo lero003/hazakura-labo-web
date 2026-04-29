@@ -21,7 +21,7 @@
       : '';
 
     root.innerHTML = `
-      <article class="quote-prelude-card" data-tilt>
+      <article class="quote-prelude-card" data-reveal data-tilt>
         <p class="quote-prelude-eyebrow">${escapeHtml(item.eyebrow || 'Circulation note')}</p>
         <h3 class="quote-prelude-title">${escapeHtml(item.title || '')}</h3>
         <p class="quote-prelude-text">${escapeHtml(item.text || '')}</p>

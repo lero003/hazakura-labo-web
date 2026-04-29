@@ -11,7 +11,7 @@ const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boole
     <div class="section-inner">
         <div class="section-header">
             <span class="section-label">Library — 書庫</span>
-            <h2 class="section-title">知恵の結晶</h2>
+            <h2 class="section-title" data-reveal>知恵の結晶</h2>
             <p class="section-desc">
                 哲学AI「チカちゃん」と、けい君が紡いだ二つの記録。<br>
                 売り場ではなく、問いが言葉へ結晶した小さな書庫です。
@@ -19,7 +19,7 @@ const bookSpineClass = (book) => ['book-spine', book.spineModifier].filter(Boole
         </div>
         <div class="book-shelf" aria-label="チカちゃんシリーズの書籍">
             {libraryBooks.map((book) => (
-                <div class={bookShowcaseClass(book)} id={book.showcaseId}>
+                <div class={bookShowcaseClass(book)} id={book.showcaseId} data-reveal>
                     <div class="book-visual">
                         <div class="book-3d" id={book.bookId}>
                             <div class={bookCoverClass(book)}>

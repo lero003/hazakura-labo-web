@@ -1,30 +1,9 @@
 (function () {
     'use strict';
 
-    const revealTargetSelectors = [
-        '.philosophy-card',
-        '.vision-card',
-        '.layer-card',
-        '.research-log-handoff',
-        '.research-log-card',
-        '.cycle-bridge-card',
-        '.quote-prelude-card',
-        '.section-title',
-        '.project-threshold',
-        '.project-card',
-        '.book-showcase',
-        '.quote-block'
-    ];
-    const staggeredTargetSelectors = [
-        '.philosophy-card',
-        '.vision-card',
-        '.layer-card',
-        '.research-log-card'
-    ];
-    const processSelector = '.process-flow';
-
-    const revealSelector = revealTargetSelectors.join(', ');
-    const staggeredSelector = staggeredTargetSelectors.join(', ');
+    const revealSelector = '[data-reveal]';
+    const staggeredSelector = '[data-reveal-stagger]';
+    const processSelector = '[data-reveal-process]';
 
     function revealAll() {
         document.querySelectorAll(revealSelector).forEach((el) => el.classList.add('visible'));
@@ -74,7 +53,7 @@
 
                 if (el.matches(staggeredSelector)) {
                     revealStaggered(el);
-                } else if (el.id === 'process-flow') {
+                } else if (el.matches(processSelector)) {
                     revealProcess(el);
                 } else {
                     el.classList.add('visible');

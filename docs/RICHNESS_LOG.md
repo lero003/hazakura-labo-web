@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure / Motion
+- Changed: スクロールで立ち上がる見出し・カード・終端引用の契約を、`scroll-animations.js` 内のクラス名リストから `data-reveal` / `data-reveal-stagger` / `data-reveal-process` へ寄せた。reduced-motion CSS も同じ属性契約を見る形にし、phase gate で古いクラス名同期へ戻らないよう保護した。
+- Learned: 見た目の演出対象が JS と CSS の別リストに散ると、次の小さな間奏カードを足す時に「見えるが reduced-motion では残る」ような漏れが起きやすい。属性で入口を揃えると、庭の新しい小物は markup 側で opt-in するだけで済む。
+- Next: `data-tilt` も同じように hover 対象とカードDOMへ散っているため、次回は tilt 対象の契約が `card-hover-fields.js` と各レンダラーで過剰に結合していないか1箇所だけ点検する。
+
+## 2026-04-29
+
+- Focus: Structure / Motion
 - Changed: Quote前の折り返しステップの表示遅延を、4件固定の `nth-child` CSSから `quote-prelude.js` が各ステップへ渡す `--quote-prelude-step-delay` へ移した。phase gate も固定子セレクタへ戻らず、レンダラー側で順序遅延を持つ契約へ更新した。
 - Learned: 終端の小さな演出でも、件数がCSSに焼き付くと次の余韻調整で構造が硬くなる。見た目を変えずにデータ描画へ寄せるだけで、Quote前の「本、実験、記録、入口」の並び替えや増減が安全になる。
 - Next: Quote prelude と Library / Research の handoff step で、まだ共通化できる余白・レール・モバイル縦化の責務を1つだけ点検する。

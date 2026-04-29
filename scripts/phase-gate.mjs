@@ -917,13 +917,15 @@ assert(
   Array.isArray(hazakuraContent.researchGroup?.handoff?.steps)
     && hazakuraContent.researchGroup.handoff.steps.length === 3
     && researchRendererJs.includes('class="research-log-handoff"')
+    && researchRendererJs.includes('class="research-log-handoff" data-reveal')
     && styleCss.includes('.research-log-handoff')
-    && scrollAnimationsJs.includes('.research-log-handoff'),
+    && scrollAnimationsJs.includes("const revealSelector = '[data-reveal]'"),
   JSON.stringify({
     steps: hazakuraContent.researchGroup?.handoff?.steps?.length || 0,
     hasRenderer: researchRendererJs.includes('class="research-log-handoff"'),
+    hasRevealAttribute: researchRendererJs.includes('class="research-log-handoff" data-reveal'),
     hasStyles: styleCss.includes('.research-log-handoff'),
-    hasReveal: scrollAnimationsJs.includes('.research-log-handoff')
+    hasRevealContract: scrollAnimationsJs.includes("const revealSelector = '[data-reveal]'")
   })
 );
 assert(
@@ -1193,13 +1195,15 @@ assert(
   'projects entry keeps library handoff threshold',
   hazakuraContent.projectsGroup?.threshold?.title
     && projectRendererJs.includes('class="project-threshold"')
+    && projectRendererJs.includes('data-project-threshold data-reveal')
     && styleCss.includes('.project-threshold__rail')
-    && scrollAnimationsJs.includes('.project-threshold'),
+    && scrollAnimationsJs.includes("const revealSelector = '[data-reveal]'"),
   JSON.stringify({
     hasData: Boolean(hazakuraContent.projectsGroup?.threshold?.title),
     hasRenderer: projectRendererJs.includes('class="project-threshold"'),
+    hasRevealAttribute: projectRendererJs.includes('data-project-threshold data-reveal'),
     hasStyles: styleCss.includes('.project-threshold__rail'),
-    hasReveal: scrollAnimationsJs.includes('.project-threshold')
+    hasRevealContract: scrollAnimationsJs.includes("const revealSelector = '[data-reveal]'")
   })
 );
 assert(
@@ -1622,39 +1626,60 @@ assert('text reveal script exposes global', textRevealJs.includes('window.Hazaku
 assert('hero parallax script exposes global', heroParallaxJs.includes('window.HazakuraHeroParallax'));
 assert('scroll animations script exposes global', scrollAnimationsJs.includes('window.HazakuraScrollAnimations'));
 assert(
-  'scroll animations share one reveal target contract',
-  scrollAnimationsJs.includes('const revealTargetSelectors = [')
-    && scrollAnimationsJs.includes('const revealSelector = revealTargetSelectors.join')
+  'scroll animations use the data reveal contract',
+  scrollAnimationsJs.includes("const revealSelector = '[data-reveal]'")
+    && scrollAnimationsJs.includes("const staggeredSelector = '[data-reveal-stagger]'")
+    && scrollAnimationsJs.includes("const processSelector = '[data-reveal-process]'")
     && scrollAnimationsJs.includes('function revealAll()')
     && scrollAnimationsJs.includes('document.querySelectorAll(revealSelector).forEach')
     && scrollAnimationsJs.includes('document.querySelectorAll(processSelector).forEach')
+    && !scrollAnimationsJs.includes('const revealTargetSelectors = [')
+    && !scrollAnimationsJs.includes("'.project-threshold'")
     && scrollAnimationsJs.includes('window.HazakuraScrollAnimations = { init }')
     && !scrollAnimationsJs.includes('setAllCounters'),
   JSON.stringify({
-    hasRevealTargetList: scrollAnimationsJs.includes('const revealTargetSelectors = ['),
-    hasJoinedSelector: scrollAnimationsJs.includes('const revealSelector = revealTargetSelectors.join'),
+    hasRevealSelector: scrollAnimationsJs.includes("const revealSelector = '[data-reveal]'"),
+    hasStaggeredSelector: scrollAnimationsJs.includes("const staggeredSelector = '[data-reveal-stagger]'"),
+    hasProcessSelector: scrollAnimationsJs.includes("const processSelector = '[data-reveal-process]'"),
     hasRevealAll: scrollAnimationsJs.includes('function revealAll()'),
     usesRevealSelectorForAll: scrollAnimationsJs.includes('document.querySelectorAll(revealSelector).forEach'),
     observesProcessSelector: scrollAnimationsJs.includes('document.querySelectorAll(processSelector).forEach'),
+    hasLegacyTargetList: scrollAnimationsJs.includes('const revealTargetSelectors = ['),
+    hasLegacyProjectSelector: scrollAnimationsJs.includes("'.project-threshold'"),
     exposesGlobal: scrollAnimationsJs.includes('window.HazakuraScrollAnimations = { init }'),
     hasStaleCounterName: scrollAnimationsJs.includes('setAllCounters')
   })
 );
 assert(
-  'reduced motion css reveals every staged garden interlude',
-  [
-    '.project-threshold',
-    '.research-log-handoff',
-    '.quote-prelude-card',
-    '.section-title'
-  ].every((snippet) => styleCss.includes(snippet))
-    && /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.project-threshold,[\s\S]*\.research-log-handoff,[\s\S]*\.quote-prelude-card,[\s\S]*\.section-title,[\s\S]*opacity: 1 !important;[\s\S]*transform: none !important;/.test(styleCss),
+  'reduced motion css follows the data reveal contract',
+  /@media \(prefers-reduced-motion: reduce\)[\s\S]*\[data-reveal\],[\s\S]*\[data-reveal-process\] \.process-step,[\s\S]*\[data-reveal-process\] \.process-connector,[\s\S]*opacity: 1 !important;[\s\S]*transform: none !important;/.test(styleCss)
+    && !/@media \(prefers-reduced-motion: reduce\)[\s\S]*\.project-threshold,[\s\S]*\.research-log-handoff,[\s\S]*\.quote-prelude-card,[\s\S]*\.section-title,[\s\S]*opacity: 1 !important;/.test(styleCss),
   JSON.stringify({
-    hasProjectThreshold: styleCss.includes('.project-threshold'),
-    hasResearchHandoff: styleCss.includes('.research-log-handoff'),
-    hasQuotePrelude: styleCss.includes('.quote-prelude-card'),
-    hasSectionTitle: styleCss.includes('.section-title'),
-    hasReducedMotionRevealBlock: /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.project-threshold,[\s\S]*\.research-log-handoff,[\s\S]*\.quote-prelude-card,[\s\S]*\.section-title,[\s\S]*opacity: 1 !important;[\s\S]*transform: none !important;/.test(styleCss)
+    hasDataRevealBlock: /@media \(prefers-reduced-motion: reduce\)[\s\S]*\[data-reveal\],[\s\S]*\[data-reveal-process\] \.process-step,[\s\S]*\[data-reveal-process\] \.process-connector,[\s\S]*opacity: 1 !important;[\s\S]*transform: none !important;/.test(styleCss),
+    hasLegacyClassRevealBlock: /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.project-threshold,[\s\S]*\.research-log-handoff,[\s\S]*\.quote-prelude-card,[\s\S]*\.section-title,[\s\S]*opacity: 1 !important;/.test(styleCss)
+  })
+);
+assert(
+  'staged garden pieces opt into reveal in markup',
+  [
+    'class="section-title" data-reveal',
+    'class="book-showcase',
+    'data-project-threshold data-reveal',
+    'class="vision-card"',
+    'class="research-log-handoff" data-reveal',
+    'class="quote-prelude-card" data-reveal',
+    'id="quote-block" data-reveal'
+  ].every((snippet) => html.includes(snippet) || projectRendererJs.includes(snippet) || visionRendererJs.includes(snippet) || researchRendererJs.includes(snippet) || quotePreludeJs.includes(snippet))
+    && html.includes('data-reveal-process'),
+  JSON.stringify({
+    sectionTitles: (html.match(/class="section-title" data-reveal/g) || []).length,
+    bookShowcases: (html.match(/class="book-showcase/g) || []).length,
+    projectThreshold: projectRendererJs.includes('data-project-threshold data-reveal'),
+    visionCards: visionRendererJs.includes('class="vision-card"') && visionRendererJs.includes('data-reveal data-reveal-stagger'),
+    researchHandoff: researchRendererJs.includes('class="research-log-handoff" data-reveal'),
+    quotePrelude: quotePreludeJs.includes('class="quote-prelude-card" data-reveal'),
+    quoteBlock: html.includes('id="quote-block" data-reveal'),
+    processFlow: html.includes('data-reveal-process')
   })
 );
 assert('canvas size script exposes global', canvasSizeJs.includes('window.HazakuraCanvasSize'));

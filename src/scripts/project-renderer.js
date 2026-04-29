@@ -67,7 +67,7 @@
 
   function renderThreshold(threshold) {
     if (!threshold) return '';
-    return `<div class="project-threshold" data-project-threshold>
+    return `<div class="project-threshold" data-project-threshold data-reveal>
       <span class="project-threshold__sigil" aria-hidden="true">✧</span>
       <div class="project-threshold__copy">
         <p class="project-threshold__eyebrow">${escapeHtml(threshold.eyebrow || 'Library handoff')}</p>
@@ -175,7 +175,7 @@
     const cardClass = item.image ? 'project-card' : 'project-card project-card--placeholder';
 
     return `
-      <article class="${cardClass}" data-project-card data-lane="${escapeHtml(item.lane || '')}" data-action-type="${escapeHtml(actionType)}" data-tilt>
+      <article class="${cardClass}" data-project-card data-lane="${escapeHtml(item.lane || '')}" data-action-type="${escapeHtml(actionType)}" data-reveal data-tilt>
         <div class="project-thumb">${renderProjectThumb(item)}</div>
         <div class="project-info">
           <div class="project-meta-row">

@@ -126,7 +126,7 @@
             const entryKindAttribute = entryKind ? ` data-entry-kind="${escapeHtml(entryKind)}"` : '';
             const entryKindBadge = entryKind ? renderVisionEntryKindBadge(entryKind, entryKinds[entryKind]) : '';
             return `
-            <article class="vision-card"${entryKindAttribute} data-tilt>
+            <article class="vision-card"${entryKindAttribute} data-reveal data-reveal-stagger data-tilt>
                 <div class="vision-icon">${escapeHtml(item.icon)}</div>
                 ${entryKindBadge}
                 <h3>${escapeHtml(item.title)}</h3>
