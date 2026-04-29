@@ -1624,6 +1624,21 @@ assert(
   })
 );
 assert(
+  'vision entry focus auto releases compact pinned state',
+  visionEntryFocusJs.includes('shouldAutoReleasePinned')
+    && visionEntryFocusJs.includes("window.matchMedia('(hover: none), (pointer: coarse), (max-width: 720px)')")
+    && visionEntryFocusJs.includes('schedulePinnedRelease(nextKind)')
+    && visionEntryFocusJs.includes('if (pinnedKind === kind) releasePinnedKind()')
+    && visionEntryFocusJs.includes('releasePinnedKind();'),
+  JSON.stringify({
+    hasCompactDetector: visionEntryFocusJs.includes('shouldAutoReleasePinned'),
+    checksTouchOrCompact: visionEntryFocusJs.includes("window.matchMedia('(hover: none), (pointer: coarse), (max-width: 720px)')"),
+    schedulesAfterToggle: visionEntryFocusJs.includes('schedulePinnedRelease(nextKind)'),
+    guardsCurrentKind: visionEntryFocusJs.includes('if (pinnedKind === kind) releasePinnedKind()'),
+    escapeUsesRelease: visionEntryFocusJs.includes('releasePinnedKind();')
+  })
+);
+assert(
   'vision entry focus can nudge selected cards into view',
   visionEntryFocusJs.includes('nudgeMatchingCard')
     && visionEntryFocusJs.includes('HazakuraScrollTarget?.scrollTo')

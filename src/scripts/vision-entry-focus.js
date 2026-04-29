@@ -11,9 +11,12 @@
     root.dataset.visionEntryFocusReady = 'true';
     let pinnedKind = '';
     let jumpTimer = 0;
+    let releaseTimer = 0;
     const activationKeys = new Set(['Enter', ' ']);
 
     const getScrollOffset = () => window.HazakuraScrollOffset?.get(72) || 72;
+    const shouldAutoReleasePinned = () => window.matchMedia
+      && window.matchMedia('(hover: none), (pointer: coarse), (max-width: 720px)').matches;
 
     const isMostlyVisible = (element) => {
       const rect = element.getBoundingClientRect();
@@ -75,6 +78,21 @@
       });
     };
 
+    const releasePinnedKind = () => {
+      window.clearTimeout(releaseTimer);
+      pinnedKind = '';
+      applyKind('');
+    };
+
+    const schedulePinnedRelease = (kind) => {
+      window.clearTimeout(releaseTimer);
+      if (!kind || !shouldAutoReleasePinned()) return;
+
+      releaseTimer = window.setTimeout(() => {
+        if (pinnedKind === kind) releasePinnedKind();
+      }, 2200);
+    };
+
     const clearTransient = () => {
       applyKind(pinnedKind || '');
     };
@@ -85,7 +103,12 @@
     const togglePinnedKind = (kind, item) => {
       const nextKind = pinnedKind === kind ? '' : kind;
       applyKind(nextKind, true);
-      if (nextKind) nudgeMatchingCard(nextKind, item);
+      if (nextKind) {
+        nudgeMatchingCard(nextKind, item);
+        schedulePinnedRelease(nextKind);
+      } else {
+        window.clearTimeout(releaseTimer);
+      }
     };
 
     guideItems.forEach((item) => {
@@ -114,8 +137,7 @@
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && pinnedKind) {
-        pinnedKind = '';
-        applyKind('');
+        releasePinnedKind();
       }
     });
   }
