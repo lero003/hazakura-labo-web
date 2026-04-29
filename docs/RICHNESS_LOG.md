@@ -1196,3 +1196,10 @@
 - Changed: モバイル幅の共有 drawer 調整に `vision-entry-guide__field-drawer` を含め、Research / Projects / Vision の折りたたみUIが同じアラインメント規則を使うようにした。
 - Learned: 小さな受付メモでも共有 drawer から外れると、狭い幅の読み口と将来のCSS整理がずれやすい。共通ルールと phase gate を同時に直す方が戻しやすい。
 - Next: Vision 入口のピン留め状態を、モバイルでスクロール後に自然に解けるかどうかを小さく検証する。
+
+## 2026-04-30
+
+- Focus: Structure
+- Changed: Quote前の循環ステップを `garden-handoff-steps` の共通レールへ乗せ、専用の `quote-prelude-steps::before` レールを削除した。番号マーカーと段階表示は維持し、phase gateで共通レール利用を保護した。
+- Learned: Library / Research / Quote の橋渡しを同じ道筋CSSで扱うと、セクション間の間奏を増やさずに1ページの循環感を揃えやすい。
+- Next: `garden-handoff-steps` の変数名を棚卸しし、Library / Research / Quote で未使用になった調整値があれば小さく減らす。

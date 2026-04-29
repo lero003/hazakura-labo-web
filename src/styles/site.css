@@ -2056,6 +2056,7 @@ a {
 .garden-handoff-steps li::before {
     content: '';
     position: absolute;
+    display: var(--handoff-step-dot-display, block);
     top: var(--handoff-step-dot-top, 0.5rem);
     left: var(--handoff-step-dot-left, 0);
     width: var(--handoff-step-dot-size, 0.5rem);
@@ -4023,6 +4024,13 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     --quote-prelude-step-hover-bg: rgba(255, 255, 255, 0.62);
     --quote-prelude-step-hover-color: var(--ink-800);
     --quote-prelude-focus-outline: rgba(232, 88, 122, 0.42);
+    --handoff-step-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    --handoff-step-gap: 0.7rem;
+    --handoff-step-rail: var(--quote-prelude-step-rail);
+    --handoff-step-rail-top: calc(50% - 0.5px);
+    --handoff-step-rail-left: 1rem;
+    --handoff-step-rail-right: 1rem;
+    --handoff-step-dot-display: none;
     position: relative;
     overflow: hidden;
     padding: 1.6rem;
@@ -4083,31 +4091,10 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .quote-prelude-steps {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-    gap: 0.7rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
     counter-reset: quote-prelude;
 }
 
-.quote-prelude-steps::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 1rem;
-    right: 1rem;
-    height: 1px;
-    background: var(--quote-prelude-step-rail);
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
 .quote-prelude-steps li {
-    position: relative;
-    min-width: 0;
     counter-increment: quote-prelude;
     opacity: 0;
     transform: translateY(0.65rem);
@@ -7911,6 +7898,15 @@ body.theme-night .nav-logo {
     }
 
     .quote-prelude-card {
+        --handoff-step-columns: minmax(0, 1fr);
+        --handoff-step-gap: 0.55rem;
+        --handoff-step-rail: var(--quote-prelude-step-rail-vertical);
+        --handoff-step-rail-top: 0.75rem;
+        --handoff-step-rail-bottom: 0.75rem;
+        --handoff-step-rail-left: 0.85rem;
+        --handoff-step-rail-right: auto;
+        --handoff-step-rail-width: 1px;
+        --handoff-step-rail-height: auto;
         padding: 1.25rem;
         border-radius: 16px;
     }
@@ -7923,22 +7919,6 @@ body.theme-night .nav-logo {
     .quote-prelude-text {
         font-size: 0.84rem;
         line-height: 1.8;
-    }
-
-    .quote-prelude-steps {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 0.55rem;
-    }
-
-    .quote-prelude-steps::before {
-        top: 0.75rem;
-        bottom: 0.75rem;
-        left: 0.85rem;
-        right: auto;
-        width: 1px;
-        height: auto;
-        background: var(--quote-prelude-step-rail-vertical);
-        transform: none;
     }
 
     .quote-prelude-step {

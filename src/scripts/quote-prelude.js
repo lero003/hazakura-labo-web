@@ -8,7 +8,7 @@
     if (!root || !item) return;
 
     const steps = Array.isArray(item.steps) && item.steps.length
-      ? `<ol class="quote-prelude-steps">
+      ? `<ol class="quote-prelude-steps garden-handoff-steps">
           ${item.steps.map((step, index) => `
             <li style="--quote-prelude-step-delay: ${index + 1};">
               ${step.href ? `<a class="quote-prelude-step" href="${escapeHtml(step.href)}">` : '<span class="quote-prelude-step">'}

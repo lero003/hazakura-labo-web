@@ -626,17 +626,23 @@ assert(
   'quote prelude steps keep a compact route marker structure',
   quotePreludeJs.includes('quote-prelude-step__label')
     && quotePreludeJs.includes('quote-prelude-step__text')
+    && quotePreludeJs.includes('quote-prelude-steps garden-handoff-steps')
+    && styleCss.includes('--handoff-step-dot-display')
     && styleCss.includes('counter-increment: quote-prelude')
     && styleCss.includes('.quote-prelude-step::before')
     && styleCss.includes('counter(quote-prelude, decimal-leading-zero)')
-    && styleCss.includes('grid-template-columns: 1.75rem minmax(0, 1fr)'),
+    && styleCss.includes('grid-template-columns: 1.75rem minmax(0, 1fr)')
+    && !styleCss.includes('.quote-prelude-steps::before'),
   JSON.stringify({
     hasLabelSpan: quotePreludeJs.includes('quote-prelude-step__label'),
     hasTextSpan: quotePreludeJs.includes('quote-prelude-step__text'),
+    usesSharedPath: quotePreludeJs.includes('quote-prelude-steps garden-handoff-steps'),
+    canHideSharedDot: styleCss.includes('--handoff-step-dot-display'),
     hasCounterIncrement: styleCss.includes('counter-increment: quote-prelude'),
     hasMarkerPseudo: styleCss.includes('.quote-prelude-step::before'),
     hasDecimalMarker: styleCss.includes('counter(quote-prelude, decimal-leading-zero)'),
-    hasMobileMarkerGrid: styleCss.includes('grid-template-columns: 1.75rem minmax(0, 1fr)')
+    hasMobileMarkerGrid: styleCss.includes('grid-template-columns: 1.75rem minmax(0, 1fr)'),
+    hasDedicatedQuoteRail: styleCss.includes('.quote-prelude-steps::before')
   })
 );
 assert(
