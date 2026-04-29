@@ -1335,6 +1335,23 @@ assert(
     hasStaleCounterName: scrollAnimationsJs.includes('setAllCounters')
   })
 );
+assert(
+  'reduced motion css reveals every staged garden interlude',
+  [
+    '.project-threshold',
+    '.research-log-handoff',
+    '.quote-prelude-card',
+    '.section-title'
+  ].every((snippet) => styleCss.includes(snippet))
+    && /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.project-threshold,[\s\S]*\.research-log-handoff,[\s\S]*\.quote-prelude-card,[\s\S]*\.section-title,[\s\S]*opacity: 1 !important;[\s\S]*transform: none !important;/.test(styleCss),
+  JSON.stringify({
+    hasProjectThreshold: styleCss.includes('.project-threshold'),
+    hasResearchHandoff: styleCss.includes('.research-log-handoff'),
+    hasQuotePrelude: styleCss.includes('.quote-prelude-card'),
+    hasSectionTitle: styleCss.includes('.section-title'),
+    hasReducedMotionRevealBlock: /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.project-threshold,[\s\S]*\.research-log-handoff,[\s\S]*\.quote-prelude-card,[\s\S]*\.section-title,[\s\S]*opacity: 1 !important;[\s\S]*transform: none !important;/.test(styleCss)
+  })
+);
 assert('canvas size script exposes global', canvasSizeJs.includes('window.HazakuraCanvasSize'));
 assert('visibility playback script exposes global', visibilityPlaybackJs.includes('window.HazakuraVisibilityPlayback'));
 assert('resize listener script exposes global', resizeListenerJs.includes('window.HazakuraResizeListener'));

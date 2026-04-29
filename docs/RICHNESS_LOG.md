@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Access / Structure
+- Changed: スクロール reveal 対象のうち、`project-threshold`、`research-log-handoff`、`quote-prelude-card`、`section-title` が `prefers-reduced-motion` のCSS救済リストから漏れていたため、静かな環境では即時表示に戻るよう揃えた。phase gate にも staged interlude の reduced-motion 契約を追加した。
+- Learned: 間奏カードや橋渡しは演出の起点になりやすいほど、通常JSの `visible` 付与だけに頼ると縮小モーション経路の保守が後追いになりやすい。CSS側にも reveal 対象の最低限の出口を置くと、遊びを増やしても読み筋を閉じ込めにくい。
+- Next: 次に reveal 対象を増やす時は、`scroll-animations.js` と reduced-motion CSS、phase gate の3点を同じ単位で更新できるよう、共通名やコメントの置き方をもう一段整理する。
+
+## 2026-04-29
+
+- Focus: Access / Structure
 - Changed: デスクトップ左端のゾーン巡回を `div` クリック領域から `nav` 内の実ボタンへ整理した。各ボタンに `aria-label` と `aria-pressed` を持たせ、hover だけでなく keyboard focus でもゾーン名の札が出るようにし、phase gate でこの契約を保護した。
 - Learned: 季節ゾーンは装飾に見えても、スクロール体験を任意に辿る小さな入口でもある。見た目を増やさず実ボタン化すると、遊びの導線がマウス専用の隠し仕掛けに閉じず、次の演出調整でも壊れにくい。
 - Next: GUI権限のある環境で、デスクトップ幅のゾーン巡回をTab移動し、左端の札とfocus ringが本文より強く出すぎないか確認する。
