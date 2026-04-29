@@ -9,8 +9,8 @@
 
     const steps = Array.isArray(item.steps) && item.steps.length
       ? `<ol class="quote-prelude-steps">
-          ${item.steps.map((step) => `
-            <li>
+          ${item.steps.map((step, index) => `
+            <li style="--quote-prelude-step-delay: ${index + 1};">
               ${step.href ? `<a class="quote-prelude-step" href="${escapeHtml(step.href)}">` : '<span class="quote-prelude-step">'}
                 <span class="quote-prelude-step__label">${escapeHtml(step.label || '')}</span>
                 <span class="quote-prelude-step__text">${escapeHtml(step.text || '')}</span>

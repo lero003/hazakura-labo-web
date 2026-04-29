@@ -2,6 +2,13 @@
 
 ## 2026-04-29
 
+- Focus: Structure / Motion
+- Changed: Quote前の折り返しステップの表示遅延を、4件固定の `nth-child` CSSから `quote-prelude.js` が各ステップへ渡す `--quote-prelude-step-delay` へ移した。phase gate も固定子セレクタへ戻らず、レンダラー側で順序遅延を持つ契約へ更新した。
+- Learned: 終端の小さな演出でも、件数がCSSに焼き付くと次の余韻調整で構造が硬くなる。見た目を変えずにデータ描画へ寄せるだけで、Quote前の「本、実験、記録、入口」の並び替えや増減が安全になる。
+- Next: Quote prelude と Library / Research の handoff step で、まだ共通化できる余白・レール・モバイル縦化の責務を1つだけ点検する。
+
+## 2026-04-29
+
 - Focus: Structure
 - Changed: Projects の棚ガイド、フィルター、状態文に散っていた昼夜の色指定を `.section-projects` のローカルトークンへ寄せた。夜テーマは操作面の子セレクタを直接上書きせず、棚全体の変数だけを差し替える形にし、phase gate で直指定へ戻らない契約を追加した。
 - Learned: Projects はコンポーネント化された後も、棚操作の色契約がCSS内でばらけていると、次にフィルターのリズムや夜の導線を磨く時に保守の小径が見えにくい。見た目の値を増やさず変数境界へ戻すだけでも、実験棚の調整口が細くなる。

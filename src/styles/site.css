@@ -3721,22 +3721,6 @@ body.theme-night .section-vision .vision-entry-guide__fields {
     transform: translateY(0);
 }
 
-.quote-prelude-steps li:nth-child(1) {
-    --quote-prelude-step-delay: 1;
-}
-
-.quote-prelude-steps li:nth-child(2) {
-    --quote-prelude-step-delay: 2;
-}
-
-.quote-prelude-steps li:nth-child(3) {
-    --quote-prelude-step-delay: 3;
-}
-
-.quote-prelude-steps li:nth-child(4) {
-    --quote-prelude-step-delay: 4;
-}
-
 .quote-prelude-step {
     display: grid;
     grid-template-columns: 1.9rem minmax(0, 1fr);

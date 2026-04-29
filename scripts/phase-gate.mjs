@@ -643,12 +643,15 @@ assert(
   styleCss.includes('.quote-prelude-card.visible .quote-prelude-steps li')
     && styleCss.includes('--quote-prelude-step-delay')
     && styleCss.includes('transition-delay: calc(var(--quote-prelude-step-delay, 0) * 82ms)')
-    && [1, 2, 3, 4].every((index) => styleCss.includes(`.quote-prelude-steps li:nth-child(${index})`)),
+    && quotePreludeJs.includes('item.steps.map((step, index)')
+    && quotePreludeJs.includes('style="--quote-prelude-step-delay: ${index + 1};"')
+    && !styleCss.includes('.quote-prelude-steps li:nth-child('),
   JSON.stringify({
     hasVisibleStepRule: styleCss.includes('.quote-prelude-card.visible .quote-prelude-steps li'),
     hasDelayToken: styleCss.includes('--quote-prelude-step-delay'),
     hasDelayFormula: styleCss.includes('transition-delay: calc(var(--quote-prelude-step-delay, 0) * 82ms)'),
-    indexedSteps: [1, 2, 3, 4].filter((index) => styleCss.includes(`.quote-prelude-steps li:nth-child(${index})`))
+    rendererSetsDelay: quotePreludeJs.includes('style="--quote-prelude-step-delay: ${index + 1};"'),
+    fixedStepSelectors: styleCss.includes('.quote-prelude-steps li:nth-child(')
   })
 );
 assert(
