@@ -341,7 +341,10 @@ assert(
     && scrollIndicatorsJs.includes("routeLinkSelector = '.nav-logo[href^=\"#\"], .nav-links a[href^=\"#\"], .footer-garden-close__link[href^=\"#\"], .footer-nav a[href^=\"#\"]'")
     && scrollIndicatorsJs.includes('const sectionsAtProbe = Array.from(document.querySelectorAll(\'section[id]\')).filter')
     && scrollIndicatorsJs.includes('const sectionAtProbe = sectionsAtProbe.at(-1)')
-    && scrollIndicatorsJs.includes('if (!sectionAtProbe || !routeTargets.some((route) => route.element === sectionAtProbe))')
+    && scrollIndicatorsJs.includes('function getRouteAtProbe()')
+    && scrollIndicatorsJs.includes('return routeTargets.find((route) => route.element === sectionAtProbe) || null')
+    && !scrollIndicatorsJs.includes('routeTargets.forEach((route) =>')
+    && !scrollIndicatorsJs.includes('offsetTop')
     && scrollIndicatorsJs.includes("link.setAttribute('aria-current', 'location')")
     && scrollIndicatorsJs.includes("link.removeAttribute('aria-current')")
     && smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]')
@@ -370,7 +373,10 @@ assert(
     hasRouteCurrentSelector: scrollIndicatorsJs.includes("routeLinkSelector = '.nav-logo[href^=\"#\"], .nav-links a[href^=\"#\"], .footer-garden-close__link[href^=\"#\"], .footer-nav a[href^=\"#\"]'"),
     hasNestedSectionProbeList: scrollIndicatorsJs.includes('const sectionsAtProbe = Array.from(document.querySelectorAll(\'section[id]\')).filter'),
     hasNestedSectionPreference: scrollIndicatorsJs.includes('const sectionAtProbe = sectionsAtProbe.at(-1)'),
-    clearsUnmatchedProbe: scrollIndicatorsJs.includes('if (!sectionAtProbe || !routeTargets.some((route) => route.element === sectionAtProbe))'),
+    hasProbeRouteHelper: scrollIndicatorsJs.includes('function getRouteAtProbe()'),
+    mapsProbeSectionDirectly: scrollIndicatorsJs.includes('return routeTargets.find((route) => route.element === sectionAtProbe) || null'),
+    hasRouteScanFallback: scrollIndicatorsJs.includes('routeTargets.forEach((route) =>'),
+    hasOffsetSort: scrollIndicatorsJs.includes('offsetTop'),
     setsRouteCurrent: scrollIndicatorsJs.includes("link.setAttribute('aria-current', 'location')"),
     clearsRouteCurrent: scrollIndicatorsJs.includes("link.removeAttribute('aria-current')"),
     hasSmoothScrollSelector: smoothScrollJs.includes('.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]'),

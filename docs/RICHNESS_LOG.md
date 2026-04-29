@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Access / Structure
+- Changed: 現在地同期の判定を、基準線上の最内 `section[id]` から対応する巡回路を直接引く `getRouteAtProbe()` へ整理した。`offsetTop` で並べ直して上から最後のrouteを拾う二段判定を削り、phase gate で入れ子section優先と再スキャン不在を保護した。
+- Learned: Research Log のように Vision 内へ沈む小径は、見た目の点灯だけでなく「なぜその札が現在地になるか」がコード上でも一手で読める方が壊れにくい。情報や演出を増やさず、判定の寄り道を削るだけでも参道の保守性は上がる。
+- Next: preview可能な環境で、Vision から Research Log、Quoteへ続けてスクロールし、記録札の点灯解除が余韻を引きずりすぎないか確認する。
+
+## 2026-04-29
+
+- Focus: Access / Structure
 - Changed: Research Log が Vision 内の入れ子 section であるため、現在地判定が親の `#vision` を先に拾って「記録」導線を点灯しにくい状態を直した。`scroll-indicators.js` はビューポート基準線に重なる section のうち内側に現れるものを優先し、phase gate にもこの契約を追加した。
 - Learned: 1ページ内でセクションを入れ子にすると、見た目の流れは自然でもナビの現在地同期では親が子を隠しやすい。導線の正しさは文言やカードを増やさず、スクロール判定の小さな優先順位だけで整えられる。
 - Next: preview可能な環境で、Vision から Research Log へスクロールし、モバイル6分割ナビの「記録」点灯が早すぎず遅すぎないか確認する。

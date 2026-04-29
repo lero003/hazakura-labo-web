@@ -20,8 +20,7 @@
                     element: findRouteTarget(href)
                 }];
             })
-            .filter(([, route]) => route.href && route.element)).values())
-            .sort((a, b) => a.element.offsetTop - b.element.offsetTop);
+            .filter(([, route]) => route.href && route.element)).values());
 
         function updateNav() {
             if (!nav) return;
@@ -45,30 +44,18 @@
             }
         }
 
-        function getActiveRouteHref() {
+        function getRouteAtProbe() {
             const sectionsAtProbe = Array.from(document.querySelectorAll('section[id]')).filter((section) => {
                 const rect = section.getBoundingClientRect();
                 return rect.top <= window.innerHeight * 0.42 && rect.bottom > window.innerHeight * 0.42;
             });
             const sectionAtProbe = sectionsAtProbe.at(-1);
 
-            if (!sectionAtProbe || !routeTargets.some((route) => route.element === sectionAtProbe)) {
-                return '';
-            }
-
-            let activeHref = '';
-            const probeY = Math.min(window.innerHeight * 0.42, getAnchorOffset() + 48);
-            routeTargets.forEach((route) => {
-                if (route.element.getBoundingClientRect().top <= probeY) activeHref = route.href;
-            });
-
-            return activeHref;
+            return routeTargets.find((route) => route.element === sectionAtProbe) || null;
         }
 
-        function getAnchorOffset() {
-            const rawOffset = getComputedStyle(document.documentElement).getPropertyValue('--hazakura-anchor-offset');
-            const parsedOffset = parseFloat(rawOffset);
-            return Number.isFinite(parsedOffset) ? parsedOffset : 72;
+        function getActiveRouteHref() {
+            return getRouteAtProbe()?.href || '';
         }
 
         function updateActiveRoutes() {
