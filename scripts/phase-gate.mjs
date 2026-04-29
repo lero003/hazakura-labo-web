@@ -1017,7 +1017,7 @@ assert(
     && styleCss.includes('.vision-entry-guide__field-drawer')
     && domHelpersJs.includes('${baseClass}__note')
     && styleCss.includes('--garden-drawer-note-white-space')
-    && styleCss.includes('.garden-drawer[open] summary::after'),
+    && styleCss.includes('.garden-drawer[open] > summary::after'),
   JSON.stringify({
     hasDrawerRenderer: visionRendererJs.includes('class="garden-drawer vision-entry-guide__field-drawer"'),
     usesSharedSummary: visionRendererJs.includes('renderDrawerSummary'),
@@ -1227,7 +1227,7 @@ assert(
     && researchRendererJs.includes('由来・断片・論文メモ')
     && domHelpersJs.includes('小径をひらく')
     && styleCss.includes('.research-extra-drawer')
-    && styleCss.includes('.garden-drawer[open] summary::after')
+    && styleCss.includes('.garden-drawer[open] > summary::after')
     && styleCss.includes('.research-extra-drawer__body'),
   JSON.stringify({
     hasDrawerRenderer: researchRendererJs.includes('class="garden-drawer research-extra-drawer"'),
@@ -1249,8 +1249,11 @@ assert(
     '--garden-drawer-sigil-margin-top',
     '--garden-drawer-note-white-space',
     '--garden-drawer-body-padding',
-    'summary:focus-visible',
+    '> summary:focus-visible',
     '.garden-drawer__body',
+    '.garden-drawer > summary',
+    '.garden-drawer[open] > summary::after',
+    '.garden-drawer > summary:hover .garden-drawer__sigil',
     '.garden-drawer',
     '.garden-drawer {\n        --garden-drawer-summary-align: flex-start;'
   ].every((snippet) => styleCss.includes(snippet))
@@ -1266,7 +1269,10 @@ assert(
     && !styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary')
     && !styleCss.includes('.vision-entry-guide__field-drawer summary {')
     && !visionRendererJs.includes('<summary>')
-    && !styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after'),
+    && !styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after')
+    && !styleCss.includes('.garden-drawer summary')
+    && !styleCss.includes('.garden-drawer[open] summary::after')
+    && !styleCss.includes('.garden-drawer summary:hover'),
   JSON.stringify({
     hasSharedSelector: styleCss.includes('.garden-drawer'),
     researchHasSharedClass: researchRendererJs.includes('class="garden-drawer research-extra-drawer"'),
@@ -1284,7 +1290,10 @@ assert(
     hasNoteToken: styleCss.includes('--garden-drawer-note-white-space'),
     hasBodyPaddingToken: styleCss.includes('--garden-drawer-body-padding'),
     hasSharedBodySelector: styleCss.includes('.garden-drawer__body'),
-    hasFocusVisible: styleCss.includes('summary:focus-visible'),
+    hasDirectSummarySelector: styleCss.includes('.garden-drawer > summary'),
+    hasDirectOpenToggleSelector: styleCss.includes('.garden-drawer[open] > summary::after'),
+    hasDirectHoverSigilSelector: styleCss.includes('.garden-drawer > summary:hover .garden-drawer__sigil'),
+    hasFocusVisible: styleCss.includes('> summary:focus-visible'),
     hasSharedMobileAlignment: styleCss.includes('.garden-drawer {\n        --garden-drawer-summary-align: flex-start;'),
     researchHasSharedBody: researchRendererJs.includes('class="garden-drawer__body research-extra-drawer__body"'),
     projectHasSharedBody: projectRendererJs.includes('class="garden-drawer__body project-cycle"'),
@@ -1293,7 +1302,10 @@ assert(
     hasDirectProjectSummaryTheme: styleCss.includes('body.theme-night .section-projects .project-cycle-drawer summary'),
     hasDirectVisionSummaryRule: styleCss.includes('.vision-entry-guide__field-drawer summary {'),
     hasHandRolledVisionSummary: visionRendererJs.includes('<summary>'),
-    hasDirectVisionOpenToggleRule: styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after')
+    hasDirectVisionOpenToggleRule: styleCss.includes('.vision-entry-guide__field-drawer[open] summary::after'),
+    hasBroadDrawerSummaryRule: styleCss.includes('.garden-drawer summary'),
+    hasBroadDrawerOpenToggleRule: styleCss.includes('.garden-drawer[open] summary::after'),
+    hasBroadDrawerHoverRule: styleCss.includes('.garden-drawer summary:hover')
   })
 );
 assert('project renderer script exposes global', projectRendererJs.includes('window.HazakuraProjectRenderer'));
@@ -1426,7 +1438,7 @@ assert(
     && domHelpersJs.includes('小径をひらく')
     && styleCss.includes('.project-cycle-drawer')
     && domHelpersJs.includes('${baseClass}__sigil')
-    && styleCss.includes('.garden-drawer[open] summary::after'),
+    && styleCss.includes('.garden-drawer[open] > summary::after'),
   JSON.stringify({
     hasDrawerRenderer: projectRendererJs.includes('class="garden-drawer project-cycle-drawer"'),
     hasDrawerStyles: styleCss.includes('.project-cycle-drawer')

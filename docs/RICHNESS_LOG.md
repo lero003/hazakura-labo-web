@@ -3,6 +3,13 @@
 ## 2026-04-30
 
 - Focus: Structure
+- Changed: Research / Projects / Vision の共有 details drawer で、`.garden-drawer summary` 系の広い子孫セレクタを直下 `summary` だけへ絞った。開閉記号、hover時のシジル、focus-visible も `> summary` 契約に揃え、phase gate で広い drawer summary セレクタへ戻らないよう保護した。
+- Learned: drawer 本文に将来もう一段小さな `details` を入れた時、親の開閉chromeが子孫summaryへ漏れると「小径の中の小径」が保守しにくくなる。今の見た目を変えずに直下契約へ寄せるだけで、次の遊びや受付メモ追加の余白ができる。
+- Next: preview 可能な環境で Research / Projects / Vision の drawer を開き、直下summary化後も開閉記号とシジルhoverが各セクションで同じ見え方を保っているか確認する。
+
+## 2026-04-30
+
+- Focus: Structure
 - Changed: Research / Projects / Vision の小径drawer本文に共有 `garden-drawer__body` class を足し、開いた後の余白を `--garden-drawer-body-padding` で受ける形へ寄せた。Visionの受付メモリストは既存のリセットと競合しないよう `--entry-field-list-padding` で同じ余白契約へ接続し、phase gate も3系統の本文classを確認するよう更新した。
 - Learned: summary chrome が共有化されても、本文側の余白が各セクションに散ると、次のdrawerを足す時に「見出しだけ共通、本文は別物」という読み直しが残る。本文classを一枚通すだけで、見た目を変えずに小径の調整口が揃う。
 - Next: 次回は preview 可能な環境で Research / Projects / Vision のdrawerを開き、本文余白が各セクションの空気を保ったまま揃っているか確認する。

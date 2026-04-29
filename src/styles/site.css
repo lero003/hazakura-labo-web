@@ -2860,7 +2860,7 @@ a {
     box-shadow: var(--garden-drawer-open-shadow);
 }
 
-.garden-drawer summary {
+.garden-drawer > summary {
     position: relative;
     display: flex;
     gap: var(--garden-drawer-summary-gap);
@@ -2873,11 +2873,11 @@ a {
     list-style: none;
 }
 
-.garden-drawer summary::-webkit-details-marker {
+.garden-drawer > summary::-webkit-details-marker {
     display: none;
 }
 
-.garden-drawer summary::after {
+.garden-drawer > summary::after {
     content: var(--garden-drawer-toggle-content, '＋');
     flex: 0 0 auto;
     display: grid;
@@ -2894,17 +2894,17 @@ a {
     transition: transform var(--duration-fast) ease, background var(--duration-fast) ease;
 }
 
-.garden-drawer summary:hover::after {
+.garden-drawer > summary:hover::after {
     background: var(--garden-drawer-toggle-hover-bg);
 }
 
-.garden-drawer summary:focus-visible {
+.garden-drawer > summary:focus-visible {
     outline: 2px solid var(--garden-drawer-focus-outline);
     outline-offset: var(--garden-drawer-focus-offset, 3px);
     background: var(--garden-drawer-focus-bg, transparent);
 }
 
-.garden-drawer[open] summary::after {
+.garden-drawer[open] > summary::after {
     content: var(--garden-drawer-toggle-open-content, '−');
     transform: var(--garden-drawer-toggle-open-transform, rotate(180deg));
 }
@@ -2926,8 +2926,8 @@ a {
     transition: transform var(--duration-fast) var(--ease-out-expo), border-color var(--duration-fast) ease;
 }
 
-.garden-drawer[open] .garden-drawer__sigil,
-.garden-drawer summary:hover .garden-drawer__sigil {
+.garden-drawer[open] > summary .garden-drawer__sigil,
+.garden-drawer > summary:hover .garden-drawer__sigil {
     border-color: var(--garden-drawer-sigil-active-border);
     transform: rotate(0deg) scale(1.04);
 }
