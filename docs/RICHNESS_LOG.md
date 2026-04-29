@@ -3,6 +3,13 @@
 ## 2026-04-29
 
 - Focus: Structure / Access
+- Changed: フッター終端の「はじまりへ戻る」リンクを、ナビと終端巡回路で使っている共有 `--garden-route-focus-*` トークンへ参加させた。個別の `outline` 直指定を削り、終端リンクだけが別のfocus-visible契約を持たないよう phase gate でも保護した。
+- Learned: Heroへ戻る小径はスクロール演出では巡回路に参加していても、キーボード到達時の光が別実装だと終端だけ保守の外へ出やすい。見た目を増やさず同じfocus境界へ戻すことで、最後の余韻と実用導線を一緒に保てる。
+- Next: preview可能な環境で、フッターの「はじまりへ戻る」と終端巡回路をTab移動し、focus ring の強さと背景の重なりが暗いフッター上で過剰に見えないか確認する。
+
+## 2026-04-29
+
+- Focus: Structure / Access
 - Changed: Projects CTA の行き先表示を、Research の論文リンクと同じ `formatExternalDestination` helper に寄せた。ダウンロード導線はファイル名表示のまま残し、外部リンクだけ共通のホスト名整形を使うようにし、phase gate で Projects 側に個別の `new URL(item.href)` 分岐が戻らないよう保護した。
 - Learned: 外へ出る小径は見た目が似ているほど、行き先表記の整形が別々に増えると次の導線調整で揺れやすい。小さな helper 境界に戻すだけでも、カードの追加やCTA文言変更時に迷う場所が減る。
 - Next: 次は実ブラウザで Projects の外部リンク・DMGダウンロード・準備中ステータスを見比べ、CTAの情報量がカード本文を押していないか確認する。

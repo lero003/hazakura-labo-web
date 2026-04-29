@@ -930,11 +930,17 @@ assert(
   html.includes('class="footer-garden-close"')
     && html.includes('href="#hero" class="footer-garden-close__link"')
     && styleCss.includes('.footer-garden-close')
-    && styleCss.includes('.footer-garden-close__link'),
+    && styleCss.includes('.footer-garden-close__link')
+    && styleCss.includes('.footer-garden-close__link:focus-visible')
+    && styleCss.includes('--garden-route-focus-outline: rgba(232, 88, 122, 0.36)')
+    && !/\.footer-garden-close__link:focus-visible\s*{[^}]*outline:\s*2px solid rgba/s.test(styleCss),
   JSON.stringify({
     hasMarkup: html.includes('class="footer-garden-close"'),
     hasHeroLink: html.includes('href="#hero" class="footer-garden-close__link"'),
-    hasStyles: styleCss.includes('.footer-garden-close')
+    hasStyles: styleCss.includes('.footer-garden-close'),
+    usesSharedFocusSelector: styleCss.includes('.footer-garden-close__link:focus-visible'),
+    hasLocalFocusToken: styleCss.includes('--garden-route-focus-outline: rgba(232, 88, 122, 0.36)'),
+    hasHardcodedFocusOutline: /\.footer-garden-close__link:focus-visible\s*{[^}]*outline:\s*2px solid rgba/s.test(styleCss)
   })
 );
 assert(
