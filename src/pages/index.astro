@@ -1,6 +1,7 @@
 ---
 import HeroSection from '../components/HeroSection.astro';
 import LibrarySection from '../components/LibrarySection.astro';
+import FooterSection from '../components/FooterSection.astro';
 import LogoMark from '../components/LogoMark.astro';
 import { scriptLoadOrder } from '../data/script-load-order.js';
 import { siteNavigation } from '../data/site-navigation.js';
@@ -174,41 +175,7 @@ import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
 
 
 
-    <!-- フッター -->
-    <footer class="footer" id="footer">
-        <div class="footer-inner">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <LogoMark />
-                    <span class="logo-text">葉桜ラボ</span>
-                </div>
-                <p class="footer-philosophy">
-                    AIの知性と、自然の情緒が溶け合う「循環する魔法の拠点」
-                </p>
-                <div class="footer-garden-close" aria-label="葉桜ラボの庭をもう一度巡る小径">
-                    <span class="footer-garden-close__seed" aria-hidden="true">✧</span>
-                    <p>読み終えた問いを、もう一度だけ庭へ戻す。</p>
-                    <a href="#hero" class="footer-garden-close__link">
-                        <span>はじまりへ戻る</span>
-                        <span aria-hidden="true">↑</span>
-                    </a>
-                </div>
-                <nav class="footer-nav" aria-label="葉桜ラボの終端巡回路">
-                    {siteNavigation.map((item) => (
-                        <a href={item.href}>{item.footerLabel}</a>
-                    ))}
-                </nav>
-                <div class="footer-links">
-                    <a href="https://www.amazon.co.jp/dp/B0GSWNNZL7" target="_blank"
-                        rel="noopener noreferrer">Kindleで読む</a>
-                    <!-- <a href="https://github.com/hazakuralabo" target="_blank" rel="noopener noreferrer">GitHub</a> -->
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-copy">&copy; 2026 葉桜ラボ / Hazakura Lab</p>
-            </div>
-        </div>
-    </footer>
+    <FooterSection />
 
     {scriptLoadOrder.map((scriptSrc) => <script is:inline src={scriptSrc}></script>)}
 </body>

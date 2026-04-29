@@ -29,6 +29,7 @@ const html = readFile('dist/index.html');
 const indexSource = readFile('src/pages/index.astro');
 const heroSectionSource = readFile('src/components/HeroSection.astro');
 const librarySectionSource = readFile('src/components/LibrarySection.astro');
+const footerSectionSource = readFile('src/components/FooterSection.astro');
 const logoMarkSource = readFile('src/components/LogoMark.astro');
 const routeHelperSource = readFile('src/route-responses.ts');
 const pageEndpointFiles = fs.readdirSync('src/pages')
@@ -123,7 +124,7 @@ assert(
   indexSource.includes("import { siteNavigation }")
     && indexSource.includes('siteNavigation.map')
     && indexSource.includes('aria-label="葉桜ラボの主要巡回路"')
-    && indexSource.includes('aria-label="葉桜ラボの終端巡回路"')
+    && footerSectionSource.includes('aria-label="葉桜ラボの終端巡回路"')
     && !indexSource.includes('<li><a href="#philosophy">')
     && !indexSource.includes('<a href="#philosophy">哲学</a>')
     && JSON.stringify(siteNavigation.map((item) => item.href)) === JSON.stringify(expectedNavigationHrefs)
@@ -134,7 +135,7 @@ assert(
     importsNavigation: indexSource.includes("import { siteNavigation }"),
     mapsNavigation: indexSource.includes('siteNavigation.map'),
     hasMainRouteLabel: indexSource.includes('aria-label="葉桜ラボの主要巡回路"'),
-    hasFooterRouteLabel: indexSource.includes('aria-label="葉桜ラボの終端巡回路"'),
+    hasFooterRouteLabel: footerSectionSource.includes('aria-label="葉桜ラボの終端巡回路"'),
     hardcodedNavPhilosophy: indexSource.includes('<li><a href="#philosophy">'),
     hardcodedFooterPhilosophy: indexSource.includes('<a href="#philosophy">哲学</a>'),
     hrefs: siteNavigation.map((item) => item.href),
@@ -591,30 +592,66 @@ assert('style sheet contains design tokens', styleCss.includes('--sakura-500') &
 assert(
   'site logo mark is CSS-rendered rather than emoji-rendered',
   indexSource.includes("import LogoMark from '../components/LogoMark.astro'")
-    && (indexSource.match(/<LogoMark \/>/g) || []).length === 2
+    && footerSectionSource.includes("import LogoMark from './LogoMark.astro'")
+    && (indexSource.match(/<LogoMark \/>/g) || []).length === 1
+    && (footerSectionSource.match(/<LogoMark \/>/g) || []).length === 1
     && logoMarkSource.includes("['logo-icon', 'logo-mark', className]")
     && logoMarkSource.includes('class="logo-mark__petal logo-mark__petal--top"')
     && logoMarkSource.includes('class="logo-mark__leaf"')
     && logoMarkSource.includes('class="logo-mark__core"')
     && !indexSource.includes('class="logo-mark__petal')
+    && !footerSectionSource.includes('class="logo-mark__petal')
     && !indexSource.includes('<span class="logo-icon">🌸</span>')
+    && !footerSectionSource.includes('<span class="logo-icon">🌸</span>')
     && (html.match(/class="logo-icon logo-mark"/g) || []).length === 2
     && ['.logo-mark__petal', '.logo-mark__leaf', '.logo-mark__core'].every((snippet) => styleCss.includes(snippet))
     && styleCss.includes('body.theme-night .logo-icon'),
   JSON.stringify({
     importsLogoMark: indexSource.includes("import LogoMark from '../components/LogoMark.astro'"),
-    logoMarkUsages: (indexSource.match(/<LogoMark \/>/g) || []).length,
+    footerImportsLogoMark: footerSectionSource.includes("import LogoMark from './LogoMark.astro'"),
+    indexLogoMarkUsages: (indexSource.match(/<LogoMark \/>/g) || []).length,
+    footerLogoMarkUsages: (footerSectionSource.match(/<LogoMark \/>/g) || []).length,
     componentHasBaseClasses: logoMarkSource.includes("['logo-icon', 'logo-mark', className]"),
     componentHasPetalMarkup: logoMarkSource.includes('class="logo-mark__petal logo-mark__petal--top"'),
     componentHasLeafMarkup: logoMarkSource.includes('class="logo-mark__leaf"'),
     componentHasCoreMarkup: logoMarkSource.includes('class="logo-mark__core"'),
     indexHasInlineMarkPetals: indexSource.includes('class="logo-mark__petal'),
-    hasEmojiLogo: indexSource.includes('<span class="logo-icon">🌸</span>'),
+    footerHasInlineMarkPetals: footerSectionSource.includes('class="logo-mark__petal'),
+    hasEmojiLogo: indexSource.includes('<span class="logo-icon">🌸</span>') || footerSectionSource.includes('<span class="logo-icon">🌸</span>'),
     renderedMarkCount: (html.match(/class="logo-icon logo-mark"/g) || []).length,
     hasPetalStyle: styleCss.includes('.logo-mark__petal'),
     hasLeafStyle: styleCss.includes('.logo-mark__leaf'),
     hasCoreStyle: styleCss.includes('.logo-mark__core'),
     hasNightLogoTokens: styleCss.includes('body.theme-night .logo-icon')
+  })
+);
+assert(
+  'footer section stays componentized and data-backed',
+  indexSource.includes("import FooterSection from '../components/FooterSection.astro'")
+    && indexSource.includes('<FooterSection />')
+    && !indexSource.includes('class="footer-garden-close"')
+    && !indexSource.includes('class="footer-nav"')
+    && !indexSource.includes('https://www.amazon.co.jp/dp/B0GSWNNZL7')
+    && footerSectionSource.includes("import { siteNavigation }")
+    && footerSectionSource.includes("import { libraryBooks }")
+    && footerSectionSource.includes('siteNavigation.map')
+    && footerSectionSource.includes('primaryBookHref')
+    && footerSectionSource.includes('class="footer-garden-close"')
+    && footerSectionSource.includes('class="footer-nav"')
+    && html.includes('class="footer-garden-close"')
+    && html.includes(`href="${libraryBooks[0].action.href}" target="_blank" rel="noopener noreferrer">Kindleで読む</a>`),
+  JSON.stringify({
+    importsComponent: indexSource.includes("import FooterSection from '../components/FooterSection.astro'"),
+    usesComponent: indexSource.includes('<FooterSection />'),
+    indexContainsFooterClose: indexSource.includes('class="footer-garden-close"'),
+    indexContainsFooterNav: indexSource.includes('class="footer-nav"'),
+    indexContainsHardcodedKindleUrl: indexSource.includes('https://www.amazon.co.jp/dp/B0GSWNNZL7'),
+    componentImportsNavigation: footerSectionSource.includes("import { siteNavigation }"),
+    componentImportsBooks: footerSectionSource.includes("import { libraryBooks }"),
+    componentMapsRoutes: footerSectionSource.includes('siteNavigation.map'),
+    componentHasBookHref: footerSectionSource.includes('primaryBookHref'),
+    renderedFooterClose: html.includes('class="footer-garden-close"'),
+    renderedKindleLink: html.includes(`href="${libraryBooks[0].action.href}" target="_blank" rel="noopener noreferrer">Kindleで読む</a>`)
   })
 );
 assert(
