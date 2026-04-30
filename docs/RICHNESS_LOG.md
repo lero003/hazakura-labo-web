@@ -1357,3 +1357,10 @@
 - Changed: Library / Research / Quote で個別に持っていた `garden-handoff-steps` のモバイル縦レール基礎変数を共有側へ寄せ、各セクションには色・余白・ドット位置だけを残した。phase gateにも共有モバイルレール契約を追加した。
 - Learned: セクション間奏の見た目を増やすほど、モバイル時の縦化ルールが散ると次の調整が迷いやすい。共通レールの土台を1箇所に戻すと、各間奏の個性だけを触れる。
 - Next: Library / Research / Quote の手渡しレールを実機幅で横断し、縦レールの左位置とカード内テキストの詰まりだけを目視で確認する。
+
+## 2026-04-30
+
+- Focus: Structure
+- Changed: Projectsカードの lane / type / tag の丸札基礎形を共有セレクタへ寄せ、現在は描画されない `project-live__badge` のCSSトークンとモバイル調整を削除した。phase gateにも未使用バッジ契約が戻らない保護を追加した。
+- Learned: Projectsの札類は夜テーマの色トークンだけでなく、形の責務もまとまっている方が、次の棚表示や導線調整で古いバッジ契約に迷わずに済む。
+- Next: Projectsカードの `project-live` ラッパー名が実体としてはaction置き場になっているため、次回以降にDOM名だけ小さく整理できるか確認する。

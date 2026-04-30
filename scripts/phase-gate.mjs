@@ -1574,16 +1574,17 @@ assert(
     '--project-action-color',
     '--project-action-download-color',
     '--project-action-status-color',
-    '--project-live-badge-color',
     '--project-tag-color'
   ].every((snippet) => styleCss.includes(snippet))
     && styleCss.includes('background: var(--project-card-bg)')
     && styleCss.includes('border: 1px solid var(--project-card-border)')
+    && styleCss.includes('.project-lane,\n.project-type,\n.tag')
     && styleCss.includes('color: var(--project-lane-chip-color)')
     && styleCss.includes('color: var(--project-type-chip-color)')
     && styleCss.includes('color: var(--project-action-color)')
-    && styleCss.includes('color: var(--project-live-badge-color)')
     && styleCss.includes('color: var(--project-tag-color)')
+    && !styleCss.includes('project-live__badge')
+    && !styleCss.includes('--project-live-badge')
     && !styleCss.includes('body.theme-night .section-projects .project-card {')
     && !styleCss.includes('body.theme-night .section-projects .project-card:hover')
     && !styleCss.includes('body.theme-night .section-projects .project-type {')
@@ -1591,7 +1592,6 @@ assert(
     && !styleCss.includes('body.theme-night .section-projects .project-action {')
     && !styleCss.includes('body.theme-night .section-projects .project-action--download {')
     && !styleCss.includes('body.theme-night .section-projects .project-action--status {')
-    && !styleCss.includes('body.theme-night .section-projects .project-live__badge {')
     && !styleCss.includes('body.theme-night .section-projects .tag {'),
   JSON.stringify({
     hasCardBgToken: styleCss.includes('--project-card-bg'),
@@ -1599,8 +1599,10 @@ assert(
     hasLaneTokenUsage: styleCss.includes('color: var(--project-lane-chip-color)'),
     hasTypeTokenUsage: styleCss.includes('color: var(--project-type-chip-color)'),
     hasActionTokenUsage: styleCss.includes('color: var(--project-action-color)'),
-    hasLiveBadgeTokenUsage: styleCss.includes('color: var(--project-live-badge-color)'),
     hasTagTokenUsage: styleCss.includes('color: var(--project-tag-color)'),
+    hasSharedChipShape: styleCss.includes('.project-lane,\n.project-type,\n.tag'),
+    hasLiveBadgeSelector: styleCss.includes('project-live__badge'),
+    hasLiveBadgeToken: styleCss.includes('--project-live-badge'),
     hasDirectNightCard: styleCss.includes('body.theme-night .section-projects .project-card {'),
     hasDirectNightCardHover: styleCss.includes('body.theme-night .section-projects .project-card:hover'),
     hasDirectNightType: styleCss.includes('body.theme-night .section-projects .project-type {'),
@@ -1608,7 +1610,6 @@ assert(
     hasDirectNightAction: styleCss.includes('body.theme-night .section-projects .project-action {'),
     hasDirectNightDownload: styleCss.includes('body.theme-night .section-projects .project-action--download {'),
     hasDirectNightStatus: styleCss.includes('body.theme-night .section-projects .project-action--status {'),
-    hasDirectNightBadge: styleCss.includes('body.theme-night .section-projects .project-live__badge {'),
     hasDirectNightTag: styleCss.includes('body.theme-night .section-projects .tag {')
   })
 );

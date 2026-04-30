@@ -5762,8 +5762,6 @@ body.theme-night .section-layers .layer-sequence__beam {
     --project-action-status-color: var(--purple-500);
     --project-action-status-bg: rgba(167, 139, 250, 0.1);
     --project-action-status-border: rgba(167, 139, 250, 0.22);
-    --project-live-badge-color: var(--ink-400);
-    --project-live-badge-bg: rgba(0, 0, 0, 0.04);
     --project-tag-color: var(--ink-500);
     --project-tag-bg: rgba(0, 0, 0, 0.04);
     position: relative;
@@ -6498,25 +6496,31 @@ body.theme-night .section-layers .layer-sequence__beam {
     margin-bottom: 0.6rem;
 }
 
-.project-lane {
-    font-size: 0.68rem;
-    color: var(--project-lane-chip-color);
-    background: var(--project-lane-chip-bg);
-    border: 1px solid var(--project-lane-chip-border);
-    padding: 0.22rem 0.75rem;
+.project-lane,
+.project-type,
+.tag {
+    display: inline-flex;
+    align-items: center;
     border-radius: 999px;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+}
+
+.project-lane {
+    padding: 0.22rem 0.75rem;
+    border: 1px solid var(--project-lane-chip-border);
+    background: var(--project-lane-chip-bg);
+    color: var(--project-lane-chip-color);
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
 }
 
 .project-type {
-    font-size: 0.7rem;
-    color: var(--project-type-chip-color);
-    background: var(--project-type-chip-bg);
-    border: 1px solid var(--project-type-chip-border);
     padding: 0.2rem 0.8rem;
-    border-radius: 20px;
-    letter-spacing: 0.05em;
+    border: 1px solid var(--project-type-chip-border);
+    background: var(--project-type-chip-bg);
+    color: var(--project-type-chip-color);
+    font-size: 0.7rem;
 }
 
 .project-action {
@@ -6599,15 +6603,6 @@ body.theme-night .section-layers .layer-sequence__beam {
 .project-action__icon {
     font-size: 0.82rem;
     line-height: 1;
-}
-
-.project-live__badge {
-    font-size: 0.7rem;
-    color: var(--project-live-badge-color);
-    background: var(--project-live-badge-bg);
-    padding: 0.2rem 0.8rem;
-    border-radius: 20px;
-    letter-spacing: 0.05em;
 }
 
 .project-title {
@@ -6868,12 +6863,10 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .tag {
-    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
     color: var(--project-tag-color);
     background: var(--project-tag-bg);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    letter-spacing: 0.05em;
+    font-size: 0.7rem;
 }
 
 /* ============================================================
@@ -7409,8 +7402,6 @@ body.theme-night .section-projects {
     --project-action-status-color: var(--purple-400);
     --project-action-status-bg: rgba(167, 139, 250, 0.1);
     --project-action-status-border: rgba(167, 139, 250, 0.28);
-    --project-live-badge-color: var(--body-text-dim);
-    --project-live-badge-bg: var(--tag-bg);
     --project-tag-color: var(--tag-text);
     --project-tag-bg: var(--tag-bg);
     background: linear-gradient(180deg, #0b0c10, #141028, #0b0c10);
@@ -7791,7 +7782,6 @@ body.theme-night .nav-logo {
     .project-lane,
     .project-type,
     .project-action,
-    .project-live__badge,
     .tag {
         border-radius: 999px;
         line-height: 1.4;
