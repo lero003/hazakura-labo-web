@@ -1304,6 +1304,13 @@
 
 ## 2026-04-30
 
+- Focus: Structure
+- Changed: Library の書庫から制作棚へ渡すステップを `GardenHandoffSteps.astro` に切り出し、既存の `garden-handoff-steps` CSS契約をAstro側でも共通部品として使えるようにした。phase gateもLibrary直書き前提から共有コンポーネント前提へ更新した。
+- Learned: Research / Quote のJSヘルパーだけでなく、Astro側にも同じ手渡しレールの置き場を作ると、次のセクション間奏を増やす時にHTML構造を迷わず揃えられる。
+- Next: preview可能な環境で Library / Research / Quote の手渡しレールを横断確認し、共通部品へ遅延表示やラベル拡張を持たせる必要があるか見る。
+
+## 2026-04-30
+
 - Focus: Structure / Access
 - Changed: Vision 入口ガイドのカード全体クリックをやめ、対応カードを照らす操作を明示ボタンだけに絞った。カード本体のポインター表示も外し、phase gateでクリック委譲が戻らないよう保護した。
 - Learned: 受付メモを開く場所と構想カードを照らす場所を分けると、モバイルの誤タップが減り、入口ガイドが探索カードではなく受付の棚として読みやすくなる。

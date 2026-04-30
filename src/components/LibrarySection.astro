@@ -1,6 +1,7 @@
 ---
 import { libraryBooks } from '../data/library-books.js';
 import { libraryProjectsBridge } from '../data/library-projects-bridge.js';
+import GardenHandoffSteps from './GardenHandoffSteps.astro';
 
 const bookShowcaseClass = (book) => ['book-showcase', book.showcaseModifier].filter(Boolean).join(' ');
 const bookCoverClass = (book) => ['book-cover', book.coverModifier].filter(Boolean).join(' ');
@@ -88,14 +89,11 @@ const bookSigilClass = (baseClass, sigil = 'mark') => {
                 <h3 id="library-projects-bridge-title">{libraryProjectsBridge.title}</h3>
                 <p>{libraryProjectsBridge.text}</p>
             </div>
-            <ol class="library-projects-bridge__steps garden-handoff-steps" aria-label="書庫の問いを制作棚へ渡す流れ">
-                {libraryProjectsBridge.steps.map((step) => (
-                    <li>
-                        <span>{step.label}</span>
-                        <p>{step.text}</p>
-                    </li>
-                ))}
-            </ol>
+            <GardenHandoffSteps
+                steps={libraryProjectsBridge.steps}
+                class="library-projects-bridge__steps"
+                ariaLabel="書庫の問いを制作棚へ渡す流れ"
+            />
             <a href={libraryProjectsBridge.action.href} class="library-projects-bridge__link">
                 <span>{libraryProjectsBridge.action.label}</span>
                 <span aria-hidden="true">→</span>

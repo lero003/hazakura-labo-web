@@ -30,6 +30,7 @@ const indexSource = readFile('src/pages/index.astro');
 const heroSectionSource = readFile('src/components/HeroSection.astro');
 const foundationSectionsSource = readFile('src/components/FoundationSections.astro');
 const librarySectionSource = readFile('src/components/LibrarySection.astro');
+const gardenHandoffStepsSource = readFile('src/components/GardenHandoffSteps.astro');
 const projectsSectionSource = readFile('src/components/ProjectsSection.astro');
 const visionSectionSource = readFile('src/components/VisionSection.astro');
 const mainNavigationSource = readFile('src/components/MainNavigation.astro');
@@ -331,8 +332,11 @@ assert(
     && !indexSource.includes('class="library-projects-bridge"')
     && librarySectionSource.includes("import { libraryBooks }")
     && librarySectionSource.includes("import { libraryProjectsBridge }")
+    && librarySectionSource.includes("import GardenHandoffSteps")
     && librarySectionSource.includes('libraryBooks.map')
-    && librarySectionSource.includes('libraryProjectsBridge.steps.map')
+    && librarySectionSource.includes('steps={libraryProjectsBridge.steps}')
+    && gardenHandoffStepsSource.includes('garden-handoff-steps')
+    && gardenHandoffStepsSource.includes('steps.map')
     && !librarySectionSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>')
     && Array.isArray(libraryBooks)
     && libraryBooks.length === 2
@@ -345,8 +349,11 @@ assert(
     indexContainsBridgeMarkup: indexSource.includes('class="library-projects-bridge"'),
     componentImportsBooks: librarySectionSource.includes("import { libraryBooks }"),
     componentImportsBridge: librarySectionSource.includes("import { libraryProjectsBridge }"),
+    componentImportsHandoffSteps: librarySectionSource.includes("import GardenHandoffSteps"),
     componentMapsBooks: librarySectionSource.includes('libraryBooks.map'),
-    componentMapsBridgeSteps: librarySectionSource.includes('libraryProjectsBridge.steps.map'),
+    componentPassesBridgeSteps: librarySectionSource.includes('steps={libraryProjectsBridge.steps}'),
+    sharedHandoffComponentKeepsClass: gardenHandoffStepsSource.includes('garden-handoff-steps'),
+    sharedHandoffComponentMapsSteps: gardenHandoffStepsSource.includes('steps.map'),
     hasHardcodedFirstTitle: librarySectionSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>'),
     bookCount: libraryBooks.length
   })
@@ -1046,7 +1053,9 @@ assert(
 assert(
   'library projects bridge keeps handoff path styling',
   ['.library-projects-bridge::after', '.garden-handoff-steps::before', '.garden-handoff-steps > li::before', '--handoff-step-label-margin-bottom', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet))
-    && librarySectionSource.includes('class="library-projects-bridge__steps garden-handoff-steps"')
+    && librarySectionSource.includes('<GardenHandoffSteps')
+    && librarySectionSource.includes('class="library-projects-bridge__steps"')
+    && gardenHandoffStepsSource.includes("'garden-handoff-steps']")
     && researchRendererJs.includes('renderHandoffSteps')
     && researchRendererJs.includes("className: 'research-log-handoff__steps'")
     && !styleCss.includes('.library-projects-bridge__steps li {')
@@ -1056,7 +1065,9 @@ assert(
     hasStepPath: styleCss.includes('.garden-handoff-steps::before'),
     hasStepDots: styleCss.includes('.garden-handoff-steps > li::before'),
     hasLabelSpacingToken: styleCss.includes('--handoff-step-label-margin-bottom'),
-    libraryUsesSharedSteps: librarySectionSource.includes('class="library-projects-bridge__steps garden-handoff-steps"'),
+    libraryUsesSharedSteps: librarySectionSource.includes('<GardenHandoffSteps')
+      && librarySectionSource.includes('class="library-projects-bridge__steps"')
+      && gardenHandoffStepsSource.includes("'garden-handoff-steps']"),
     researchUsesSharedSteps: researchRendererJs.includes('renderHandoffSteps') && researchRendererJs.includes("className: 'research-log-handoff__steps'"),
     hasDirectLibraryStepItemRule: styleCss.includes('.library-projects-bridge__steps li {'),
     hasDirectLibraryStepLabelRule: styleCss.includes('.library-projects-bridge__steps span {')
@@ -1925,7 +1936,9 @@ assert(
 assert('smooth scroll includes library projects bridge', smoothScrollJs.includes('.library-projects-bridge__link'));
 assert(
   'handoff step chrome uses shared garden class',
-  librarySectionSource.includes('library-projects-bridge__steps garden-handoff-steps')
+  librarySectionSource.includes('<GardenHandoffSteps')
+    && librarySectionSource.includes('class="library-projects-bridge__steps"')
+    && gardenHandoffStepsSource.includes("'garden-handoff-steps']")
     && researchRendererJs.includes('renderHandoffSteps')
     && researchRendererJs.includes("className: 'research-log-handoff__steps'")
     && quotePreludeJs.includes('renderHandoffSteps')
@@ -1944,7 +1957,9 @@ assert(
     && !styleCss.includes('.garden-handoff-steps p {')
     && styleCss.includes('.library-projects-bridge__link:focus-visible'),
   JSON.stringify({
-    libraryUsesSharedClass: librarySectionSource.includes('library-projects-bridge__steps garden-handoff-steps'),
+    libraryUsesSharedClass: librarySectionSource.includes('<GardenHandoffSteps')
+      && librarySectionSource.includes('class="library-projects-bridge__steps"')
+      && gardenHandoffStepsSource.includes("'garden-handoff-steps']"),
     researchUsesSharedClass: researchRendererJs.includes('renderHandoffSteps') && researchRendererJs.includes("className: 'research-log-handoff__steps'"),
     quoteUsesSharedClass: quotePreludeJs.includes('renderHandoffSteps') && quotePreludeJs.includes("className: 'quote-prelude-steps'"),
     quoteHasLabel: quotePreludeJs.includes("ariaLabel: '問いを引用前に巡らせる流れ'"),

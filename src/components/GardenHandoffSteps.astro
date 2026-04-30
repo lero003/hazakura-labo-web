@@ -1,0 +1,20 @@
+---
+const {
+    steps = [],
+    class: className = '',
+    ariaLabel = '巡りの流れ'
+} = Astro.props;
+
+const classNames = [className, 'garden-handoff-steps'].filter(Boolean).join(' ');
+---
+
+{steps.length > 0 && (
+    <ol class={classNames} aria-label={ariaLabel}>
+        {steps.map((step) => (
+            <li>
+                <span>{step.label}</span>
+                <p>{step.text}</p>
+            </li>
+        ))}
+    </ol>
+)}
