@@ -1364,3 +1364,17 @@
 - Changed: Projectsカードの lane / type / tag の丸札基礎形を共有セレクタへ寄せ、現在は描画されない `project-live__badge` のCSSトークンとモバイル調整を削除した。phase gateにも未使用バッジ契約が戻らない保護を追加した。
 - Learned: Projectsの札類は夜テーマの色トークンだけでなく、形の責務もまとまっている方が、次の棚表示や導線調整で古いバッジ契約に迷わずに済む。
 - Next: Projectsカードの `project-live` ラッパー名が実体としてはaction置き場になっているため、次回以降にDOM名だけ小さく整理できるか確認する。
+
+## 2026-04-30
+
+- Focus: Structure / Narrative
+- Changed: 外部チカちゃんレビューを `RICHNESS_BACKLOG` と `WEB_IMPROVEMENT_PRINCIPLES` に反映し、「思想とLibraryは強いが、Projects / Research Log / Vision の具体導線が霧の奥に見える」という観察を次回以降の優先候補へ整理した。
+- Learned: 初見には葉桜ラボが「庭のように育つ実験研究所」として伝わる一方、母艦感はHero付近とProjects冒頭で早めに具体化しないとLibraryの印象に負けやすい。
+- Next: Projects冒頭に「いま触れる実験 / 相談できる構想 / まだ芽のままの問い」の3つの灯りを置けるか、既存データだけで小さく試す。
+
+## 2026-04-30
+
+- Focus: Narrative / Access / Structure
+- Changed: Hero の副説明とCTAの間に、「本を書く / 道具を作る / 問いを記録する / 構想を育てる」の4つの小さな活動札を追加した。文言は `src/data/hero-signals.js` に分け、Hero component はデータを描画するだけにし、phase gate で札の順序とモバイル2列表示を保護した。
+- Learned: Hero が思想と空気だけで始まると、初見では書庫の印象が先に立ち、制作・記録・構想が奥に隠れやすい。新セクションを増やさず、CTA直前に母艦の動きを短く置くと、ページ後半へ進む理由を早めに渡せる。
+- Next: 実ブラウザで 390px 前後のHeroを見て、活動札がCTAより強く出すぎないか、必要なら札の本文だけさらに圧縮する。

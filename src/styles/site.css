@@ -849,6 +849,74 @@ a {
     animation: fadeUp 1s var(--ease-out-expo) 1.2s forwards;
 }
 
+.hero-signal-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.62rem;
+    width: min(100%, 780px);
+    margin: 0 0 1.4rem;
+    list-style: none;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 1s var(--ease-out-expo) 1.38s forwards;
+}
+
+.hero-signal {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.58rem;
+    align-items: center;
+    min-width: 0;
+    padding: 0.68rem 0.78rem;
+    border: 1px solid rgba(196, 196, 212, 0.34);
+    border-radius: 16px;
+    background:
+        radial-gradient(circle at 0 0, rgba(255, 224, 230, 0.34), transparent 58%),
+        rgba(255, 255, 255, 0.34);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(12px) saturate(145%);
+    -webkit-backdrop-filter: blur(12px) saturate(145%);
+}
+
+.hero-signal__mark {
+    display: inline-grid;
+    place-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 1px solid rgba(232, 88, 122, 0.2);
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 36% 28%, rgba(255, 255, 255, 0.74), transparent 42%),
+        linear-gradient(145deg, rgba(232, 88, 122, 0.16), rgba(90, 158, 95, 0.12));
+    color: var(--sakura-600);
+    font-family: var(--font-serif);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.hero-signal__copy {
+    display: grid;
+    gap: 0.06rem;
+    min-width: 0;
+}
+
+.hero-signal strong {
+    color: var(--ink-800);
+    font-family: var(--font-serif);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+}
+
+.hero-signal span span {
+    color: var(--ink-600);
+    font-size: 0.66rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
 /* Shared action links */
 .hero-cta,
 .book-cta {
@@ -4907,6 +4975,34 @@ body.theme-night.zone-aurora #aurora-canvas {
         font-size: clamp(2rem, 8vw, 3rem);
     }
 
+    .hero-signal-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-signal {
+        gap: 0.48rem;
+        padding: 0.58rem 0.62rem;
+        border-radius: 13px;
+    }
+
+    .hero-signal__mark {
+        width: 1.55rem;
+        height: 1.55rem;
+        font-size: 0.66rem;
+    }
+
+    .hero-signal strong {
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+    }
+
+    .hero-signal span span {
+        font-size: 0.62rem;
+        line-height: 1.35;
+    }
+
     .hero-cta-group {
         flex-direction: column;
     }
@@ -5174,6 +5270,7 @@ body.theme-night.zone-aurora #aurora-canvas {
     .title-line,
     .title-accent-line,
     .hero-subtitle,
+    .hero-signal-list,
     .hero-scroll-hint,
     [data-reveal],
     [data-reveal-process] .process-step,

@@ -1,5 +1,6 @@
 ---
 import { siteMeta } from '../data/site-meta.js';
+import { heroSignals } from '../data/hero-signals.js';
 ---
 
 <section id="hero" class="hero" data-zone="day">
@@ -27,6 +28,17 @@ import { siteMeta } from '../data/site-meta.js';
             満開の先にある、移ろいの美しさ。<br>
             理と情が習合する、循環する魔法の拠点。
         </p>
+        <ul class="hero-signal-list" aria-label="葉桜ラボで巡っていること">
+            {heroSignals.map((signal) => (
+                <li class="hero-signal">
+                    <span class="hero-signal__mark" aria-hidden="true">{signal.mark}</span>
+                    <span class="hero-signal__copy">
+                        <strong>{signal.label}</strong>
+                        <span>{signal.text}</span>
+                    </span>
+                </li>
+            ))}
+        </ul>
         <div class="hero-cta-group">
             <a href="#philosophy" class="hero-cta hero-cta--primary">
                 <span>探る</span>
