@@ -43,7 +43,7 @@
       button.addEventListener('click', () => {
         const selectedLane = button.dataset.laneFilter;
         buttons.forEach((filterButton) => {
-          const isActive = filterButton === button;
+          const isActive = filterButton.dataset.laneFilter === selectedLane;
           filterButton.classList.toggle('is-active', isActive);
           filterButton.setAttribute('aria-pressed', String(isActive));
         });

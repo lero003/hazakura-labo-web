@@ -1525,6 +1525,30 @@ assert(
   })
 );
 assert(
+  'projects entry lights expose concrete shelf routes without new cards',
+  Array.isArray(hazakuraContent.projectsGroup?.entryLights)
+    && hazakuraContent.projectsGroup.entryLights.length === 3
+    && hazakuraContent.projectsGroup.entryLights.every((light) => light.label && light.lane && light.title && light.text)
+    && projectRendererJs.includes('function renderEntryLights')
+    && projectRendererJs.includes('class="project-entry-lights"')
+    && projectRendererJs.includes('data-lane-filter="${escapeHtml(light.lane)}"')
+    && projectRendererJs.includes('renderEntryLights(projectsGroup.entryLights)')
+    && projectFilterJs.includes('filterButton.dataset.laneFilter === selectedLane')
+    && styleCss.includes('.project-entry-lights')
+    && styleCss.includes('.project-entry-light')
+    && styleCss.includes('--project-entry-light-bg'),
+  JSON.stringify({
+    entryLightCount: hazakuraContent.projectsGroup?.entryLights?.length || 0,
+    missingFields: hazakuraContent.projectsGroup?.entryLights?.filter((light) => !light.label || !light.lane || !light.title || !light.text) || [],
+    hasRenderer: projectRendererJs.includes('function renderEntryLights'),
+    hasMarkup: projectRendererJs.includes('class="project-entry-lights"'),
+    hasFilterHook: projectRendererJs.includes('data-lane-filter="${escapeHtml(light.lane)}"'),
+    syncsDuplicateFilters: projectFilterJs.includes('filterButton.dataset.laneFilter === selectedLane'),
+    hasStyles: styleCss.includes('.project-entry-lights'),
+    hasTokens: styleCss.includes('--project-entry-light-bg')
+  })
+);
+assert(
   'mobile projects shelf keeps visible scroll affordance',
   ['--project-lane-guide-scroll-track', '--project-lane-guide-scroll-thumb'].every((snippet) => styleCss.includes(snippet))
     && styleCss.includes('scrollbar-width: thin')

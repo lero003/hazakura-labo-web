@@ -5831,6 +5831,13 @@ body.theme-night .section-layers .layer-sequence__beam {
     --project-lane-filter-button-active-border: rgba(232, 88, 122, 0.48);
     --project-lane-filter-button-active-color: var(--sakura-500);
     --project-lane-filter-count-bg: rgba(232, 88, 122, 0.1);
+    --project-entry-light-bg: rgba(255, 255, 255, 0.46);
+    --project-entry-light-border: rgba(232, 88, 122, 0.16);
+    --project-entry-light-hover-bg: rgba(255, 255, 255, 0.7);
+    --project-entry-light-hover-border: rgba(232, 88, 122, 0.36);
+    --project-entry-light-label: var(--sakura-500);
+    --project-entry-light-title: var(--ink-800);
+    --project-entry-light-text: var(--ink-500);
     --project-lane-status-border: rgba(232, 88, 122, 0.36);
     --project-lane-status-bg: rgba(255, 255, 255, 0.42);
     --project-lane-status-color: var(--ink-500);
@@ -6123,6 +6130,10 @@ body.theme-night .section-layers .layer-sequence__beam {
     animation: projectHandoffDeck 1.2s var(--ease-out-expo) 0.12s both;
 }
 
+.section-projects.is-handoff-arrival .project-entry-lights {
+    animation: projectHandoffDeck 1.2s var(--ease-out-expo) 0.06s both;
+}
+
 .section-projects.is-handoff-arrival .project-lane-filter {
     border-color: rgba(232, 88, 122, 0.28);
     box-shadow: 0 0 0 1px rgba(232, 88, 122, 0.08), 0 18px 46px rgba(168, 116, 48, 0.12);
@@ -6168,6 +6179,105 @@ body.theme-night .section-layers .layer-sequence__beam {
         opacity: 1;
         filter: saturate(1);
     }
+}
+
+.project-entry-lights {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: -0.2rem 0 0.08rem;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--duration-slow) var(--ease-out-expo), transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.project-entry-lights.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-entry-lights::before {
+    content: '';
+    position: absolute;
+    top: 0.84rem;
+    left: 0.95rem;
+    right: 0.95rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.25), rgba(90, 158, 95, 0.22), rgba(167, 139, 250, 0.18), rgba(232, 88, 122, 0));
+    pointer-events: none;
+}
+
+.project-entry-light {
+    position: relative;
+    display: flex;
+    min-height: 128px;
+    flex-direction: column;
+    gap: 0.48rem;
+    padding: 1.12rem 1rem 1rem;
+    border: 1px solid var(--project-entry-light-border);
+    border-radius: 8px;
+    background: var(--project-entry-light-bg);
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        transform var(--duration-fast) ease,
+        border-color var(--duration-fast) ease,
+        background var(--duration-fast) ease,
+        box-shadow var(--duration-fast) ease;
+}
+
+.project-entry-light::before {
+    content: '';
+    position: absolute;
+    top: -0.02rem;
+    left: 0.94rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1px solid rgba(232, 88, 122, 0.3);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 1.25rem rgba(232, 88, 122, 0.16);
+    transform: translateY(-50%);
+}
+
+.project-entry-light:hover,
+.project-entry-light:focus-visible,
+.project-entry-light.is-active {
+    transform: translateY(-2px);
+    border-color: var(--project-entry-light-hover-border);
+    background: var(--project-entry-light-hover-bg);
+    box-shadow: 0 16px 36px rgba(168, 116, 48, 0.1);
+}
+
+.project-entry-light:focus-visible {
+    outline: 2px solid rgba(232, 88, 122, 0.4);
+    outline-offset: 3px;
+}
+
+.project-entry-light__label {
+    color: var(--project-entry-light-label);
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+}
+
+.project-entry-light strong {
+    color: var(--project-entry-light-title);
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+}
+
+.project-entry-light__text {
+    color: var(--project-entry-light-text);
+    font-size: 0.78rem;
+    line-height: 1.68;
 }
 
 .project-control-deck {
@@ -7478,6 +7588,13 @@ body.theme-night .section-projects {
     --project-lane-filter-button-active-border: rgba(232, 88, 122, 0.45);
     --project-lane-filter-button-active-color: var(--sakura-400);
     --project-lane-filter-count-bg: rgba(255, 255, 255, 0.08);
+    --project-entry-light-bg: rgba(255, 255, 255, 0.04);
+    --project-entry-light-border: rgba(167, 139, 250, 0.18);
+    --project-entry-light-hover-bg: rgba(255, 255, 255, 0.075);
+    --project-entry-light-hover-border: rgba(232, 88, 122, 0.36);
+    --project-entry-light-label: var(--sakura-400);
+    --project-entry-light-title: var(--header-text);
+    --project-entry-light-text: var(--body-text);
     --project-lane-status-border: rgba(232, 88, 122, 0.48);
     --project-lane-status-bg: rgba(255, 255, 255, 0.045);
     --project-lane-status-color: rgba(255, 255, 255, 0.58);
@@ -7764,6 +7881,43 @@ body.theme-night .nav-logo {
         justify-self: start;
         width: min(14rem, 100%);
         min-height: 2.45rem;
+    }
+
+    .project-entry-lights {
+        grid-template-columns: repeat(3, minmax(12.25rem, 1fr));
+        gap: 0.68rem;
+        margin: -0.05rem -0.25rem 0.05rem;
+        padding: 0.35rem 0.25rem 0.54rem;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        scrollbar-color: rgba(232, 88, 122, 0.42) transparent;
+        scrollbar-width: thin;
+    }
+
+    .project-entry-lights::-webkit-scrollbar {
+        height: 0.36rem;
+    }
+
+    .project-entry-lights::-webkit-scrollbar-track {
+        border-radius: 999px;
+        background: var(--project-lane-guide-scroll-track);
+    }
+
+    .project-entry-lights::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: var(--project-lane-guide-scroll-thumb);
+    }
+
+    .project-entry-lights::before {
+        left: 1.35rem;
+        right: 1.35rem;
+    }
+
+    .project-entry-light {
+        scroll-snap-align: start;
+        min-height: 0;
+        padding: 0.92rem;
     }
 
     .project-lane-guide {
@@ -8322,6 +8476,31 @@ body.theme-night .nav-logo {
     .project-threshold__link {
         grid-column: auto;
         width: 100%;
+    }
+
+    .project-entry-lights {
+        grid-template-columns: minmax(0, 1fr);
+        overflow: visible;
+        scroll-snap-type: none;
+    }
+
+    .project-entry-lights::before {
+        top: 1.05rem;
+        bottom: 1.05rem;
+        left: 1.2rem;
+        right: auto;
+        width: 1px;
+        height: auto;
+        background: linear-gradient(180deg, rgba(232, 88, 122, 0), rgba(232, 88, 122, 0.3), rgba(90, 158, 95, 0.22), rgba(167, 139, 250, 0.18), rgba(232, 88, 122, 0));
+    }
+
+    .project-entry-light {
+        padding-left: 2.05rem;
+    }
+
+    .project-entry-light::before {
+        top: 1.22rem;
+        left: 1.2rem;
     }
 
     .project-card {

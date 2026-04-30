@@ -65,6 +65,22 @@
     return `<p class="project-lane-status" data-project-lane-status aria-live="polite">${escapeHtml(overview || '制作物を棚ごとに眺められます。')}</p>`;
   }
 
+  function renderEntryLights(entryLights) {
+    if (!Array.isArray(entryLights) || !entryLights.length) return '';
+    return `<div class="project-entry-lights" aria-label="制作棚の入口に置いた三つの灯り" data-reveal>
+      ${entryLights.map((light) => {
+        const laneFilter = light.lane
+          ? ` type="button" data-lane-filter="${escapeHtml(light.lane)}" aria-pressed="false"`
+          : ' type="button" disabled';
+        return `<button class="project-entry-light" ${laneFilter}>
+          <span class="project-entry-light__label">${escapeHtml(light.label || '')}</span>
+          <strong>${escapeHtml(light.title || '')}</strong>
+          <span class="project-entry-light__text">${escapeHtml(light.text || '')}</span>
+        </button>`;
+      }).join('')}
+    </div>`;
+  }
+
   function renderThreshold(threshold, options = {}) {
     if (!threshold) return '';
     const { modifier = '' } = options;
@@ -219,12 +235,13 @@
     const laneGuide = renderLaneGuide(projectLanes, laneCounts);
     const laneFilters = renderLaneFilters(projectLanes, laneCounts, items.length);
     const laneStatus = renderLaneStatus(projectLanes, projectsGroup.overview);
+    const entryLights = renderEntryLights(projectsGroup.entryLights);
     const controlDeck = laneGuide || laneFilters || laneStatus
       ? `<div class="project-control-deck">${laneGuide}${laneFilters}${laneStatus}</div>`
       : '';
     const cards = items.map((item) => renderProjectCard(item, actionTypeDetails)).join('');
 
-    root.innerHTML = `${renderThreshold(projectsGroup.threshold)}${controlDeck}${cards}${renderThreshold(projectsGroup.visionHandoff, { modifier: 'vision' })}`;
+    root.innerHTML = `${renderThreshold(projectsGroup.threshold)}${entryLights}${controlDeck}${cards}${renderThreshold(projectsGroup.visionHandoff, { modifier: 'vision' })}`;
     window.HazakuraProjectFilter?.init(root, projectsGroup);
   }
 

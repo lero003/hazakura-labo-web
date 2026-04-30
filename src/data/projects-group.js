@@ -20,6 +20,26 @@ export const projectsGroup = {
     }
   ],
   "overview": "公開済み、試作中、構想中を一列に混ぜ、どのカードが外へ出るか、どれが問いへ戻るかを眺めます。",
+  "entryLights": [
+    {
+      "label": "いま触れる実験",
+      "lane": "Magic Tool",
+      "title": "Kindle EPUB Studio",
+      "text": "出版の手順を、ブラウザで試して直せる小さな作業台として開いています。"
+    },
+    {
+      "label": "相談できる構想",
+      "lane": "Magic Tool",
+      "title": "AI万屋 伝令エージェント",
+      "text": "未整理の相談を、次に聞くことと渡す相手へほどく入口を温めています。"
+    },
+    {
+      "label": "まだ芽のままの問い",
+      "lane": "Research Log",
+      "title": "情緒プロンプト実験ノート",
+      "text": "AIの答えに、続きを考えたくなる余白を残せるかを記録しています。"
+    }
+  ],
   "threshold": {
     "eyebrow": "Library handoff",
     "title": "問いはここで、三つの棚へ分かれる。",
