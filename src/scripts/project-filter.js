@@ -50,8 +50,19 @@
       });
     };
 
+    const focusEntryTarget = (card) => {
+      if (!card) return;
+      if (!card.hasAttribute('tabindex')) card.setAttribute('tabindex', '-1');
+      requestAnimationFrame(() => {
+        window.HazakuraScrollTarget?.scrollTo(card, { offset: 92 });
+        card.focus({ preventScroll: true });
+      });
+    };
+
     const setSelectedLane = (selectedLane, options = {}) => {
       const selectedTarget = options.target || '';
+      const shouldFocusTarget = Boolean(options.focusTarget);
+      let targetCard = null;
       controls.forEach((control) => {
         const isActive = control.dataset.laneFilter === selectedLane;
         const isEntryControl = control.dataset.projectFilterControl === 'entry';
@@ -66,6 +77,7 @@
         card.hidden = !shouldShow;
         if (selectedTarget && shouldShow && card.dataset.projectId === selectedTarget) {
           card.classList.add('is-entry-target');
+          targetCard = card;
         }
       });
       laneGuides.forEach((guide) => {
@@ -74,14 +86,14 @@
         guide.classList.toggle('is-muted', selectedLane !== 'all' && !isSelected);
       });
       if (status) status.textContent = buildLaneStatus(selectedLane, selectedTarget);
+      if (shouldFocusTarget) focusEntryTarget(targetCard);
     };
 
     controls.forEach((control) => {
       control.addEventListener('click', () => {
-        const target = control.dataset.projectFilterControl === 'entry'
-          ? control.dataset.projectEntryTarget || ''
-          : '';
-        setSelectedLane(control.dataset.laneFilter, { target });
+        const isEntryControl = control.dataset.projectFilterControl === 'entry';
+        const target = isEntryControl ? control.dataset.projectEntryTarget || '' : '';
+        setSelectedLane(control.dataset.laneFilter, { target, focusTarget: isEntryControl });
       });
     });
 

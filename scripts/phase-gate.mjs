@@ -1542,6 +1542,11 @@ assert(
     && projectFilterJs.includes('control.dataset.laneFilter === selectedLane')
     && projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget')
     && projectFilterJs.includes("card.classList.add('is-entry-target')")
+    && projectFilterJs.includes('const focusEntryTarget = (card) =>')
+    && projectFilterJs.includes('window.HazakuraScrollTarget?.scrollTo(card, { offset: 92 })')
+    && projectFilterJs.includes("card.setAttribute('tabindex', '-1')")
+    && projectFilterJs.includes('card.focus({ preventScroll: true })')
+    && projectFilterJs.includes('focusTarget: isEntryControl')
     && styleCss.includes('.project-entry-lights')
     && styleCss.includes('.project-entry-light')
     && styleCss.includes('.project-card.is-entry-target')
@@ -1561,6 +1566,11 @@ assert(
     hasSharedSelectionFunction: projectFilterJs.includes('const setSelectedLane = (selectedLane, options = {}) =>'),
     hasTargetSelection: projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget'),
     hasTargetCardClass: projectFilterJs.includes("card.classList.add('is-entry-target')"),
+    hasTargetFocusHelper: projectFilterJs.includes('const focusEntryTarget = (card) =>'),
+    usesSharedScrollTarget: projectFilterJs.includes('window.HazakuraScrollTarget?.scrollTo(card, { offset: 92 })'),
+    makesCardFocusable: projectFilterJs.includes("card.setAttribute('tabindex', '-1')"),
+    focusesTargetCard: projectFilterJs.includes('card.focus({ preventScroll: true })'),
+    onlyFocusesEntryControls: projectFilterJs.includes('focusTarget: isEntryControl'),
     hasStyles: styleCss.includes('.project-entry-lights'),
     hasTargetStyle: styleCss.includes('.project-card.is-entry-target'),
     hasTokens: styleCss.includes('--project-entry-light-bg')
