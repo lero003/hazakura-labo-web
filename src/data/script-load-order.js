@@ -12,6 +12,7 @@ export const scriptLoadGroups = [
     description: 'Section renderers that must exist before the content orchestrator runs.',
     scripts: [
       '/section-foundation-renderer.js',
+      '/process-flow-renderer.js',
       '/project-filter.js',
       '/project-renderer.js',
       '/quote-prelude.js',

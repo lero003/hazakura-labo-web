@@ -2,6 +2,13 @@
 
 ## 2026-04-30
 
+- Focus: Structure
+- Changed: Vision 内の「問い -> 実験 -> 発見 -> 循環」process flow 描画を `section-foundation-renderer.js` から新しい `process-flow-renderer.js` へ切り出した。`content-renderers.js` はページ歩行に近い順で Projects、Vision、process flow、Research Log を委譲し、script load order と phase gate も新しい責務境界を守る形へ更新した。
+- Learned: process flow は基礎セクションの一部ではなく、Vision から Research Log へ渡る小さな橋なので、Foundation renderer に残ると次回の終盤調整で探す場所がずれる。見た目を変えずに描画口だけ分けると、終盤の間奏を磨く小径が細くなる。
+- Next: preview 可能な環境で、Vision entry -> process flow -> Research Log の順にスクロールし、描画順整理後も reveal の立ち上がりと現在地点灯が自然につながるか確認する。
+
+## 2026-04-30
+
 - Focus: Access / Structure
 - Changed: 常設ナビとフッター巡回路の順序を、実際のページ歩行順に合わせて `制作 -> 構想 -> 記録` へ並べ替えた。`siteNavigation` のデータ順だけを調整し、phase gate には巡回路データが生成HTML内のアンカー出現順と一致する保護を追加した。
 - Learned: Research Log が Vision 内の小径として育った後は、ナビだけが `記録 -> 構想` の順に残ると、特にモバイル6分割の参道で次に歩く場所の予感が少しずれる。情報を増やさず順序を揃えるだけでも、1ページ庭園の足取りは読みやすくなる。

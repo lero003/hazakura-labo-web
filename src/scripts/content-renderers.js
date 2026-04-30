@@ -8,6 +8,10 @@
             window.HazakuraResearchRenderer?.render(researchGroup);
         }
 
+        function renderProcessFlow(items) {
+            window.HazakuraProcessFlowRenderer?.render(items);
+        }
+
         function renderVisions(visionsGroup) {
             window.HazakuraVisionRenderer?.render(visionsGroup);
         }
@@ -23,9 +27,10 @@
         function render(content) {
             if (!content) return;
             window.HazakuraSectionFoundationRenderer?.render(content);
-            renderResearchGroup(content.researchGroup);
-            renderVisions(content.visionsGroup || content.visions);
             renderProjects(content.projectsGroup);
+            renderVisions(content.visionsGroup || content.visions);
+            renderProcessFlow(content.process);
+            renderResearchGroup(content.researchGroup);
             renderQuotePrelude(content.quotePrelude);
             onRendered?.();
         }

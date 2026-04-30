@@ -56,6 +56,7 @@ const unlistedScriptSources = sourceScriptPaths
   .filter((path) => !manifestScriptPaths.includes(path));
 const rendererScriptPaths = [
   '/section-foundation-renderer.js',
+  '/process-flow-renderer.js',
   '/project-renderer.js',
   '/quote-prelude.js',
   '/vision-renderer.js',
@@ -478,6 +479,7 @@ const styleCss = readFile('dist/style.css');
 const domHelpersJs = readFile('dist/dom-helpers.js');
 const contentRenderersJs = readFile('dist/content-renderers.js');
 const sectionFoundationRendererJs = readFile('dist/section-foundation-renderer.js');
+const processFlowRendererJs = readFile('dist/process-flow-renderer.js');
 const projectFilterJs = readFile('dist/project-filter.js');
 const projectRendererJs = readFile('dist/project-renderer.js');
 const researchRendererJs = readFile('dist/research-renderer.js');
@@ -757,19 +759,20 @@ assert(
   'CSS sigil tokens are normalized through the shared DOM helper',
   domHelpersJs.includes('function toCssToken')
     && domHelpersJs.includes('replace(/[^a-z0-9-]/g, \'\')')
-    && sectionFoundationRendererJs.includes("toCssToken(item.sigil, 'question')")
+    && processFlowRendererJs.includes("toCssToken(item.sigil, 'question')")
     && projectRendererJs.includes("toCssToken(item.placeholderSigil, 'sakura')")
     && visionRendererJs.includes("toCssToken(item.sigil, 'seed')")
     && !sectionFoundationRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g')
+    && !processFlowRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g')
     && !projectRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g')
     && !visionRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g'),
   JSON.stringify({
     helperHasNormalizer: domHelpersJs.includes('function toCssToken'),
     helperHasTokenRegex: domHelpersJs.includes('replace(/[^a-z0-9-]/g, \'\')'),
-    processUsesHelper: sectionFoundationRendererJs.includes("toCssToken(item.sigil, 'question')"),
+    processUsesHelper: processFlowRendererJs.includes("toCssToken(item.sigil, 'question')"),
     projectUsesHelper: projectRendererJs.includes("toCssToken(item.placeholderSigil, 'sakura')"),
     visionUsesHelper: visionRendererJs.includes("toCssToken(item.sigil, 'seed')"),
-    processHasInlineNormalizer: sectionFoundationRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g'),
+    processHasInlineNormalizer: processFlowRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g'),
     projectHasInlineNormalizer: projectRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g'),
     visionHasInlineNormalizer: visionRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g')
   })
@@ -845,10 +848,11 @@ assert(
 );
 assert(
   'DOM string renderers share escape helper',
-  [sectionFoundationRendererJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => source.includes('window.HazakuraDom'))
-    && [contentRenderersJs, sectionFoundationRendererJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => !source.includes('function escapeHtml')),
+  [sectionFoundationRendererJs, processFlowRendererJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => source.includes('window.HazakuraDom'))
+    && [contentRenderersJs, sectionFoundationRendererJs, processFlowRendererJs, projectRendererJs, quotePreludeJs, researchRendererJs, visionRendererJs].every((source) => !source.includes('function escapeHtml')),
   JSON.stringify({
     foundationUsesHelper: sectionFoundationRendererJs.includes('window.HazakuraDom'),
+    processFlowUsesHelper: processFlowRendererJs.includes('window.HazakuraDom'),
     projectUsesHelper: projectRendererJs.includes('window.HazakuraDom'),
     quoteUsesHelper: quotePreludeJs.includes('window.HazakuraDom'),
     researchUsesHelper: researchRendererJs.includes('window.HazakuraDom'),
@@ -856,6 +860,7 @@ assert(
     duplicateEscapeFunctions: [
       ['content-renderers', contentRenderersJs.includes('function escapeHtml')],
       ['section-foundation-renderer', sectionFoundationRendererJs.includes('function escapeHtml')],
+      ['process-flow-renderer', processFlowRendererJs.includes('function escapeHtml')],
       ['project-renderer', projectRendererJs.includes('function escapeHtml')],
       ['quote-prelude', quotePreludeJs.includes('function escapeHtml')],
       ['research-renderer', researchRendererJs.includes('function escapeHtml')],
@@ -1153,6 +1158,7 @@ assert(
 );
 assert('content renderers script exposes global', contentRenderersJs.includes('window.HazakuraContentRenderers'));
 assert('content renderers delegates foundation renderer', contentRenderersJs.includes('HazakuraSectionFoundationRenderer?.render'));
+assert('content renderers delegates process flow renderer', contentRenderersJs.includes('HazakuraProcessFlowRenderer?.render'));
 assert('content renderers delegates project renderer', contentRenderersJs.includes('HazakuraProjectRenderer?.render'));
 assert('content renderers delegates quote prelude', contentRenderersJs.includes('HazakuraQuotePrelude?.render'));
 assert('content renderers delegates vision renderer', contentRenderersJs.includes('HazakuraVisionRenderer?.render'));
@@ -1184,22 +1190,44 @@ assert(
   'foundation renderer owns static section markup',
   sectionFoundationRendererJs.includes('class="philosophy-card"')
     && sectionFoundationRendererJs.includes('class="layer-card"')
-    && sectionFoundationRendererJs.includes('class="process-step"'),
+    && !sectionFoundationRendererJs.includes('class="process-step"')
+    && !sectionFoundationRendererJs.includes('data-render="process"'),
   JSON.stringify({
     hasPhilosophyCard: sectionFoundationRendererJs.includes('class="philosophy-card"'),
     hasLayerCard: sectionFoundationRendererJs.includes('class="layer-card"'),
-    hasProcessStep: sectionFoundationRendererJs.includes('class="process-step"')
+    hasProcessStep: sectionFoundationRendererJs.includes('class="process-step"'),
+    hasProcessRoot: sectionFoundationRendererJs.includes('data-render="process"')
+  })
+);
+assert(
+  'process flow renderer owns vision bridge markup',
+  processFlowRendererJs.includes('window.HazakuraProcessFlowRenderer')
+    && processFlowRendererJs.includes('data-render="process"')
+    && processFlowRendererJs.includes('class="process-step"')
+    && processFlowRendererJs.includes('process-sigil process-sigil--')
+    && processFlowRendererJs.includes('--process-sigil-delay')
+    && html.indexOf('src="/process-flow-renderer.js"') > html.indexOf('src="/section-foundation-renderer.js"')
+    && html.indexOf('src="/process-flow-renderer.js"') < html.indexOf('src="/content-renderers.js"'),
+  JSON.stringify({
+    exposesGlobal: processFlowRendererJs.includes('window.HazakuraProcessFlowRenderer'),
+    hasProcessRoot: processFlowRendererJs.includes('data-render="process"'),
+    hasProcessStep: processFlowRendererJs.includes('class="process-step"'),
+    hasSigil: processFlowRendererJs.includes('process-sigil process-sigil--'),
+    hasDelayVariable: processFlowRendererJs.includes('--process-sigil-delay'),
+    processRenderer: html.indexOf('src="/process-flow-renderer.js"'),
+    foundationRenderer: html.indexOf('src="/section-foundation-renderer.js"'),
+    contentRenderers: html.indexOf('src="/content-renderers.js"')
   })
 );
 assert(
   'process flow uses CSS-rendered sigils rather than emoji icons',
   hazakuraContent.process.every((item) => item.sigil && item.mark && item.label && !item.icon)
-    && sectionFoundationRendererJs.includes('process-sigil process-sigil--')
-    && sectionFoundationRendererJs.includes('--process-sigil-delay')
-    && sectionFoundationRendererJs.includes('data-process-sigil')
-    && sectionFoundationRendererJs.includes('process-sigil__mark')
-    && !sectionFoundationRendererJs.includes('class="process-icon"')
-    && !sectionFoundationRendererJs.includes('item.icon)</div>')
+    && processFlowRendererJs.includes('process-sigil process-sigil--')
+    && processFlowRendererJs.includes('--process-sigil-delay')
+    && processFlowRendererJs.includes('data-process-sigil')
+    && processFlowRendererJs.includes('process-sigil__mark')
+    && !processFlowRendererJs.includes('class="process-icon"')
+    && !processFlowRendererJs.includes('item.icon)</div>')
     && ['question', 'experiment', 'discovery', 'cycle'].every((sigil) => styleCss.includes(`.process-sigil--${sigil}`))
     && styleCss.includes('animation-delay: var(--process-sigil-delay, 0s)')
     && !styleCss.includes('.process-step:nth-child(')
@@ -1210,9 +1238,9 @@ assert(
       mark: item.mark,
       icon: item.icon
     })),
-    rendererHasSigil: sectionFoundationRendererJs.includes('process-sigil process-sigil--'),
-    rendererHasDelayVariable: sectionFoundationRendererJs.includes('--process-sigil-delay'),
-    rendererHasLegacyIcon: sectionFoundationRendererJs.includes('class="process-icon"') || sectionFoundationRendererJs.includes('item.icon)</div>'),
+    rendererHasSigil: processFlowRendererJs.includes('process-sigil process-sigil--'),
+    rendererHasDelayVariable: processFlowRendererJs.includes('--process-sigil-delay'),
+    rendererHasLegacyIcon: processFlowRendererJs.includes('class="process-icon"') || processFlowRendererJs.includes('item.icon)</div>'),
     missingStyles: ['question', 'experiment', 'discovery', 'cycle'].filter((sigil) => !styleCss.includes(`.process-sigil--${sigil}`)),
     hasDelayVariable: styleCss.includes('animation-delay: var(--process-sigil-delay, 0s)'),
     hasFixedStepDelay: styleCss.includes('.process-step:nth-child('),
