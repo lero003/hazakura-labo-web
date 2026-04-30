@@ -30,6 +30,18 @@
     --ink-100: #f2f2f7;
     --purple-400: #a78bfa;
     --purple-500: #8b5cf6;
+    --sigil-sakura-rgb: 232, 88, 122;
+    --sigil-leaf-rgb: 90, 158, 95;
+    --sigil-green-rgb: 61, 122, 65;
+    --sigil-water-rgb: 77, 161, 169;
+    --sigil-violet-rgb: 139, 92, 246;
+    --sigil-earth-rgb: 168, 116, 48;
+    --sigil-honey-rgb: 245, 194, 105;
+    --sigil-map-rgb: 71, 121, 157;
+    --sigil-sky-rgb: 59, 130, 168;
+    --sigil-night-violet-rgb: 167, 139, 250;
+    --sigil-night-leaf-rgb: 82, 183, 150;
+    --sigil-night-water-rgb: 93, 203, 225;
     --card-bg: rgba(255, 255, 255, 0.7);
     --card-bg-hover: rgba(255, 255, 255, 0.95);
     --font-serif: 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', serif;
@@ -1645,7 +1657,7 @@ a {
 }
 
 .book-meta-sigil {
-    --book-meta-sigil-rgb: 232, 88, 122;
+    --book-meta-sigil-rgb: var(--sigil-sakura-rgb);
     display: inline-grid;
     place-items: center;
     width: 1.14rem;
@@ -1663,19 +1675,19 @@ a {
 }
 
 .book-meta-sigil--pages {
-    --book-meta-sigil-rgb: 61, 122, 65;
+    --book-meta-sigil-rgb: var(--sigil-green-rgb);
 }
 
 .book-meta-sigil--theme {
-    --book-meta-sigil-rgb: 232, 88, 122;
+    --book-meta-sigil-rgb: var(--sigil-sakura-rgb);
 }
 
 .book-meta-sigil--date {
-    --book-meta-sigil-rgb: 139, 92, 246;
+    --book-meta-sigil-rgb: var(--sigil-violet-rgb);
 }
 
 .book-meta-sigil--leaf {
-    --book-meta-sigil-rgb: 61, 122, 65;
+    --book-meta-sigil-rgb: var(--sigil-green-rgb);
     border-radius: 999px 999px 999px 3px;
     transform: rotate(-18deg);
 }
@@ -1728,7 +1740,7 @@ a {
 }
 
 .highlight-sigil {
-    --highlight-sigil-rgb: 232, 88, 122;
+    --highlight-sigil-rgb: var(--sigil-sakura-rgb);
     display: inline-grid;
     place-items: center;
     width: 1.42rem;
@@ -1748,23 +1760,23 @@ a {
 }
 
 .highlight-sigil--heat {
-    --highlight-sigil-rgb: 232, 88, 122;
+    --highlight-sigil-rgb: var(--sigil-sakura-rgb);
 }
 
 .highlight-sigil--being,
 .highlight-sigil--body {
-    --highlight-sigil-rgb: 139, 92, 246;
+    --highlight-sigil-rgb: var(--sigil-violet-rgb);
 }
 
 .highlight-sigil--world,
 .highlight-sigil--rain,
 .highlight-sigil--cup {
-    --highlight-sigil-rgb: 61, 122, 65;
+    --highlight-sigil-rgb: var(--sigil-green-rgb);
 }
 
 .highlight-sigil--detour,
 .highlight-sigil--note {
-    --highlight-sigil-rgb: 168, 116, 48;
+    --highlight-sigil-rgb: var(--sigil-earth-rgb);
 }
 
 .book-price {
@@ -2315,7 +2327,7 @@ a {
 }
 
 .process-sigil {
-    --process-sigil-rgb: 232, 88, 122;
+    --process-sigil-rgb: var(--sigil-sakura-rgb);
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -2356,7 +2368,7 @@ a {
 }
 
 .process-sigil--question {
-    --process-sigil-rgb: 77, 161, 169;
+    --process-sigil-rgb: var(--sigil-water-rgb);
 }
 
 .process-sigil--question::before {
@@ -2377,7 +2389,7 @@ a {
 }
 
 .process-sigil--experiment {
-    --process-sigil-rgb: 139, 92, 246;
+    --process-sigil-rgb: var(--sigil-violet-rgb);
 }
 
 .process-sigil--experiment::before {
@@ -2400,7 +2412,7 @@ a {
 }
 
 .process-sigil--discovery {
-    --process-sigil-rgb: 245, 194, 105;
+    --process-sigil-rgb: var(--sigil-honey-rgb);
 }
 
 .process-sigil--discovery::before {
@@ -2425,7 +2437,7 @@ a {
 }
 
 .process-sigil--cycle {
-    --process-sigil-rgb: 90, 158, 95;
+    --process-sigil-rgb: var(--sigil-leaf-rgb);
 }
 
 .process-sigil--cycle::before {
@@ -3311,7 +3323,7 @@ body.theme-night .section-vision {
 }
 
 .vision-entry-guide__kind {
-    --entry-accent-rgb: 90, 158, 95;
+    --entry-accent-rgb: var(--sigil-leaf-rgb);
     --entry-accent: var(--green-500);
     min-height: 100%;
     padding: 0.85rem;
@@ -3454,22 +3466,22 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 :is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind] {
-    --entry-accent-rgb: 232, 88, 122;
+    --entry-accent-rgb: var(--sigil-sakura-rgb);
     --entry-accent: var(--sakura-500);
 }
 
 :is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind="memory"] {
-    --entry-accent-rgb: 90, 158, 95;
+    --entry-accent-rgb: var(--sigil-leaf-rgb);
     --entry-accent: var(--green-500);
 }
 
 :is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind="object"] {
-    --entry-accent-rgb: 168, 116, 48;
+    --entry-accent-rgb: var(--sigil-earth-rgb);
     --entry-accent: #a87430;
 }
 
 :is(.vision-card, .vision-entry-guide__kind, .vision-entry-question, .vision-entry-kind-badge)[data-entry-kind="knowledge"] {
-    --entry-accent-rgb: 59, 130, 168;
+    --entry-accent-rgb: var(--sigil-sky-rgb);
     --entry-accent: #3b82a8;
 }
 
@@ -3612,7 +3624,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .vision-sigil {
-    --vision-sigil-rgb: 232, 88, 122;
+    --vision-sigil-rgb: var(--sigil-sakura-rgb);
     position: relative;
     z-index: 1;
     display: inline-grid;
@@ -3654,7 +3666,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .vision-sigil--terakoya {
-    --vision-sigil-rgb: 90, 158, 95;
+    --vision-sigil-rgb: var(--sigil-leaf-rgb);
 }
 
 .vision-sigil--terakoya::before {
@@ -3668,7 +3680,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .vision-sigil--memoir {
-    --vision-sigil-rgb: 77, 161, 169;
+    --vision-sigil-rgb: var(--sigil-water-rgb);
 }
 
 .vision-sigil--memoir::before,
@@ -3689,7 +3701,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .vision-sigil--radio {
-    --vision-sigil-rgb: 168, 116, 48;
+    --vision-sigil-rgb: var(--sigil-earth-rgb);
 }
 
 .vision-sigil--radio::before {
@@ -3713,7 +3725,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .vision-sigil--local {
-    --vision-sigil-rgb: 139, 92, 246;
+    --vision-sigil-rgb: var(--sigil-violet-rgb);
 }
 
 .vision-sigil--local::before {
@@ -3736,7 +3748,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .vision-sigil--research {
-    --vision-sigil-rgb: 232, 88, 122;
+    --vision-sigil-rgb: var(--sigil-sakura-rgb);
 }
 
 .vision-sigil--research::before {
@@ -3763,7 +3775,7 @@ body.theme-night .section-vision .vision-entry-guide__fields {
 }
 
 .vision-sigil--magic {
-    --vision-sigil-rgb: 245, 194, 105;
+    --vision-sigil-rgb: var(--sigil-honey-rgb);
 }
 
 .vision-sigil--magic::before {
@@ -6065,7 +6077,7 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-thumb-placeholder {
-    --placeholder-accent-rgb: 232, 88, 122;
+    --placeholder-accent-rgb: var(--sigil-sakura-rgb);
     --placeholder-sigil-bg:
         radial-gradient(circle at 50% 36%, rgba(var(--placeholder-accent-rgb), 0.18), transparent 60%),
         rgba(255, 255, 255, 0.54);
@@ -6089,23 +6101,23 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-thumb-placeholder[data-placeholder-sigil="scout"] {
-    --placeholder-accent-rgb: 90, 158, 95;
+    --placeholder-accent-rgb: var(--sigil-leaf-rgb);
 }
 
 .project-thumb-placeholder[data-placeholder-sigil="message"] {
-    --placeholder-accent-rgb: 232, 88, 122;
+    --placeholder-accent-rgb: var(--sigil-sakura-rgb);
 }
 
 .project-thumb-placeholder[data-placeholder-sigil="experiment"] {
-    --placeholder-accent-rgb: 139, 92, 246;
+    --placeholder-accent-rgb: var(--sigil-violet-rgb);
 }
 
 .project-thumb-placeholder[data-placeholder-sigil="map"] {
-    --placeholder-accent-rgb: 71, 121, 157;
+    --placeholder-accent-rgb: var(--sigil-map-rgb);
 }
 
 .project-thumb-placeholder[data-placeholder-sigil="sakura"] {
-    --placeholder-accent-rgb: 232, 88, 122;
+    --placeholder-accent-rgb: var(--sigil-sakura-rgb);
 }
 
 .placeholder-sigil {
@@ -6133,23 +6145,23 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .placeholder-sigil--scout {
-    --placeholder-accent-rgb: 90, 158, 95;
+    --placeholder-accent-rgb: var(--sigil-leaf-rgb);
 }
 
 .placeholder-sigil--message {
-    --placeholder-accent-rgb: 232, 88, 122;
+    --placeholder-accent-rgb: var(--sigil-sakura-rgb);
 }
 
 .placeholder-sigil--experiment {
-    --placeholder-accent-rgb: 139, 92, 246;
+    --placeholder-accent-rgb: var(--sigil-violet-rgb);
 }
 
 .placeholder-sigil--map {
-    --placeholder-accent-rgb: 71, 121, 157;
+    --placeholder-accent-rgb: var(--sigil-map-rgb);
 }
 
 .placeholder-sigil--sakura {
-    --placeholder-accent-rgb: 232, 88, 122;
+    --placeholder-accent-rgb: var(--sigil-sakura-rgb);
 }
 
 .placeholder-sigil--scout::before {
@@ -6692,8 +6704,8 @@ body.theme-night .section-library .meta-tag {
 
 body.theme-night .section-library .book-meta-sigil,
 body.theme-night .section-library .highlight-sigil {
-    --book-meta-sigil-rgb: 167, 139, 250;
-    --highlight-sigil-rgb: 167, 139, 250;
+    --book-meta-sigil-rgb: var(--sigil-night-violet-rgb);
+    --highlight-sigil-rgb: var(--sigil-night-violet-rgb);
 }
 
 body.theme-night .section-library .highlight-item {
@@ -6783,22 +6795,22 @@ body.theme-night .section-vision .vision-card .vision-text {
 }
 
 body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind] {
-    --entry-accent-rgb: 167, 139, 250;
+    --entry-accent-rgb: var(--sigil-night-violet-rgb);
     --entry-accent: var(--purple-400);
 }
 
 body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind="memory"] {
-    --entry-accent-rgb: 82, 183, 150;
+    --entry-accent-rgb: var(--sigil-night-leaf-rgb);
     --entry-accent: #52b796;
 }
 
 body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind="object"] {
-    --entry-accent-rgb: 245, 194, 105;
+    --entry-accent-rgb: var(--sigil-honey-rgb);
     --entry-accent: #f5c269;
 }
 
 body.theme-night .section-vision :is(.vision-card, .vision-entry-question, .vision-entry-guide__kind, .vision-entry-kind-badge)[data-entry-kind="knowledge"] {
-    --entry-accent-rgb: 93, 203, 225;
+    --entry-accent-rgb: var(--sigil-night-water-rgb);
     --entry-accent: #5dcbe1;
 }
 

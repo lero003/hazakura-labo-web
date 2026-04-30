@@ -767,6 +767,36 @@ assert(
     visionHasInlineNormalizer: visionRendererJs.includes('toLowerCase().replace(/[^a-z0-9-]/g')
   })
 );
+const directSigilRgbPattern = /--(?:book-meta|highlight|process|vision)-sigil-rgb:\s*[0-9]|--placeholder-accent-rgb:\s*[0-9]|--entry-accent-rgb:\s*[0-9]/;
+const sigilPaletteTokens = [
+  '--sigil-sakura-rgb: 232, 88, 122',
+  '--sigil-leaf-rgb: 90, 158, 95',
+  '--sigil-water-rgb: 77, 161, 169',
+  '--sigil-violet-rgb: 139, 92, 246',
+  '--sigil-earth-rgb: 168, 116, 48',
+  '--sigil-honey-rgb: 245, 194, 105',
+  '--sigil-night-violet-rgb: 167, 139, 250'
+];
+const sigilPaletteUsages = [
+  '--book-meta-sigil-rgb: var(--sigil-sakura-rgb)',
+  '--highlight-sigil-rgb: var(--sigil-sakura-rgb)',
+  '--process-sigil-rgb: var(--sigil-water-rgb)',
+  '--vision-sigil-rgb: var(--sigil-leaf-rgb)',
+  '--placeholder-accent-rgb: var(--sigil-leaf-rgb)',
+  '--entry-accent-rgb: var(--sigil-sakura-rgb)',
+  '--book-meta-sigil-rgb: var(--sigil-night-violet-rgb)'
+];
+assert(
+  'CSS sigil colors use the shared palette tokens',
+  sigilPaletteTokens.every((snippet) => styleCss.includes(snippet))
+    && sigilPaletteUsages.every((snippet) => styleCss.includes(snippet))
+    && !directSigilRgbPattern.test(styleCss),
+  JSON.stringify({
+    missingTokens: sigilPaletteTokens.filter((snippet) => !styleCss.includes(snippet)),
+    missingUsages: sigilPaletteUsages.filter((snippet) => !styleCss.includes(snippet)),
+    directAssignment: styleCss.match(directSigilRgbPattern)?.[0] || null
+  })
+);
 assert(
   'shared drawer summary helper feeds research, project, and vision drawers',
   domHelpersJs.includes('function renderDrawerSummary')

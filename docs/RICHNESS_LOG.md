@@ -3,6 +3,13 @@
 ## 2026-04-30
 
 - Focus: Structure
+- Changed: Library / Process / Vision / Projects のCSSシジル色を、各部品内のRGB直指定から `--sigil-*-rgb` の共有パレットへ寄せた。昼夜の入口accentや仮サムネイル小印も同じ色語彙を参照し、phase gate でシジル系RGBが再び部品内へ散らばらないよう保護した。
+- Learned: CSSシジルのDOM生成口が揃っても、色だけが各セクションに残ると、次の小印追加時に「同じ桜色か、少し違う桜色か」を毎回探すことになる。視覚を変えずに色語彙を一段上へ逃がすと、庭全体の私物感と保守の見通しを同時に保ちやすい。
+- Next: preview 可能な環境で、Libraryの詳細印、Visionカード、Projects仮サムネイルを昼夜とモバイル幅で見比べ、共有パレット化後も各セクションの温度差が平板になっていないか確認する。
+
+## 2026-04-30
+
+- Focus: Structure
 - Changed: Process / Projects / Vision のCSSシジル用トークン正規化を、各レンダラー内の個別正規表現から `HazakuraDom.toCssToken` へ集約した。小印の class / data 属性の出力は維持し、phase gate で共有helper経由から戻らないよう保護した。
 - Learned: 絵文字からCSSシジルへ置き換えた箇所が増えるほど、見た目の小物そのものより「意味トークンを安全にCSS classへ渡す口」が散らばりやすい。共通helperへ寄せると、新しい小印を足す時にProjects / Vision / Processで同じ規則を使える。
 - Next: 次回は `data-*-sigil` 系のCSS変数や色指定が、Projects / Vision / Process で必要以上に別名化していないか1種類だけ見る。
