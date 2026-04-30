@@ -1532,8 +1532,11 @@ assert(
     && projectRendererJs.includes('function renderEntryLights')
     && projectRendererJs.includes('class="project-entry-lights"')
     && projectRendererJs.includes('data-lane-filter="${escapeHtml(light.lane)}"')
+    && projectRendererJs.includes('data-project-filter-control="entry"')
+    && projectRendererJs.includes('data-project-filter-control="lane"')
     && projectRendererJs.includes('renderEntryLights(projectsGroup.entryLights)')
-    && projectFilterJs.includes('filterButton.dataset.laneFilter === selectedLane')
+    && projectFilterJs.includes('const setSelectedLane = (selectedLane) =>')
+    && projectFilterJs.includes('control.dataset.laneFilter === selectedLane')
     && styleCss.includes('.project-entry-lights')
     && styleCss.includes('.project-entry-light')
     && styleCss.includes('--project-entry-light-bg'),
@@ -1543,7 +1546,10 @@ assert(
     hasRenderer: projectRendererJs.includes('function renderEntryLights'),
     hasMarkup: projectRendererJs.includes('class="project-entry-lights"'),
     hasFilterHook: projectRendererJs.includes('data-lane-filter="${escapeHtml(light.lane)}"'),
-    syncsDuplicateFilters: projectFilterJs.includes('filterButton.dataset.laneFilter === selectedLane'),
+    hasEntryControlKind: projectRendererJs.includes('data-project-filter-control="entry"'),
+    hasLaneControlKind: projectRendererJs.includes('data-project-filter-control="lane"'),
+    syncsDuplicateFilters: projectFilterJs.includes('control.dataset.laneFilter === selectedLane'),
+    hasSharedSelectionFunction: projectFilterJs.includes('const setSelectedLane = (selectedLane) =>'),
     hasStyles: styleCss.includes('.project-entry-lights'),
     hasTokens: styleCss.includes('--project-entry-light-bg')
   })

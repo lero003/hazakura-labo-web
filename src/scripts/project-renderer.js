@@ -33,12 +33,12 @@
   function renderLaneFilters(projectLanes, laneCounts, totalCount) {
     if (!projectLanes.length) return '';
     return `<div class="project-lane-filter" aria-label="制作物の棚で絞り込む">
-      <button class="project-lane-filter__button is-active" type="button" data-lane-filter="all" aria-pressed="true">
+      <button class="project-lane-filter__button is-active" type="button" data-lane-filter="all" data-project-filter-control="lane" aria-pressed="true">
         <span>すべて</span>
         <strong>${escapeHtml(String(totalCount))}</strong>
       </button>
       ${projectLanes.map((lane) => `
-        <button class="project-lane-filter__button" type="button" data-lane-filter="${escapeHtml(lane.label)}" aria-pressed="false">
+        <button class="project-lane-filter__button" type="button" data-lane-filter="${escapeHtml(lane.label)}" data-project-filter-control="lane" aria-pressed="false">
           <span>${escapeHtml(lane.jp)}</span>
           <strong>${escapeHtml(String(laneCounts[lane.label] || 0))}</strong>
         </button>
@@ -70,7 +70,7 @@
     return `<div class="project-entry-lights" aria-label="制作棚の入口に置いた三つの灯り" data-reveal>
       ${entryLights.map((light) => {
         const laneFilter = light.lane
-          ? ` type="button" data-lane-filter="${escapeHtml(light.lane)}" aria-pressed="false"`
+          ? ` type="button" data-lane-filter="${escapeHtml(light.lane)}" data-project-filter-control="entry" aria-pressed="false"`
           : ' type="button" disabled';
         return `<button class="project-entry-light" ${laneFilter}>
           <span class="project-entry-light__label">${escapeHtml(light.label || '')}</span>

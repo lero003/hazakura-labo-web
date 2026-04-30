@@ -1392,3 +1392,10 @@
 - Changed: ProjectsカードのCTAラッパー名を、旧い `project-live` から実体に合う `project-action-slot` へ改め、phase gateで旧名が戻らないよう保護した。
 - Learned: 入口灯やアクション種別を増やした後は、古いDOM名が残るだけでも次の改善で「公開中だけの枠」と誤読しやすい。見た目を変えない命名整理も、制作棚の保守性を上げる。
 - Next: Projects入口灯と棚フィルターの同期を実ブラウザで確認し、`project-action-slot` に将来必要な配置CSSがあるかだけ見る。
+
+## 2026-05-01
+
+- Focus: Structure / Access
+- Changed: Projects入口灯と棚フィルターの共通 `data-lane-filter` 操作に `data-project-filter-control` を付け、入口灯と棚ボタンの役割をDOM上で分けた。フィルターJSはクリック時と初期状態を同じ `setSelectedLane` 経路へ寄せ、phase gateでこの同期契約を保護した。
+- Learned: 同じ棚選択でも、入口灯は導線、棚ボタンは状態確認という役割が違う。属性で役割を明示しておくと、次にProjects冒頭の余白やモバイル表示を触る時に暗黙の同期を壊しにくい。
+- Next: preview可能な環境で Projects入口灯を 390px / desktop 幅で押し、灯りと棚ボタンの強弱が重なりすぎないか確認する。
