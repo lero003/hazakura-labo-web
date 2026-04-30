@@ -21,9 +21,13 @@
     const actionOrder = actionTypes.length ? actionTypes.map((guide) => guide.type).filter(Boolean) : ['external', 'download', 'status'];
     const overview = projectsGroup.overview || '制作物を棚ごとに眺められます。';
 
-    const buildLaneStatus = (selectedLane) => {
+    const buildLaneStatus = (selectedLane, selectedTarget = '') => {
       const base = selectedLane === 'all' ? overview : laneCopy[selectedLane] || overview;
       const visibleCards = cards.filter((card) => selectedLane === 'all' || card.dataset.lane === selectedLane);
+      const targetCard = selectedTarget
+        ? visibleCards.find((card) => card.dataset.projectId === selectedTarget)
+        : null;
+      const targetTitle = targetCard?.querySelector('.project-title')?.textContent?.trim() || '';
       const actionCounts = visibleCards.reduce((counts, card) => {
         const actionType = card.dataset.actionType || 'status';
         counts[actionType] = (counts[actionType] || 0) + 1;
@@ -34,32 +38,50 @@
         .map((type) => `${actionLabels[type] || type}${actionCounts[type]}件`)
         .join(' / ');
 
-      return actionSummary
+      const countSummary = actionSummary
         ? `${base} 表示中は${visibleCards.length}件（${actionSummary}）。`
         : `${base} 表示中は${visibleCards.length}件です。`;
+      return targetTitle ? `${countSummary} 入口灯は「${targetTitle}」へ届いています。` : countSummary;
     };
 
-    const setSelectedLane = (selectedLane) => {
+    const clearEntryTarget = () => {
+      cards.forEach((card) => {
+        card.classList.remove('is-entry-target');
+      });
+    };
+
+    const setSelectedLane = (selectedLane, options = {}) => {
+      const selectedTarget = options.target || '';
       controls.forEach((control) => {
         const isActive = control.dataset.laneFilter === selectedLane;
-        control.classList.toggle('is-active', isActive);
-        control.setAttribute('aria-pressed', String(isActive));
+        const isEntryControl = control.dataset.projectFilterControl === 'entry';
+        const targetMatches = !selectedTarget || !isEntryControl || control.dataset.projectEntryTarget === selectedTarget;
+        const shouldMarkActive = isActive && targetMatches;
+        control.classList.toggle('is-active', shouldMarkActive);
+        control.setAttribute('aria-pressed', String(shouldMarkActive));
       });
+      clearEntryTarget();
       cards.forEach((card) => {
         const shouldShow = selectedLane === 'all' || card.dataset.lane === selectedLane;
         card.hidden = !shouldShow;
+        if (selectedTarget && shouldShow && card.dataset.projectId === selectedTarget) {
+          card.classList.add('is-entry-target');
+        }
       });
       laneGuides.forEach((guide) => {
         const isSelected = selectedLane !== 'all' && guide.dataset.laneGuide === selectedLane;
         guide.classList.toggle('is-selected', isSelected);
         guide.classList.toggle('is-muted', selectedLane !== 'all' && !isSelected);
       });
-      if (status) status.textContent = buildLaneStatus(selectedLane);
+      if (status) status.textContent = buildLaneStatus(selectedLane, selectedTarget);
     };
 
     controls.forEach((control) => {
       control.addEventListener('click', () => {
-        setSelectedLane(control.dataset.laneFilter);
+        const target = control.dataset.projectFilterControl === 'entry'
+          ? control.dataset.projectEntryTarget || ''
+          : '';
+        setSelectedLane(control.dataset.laneFilter, { target });
       });
     });
 

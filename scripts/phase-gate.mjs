@@ -1528,29 +1528,41 @@ assert(
   'projects entry lights expose concrete shelf routes without new cards',
   Array.isArray(hazakuraContent.projectsGroup?.entryLights)
     && hazakuraContent.projectsGroup.entryLights.length === 3
-    && hazakuraContent.projectsGroup.entryLights.every((light) => light.label && light.lane && light.title && light.text)
+    && hazakuraContent.projectsGroup.entryLights.every((light) => light.label && light.lane && light.target && light.title && light.text)
+    && hazakuraContent.projectsGroup.entryLights.every((light) => hazakuraContent.projectsGroup.items.some((item) => item.id === light.target))
     && projectRendererJs.includes('function renderEntryLights')
     && projectRendererJs.includes('class="project-entry-lights"')
     && projectRendererJs.includes('data-lane-filter="${escapeHtml(light.lane)}"')
+    && projectRendererJs.includes('data-project-entry-target="${escapeHtml(light.target)}"')
+    && projectRendererJs.includes('data-project-id="${escapeHtml(item.id || \'\')}"')
     && projectRendererJs.includes('data-project-filter-control="entry"')
     && projectRendererJs.includes('data-project-filter-control="lane"')
     && projectRendererJs.includes('renderEntryLights(projectsGroup.entryLights)')
-    && projectFilterJs.includes('const setSelectedLane = (selectedLane) =>')
+    && projectFilterJs.includes('const setSelectedLane = (selectedLane, options = {}) =>')
     && projectFilterJs.includes('control.dataset.laneFilter === selectedLane')
+    && projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget')
+    && projectFilterJs.includes("card.classList.add('is-entry-target')")
     && styleCss.includes('.project-entry-lights')
     && styleCss.includes('.project-entry-light')
+    && styleCss.includes('.project-card.is-entry-target')
     && styleCss.includes('--project-entry-light-bg'),
   JSON.stringify({
     entryLightCount: hazakuraContent.projectsGroup?.entryLights?.length || 0,
-    missingFields: hazakuraContent.projectsGroup?.entryLights?.filter((light) => !light.label || !light.lane || !light.title || !light.text) || [],
+    missingFields: hazakuraContent.projectsGroup?.entryLights?.filter((light) => !light.label || !light.lane || !light.target || !light.title || !light.text) || [],
+    missingTargets: hazakuraContent.projectsGroup?.entryLights?.filter((light) => !hazakuraContent.projectsGroup.items.some((item) => item.id === light.target)) || [],
     hasRenderer: projectRendererJs.includes('function renderEntryLights'),
     hasMarkup: projectRendererJs.includes('class="project-entry-lights"'),
     hasFilterHook: projectRendererJs.includes('data-lane-filter="${escapeHtml(light.lane)}"'),
+    hasTargetHook: projectRendererJs.includes('data-project-entry-target="${escapeHtml(light.target)}"'),
+    hasCardIdHook: projectRendererJs.includes('data-project-id="${escapeHtml(item.id || \'\')}"'),
     hasEntryControlKind: projectRendererJs.includes('data-project-filter-control="entry"'),
     hasLaneControlKind: projectRendererJs.includes('data-project-filter-control="lane"'),
     syncsDuplicateFilters: projectFilterJs.includes('control.dataset.laneFilter === selectedLane'),
-    hasSharedSelectionFunction: projectFilterJs.includes('const setSelectedLane = (selectedLane) =>'),
+    hasSharedSelectionFunction: projectFilterJs.includes('const setSelectedLane = (selectedLane, options = {}) =>'),
+    hasTargetSelection: projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget'),
+    hasTargetCardClass: projectFilterJs.includes("card.classList.add('is-entry-target')"),
     hasStyles: styleCss.includes('.project-entry-lights'),
+    hasTargetStyle: styleCss.includes('.project-card.is-entry-target'),
     hasTokens: styleCss.includes('--project-entry-light-bg')
   })
 );

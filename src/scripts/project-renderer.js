@@ -69,8 +69,9 @@
     if (!Array.isArray(entryLights) || !entryLights.length) return '';
     return `<div class="project-entry-lights" aria-label="制作棚の入口に置いた三つの灯り" data-reveal>
       ${entryLights.map((light) => {
+        const entryTarget = light.target ? ` data-project-entry-target="${escapeHtml(light.target)}"` : '';
         const laneFilter = light.lane
-          ? ` type="button" data-lane-filter="${escapeHtml(light.lane)}" data-project-filter-control="entry" aria-pressed="false"`
+          ? ` type="button" data-lane-filter="${escapeHtml(light.lane)}" data-project-filter-control="entry"${entryTarget} aria-pressed="false"`
           : ' type="button" disabled';
         return `<button class="project-entry-light" ${laneFilter}>
           <span class="project-entry-light__label">${escapeHtml(light.label || '')}</span>
@@ -201,7 +202,7 @@
     const cardClass = item.image ? 'project-card' : 'project-card project-card--placeholder';
 
     return `
-      <article class="${cardClass}" data-project-card data-lane="${escapeHtml(item.lane || '')}" data-action-type="${escapeHtml(actionType)}" data-reveal data-tilt>
+      <article class="${cardClass}" data-project-card data-project-id="${escapeHtml(item.id || '')}" data-lane="${escapeHtml(item.lane || '')}" data-action-type="${escapeHtml(actionType)}" data-reveal data-tilt>
         <div class="project-thumb">${renderProjectThumb(item)}</div>
         <div class="project-info">
           <div class="project-meta-row">

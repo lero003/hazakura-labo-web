@@ -24,18 +24,21 @@ export const projectsGroup = {
     {
       "label": "いま触れる実験",
       "lane": "Magic Tool",
+      "target": "kindle-epub-studio",
       "title": "Kindle EPUB Studio",
       "text": "出版の手順を、ブラウザで試して直せる小さな作業台として開いています。"
     },
     {
       "label": "相談できる構想",
       "lane": "Magic Tool",
+      "target": "ai-yorozuya-message-agent",
       "title": "AI万屋 伝令エージェント",
       "text": "未整理の相談を、次に聞くことと渡す相手へほどく入口を温めています。"
     },
     {
       "label": "まだ芽のままの問い",
       "lane": "Research Log",
+      "target": "emotional-prompt-notes",
       "title": "情緒プロンプト実験ノート",
       "text": "AIの答えに、続きを考えたくなる余白を残せるかを記録しています。"
     }
@@ -79,6 +82,7 @@ export const projectsGroup = {
   ],
   "items": [
     {
+      "id": "kindle-epub-studio",
       "lane": "Magic Tool",
       "type": "Web Tool",
       "title": "Kindle EPUB Studio",
@@ -133,6 +137,7 @@ export const projectsGroup = {
       ]
     },
     {
+      "id": "ai-yorozuya-message-agent",
       "lane": "Magic Tool",
       "type": "Agent Seed",
       "title": "AI万屋 伝令エージェント（構想メモ）",
@@ -159,6 +164,7 @@ export const projectsGroup = {
       ]
     },
     {
+      "id": "emotional-prompt-notes",
       "lane": "Research Log",
       "type": "Research Log",
       "title": "情緒プロンプト実験ノート",

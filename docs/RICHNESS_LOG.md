@@ -1399,3 +1399,10 @@
 - Changed: Projects入口灯と棚フィルターの共通 `data-lane-filter` 操作に `data-project-filter-control` を付け、入口灯と棚ボタンの役割をDOM上で分けた。フィルターJSはクリック時と初期状態を同じ `setSelectedLane` 経路へ寄せ、phase gateでこの同期契約を保護した。
 - Learned: 同じ棚選択でも、入口灯は導線、棚ボタンは状態確認という役割が違う。属性で役割を明示しておくと、次にProjects冒頭の余白やモバイル表示を触る時に暗黙の同期を壊しにくい。
 - Next: preview可能な環境で Projects入口灯を 390px / desktop 幅で押し、灯りと棚ボタンの強弱が重なりすぎないか確認する。
+
+## 2026-05-01
+
+- Focus: Access / Structure
+- Changed: Projects入口灯に対応カードの `target` を持たせ、同じ棚フィルター内でも代表カードへ「入口灯」印が届くようにした。カードID、描画属性、フィルター状態、phase gateを同じ契約へ揃えた。
+- Learned: 入口灯は棚の分類だけを切り替えると、同じ `Magic Tool` 内の灯りが同じ操作に見えて弱くなる。棚を絞りつつ代表カードを照らすと、情報を増やさずに導線の約束が明確になる。
+- Next: ブラウザ確認できる環境で、入口灯の到着印がProjectsカードの本文より強く出すぎないかを 390px / desktop 幅で見る。
