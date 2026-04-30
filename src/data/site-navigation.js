@@ -20,13 +20,13 @@ export const siteNavigation = [
     footerLabel: '制作'
   },
   {
-    href: '#research-log-strip',
-    navLabel: '記 録',
-    footerLabel: '記録'
-  },
-  {
     href: '#vision',
     navLabel: '構 想',
     footerLabel: '構想'
+  },
+  {
+    href: '#research-log-strip',
+    navLabel: '記 録',
+    footerLabel: '記録'
   }
 ];

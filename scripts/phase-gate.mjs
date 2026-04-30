@@ -123,7 +123,8 @@ assert(
     projects: html.indexOf('id="projects"')
   })
 );
-const expectedNavigationHrefs = ['#philosophy', '#layers', '#library', '#projects', '#research-log-strip', '#vision'];
+const expectedNavigationHrefs = ['#philosophy', '#layers', '#library', '#projects', '#vision', '#research-log-strip'];
+const navigationTargetPositions = expectedNavigationHrefs.map((href) => [href, html.indexOf(`id="${href.slice(1)}"`)]);
 assert(
   'persistent garden routes are data-backed',
   mainNavigationSource.includes("import { siteNavigation }")
@@ -147,6 +148,12 @@ assert(
     navLabels: siteNavigation.map((item) => item.navLabel),
     footerLabels: siteNavigation.map((item) => item.footerLabel)
   })
+);
+assert(
+  'persistent garden routes follow page walk order',
+  navigationTargetPositions.every(([, index]) => index >= 0)
+    && navigationTargetPositions.every(([, index], itemIndex) => itemIndex === 0 || navigationTargetPositions[itemIndex - 1][1] < index),
+  JSON.stringify(navigationTargetPositions)
 );
 assert(
   'main navigation stays componentized and data-backed',
