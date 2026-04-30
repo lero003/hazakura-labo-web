@@ -1722,6 +1722,7 @@ assert(
     && visionEntryFocusJs.includes('const getSelectButton')
     && visionEntryFocusJs.includes("querySelector('[data-entry-kind-select]')")
     && visionEntryFocusJs.includes("selectButton?.setAttribute('aria-pressed', isPinned ? 'true' : 'false')")
+    && !visionEntryFocusJs.includes("setAttribute('aria-current'")
     && visionEntryFocusJs.includes("applyKind(pinnedKind || '')")
     && visionEntryFocusJs.includes("event.target.closest('details, button')")
     && visionEntryFocusJs.includes("root.addEventListener('click'")
@@ -1735,6 +1736,7 @@ assert(
     focusFindsSelectButton: visionEntryFocusJs.includes('const getSelectButton')
       && visionEntryFocusJs.includes("querySelector('[data-entry-kind-select]')"),
     syncsPressedState: visionEntryFocusJs.includes("selectButton?.setAttribute('aria-pressed', isPinned ? 'true' : 'false')"),
+    leaksCurrentState: visionEntryFocusJs.includes("setAttribute('aria-current'"),
     restoresPinnedPreview: visionEntryFocusJs.includes("applyKind(pinnedKind || '')"),
     protectsNestedDetails: visionEntryFocusJs.includes("event.target.closest('details, button')"),
     keepsCardClickDelegation: visionEntryFocusJs.includes("root.addEventListener('click'"),

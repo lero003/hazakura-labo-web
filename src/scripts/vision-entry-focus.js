@@ -68,7 +68,6 @@
         const isPinned = Boolean(pinnedKind) && item.dataset.entryKind === pinnedKind;
         const selectButton = getSelectButton(item);
         item.classList.toggle('is-entry-active', isActive);
-        selectButton?.setAttribute('aria-current', isActive ? 'true' : 'false');
         selectButton?.setAttribute('aria-pressed', isPinned ? 'true' : 'false');
       });
       cards.forEach((card) => {
