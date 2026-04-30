@@ -98,10 +98,6 @@
 
     const getSelectButton = (item) => item.querySelector('[data-entry-kind-select]');
 
-    const getItemFromEvent = (event) => event.target instanceof Element
-      ? event.target.closest('.vision-entry-guide__kind[data-entry-kind]')
-      : null;
-
     const togglePinnedKind = (kind, item) => {
       const nextKind = pinnedKind === kind ? '' : kind;
       applyKind(nextKind, true);
@@ -135,12 +131,6 @@
       if (event.key === 'Escape' && pinnedKind) {
         releasePinnedKind();
       }
-    });
-
-    root.addEventListener('click', (event) => {
-      const item = getItemFromEvent(event);
-      if (!item || event.target instanceof Element && event.target.closest('details, button')) return;
-      togglePinnedKind(item.dataset.entryKind || '', item);
     });
   }
 

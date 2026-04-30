@@ -1742,8 +1742,8 @@ assert(
     && visionEntryFocusJs.includes("selectButton?.setAttribute('aria-pressed', isPinned ? 'true' : 'false')")
     && !visionEntryFocusJs.includes("setAttribute('aria-current'")
     && visionEntryFocusJs.includes("applyKind(pinnedKind || '')")
-    && visionEntryFocusJs.includes("event.target.closest('details, button')")
-    && visionEntryFocusJs.includes("root.addEventListener('click'")
+    && !visionEntryFocusJs.includes("root.addEventListener('click'")
+    && !visionEntryFocusJs.includes('getItemFromEvent')
     && visionEntryFocusJs.includes('togglePinnedKind(kind, item)'),
   JSON.stringify({
     rendererHasButton: visionRendererJs.includes('class="vision-entry-guide__select"'),
@@ -1756,8 +1756,8 @@ assert(
     syncsPressedState: visionEntryFocusJs.includes("selectButton?.setAttribute('aria-pressed', isPinned ? 'true' : 'false')"),
     leaksCurrentState: visionEntryFocusJs.includes("setAttribute('aria-current'"),
     restoresPinnedPreview: visionEntryFocusJs.includes("applyKind(pinnedKind || '')"),
-    protectsNestedDetails: visionEntryFocusJs.includes("event.target.closest('details, button')"),
     keepsCardClickDelegation: visionEntryFocusJs.includes("root.addEventListener('click'"),
+    keepsEventTargetHelper: visionEntryFocusJs.includes('getItemFromEvent'),
     hasSharedToggle: visionEntryFocusJs.includes('togglePinnedKind(kind, item)')
   })
 );
