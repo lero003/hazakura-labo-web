@@ -336,7 +336,9 @@ assert(
     && librarySectionSource.includes('libraryBooks.map')
     && librarySectionSource.includes('steps={libraryProjectsBridge.steps}')
     && gardenHandoffStepsSource.includes('garden-handoff-steps')
-    && gardenHandoffStepsSource.includes('steps.map')
+    && gardenHandoffStepsSource.includes('normalizedSteps')
+    && gardenHandoffStepsSource.includes('normalizedSteps.map')
+    && gardenHandoffStepsSource.includes('step.href')
     && !librarySectionSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>')
     && Array.isArray(libraryBooks)
     && libraryBooks.length === 2
@@ -353,7 +355,8 @@ assert(
     componentMapsBooks: librarySectionSource.includes('libraryBooks.map'),
     componentPassesBridgeSteps: librarySectionSource.includes('steps={libraryProjectsBridge.steps}'),
     sharedHandoffComponentKeepsClass: gardenHandoffStepsSource.includes('garden-handoff-steps'),
-    sharedHandoffComponentMapsSteps: gardenHandoffStepsSource.includes('steps.map'),
+    sharedHandoffComponentMapsSteps: gardenHandoffStepsSource.includes('normalizedSteps.map'),
+    sharedHandoffComponentSupportsHref: gardenHandoffStepsSource.includes('step.href'),
     hasHardcodedFirstTitle: librarySectionSource.includes('<h3 class="book-info-title">チカちゃんの哲学冒険譚</h3>'),
     bookCount: libraryBooks.length
   })
@@ -1947,12 +1950,15 @@ assert(
     && styleCss.includes('.garden-handoff-steps')
     && styleCss.includes('.garden-handoff-steps::before')
     && styleCss.includes('.garden-handoff-steps > li::before')
+    && styleCss.includes('.garden-handoff-steps > li > a')
     && styleCss.includes('--handoff-step-rail: linear-gradient')
     && styleCss.includes('--handoff-step-dot-border: 1px solid')
     && styleCss.includes('--handoff-step-text-color: var(--ink-600)')
     && styleCss.includes('padding: var(--handoff-step-item-padding, 1.25rem 0 0);')
     && styleCss.includes('.garden-handoff-steps > li > span')
     && styleCss.includes('.garden-handoff-steps > li > p')
+    && styleCss.includes('.garden-handoff-steps > li > a > span')
+    && styleCss.includes('.garden-handoff-steps > li > a > p')
     && !styleCss.includes('.garden-handoff-steps span {')
     && !styleCss.includes('.garden-handoff-steps p {')
     && styleCss.includes('.library-projects-bridge__link:focus-visible'),
@@ -1966,6 +1972,7 @@ assert(
     hasSharedListStyle: styleCss.includes('.garden-handoff-steps'),
     hasSharedRailStyle: styleCss.includes('.garden-handoff-steps::before'),
     hasSharedDotStyle: styleCss.includes('.garden-handoff-steps > li::before'),
+    supportsLinkedSteps: styleCss.includes('.garden-handoff-steps > li > a'),
     hasRailDefault: styleCss.includes('--handoff-step-rail: linear-gradient'),
     hasDotDefault: styleCss.includes('--handoff-step-dot-border: 1px solid'),
     hasTextDefault: styleCss.includes('--handoff-step-text-color: var(--ink-600)'),

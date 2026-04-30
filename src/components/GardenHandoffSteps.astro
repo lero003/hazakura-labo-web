@@ -6,14 +6,30 @@ const {
 } = Astro.props;
 
 const classNames = [className, 'garden-handoff-steps'].filter(Boolean).join(' ');
+const normalizedSteps = steps.map((step) => ({
+    ...step,
+    label: step.label || '',
+    text: step.text || '',
+    href: step.href || '',
+    linkLabel: step.linkLabel || step.label || step.text || '巡りのステップ'
+}));
 ---
 
 {steps.length > 0 && (
     <ol class={classNames} aria-label={ariaLabel}>
-        {steps.map((step) => (
+        {normalizedSteps.map((step) => (
             <li>
-                <span>{step.label}</span>
-                <p>{step.text}</p>
+                {step.href ? (
+                    <a href={step.href} aria-label={step.linkLabel}>
+                        <span>{step.label}</span>
+                        <p>{step.text}</p>
+                    </a>
+                ) : (
+                    <>
+                        <span>{step.label}</span>
+                        <p>{step.text}</p>
+                    </>
+                )}
             </li>
         ))}
     </ol>

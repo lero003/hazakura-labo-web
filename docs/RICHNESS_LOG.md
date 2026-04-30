@@ -1311,6 +1311,13 @@
 
 ## 2026-04-30
 
+- Focus: Structure
+- Changed: `GardenHandoffSteps.astro` が `steps` を正規化し、必要な時だけ `href` 付きステップも同じ `garden-handoff-steps` CSS契約で描けるようにした。直下リンク用の共有CSSと phase gate を足し、現在の Library -> Projects 表示は非リンクステップのまま維持した。
+- Learned: JS側の `renderHandoffSteps` とAstro側の手渡し部品でデータ契約を近づけておくと、次に間奏へリンクや到着演出を足す時も、セクションごとの特別扱いを増やさずに済む。
+- Next: preview可能な環境で Library / Research / Quote の手渡しレールを横断し、リンク化したいステップが実際にあるか、それともCTAだけで十分か判断する。
+
+## 2026-04-30
+
 - Focus: Structure / Access
 - Changed: Vision 入口ガイドのカード全体クリックをやめ、対応カードを照らす操作を明示ボタンだけに絞った。カード本体のポインター表示も外し、phase gateでクリック委譲が戻らないよう保護した。
 - Learned: 受付メモを開く場所と構想カードを照らす場所を分けると、モバイルの誤タップが減り、入口ガイドが探索カードではなく受付の棚として読みやすくなる。

@@ -2084,7 +2084,14 @@ a {
     box-shadow: var(--handoff-step-dot-shadow, none);
 }
 
-.garden-handoff-steps > li > span {
+.garden-handoff-steps > li > a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.garden-handoff-steps > li > span,
+.garden-handoff-steps > li > a > span {
     display: block;
     margin-bottom: var(--handoff-step-label-margin-bottom, 0);
     color: var(--handoff-step-label-color);
@@ -2093,7 +2100,8 @@ a {
     letter-spacing: var(--handoff-step-label-spacing, 0.12em);
 }
 
-.garden-handoff-steps > li > p {
+.garden-handoff-steps > li > p,
+.garden-handoff-steps > li > a > p {
     margin-top: var(--handoff-step-text-margin, 0);
     color: var(--handoff-step-text-color);
     font-size: var(--handoff-step-text-size, 0.78rem);
