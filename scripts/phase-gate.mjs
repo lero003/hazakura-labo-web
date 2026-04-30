@@ -1714,18 +1714,30 @@ assert(
 );
 assert(
   'vision entry focus exposes a stable selection control',
-  visionEntryFocusJs.includes("item.setAttribute('role', 'button')")
-    && visionEntryFocusJs.includes("item.setAttribute('aria-pressed', 'false')")
-    && visionEntryFocusJs.includes("item.setAttribute('aria-pressed', isPinned ? 'true' : 'false')")
+  visionRendererJs.includes('class="vision-entry-guide__select"')
+    && visionRendererJs.includes('type="button"')
+    && visionRendererJs.includes('data-entry-kind-select')
+    && visionRendererJs.includes('aria-label="${escapeHtml(label)}の入口に対応する構想カードを照らす"')
+    && visionRendererJs.includes('aria-pressed="false"')
+    && visionEntryFocusJs.includes('const getSelectButton')
+    && visionEntryFocusJs.includes("querySelector('[data-entry-kind-select]')")
+    && visionEntryFocusJs.includes("selectButton?.setAttribute('aria-pressed', isPinned ? 'true' : 'false')")
     && visionEntryFocusJs.includes("applyKind(pinnedKind || '')")
-    && visionEntryFocusJs.includes('isFromNestedSummary(event)')
+    && visionEntryFocusJs.includes("event.target.closest('details, button')")
+    && visionEntryFocusJs.includes("root.addEventListener('click'")
     && visionEntryFocusJs.includes('togglePinnedKind(kind, item)'),
   JSON.stringify({
-    hasButtonRole: visionEntryFocusJs.includes("item.setAttribute('role', 'button')"),
-    initializesPressed: visionEntryFocusJs.includes("item.setAttribute('aria-pressed', 'false')"),
-    syncsPressedState: visionEntryFocusJs.includes("item.setAttribute('aria-pressed', isPinned ? 'true' : 'false')"),
+    rendererHasButton: visionRendererJs.includes('class="vision-entry-guide__select"'),
+    rendererHasNativeButton: visionRendererJs.includes('type="button"'),
+    rendererHasSelectHook: visionRendererJs.includes('data-entry-kind-select'),
+    rendererHasDistinctLabel: visionRendererJs.includes('aria-label="${escapeHtml(label)}の入口に対応する構想カードを照らす"'),
+    rendererInitializesPressed: visionRendererJs.includes('aria-pressed="false"'),
+    focusFindsSelectButton: visionEntryFocusJs.includes('const getSelectButton')
+      && visionEntryFocusJs.includes("querySelector('[data-entry-kind-select]')"),
+    syncsPressedState: visionEntryFocusJs.includes("selectButton?.setAttribute('aria-pressed', isPinned ? 'true' : 'false')"),
     restoresPinnedPreview: visionEntryFocusJs.includes("applyKind(pinnedKind || '')"),
-    protectsNestedSummary: visionEntryFocusJs.includes('isFromNestedSummary(event)'),
+    protectsNestedDetails: visionEntryFocusJs.includes("event.target.closest('details, button')"),
+    keepsCardClickDelegation: visionEntryFocusJs.includes("root.addEventListener('click'"),
     hasSharedToggle: visionEntryFocusJs.includes('togglePinnedKind(kind, item)')
   })
 );

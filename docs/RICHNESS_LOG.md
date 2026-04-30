@@ -1287,3 +1287,10 @@
 - Changed: Projects の終端に `visionHandoff` を追加し、既存の `project-threshold` 表現を再利用して Vision 入口へ渡す短い導線と到着強調を加えた。
 - Learned: Library から Projects へ入る橋だけでなく、長い制作棚を読み終えた後の出口も置くと、カード追加ではなく参道の途切れを整えられる。
 - Next: Projects 終端から Vision 入口までを実機幅で確認し、リンクCTAの強さが制作棚カードより目立ちすぎないか見る。
+
+## 2026-04-30
+
+- Focus: Structure / Access
+- Changed: Vision 入口ガイドのカード全体選択から、対応カードを照らす小さな `button` を分離し、受付メモの `details` と選択操作の責務を分けた。`aria-controls` と `aria-pressed` は明示ボタンへ移し、phase gateでこの構造を保護した。
+- Learned: 入口カードに折りたたみメモと選択操作を同居させる場合、カード自体を疑似ボタンにするより、選択だけを小さな操作面へ分ける方がモバイルでも構造が読みやすい。
+- Next: preview可能な環境で Vision 入口の `照らす` ボタンを押した時の余白と、Projects 終端からの到着強調が重なりすぎないか見る。

@@ -12,7 +12,6 @@
     let pinnedKind = '';
     let jumpTimer = 0;
     let releaseTimer = 0;
-    const activationKeys = new Set(['Enter', ' ']);
 
     const getScrollOffset = () => window.HazakuraScrollOffset?.get(72) || 72;
     const shouldAutoReleasePinned = () => window.matchMedia
@@ -67,9 +66,10 @@
       guideItems.forEach((item) => {
         const isActive = Boolean(activeKind) && item.dataset.entryKind === activeKind;
         const isPinned = Boolean(pinnedKind) && item.dataset.entryKind === pinnedKind;
+        const selectButton = getSelectButton(item);
         item.classList.toggle('is-entry-active', isActive);
-        item.setAttribute('aria-current', isActive ? 'true' : 'false');
-        item.setAttribute('aria-pressed', isPinned ? 'true' : 'false');
+        selectButton?.setAttribute('aria-current', isActive ? 'true' : 'false');
+        selectButton?.setAttribute('aria-pressed', isPinned ? 'true' : 'false');
       });
       cards.forEach((card) => {
         const isMatch = Boolean(activeKind) && card.dataset.entryKind === activeKind;
@@ -97,8 +97,11 @@
       applyKind(pinnedKind || '');
     };
 
-    const isFromNestedSummary = (event) => event.target instanceof Element
-      && Boolean(event.target.closest('summary'));
+    const getSelectButton = (item) => item.querySelector('[data-entry-kind-select]');
+
+    const getItemFromEvent = (event) => event.target instanceof Element
+      ? event.target.closest('.vision-entry-guide__kind[data-entry-kind]')
+      : null;
 
     const togglePinnedKind = (kind, item) => {
       const nextKind = pinnedKind === kind ? '' : kind;
@@ -112,26 +115,20 @@
     };
 
     guideItems.forEach((item) => {
-      item.tabIndex = 0;
-      item.setAttribute('role', 'button');
-      item.setAttribute('aria-current', 'false');
-      item.setAttribute('aria-pressed', 'false');
       const kind = item.dataset.entryKind || '';
+      const selectButton = getSelectButton(item);
+      if (!selectButton) return;
 
       item.addEventListener('mouseenter', () => applyKind(kind));
-      item.addEventListener('focusin', () => applyKind(kind));
+      item.addEventListener('focusin', (event) => {
+        if (event.target instanceof Element && event.target.closest('details')) return;
+        applyKind(kind);
+      });
       item.addEventListener('mouseleave', clearTransient);
       item.addEventListener('focusout', clearTransient);
-      item.addEventListener('click', (event) => {
-        if (isFromNestedSummary(event)) return;
+
+      selectButton.addEventListener('click', () => {
         togglePinnedKind(kind, item);
-      });
-      item.addEventListener('keydown', (event) => {
-        if (isFromNestedSummary(event)) return;
-        if (activationKeys.has(event.key)) {
-          event.preventDefault();
-          togglePinnedKind(kind, item);
-        }
       });
     });
 
@@ -139,6 +136,12 @@
       if (event.key === 'Escape' && pinnedKind) {
         releasePinnedKind();
       }
+    });
+
+    root.addEventListener('click', (event) => {
+      const item = getItemFromEvent(event);
+      if (!item || event.target instanceof Element && event.target.closest('details, button')) return;
+      togglePinnedKind(item.dataset.entryKind || '', item);
     });
   }
 

@@ -120,13 +120,20 @@
                     <div class="vision-entry-guide__kinds">
                         ${kinds.map((item) => {
                             const kind = item.kind || 'seed';
+                            const label = item.label || item.kind || '種';
                             const controlledIds = (kindCardIds[kind] || []).join(' ');
                             const controlsAttribute = controlledIds
-                                ? ` data-entry-card-targets="${escapeHtml(controlledIds)}" aria-controls="${escapeHtml(controlledIds)}"`
+                                ? ` data-entry-card-targets="${escapeHtml(controlledIds)}"`
+                                : '';
+                            const buttonControlsAttribute = controlledIds
+                                ? ` aria-controls="${escapeHtml(controlledIds)}"`
                                 : '';
                             return `
                             <div class="vision-entry-guide__kind" data-entry-kind="${escapeHtml(kind)}"${controlsAttribute}>
-                                <span>${escapeHtml(item.label || item.kind || '種')}</span>
+                                <span>${escapeHtml(label)}</span>
+                                <button class="vision-entry-guide__select" type="button" data-entry-kind-select aria-label="${escapeHtml(label)}の入口に対応する構想カードを照らす" aria-pressed="false"${buttonControlsAttribute}>
+                                    照らす
+                                </button>
                                 <p>${escapeHtml(item.text || '')}</p>
                                 <small>
                                     <span>${escapeHtml(String(kindCounts[item.kind] || 0))}件の入口</span>
