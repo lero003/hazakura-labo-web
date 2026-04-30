@@ -4972,15 +4972,11 @@ body.theme-night.zone-aurora #aurora-canvas {
     }
 
     .library-projects-bridge {
-        --handoff-step-columns: 1fr;
         --handoff-step-gap: 0.48rem;
         --handoff-step-rail: var(--bridge-step-rail-vertical);
         --handoff-step-rail-top: 0.8rem;
         --handoff-step-rail-bottom: 0.8rem;
         --handoff-step-rail-left: 0.88rem;
-        --handoff-step-rail-right: auto;
-        --handoff-step-rail-width: 1px;
-        --handoff-step-rail-height: auto;
         --handoff-step-item-padding: 0.58rem 0.7rem 0.62rem 1.68rem;
         --handoff-step-dot-top: 1rem;
         --handoff-step-dot-left: 0.67rem;
@@ -7606,6 +7602,13 @@ body.theme-night .nav-logo {
         display: none;
     }
 
+    .garden-handoff-steps {
+        --handoff-step-columns: minmax(0, 1fr);
+        --handoff-step-rail-right: auto;
+        --handoff-step-rail-width: 1px;
+        --handoff-step-rail-height: auto;
+    }
+
     .section-projects .section-desc br,
     .project-desc br {
         display: none;
@@ -7888,15 +7891,11 @@ body.theme-night .nav-logo {
     }
 
     .research-log-handoff {
-        --handoff-step-columns: minmax(0, 1fr);
         --handoff-step-gap: 0.6rem;
         --handoff-step-rail: var(--research-handoff-step-rail-vertical);
         --handoff-step-rail-top: 0.5rem;
         --handoff-step-rail-bottom: 0.5rem;
         --handoff-step-rail-left: 0.32rem;
-        --handoff-step-rail-right: auto;
-        --handoff-step-rail-width: 1px;
-        --handoff-step-rail-height: auto;
         --handoff-step-item-padding: 0 0 0 1.35rem;
         --handoff-step-dot-top: 0.25rem;
         --handoff-step-dot-left: 0;
@@ -8166,15 +8165,11 @@ body.theme-night .nav-logo {
     }
 
     .quote-prelude-card {
-        --handoff-step-columns: minmax(0, 1fr);
         --handoff-step-gap: 0.55rem;
         --handoff-step-rail: var(--quote-prelude-step-rail-vertical);
         --handoff-step-rail-top: 0.75rem;
         --handoff-step-rail-bottom: 0.75rem;
         --handoff-step-rail-left: 0.85rem;
-        --handoff-step-rail-right: auto;
-        --handoff-step-rail-width: 1px;
-        --handoff-step-rail-height: auto;
         padding: 1.25rem;
         border-radius: 16px;
     }

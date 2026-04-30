@@ -1963,6 +1963,7 @@ assert(
     && styleCss.includes('.garden-handoff-steps > li > p')
     && styleCss.includes('.garden-handoff-steps > li > a > span')
     && styleCss.includes('.garden-handoff-steps > li > a > p')
+    && /@media \(max-width: 768px\)[\s\S]*\.garden-handoff-steps\s*\{[\s\S]*--handoff-step-columns: minmax\(0, 1fr\);[\s\S]*--handoff-step-rail-width: 1px;[\s\S]*--handoff-step-rail-height: auto;/.test(styleCss)
     && !styleCss.includes('.garden-handoff-steps span {')
     && !styleCss.includes('.garden-handoff-steps p {')
     && styleCss.includes('.library-projects-bridge__link:focus-visible'),
@@ -1983,6 +1984,7 @@ assert(
     hasPaddingFallback: styleCss.includes('padding: var(--handoff-step-item-padding, 1.25rem 0 0);'),
     hasDirectLabelStyle: styleCss.includes('.garden-handoff-steps > li > span'),
     hasDirectTextStyle: styleCss.includes('.garden-handoff-steps > li > p'),
+    hasSharedMobileRailBase: /@media \(max-width: 768px\)[\s\S]*\.garden-handoff-steps\s*\{[\s\S]*--handoff-step-columns: minmax\(0, 1fr\);[\s\S]*--handoff-step-rail-width: 1px;[\s\S]*--handoff-step-rail-height: auto;/.test(styleCss),
     hasBroadSpanStyle: styleCss.includes('.garden-handoff-steps span {'),
     hasBroadParagraphStyle: styleCss.includes('.garden-handoff-steps p {'),
     hasBridgeFocusStyle: styleCss.includes('.library-projects-bridge__link:focus-visible')
