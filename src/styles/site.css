@@ -4981,7 +4981,7 @@ body.theme-night.zone-aurora #aurora-canvas {
         --handoff-step-dot-top: 1rem;
         --handoff-step-dot-left: 0.67rem;
         --handoff-step-text-size: 0.76rem;
-        --handoff-step-text-line-height: 1.55;
+        --handoff-step-mobile-text-line-height: 1.55;
         grid-template-columns: 1fr;
         gap: 1rem;
         margin-top: 2.6rem;
@@ -7607,6 +7607,13 @@ body.theme-night .nav-logo {
         --handoff-step-rail-right: auto;
         --handoff-step-rail-width: 1px;
         --handoff-step-rail-height: auto;
+        --handoff-step-label-margin-bottom: var(--handoff-step-mobile-label-margin-bottom, 0.12rem);
+        --handoff-step-text-line-height: var(--handoff-step-mobile-text-line-height, 1.62);
+    }
+
+    .garden-handoff-steps > li > p,
+    .garden-handoff-steps > li > a > p {
+        overflow-wrap: anywhere;
     }
 
     .section-projects .section-desc br,
@@ -7623,7 +7630,6 @@ body.theme-night .nav-logo {
         .project-trail__item,
         .project-return-link,
         .research-log-handoff__copy > p:last-child,
-        .research-log-handoff__steps p,
         .research-log-cycle dd,
         .research-wisdom-trail dd,
         .research-source,

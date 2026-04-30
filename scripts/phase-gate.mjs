@@ -1964,6 +1964,9 @@ assert(
     && styleCss.includes('.garden-handoff-steps > li > a > span')
     && styleCss.includes('.garden-handoff-steps > li > a > p')
     && /@media \(max-width: 768px\)[\s\S]*\.garden-handoff-steps\s*\{[\s\S]*--handoff-step-columns: minmax\(0, 1fr\);[\s\S]*--handoff-step-rail-width: 1px;[\s\S]*--handoff-step-rail-height: auto;/.test(styleCss)
+    && styleCss.includes('--handoff-step-label-margin-bottom: var(--handoff-step-mobile-label-margin-bottom, 0.12rem)')
+    && styleCss.includes('--handoff-step-text-line-height: var(--handoff-step-mobile-text-line-height, 1.62)')
+    && /@media \(max-width: 768px\)[\s\S]*\.garden-handoff-steps > li > p,[\s\S]*\.garden-handoff-steps > li > a > p\s*\{[\s\S]*overflow-wrap: anywhere;/.test(styleCss)
     && !styleCss.includes('.garden-handoff-steps span {')
     && !styleCss.includes('.garden-handoff-steps p {')
     && styleCss.includes('.library-projects-bridge__link:focus-visible'),
@@ -1985,6 +1988,9 @@ assert(
     hasDirectLabelStyle: styleCss.includes('.garden-handoff-steps > li > span'),
     hasDirectTextStyle: styleCss.includes('.garden-handoff-steps > li > p'),
     hasSharedMobileRailBase: /@media \(max-width: 768px\)[\s\S]*\.garden-handoff-steps\s*\{[\s\S]*--handoff-step-columns: minmax\(0, 1fr\);[\s\S]*--handoff-step-rail-width: 1px;[\s\S]*--handoff-step-rail-height: auto;/.test(styleCss),
+    hasSharedMobileLabelSpacing: styleCss.includes('--handoff-step-label-margin-bottom: var(--handoff-step-mobile-label-margin-bottom, 0.12rem)'),
+    hasSharedMobileTextRhythm: styleCss.includes('--handoff-step-text-line-height: var(--handoff-step-mobile-text-line-height, 1.62)'),
+    hasSharedMobileLongCopyGuard: /@media \(max-width: 768px\)[\s\S]*\.garden-handoff-steps > li > p,[\s\S]*\.garden-handoff-steps > li > a > p\s*\{[\s\S]*overflow-wrap: anywhere;/.test(styleCss),
     hasBroadSpanStyle: styleCss.includes('.garden-handoff-steps span {'),
     hasBroadParagraphStyle: styleCss.includes('.garden-handoff-steps p {'),
     hasBridgeFocusStyle: styleCss.includes('.library-projects-bridge__link:focus-visible')

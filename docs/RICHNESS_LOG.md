@@ -1162,6 +1162,13 @@
 - Learned: 演出のリッチさは常に動かすことだけではなく、動きを望まない環境で静かに読める余白を用意することでも濃くなる。
 - Next: セクションごとのゾーン遷移を、通常モーション側で読み味を邪魔しない範囲でもう少しなめらかにする。
 
+## 2026-04-30
+
+- Focus: Structure / Access
+- Changed: `garden-handoff-steps` のモバイル時のラベル間隔、本文行間、長文折り返しを共有側の契約に寄せ、Library 側の個別行間は `--handoff-step-mobile-text-line-height` で上書きする形にした。phase gateにも共有モバイル読みやすさ契約を追加した。
+- Learned: 手渡しレールの色やドット位置は各セクションに残しつつ、狭い幅での読みやすさだけを共通化すると、Library / Research / Quote の間奏を同じ庭具として扱いやすい。
+- Next: preview可能な環境で Library / Research / Quote の縦レールを横断し、左レール位置とカード内余白が各セクションの文脈に合っているか目視確認する。
+
 ## 2026-04-26
 
 - Focus: Access
