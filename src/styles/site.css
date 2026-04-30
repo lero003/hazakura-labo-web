@@ -5737,6 +5737,35 @@ body.theme-night .section-layers .layer-sequence__beam {
     --project-lane-status-border: rgba(232, 88, 122, 0.36);
     --project-lane-status-bg: rgba(255, 255, 255, 0.42);
     --project-lane-status-color: var(--ink-500);
+    --project-card-bg: var(--card-bg, rgba(255, 255, 255, 0.7));
+    --project-card-border: var(--ink-200);
+    --project-card-hover-border: var(--sakura-300);
+    --project-card-hover-shadow: 0 25px 50px rgba(0, 0, 0, 0.07), 0 0 0 1px var(--sakura-200);
+    --project-lane-chip-color: var(--sakura-500);
+    --project-lane-chip-bg: rgba(232, 88, 122, 0.1);
+    --project-lane-chip-border: rgba(232, 88, 122, 0.2);
+    --project-type-chip-color: var(--purple-400);
+    --project-type-chip-bg: rgba(167, 139, 250, 0.1);
+    --project-type-chip-border: rgba(167, 139, 250, 0.2);
+    --project-action-color: var(--sakura-500);
+    --project-action-bg: rgba(232, 88, 122, 0.08);
+    --project-action-border: rgba(232, 88, 122, 0.18);
+    --project-action-hover-color: var(--sakura-500);
+    --project-action-hover-bg: rgba(232, 88, 122, 0.14);
+    --project-action-hover-border: rgba(232, 88, 122, 0.32);
+    --project-action-download-color: var(--green-500);
+    --project-action-download-bg: rgba(90, 158, 95, 0.1);
+    --project-action-download-border: rgba(90, 158, 95, 0.22);
+    --project-action-download-hover-color: var(--green-600);
+    --project-action-download-hover-bg: rgba(90, 158, 95, 0.16);
+    --project-action-download-hover-border: rgba(90, 158, 95, 0.36);
+    --project-action-status-color: var(--purple-500);
+    --project-action-status-bg: rgba(167, 139, 250, 0.1);
+    --project-action-status-border: rgba(167, 139, 250, 0.22);
+    --project-live-badge-color: var(--ink-400);
+    --project-live-badge-bg: rgba(0, 0, 0, 0.04);
+    --project-tag-color: var(--ink-500);
+    --project-tag-bg: rgba(0, 0, 0, 0.04);
     position: relative;
     overflow: hidden;
     background:
@@ -6223,9 +6252,9 @@ body.theme-night .section-layers .layer-sequence__beam {
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: 2rem;
-    background: var(--card-bg, rgba(255, 255, 255, 0.7));
+    background: var(--project-card-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--ink-200);
+    border: 1px solid var(--project-card-border);
     border-radius: 24px;
     overflow: hidden;
     transition: all var(--duration-normal) var(--ease-spring);
@@ -6245,8 +6274,8 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-card:hover {
     transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.07), 0 0 0 1px var(--sakura-200);
-    border-color: var(--sakura-300);
+    box-shadow: var(--project-card-hover-shadow);
+    border-color: var(--project-card-hover-border);
 }
 
 .project-card--placeholder {
@@ -6471,9 +6500,9 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-lane {
     font-size: 0.68rem;
-    color: var(--sakura-500);
-    background: rgba(232, 88, 122, 0.1);
-    border: 1px solid rgba(232, 88, 122, 0.2);
+    color: var(--project-lane-chip-color);
+    background: var(--project-lane-chip-bg);
+    border: 1px solid var(--project-lane-chip-border);
     padding: 0.22rem 0.75rem;
     border-radius: 999px;
     font-weight: 700;
@@ -6482,9 +6511,9 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-type {
     font-size: 0.7rem;
-    color: var(--purple-400);
-    background: rgba(167, 139, 250, 0.1);
-    border: 1px solid rgba(167, 139, 250, 0.2);
+    color: var(--project-type-chip-color);
+    background: var(--project-type-chip-bg);
+    border: 1px solid var(--project-type-chip-border);
     padding: 0.2rem 0.8rem;
     border-radius: 20px;
     letter-spacing: 0.05em;
@@ -6495,9 +6524,9 @@ body.theme-night .section-layers .layer-sequence__beam {
     align-items: center;
     gap: 0.35rem;
     font-size: 0.75rem;
-    color: var(--sakura-500);
-    background: rgba(232, 88, 122, 0.08);
-    border: 1px solid rgba(232, 88, 122, 0.18);
+    color: var(--project-action-color);
+    background: var(--project-action-bg);
+    border: 1px solid var(--project-action-border);
     border-radius: 999px;
     padding: 0.24rem 0.65rem;
     letter-spacing: 0.05em;
@@ -6505,28 +6534,28 @@ body.theme-night .section-layers .layer-sequence__beam {
 }
 
 .project-action:hover {
-    color: var(--sakura-500);
-    background: rgba(232, 88, 122, 0.14);
-    border-color: rgba(232, 88, 122, 0.32);
+    color: var(--project-action-hover-color);
+    background: var(--project-action-hover-bg);
+    border-color: var(--project-action-hover-border);
     transform: translateY(-1px);
 }
 
 .project-action--download {
-    color: var(--green-500);
-    background: rgba(90, 158, 95, 0.1);
-    border-color: rgba(90, 158, 95, 0.22);
+    color: var(--project-action-download-color);
+    background: var(--project-action-download-bg);
+    border-color: var(--project-action-download-border);
 }
 
 .project-action--download:hover {
-    color: var(--green-600);
-    background: rgba(90, 158, 95, 0.16);
-    border-color: rgba(90, 158, 95, 0.36);
+    color: var(--project-action-download-hover-color);
+    background: var(--project-action-download-hover-bg);
+    border-color: var(--project-action-download-hover-border);
 }
 
 .project-action--status {
-    color: var(--purple-500);
-    background: rgba(167, 139, 250, 0.1);
-    border-color: rgba(167, 139, 250, 0.22);
+    color: var(--project-action-status-color);
+    background: var(--project-action-status-bg);
+    border-color: var(--project-action-status-border);
 }
 
 .project-action--inactive {
@@ -6574,8 +6603,8 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .project-live__badge {
     font-size: 0.7rem;
-    color: var(--ink-400);
-    background: rgba(0, 0, 0, 0.04);
+    color: var(--project-live-badge-color);
+    background: var(--project-live-badge-bg);
     padding: 0.2rem 0.8rem;
     border-radius: 20px;
     letter-spacing: 0.05em;
@@ -6840,8 +6869,8 @@ body.theme-night .section-layers .layer-sequence__beam {
 
 .tag {
     font-size: 0.7rem;
-    color: var(--ink-500);
-    background: rgba(0, 0, 0, 0.04);
+    color: var(--project-tag-color);
+    background: var(--project-tag-bg);
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     letter-spacing: 0.05em;
@@ -7362,6 +7391,28 @@ body.theme-night .section-projects {
     --project-lane-status-border: rgba(232, 88, 122, 0.48);
     --project-lane-status-bg: rgba(255, 255, 255, 0.045);
     --project-lane-status-color: rgba(255, 255, 255, 0.58);
+    --project-card-bg: rgba(255, 255, 255, 0.03);
+    --project-card-border: rgba(139, 92, 246, 0.2);
+    --project-card-hover-border: rgba(167, 139, 250, 0.4);
+    --project-lane-chip-color: var(--sakura-400);
+    --project-lane-chip-bg: rgba(232, 88, 122, 0.1);
+    --project-lane-chip-border: rgba(232, 88, 122, 0.26);
+    --project-type-chip-color: var(--purple-400);
+    --project-type-chip-bg: rgba(167, 139, 250, 0.1);
+    --project-type-chip-border: rgba(167, 139, 250, 0.3);
+    --project-action-color: var(--sakura-400);
+    --project-action-bg: rgba(232, 88, 122, 0.1);
+    --project-action-border: rgba(232, 88, 122, 0.26);
+    --project-action-download-color: var(--green-400);
+    --project-action-download-bg: rgba(82, 183, 150, 0.1);
+    --project-action-download-border: rgba(82, 183, 150, 0.28);
+    --project-action-status-color: var(--purple-400);
+    --project-action-status-bg: rgba(167, 139, 250, 0.1);
+    --project-action-status-border: rgba(167, 139, 250, 0.28);
+    --project-live-badge-color: var(--body-text-dim);
+    --project-live-badge-bg: var(--tag-bg);
+    --project-tag-color: var(--tag-text);
+    --project-tag-bg: var(--tag-bg);
     background: linear-gradient(180deg, #0b0c10, #141028, #0b0c10);
 }
 
@@ -7409,15 +7460,6 @@ body.theme-night .section-projects .project-threshold--vision {
     --project-threshold-link-bg: rgba(255, 255, 255, 0.045);
     --project-threshold-link-hover-border: rgba(82, 183, 150, 0.46);
     --project-threshold-link-hover-bg: rgba(255, 255, 255, 0.08);
-}
-
-body.theme-night .section-projects .project-card {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(139, 92, 246, 0.2);
-}
-
-body.theme-night .section-projects .project-card:hover {
-    border-color: rgba(167, 139, 250, 0.4);
 }
 
 body.theme-night .section-projects .project-thumb-placeholder {
@@ -7522,46 +7564,6 @@ body.theme-night .section-projects .project-cycle-drawer {
     --project-cycle-item-bg: rgba(255, 255, 255, 0.045);
     --project-cycle-label-color: var(--purple-400);
     --project-cycle-copy-color: var(--body-text);
-}
-
-body.theme-night .section-projects .project-type {
-    color: var(--purple-400);
-    background: rgba(167, 139, 250, 0.1);
-    border-color: rgba(167, 139, 250, 0.3);
-}
-
-body.theme-night .section-projects .project-lane {
-    color: var(--sakura-400);
-    background: rgba(232, 88, 122, 0.1);
-    border-color: rgba(232, 88, 122, 0.26);
-}
-
-body.theme-night .section-projects .project-action {
-    color: var(--sakura-400);
-    background: rgba(232, 88, 122, 0.1);
-    border-color: rgba(232, 88, 122, 0.26);
-}
-
-body.theme-night .section-projects .project-action--download {
-    color: var(--green-400);
-    background: rgba(82, 183, 150, 0.1);
-    border-color: rgba(82, 183, 150, 0.28);
-}
-
-body.theme-night .section-projects .project-action--status {
-    color: var(--purple-400);
-    background: rgba(167, 139, 250, 0.1);
-    border-color: rgba(167, 139, 250, 0.28);
-}
-
-body.theme-night .section-projects .project-live__badge {
-    color: var(--body-text-dim);
-    background: var(--tag-bg);
-}
-
-body.theme-night .section-projects .tag {
-    color: var(--tag-text);
-    background: var(--tag-bg);
 }
 
 /* ============================================================

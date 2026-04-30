@@ -2,6 +2,13 @@
 
 ## 2026-04-30
 
+- Focus: Structure
+- Changed: Projectsカード内のカード外枠、lane/type札、action、live badge、tag の色と背景を、通常/夜テーマの個別セレクタから `.section-projects` のローカルトークンへ寄せた。夜テーマは同じセクション変数を差し替えるだけにし、phase gate でカード札類が直指定へ戻らないよう保護した。
+- Learned: Projects棚はカード本文、drawer、棚ガイドの構造整理が進んだ一方で、小さな札類だけが夜テーマの個別上書きに残ると、次の制作棚演出で調整口が散らばる。見た目を増やさずセクション語彙に集めると、実験棚の温度調整を一箇所で追いやすい。
+- Next: preview 可能な環境で Projectsカードの action / lane / type 札を昼夜とhoverで見比べ、トークン化後もステータス札が強く出すぎず、制作棚の導線として読めるか確認する。
+
+## 2026-04-30
+
 - Focus: Access / Structure
 - Changed: モバイル幅の Projects 棚ガイドで、横スクロールの続きが見えにくかったため、隠していた scrollbar を細い季節色のレールとして戻した。昼夜の色は `--project-lane-guide-scroll-*` トークンへ閉じ、phase gate で `scrollbar-width: none` / WebKit scrollbar 非表示へ戻らないよう保護した。
 - Learned: 横に続く棚は、カードを増やさなくても「まだ右へ歩ける」手がかりがないと導線が止まって見える。モバイルでは隠しスクロールより、控えめなレールの方が実験棚らしさと操作の発見性を両立しやすい。

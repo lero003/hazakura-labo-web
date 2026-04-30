@@ -1565,6 +1565,54 @@ assert(
   })
 );
 assert(
+  'project card chips and actions stay tokenized by section',
+  [
+    '--project-card-bg',
+    '--project-card-border',
+    '--project-lane-chip-color',
+    '--project-type-chip-color',
+    '--project-action-color',
+    '--project-action-download-color',
+    '--project-action-status-color',
+    '--project-live-badge-color',
+    '--project-tag-color'
+  ].every((snippet) => styleCss.includes(snippet))
+    && styleCss.includes('background: var(--project-card-bg)')
+    && styleCss.includes('border: 1px solid var(--project-card-border)')
+    && styleCss.includes('color: var(--project-lane-chip-color)')
+    && styleCss.includes('color: var(--project-type-chip-color)')
+    && styleCss.includes('color: var(--project-action-color)')
+    && styleCss.includes('color: var(--project-live-badge-color)')
+    && styleCss.includes('color: var(--project-tag-color)')
+    && !styleCss.includes('body.theme-night .section-projects .project-card {')
+    && !styleCss.includes('body.theme-night .section-projects .project-card:hover')
+    && !styleCss.includes('body.theme-night .section-projects .project-type {')
+    && !styleCss.includes('body.theme-night .section-projects .project-lane {')
+    && !styleCss.includes('body.theme-night .section-projects .project-action {')
+    && !styleCss.includes('body.theme-night .section-projects .project-action--download {')
+    && !styleCss.includes('body.theme-night .section-projects .project-action--status {')
+    && !styleCss.includes('body.theme-night .section-projects .project-live__badge {')
+    && !styleCss.includes('body.theme-night .section-projects .tag {'),
+  JSON.stringify({
+    hasCardBgToken: styleCss.includes('--project-card-bg'),
+    hasCardBgUsage: styleCss.includes('background: var(--project-card-bg)'),
+    hasLaneTokenUsage: styleCss.includes('color: var(--project-lane-chip-color)'),
+    hasTypeTokenUsage: styleCss.includes('color: var(--project-type-chip-color)'),
+    hasActionTokenUsage: styleCss.includes('color: var(--project-action-color)'),
+    hasLiveBadgeTokenUsage: styleCss.includes('color: var(--project-live-badge-color)'),
+    hasTagTokenUsage: styleCss.includes('color: var(--project-tag-color)'),
+    hasDirectNightCard: styleCss.includes('body.theme-night .section-projects .project-card {'),
+    hasDirectNightCardHover: styleCss.includes('body.theme-night .section-projects .project-card:hover'),
+    hasDirectNightType: styleCss.includes('body.theme-night .section-projects .project-type {'),
+    hasDirectNightLane: styleCss.includes('body.theme-night .section-projects .project-lane {'),
+    hasDirectNightAction: styleCss.includes('body.theme-night .section-projects .project-action {'),
+    hasDirectNightDownload: styleCss.includes('body.theme-night .section-projects .project-action--download {'),
+    hasDirectNightStatus: styleCss.includes('body.theme-night .section-projects .project-action--status {'),
+    hasDirectNightBadge: styleCss.includes('body.theme-night .section-projects .project-live__badge {'),
+    hasDirectNightTag: styleCss.includes('body.theme-night .section-projects .tag {')
+  })
+);
+assert(
   'project cards compress trail notes',
   projectRendererJs.includes('class="project-trail"')
     && styleCss.includes('.project-trail')
