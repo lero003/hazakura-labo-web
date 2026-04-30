@@ -25,6 +25,15 @@ export const projectsGroup = {
     "title": "問いはここで、三つの棚へ分かれる。",
     "text": "書庫から渡ってきた余白を、道具、ログ、物語の種へほどき直します。"
   },
+  "visionHandoff": {
+    "eyebrow": "Next threshold",
+    "title": "棚を眺めたら、まだ形にならない入口へ進む。",
+    "text": "公開済みの道具、試作、物語の種を読み終えたあと、次に預ける問いだけを一つ選びます。",
+    "action": {
+      "href": "#vision",
+      "label": "構想の入口へ"
+    }
+  },
   "actionTypes": [
     {
       "type": "external",

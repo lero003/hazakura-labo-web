@@ -3286,6 +3286,30 @@ body.theme-night .section-vision {
     overflow: hidden;
 }
 
+.section-vision.is-project-vision-arrival .vision-entry-guide {
+    animation: visionThresholdArrival 1.45s var(--ease-out-expo) both;
+}
+
+@keyframes visionThresholdArrival {
+    0% {
+        transform: translateY(14px);
+        border-color: rgba(90, 158, 95, 0.28);
+        box-shadow: 0 0 0 0 rgba(90, 158, 95, 0);
+    }
+
+    42% {
+        transform: translateY(-3px);
+        border-color: rgba(90, 158, 95, 0.44);
+        box-shadow: 0 18px 46px rgba(90, 158, 95, 0.14);
+    }
+
+    100% {
+        transform: translateY(0);
+        border-color: var(--vision-entry-guide-border);
+        box-shadow: 0 0 0 0 rgba(90, 158, 95, 0);
+    }
+}
+
 .vision-entry-guide__copy,
 .vision-entry-guide__kinds {
     position: relative;
@@ -5792,6 +5816,83 @@ body.theme-night .section-layers .layer-sequence__beam {
     transform: translateY(-50%);
 }
 
+.project-threshold--vision {
+    --project-threshold-border-top: rgba(90, 158, 95, 0.2);
+    --project-threshold-border-bottom: rgba(139, 92, 246, 0.18);
+    --project-threshold-mist:
+        radial-gradient(ellipse at 92% 50%, rgba(90, 158, 95, 0.14), transparent 15rem),
+        linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0));
+    --project-threshold-sigil-border: rgba(90, 158, 95, 0.28);
+    --project-threshold-sigil-bg:
+        radial-gradient(circle, rgba(90, 158, 95, 0.13), transparent 58%),
+        rgba(255, 255, 255, 0.58);
+    --project-threshold-sigil-color: var(--green-500);
+    --project-threshold-eyebrow: var(--green-500);
+    --project-threshold-rail: linear-gradient(90deg, rgba(90, 158, 95, 0), rgba(90, 158, 95, 0.34), rgba(139, 92, 246, 0.26));
+    --project-threshold-link-border: rgba(90, 158, 95, 0.26);
+    --project-threshold-link-bg: rgba(255, 255, 255, 0.46);
+    --project-threshold-link-hover-border: rgba(90, 158, 95, 0.46);
+    --project-threshold-link-hover-bg: rgba(255, 255, 255, 0.68);
+    margin-top: 0.2rem;
+}
+
+.project-threshold--vision .project-threshold__sigil {
+    transform: rotate(8deg);
+}
+
+.project-threshold__link {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    justify-self: end;
+    min-height: 2.55rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--project-threshold-link-border);
+    border-radius: 999px;
+    background: var(--project-threshold-link-bg);
+    color: var(--project-threshold-sigil-color);
+    font-family: var(--font-serif);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    transition:
+        transform var(--duration-fast) ease,
+        border-color var(--duration-fast) ease,
+        background var(--duration-fast) ease;
+}
+
+.project-threshold__link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.68) 42%, transparent 78%);
+    transform: translateX(-120%);
+    transition: transform 0.8s var(--ease-out-expo);
+    pointer-events: none;
+}
+
+.project-threshold__link:hover {
+    transform: translateY(-2px);
+    border-color: var(--project-threshold-link-hover-border);
+    background: var(--project-threshold-link-hover-bg);
+}
+
+.project-threshold__link:focus-visible {
+    outline: 2px solid var(--project-threshold-link-hover-border);
+    outline-offset: 3px;
+    background: var(--project-threshold-link-hover-bg);
+}
+
+.project-threshold__link:hover::before,
+.project-threshold__link:focus-visible::before {
+    transform: translateX(120%);
+}
+
 .section-projects.is-handoff-arrival .project-threshold__sigil {
     animation: projectHandoffSigil 1.4s var(--ease-out-expo) both;
 }
@@ -7183,6 +7284,25 @@ body.theme-night .section-projects .project-threshold {
     --project-threshold-node-border: rgba(82, 183, 150, 0.42);
 }
 
+body.theme-night .section-projects .project-threshold--vision {
+    --project-threshold-border-top: rgba(82, 183, 150, 0.24);
+    --project-threshold-border-bottom: rgba(167, 139, 250, 0.18);
+    --project-threshold-mist:
+        radial-gradient(ellipse at 92% 50%, rgba(82, 183, 150, 0.12), transparent 14rem),
+        linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0));
+    --project-threshold-sigil-border: rgba(82, 183, 150, 0.34);
+    --project-threshold-sigil-bg:
+        radial-gradient(circle, rgba(82, 183, 150, 0.18), transparent 58%),
+        rgba(255, 255, 255, 0.055);
+    --project-threshold-sigil-color: var(--green-400);
+    --project-threshold-eyebrow: var(--green-400);
+    --project-threshold-rail: linear-gradient(90deg, rgba(82, 183, 150, 0), rgba(82, 183, 150, 0.34), rgba(167, 139, 250, 0.28));
+    --project-threshold-link-border: rgba(82, 183, 150, 0.28);
+    --project-threshold-link-bg: rgba(255, 255, 255, 0.045);
+    --project-threshold-link-hover-border: rgba(82, 183, 150, 0.46);
+    --project-threshold-link-hover-bg: rgba(255, 255, 255, 0.08);
+}
+
 body.theme-night .section-projects .project-card {
     background: rgba(255, 255, 255, 0.03);
     border-color: rgba(139, 92, 246, 0.2);
@@ -7426,6 +7546,13 @@ body.theme-night .nav-logo {
     .project-threshold__rail {
         grid-column: 2;
         width: min(8rem, 100%);
+    }
+
+    .project-threshold__link {
+        grid-column: 2;
+        justify-self: start;
+        width: min(14rem, 100%);
+        min-height: 2.45rem;
     }
 
     .project-lane-guide {
@@ -7977,6 +8104,11 @@ body.theme-night .nav-logo {
     .project-threshold__rail {
         grid-column: auto;
         width: 7rem;
+    }
+
+    .project-threshold__link {
+        grid-column: auto;
+        width: 100%;
     }
 
     .project-card {

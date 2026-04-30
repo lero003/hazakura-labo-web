@@ -65,16 +65,25 @@
     return `<p class="project-lane-status" data-project-lane-status aria-live="polite">${escapeHtml(overview || '制作物を棚ごとに眺められます。')}</p>`;
   }
 
-  function renderThreshold(threshold) {
+  function renderThreshold(threshold, options = {}) {
     if (!threshold) return '';
-    return `<div class="project-threshold" data-project-threshold data-reveal>
+    const { modifier = '' } = options;
+    const thresholdClass = ['project-threshold', modifier ? `project-threshold--${modifier}` : ''].filter(Boolean).join(' ');
+    const action = threshold.action?.href
+      ? `<a class="project-threshold__link" href="${escapeHtml(threshold.action.href)}">
+          <span>${escapeHtml(threshold.action.label || '次へ進む')}</span>
+          <span aria-hidden="true">→</span>
+        </a>`
+      : '<span class="project-threshold__rail" aria-hidden="true"></span>';
+
+    return `<div class="${thresholdClass}" data-project-threshold data-reveal>
       <span class="project-threshold__sigil" aria-hidden="true">✧</span>
       <div class="project-threshold__copy">
         <p class="project-threshold__eyebrow">${escapeHtml(threshold.eyebrow || 'Library handoff')}</p>
         <h3>${escapeHtml(threshold.title || '')}</h3>
         <p>${escapeHtml(threshold.text || '')}</p>
       </div>
-      <span class="project-threshold__rail" aria-hidden="true"></span>
+      ${action}
     </div>`;
   }
 
@@ -215,7 +224,7 @@
       : '';
     const cards = items.map((item) => renderProjectCard(item, actionTypeDetails)).join('');
 
-    root.innerHTML = `${renderThreshold(projectsGroup.threshold)}${controlDeck}${cards}`;
+    root.innerHTML = `${renderThreshold(projectsGroup.threshold)}${controlDeck}${cards}${renderThreshold(projectsGroup.visionHandoff, { modifier: 'vision' })}`;
     window.HazakuraProjectFilter?.init(root, projectsGroup);
   }
 

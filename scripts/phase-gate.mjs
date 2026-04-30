@@ -991,6 +991,30 @@ assert(
   })
 );
 assert(
+  'projects shelf hands off to the vision entry without a new section',
+  hazakuraContent.projectsGroup?.visionHandoff?.action?.href === '#vision'
+    && projectRendererJs.includes('renderThreshold(projectsGroup.visionHandoff')
+    && projectRendererJs.includes("modifier: 'vision'")
+    && projectRendererJs.includes('class="project-threshold__link"')
+    && styleCss.includes('.project-threshold--vision')
+    && styleCss.includes('.project-threshold__link')
+    && styleCss.includes('.section-vision.is-project-vision-arrival .vision-entry-guide')
+    && smoothScrollJs.includes("'.project-threshold__link[href^=\"#\"]'")
+    && smoothScrollJs.includes("selector: '.project-threshold__link'")
+    && smoothScrollJs.includes("className: 'is-project-vision-arrival'"),
+  JSON.stringify({
+    href: hazakuraContent.projectsGroup?.visionHandoff?.action?.href,
+    rendererUsesClosingThreshold: projectRendererJs.includes('renderThreshold(projectsGroup.visionHandoff'),
+    rendererUsesVisionModifier: projectRendererJs.includes("modifier: 'vision'"),
+    rendererHasLink: projectRendererJs.includes('class="project-threshold__link"'),
+    hasVisionThresholdStyle: styleCss.includes('.project-threshold--vision'),
+    hasVisionThresholdLinkStyle: styleCss.includes('.project-threshold__link'),
+    hasVisionArrivalStyle: styleCss.includes('.section-vision.is-project-vision-arrival .vision-entry-guide'),
+    smoothScrollIncludesLink: smoothScrollJs.includes("'.project-threshold__link[href^=\"#\"]'"),
+    smoothScrollMarksArrival: smoothScrollJs.includes("className: 'is-project-vision-arrival'")
+  })
+);
+assert(
   'library projects bridge keeps handoff path styling',
   ['.library-projects-bridge::after', '.garden-handoff-steps::before', '.garden-handoff-steps > li::before', '--handoff-step-label-margin-bottom', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet))
     && librarySectionSource.includes('class="library-projects-bridge__steps garden-handoff-steps"')
@@ -1375,13 +1399,14 @@ assert('project renderer delegates project filter', projectRendererJs.includes('
 assert(
   'projects entry keeps library handoff threshold',
   hazakuraContent.projectsGroup?.threshold?.title
-    && projectRendererJs.includes('class="project-threshold"')
+    && projectRendererJs.includes("['project-threshold'")
+    && projectRendererJs.includes('thresholdClass')
     && projectRendererJs.includes('data-project-threshold data-reveal')
     && styleCss.includes('.project-threshold__rail')
     && scrollAnimationsJs.includes("const revealSelector = '[data-reveal]'"),
   JSON.stringify({
     hasData: Boolean(hazakuraContent.projectsGroup?.threshold?.title),
-    hasRenderer: projectRendererJs.includes('class="project-threshold"'),
+    hasRenderer: projectRendererJs.includes("['project-threshold'") && projectRendererJs.includes('thresholdClass'),
     hasRevealAttribute: projectRendererJs.includes('data-project-threshold data-reveal'),
     hasStyles: styleCss.includes('.project-threshold__rail'),
     hasRevealContract: scrollAnimationsJs.includes("const revealSelector = '[data-reveal]'")

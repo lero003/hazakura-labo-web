@@ -1259,3 +1259,10 @@
 - Changed: Vision 入口ガイドのタップ後、タッチ端末や狭い幅では該当カードへの到着強調を約2秒で自動解除するようにした。Escape解除と同じ経路を使い、phase gateで自動解除の契約を保護した。
 - Learned: 入口の強調は長く固定すると探索モードに見えるが、モバイルでは短い到着演出として解ける方が、構想カードを続けて読みやすい。
 - Next: Vision 入口から Research Log へ戻る縦の流れをモバイル幅で見直し、強調解除後も視線が迷わない余白か確認する。
+
+## 2026-04-30
+
+- Focus: Access / Motion
+- Changed: Projects の終端に `visionHandoff` を追加し、既存の `project-threshold` 表現を再利用して Vision 入口へ渡す短い導線と到着強調を加えた。
+- Learned: Library から Projects へ入る橋だけでなく、長い制作棚を読み終えた後の出口も置くと、カード追加ではなく参道の途切れを整えられる。
+- Next: Projects 終端から Vision 入口までを実機幅で確認し、リンクCTAの強さが制作棚カードより目立ちすぎないか見る。

@@ -8,6 +8,7 @@
         '.footer-garden-close__link[href^="#"]',
         '.hero-cta[href^="#"]',
         '.library-projects-bridge__link[href^="#"]',
+        '.project-threshold__link[href^="#"]',
         '.quote-prelude-step[href^="#"]',
         '.project-return-link[href^="#"]'
     ].join(', ');
@@ -17,6 +18,11 @@
             selector: '.library-projects-bridge__link',
             className: 'is-handoff-arrival',
             duration: 1800
+        },
+        {
+            selector: '.project-threshold__link',
+            className: 'is-project-vision-arrival',
+            duration: 1500
         },
         {
             selector: '.quote-prelude-step',
