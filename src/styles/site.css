@@ -7921,10 +7921,10 @@ body.theme-night .nav-logo {
         min-height: 2.45rem;
     }
 
-    .project-entry-lights {
+    .project-entry-lights,
+    .project-lane-guide {
         grid-template-columns: repeat(3, minmax(12.25rem, 1fr));
         gap: 0.68rem;
-        margin: -0.05rem -0.25rem 0.05rem;
         padding: 0.35rem 0.25rem 0.54rem;
         overflow-x: auto;
         overscroll-behavior-x: contain;
@@ -7933,67 +7933,50 @@ body.theme-night .nav-logo {
         scrollbar-width: thin;
     }
 
-    .project-entry-lights::-webkit-scrollbar {
+    .project-entry-lights {
+        margin: -0.05rem -0.25rem 0.05rem;
+    }
+
+    .project-entry-lights::-webkit-scrollbar,
+    .project-lane-guide::-webkit-scrollbar {
         height: 0.36rem;
     }
 
-    .project-entry-lights::-webkit-scrollbar-track {
+    .project-entry-lights::-webkit-scrollbar-track,
+    .project-lane-guide::-webkit-scrollbar-track {
         border-radius: 999px;
         background: var(--project-lane-guide-scroll-track);
     }
 
-    .project-entry-lights::-webkit-scrollbar-thumb {
+    .project-entry-lights::-webkit-scrollbar-thumb,
+    .project-lane-guide::-webkit-scrollbar-thumb {
         border-radius: 999px;
         background: var(--project-lane-guide-scroll-thumb);
     }
 
-    .project-entry-lights::before {
+    .project-entry-lights::before,
+    .project-lane-guide::before {
         left: 1.35rem;
         right: 1.35rem;
     }
 
     .project-entry-light {
-        scroll-snap-align: start;
-        min-height: 0;
         padding: 0.92rem;
     }
 
     .project-lane-guide {
         grid-column: auto;
         grid-row: auto;
-        grid-template-columns: repeat(3, minmax(12.25rem, 1fr));
-        gap: 0.68rem;
         margin: 0 -0.25rem;
-        padding: 0.35rem 0.25rem 0.54rem;
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-        scroll-snap-type: x proximity;
-        scrollbar-color: rgba(232, 88, 122, 0.42) transparent;
-        scrollbar-width: thin;
     }
 
-    .project-lane-guide::-webkit-scrollbar {
-        height: 0.36rem;
-    }
-
-    .project-lane-guide::-webkit-scrollbar-track {
-        border-radius: 999px;
-        background: var(--project-lane-guide-scroll-track);
-    }
-
-    .project-lane-guide::-webkit-scrollbar-thumb {
-        border-radius: 999px;
-        background: var(--project-lane-guide-scroll-thumb);
-    }
-
-    .project-lane-guide::before {
-        left: 1.35rem;
-        right: 1.35rem;
-    }
-
+    .project-entry-light,
     .project-lane-guide__item {
         scroll-snap-align: start;
         min-height: 0;
+    }
+
+    .project-lane-guide__item {
         padding: 0.9rem;
     }
 
