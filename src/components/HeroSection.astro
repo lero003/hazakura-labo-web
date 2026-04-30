@@ -31,11 +31,13 @@ import { heroSignals } from '../data/hero-signals.js';
         <ul class="hero-signal-list" aria-label="葉桜ラボで巡っていること">
             {heroSignals.map((signal) => (
                 <li class="hero-signal">
-                    <span class="hero-signal__mark" aria-hidden="true">{signal.mark}</span>
-                    <span class="hero-signal__copy">
-                        <strong>{signal.label}</strong>
-                        <span>{signal.text}</span>
-                    </span>
+                    <a class="hero-signal__link" href={signal.href}>
+                        <span class="hero-signal__mark" aria-hidden="true">{signal.mark}</span>
+                        <span class="hero-signal__copy">
+                            <strong>{signal.label}</strong>
+                            <span>{signal.text}</span>
+                        </span>
+                    </a>
                 </li>
             ))}
         </ul>

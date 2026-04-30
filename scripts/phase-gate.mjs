@@ -295,23 +295,28 @@ assert(
     && heroSectionSource.includes('heroSignals.map')
     && heroSignals.length === 4
     && ['本を書く', '道具を作る', '問いを記録する', '構想を育てる'].every((label) => heroSignals.some((signal) => signal.label === label))
+    && ['#library', '#projects', '#research-log-strip', '#vision'].every((href) => heroSignals.some((signal) => signal.href === href))
     && heroSignals.every((signal) => html.includes(`<strong>${signal.label}</strong>`))
+    && heroSignals.every((signal) => html.includes(`href="${signal.href}"`))
     && html.indexOf('class="hero-signal-list"') > html.indexOf('id="hero-subtitle"')
     && html.indexOf('class="hero-signal-list"') < html.indexOf('class="hero-cta-group"')
     && html.indexOf('class="hero-signal-list"') < html.indexOf('id="philosophy"')
     && readFile('dist/style.css').includes('.hero-signal-list')
+    && readFile('dist/style.css').includes('.hero-signal__link')
     && readFile('dist/style.css').includes('.hero-signal__mark')
     && /@media \(max-width: 768px\)[\s\S]*\.hero-signal-list\s*\{[\s\S]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/.test(readFile('dist/style.css')),
   JSON.stringify({
     importsSignals: heroSectionSource.includes("import { heroSignals }"),
     mapsSignals: heroSectionSource.includes('heroSignals.map'),
     signalLabels: heroSignals.map((signal) => signal.label),
+    signalHrefs: heroSignals.map((signal) => signal.href),
     signalCount: heroSignals.length,
     htmlPosition: html.indexOf('class="hero-signal-list"'),
     subtitlePosition: html.indexOf('id="hero-subtitle"'),
     ctaPosition: html.indexOf('class="hero-cta-group"'),
     philosophyPosition: html.indexOf('id="philosophy"'),
     hasListStyle: readFile('dist/style.css').includes('.hero-signal-list'),
+    hasLinkStyle: readFile('dist/style.css').includes('.hero-signal__link'),
     hasMarkStyle: readFile('dist/style.css').includes('.hero-signal__mark')
   })
 );

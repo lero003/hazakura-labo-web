@@ -1,5 +1,12 @@
 # リッチ化ログ
 
+## 2026-05-01
+
+- Focus: Access / Structure
+- Changed: Hero直下の4つの具体予告を、読むだけの札から `#library` / `#projects` / `#research-log-strip` / `#vision` へ渡る小さなリンク導線に変えた。行き先は `src/data/hero-signals.js` に持たせ、Hero markupは同じデータを描画し、hover / focus-visible の札表現と phase gate のアンカー保護を追加した。
+- Learned: 入口に「本を書く / 道具を作る / 問いを記録する / 構想を育てる」が出ていても、触れない札のままだと実験母艦としての動きが少し弱く見える。情報を増やさず、既存の道標を押せる小径にするだけで、思想から制作・記録・構想へ進む足取りが早くなる。
+- Next: GUI権限のある環境でHeroの4札をデスクトップ/390px幅で押し、smooth scroll到着後の現在地点灯とフォーカス移動が、通常CTAより強く出すぎないか確認する。
+
 ## 2026-04-30
 
 - Focus: Structure
