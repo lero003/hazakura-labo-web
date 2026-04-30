@@ -2293,6 +2293,8 @@ a {
     .section-projects.is-handoff-arrival .project-threshold__sigil,
     .section-projects.is-handoff-arrival .project-threshold__rail::after,
     .section-projects.is-handoff-arrival .project-control-deck,
+    .section-vision.is-project-vision-arrival .vision-entry-guide,
+    .section-vision.is-project-vision-arrival .vision-entry-guide__kind[data-entry-kind],
     .section.is-quote-return-arrival .section-header::after,
     .section.is-quote-return-arrival .section-label,
     .section.is-quote-return-arrival .section-title,
@@ -3273,6 +3275,11 @@ body.theme-night .section-vision {
     background: #0b0d17;
 }
 
+.section-vision {
+    --vision-threshold-arrival-shift: 10px;
+    --vision-threshold-arrival-shadow: rgba(90, 158, 95, 0.14);
+}
+
 .vision-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -3298,6 +3305,27 @@ body.theme-night .section-vision {
     animation: visionThresholdArrival 1.45s var(--ease-out-expo) both;
 }
 
+.section-vision.is-project-vision-arrival .vision-entry-guide__kind[data-entry-kind] {
+    animation: visionThresholdKindArrival 1.25s var(--ease-out-expo) both;
+    animation-delay: calc(var(--vision-threshold-kind-index, 0) * 90ms + 120ms);
+}
+
+.section-vision.is-project-vision-arrival .vision-entry-guide__kind[data-entry-kind]:nth-child(1) {
+    --vision-threshold-kind-index: 0;
+}
+
+.section-vision.is-project-vision-arrival .vision-entry-guide__kind[data-entry-kind]:nth-child(2) {
+    --vision-threshold-kind-index: 1;
+}
+
+.section-vision.is-project-vision-arrival .vision-entry-guide__kind[data-entry-kind]:nth-child(3) {
+    --vision-threshold-kind-index: 2;
+}
+
+.section-vision.is-project-vision-arrival .vision-entry-guide__kind[data-entry-kind]:nth-child(4) {
+    --vision-threshold-kind-index: 3;
+}
+
 @keyframes visionThresholdArrival {
     0% {
         transform: translateY(14px);
@@ -3315,6 +3343,26 @@ body.theme-night .section-vision {
         transform: translateY(0);
         border-color: var(--vision-entry-guide-border);
         box-shadow: 0 0 0 0 rgba(90, 158, 95, 0);
+    }
+}
+
+@keyframes visionThresholdKindArrival {
+    0% {
+        transform: translateY(var(--vision-threshold-arrival-shift));
+        border-color: rgba(var(--entry-accent-rgb), 0.22);
+        box-shadow: 0 0 0 0 rgba(var(--entry-accent-rgb), 0);
+    }
+
+    44% {
+        transform: translateY(-2px);
+        border-color: rgba(var(--entry-accent-rgb), 0.5);
+        box-shadow: 0 16px 34px rgba(var(--entry-accent-rgb), 0.16);
+    }
+
+    100% {
+        transform: translateY(0);
+        border-color: rgba(var(--entry-accent-rgb), 0.24);
+        box-shadow: 0 0 0 0 var(--vision-threshold-arrival-shadow);
     }
 }
 

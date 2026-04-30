@@ -1038,6 +1038,8 @@ assert(
     && styleCss.includes('.project-threshold--vision')
     && styleCss.includes('.project-threshold__link')
     && styleCss.includes('.section-vision.is-project-vision-arrival .vision-entry-guide')
+    && styleCss.includes('visionThresholdKindArrival')
+    && styleCss.includes('--vision-threshold-kind-index')
     && smoothScrollJs.includes("'.project-threshold__link[href^=\"#\"]'")
     && smoothScrollJs.includes("selector: '.project-threshold__link'")
     && smoothScrollJs.includes("className: 'is-project-vision-arrival'"),
@@ -1049,6 +1051,8 @@ assert(
     hasVisionThresholdStyle: styleCss.includes('.project-threshold--vision'),
     hasVisionThresholdLinkStyle: styleCss.includes('.project-threshold__link'),
     hasVisionArrivalStyle: styleCss.includes('.section-vision.is-project-vision-arrival .vision-entry-guide'),
+    hasVisionKindArrival: styleCss.includes('visionThresholdKindArrival'),
+    hasVisionKindStagger: styleCss.includes('--vision-threshold-kind-index'),
     smoothScrollIncludesLink: smoothScrollJs.includes("'.project-threshold__link[href^=\"#\"]'"),
     smoothScrollMarksArrival: smoothScrollJs.includes("className: 'is-project-vision-arrival'")
   })
