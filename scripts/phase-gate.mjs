@@ -1542,8 +1542,11 @@ assert(
     && projectFilterJs.includes('control.dataset.laneFilter === selectedLane')
     && projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget')
     && projectFilterJs.includes("card.classList.add('is-entry-target')")
+    && projectFilterJs.includes('const getEntryTargetOffset = () =>')
+    && projectFilterJs.includes("window.matchMedia?.('(max-width: 720px)').matches")
+    && projectFilterJs.includes('return isNarrow ? 116 : 92')
     && projectFilterJs.includes('const focusEntryTarget = (card) =>')
-    && projectFilterJs.includes('window.HazakuraScrollTarget?.scrollTo(card, { offset: 92 })')
+    && projectFilterJs.includes('window.HazakuraScrollTarget?.scrollTo(card, { offset: getEntryTargetOffset() })')
     && projectFilterJs.includes("card.setAttribute('tabindex', '-1')")
     && projectFilterJs.includes('card.focus({ preventScroll: true })')
     && projectFilterJs.includes('focusTarget: isEntryControl')
@@ -1566,8 +1569,10 @@ assert(
     hasSharedSelectionFunction: projectFilterJs.includes('const setSelectedLane = (selectedLane, options = {}) =>'),
     hasTargetSelection: projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget'),
     hasTargetCardClass: projectFilterJs.includes("card.classList.add('is-entry-target')"),
+    hasResponsiveTargetOffset: projectFilterJs.includes('const getEntryTargetOffset = () =>'),
+    checksNarrowViewport: projectFilterJs.includes("window.matchMedia?.('(max-width: 720px)').matches"),
     hasTargetFocusHelper: projectFilterJs.includes('const focusEntryTarget = (card) =>'),
-    usesSharedScrollTarget: projectFilterJs.includes('window.HazakuraScrollTarget?.scrollTo(card, { offset: 92 })'),
+    usesSharedScrollTarget: projectFilterJs.includes('window.HazakuraScrollTarget?.scrollTo(card, { offset: getEntryTargetOffset() })'),
     makesCardFocusable: projectFilterJs.includes("card.setAttribute('tabindex', '-1')"),
     focusesTargetCard: projectFilterJs.includes('card.focus({ preventScroll: true })'),
     onlyFocusesEntryControls: projectFilterJs.includes('focusTarget: isEntryControl'),

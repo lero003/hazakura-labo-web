@@ -50,11 +50,16 @@
       });
     };
 
+    const getEntryTargetOffset = () => {
+      const isNarrow = window.matchMedia?.('(max-width: 720px)').matches;
+      return isNarrow ? 116 : 92;
+    };
+
     const focusEntryTarget = (card) => {
       if (!card) return;
       if (!card.hasAttribute('tabindex')) card.setAttribute('tabindex', '-1');
       requestAnimationFrame(() => {
-        window.HazakuraScrollTarget?.scrollTo(card, { offset: 92 });
+        window.HazakuraScrollTarget?.scrollTo(card, { offset: getEntryTargetOffset() });
         card.focus({ preventScroll: true });
       });
     };
