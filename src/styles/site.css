@@ -5628,6 +5628,8 @@ body.theme-night .section-layers .layer-sequence__beam {
     --project-lane-guide-count: rgba(232, 88, 122, 0.42);
     --project-lane-guide-title: var(--ink-800);
     --project-lane-guide-copy: var(--ink-500);
+    --project-lane-guide-scroll-track: rgba(232, 88, 122, 0.08);
+    --project-lane-guide-scroll-thumb: linear-gradient(90deg, rgba(232, 88, 122, 0.46), rgba(90, 158, 95, 0.34), rgba(167, 139, 250, 0.34));
     --project-lane-filter-bg: rgba(255, 255, 255, 0.34);
     --project-lane-filter-border: rgba(232, 88, 122, 0.13);
     --project-lane-filter-button-bg: rgba(255, 255, 255, 0.48);
@@ -7239,6 +7241,8 @@ body.theme-night .section-projects {
     --project-lane-guide-count: rgba(232, 88, 122, 0.44);
     --project-lane-guide-title: var(--header-text);
     --project-lane-guide-copy: var(--body-text);
+    --project-lane-guide-scroll-track: rgba(255, 255, 255, 0.055);
+    --project-lane-guide-scroll-thumb: linear-gradient(90deg, rgba(232, 88, 122, 0.58), rgba(82, 183, 150, 0.38), rgba(167, 139, 250, 0.46));
     --project-lane-filter-bg: rgba(255, 255, 255, 0.04);
     --project-lane-filter-border: rgba(167, 139, 250, 0.14);
     --project-lane-filter-button-bg: rgba(255, 255, 255, 0.05);
@@ -7561,15 +7565,26 @@ body.theme-night .nav-logo {
         grid-template-columns: repeat(3, minmax(12.25rem, 1fr));
         gap: 0.68rem;
         margin: 0 -0.25rem;
-        padding: 0.35rem 0.25rem 0.18rem;
+        padding: 0.35rem 0.25rem 0.54rem;
         overflow-x: auto;
         overscroll-behavior-x: contain;
         scroll-snap-type: x proximity;
-        scrollbar-width: none;
+        scrollbar-color: rgba(232, 88, 122, 0.42) transparent;
+        scrollbar-width: thin;
     }
 
     .project-lane-guide::-webkit-scrollbar {
-        display: none;
+        height: 0.36rem;
+    }
+
+    .project-lane-guide::-webkit-scrollbar-track {
+        border-radius: 999px;
+        background: var(--project-lane-guide-scroll-track);
+    }
+
+    .project-lane-guide::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: var(--project-lane-guide-scroll-thumb);
     }
 
     .project-lane-guide::before {

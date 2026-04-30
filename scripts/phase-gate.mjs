@@ -1461,6 +1461,22 @@ assert(
   })
 );
 assert(
+  'mobile projects shelf keeps visible scroll affordance',
+  ['--project-lane-guide-scroll-track', '--project-lane-guide-scroll-thumb'].every((snippet) => styleCss.includes(snippet))
+    && styleCss.includes('scrollbar-width: thin')
+    && styleCss.includes('.project-lane-guide::-webkit-scrollbar-thumb')
+    && !styleCss.includes('scroll-snap-type: x proximity;\n        scrollbar-width: none;')
+    && !styleCss.includes('.project-lane-guide::-webkit-scrollbar {\n        display: none;'),
+  JSON.stringify({
+    hasTrackToken: styleCss.includes('--project-lane-guide-scroll-track'),
+    hasThumbToken: styleCss.includes('--project-lane-guide-scroll-thumb'),
+    hasThinScrollbar: styleCss.includes('scrollbar-width: thin'),
+    hasWebkitThumb: styleCss.includes('.project-lane-guide::-webkit-scrollbar-thumb'),
+    hidesFirefoxScrollbar: styleCss.includes('scroll-snap-type: x proximity;\n        scrollbar-width: none;'),
+    hidesWebkitScrollbar: styleCss.includes('.project-lane-guide::-webkit-scrollbar {\n        display: none;')
+  })
+);
+assert(
   'project placeholder thumbnails use CSS-rendered sigils',
   hazakuraContent.projectsGroup.items
     .filter((item) => !item.image)

@@ -2,6 +2,13 @@
 
 ## 2026-04-30
 
+- Focus: Access / Structure
+- Changed: モバイル幅の Projects 棚ガイドで、横スクロールの続きが見えにくかったため、隠していた scrollbar を細い季節色のレールとして戻した。昼夜の色は `--project-lane-guide-scroll-*` トークンへ閉じ、phase gate で `scrollbar-width: none` / WebKit scrollbar 非表示へ戻らないよう保護した。
+- Learned: 横に続く棚は、カードを増やさなくても「まだ右へ歩ける」手がかりがないと導線が止まって見える。モバイルでは隠しスクロールより、控えめなレールの方が実験棚らしさと操作の発見性を両立しやすい。
+- Next: preview 可能な環境で 390px 前後の Projects 冒頭を見て、細いスクロールレールが本文より強く出すぎず、三つの棚を横に辿れることが伝わるか確認する。
+
+## 2026-04-30
+
 - Focus: Structure
 - Changed: Vision 内の「問い -> 実験 -> 発見 -> 循環」process flow 描画を `section-foundation-renderer.js` から新しい `process-flow-renderer.js` へ切り出した。`content-renderers.js` はページ歩行に近い順で Projects、Vision、process flow、Research Log を委譲し、script load order と phase gate も新しい責務境界を守る形へ更新した。
 - Learned: process flow は基礎セクションの一部ではなく、Vision から Research Log へ渡る小さな橋なので、Foundation renderer に残ると次回の終盤調整で探す場所がずれる。見た目を変えずに描画口だけ分けると、終盤の間奏を磨く小径が細くなる。
