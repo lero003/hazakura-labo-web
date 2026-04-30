@@ -635,7 +635,8 @@ assert(
   'quote prelude steps keep a compact route marker structure',
   quotePreludeJs.includes('quote-prelude-step__label')
     && quotePreludeJs.includes('quote-prelude-step__text')
-    && quotePreludeJs.includes('quote-prelude-steps garden-handoff-steps')
+    && quotePreludeJs.includes('renderHandoffSteps')
+    && quotePreludeJs.includes("className: 'quote-prelude-steps'")
     && styleCss.includes('--handoff-step-dot-display')
     && styleCss.includes('counter-increment: quote-prelude')
     && styleCss.includes('.quote-prelude-step::before')
@@ -645,7 +646,7 @@ assert(
   JSON.stringify({
     hasLabelSpan: quotePreludeJs.includes('quote-prelude-step__label'),
     hasTextSpan: quotePreludeJs.includes('quote-prelude-step__text'),
-    usesSharedPath: quotePreludeJs.includes('quote-prelude-steps garden-handoff-steps'),
+    usesSharedPath: quotePreludeJs.includes('renderHandoffSteps') && quotePreludeJs.includes("className: 'quote-prelude-steps'"),
     canHideSharedDot: styleCss.includes('--handoff-step-dot-display'),
     hasCounterIncrement: styleCss.includes('counter-increment: quote-prelude'),
     hasMarkerPseudo: styleCss.includes('.quote-prelude-step::before'),
@@ -659,14 +660,13 @@ assert(
   styleCss.includes('.quote-prelude-card.visible .quote-prelude-steps li')
     && styleCss.includes('--quote-prelude-step-delay')
     && styleCss.includes('transition-delay: calc(var(--quote-prelude-step-delay, 0) * 82ms)')
-    && quotePreludeJs.includes('item.steps.map((step, index)')
-    && quotePreludeJs.includes('style="--quote-prelude-step-delay: ${index + 1};"')
+    && quotePreludeJs.includes('itemStyle: (_step, index) => `--quote-prelude-step-delay: ${index + 1};`')
     && !styleCss.includes('.quote-prelude-steps li:nth-child('),
   JSON.stringify({
     hasVisibleStepRule: styleCss.includes('.quote-prelude-card.visible .quote-prelude-steps li'),
     hasDelayToken: styleCss.includes('--quote-prelude-step-delay'),
     hasDelayFormula: styleCss.includes('transition-delay: calc(var(--quote-prelude-step-delay, 0) * 82ms)'),
-    rendererSetsDelay: quotePreludeJs.includes('style="--quote-prelude-step-delay: ${index + 1};"'),
+    rendererSetsDelay: quotePreludeJs.includes('itemStyle: (_step, index) => `--quote-prelude-step-delay: ${index + 1};`'),
     fixedStepSelectors: styleCss.includes('.quote-prelude-steps li:nth-child(')
   })
 );
@@ -755,6 +755,23 @@ assert('app controller delegates shooting stars', appControllerJs.includes('Haza
 assert('app controller delegates cursor follow', appControllerJs.includes('HazakuraCursorFollow?.create'));
 assert('app controller delegates sakura petals', appControllerJs.includes('HazakuraSakuraPetals?.create'));
 assert('dom helpers script exposes global', domHelpersJs.includes('window.HazakuraDom'));
+assert(
+  'handoff step markup is shared by DOM helpers',
+  domHelpersJs.includes('function renderHandoffSteps')
+    && domHelpersJs.includes('className = \'\'')
+    && domHelpersJs.includes("'garden-handoff-steps']")
+    && domHelpersJs.includes('typeof renderStep === \'function\'')
+    && researchRendererJs.includes('renderHandoffSteps')
+    && quotePreludeJs.includes('renderHandoffSteps'),
+  JSON.stringify({
+    helperExists: domHelpersJs.includes('function renderHandoffSteps'),
+    acceptsClassName: domHelpersJs.includes('className = \'\''),
+    keepsGardenClass: domHelpersJs.includes("'garden-handoff-steps']"),
+    hasCustomStepSlot: domHelpersJs.includes('typeof renderStep === \'function\''),
+    researchUsesHelper: researchRendererJs.includes('renderHandoffSteps'),
+    quoteUsesHelper: quotePreludeJs.includes('renderHandoffSteps')
+  })
+);
 assert(
   'CSS sigil tokens are normalized through the shared DOM helper',
   domHelpersJs.includes('function toCssToken')
@@ -1030,7 +1047,8 @@ assert(
   'library projects bridge keeps handoff path styling',
   ['.library-projects-bridge::after', '.garden-handoff-steps::before', '.garden-handoff-steps > li::before', '--handoff-step-label-margin-bottom', 'bridgeSeedFloat'].every((snippet) => styleCss.includes(snippet))
     && librarySectionSource.includes('class="library-projects-bridge__steps garden-handoff-steps"')
-    && researchRendererJs.includes('class="research-log-handoff__steps garden-handoff-steps"')
+    && researchRendererJs.includes('renderHandoffSteps')
+    && researchRendererJs.includes("className: 'research-log-handoff__steps'")
     && !styleCss.includes('.library-projects-bridge__steps li {')
     && !styleCss.includes('.library-projects-bridge__steps span {'),
   JSON.stringify({
@@ -1039,7 +1057,7 @@ assert(
     hasStepDots: styleCss.includes('.garden-handoff-steps > li::before'),
     hasLabelSpacingToken: styleCss.includes('--handoff-step-label-margin-bottom'),
     libraryUsesSharedSteps: librarySectionSource.includes('class="library-projects-bridge__steps garden-handoff-steps"'),
-    researchUsesSharedSteps: researchRendererJs.includes('class="research-log-handoff__steps garden-handoff-steps"'),
+    researchUsesSharedSteps: researchRendererJs.includes('renderHandoffSteps') && researchRendererJs.includes("className: 'research-log-handoff__steps'"),
     hasDirectLibraryStepItemRule: styleCss.includes('.library-projects-bridge__steps li {'),
     hasDirectLibraryStepLabelRule: styleCss.includes('.library-projects-bridge__steps span {')
   })
@@ -1908,9 +1926,11 @@ assert('smooth scroll includes library projects bridge', smoothScrollJs.includes
 assert(
   'handoff step chrome uses shared garden class',
   librarySectionSource.includes('library-projects-bridge__steps garden-handoff-steps')
-    && researchRendererJs.includes('research-log-handoff__steps garden-handoff-steps')
-    && quotePreludeJs.includes('quote-prelude-steps garden-handoff-steps')
-    && quotePreludeJs.includes('aria-label="問いを引用前に巡らせる流れ"')
+    && researchRendererJs.includes('renderHandoffSteps')
+    && researchRendererJs.includes("className: 'research-log-handoff__steps'")
+    && quotePreludeJs.includes('renderHandoffSteps')
+    && quotePreludeJs.includes("className: 'quote-prelude-steps'")
+    && quotePreludeJs.includes("ariaLabel: '問いを引用前に巡らせる流れ'")
     && styleCss.includes('.garden-handoff-steps')
     && styleCss.includes('.garden-handoff-steps::before')
     && styleCss.includes('.garden-handoff-steps > li::before')
@@ -1925,9 +1945,9 @@ assert(
     && styleCss.includes('.library-projects-bridge__link:focus-visible'),
   JSON.stringify({
     libraryUsesSharedClass: librarySectionSource.includes('library-projects-bridge__steps garden-handoff-steps'),
-    researchUsesSharedClass: researchRendererJs.includes('research-log-handoff__steps garden-handoff-steps'),
-    quoteUsesSharedClass: quotePreludeJs.includes('quote-prelude-steps garden-handoff-steps'),
-    quoteHasLabel: quotePreludeJs.includes('aria-label="問いを引用前に巡らせる流れ"'),
+    researchUsesSharedClass: researchRendererJs.includes('renderHandoffSteps') && researchRendererJs.includes("className: 'research-log-handoff__steps'"),
+    quoteUsesSharedClass: quotePreludeJs.includes('renderHandoffSteps') && quotePreludeJs.includes("className: 'quote-prelude-steps'"),
+    quoteHasLabel: quotePreludeJs.includes("ariaLabel: '問いを引用前に巡らせる流れ'"),
     hasSharedListStyle: styleCss.includes('.garden-handoff-steps'),
     hasSharedRailStyle: styleCss.includes('.garden-handoff-steps::before'),
     hasSharedDotStyle: styleCss.includes('.garden-handoff-steps > li::before'),

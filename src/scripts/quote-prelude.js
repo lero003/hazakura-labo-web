@@ -1,24 +1,24 @@
 (function () {
   'use strict';
 
-  const { escapeHtml } = window.HazakuraDom;
+  const { escapeHtml, renderHandoffSteps } = window.HazakuraDom;
 
   function render(item) {
     const root = document.querySelector('[data-render="quotePrelude"]');
     if (!root || !item) return;
 
-    const steps = Array.isArray(item.steps) && item.steps.length
-      ? `<ol class="quote-prelude-steps garden-handoff-steps" aria-label="問いを引用前に巡らせる流れ">
-          ${item.steps.map((step, index) => `
-            <li style="--quote-prelude-step-delay: ${index + 1};">
-              ${step.href ? `<a class="quote-prelude-step" href="${escapeHtml(step.href)}">` : '<span class="quote-prelude-step">'}
-                <span class="quote-prelude-step__label">${escapeHtml(step.label || '')}</span>
-                <span class="quote-prelude-step__text">${escapeHtml(step.text || '')}</span>
-              ${step.href ? '</a>' : '</span>'}
-            </li>
-          `).join('')}
-        </ol>`
-      : '';
+    const steps = renderHandoffSteps({
+      steps: item.steps,
+      className: 'quote-prelude-steps',
+      ariaLabel: '問いを引用前に巡らせる流れ',
+      itemStyle: (_step, index) => `--quote-prelude-step-delay: ${index + 1};`,
+      renderStep: (step) => `
+        ${step.href ? `<a class="quote-prelude-step" href="${escapeHtml(step.href)}">` : '<span class="quote-prelude-step">'}
+          <span class="quote-prelude-step__label">${escapeHtml(step.label || '')}</span>
+          <span class="quote-prelude-step__text">${escapeHtml(step.text || '')}</span>
+        ${step.href ? '</a>' : '</span>'}
+      `
+    });
 
     root.innerHTML = `
       <article class="quote-prelude-card" data-reveal data-tilt>

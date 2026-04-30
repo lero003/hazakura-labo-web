@@ -1297,6 +1297,13 @@
 
 ## 2026-04-30
 
+- Focus: Structure
+- Changed: Research Log と Quote 前で個別に組んでいた `garden-handoff-steps` のDOM生成を `renderHandoffSteps` へ寄せ、共通レールの見た目は維持したまま、遅延付きQuoteステップだけカスタム描画できる口を残した。phase gateも共有ヘルパー経由を保護するよう更新した。
+- Learned: CSSだけ共有していても、DOM文字列の組み立てが散ると次の間奏追加で差分が増えやすい。生成口を細くすると、Library / Research / Quote の橋渡しを同じ庭具として扱いやすくなる。
+- Next: preview可能な環境で Library / Research / Quote の手渡しレールを横断確認し、見た目を変えずにLibrary側Astroマークアップも共有化できるか判断する。
+
+## 2026-04-30
+
 - Focus: Structure / Access
 - Changed: Vision 入口フォーカスの一時強調から `aria-current` 同期を外し、選択状態は `照らす` ボタンの `aria-pressed` だけで表すようにした。phase gateにも `aria-current` が戻らない保護を追加した。
 - Learned: ホバーやフォーカス中の見た目と、固定選択として支援技術へ伝える状態は分けておく方が、入口ガイドの責務が読みやすい。

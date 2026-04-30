@@ -1,12 +1,16 @@
 (function () {
     'use strict';
 
-    const { escapeHtml, formatExternalDestination, renderDrawerSummary } = window.HazakuraDom;
+    const { escapeHtml, formatExternalDestination, renderDrawerSummary, renderHandoffSteps } = window.HazakuraDom;
 
     function renderResearchLogHandoff(handoff, items) {
         if (!handoff) return '';
-        const steps = Array.isArray(handoff.steps) ? handoff.steps : [];
         const count = Array.isArray(items) ? items.length : 0;
+        const steps = renderHandoffSteps({
+            steps: handoff.steps,
+            className: 'research-log-handoff__steps',
+            ariaLabel: '入口を研究ログへ戻す流れ'
+        });
         return `
             <article class="research-log-handoff" data-reveal data-tilt>
                 <div class="research-log-handoff__copy">
@@ -14,16 +18,7 @@
                     <h3>${escapeHtml(handoff.title || '')}</h3>
                     <p>${escapeHtml(handoff.text || '')}</p>
                 </div>
-                ${steps.length ? `
-                    <ol class="research-log-handoff__steps garden-handoff-steps" aria-label="入口を研究ログへ戻す流れ">
-                        ${steps.map((step) => `
-                            <li>
-                                <span>${escapeHtml(step.label || '')}</span>
-                                <p>${escapeHtml(step.text || '')}</p>
-                            </li>
-                        `).join('')}
-                    </ol>
-                ` : ''}
+                ${steps}
                 <p class="research-log-handoff__count" aria-label="${escapeHtml(String(count))}件の研究ログ">
                     <strong>${escapeHtml(String(count))}</strong>
                     <span>logs</span>
