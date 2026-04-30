@@ -20,6 +20,8 @@
     }, {});
     const actionOrder = actionTypes.length ? actionTypes.map((guide) => guide.type).filter(Boolean) : ['external', 'download', 'status'];
     const overview = projectsGroup.overview || '制作物を棚ごとに眺められます。';
+    let selectedLaneState = 'all';
+    let entryTargetClearTimer = 0;
 
     const buildLaneStatus = (selectedLane, selectedTarget = '') => {
       const base = selectedLane === 'all' ? overview : laneCopy[selectedLane] || overview;
@@ -50,6 +52,29 @@
       });
     };
 
+    const clearEntryTargetState = () => {
+      clearEntryTarget();
+      controls.forEach((control) => {
+        if (control.dataset.projectFilterControl === 'entry') {
+          control.classList.remove('is-active');
+          control.setAttribute('aria-pressed', 'false');
+        }
+      });
+      if (status) status.textContent = buildLaneStatus(selectedLaneState);
+    };
+
+    const shouldAutoClearEntryTarget = () => {
+      const isNarrow = window.matchMedia?.('(max-width: 720px)').matches;
+      const isTouch = window.matchMedia?.('(hover: none), (pointer: coarse)').matches;
+      return Boolean(isNarrow || isTouch);
+    };
+
+    const scheduleEntryTargetClear = () => {
+      window.clearTimeout(entryTargetClearTimer);
+      if (!shouldAutoClearEntryTarget()) return;
+      entryTargetClearTimer = window.setTimeout(clearEntryTargetState, 2400);
+    };
+
     const getEntryTargetOffset = () => {
       const isNarrow = window.matchMedia?.('(max-width: 720px)').matches;
       return isNarrow ? 116 : 92;
@@ -68,6 +93,8 @@
       const selectedTarget = options.target || '';
       const shouldFocusTarget = Boolean(options.focusTarget);
       let targetCard = null;
+      selectedLaneState = selectedLane;
+      window.clearTimeout(entryTargetClearTimer);
       controls.forEach((control) => {
         const isActive = control.dataset.laneFilter === selectedLane;
         const isEntryControl = control.dataset.projectFilterControl === 'entry';
@@ -94,6 +121,7 @@
       });
       if (status) status.textContent = buildLaneStatus(selectedLane, selectedTarget);
       if (shouldFocusTarget) focusEntryTarget(targetCard);
+      if (selectedTarget) scheduleEntryTargetClear();
     };
 
     controls.forEach((control) => {

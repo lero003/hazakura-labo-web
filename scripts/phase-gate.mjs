@@ -1551,6 +1551,13 @@ assert(
     && projectFilterJs.includes("card.setAttribute('tabindex', '-1')")
     && projectFilterJs.includes('card.focus({ preventScroll: true })')
     && projectFilterJs.includes('focusTarget: isEntryControl')
+    && projectFilterJs.includes('const clearEntryTargetState = () =>')
+    && projectFilterJs.includes("control.dataset.projectFilterControl === 'entry'")
+    && projectFilterJs.includes('const shouldAutoClearEntryTarget = () =>')
+    && projectFilterJs.includes("window.matchMedia?.('(hover: none), (pointer: coarse)').matches")
+    && projectFilterJs.includes('const scheduleEntryTargetClear = () =>')
+    && projectFilterJs.includes('window.setTimeout(clearEntryTargetState, 2400)')
+    && projectFilterJs.includes('if (selectedTarget) scheduleEntryTargetClear()')
     && styleCss.includes('.project-entry-lights')
     && styleCss.includes('.project-entry-light')
     && styleCss.includes('.project-card.is-entry-target')
@@ -1578,6 +1585,13 @@ assert(
     makesCardFocusable: projectFilterJs.includes("card.setAttribute('tabindex', '-1')"),
     focusesTargetCard: projectFilterJs.includes('card.focus({ preventScroll: true })'),
     onlyFocusesEntryControls: projectFilterJs.includes('focusTarget: isEntryControl'),
+    hasAutoClearHelper: projectFilterJs.includes('const clearEntryTargetState = () =>'),
+    onlyClearsEntryControls: projectFilterJs.includes("control.dataset.projectFilterControl === 'entry'"),
+    hasTouchAutoClearGate: projectFilterJs.includes('const shouldAutoClearEntryTarget = () =>'),
+    checksCoarsePointer: projectFilterJs.includes("window.matchMedia?.('(hover: none), (pointer: coarse)').matches"),
+    schedulesEntryClear: projectFilterJs.includes('const scheduleEntryTargetClear = () =>'),
+    usesShortEntryClear: projectFilterJs.includes('window.setTimeout(clearEntryTargetState, 2400)'),
+    schedulesOnlyTargetedEntries: projectFilterJs.includes('if (selectedTarget) scheduleEntryTargetClear()'),
     hasStyles: styleCss.includes('.project-entry-lights'),
     hasTargetStyle: styleCss.includes('.project-card.is-entry-target'),
     hasTokens: styleCss.includes('--project-entry-light-bg')
