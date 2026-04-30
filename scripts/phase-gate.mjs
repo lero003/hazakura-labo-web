@@ -1540,6 +1540,7 @@ assert(
     && projectRendererJs.includes('renderEntryLights(projectsGroup.entryLights)')
     && projectFilterJs.includes('const setSelectedLane = (selectedLane, options = {}) =>')
     && projectFilterJs.includes('control.dataset.laneFilter === selectedLane')
+    && projectFilterJs.includes('Boolean(selectedTarget) && control.dataset.projectEntryTarget === selectedTarget')
     && projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget')
     && projectFilterJs.includes("card.classList.add('is-entry-target')")
     && projectFilterJs.includes('const getEntryTargetOffset = () =>')
@@ -1567,6 +1568,7 @@ assert(
     hasLaneControlKind: projectRendererJs.includes('data-project-filter-control="lane"'),
     syncsDuplicateFilters: projectFilterJs.includes('control.dataset.laneFilter === selectedLane'),
     hasSharedSelectionFunction: projectFilterJs.includes('const setSelectedLane = (selectedLane, options = {}) =>'),
+    keepsEntryLightsTargetOnly: projectFilterJs.includes('Boolean(selectedTarget) && control.dataset.projectEntryTarget === selectedTarget'),
     hasTargetSelection: projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget'),
     hasTargetCardClass: projectFilterJs.includes("card.classList.add('is-entry-target')"),
     hasResponsiveTargetOffset: projectFilterJs.includes('const getEntryTargetOffset = () =>'),

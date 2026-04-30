@@ -71,7 +71,9 @@
       controls.forEach((control) => {
         const isActive = control.dataset.laneFilter === selectedLane;
         const isEntryControl = control.dataset.projectFilterControl === 'entry';
-        const targetMatches = !selectedTarget || !isEntryControl || control.dataset.projectEntryTarget === selectedTarget;
+        const targetMatches = isEntryControl
+          ? Boolean(selectedTarget) && control.dataset.projectEntryTarget === selectedTarget
+          : true;
         const shouldMarkActive = isActive && targetMatches;
         control.classList.toggle('is-active', shouldMarkActive);
         control.setAttribute('aria-pressed', String(shouldMarkActive));
