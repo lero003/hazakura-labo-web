@@ -1635,6 +1635,8 @@ assert(
     && styleCss.includes('color: var(--project-type-chip-color)')
     && styleCss.includes('color: var(--project-action-color)')
     && styleCss.includes('color: var(--project-tag-color)')
+    && projectRendererJs.includes('class="project-action-slot"')
+    && !projectRendererJs.includes('class="project-live"')
     && !styleCss.includes('project-live__badge')
     && !styleCss.includes('--project-live-badge')
     && !styleCss.includes('body.theme-night .section-projects .project-card {')
@@ -1652,6 +1654,8 @@ assert(
     hasTypeTokenUsage: styleCss.includes('color: var(--project-type-chip-color)'),
     hasActionTokenUsage: styleCss.includes('color: var(--project-action-color)'),
     hasTagTokenUsage: styleCss.includes('color: var(--project-tag-color)'),
+    hasActionSlot: projectRendererJs.includes('class="project-action-slot"'),
+    hasLegacyLiveSlot: projectRendererJs.includes('class="project-live"'),
     hasSharedChipShape: styleCss.includes('.project-lane,\n.project-type,\n.tag'),
     hasLiveBadgeSelector: styleCss.includes('project-live__badge'),
     hasLiveBadgeToken: styleCss.includes('--project-live-badge'),

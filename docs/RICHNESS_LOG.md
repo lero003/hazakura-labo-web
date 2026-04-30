@@ -1385,3 +1385,10 @@
 - Changed: Projects 冒頭に `entryLights` を追加し、「いま触れる実験 / 相談できる構想 / まだ芽のままの問い」を既存Projectsデータから3つの灯りとして表示した。灯りは既存の棚フィルターと同じ `data-lane-filter` 契約で動き、重複する棚ボタンの選択状態も同期するようにした。
 - Learned: Projects の弱さはカード不足ではなく、入口で具体の代表が見えにくいことだった。新しいカードを増やさず、既存の棚へ先に小さな灯りを置くと、書庫から制作・相談・研究へ進む理由が早く立つ。
 - Next: preview可能な環境で Projects 冒頭の灯りを 390px / desktop 幅で確認し、灯りが棚ガイドより強すぎる場合は文量か余白を少し絞る。
+
+## 2026-04-30
+
+- Focus: Structure
+- Changed: ProjectsカードのCTAラッパー名を、旧い `project-live` から実体に合う `project-action-slot` へ改め、phase gateで旧名が戻らないよう保護した。
+- Learned: 入口灯やアクション種別を増やした後は、古いDOM名が残るだけでも次の改善で「公開中だけの枠」と誤読しやすい。見た目を変えない命名整理も、制作棚の保守性を上げる。
+- Next: Projects入口灯と棚フィルターの同期を実ブラウザで確認し、`project-action-slot` に将来必要な配置CSSがあるかだけ見る。

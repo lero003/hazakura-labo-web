@@ -207,7 +207,7 @@
           <div class="project-meta-row">
             ${lane}
             <span class="project-type">${escapeHtml(item.type)}</span>
-            <span class="project-live">${renderProjectAction(item, actionType, actionDetail)}</span>
+            <span class="project-action-slot">${renderProjectAction(item, actionType, actionDetail)}</span>
           </div>
           <h3 class="project-title">${escapeHtml(item.title)}</h3>
           <p class="project-desc">${escapeHtml(item.text)}</p>
