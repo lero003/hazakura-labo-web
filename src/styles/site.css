@@ -7955,6 +7955,7 @@ body.theme-night .nav-logo {
         --project-mobile-rail-columns: repeat(3, minmax(12.25rem, 1fr));
         --project-mobile-rail-gap: 0.68rem;
         --project-mobile-rail-padding: 0.35rem 0.25rem 0.54rem;
+        --project-mobile-rail-fade: linear-gradient(90deg, transparent 0, #000 1.05rem, #000 calc(100% - 1.05rem), transparent 100%);
 
         grid-template-columns: var(--project-mobile-rail-columns);
         gap: var(--project-mobile-rail-gap);
@@ -7965,6 +7966,8 @@ body.theme-night .nav-logo {
         scrollbar-color: rgba(232, 88, 122, 0.42) transparent;
         scrollbar-width: thin;
         touch-action: pan-x pan-y;
+        -webkit-mask-image: var(--project-mobile-rail-fade);
+        mask-image: var(--project-mobile-rail-fade);
     }
 
     .project-entry-lights {
@@ -8537,6 +8540,8 @@ body.theme-night .nav-logo {
         grid-template-columns: minmax(0, 1fr);
         overflow: visible;
         scroll-snap-type: none;
+        -webkit-mask-image: none;
+        mask-image: none;
     }
 
     .project-entry-lights::before {
