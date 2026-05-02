@@ -3,6 +3,13 @@
 ## 2026-05-02
 
 - Focus: Structure / Access
+- Changed: Hero直下の4つの活動札を、通常のhashジャンプではなく既存の `HazakuraSmoothScroll` 参道へ参加させた。Library / Projects / Research Log / Vision それぞれの到着先に、既存の到着演出、hash更新、遅延フォーカス移動を再利用し、phase gate でHero札がスムーススクロール対象から漏れないよう保護した。
+- Learned: 札をリンク化しても、参道の共通初期化に入っていないと、見た目は押せるのにスクロール後の文脈が他の巡回路より弱くなる。新しい演出を足さず、既存の到着契約へ接続するだけで、入口の4つの具体予告が庭の中へ自然に続く。
+- Next: preview 可能な環境で Hero札4件をデスクトップ/390px幅で押し、Library到着時の汎用ヘッダー演出とProjects到着時の棚灯りが強すぎず、Research Log到着後のフォーカス位置が読み始めに近いか確認する。
+
+## 2026-05-02
+
+- Focus: Structure / Access
 - Changed: Hero直下の活動札、常設巡回路、Library -> Projects の橋、Quote前の折り返しが持つ内部リンクを `scripts/phase-gate.mjs` でまとめて検査するようにした。データ側の `href` が `#...` の場合、生成HTML内に実在する到着先 `id` と実際の `href` 出力があることを確認する。
 - Learned: Heroの4札を押せる小径にした後は、個別の期待値だけでは「新しい札や橋を足したが、行き先だけ消えた」壊れ方を見落としやすい。情報や見た目を増やさず、内部導線全体をデータから守ると、1ページ庭園の参道を次回以降も迷わず磨ける。
 - Next: preview 可能な環境で Hero札、Library橋、Quote前ステップを実際に押し、到着後のフォーカス移動と現在地点灯がそれぞれ強すぎず自然につながるか確認する。

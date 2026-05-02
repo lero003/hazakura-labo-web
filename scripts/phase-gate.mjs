@@ -2083,6 +2083,11 @@ assert(
     && smoothScrollJs.includes("target.setAttribute('tabindex', '-1')")
     && smoothScrollJs.includes('target.focus({ preventScroll: true })')
     && smoothScrollJs.includes('isReducedMotion ? 0 : 420')
+    && smoothScrollJs.includes('.hero-signal__link[href^="#"]')
+    && smoothScrollJs.includes('.hero-signal__link[href="#library"]')
+    && smoothScrollJs.includes('.hero-signal__link[href="#projects"]')
+    && smoothScrollJs.includes('.hero-signal__link[href="#vision"]')
+    && smoothScrollJs.includes('.hero-signal__link[href="#research-log-strip"]')
     && smoothScrollJs.includes('focusRouteTarget(target, isReducedMotion)')
     && smoothScrollJs.includes('markMatchingArrival(link, target, isReducedMotion)'),
   JSON.stringify({
@@ -2090,6 +2095,11 @@ assert(
     addsTabIndex: smoothScrollJs.includes("target.setAttribute('tabindex', '-1')"),
     preventsFocusScroll: smoothScrollJs.includes('target.focus({ preventScroll: true })'),
     respectsReducedMotion: smoothScrollJs.includes('isReducedMotion ? 0 : 420'),
+    hasHeroSignalRouteSelector: smoothScrollJs.includes('.hero-signal__link[href^="#"]'),
+    hasHeroLibraryArrival: smoothScrollJs.includes('.hero-signal__link[href="#library"]'),
+    hasHeroProjectsArrival: smoothScrollJs.includes('.hero-signal__link[href="#projects"]'),
+    hasHeroVisionArrival: smoothScrollJs.includes('.hero-signal__link[href="#vision"]'),
+    hasHeroResearchArrival: smoothScrollJs.includes('.hero-signal__link[href="#research-log-strip"]'),
     callsFocusBeforeArrival: smoothScrollJs.includes('focusRouteTarget(target, isReducedMotion)'),
     reusesMotionStateForArrival: smoothScrollJs.includes('markMatchingArrival(link, target, isReducedMotion)')
   })

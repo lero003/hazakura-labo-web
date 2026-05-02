@@ -7,6 +7,7 @@
         '.footer-nav a[href^="#"]',
         '.footer-garden-close__link[href^="#"]',
         '.hero-cta[href^="#"]',
+        '.hero-signal__link[href^="#"]',
         '.library-projects-bridge__link[href^="#"]',
         '.project-threshold__link[href^="#"]',
         '.quote-prelude-step[href^="#"]',
@@ -20,7 +21,17 @@
             duration: 1800
         },
         {
+            selector: '.hero-signal__link[href="#projects"]',
+            className: 'is-handoff-arrival',
+            duration: 1800
+        },
+        {
             selector: '.project-threshold__link',
+            className: 'is-project-vision-arrival',
+            duration: 1500
+        },
+        {
+            selector: '.hero-signal__link[href="#vision"]',
             className: 'is-project-vision-arrival',
             duration: 1500
         },
@@ -30,12 +41,17 @@
             duration: 1600
         },
         {
+            selector: '.hero-signal__link[href="#library"]',
+            className: 'is-quote-return-arrival',
+            duration: 1500
+        },
+        {
             selector: '.project-return-link',
             className: 'is-research-return-arrival',
             duration: 1500
         },
         {
-            selector: '.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"]',
+            selector: '.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"], .hero-signal__link[href="#research-log-strip"]',
             className: 'is-research-route-arrival',
             duration: 1500
         },
