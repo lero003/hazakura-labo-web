@@ -54,16 +54,14 @@ const routeHelperSource = readFile('src/route-responses.ts');
 const pageEndpointFiles = fs.readdirSync('src/pages')
   .filter((file) => file.endsWith('.js.ts') || file === 'style.css.ts')
   .sort();
+const scriptEndpointSource = readFile('src/pages/[script].js.ts');
 const sourceScriptPaths = fs.readdirSync('src/scripts')
   .filter((file) => file.endsWith('.js'))
   .sort()
   .map((file) => `/${file}`);
 const manifestScriptPaths = scriptLoadOrder.filter((path) => path !== '/content.js');
-const manifestScriptEndpointFiles = manifestScriptPaths.map((path) => `${path.slice(1)}.ts`);
 const staleScriptEndpointFiles = pageEndpointFiles
-  .filter((file) => file.endsWith('.js.ts') && file !== 'content.js.ts' && !manifestScriptEndpointFiles.includes(file));
-const missingScriptEndpointFiles = manifestScriptEndpointFiles
-  .filter((file) => !pageEndpointFiles.includes(file));
+  .filter((file) => file.endsWith('.js.ts') && !['content.js.ts', '[script].js.ts'].includes(file));
 const missingScriptSources = manifestScriptPaths
   .filter((path) => !sourceScriptPaths.includes(path));
 const unlistedScriptSources = sourceScriptPaths
@@ -243,17 +241,17 @@ assert(
   'script manifest mirrors source files and route endpoints',
   missingScriptSources.length === 0
     && unlistedScriptSources.length === 0
-    && missingScriptEndpointFiles.length === 0
     && staleScriptEndpointFiles.length === 0
-    && manifestScriptPaths.every((path) => {
-      const endpointSource = readFile(`src/pages/${path.slice(1)}.ts`);
-      return endpointSource.includes(`import source from '../scripts/${path.slice(1)}?raw'`)
-        && endpointSource.includes('javascriptResponse(source)');
-    }),
+    && scriptEndpointSource.includes("import { scriptLoadOrder }")
+    && scriptEndpointSource.includes("path !== '/content.js'")
+    && scriptEndpointSource.includes('getStaticPaths')
+    && scriptEndpointSource.includes('manifestScriptPaths.map')
+    && scriptEndpointSource.includes('params: { script:')
+    && scriptEndpointSource.includes("join(process.cwd(), 'src', 'scripts', `${params.script}.js`)")
+    && scriptEndpointSource.includes("javascriptResponse(readFileSync(sourcePath, 'utf8'))"),
   JSON.stringify({
     missingScriptSources,
     unlistedScriptSources,
-    missingScriptEndpointFiles,
     staleScriptEndpointFiles
   })
 );
@@ -263,13 +261,18 @@ assert(
     && routeHelperSource.includes('stylesheetResponse')
     && routeHelperSource.includes('new Response')
     && pageEndpointFiles.every((file) => readFile(`src/pages/${file}`).includes("../route-responses"))
-    && pageEndpointFiles.every((file) => !readFile(`src/pages/${file}`).includes('new Response'))
+    && pageEndpointFiles
+      .filter((file) => file !== '[script].js.ts')
+      .every((file) => !readFile(`src/pages/${file}`).includes('new Response'))
     && readFile('src/pages/style.css.ts').includes('stylesheetResponse(source)')
-    && pageEndpointFiles.filter((file) => file.endsWith('.js.ts')).every((file) => readFile(`src/pages/${file}`).includes('javascriptResponse(')),
+    && readFile('src/pages/content.js.ts').includes('javascriptResponse(')
+    && scriptEndpointSource.includes('javascriptResponse('),
   JSON.stringify({
     endpointCount: pageEndpointFiles.length,
     missingHelperImport: pageEndpointFiles.filter((file) => !readFile(`src/pages/${file}`).includes("../route-responses")),
-    localResponses: pageEndpointFiles.filter((file) => readFile(`src/pages/${file}`).includes('new Response'))
+    localResponses: pageEndpointFiles
+      .filter((file) => file !== '[script].js.ts')
+      .filter((file) => readFile(`src/pages/${file}`).includes('new Response'))
   })
 );
 

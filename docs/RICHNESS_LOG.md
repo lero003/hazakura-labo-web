@@ -2,6 +2,13 @@
 
 ## 2026-05-02
 
+- Focus: Structure
+- Changed: 39本の個別JS配信endpointを `src/pages/[script].js.ts` に集約し、`scriptLoadOrder` manifest から `/app-controller.js` などの互換ルートを静的生成する形へ寄せた。phase gateも、source / manifest / dynamic endpoint の同期を守る検査へ更新した。
+- Learned: 演出islandが増えるほど、1ファイル1endpointの薄い重複でも次の追加時の迷いになる。配信口をmanifest駆動にすると、見た目を変えずに演出追加の足場だけを軽くできる。
+- Next: `scriptLoadGroups` の説明粒度が現在の演出責務と合っているかを一度だけ見直し、増えたJSを探す時の索引として十分か確認する。
+
+## 2026-05-02
+
 - Focus: Structure / Access
 - Changed: Hero直下の4つの活動札を、通常のhashジャンプではなく既存の `HazakuraSmoothScroll` 参道へ参加させた。Library / Projects / Research Log / Vision それぞれの到着先に、既存の到着演出、hash更新、遅延フォーカス移動を再利用し、phase gate でHero札がスムーススクロール対象から漏れないよう保護した。
 - Learned: 札をリンク化しても、参道の共通初期化に入っていないと、見た目は押せるのにスクロール後の文脈が他の巡回路より弱くなる。新しい演出を足さず、既存の到着契約へ接続するだけで、入口の4つの具体予告が庭の中へ自然に続く。
