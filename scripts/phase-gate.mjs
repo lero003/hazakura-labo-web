@@ -1634,6 +1634,9 @@ assert(
 assert(
   'mobile projects shelf keeps visible scroll affordance',
   ['--project-lane-guide-scroll-track', '--project-lane-guide-scroll-thumb'].every((snippet) => styleCss.includes(snippet))
+    && ['--project-mobile-rail-columns', '--project-mobile-rail-gap', '--project-mobile-rail-padding'].every((snippet) => styleCss.includes(snippet))
+    && styleCss.includes('grid-template-columns: var(--project-mobile-rail-columns);')
+    && styleCss.includes('touch-action: pan-x pan-y;')
     && styleCss.includes('scrollbar-width: thin')
     && styleCss.includes('.project-lane-guide::-webkit-scrollbar-thumb')
     && !styleCss.includes('scroll-snap-type: x proximity;\n        scrollbar-width: none;')
@@ -1641,6 +1644,11 @@ assert(
   JSON.stringify({
     hasTrackToken: styleCss.includes('--project-lane-guide-scroll-track'),
     hasThumbToken: styleCss.includes('--project-lane-guide-scroll-thumb'),
+    hasSharedRailColumns: styleCss.includes('--project-mobile-rail-columns'),
+    hasSharedRailGap: styleCss.includes('--project-mobile-rail-gap'),
+    hasSharedRailPadding: styleCss.includes('--project-mobile-rail-padding'),
+    usesSharedRailColumns: styleCss.includes('grid-template-columns: var(--project-mobile-rail-columns);'),
+    keepsTouchPan: styleCss.includes('touch-action: pan-x pan-y;'),
     hasThinScrollbar: styleCss.includes('scrollbar-width: thin'),
     hasWebkitThumb: styleCss.includes('.project-lane-guide::-webkit-scrollbar-thumb'),
     hidesFirefoxScrollbar: styleCss.includes('scroll-snap-type: x proximity;\n        scrollbar-width: none;'),

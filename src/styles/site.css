@@ -7952,14 +7952,19 @@ body.theme-night .nav-logo {
 
     .project-entry-lights,
     .project-lane-guide {
-        grid-template-columns: repeat(3, minmax(12.25rem, 1fr));
-        gap: 0.68rem;
-        padding: 0.35rem 0.25rem 0.54rem;
+        --project-mobile-rail-columns: repeat(3, minmax(12.25rem, 1fr));
+        --project-mobile-rail-gap: 0.68rem;
+        --project-mobile-rail-padding: 0.35rem 0.25rem 0.54rem;
+
+        grid-template-columns: var(--project-mobile-rail-columns);
+        gap: var(--project-mobile-rail-gap);
+        padding: var(--project-mobile-rail-padding);
         overflow-x: auto;
         overscroll-behavior-x: contain;
         scroll-snap-type: x proximity;
         scrollbar-color: rgba(232, 88, 122, 0.42) transparent;
         scrollbar-width: thin;
+        touch-action: pan-x pan-y;
     }
 
     .project-entry-lights {
