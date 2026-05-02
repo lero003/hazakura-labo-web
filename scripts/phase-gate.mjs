@@ -570,6 +570,7 @@ const motionPreferencesJs = readFile('dist/motion-preferences.js');
 const smoothScrollJs = readFile('dist/smooth-scroll.js');
 const scrollOffsetJs = readFile('dist/scroll-offset.js');
 const scrollTargetJs = readFile('dist/scroll-target.js');
+const interactionEnvironmentJs = readFile('dist/interaction-environment.js');
 const scrollIndicatorsJs = readFile('dist/scroll-indicators.js');
 const textRevealJs = readFile('dist/text-reveal.js');
 const heroParallaxJs = readFile('dist/hero-parallax.js');
@@ -1581,8 +1582,7 @@ assert(
     && projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget')
     && projectFilterJs.includes("card.classList.add('is-entry-target')")
     && projectFilterJs.includes('const getEntryTargetOffset = () =>')
-    && projectFilterJs.includes("window.matchMedia?.('(max-width: 720px)').matches")
-    && projectFilterJs.includes('return isNarrow ? 116 : 92')
+    && projectFilterJs.includes('HazakuraInteractionEnvironment?.getEntryLandingOffset')
     && projectFilterJs.includes('const focusEntryTarget = (card) =>')
     && projectFilterJs.includes('window.HazakuraScrollTarget?.scrollTo(card, { offset: getEntryTargetOffset() })')
     && projectFilterJs.includes("card.setAttribute('tabindex', '-1')")
@@ -1591,7 +1591,7 @@ assert(
     && projectFilterJs.includes('const clearEntryTargetState = () =>')
     && projectFilterJs.includes("control.dataset.projectFilterControl === 'entry'")
     && projectFilterJs.includes('const shouldAutoClearEntryTarget = () =>')
-    && projectFilterJs.includes("window.matchMedia?.('(hover: none), (pointer: coarse)').matches")
+    && projectFilterJs.includes('HazakuraInteractionEnvironment?.isCompactGardenInteraction')
     && projectFilterJs.includes('const scheduleEntryTargetClear = () =>')
     && projectFilterJs.includes('window.setTimeout(clearEntryTargetState, 2400)')
     && projectFilterJs.includes('if (selectedTarget) scheduleEntryTargetClear()')
@@ -1616,7 +1616,7 @@ assert(
     hasTargetSelection: projectFilterJs.includes('control.dataset.projectEntryTarget === selectedTarget'),
     hasTargetCardClass: projectFilterJs.includes("card.classList.add('is-entry-target')"),
     hasResponsiveTargetOffset: projectFilterJs.includes('const getEntryTargetOffset = () =>'),
-    checksNarrowViewport: projectFilterJs.includes("window.matchMedia?.('(max-width: 720px)').matches"),
+    usesSharedEntryOffset: projectFilterJs.includes('HazakuraInteractionEnvironment?.getEntryLandingOffset'),
     hasTargetFocusHelper: projectFilterJs.includes('const focusEntryTarget = (card) =>'),
     usesSharedScrollTarget: projectFilterJs.includes('window.HazakuraScrollTarget?.scrollTo(card, { offset: getEntryTargetOffset() })'),
     makesCardFocusable: projectFilterJs.includes("card.setAttribute('tabindex', '-1')"),
@@ -1625,7 +1625,7 @@ assert(
     hasAutoClearHelper: projectFilterJs.includes('const clearEntryTargetState = () =>'),
     onlyClearsEntryControls: projectFilterJs.includes("control.dataset.projectFilterControl === 'entry'"),
     hasTouchAutoClearGate: projectFilterJs.includes('const shouldAutoClearEntryTarget = () =>'),
-    checksCoarsePointer: projectFilterJs.includes("window.matchMedia?.('(hover: none), (pointer: coarse)').matches"),
+    usesSharedCompactDetector: projectFilterJs.includes('HazakuraInteractionEnvironment?.isCompactGardenInteraction'),
     schedulesEntryClear: projectFilterJs.includes('const scheduleEntryTargetClear = () =>'),
     usesShortEntryClear: projectFilterJs.includes('window.setTimeout(clearEntryTargetState, 2400)'),
     schedulesOnlyTargetedEntries: projectFilterJs.includes('if (selectedTarget) scheduleEntryTargetClear()'),
@@ -1981,13 +1981,13 @@ assert(
 assert(
   'vision entry focus auto releases compact pinned state',
   visionEntryFocusJs.includes('shouldAutoReleasePinned')
-    && visionEntryFocusJs.includes("window.matchMedia('(hover: none), (pointer: coarse), (max-width: 720px)')")
+    && visionEntryFocusJs.includes('HazakuraInteractionEnvironment?.isCompactGardenInteraction')
     && visionEntryFocusJs.includes('schedulePinnedRelease(nextKind)')
     && visionEntryFocusJs.includes('if (pinnedKind === kind) releasePinnedKind()')
     && visionEntryFocusJs.includes('releasePinnedKind();'),
   JSON.stringify({
     hasCompactDetector: visionEntryFocusJs.includes('shouldAutoReleasePinned'),
-    checksTouchOrCompact: visionEntryFocusJs.includes("window.matchMedia('(hover: none), (pointer: coarse), (max-width: 720px)')"),
+    usesSharedCompactDetector: visionEntryFocusJs.includes('HazakuraInteractionEnvironment?.isCompactGardenInteraction'),
     schedulesAfterToggle: visionEntryFocusJs.includes('schedulePinnedRelease(nextKind)'),
     guardsCurrentKind: visionEntryFocusJs.includes('if (pinnedKind === kind) releasePinnedKind()'),
     escapeUsesRelease: visionEntryFocusJs.includes('releasePinnedKind();')
@@ -2062,17 +2062,43 @@ assert('scroll offset script exposes global', scrollOffsetJs.includes('window.Ha
 assert('scroll target script exposes global', scrollTargetJs.includes('window.HazakuraScrollTarget'));
 assert('scroll target uses measured offset', scrollTargetJs.includes('HazakuraScrollOffset?.get'));
 assert(
+  'compact interaction environment is shared by arrival effects',
+  interactionEnvironmentJs.includes('window.HazakuraInteractionEnvironment')
+    && interactionEnvironmentJs.includes('isCompactGardenInteraction')
+    && interactionEnvironmentJs.includes('getEntryLandingOffset')
+    && interactionEnvironmentJs.includes("'(hover: none), (pointer: coarse), (max-width: 720px)'")
+    && interactionEnvironmentJs.includes("'(max-width: 720px)'")
+    && projectFilterJs.includes('HazakuraInteractionEnvironment?.isCompactGardenInteraction')
+    && projectFilterJs.includes('HazakuraInteractionEnvironment?.getEntryLandingOffset')
+    && visionEntryFocusJs.includes('HazakuraInteractionEnvironment?.isCompactGardenInteraction')
+    && !projectFilterJs.includes('window.matchMedia?.(')
+    && !visionEntryFocusJs.includes('window.matchMedia?.('),
+  JSON.stringify({
+    exposesGlobal: interactionEnvironmentJs.includes('window.HazakuraInteractionEnvironment'),
+    hasCompactDetector: interactionEnvironmentJs.includes('isCompactGardenInteraction'),
+    hasLandingOffset: interactionEnvironmentJs.includes('getEntryLandingOffset'),
+    projectUsesCompactDetector: projectFilterJs.includes('HazakuraInteractionEnvironment?.isCompactGardenInteraction'),
+    projectUsesLandingOffset: projectFilterJs.includes('HazakuraInteractionEnvironment?.getEntryLandingOffset'),
+    visionUsesCompactDetector: visionEntryFocusJs.includes('HazakuraInteractionEnvironment?.isCompactGardenInteraction'),
+    projectHasDirectMatchMedia: projectFilterJs.includes('window.matchMedia?.('),
+    visionHasDirectMatchMedia: visionEntryFocusJs.includes('window.matchMedia?.(')
+  })
+);
+assert(
   'scroll target loads between offset and scroll consumers',
   html.indexOf('src="/scroll-offset.js"') >= 0
     && html.indexOf('src="/scroll-target.js"') > html.indexOf('src="/scroll-offset.js"')
+    && html.indexOf('src="/interaction-environment.js"') > html.indexOf('src="/scroll-target.js"')
     && html.indexOf('src="/scroll-target.js"') < html.indexOf('src="/smooth-scroll.js"')
     && html.indexOf('src="/scroll-target.js"') < html.indexOf('src="/zone-performance.js"')
     && html.indexOf('src="/scroll-target.js"') < html.indexOf('src="/vision-entry-focus.js"')
+    && html.indexOf('src="/interaction-environment.js"') < html.indexOf('src="/vision-entry-focus.js"')
     && html.indexOf('src="/scroll-offset.js"') < html.indexOf('src="/smooth-scroll.js"')
     && html.indexOf('src="/scroll-offset.js"') < html.indexOf('src="/zone-performance.js"'),
   JSON.stringify({
     scrollOffset: html.indexOf('src="/scroll-offset.js"'),
     scrollTarget: html.indexOf('src="/scroll-target.js"'),
+    interactionEnvironment: html.indexOf('src="/interaction-environment.js"'),
     smoothScroll: html.indexOf('src="/smooth-scroll.js"'),
     zonePerformance: html.indexOf('src="/zone-performance.js"'),
     visionEntryFocus: html.indexOf('src="/vision-entry-focus.js"')

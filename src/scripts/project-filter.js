@@ -63,11 +63,7 @@
       if (status) status.textContent = buildLaneStatus(selectedLaneState);
     };
 
-    const shouldAutoClearEntryTarget = () => {
-      const isNarrow = window.matchMedia?.('(max-width: 720px)').matches;
-      const isTouch = window.matchMedia?.('(hover: none), (pointer: coarse)').matches;
-      return Boolean(isNarrow || isTouch);
-    };
+    const shouldAutoClearEntryTarget = () => Boolean(window.HazakuraInteractionEnvironment?.isCompactGardenInteraction());
 
     const scheduleEntryTargetClear = () => {
       window.clearTimeout(entryTargetClearTimer);
@@ -75,10 +71,7 @@
       entryTargetClearTimer = window.setTimeout(clearEntryTargetState, 2400);
     };
 
-    const getEntryTargetOffset = () => {
-      const isNarrow = window.matchMedia?.('(max-width: 720px)').matches;
-      return isNarrow ? 116 : 92;
-    };
+    const getEntryTargetOffset = () => window.HazakuraInteractionEnvironment?.getEntryLandingOffset() || 92;
 
     const focusEntryTarget = (card) => {
       if (!card) return;

@@ -29,6 +29,7 @@ export const scriptLoadGroups = [
       '/zone-atmosphere.js',
       '/scroll-offset.js',
       '/scroll-target.js',
+      '/interaction-environment.js',
       '/zone-performance.js',
       '/vision-entry-focus.js',
       '/hero-aurora-overlay.js',

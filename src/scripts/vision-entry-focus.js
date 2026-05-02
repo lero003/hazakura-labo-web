@@ -14,8 +14,7 @@
     let releaseTimer = 0;
 
     const getScrollOffset = () => window.HazakuraScrollOffset?.get(72) || 72;
-    const shouldAutoReleasePinned = () => window.matchMedia
-      && window.matchMedia('(hover: none), (pointer: coarse), (max-width: 720px)').matches;
+    const shouldAutoReleasePinned = () => Boolean(window.HazakuraInteractionEnvironment?.isCompactGardenInteraction());
 
     const isMostlyVisible = (element) => {
       const rect = element.getBoundingClientRect();
