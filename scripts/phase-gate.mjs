@@ -4,6 +4,8 @@ import { hazakuraContent } from '../src/data/content.js';
 import { scriptLoadGroups, scriptLoadOrder } from '../src/data/script-load-order.js';
 import { heroSignals } from '../src/data/hero-signals.js';
 import { libraryBooks } from '../src/data/library-books.js';
+import { libraryProjectsBridge } from '../src/data/library-projects-bridge.js';
+import { quotePrelude } from '../src/data/quote-prelude.js';
 import { siteNavigation } from '../src/data/site-navigation.js';
 import { siteMeta, siteSocialImageUrl } from '../src/data/site-meta.js';
 
@@ -24,6 +26,16 @@ function assert(label, condition, details = '') {
 
 function readFile(path) {
   return fs.existsSync(path) ? fs.readFileSync(path, 'utf8') : '';
+}
+
+function collectInternalHrefs(groups) {
+  return groups.flatMap(({ source, items }) => items
+    .filter((item) => item?.href?.startsWith('#'))
+    .map((item) => ({
+      source,
+      label: item.label || item.navLabel || item.footerLabel || item.href,
+      href: item.href
+    })));
 }
 
 const html = readFile('dist/index.html');
@@ -65,6 +77,13 @@ const rendererScriptPaths = [
   '/research-renderer.js',
   '/content-renderers.js'
 ];
+const internalGardenHrefs = collectInternalHrefs([
+  { source: 'heroSignals', items: heroSignals },
+  { source: 'siteNavigation', items: siteNavigation },
+  { source: 'libraryProjectsBridge.action', items: [libraryProjectsBridge.action] },
+  { source: 'quotePrelude.steps', items: quotePrelude.steps }
+]);
+const unresolvedInternalGardenHrefs = internalGardenHrefs.filter((item) => !html.includes(`id="${item.href.slice(1)}"`));
 assert('dist/index.html exists', Boolean(html));
 
 const sections = ['hero', 'philosophy', 'layers', 'library', 'projects', 'vision', 'quote'];
@@ -157,6 +176,16 @@ assert(
   navigationTargetPositions.every(([, index]) => index >= 0)
     && navigationTargetPositions.every(([, index], itemIndex) => itemIndex === 0 || navigationTargetPositions[itemIndex - 1][1] < index),
   JSON.stringify(navigationTargetPositions)
+);
+assert(
+  'data-backed internal garden links resolve to rendered anchors',
+  internalGardenHrefs.length > 0
+    && unresolvedInternalGardenHrefs.length === 0
+    && internalGardenHrefs.every((item) => html.includes(`href="${item.href}"`)),
+  JSON.stringify({
+    hrefs: internalGardenHrefs,
+    unresolved: unresolvedInternalGardenHrefs
+  })
 );
 assert(
   'main navigation stays componentized and data-backed',
