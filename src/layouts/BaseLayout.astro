@@ -1,0 +1,108 @@
+---
+import Header from '../components/Header.astro';
+import FooterSection from '../components/FooterSection.astro';
+import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
+import '../styles/site.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = siteMeta.title,
+  description = siteMeta.description,
+} = Astro.props;
+
+const scriptGroups = [
+  [
+    '/scripts/dom-helpers.js',
+    '/scripts/animation-frames.js',
+    '/scripts/canvas-clear.js',
+    '/scripts/canvas-size.js',
+    '/scripts/motion-preferences.js',
+    '/scripts/interaction-environment.js',
+    '/scripts/pointer-input.js',
+    '/scripts/resize-listener.js',
+    '/scripts/visibility-playback.js',
+  ],
+  [
+    '/scripts/effects-lifecycle.js',
+    '/scripts/scroll-ticker.js',
+    '/scripts/scroll-offset.js',
+    '/scripts/scroll-target.js',
+    '/scripts/smooth-scroll.js',
+    '/scripts/scroll-animations.js',
+    '/scripts/scroll-indicators.js',
+    '/scripts/text-reveal.js',
+    '/scripts/zone-atmosphere.js',
+    '/scripts/zone-nav.js',
+    '/scripts/zone-performance.js',
+  ],
+  [
+    '/scripts/sakura-petals.js',
+    '/scripts/aurora-canvas.js',
+    '/scripts/shooting-stars.js',
+    '/scripts/cursor-follow.js',
+    '/scripts/cursor-hover.js',
+    '/scripts/card-hover-fields.js',
+    '/scripts/hero-aurora-overlay.js',
+    '/scripts/hero-image-loader.js',
+    '/scripts/hero-parallax.js',
+  ],
+  [
+    '/scripts/app-controller.js',
+  ],
+];
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <link rel="canonical" href={siteMeta.siteUrl}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&family=Noto+Sans+JP:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:type" content={siteMeta.ogType}>
+    <meta property="og:url" content={siteMeta.siteUrl}>
+    <meta property="og:image" content={siteSocialImageUrl}>
+    <meta property="og:image:alt" content={siteMeta.imageAlt}>
+    <meta name="twitter:card" content={siteMeta.twitterCard}>
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={siteSocialImageUrl}>
+    <link rel="icon" type="image/png" href={siteMeta.imagePath}>
+</head>
+
+<body>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <div class="custom-cursor" id="cursor-dot"></div>
+    <div class="custom-cursor" id="cursor-ring"></div>
+
+    <canvas id="sakura-canvas"></canvas>
+
+    <Header />
+
+    <main>
+        <slot />
+    </main>
+
+    <FooterSection />
+
+    {scriptGroups.flat().map((src) => (
+        <script is:inline src={src}></script>
+    ))}
+</body>
+
+</html>

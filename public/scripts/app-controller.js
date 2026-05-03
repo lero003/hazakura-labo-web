@@ -1,8 +1,3 @@
-// ============================================================
-// 叶桜ラボ — App Controller
-// Connects content renderers and animation islands.
-// ============================================================
-
 (function () {
     'use strict';
 
@@ -30,27 +25,14 @@
         getPrefersReducedMotion: () => prefersReducedMotion
     });
     const motionEffects = window.HazakuraEffectsLifecycle?.create();
-
     const cardHoverFields = window.HazakuraCardHoverFields?.create();
-    const bookTilt = window.HazakuraBookTilt?.create();
-
-    const contentRenderers = window.HazakuraContentRenderers?.create({
-        onRendered: () => {
-            cardHoverFields?.refresh();
-            window.HazakuraVisionEntryFocus?.init(document.querySelector('[data-render="visions"]'), {
-                getPrefersReducedMotion: () => prefersReducedMotion
-            });
-        }
-    });
 
     window.HazakuraPointerInput?.init({
         getDisabled: () => prefersReducedMotion,
         onMove(event) {
             cursorFollow?.setPosition(event.clientX, event.clientY);
             sakuraEngine?.setPointer(event.clientX, event.clientY, event.movementX || 0);
-
             cardHoverFields?.update(event);
-            bookTilt?.update(event);
         }
     });
 
@@ -79,7 +61,6 @@
     }
 
     function init() {
-        contentRenderers?.render(window.HAZAKURA_CONTENT);
         motionPreferences?.syncBodyClass();
         window.HazakuraCanvasSize?.resize(canvas);
         sakuraEngine?.initPetals();

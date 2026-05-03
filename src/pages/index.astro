@@ -1,78 +1,88 @@
 ---
-import HeroSection from '../components/HeroSection.astro';
-import FoundationSections from '../components/FoundationSections.astro';
-import LibrarySection from '../components/LibrarySection.astro';
-import ProjectsSection from '../components/ProjectsSection.astro';
-import VisionSection from '../components/VisionSection.astro';
-import FooterSection from '../components/FooterSection.astro';
-import MainNavigation from '../components/MainNavigation.astro';
-import QuoteSection from '../components/QuoteSection.astro';
-import { scriptLoadOrder } from '../data/script-load-order.js';
-import { siteMeta, siteSocialImageUrl } from '../data/site-meta.js';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import NoteCard from '../components/NoteCard.astro';
+import { products } from '../data/products.js';
+import { getCollection } from 'astro:content';
+
+const featuredProducts = products.filter((p) => p.status === 'Released').slice(0, 3);
+const allNotes = await getCollection('notes');
+const latestNotes = allNotes
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
-<!DOCTYPE html>
-<html lang="ja">
+<section class="hero" data-zone="day">
+    <div class="hero-mesh">
+        <div class="mesh-blob mesh-blob--1"></div>
+        <div class="mesh-blob mesh-blob--2"></div>
+        <div class="mesh-blob mesh-blob--3"></div>
+        <div class="mesh-blob mesh-blob--4"></div>
+    </div>
+    <div class="hero-depth-layer"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-intro">
+            <p class="hero-kana">はざくら・らぼ</p>
+            <h1 class="hero-title">
+                <span class="title-line title-line--1">AIと自然、思想と制作が</span>
+                <span class="title-line title-line--2">循環する小さな実験庭園</span>
+            </h1>
+        </div>
+        <p class="hero-subtitle">
+            本、アプリ、Web、思索の断片をゆっくり育てています。<br>
+            変化を肯定し、理と情を溶かし、知恵を巡らせる場所。
+        </p>
+        <div class="hero-cta-group">
+            <a href="/products" class="hero-cta hero-cta--primary">
+                <span>Product</span>
+                <span class="cta-arrow">→</span>
+            </a>
+            <a href="/notes" class="hero-cta hero-cta--secondary">
+                <span>Notes</span>
+                <span class="cta-arrow">→</span>
+            </a>
+        </div>
+    </div>
+</section>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{siteMeta.title}</title>
-    <meta name="description" content={siteMeta.description}>
-    <link rel="canonical" href={siteMeta.siteUrl}>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&family=Noto+Sans+JP:wght@200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
+<section class="section section--featured" data-zone="dusk">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2 class="section-title">いま育てているもの</h2>
+            <a href="/products" class="section-link">すべて見る →</a>
+        </div>
+        <div class="product-grid">
+            {featuredProducts.map((product) => (
+                <ProductCard
+                    title={product.title}
+                    description={product.description}
+                    status={product.status}
+                    href={product.href}
+                    hrefLabel={product.hrefLabel}
+                    tags={product.tags}
+                />
+            ))}
+        </div>
+    </div>
+</section>
 
-    <!-- SEO & SNS -->
-    <meta property="og:title" content={siteMeta.title}>
-    <meta property="og:description" content={siteMeta.description}>
-    <meta property="og:type" content={siteMeta.ogType}>
-    <meta property="og:url" content={siteMeta.siteUrl}>
-    <meta property="og:image" content={siteSocialImageUrl}>
-    <meta property="og:image:alt" content={siteMeta.imageAlt}>
-    <meta name="twitter:card" content={siteMeta.twitterCard}>
-    <meta name="twitter:title" content={siteMeta.title}>
-    <meta name="twitter:description" content={siteMeta.description}>
-    <meta name="twitter:image" content={siteSocialImageUrl}>
-    <link rel="icon" type="image/png" href={siteMeta.imagePath}>
-</head>
-
-<body>
-    <!-- スクロールプログレスバー -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- zone境界線 -->
-    <div class="zone-border zone-border--dusk-night"></div>
-    <div class="zone-border zone-border--night-moon"></div>
-
-    <!-- カスタムカーソル -->
-    <div class="custom-cursor" id="cursor-dot"></div>
-    <div class="custom-cursor" id="cursor-ring"></div>
-
-    <!-- 桜の花びらキャンバス -->
-    <canvas id="sakura-canvas"></canvas>
-
-    <MainNavigation />
-
-    <HeroSection />
-
-    <FoundationSections />
-
-    <LibrarySection />
-
-    <ProjectsSection />
-
-    <VisionSection />
-
-    <QuoteSection />
-
-    <FooterSection />
-
-    {scriptLoadOrder.map((scriptSrc) => <script is:inline src={scriptSrc}></script>)}
-</body>
-
-</html>
+<section class="section section--notes" data-zone="night">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2 class="section-title">最近のNotes</h2>
+            <a href="/notes" class="section-link">すべて見る →</a>
+        </div>
+        <div class="note-grid">
+            {latestNotes.map((note) => (
+                <NoteCard
+                    title={note.data.title}
+                    description={note.data.description}
+                    pubDate={note.data.pubDate}
+                    tags={note.data.tags}
+                    slug={note.id}
+                />
+            ))}
+        </div>
+    </div>
+</section>

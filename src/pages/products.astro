@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products } from '../data/products.js';
+
+const released = products.filter((p) => p.status === 'Released');
+const growing = products.filter((p) => p.status === 'Growing');
+const experiment = products.filter((p) => p.status === 'Experiment');
+---
+
+<section class="page-hero" data-zone="day">
+    <div class="page-hero-inner">
+        <h1 class="page-hero-title">Product</h1>
+        <p class="page-hero-subtitle">
+            葉桜ラボで育てている制作物の棚。<br>
+            公開済みのもの、育てているもの、実験中のものを並べています。
+        </p>
+    </div>
+</section>
+
+<section class="section" data-zone="day">
+    <div class="section-inner">
+        {released.length > 0 && (
+            <div class="product-group">
+                <h2 class="product-group-title">Released — 公開済み</h2>
+                <div class="product-grid">
+                    {released.map((product) => (
+                        <ProductCard
+                            title={product.title}
+                            description={product.description}
+                            status={product.status}
+                            href={product.href}
+                            hrefLabel={product.hrefLabel}
+                            tags={product.tags}
+                        />
+                    ))}
+                </div>
+            </div>
+        )}
+
+        {growing.length > 0 && (
+            <div class="product-group">
+                <h2 class="product-group-title">Growing — 育成中</h2>
+                <div class="product-grid">
+                    {growing.map((product) => (
+                        <ProductCard
+                            title={product.title}
+                            description={product.description}
+                            status={product.status}
+                            href={product.href}
+                            hrefLabel={product.hrefLabel}
+                            tags={product.tags}
+                        />
+                    ))}
+                </div>
+            </div>
+        )}
+
+        {experiment.length > 0 && (
+            <div class="product-group">
+                <h2 class="product-group-title">Experiment — 実験中</h2>
+                <div class="product-grid">
+                    {experiment.map((product) => (
+                        <ProductCard
+                            title={product.title}
+                            description={product.description}
+                            status={product.status}
+                            href={product.href}
+                            hrefLabel={product.hrefLabel}
+                            tags={product.tags}
+                        />
+                    ))}
+                </div>
+            </div>
+        )}
+    </div>
+</section>

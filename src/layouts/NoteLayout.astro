@@ -1,0 +1,51 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags?: string[];
+  source?: string;
+}
+
+const { title, description, pubDate, tags = [], source } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const pageTitle = `${title} — 葉桜ラボ Notes`;
+---
+
+<BaseLayout title={pageTitle} description={description}>
+    <article class="note-article" data-zone="day">
+        <header class="note-header">
+            <div class="note-meta">
+                <time class="note-date" datetime={pubDate.toISOString()}>{formattedDate}</time>
+                {tags.length > 0 && (
+                    <ul class="note-tags">
+                        {tags.map((tag) => (
+                            <li class="note-tag">{tag}</li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+            <h1 class="note-title">{title}</h1>
+            <p class="note-description">{description}</p>
+            {source === 'note' && (
+                <p class="note-source-note">
+                    この記事は、以前noteに書いた文章を葉桜ラボ用に少し整理したものです。
+                </p>
+            )}
+        </header>
+        <div class="note-body">
+            <slot />
+        </div>
+        <footer class="note-footer">
+            <a href="/notes" class="note-back-link">← Notes一覧へ戻る</a>
+        </footer>
+    </article>
+</BaseLayout>

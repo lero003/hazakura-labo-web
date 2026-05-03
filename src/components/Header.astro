@@ -1,0 +1,29 @@
+---
+import LogoMark from './LogoMark.astro';
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/', label: 'TOP' },
+  { href: '/products', label: 'Product' },
+  { href: '/notes', label: 'Notes' },
+];
+---
+
+<nav id="nav-main" class="nav" aria-label="葉桜ラボの主要巡回路">
+    <div class="nav-inner">
+        <a href="/" class="nav-logo" id="nav-logo">
+            <LogoMark />
+            <span class="logo-text">葉桜ラボ</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+            {navItems.map((item) => (
+                <li>
+                    <a href={item.href} class:list={[{ 'nav-link--active': currentPath === item.href }]}>
+                        {item.label}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </div>
+</nav>

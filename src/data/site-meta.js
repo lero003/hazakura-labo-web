@@ -1,9 +1,9 @@
 export const siteMeta = {
-  title: '葉桜ラボ — AIと、語ろう。自然と、遊ぼう。',
-  description: 'AIと、語ろう。自然と、遊ぼう。——変化を楽しむ研究所、葉桜ラボへようこそ。',
+  title: '葉桜ラボ — AIと自然、思想と制作が循環する小さな実験庭園',
+  description: '葉桜ラボは、AIと自然、思想と制作が循環する小さな実験庭園です。本、アプリ、Web、思索の断片をゆっくり育てています。',
   siteUrl: 'https://hazakura-labo-web.pages.dev/',
   imagePath: '/img/hero.png',
-  imageAlt: '満開を過ぎた桜の木の下で、少女がAIの光と対話している葉桜ラボのメインビジュアル',
+  imageAlt: '葉桜ラボ — AIと自然、思想と制作が循環する小さな実験庭園',
   ogType: 'website',
   twitterCard: 'summary_large_image'
 };

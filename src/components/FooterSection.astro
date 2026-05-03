@@ -1,9 +1,11 @@
 ---
 import LogoMark from './LogoMark.astro';
-import { libraryBooks } from '../data/library-books.js';
-import { siteNavigation } from '../data/site-navigation.js';
 
-const primaryBookHref = libraryBooks[0]?.action?.href ?? '#library';
+const navItems = [
+  { href: '/', label: 'TOP' },
+  { href: '/products', label: 'Product' },
+  { href: '/notes', label: 'Notes' },
+];
 ---
 
 <footer class="footer" id="footer">
@@ -14,24 +16,13 @@ const primaryBookHref = libraryBooks[0]?.action?.href ?? '#library';
                 <span class="logo-text">葉桜ラボ</span>
             </div>
             <p class="footer-philosophy">
-                AIの知性と、自然の情緒が溶け合う「循環する魔法の拠点」
+                AIと自然、思想と制作が循環する小さな実験庭園
             </p>
-            <div class="footer-garden-close" aria-label="葉桜ラボの庭をもう一度巡る小径">
-                <span class="footer-garden-close__seed" aria-hidden="true">✧</span>
-                <p>読み終えた問いを、もう一度だけ庭へ戻す。</p>
-                <a href="#hero" class="footer-garden-close__link">
-                    <span>はじまりへ戻る</span>
-                    <span aria-hidden="true">↑</span>
-                </a>
-            </div>
             <nav class="footer-nav" aria-label="葉桜ラボの終端巡回路">
-                {siteNavigation.map((item) => (
-                    <a href={item.href}>{item.footerLabel}</a>
+                {navItems.map((item) => (
+                    <a href={item.href}>{item.label}</a>
                 ))}
             </nav>
-            <div class="footer-links">
-                <a href={primaryBookHref} target="_blank" rel="noopener noreferrer">Kindleで読む</a>
-            </div>
         </div>
         <div class="footer-bottom">
             <p class="footer-copy">&copy; 2026 葉桜ラボ / Hazakura Lab</p>

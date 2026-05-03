@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  status: 'Released' | 'Growing' | 'Experiment';
+  href?: string;
+  hrefLabel?: string;
+  tags?: string[];
+}
+
+const { title, description, status, href, hrefLabel, tags = [] } = Astro.props;
+
+const statusLabels: Record<string, string> = {
+  Released: '公開済み',
+  Growing: '育成中',
+  Experiment: '実験中',
+};
+---
+
+<article class="product-card" data-status={status}>
+    <div class="product-card__status">
+        <span class="product-card__status-badge product-card__status-badge--{status.toLowerCase()}">
+            {statusLabels[status]}
+        </span>
+    </div>
+    <h3 class="product-card__title">{title}</h3>
+    <p class="product-card__description">{description}</p>
+    {tags.length > 0 && (
+        <ul class="product-card__tags">
+            {tags.map((tag) => (
+                <li class="product-card__tag">{tag}</li>
+            ))}
+        </ul>
+    )}
+    {href && (
+        <div class="product-card__action">
+            <a href={href} target="_blank" rel="noopener noreferrer" class="product-card__link">
+                {hrefLabel || '見る'} <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+    )}
+</article>
