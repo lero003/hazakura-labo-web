@@ -30,11 +30,18 @@
 
         let currentZone = 1;
 
-        const zoneNav = window.HazakuraZoneNav?.create({
-            zones: zoneIndexToName,
-            onSelect: selectZone
-        });
-        const zoneAtmosphere = window.HazakuraZoneAtmosphere?.create(zoneIndexToName);
+        const sections = Array.from(document.querySelectorAll('section[data-zone]'));
+        const availableZoneNames = [...new Set(sections.map((s) => s.dataset.zone))];
+        const availableZoneIndices = availableZoneNames.map((n) => zoneNameToIndex[n]).filter(Boolean).sort();
+        const isSingleZone = availableZoneIndices.length <= 1;
+
+        const zoneNav = isSingleZone
+            ? null
+            : window.HazakuraZoneNav?.create({
+                zones: ['', ...availableZoneNames],
+                onSelect: selectZone
+            });
+        const zoneAtmosphere = window.HazakuraZoneAtmosphere?.create(['', ...availableZoneNames]);
 
         function getCurrentZone() {
             return currentZone;
@@ -46,7 +53,6 @@
             if (!target) return;
             setActiveZone(targetZone, true);
             updateBackgroundZones(targetZone);
-            updateSectionZones(targetZone);
             updateAtmosphereBlend(targetZone);
             window.HazakuraScrollTarget?.scrollTo(target, {
                 getPrefersReducedMotion
@@ -60,12 +66,11 @@
         function updateAtmosphereBlend(zone) {
             if (!zoneAtmosphere) return;
             const activeName = zoneIndexToName[zone];
-            const sections = Array.from(document.querySelectorAll('section[data-zone]'));
-            const activeSection = sections.find((section) => section.dataset.zone === activeName);
             const weights = { day: 0, dusk: 0, night: 0, moon: 0, aurora: 0 };
             weights[activeName] = 1;
 
-            if (activeSection) {
+            const activeSection = sections.find((section) => section.dataset.zone === activeName);
+            if (activeSection && !isSingleZone) {
                 const rect = activeSection.getBoundingClientRect();
                 const probeY = window.innerHeight * 0.42;
                 const softness = Math.min(420, Math.max(220, window.innerHeight * 0.28));
@@ -98,32 +103,11 @@
             zoneNav?.setActive(currentZone);
         }
 
-        function updateZoneBorders(progress) {
-            const duskNightBorder = document.querySelector('.zone-border--dusk-night');
-            const nightMoonBorder = document.querySelector('.zone-border--night-moon');
-
-            const duskNightProgress = Math.abs(progress * 5 - 3);
-            const duskNightOpacity = Math.max(0, 0.6 - duskNightProgress * 0.3);
-            if (duskNightBorder) {
-                duskNightBorder.style.opacity = duskNightOpacity;
-                const posOffset = Math.min(progress * 1000, window.innerHeight);
-                duskNightBorder.style.setProperty('--zone-border-offset', posOffset + 'px');
-            }
-
-            const nightMoonProgress = Math.abs(progress * 5 - 4);
-            const nightMoonOpacity = Math.max(0, 0.5 - nightMoonProgress * 0.25);
-            if (nightMoonBorder) {
-                nightMoonBorder.style.opacity = nightMoonOpacity;
-                const posOffset = Math.min(progress * 1200, window.innerHeight);
-                nightMoonBorder.style.setProperty('--zone-border-offset', posOffset + 'px');
-            }
-        }
-
         function update() {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const progress = docHeight > 0 ? (scrollTop / docHeight) : 0;
-            const zone = getActiveZoneFromSections();
+            const zone = isSingleZone ? currentZone : getActiveZoneFromSections();
 
             setActiveZone(zone);
             updateCursorColor(zone);
@@ -132,13 +116,10 @@
             updateAuroraVisibility(zone);
             updateShootingStars(zone);
             updateBackgroundZones(zone);
-            updateSectionZones(zone);
             updateAtmosphereBlend(zone);
-            updateZoneBorders(progress);
         }
 
         function getActiveZoneFromSections() {
-            const sections = Array.from(document.querySelectorAll('section[data-zone]'));
             if (sections.length === 0) return currentZone;
             const probeY = window.innerHeight * 0.42;
             let active = sections[0];
@@ -269,25 +250,10 @@
             if (blobs[3]) blobs[3].style.background = 'radial-gradient(circle, #e8a87c, transparent 70%)';
         }
 
-        function updateSectionZones(zone) {
-            const philosophy = document.querySelector('.section-philosophy');
-            if (philosophy) {
-                switch (zone) {
-                    case 2: philosophy.style.background = 'linear-gradient(180deg, var(--warm-50) 0%, #fdf2e0 40%, #fce8d0 60%, var(--warm-50) 100%)'; break;
-                    default: philosophy.style.background = ''; break;
-                }
-            }
-            const library = document.querySelector('.section-library');
-            if (library) {
-                switch (zone) {
-                    case 2:
-                        library.style.background = 'linear-gradient(180deg, var(--warm-50) 0%, #fdf0dd 40%, #fce2cc 60%, var(--warm-50) 100%)';
-                        break;
-                    default:
-                        library.style.background = '';
-                        break;
-                }
-            }
+        if (isSingleZone && availableZoneIndices.length === 1) {
+            currentZone = availableZoneIndices[0];
+            setActiveZone(currentZone, true);
+            updateAtmosphereBlend(currentZone);
         }
 
         updateZoneIndicator();

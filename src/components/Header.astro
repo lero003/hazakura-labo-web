@@ -16,6 +16,11 @@ const navItems = [
             <LogoMark />
             <span class="logo-text">葉桜ラボ</span>
         </a>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-links">
+            <span class="nav-hamburger__line"></span>
+            <span class="nav-hamburger__line"></span>
+            <span class="nav-hamburger__line"></span>
+        </button>
         <ul class="nav-links" id="nav-links">
             {navItems.map((item) => (
                 <li>
@@ -27,3 +32,24 @@ const navItems = [
         </ul>
     </div>
 </nav>
+
+<script is:inline>
+(function () {
+    var btn = document.getElementById('nav-hamburger');
+    var links = document.getElementById('nav-links');
+    if (!btn || !links) return;
+    btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        btn.setAttribute('aria-label', open ? 'メニューを開く' : 'メニューを閉じる');
+        links.classList.toggle('nav-links--open', !open);
+    });
+    links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-label', 'メニューを開く');
+            links.classList.remove('nav-links--open');
+        });
+    });
+})();
+</script>

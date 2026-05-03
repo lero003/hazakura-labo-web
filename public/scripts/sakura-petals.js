@@ -37,7 +37,7 @@
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = -20 - Math.random() * 50;
-                this.size = 4 + Math.random() * 8 + this.layer * 2;
+                this.size = 3 + Math.random() * 5 + this.layer * 1.5;
                 this.speedY = 0.3 + Math.random() * 0.6 + this.layer * 0.15;
                 this.speedX = (Math.random() - 0.5) * 0.4;
                 this.rotation = Math.random() * Math.PI * 2;
@@ -45,7 +45,7 @@
                 this.swing = 0.5 + Math.random() * 2;
                 this.swingSpeed = 0.003 + Math.random() * 0.008;
                 this.swingOffset = Math.random() * Math.PI * 2;
-                this.opacity = 0.2 + Math.random() * 0.5 + this.layer * 0.1;
+                this.opacity = 0.15 + Math.random() * 0.35 + this.layer * 0.08;
                 this.depth = 0.5 + this.layer * 0.3;
                 const hue = 340 + Math.random() * 30;
                 const saturation = 50 + Math.random() * 40;
@@ -242,16 +242,16 @@
                 context.fillStyle = this.color;
                 const size = this.size;
                 context.moveTo(0, 0);
-                context.bezierCurveTo(size * 0.5, -size * 0.3, size, -size * 0.5, size * 0.5, -size);
-                context.bezierCurveTo(size * 0.2, -size * 0.7, -size * 0.2, -size * 0.7, -size * 0.5, -size);
-                context.bezierCurveTo(-size, -size * 0.5, -size * 0.5, -size * 0.3, 0, 0);
+                context.bezierCurveTo(size * 0.4, -size * 0.2, size * 0.7, -size * 0.6, size * 0.35, -size);
+                context.bezierCurveTo(size * 0.15, -size * 0.75, -size * 0.15, -size * 0.75, -size * 0.35, -size);
+                context.bezierCurveTo(-size * 0.7, -size * 0.6, -size * 0.4, -size * 0.2, 0, 0);
                 context.fill();
                 context.restore();
             }
         }
 
         function initPetals() {
-            const count = Math.min(Math.floor(window.innerWidth / 25) + 20, 80);
+            const count = Math.min(Math.floor(window.innerWidth / 50) + 8, 30);
             petals = [];
             for (let index = 0; index < count; index++) {
                 let layer;

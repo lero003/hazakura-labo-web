@@ -7,6 +7,7 @@ export const products = [
     href: 'https://www.amazon.co.jp/dp/B0GSWNNZL7',
     hrefLabel: 'Kindleで読む',
     tags: ['哲学', 'AI', 'Kindle'],
+    image: '/img/book_chika_adventure.jpg',
   },
   {
     id: 'weightless-note',
@@ -16,6 +17,7 @@ export const products = [
     href: 'https://www.amazon.co.jp/dp/B0GYLH1NLY/',
     hrefLabel: 'Kindleで読む',
     tags: ['哲学', 'AI', 'Kindle'],
+    image: '/img/book_weightless_note.jpg',
   },
   {
     id: 'kindle-epub-studio',
@@ -25,6 +27,7 @@ export const products = [
     href: 'https://kindle-epub-tool.pages.dev',
     hrefLabel: 'ブラウザで開く',
     tags: ['Markdown', 'EPUB', 'Web Tool'],
+    image: '/img/project-kindle-epub.png',
   },
   {
     id: 'sakura-sky',
