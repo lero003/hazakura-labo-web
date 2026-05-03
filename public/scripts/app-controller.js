@@ -89,48 +89,6 @@
         if (!prefersReducedMotion) heroParallax?.update();
         zonePerformance?.update();
         window.HazakuraCursorHover?.init();
-
-        window.HazakuraScrollTicker?.init({
-            onTick() {
-                scrollIndicators?.update();
-                if (!prefersReducedMotion) heroParallax?.update();
-                zonePerformance?.update();
-            }
-        });
-
-        window.HazakuraResizeListener?.init({
-            onResize() {
-                window.HazakuraCanvasSize?.resize(canvas);
-                motionEffects?.resizeAll();
-                if (shootingStars?.hasStars()) shootingStars.init(canvas.width, canvas.height);
-                if (!prefersReducedMotion) heroParallax?.update();
-                scrollIndicators?.update();
-                zonePerformance?.update();
-            }
-        });
-
-        window.HazakuraVisibilityPlayback?.init({
-            onHidden() {
-                motionEffects?.stopAll();
-            },
-            onVisible() {
-                startMotionEffects();
-            }
-        });
-
-        motionPreferences?.onChange((event) => {
-            prefersReducedMotion = event.matches;
-            motionPreferences.syncBodyClass();
-            if (prefersReducedMotion) {
-                motionEffects?.stopAll();
-                motionEffects?.clearAll();
-                scrollAnimations?.revealAll();
-            } else {
-                startMotionEffects();
-            }
-        });
-
-        window.HazakuraHeroImageLoader?.init();
     }
 
     if (document.readyState === 'loading') {

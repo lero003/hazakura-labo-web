@@ -30,18 +30,6 @@
     --ink-100: #f2f2f7;
     --purple-400: #a78bfa;
     --purple-500: #8b5cf6;
-    --sigil-sakura-rgb: 232, 88, 122;
-    --sigil-leaf-rgb: 90, 158, 95;
-    --sigil-green-rgb: 61, 122, 65;
-    --sigil-water-rgb: 77, 161, 169;
-    --sigil-violet-rgb: 139, 92, 246;
-    --sigil-earth-rgb: 168, 116, 48;
-    --sigil-honey-rgb: 245, 194, 105;
-    --sigil-map-rgb: 71, 121, 157;
-    --sigil-sky-rgb: 59, 130, 168;
-    --sigil-night-violet-rgb: 167, 139, 250;
-    --sigil-night-leaf-rgb: 82, 183, 150;
-    --sigil-night-water-rgb: 93, 203, 225;
     --card-bg: rgba(255, 255, 255, 0.7);
     --card-bg-hover: rgba(255, 255, 255, 0.95);
     --font-serif: 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', serif;
@@ -54,14 +42,12 @@
     --space-2xl: 10rem;
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --duration-slow: 0.8s;
     --duration-normal: 0.5s;
     --duration-fast: 0.3s;
     --hazakura-anchor-offset: 84px;
     --hero-min-block-size: 100vh;
     --hero-content-inline: 2rem;
     --hero-content-bottom: clamp(5.5rem, 12vh, 7rem);
-    --hero-scroll-hint-bottom: clamp(1.5rem, 4vh, 2rem);
     --garden-route-focus-outline: rgba(232, 88, 122, 0.38);
     --garden-route-focus-bg: rgba(255, 255, 255, 0.48);
     --garden-route-focus-shadow: 0 0 0 6px rgba(232, 88, 122, 0.08);
@@ -395,7 +381,8 @@ a {
     color: var(--garden-nav-link-hover-color);
 }
 
-.nav-links a[aria-current="location"] {
+.nav-links a[aria-current="location"],
+.nav-links a[aria-current="page"] {
     color: var(--garden-nav-link-hover-color);
 }
 
@@ -411,7 +398,8 @@ a {
     width: 100%;
 }
 
-.nav-links a[aria-current="location"]::after {
+.nav-links a[aria-current="location"]::after,
+.nav-links a[aria-current="page"]::after {
     width: 100%;
 }
 
@@ -654,7 +642,6 @@ a {
     animation: fadeUp 1s var(--ease-out-expo) 1.2s forwards;
 }
 
-.hero-cta,
 .hero-cta {
     --cta-arrow-shift: 4px;
     display: inline-flex;
@@ -749,32 +736,36 @@ a {
    Section Common
    ============================================ */
 .section {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-lg) var(--space-md);
     position: relative;
     transition: color 1.5s var(--ease-out-expo);
 }
 
 .section-inner {
-    max-width: 1200px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: 0 2rem;
-    position: relative;
-    z-index: 1;
+}
+
+.section--featured,
+.section--notes {
+    padding: var(--space-xl) var(--space-md);
 }
 
 .section-header {
-    position: relative;
-    text-align: center;
-    margin-bottom: var(--space-xl);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+    gap: var(--space-sm);
 }
 
 .section-title {
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 600;
     color: var(--ink-900);
-    letter-spacing: 0.15em;
-    margin-bottom: var(--space-md);
+    letter-spacing: 0.08em;
 }
 
 /* ============================================
@@ -1279,59 +1270,6 @@ body.zone-aurora .hero-aurora-overlay {
 }
 
 /* ============================================
-   Zone border
-   ============================================ */
-.zone-border {
-    position: fixed;
-    left: 0;
-    right: 0;
-    height: 1px;
-    z-index: 9999;
-    opacity: 0;
-    transform: translateY(var(--zone-border-offset, 0px));
-    pointer-events: none;
-}
-
-.zone-border--dusk-night {
-    background: linear-gradient(90deg,
-        transparent,
-        rgba(232, 88, 122, 0.2),
-        rgba(139, 92, 246, 0.2),
-        transparent);
-}
-
-.zone-border--night-moon {
-    background: linear-gradient(90deg,
-        transparent,
-        rgba(167, 139, 250, 0.2),
-        rgba(232, 88, 122, 0.15),
-        transparent);
-}
-
-body.zone-night .zone-border--dusk-night,
-body.zone-moon .zone-border--dusk-night {
-    opacity: 0.5;
-    animation: borderGlow 3s ease-in-out infinite alternate;
-}
-
-body.zone-moon .zone-border--night-moon,
-body.zone-aurora .zone-border--night-moon {
-    opacity: 0.4;
-    animation: borderGlow 3s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes borderGlow {
-    0% {
-        opacity: 0.2;
-        filter: blur(2px);
-    }
-    100% {
-        opacity: 0.6;
-        filter: blur(1px);
-    }
-}
-
-/* ============================================
    Night theme: navigation visibility
    ============================================ */
 body.theme-night :is(.nav, .footer-nav) {
@@ -1374,9 +1312,8 @@ body.theme-night .nav:not(.scrolled) .nav-links a:hover {
    Renewal: New Page Styles
    ============================================ */
 
-.nav-link--active {
+.nav-links a[aria-current="page"] {
     color: var(--sakura-500);
-    border-bottom: 2px solid var(--sakura-500);
 }
 
 /* Page Hero */
@@ -1408,36 +1345,6 @@ body.theme-night .nav:not(.scrolled) .nav-links a:hover {
     font-size: clamp(0.9rem, 2vw, 1.1rem);
     color: var(--ink-600);
     line-height: 1.8;
-}
-
-/* Section (renewal overrides) */
-.section {
-    padding: var(--space-lg) var(--space-md);
-}
-
-.section-inner {
-    max-width: 1080px;
-    margin: 0 auto;
-}
-
-.section--featured,
-.section--notes {
-    padding: var(--space-xl) var(--space-md);
-}
-
-.section-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: var(--space-md);
-    gap: var(--space-sm);
-}
-
-.section-title {
-    font-family: var(--font-serif);
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 600;
-    color: var(--ink-900);
 }
 
 .section-link {
@@ -1480,6 +1387,7 @@ body.theme-night .nav:not(.scrolled) .nav-links a:hover {
 
 /* Product Card */
 .product-card {
+    position: relative;
     background: var(--card-bg);
     border: 1px solid var(--ink-200);
     border-radius: 12px;
@@ -1495,6 +1403,26 @@ body.theme-night .nav:not(.scrolled) .nav-links a:hover {
     background: var(--card-bg-hover);
     border-color: var(--sakura-300);
     box-shadow: 0 4px 20px rgba(232, 88, 122, 0.08);
+}
+
+.product-card[data-tilt]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(232, 88, 122, 0.06),
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-out-expo);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.product-card[data-tilt]:hover::before {
+    opacity: 1;
 }
 
 .product-card__image {
@@ -1607,10 +1535,6 @@ body.theme-night .nav:not(.scrolled) .nav-links a:hover {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
-    max-width: 640px;
-}
-
-.note-grid--full {
     max-width: 640px;
 }
 
@@ -1935,6 +1859,11 @@ body.theme-night .note-back-link:hover {
         padding: var(--space-xl) 0;
     }
 
+    .section--featured,
+    .section--notes {
+        padding: var(--space-xl) 0;
+    }
+
     .section-inner {
         padding: 0 1.2rem;
     }
@@ -2064,7 +1993,8 @@ body.theme-night .note-back-link:hover {
         background: rgba(232, 88, 122, 0.06);
     }
 
-    .nav-links a[aria-current="location"] {
+    .nav-links a[aria-current="location"],
+    .nav-links a[aria-current="page"] {
         color: var(--sakura-500);
     }
 
@@ -2104,8 +2034,7 @@ body.theme-night .note-back-link:hover {
     .custom-cursor,
     #sakura-canvas,
     #aurora-canvas,
-    .hero-aurora-overlay,
-    .zone-border {
+    .hero-aurora-overlay {
         display: none !important;
     }
 

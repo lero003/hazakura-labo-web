@@ -3,7 +3,7 @@
 
     function prepare(options = {}) {
         const {
-            selector = '.section-title, .title-accent-line',
+            selector = '.section-title',
             delayStep = 0.05
         } = options;
 

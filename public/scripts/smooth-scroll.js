@@ -5,65 +5,8 @@
         '.nav-logo[href^="#"]',
         '.nav-links a[href^="#"]',
         '.footer-nav a[href^="#"]',
-        '.footer-garden-close__link[href^="#"]',
-        '.hero-cta[href^="#"]',
-        '.hero-signal__link[href^="#"]',
-        '.library-projects-bridge__link[href^="#"]',
-        '.project-threshold__link[href^="#"]',
-        '.quote-prelude-step[href^="#"]',
-        '.project-return-link[href^="#"]'
+        '.hero-cta[href^="#"]'
     ].join(', ');
-
-    const arrivalRules = [
-        {
-            selector: '.library-projects-bridge__link',
-            className: 'is-handoff-arrival',
-            duration: 1800
-        },
-        {
-            selector: '.hero-signal__link[href="#projects"]',
-            className: 'is-handoff-arrival',
-            duration: 1800
-        },
-        {
-            selector: '.project-threshold__link',
-            className: 'is-project-vision-arrival',
-            duration: 1500
-        },
-        {
-            selector: '.hero-signal__link[href="#vision"]',
-            className: 'is-project-vision-arrival',
-            duration: 1500
-        },
-        {
-            selector: '.quote-prelude-step',
-            className: 'is-quote-return-arrival',
-            duration: 1600
-        },
-        {
-            selector: '.hero-signal__link[href="#library"]',
-            className: 'is-quote-return-arrival',
-            duration: 1500
-        },
-        {
-            selector: '.project-return-link',
-            className: 'is-research-return-arrival',
-            duration: 1500
-        },
-        {
-            selector: '.nav-links a[href="#research-log-strip"], .footer-nav a[href="#research-log-strip"], .hero-signal__link[href="#research-log-strip"]',
-            className: 'is-research-route-arrival',
-            duration: 1500
-        },
-        {
-            selector: '.nav-logo, .footer-garden-close__link',
-            className: 'is-garden-return-arrival',
-            duration: 1700
-        }
-    ];
-
-    let removeRouteClickHandler = null;
-    let routeFocusTimer = 0;
 
     function init(options = {}) {
         const {
@@ -72,16 +15,16 @@
             getPrefersReducedMotion = () => false
         } = options;
 
-        removeRouteClickHandler?.();
+        document.addEventListener('click', function (event) {
+            if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
-        const handleRouteClick = (event) => {
-            if (shouldIgnoreClick(event)) return;
+            var targetElement = event.target instanceof Element ? event.target : event.target?.parentElement;
+            var link = targetElement?.closest(selector);
+            if (!link || !document.contains(link)) return;
 
-            const link = findRouteLink(event.target, selector);
-            if (!link) return;
-
-            const href = link.getAttribute('href');
-            const target = findHashTarget(href);
+            var href = link.getAttribute('href');
+            var target;
+            try { target = document.querySelector(href); } catch { return; }
             if (!target) return;
 
             event.preventDefault();
@@ -91,75 +34,14 @@
                 getPrefersReducedMotion
             });
 
-            updateRouteHash(href);
-            const isReducedMotion = getPrefersReducedMotion();
-            focusRouteTarget(target, isReducedMotion);
-            markMatchingArrival(link, target, isReducedMotion);
-        };
+            if (href && href.startsWith('#') && window.location.hash !== href) {
+                window.history.pushState(null, '', href);
+            }
 
-        document.addEventListener('click', handleRouteClick);
-        removeRouteClickHandler = () => {
-            document.removeEventListener('click', handleRouteClick);
-            removeRouteClickHandler = null;
-        };
-    }
-
-    function shouldIgnoreClick(event) {
-        return event.defaultPrevented
-            || event.button !== 0
-            || event.metaKey
-            || event.ctrlKey
-            || event.shiftKey
-            || event.altKey;
-    }
-
-    function findRouteLink(eventTarget, selector) {
-        const targetElement = eventTarget instanceof Element
-            ? eventTarget
-            : eventTarget?.parentElement;
-        const link = targetElement?.closest(selector);
-        return link && document.contains(link) ? link : null;
-    }
-
-    function findHashTarget(href) {
-        if (!href) return null;
-        try {
-            return document.querySelector(href);
-        } catch (error) {
-            return null;
-        }
-    }
-
-    function updateRouteHash(href) {
-        if (!href || !href.startsWith('#') || window.location.hash === href) return;
-        window.history.pushState(null, '', href);
-    }
-
-    function focusRouteTarget(target, isReducedMotion) {
-        if (!target || typeof target.focus !== 'function') return;
-        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-
-        window.clearTimeout(routeFocusTimer);
-        routeFocusTimer = window.setTimeout(() => {
-            target.focus({ preventScroll: true });
-        }, isReducedMotion ? 0 : 420);
-    }
-
-    function markMatchingArrival(link, target, isReducedMotion) {
-        const rule = arrivalRules.find(({ selector }) => link.matches(selector));
-        if (!rule) return;
-        markArrival(target, rule.className, rule.duration, isReducedMotion);
-    }
-
-    function markArrival(target, className, duration, isReducedMotion) {
-        if (!target || isReducedMotion) return;
-
-        target.classList.remove(className);
-        window.requestAnimationFrame(() => {
-            target.classList.add(className);
-            window.setTimeout(() => {
-                target.classList.remove(className);
-            }, duration);
+            if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+            if (!getPrefersReducedMotion()) {
+                setTimeout(function () { target.focus({ preventScroll: true }); }, 420);
+            }
         });
     }
 

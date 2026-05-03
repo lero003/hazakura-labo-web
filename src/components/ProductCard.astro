@@ -18,9 +18,11 @@ const statusLabels: Record<string, string> = {
 };
 
 const statusClass = status.toLowerCase();
+const isExternal = href?.startsWith('http');
+const isDownload = href?.startsWith('/downloads/');
 ---
 
-<article class="product-card" data-status={status} data-tilt>
+<article class="product-card" data-tilt>
     {image && (
         <div class="product-card__image">
             <img src={image} alt="" loading="lazy" />
@@ -43,8 +45,8 @@ const statusClass = status.toLowerCase();
         )}
         {href && (
             <div class="product-card__action">
-                <a href={href} target="_blank" rel="noopener noreferrer" class="product-card__link">
-                    {hrefLabel || '見る'} <span aria-hidden="true">↗</span>
+                <a href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noopener noreferrer' : undefined} download={isDownload || undefined} class="product-card__link">
+                    {hrefLabel || '見る'} {isExternal && <span aria-hidden="true">↗</span>}
                 </a>
             </div>
         )}

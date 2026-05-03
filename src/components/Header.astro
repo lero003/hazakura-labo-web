@@ -24,7 +24,7 @@ const navItems = [
         <ul class="nav-links" id="nav-links">
             {navItems.map((item) => (
                 <li>
-                    <a href={item.href} class:list={[{ 'nav-link--active': currentPath === item.href }]}>
+                    <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>
                         {item.label}
                     </a>
                 </li>

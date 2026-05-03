@@ -47,7 +47,6 @@ const scriptGroups = [
     '/scripts/cursor-hover.js',
     '/scripts/card-hover-fields.js',
     '/scripts/hero-aurora-overlay.js',
-    '/scripts/hero-image-loader.js',
     '/scripts/hero-parallax.js',
   ],
   [
@@ -64,7 +63,7 @@ const scriptGroups = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <meta name="description" content={description}>
-    <link rel="canonical" href={siteMeta.siteUrl}>
+    <link rel="canonical" href={new URL(Astro.url.pathname, siteMeta.siteUrl).toString()}>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -74,14 +73,14 @@ const scriptGroups = [
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
     <meta property="og:type" content={siteMeta.ogType}>
-    <meta property="og:url" content={siteMeta.siteUrl}>
+    <meta property="og:url" content={new URL(Astro.url.pathname, siteMeta.siteUrl).toString()}>
     <meta property="og:image" content={siteSocialImageUrl}>
     <meta property="og:image:alt" content={siteMeta.imageAlt}>
     <meta name="twitter:card" content={siteMeta.twitterCard}>
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
     <meta name="twitter:image" content={siteSocialImageUrl}>
-    <link rel="icon" type="image/png" href={siteMeta.imagePath}>
+    <link rel="icon" type="image/svg+xml" href={siteMeta.faviconPath}>
 </head>
 
 <body>
@@ -106,13 +105,14 @@ const scriptGroups = [
 
     <script is:inline>
     (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         var buttons = document.querySelectorAll('.hero-cta, .product-card__link, .note-back-link');
         buttons.forEach(function (btn) {
             btn.addEventListener('mousemove', function (e) {
                 var rect = btn.getBoundingClientRect();
                 var x = e.clientX - rect.left - rect.width / 2;
                 var y = e.clientY - rect.top - rect.height / 2;
-                btn.style.transform = 'translate(' + (x * 0.15) + 'px, ' + (y * 0.15) + 'px)';
+                btn.style.transform = 'translate(' + (x * 0.12) + 'px, ' + ((y * 0.12) - 2) + 'px)';
             });
             btn.addEventListener('mouseleave', function () {
                 btn.style.transform = '';
