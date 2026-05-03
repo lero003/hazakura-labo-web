@@ -7,14 +7,18 @@
 
     function revealAll() {
         document.querySelectorAll(revealSelector).forEach((el) => el.classList.add('visible'));
+        document.querySelectorAll(staggeredSelector).forEach((el) => {
+            el.classList.add('visible');
+            Array.from(el.children).forEach((child) => child.classList.add('visible'));
+        });
         document.querySelectorAll(`${processSelector} .process-step, ${processSelector} .process-connector`).forEach((el) => el.classList.add('visible'));
     }
 
     function revealStaggered(el) {
-        const parent = el.parentElement;
-        const siblings = Array.from(parent.children);
-        const index = siblings.indexOf(el);
-        setTimeout(() => { el.classList.add('visible'); }, index * 120);
+        const children = Array.from(el.children);
+        children.forEach((child, index) => {
+            setTimeout(() => { child.classList.add('visible'); }, index * 100);
+        });
     }
 
     function revealProcess(el) {
@@ -64,6 +68,7 @@
         }, observerOptions);
 
         document.querySelectorAll(revealSelector).forEach((el) => observer.observe(el));
+        document.querySelectorAll(staggeredSelector).forEach((el) => observer.observe(el));
         document.querySelectorAll(processSelector).forEach((el) => observer.observe(el));
 
         return {
