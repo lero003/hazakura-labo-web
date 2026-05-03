@@ -7,28 +7,30 @@ const allNotes = await getCollection('notes');
 const notes = allNotes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<section class="page-hero" data-zone="day">
-    <div class="page-hero-inner">
-        <h1 class="page-hero-title">Notes</h1>
-        <p class="page-hero-subtitle">
-            葉桜ラボの思想・制作・AIとの共作ログを保存する場所。<br>
-            選ばれた文章が、少しずつ育っていく。
-        </p>
-    </div>
-</section>
-
-<section class="section" data-zone="dusk">
-    <div class="section-inner">
-        <div class="note-grid note-grid--full">
-            {notes.map((note) => (
-                <NoteCard
-                    title={note.data.title}
-                    description={note.data.description}
-                    pubDate={note.data.pubDate}
-                    tags={note.data.tags}
-                    slug={note.id}
-                />
-            ))}
+<BaseLayout>
+    <section class="page-hero" data-zone="day">
+        <div class="page-hero-inner">
+            <h1 class="page-hero-title">Notes</h1>
+            <p class="page-hero-subtitle">
+                葉桜ラボの思想・制作・AIとの共作ログを保存する場所。<br>
+                選ばれた文章が、少しずつ育っていく。
+            </p>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section class="section" data-zone="dusk">
+        <div class="section-inner">
+            <div class="note-grid note-grid--full">
+                {notes.map((note) => (
+                    <NoteCard
+                        title={note.data.title}
+                        description={note.data.description}
+                        pubDate={note.data.pubDate}
+                        tags={note.data.tags}
+                        slug={note.id}
+                    />
+                ))}
+            </div>
+        </div>
+    </section>
+</BaseLayout>
