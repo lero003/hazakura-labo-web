@@ -20,7 +20,7 @@ const notes = allNotes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.
 
     <section class="section" data-zone="dusk">
         <div class="section-inner">
-            <div class="note-grid note-grid--full">
+            <div class="note-grid note-grid--full" data-reveal-stagger>
                 {notes.map((note) => (
                     <NoteCard
                         title={note.data.title}

@@ -43,6 +43,8 @@ export const products = [
     title: 'Hazakura Habitat',
     description: '葉桜ラボの思想を、暮らしの中に置くための実験。自然とAIが共存する場所の在り方をゆっくり育てている。',
     status: 'Growing',
+    href: 'https://github.com/lero003/hazakura-habitat',
+    hrefLabel: 'GitHubで見る',
     tags: ['実験庭園', '生活'],
   },
   {

@@ -14,6 +14,9 @@ const latestNotes = allNotes
 
 <BaseLayout>
     <section class="hero" data-zone="day">
+        <div class="hero-bg">
+            <img src="/img/hero.png" alt="" class="hero-bg__image" />
+        </div>
         <div class="hero-mesh">
             <div class="mesh-blob mesh-blob--1"></div>
             <div class="mesh-blob mesh-blob--2"></div>
@@ -48,11 +51,11 @@ const latestNotes = allNotes
 
     <section class="section section--featured" data-zone="dusk">
         <div class="section-inner">
-            <div class="section-header">
+            <div class="section-header" data-reveal>
                 <h2 class="section-title">いま育てているもの</h2>
                 <a href="/products" class="section-link">すべて見る →</a>
             </div>
-            <div class="product-grid">
+            <div class="product-grid" data-reveal-stagger>
                 {featuredProducts.map((product) => (
                     <ProductCard
                         title={product.title}
@@ -70,11 +73,11 @@ const latestNotes = allNotes
 
     <section class="section section--notes" data-zone="night">
         <div class="section-inner">
-            <div class="section-header">
+            <div class="section-header" data-reveal>
                 <h2 class="section-title">最近のNotes</h2>
                 <a href="/notes" class="section-link">すべて見る →</a>
             </div>
-            <div class="note-grid">
+            <div class="note-grid" data-reveal-stagger>
                 {latestNotes.map((note) => (
                     <NoteCard
                         title={note.data.title}

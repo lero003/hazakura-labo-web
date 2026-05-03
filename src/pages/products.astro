@@ -23,8 +23,8 @@ const experiment = products.filter((p) => p.status === 'Experiment');
         <div class="section-inner">
             {released.length > 0 && (
                 <div class="product-group">
-                    <h2 class="product-group-title">Released — 公開済み</h2>
-                    <div class="product-grid">
+                    <h2 class="product-group-title" data-reveal>Released — 公開済み</h2>
+                    <div class="product-grid" data-reveal-stagger>
                         {released.map((product) => (
                             <ProductCard
                                 title={product.title}
@@ -42,8 +42,8 @@ const experiment = products.filter((p) => p.status === 'Experiment');
 
             {growing.length > 0 && (
                 <div class="product-group">
-                    <h2 class="product-group-title">Growing — 育成中</h2>
-                    <div class="product-grid">
+                    <h2 class="product-group-title" data-reveal>Growing — 育成中</h2>
+                    <div class="product-grid" data-reveal-stagger>
                         {growing.map((product) => (
                             <ProductCard
                                 title={product.title}
@@ -61,8 +61,8 @@ const experiment = products.filter((p) => p.status === 'Experiment');
 
             {experiment.length > 0 && (
                 <div class="product-group">
-                    <h2 class="product-group-title">Experiment — 実験中</h2>
-                    <div class="product-grid">
+                    <h2 class="product-group-title" data-reveal>Experiment — 実験中</h2>
+                    <div class="product-grid" data-reveal-stagger>
                         {experiment.map((product) => (
                             <ProductCard
                                 title={product.title}
