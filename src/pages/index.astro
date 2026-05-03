@@ -12,77 +12,79 @@ const latestNotes = allNotes
   .slice(0, 3);
 ---
 
-<section class="hero" data-zone="day">
-    <div class="hero-mesh">
-        <div class="mesh-blob mesh-blob--1"></div>
-        <div class="mesh-blob mesh-blob--2"></div>
-        <div class="mesh-blob mesh-blob--3"></div>
-        <div class="mesh-blob mesh-blob--4"></div>
-    </div>
-    <div class="hero-depth-layer"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <div class="hero-intro">
-            <p class="hero-kana">はざくら・らぼ</p>
-            <h1 class="hero-title">
-                <span class="title-line title-line--1">AIと自然、思想と制作が</span>
-                <span class="title-line title-line--2">循環する小さな実験庭園</span>
-            </h1>
+<BaseLayout>
+    <section class="hero" data-zone="day">
+        <div class="hero-mesh">
+            <div class="mesh-blob mesh-blob--1"></div>
+            <div class="mesh-blob mesh-blob--2"></div>
+            <div class="mesh-blob mesh-blob--3"></div>
+            <div class="mesh-blob mesh-blob--4"></div>
         </div>
-        <p class="hero-subtitle">
-            本、アプリ、Web、思索の断片をゆっくり育てています。<br>
-            変化を肯定し、理と情を溶かし、知恵を巡らせる場所。
-        </p>
-        <div class="hero-cta-group">
-            <a href="/products" class="hero-cta hero-cta--primary">
-                <span>Product</span>
-                <span class="cta-arrow">→</span>
-            </a>
-            <a href="/notes" class="hero-cta hero-cta--secondary">
-                <span>Notes</span>
-                <span class="cta-arrow">→</span>
-            </a>
+        <div class="hero-depth-layer"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-intro">
+                <p class="hero-kana">はざくら・らぼ</p>
+                <h1 class="hero-title">
+                    <span class="title-line title-line--1">AIと自然、思想と制作が</span>
+                    <span class="title-line title-line--2">循環する小さな実験庭園</span>
+                </h1>
+            </div>
+            <p class="hero-subtitle">
+                本、アプリ、Web、思索の断片をゆっくり育てています。<br>
+                変化を肯定し、理と情を溶かし、知恵を巡らせる場所。
+            </p>
+            <div class="hero-cta-group">
+                <a href="/products" class="hero-cta hero-cta--primary">
+                    <span>Product</span>
+                    <span class="cta-arrow">→</span>
+                </a>
+                <a href="/notes" class="hero-cta hero-cta--secondary">
+                    <span>Notes</span>
+                    <span class="cta-arrow">→</span>
+                </a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="section section--featured" data-zone="dusk">
-    <div class="section-inner">
-        <div class="section-header">
-            <h2 class="section-title">いま育てているもの</h2>
-            <a href="/products" class="section-link">すべて見る →</a>
+    <section class="section section--featured" data-zone="dusk">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2 class="section-title">いま育てているもの</h2>
+                <a href="/products" class="section-link">すべて見る →</a>
+            </div>
+            <div class="product-grid">
+                {featuredProducts.map((product) => (
+                    <ProductCard
+                        title={product.title}
+                        description={product.description}
+                        status={product.status}
+                        href={product.href}
+                        hrefLabel={product.hrefLabel}
+                        tags={product.tags}
+                    />
+                ))}
+            </div>
         </div>
-        <div class="product-grid">
-            {featuredProducts.map((product) => (
-                <ProductCard
-                    title={product.title}
-                    description={product.description}
-                    status={product.status}
-                    href={product.href}
-                    hrefLabel={product.hrefLabel}
-                    tags={product.tags}
-                />
-            ))}
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="section section--notes" data-zone="night">
-    <div class="section-inner">
-        <div class="section-header">
-            <h2 class="section-title">最近のNotes</h2>
-            <a href="/notes" class="section-link">すべて見る →</a>
+    <section class="section section--notes" data-zone="night">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2 class="section-title">最近のNotes</h2>
+                <a href="/notes" class="section-link">すべて見る →</a>
+            </div>
+            <div class="note-grid">
+                {latestNotes.map((note) => (
+                    <NoteCard
+                        title={note.data.title}
+                        description={note.data.description}
+                        pubDate={note.data.pubDate}
+                        tags={note.data.tags}
+                        slug={note.id}
+                    />
+                ))}
+            </div>
         </div>
-        <div class="note-grid">
-            {latestNotes.map((note) => (
-                <NoteCard
-                    title={note.data.title}
-                    description={note.data.description}
-                    pubDate={note.data.pubDate}
-                    tags={note.data.tags}
-                    slug={note.id}
-                />
-            ))}
-        </div>
-    </div>
-</section>
+    </section>
+</BaseLayout>

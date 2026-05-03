@@ -15,11 +15,13 @@ const statusLabels: Record<string, string> = {
   Growing: '育成中',
   Experiment: '実験中',
 };
+
+const statusClass = status.toLowerCase();
 ---
 
 <article class="product-card" data-status={status}>
     <div class="product-card__status">
-        <span class="product-card__status-badge product-card__status-badge--{status.toLowerCase()}">
+        <span class={`product-card__status-badge product-card__status-badge--${statusClass}`}>
             {statusLabels[status]}
         </span>
     </div>
